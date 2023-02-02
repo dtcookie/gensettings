@@ -23,7 +23,7 @@ import (
 )
 
 type Settings struct {
-	ApplicationID           *string              `json:"-" scope:"applicationId"` // The scope of this setting (APPLICATION environment)
+	ApplicationID           *string              `json:"-" scope:"applicationId"` // The scope of this settings. If the settings should cover the whole environment, just don't specify any scope.
 	EnableOptInMode         bool                 `json:"enableOptInMode"`         // When [Session Replay opt-in mode](https://dt-url.net/sr-opt-in-mode) is turned on, Session Replay is deactivated until explicitly activated via an API call.
 	MaskingPresets          *MaskingPresetConfig `json:"maskingPresets"`          // To protect your end users' privacy, select or customize [predefined masking options](https://dt-url.net/sr-masking-preset-options) that suit your content recording and playback requirements.
 	UrlExclusionPatternList []string             `json:"urlExclusionPatternList"` // Exclude webpages or views from Session Replay recording by adding [URL exclusion rules](https://dt-url.net/sr-url-exclusion)
@@ -33,7 +33,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"application_id": {
 			Type:        schema.TypeString,
-			Description: "The scope of this setting (APPLICATION environment)",
+			Description: "The scope of this settings. If the settings should cover the whole environment, just don't specify any scope.",
 			Optional:    true,
 			Default:     "environment",
 		},

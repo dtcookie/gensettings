@@ -23,7 +23,7 @@ import (
 )
 
 type Settings struct {
-	ApplicationID    string `json:"-" scope:"applicationId"` // The scope of this setting (MOBILE_APPLICATION)
+	ApplicationID    string `json:"-" scope:"applicationId"` // The scope of this settings. If the settings should cover the whole environment, just don't specify any scope.
 	OptInModeEnabled bool   `json:"optInModeEnabled"`        // Enable user opt-in mode
 }
 
@@ -31,7 +31,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"application_id": {
 			Type:        schema.TypeString,
-			Description: "The scope of this setting (MOBILE_APPLICATION)",
+			Description: "The scope of this settings. If the settings should cover the whole environment, just don't specify any scope.",
 			Required:    true,
 		},
 		"opt_in_mode_enabled": {

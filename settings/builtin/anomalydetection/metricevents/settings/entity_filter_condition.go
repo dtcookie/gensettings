@@ -46,7 +46,7 @@ func (me *EntityFilterConditions) UnmarshalHCL(decoder hcl.Decoder) error {
 
 type EntityFilterCondition struct {
 	Operator EntityFilterOperator `json:"operator"` // Possible Values: `CONTAINS_CASE_INSENSITIVE`, `CONTAINS_CASE_SENSITIVE`, `EQUALS`
-	Type     EntityFilterType     `json:"type"`     // Possible Values: `MANAGEMENT_ZONE`, `HOST_NAME`, `PROCESS_GROUP_ID`, `NAME`, `ENTITY_ID`, `CUSTOM_DEVICE_GROUP_NAME`, `HOST_GROUP_NAME`, `TAG`, `PROCESS_GROUP_NAME`
+	Type     EntityFilterType     `json:"type"`     // Possible Values: `NAME`, `PROCESS_GROUP_NAME`, `CUSTOM_DEVICE_GROUP_NAME`, `HOST_GROUP_NAME`, `PROCESS_GROUP_ID`, `ENTITY_ID`, `MANAGEMENT_ZONE`, `TAG`, `HOST_NAME`
 	Value    string               `json:"value"`
 }
 
@@ -59,7 +59,7 @@ func (me *EntityFilterCondition) Schema() map[string]*schema.Schema {
 		},
 		"type": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `MANAGEMENT_ZONE`, `HOST_NAME`, `PROCESS_GROUP_ID`, `NAME`, `ENTITY_ID`, `CUSTOM_DEVICE_GROUP_NAME`, `HOST_GROUP_NAME`, `TAG`, `PROCESS_GROUP_NAME`",
+			Description: "Possible Values: `NAME`, `PROCESS_GROUP_NAME`, `CUSTOM_DEVICE_GROUP_NAME`, `HOST_GROUP_NAME`, `PROCESS_GROUP_ID`, `ENTITY_ID`, `MANAGEMENT_ZONE`, `TAG`, `HOST_NAME`",
 			Required:    true,
 		},
 		"value": {

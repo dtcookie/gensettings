@@ -23,7 +23,7 @@ import (
 )
 
 type Settings struct {
-	HostID *string `json:"-" scope:"hostId"` // The scope of this setting (HOST_GROUP environment)
+	HostID *string `json:"-" scope:"hostId"` // The scope of this settings. If the settings should cover the whole environment, just don't specify any scope.
 	_10    bool    `json:"-10"`              // Rule id: 10
 	_11    bool    `json:"-11"`              // Rule id: 11
 	_12    bool    `json:"-12"`              // Rule id: 12
@@ -95,7 +95,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"host_id": {
 			Type:        schema.TypeString,
-			Description: "The scope of this setting (HOST_GROUP environment)",
+			Description: "The scope of this settings. If the settings should cover the whole environment, just don't specify any scope.",
 			Optional:    true,
 			Default:     "environment",
 		},

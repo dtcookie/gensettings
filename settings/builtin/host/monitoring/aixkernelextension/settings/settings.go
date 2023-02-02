@@ -24,7 +24,7 @@ import (
 
 type Settings struct {
 	Enabled           bool   `json:"enabled"`             // Allow AIX kernel extension
-	ServiceID         string `json:"-" scope:"serviceId"` // The scope of this setting (HOST)
+	ServiceID         string `json:"-" scope:"serviceId"` // The scope of this settings. If the settings should cover the whole environment, just don't specify any scope.
 	UseGlobalSettings bool   `json:"useGlobalSettings"`   // Use global settings
 }
 
@@ -37,7 +37,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		},
 		"service_id": {
 			Type:        schema.TypeString,
-			Description: "The scope of this setting (HOST)",
+			Description: "The scope of this settings. If the settings should cover the whole environment, just don't specify any scope.",
 			Required:    true,
 		},
 		"use_global_settings": {

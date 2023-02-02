@@ -23,7 +23,7 @@ import (
 )
 
 type Settings struct {
-	ApplicationID    string `json:"-" scope:"applicationId"` // The scope of this setting (APPLICATION)
+	ApplicationID    string `json:"-" scope:"applicationId"` // The scope of this settings. If the settings should cover the whole environment, just don't specify any scope.
 	XhrExclusionRule string `json:"xhrExclusionRule"`        // **Examples:**\n\n   - \\\\/segment1\\\\/segment2\n   - dynatrace\\\\.com\n   - www\\\\.dynatrace\\\\.com\\\\/segment1\\\\/.*[a-zA-Z]\n   - www\\\\.dynatrace\\\\.com:8080\n   - www\\\\.dynatrace\\\\.com:([0-9]{1,4}|[1-5][0-9]{4}|6[0-4][0-9]{3}|65[0-4][0-9]{2}|655[0-2][0-9]|6553[0-5])\n   - www\\\\.dynatrace\\\\.com\\\\?param1=value1&param2=.*[a-zA-Z]
 }
 
@@ -31,7 +31,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"application_id": {
 			Type:        schema.TypeString,
-			Description: "The scope of this setting (APPLICATION)",
+			Description: "The scope of this settings. If the settings should cover the whole environment, just don't specify any scope.",
 			Required:    true,
 		},
 		"xhr_exclusion_rule": {

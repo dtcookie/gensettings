@@ -25,7 +25,7 @@ import (
 type Settings struct {
 	Enabled        bool            `json:"enabled"`             // Override global failure detection settings
 	ExceptionRules *ExceptionRules `json:"exceptionRules"`      // Customize failure detection for specific exceptions and errors
-	ServiceID      string          `json:"-" scope:"serviceId"` // The scope of this setting (SERVICE)
+	ServiceID      string          `json:"-" scope:"serviceId"` // The scope of this settings. If the settings should cover the whole environment, just don't specify any scope.
 }
 
 func (me *Settings) Schema() map[string]*schema.Schema {
@@ -46,7 +46,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		},
 		"service_id": {
 			Type:        schema.TypeString,
-			Description: "The scope of this setting (SERVICE)",
+			Description: "The scope of this settings. If the settings should cover the whole environment, just don't specify any scope.",
 			Required:    true,
 		},
 	}

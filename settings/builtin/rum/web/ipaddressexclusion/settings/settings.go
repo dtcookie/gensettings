@@ -23,7 +23,7 @@ import (
 )
 
 type Settings struct {
-	ApplicationID             string                  `json:"-" scope:"applicationId"`   // The scope of this setting (APPLICATION)
+	ApplicationID             string                  `json:"-" scope:"applicationId"`   // The scope of this settings. If the settings should cover the whole environment, just don't specify any scope.
 	IpAddressExclusionInclude bool                    `json:"ipAddressExclusionInclude"` // These are the only IP addresses that should be monitored
 	IpExclusionList           IpAddressExclusionRules `json:"ipExclusionList"`           // **Examples:**\n\n   - 84.112.10.5\n   - fe80::10a1:c6b2:5f68:785d
 }
@@ -32,7 +32,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"application_id": {
 			Type:        schema.TypeString,
-			Description: "The scope of this setting (APPLICATION)",
+			Description: "The scope of this settings. If the settings should cover the whole environment, just don't specify any scope.",
 			Required:    true,
 		},
 		"ip_address_exclusion_include": {

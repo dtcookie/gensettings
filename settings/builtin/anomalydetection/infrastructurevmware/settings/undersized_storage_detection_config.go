@@ -24,7 +24,7 @@ import (
 
 type UndersizedStorageDetectionConfig struct {
 	CustomThresholds *UndersizedStorageDetectionThresholds `json:"customThresholds,omitempty"` // Alert if **any** condition is met in 3 out of 5 samples
-	DetectionMode    *DetectionMode                        `json:"detectionMode,omitempty"`    // Possible Values: `Custom`, `Auto`
+	DetectionMode    *DetectionMode                        `json:"detectionMode,omitempty"`    // Possible Values: `Auto`, `Custom`
 	Enabled          bool                                  `json:"enabled"`                    // Detect undersized storage device
 }
 
@@ -41,7 +41,7 @@ func (me *UndersizedStorageDetectionConfig) Schema() map[string]*schema.Schema {
 		},
 		"detection_mode": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `Custom`, `Auto`",
+			Description: "Possible Values: `Auto`, `Custom`",
 			Optional:    true,
 		},
 		"enabled": {

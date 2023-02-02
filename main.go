@@ -193,6 +193,7 @@ func main() {
 				if checkScope(schema.Definition.AllowedScopes, k) {
 					scopeProperty.Name = v
 					scopeProperty.Scope = v
+					scopeProperty.Comment = "The scope of this settings. If the settings should cover the whole environment, just don't specify any scope."
 					break
 				}
 			}

@@ -24,7 +24,7 @@ import (
 
 type Settings struct {
 	Key     string      `json:"key"`     // Key of the span attribute to store
-	Masking MaskingType `json:"masking"` // Possible Values: `MASK_ONLY_CONFIDENTIAL_DATA`, `MASK_ENTIRE_VALUE`, `NOT_MASKED`
+	Masking MaskingType `json:"masking"` // Possible Values: `NOT_MASKED`, `MASK_ONLY_CONFIDENTIAL_DATA`, `MASK_ENTIRE_VALUE`
 }
 
 func (me *Settings) Schema() map[string]*schema.Schema {
@@ -36,7 +36,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		},
 		"masking": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `MASK_ONLY_CONFIDENTIAL_DATA`, `MASK_ENTIRE_VALUE`, `NOT_MASKED`",
+			Description: "Possible Values: `NOT_MASKED`, `MASK_ONLY_CONFIDENTIAL_DATA`, `MASK_ENTIRE_VALUE`",
 			Required:    true,
 		},
 	}

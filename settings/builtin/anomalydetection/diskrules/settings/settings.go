@@ -25,7 +25,7 @@ import (
 type Settings struct {
 	DiskNameFilter        *DiskNameFilter `json:"diskNameFilter"`        // Only apply to disks whose name matches
 	Enabled               bool            `json:"enabled"`               // Enabled
-	HostID                *string         `json:"-" scope:"hostId"`      // The scope of this setting (HOST_GROUP environment)
+	HostID                *string         `json:"-" scope:"hostId"`      // The scope of this settings. If the settings should cover the whole environment, just don't specify any scope.
 	Metric                DiskMetric      `json:"metric"`                // Possible Values: `LOW_DISK_SPACE`, `LOW_INODES`, `READ_TIME_EXCEEDING`, `WRITE_TIME_EXCEEDING`
 	Name                  string          `json:"name"`                  // Name
 	SampleLimit           *SampleLimit    `json:"sampleLimit"`           // Only alert if the threshold was violated in at least *n* of the last *m* samples
@@ -52,7 +52,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		},
 		"host_id": {
 			Type:        schema.TypeString,
-			Description: "The scope of this setting (HOST_GROUP environment)",
+			Description: "The scope of this settings. If the settings should cover the whole environment, just don't specify any scope.",
 			Optional:    true,
 			Default:     "environment",
 		},

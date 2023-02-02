@@ -45,7 +45,7 @@ func (me *BrowserExclusionListObjects) UnmarshalHCL(decoder hcl.Decoder) error {
 }
 
 type BrowserExclusionListObject struct {
-	BrowserName       Browser            `json:"browserName"`        // Possible Values: `SAFARI`, `EDGE`, `BOTS_AND_SPIDERS`, `ANDROID_WEBKIT`, `CHROME`, `FIREFOX`, `INTERNET_EXPLORER`, `OPERA`
+	BrowserName       Browser            `json:"browserName"`        // Possible Values: `ANDROID_WEBKIT`, `CHROME`, `FIREFOX`, `INTERNET_EXPLORER`, `OPERA`, `SAFARI`, `EDGE`, `BOTS_AND_SPIDERS`
 	Platform          *Platform          `json:"platform,omitempty"` // Possible Values: `ALL`, `MOBILE`, `DESKTOP`
 	Version           *int               `json:"version,omitempty"`
 	VersionComparator *VersionComparator `json:"versionComparator,omitempty"` // Possible Values: `GREATER_OR_EQUAL`, `EQUALS`, `LESS_OR_EQUAL`
@@ -55,7 +55,7 @@ func (me *BrowserExclusionListObject) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"browser_name": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `SAFARI`, `EDGE`, `BOTS_AND_SPIDERS`, `ANDROID_WEBKIT`, `CHROME`, `FIREFOX`, `INTERNET_EXPLORER`, `OPERA`",
+			Description: "Possible Values: `ANDROID_WEBKIT`, `CHROME`, `FIREFOX`, `INTERNET_EXPLORER`, `OPERA`, `SAFARI`, `EDGE`, `BOTS_AND_SPIDERS`",
 			Required:    true,
 		},
 		"platform": {

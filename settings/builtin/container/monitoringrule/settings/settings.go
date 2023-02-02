@@ -25,8 +25,8 @@ import (
 type Settings struct {
 	Enabled  bool              `json:"enabled"`  // Enabled
 	Mode     MonitoringMode    `json:"mode"`     // Possible Values: `MONITORING_OFF`, `MONITORING_ON`
-	Operator ConditionOperator `json:"operator"` // Possible Values: `NOT_STARTS`, `EXISTS`, `ENDS`, `NOT_EQUALS`, `NOT_CONTAINS`, `EQUALS`, `NOT_EXISTS`, `STARTS`, `NOT_ENDS`, `CONTAINS`
-	Property ContainerItem     `json:"property"` // Possible Values: `KUBERNETES_CONTAINERNAME`, `KUBERNETES_BASEPODNAME`, `KUBERNETES_FULLPODNAME`, `KUBERNETES_PODUID`, `CONTAINER_NAME`, `IMAGE_NAME`, `KUBERNETES_NAMESPACE`
+	Operator ConditionOperator `json:"operator"` // Possible Values: `EXISTS`, `ENDS`, `NOT_ENDS`, `NOT_EQUALS`, `NOT_EXISTS`, `STARTS`, `NOT_STARTS`, `CONTAINS`, `NOT_CONTAINS`, `EQUALS`
+	Property ContainerItem     `json:"property"` // Possible Values: `IMAGE_NAME`, `KUBERNETES_NAMESPACE`, `KUBERNETES_CONTAINERNAME`, `KUBERNETES_BASEPODNAME`, `KUBERNETES_FULLPODNAME`, `KUBERNETES_PODUID`, `CONTAINER_NAME`
 	Value    string            `json:"value"`    // Condition value
 }
 
@@ -44,12 +44,12 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		},
 		"operator": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `NOT_STARTS`, `EXISTS`, `ENDS`, `NOT_EQUALS`, `NOT_CONTAINS`, `EQUALS`, `NOT_EXISTS`, `STARTS`, `NOT_ENDS`, `CONTAINS`",
+			Description: "Possible Values: `EXISTS`, `ENDS`, `NOT_ENDS`, `NOT_EQUALS`, `NOT_EXISTS`, `STARTS`, `NOT_STARTS`, `CONTAINS`, `NOT_CONTAINS`, `EQUALS`",
 			Required:    true,
 		},
 		"property": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `KUBERNETES_CONTAINERNAME`, `KUBERNETES_BASEPODNAME`, `KUBERNETES_FULLPODNAME`, `KUBERNETES_PODUID`, `CONTAINER_NAME`, `IMAGE_NAME`, `KUBERNETES_NAMESPACE`",
+			Description: "Possible Values: `IMAGE_NAME`, `KUBERNETES_NAMESPACE`, `KUBERNETES_CONTAINERNAME`, `KUBERNETES_BASEPODNAME`, `KUBERNETES_FULLPODNAME`, `KUBERNETES_PODUID`, `CONTAINER_NAME`",
 			Required:    true,
 		},
 		"value": {

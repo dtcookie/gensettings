@@ -23,7 +23,7 @@ import (
 )
 
 type Settings struct {
-	ApplicationID                          *string  `json:"-" scope:"applicationId"`                // The scope of this setting (APPLICATION environment)
+	ApplicationID                          *string  `json:"-" scope:"applicationId"`                // The scope of this settings. If the settings should cover the whole environment, just don't specify any scope.
 	EnableResourceCapturing                bool     `json:"enableResourceCapturing"`                // When turned on, all CSS resources from all sessions are captured. For details, see [Resource capture](https://dt-url.net/sr-resource-capturing).
 	ResourceCaptureUrlExclusionPatternList []string `json:"resourceCaptureUrlExclusionPatternList"` // Add exclusion rules to avoid the capture of resources from certain pages.
 }
@@ -32,7 +32,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"application_id": {
 			Type:        schema.TypeString,
-			Description: "The scope of this setting (APPLICATION environment)",
+			Description: "The scope of this settings. If the settings should cover the whole environment, just don't specify any scope.",
 			Optional:    true,
 			Default:     "environment",
 		},

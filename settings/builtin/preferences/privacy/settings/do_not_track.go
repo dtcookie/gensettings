@@ -24,7 +24,7 @@ import (
 
 type DoNotTrack struct {
 	ComplyWithDoNotTrack bool              `json:"complyWithDoNotTrack"` // Comply with \"Do Not Track\" browser settings
-	DoNotTrack           *DoNotTrackOption `json:"doNotTrack,omitempty"` // Possible Values: `Anonymous`, `Disable_rum`
+	DoNotTrack           *DoNotTrackOption `json:"doNotTrack,omitempty"` // Possible Values: `Disable_rum`, `Anonymous`
 }
 
 func (me *DoNotTrack) Schema() map[string]*schema.Schema {
@@ -36,7 +36,7 @@ func (me *DoNotTrack) Schema() map[string]*schema.Schema {
 		},
 		"do_not_track": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `Anonymous`, `Disable_rum`",
+			Description: "Possible Values: `Disable_rum`, `Anonymous`",
 			Optional:    true,
 		},
 	}

@@ -25,7 +25,7 @@ import (
 type Settings struct {
 	ExcludeIp  IpAddressForms `json:"excludeIp"`           // Providing a host IP address, you will exclude network traffic only in calculating connectivity (other metrics will still be calculated).
 	ExcludeNic NicForms       `json:"excludeNic"`          // Selecting a network interface, you will exclude all network traffic on that interface from being monitored. You can select from the list below what to not monitor, or input it manually using the \"other one\" option.
-	ServiceID  string         `json:"-" scope:"serviceId"` // The scope of this setting (HOST)
+	ServiceID  string         `json:"-" scope:"serviceId"` // The scope of this settings. If the settings should cover the whole environment, just don't specify any scope.
 }
 
 func (me *Settings) Schema() map[string]*schema.Schema {
@@ -50,7 +50,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		},
 		"service_id": {
 			Type:        schema.TypeString,
-			Description: "The scope of this setting (HOST)",
+			Description: "The scope of this settings. If the settings should cover the whole environment, just don't specify any scope.",
 			Required:    true,
 		},
 	}

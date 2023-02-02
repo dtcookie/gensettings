@@ -23,16 +23,16 @@ import (
 )
 
 type Settings struct {
-	MonitoringState ProcessGroupMonitoringMode `json:"MonitoringState"`     // Possible Values: `DEFAULT`, `MONITORING_OFF`, `MONITORING_ON`
+	MonitoringState ProcessGroupMonitoringMode `json:"MonitoringState"`     // Possible Values: `MONITORING_OFF`, `MONITORING_ON`, `DEFAULT`
 	ProcessGroup    string                     `json:"ProcessGroup"`        // Process group
-	ServiceID       string                     `json:"-" scope:"serviceId"` // The scope of this setting (HOST)
+	ServiceID       string                     `json:"-" scope:"serviceId"` // The scope of this settings. If the settings should cover the whole environment, just don't specify any scope.
 }
 
 func (me *Settings) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"monitoring_state": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `DEFAULT`, `MONITORING_OFF`, `MONITORING_ON`",
+			Description: "Possible Values: `MONITORING_OFF`, `MONITORING_ON`, `DEFAULT`",
 			Required:    true,
 		},
 		"process_group": {
@@ -42,7 +42,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		},
 		"service_id": {
 			Type:        schema.TypeString,
-			Description: "The scope of this setting (HOST)",
+			Description: "The scope of this settings. If the settings should cover the whole environment, just don't specify any scope.",
 			Required:    true,
 		},
 	}

@@ -28,7 +28,7 @@ type MetricProperties struct {
 	MaxValue          float64   `json:"maxValue"`          // The maximum allowed value of the metric.
 	MinValue          float64   `json:"minValue"`          // The minimum allowed value of the metric.
 	RootCauseRelevant bool      `json:"rootCauseRelevant"` // Whether (true or false) the metric is related to a root cause of a problem.\n\nA root-cause relevant metric represents a strong indicator for a faulty component.
-	ValueType         ValueType `json:"valueType"`         // Possible Values: `Unknown`, `Error`, `Score`
+	ValueType         ValueType `json:"valueType"`         // Possible Values: `Error`, `Score`, `Unknown`
 }
 
 func (me *MetricProperties) Schema() map[string]*schema.Schema {
@@ -60,7 +60,7 @@ func (me *MetricProperties) Schema() map[string]*schema.Schema {
 		},
 		"value_type": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `Unknown`, `Error`, `Score`",
+			Description: "Possible Values: `Error`, `Score`, `Unknown`",
 			Required:    true,
 		},
 	}

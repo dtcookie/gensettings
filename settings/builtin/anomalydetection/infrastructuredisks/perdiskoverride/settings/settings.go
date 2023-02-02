@@ -23,7 +23,7 @@ import (
 )
 
 type Settings struct {
-	DiskID                              string                           `json:"-" scope:"diskId"` // The scope of this setting (DISK)
+	DiskID                              string                           `json:"-" scope:"diskId"` // The scope of this settings. If the settings should cover the whole environment, just don't specify any scope.
 	DiskLowInodesDetection              *DiskLowInodesDetection          `json:"diskLowInodesDetection"`
 	DiskLowSpaceDetection               *DiskLowSpaceDetection           `json:"diskLowSpaceDetection"`
 	DiskSlowWritesAndReadsDetection     *DiskSlowWritesAndReadsDetection `json:"diskSlowWritesAndReadsDetection"`
@@ -36,7 +36,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"disk_id": {
 			Type:        schema.TypeString,
-			Description: "The scope of this setting (DISK)",
+			Description: "The scope of this settings. If the settings should cover the whole environment, just don't specify any scope.",
 			Required:    true,
 		},
 		"disk_low_inodes_detection": {

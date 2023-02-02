@@ -25,7 +25,7 @@ import (
 type Settings struct {
 	Enabled                   bool    `json:"enabled"`                   // Monitor Go
 	EnabledGoStaticMonitoring bool    `json:"enabledGoStaticMonitoring"` // Learn more about the [known limitations for Go static monitoring](https://www.dynatrace.com/support/help/technology-support/application-software/go/support/go-known-limitations#limitations)
-	ServiceID                 *string `json:"-" scope:"serviceId"`       // The scope of this setting (HOST environment)
+	ServiceID                 *string `json:"-" scope:"serviceId"`       // The scope of this settings. If the settings should cover the whole environment, just don't specify any scope.
 }
 
 func (me *Settings) Schema() map[string]*schema.Schema {
@@ -42,7 +42,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		},
 		"service_id": {
 			Type:        schema.TypeString,
-			Description: "The scope of this setting (HOST environment)",
+			Description: "The scope of this settings. If the settings should cover the whole environment, just don't specify any scope.",
 			Optional:    true,
 			Default:     "environment",
 		},

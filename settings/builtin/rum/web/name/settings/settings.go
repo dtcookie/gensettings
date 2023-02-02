@@ -23,7 +23,7 @@ import (
 )
 
 type Settings struct {
-	ApplicationID   string `json:"-" scope:"applicationId"` // The scope of this setting (APPLICATION)
+	ApplicationID   string `json:"-" scope:"applicationId"` // The scope of this settings. If the settings should cover the whole environment, just don't specify any scope.
 	ApplicationName string `json:"applicationName"`         // Update application name
 }
 
@@ -31,7 +31,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"application_id": {
 			Type:        schema.TypeString,
-			Description: "The scope of this setting (APPLICATION)",
+			Description: "The scope of this settings. If the settings should cover the whole environment, just don't specify any scope.",
 			Required:    true,
 		},
 		"application_name": {

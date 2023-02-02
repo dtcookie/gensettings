@@ -26,7 +26,7 @@ type Schedule struct {
 	DailyRecurrence   *DailyRecurrence   `json:"dailyRecurrence,omitempty"`
 	MonthlyRecurrence *MonthlyRecurrence `json:"monthlyRecurrence,omitempty"`
 	OnceRecurrence    *OnceRecurrence    `json:"onceRecurrence,omitempty"`
-	ScheduleType      ScheduleType       `json:"scheduleType"` // Possible Values: `MONTHLY`, `ONCE`, `DAILY`, `WEEKLY`
+	ScheduleType      ScheduleType       `json:"scheduleType"` // Possible Values: `ONCE`, `DAILY`, `WEEKLY`, `MONTHLY`
 	WeeklyRecurrence  *WeeklyRecurrence  `json:"weeklyRecurrence,omitempty"`
 }
 
@@ -61,7 +61,7 @@ func (me *Schedule) Schema() map[string]*schema.Schema {
 		},
 		"schedule_type": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `MONTHLY`, `ONCE`, `DAILY`, `WEEKLY`",
+			Description: "Possible Values: `ONCE`, `DAILY`, `WEEKLY`, `MONTHLY`",
 			Required:    true,
 		},
 		"weekly_recurrence": {

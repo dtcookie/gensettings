@@ -25,7 +25,7 @@ import (
 type Settings struct {
 	Condition *Condition     `json:"condition"`        // Condition
 	Enabled   bool           `json:"enabled"`          // Enabled
-	HostID    *string        `json:"-" scope:"hostId"` // The scope of this setting (HOST_GROUP environment)
+	HostID    *string        `json:"-" scope:"hostId"` // The scope of this settings. If the settings should cover the whole environment, just don't specify any scope.
 	Mode      MonitoringMode `json:"mode"`             // Possible Values: `MONITORING_OFF`, `MONITORING_ON`
 }
 
@@ -47,7 +47,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		},
 		"host_id": {
 			Type:        schema.TypeString,
-			Description: "The scope of this setting (HOST_GROUP environment)",
+			Description: "The scope of this settings. If the settings should cover the whole environment, just don't specify any scope.",
 			Optional:    true,
 			Default:     "environment",
 		},

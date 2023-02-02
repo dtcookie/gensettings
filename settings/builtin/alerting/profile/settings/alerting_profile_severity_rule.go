@@ -48,7 +48,7 @@ type AlertingProfileSeverityRule struct {
 	DelayInMinutes       int                  `json:"delayInMinutes"`       // Send a notification if a problem remains open longer than X minutes.
 	SeverityLevel        SeverityLevel        `json:"severityLevel"`        // Possible Values: `CUSTOM_ALERT`, `ERRORS`, `MONITORING_UNAVAILABLE`, `PERFORMANCE`, `RESOURCE_CONTENTION`, `AVAILABILITY`
 	TagFilter            *[]string            `json:"tagFilter,omitempty"`  // Tags
-	TagFilterIncludeMode TagFilterIncludeMode `json:"tagFilterIncludeMode"` // Possible Values: `INCLUDE_ANY`, `INCLUDE_ALL`, `NONE`
+	TagFilterIncludeMode TagFilterIncludeMode `json:"tagFilterIncludeMode"` // Possible Values: `INCLUDE_ALL`, `NONE`, `INCLUDE_ANY`
 }
 
 func (me *AlertingProfileSeverityRule) Schema() map[string]*schema.Schema {
@@ -72,7 +72,7 @@ func (me *AlertingProfileSeverityRule) Schema() map[string]*schema.Schema {
 		},
 		"tag_filter_include_mode": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `INCLUDE_ANY`, `INCLUDE_ALL`, `NONE`",
+			Description: "Possible Values: `INCLUDE_ALL`, `NONE`, `INCLUDE_ANY`",
 			Required:    true,
 		},
 	}

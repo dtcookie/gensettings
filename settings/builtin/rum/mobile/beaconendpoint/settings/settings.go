@@ -24,7 +24,7 @@ import (
 
 type Settings struct {
 	Scope string             `json:"-" scope:"scope"` // The scope of this setting (MOBILE_APPLICATION CUSTOM_APPLICATION)
-	Type  BeaconEndpointType `json:"type"`            // Possible Values: `CLUSTER_ACTIVEGATE`, `ENVIRONMENT_ACTIVEGATE`, `INSTRUMENTED_WEBSERVER`
+	Type  BeaconEndpointType `json:"type"`            // Possible Values: `INSTRUMENTED_WEBSERVER`, `CLUSTER_ACTIVEGATE`, `ENVIRONMENT_ACTIVEGATE`
 	Url   string             `json:"url"`             // This must be a valid beacon endpoint URL.
 }
 
@@ -37,7 +37,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		},
 		"type": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `CLUSTER_ACTIVEGATE`, `ENVIRONMENT_ACTIVEGATE`, `INSTRUMENTED_WEBSERVER`",
+			Description: "Possible Values: `INSTRUMENTED_WEBSERVER`, `CLUSTER_ACTIVEGATE`, `ENVIRONMENT_ACTIVEGATE`",
 			Required:    true,
 		},
 		"url": {

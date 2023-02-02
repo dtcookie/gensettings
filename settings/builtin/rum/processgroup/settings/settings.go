@@ -24,7 +24,7 @@ import (
 
 type Settings struct {
 	Enable         bool    `json:"enable"`                   // Allows OneAgent to:\n* automatically inject the RUM JavaScript tag into each page delivered by this process group\n* provide the necessary info to correlate RUM data with server-side PurePaths\n* forward beacons to the cluster\n* deliver the monitoring code
-	ProcessGroupID *string `json:"-" scope:"processGroupId"` // The scope of this setting (PROCESS_GROUP environment)
+	ProcessGroupID *string `json:"-" scope:"processGroupId"` // The scope of this settings. If the settings should cover the whole environment, just don't specify any scope.
 }
 
 func (me *Settings) Schema() map[string]*schema.Schema {
@@ -36,7 +36,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		},
 		"process_group_id": {
 			Type:        schema.TypeString,
-			Description: "The scope of this setting (PROCESS_GROUP environment)",
+			Description: "The scope of this settings. If the settings should cover the whole environment, just don't specify any scope.",
 			Optional:    true,
 			Default:     "environment",
 		},

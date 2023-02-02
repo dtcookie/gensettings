@@ -24,7 +24,7 @@ import (
 
 type Settings struct {
 	MonitoringState ProcessGroupMonitoringMode `json:"MonitoringState"`          // Possible Values: `MONITORING_OFF`, `MONITORING_ON`, `DEFAULT`
-	ProcessGroupID  string                     `json:"-" scope:"processGroupId"` // The scope of this setting (PROCESS_GROUP)
+	ProcessGroupID  string                     `json:"-" scope:"processGroupId"` // The scope of this settings. If the settings should cover the whole environment, just don't specify any scope.
 }
 
 func (me *Settings) Schema() map[string]*schema.Schema {
@@ -36,7 +36,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		},
 		"process_group_id": {
 			Type:        schema.TypeString,
-			Description: "The scope of this setting (PROCESS_GROUP)",
+			Description: "The scope of this settings. If the settings should cover the whole environment, just don't specify any scope.",
 			Required:    true,
 		},
 	}
