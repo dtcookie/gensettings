@@ -23,10 +23,10 @@ import (
 )
 
 type Settings struct {
-	Language Language `json:"language"`        // Possible Values: `Auto`, `En`, `Ja`
+	Language Language `json:"language"`        // Possible Values: `En`, `Ja`, `Auto`
 	Region   string   `json:"region"`          // Region
 	Scope    string   `json:"-" scope:"scope"` // The scope of this setting (user userdefaults)
-	Theme    Theme    `json:"theme"`           // Possible Values: `Auto`, `Light`, `Dark`
+	Theme    Theme    `json:"theme"`           // Possible Values: `Light`, `Dark`, `Auto`
 	Timezone string   `json:"timezone"`        // Timezone
 }
 
@@ -34,7 +34,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"language": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `Auto`, `En`, `Ja`",
+			Description: "Possible Values: `En`, `Ja`, `Auto`",
 			Required:    true,
 		},
 		"region": {
@@ -49,7 +49,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		},
 		"theme": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `Auto`, `Light`, `Dark`",
+			Description: "Possible Values: `Light`, `Dark`, `Auto`",
 			Required:    true,
 		},
 		"timezone": {

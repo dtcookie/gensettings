@@ -26,7 +26,7 @@ type BlockListRules []*BlockListRule
 
 func (me *BlockListRules) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
-		"playbackMaskingBlockListRule": {
+		"recordingMaskingBlockListRule": {
 			Type:        schema.TypeSet,
 			Required:    true,
 			MinItems:    1,
@@ -37,18 +37,18 @@ func (me *BlockListRules) Schema() map[string]*schema.Schema {
 }
 
 func (me BlockListRules) MarshalHCL(properties hcl.Properties) error {
-	return properties.EncodeSlice("playbackMaskingBlockListRule", me)
+	return properties.EncodeSlice("recordingMaskingBlockListRule", me)
 }
 
 func (me *BlockListRules) UnmarshalHCL(decoder hcl.Decoder) error {
-	return decoder.DecodeSlice("playbackMaskingBlockListRule", me)
+	return decoder.DecodeSlice("recordingMaskingBlockListRule", me)
 }
 
 type BlockListRule struct {
 	AttributeExpression *string           `json:"attributeExpression,omitempty"` // Attribute masking can be applied to web applications that store data within attributes, typically data-NAME attributes in HTML5. When you define attributes, their values are masked while recording but not removed.
 	CssExpression       *string           `json:"cssExpression,omitempty"`       // Content masking can be applied to webpages where personal data is displayed. When content masking is applied to parent elements, all child elements are masked by default.
 	HideUserInteraction *bool             `json:"hideUserInteraction,omitempty"` // Hide user interactions with these elements, including clicks that expand elements, highlighting that results from hovering a cursor over an option, and selection of specific form options.
-	Target              MaskingTargetType `json:"target"`                        // Possible Values: `ELEMENT`, `ATTRIBUTE`
+	Target              MaskingTargetType `json:"target"`                        // Possible Values: `ATTRIBUTE`, `ELEMENT`
 }
 
 func (me *BlockListRule) Schema() map[string]*schema.Schema {
@@ -70,7 +70,7 @@ func (me *BlockListRule) Schema() map[string]*schema.Schema {
 		},
 		"target": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `ELEMENT`, `ATTRIBUTE`",
+			Description: "Possible Values: `ATTRIBUTE`, `ELEMENT`",
 			Required:    true,
 		},
 	}

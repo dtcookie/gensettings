@@ -25,8 +25,8 @@ var PrimaryResourceTypes = struct {
 	Other  PrimaryResourceType
 	Script PrimaryResourceType
 }{
-	PrimaryResourceType("CSS"),
-	PrimaryResourceType("IMAGE"),
-	PrimaryResourceType("OTHER"),
-	PrimaryResourceType("SCRIPT"),
+	"CSS",
+	"IMAGE",
+	"OTHER",
+	"SCRIPT",
 }

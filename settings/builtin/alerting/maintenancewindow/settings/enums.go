@@ -28,13 +28,13 @@ var DayOfWeekTypes = struct {
 	Tuesday   DayOfWeekType
 	Wednesday DayOfWeekType
 }{
-	DayOfWeekType("FRIDAY"),
-	DayOfWeekType("MONDAY"),
-	DayOfWeekType("SATURDAY"),
-	DayOfWeekType("SUNDAY"),
-	DayOfWeekType("THURSDAY"),
-	DayOfWeekType("TUESDAY"),
-	DayOfWeekType("WEDNESDAY"),
+	"FRIDAY",
+	"MONDAY",
+	"SATURDAY",
+	"SUNDAY",
+	"THURSDAY",
+	"TUESDAY",
+	"WEDNESDAY",
 }
 
 type MaintenanceType string
@@ -43,8 +43,8 @@ var MaintenanceTypes = struct {
 	Planned   MaintenanceType
 	Unplanned MaintenanceType
 }{
-	MaintenanceType("PLANNED"),
-	MaintenanceType("UNPLANNED"),
+	"PLANNED",
+	"UNPLANNED",
 }
 
 type ScheduleType string
@@ -55,10 +55,10 @@ var ScheduleTypes = struct {
 	Once    ScheduleType
 	Weekly  ScheduleType
 }{
-	ScheduleType("DAILY"),
-	ScheduleType("MONTHLY"),
-	ScheduleType("ONCE"),
-	ScheduleType("WEEKLY"),
+	"DAILY",
+	"MONTHLY",
+	"ONCE",
+	"WEEKLY",
 }
 
 type SuppressionType string
@@ -68,7 +68,7 @@ var SuppressionTypes = struct {
 	DetectProblemsDontAlert SuppressionType
 	DontDetectProblems      SuppressionType
 }{
-	SuppressionType("DETECT_PROBLEMS_AND_ALERT"),
-	SuppressionType("DETECT_PROBLEMS_DONT_ALERT"),
-	SuppressionType("DONT_DETECT_PROBLEMS"),
+	"DETECT_PROBLEMS_AND_ALERT",
+	"DETECT_PROBLEMS_DONT_ALERT",
+	"DONT_DETECT_PROBLEMS",
 }

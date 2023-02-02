@@ -23,6 +23,6 @@ var PerformanceProfiles = struct {
 	Default PerformanceProfile
 	High    PerformanceProfile
 }{
-	PerformanceProfile("DEFAULT"),
-	PerformanceProfile("HIGH"),
+	"DEFAULT",
+	"HIGH",
 }

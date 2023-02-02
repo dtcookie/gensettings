@@ -45,7 +45,7 @@ func (me *URLPatterns) UnmarshalHCL(decoder hcl.Decoder) error {
 }
 
 type URLPattern struct {
-	Rule     RuleEnum `json:"rule"`     // Possible Values: `Equals`, `StartsWith`
+	Rule     RuleEnum `json:"rule"`     // Possible Values: `StartsWith`, `Equals`
 	Template string   `json:"template"` // Pattern
 }
 
@@ -53,7 +53,7 @@ func (me *URLPattern) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"rule": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `Equals`, `StartsWith`",
+			Description: "Possible Values: `StartsWith`, `Equals`",
 			Required:    true,
 		},
 		"template": {

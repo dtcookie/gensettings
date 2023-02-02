@@ -27,7 +27,7 @@ type Settings struct {
 	Enabled          bool     `json:"enabled"`          // This setting is enabled (`true`) or disabled (`false`)
 	Key              string   `json:"key"`              // Key
 	Matcher          string   `json:"matcher"`          // [See our documentation](https://dt-url.net/bp234rv)
-	Measure          Measure  `json:"measure"`          // Possible Values: `OCCURRENCE`, `ATTRIBUTE`
+	Measure          Measure  `json:"measure"`          // Possible Values: `ATTRIBUTE`, `OCCURRENCE`
 	MeasureAttribute string   `json:"measureAttribute"` // Attribute
 }
 
@@ -57,7 +57,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		},
 		"measure": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `OCCURRENCE`, `ATTRIBUTE`",
+			Description: "Possible Values: `ATTRIBUTE`, `OCCURRENCE`",
 			Required:    true,
 		},
 		"measure_attribute": {

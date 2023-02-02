@@ -24,7 +24,7 @@ import (
 
 type FailureRateFixed struct {
 	OverAlertingProtection *OverAlertingProtection `json:"overAlertingProtection"` // Avoid over-alerting
-	Sensitivity            Sensitivity             `json:"sensitivity"`            // Possible Values: `High`, `Low`, `Medium`
+	Sensitivity            Sensitivity             `json:"sensitivity"`            // Possible Values: `Medium`, `High`, `Low`
 	Threshold              float64                 `json:"threshold"`
 }
 
@@ -41,7 +41,7 @@ func (me *FailureRateFixed) Schema() map[string]*schema.Schema {
 		},
 		"sensitivity": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `High`, `Low`, `Medium`",
+			Description: "Possible Values: `Medium`, `High`, `Low`",
 			Required:    true,
 		},
 		"threshold": {

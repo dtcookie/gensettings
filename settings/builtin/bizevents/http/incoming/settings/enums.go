@@ -31,16 +31,16 @@ var ComparisonEnums = struct {
 	NStartsWith ComparisonEnum
 	StartsWith  ComparisonEnum
 }{
-	ComparisonEnum("CONTAINS"),
-	ComparisonEnum("ENDS_WITH"),
-	ComparisonEnum("EQUALS"),
-	ComparisonEnum("EXISTS"),
-	ComparisonEnum("N_CONTAINS"),
-	ComparisonEnum("N_ENDS_WITH"),
-	ComparisonEnum("N_EQUALS"),
-	ComparisonEnum("N_EXISTS"),
-	ComparisonEnum("N_STARTS_WITH"),
-	ComparisonEnum("STARTS_WITH"),
+	"CONTAINS",
+	"ENDS_WITH",
+	"EQUALS",
+	"EXISTS",
+	"N_CONTAINS",
+	"N_ENDS_WITH",
+	"N_EQUALS",
+	"N_EXISTS",
+	"N_STARTS_WITH",
+	"STARTS_WITH",
 }
 
 type DataSourceEnum string
@@ -55,14 +55,14 @@ var DataSourceEnums = struct {
 	ResponseHeaders    DataSourceEnum
 	ResponseStatuscode DataSourceEnum
 }{
-	DataSourceEnum("Request_body"),
-	DataSourceEnum("Request_headers"),
-	DataSourceEnum("Request_method"),
-	DataSourceEnum("Request_parameters"),
-	DataSourceEnum("Request_path"),
-	DataSourceEnum("Response_body"),
-	DataSourceEnum("Response_headers"),
-	DataSourceEnum("Response_statusCode"),
+	"Request_body",
+	"Request_headers",
+	"Request_method",
+	"Request_parameters",
+	"Request_path",
+	"Response_body",
+	"Response_headers",
+	"Response_statusCode",
 }
 
 type DataSourceWithStaticStringEnum string
@@ -78,13 +78,13 @@ var DataSourceWithStaticStringEnums = struct {
 	ResponseHeaders    DataSourceWithStaticStringEnum
 	ResponseStatuscode DataSourceWithStaticStringEnum
 }{
-	DataSourceWithStaticStringEnum("Constant_string"),
-	DataSourceWithStaticStringEnum("Request_body"),
-	DataSourceWithStaticStringEnum("Request_headers"),
-	DataSourceWithStaticStringEnum("Request_method"),
-	DataSourceWithStaticStringEnum("Request_parameters"),
-	DataSourceWithStaticStringEnum("Request_path"),
-	DataSourceWithStaticStringEnum("Response_body"),
-	DataSourceWithStaticStringEnum("Response_headers"),
-	DataSourceWithStaticStringEnum("Response_statusCode"),
+	"Constant_string",
+	"Request_body",
+	"Request_headers",
+	"Request_method",
+	"Request_parameters",
+	"Request_path",
+	"Response_body",
+	"Response_headers",
+	"Response_statusCode",
 }

@@ -23,7 +23,7 @@ import (
 )
 
 type Settings struct {
-	AlertingMode             AlertingMode `json:"alertingMode"`             // Possible Values: `ON_PGI_UNAVAILABILITY`, `ON_INSTANCE_COUNT_VIOLATION`
+	AlertingMode             AlertingMode `json:"alertingMode"`             // Possible Values: `ON_INSTANCE_COUNT_VIOLATION`, `ON_PGI_UNAVAILABILITY`
 	Enabled                  bool         `json:"enabled"`                  // This setting is enabled (`true`) or disabled (`false`)
 	MinimumInstanceThreshold int          `json:"minimumInstanceThreshold"` // Open a new problem if the number of active process instances in the group is fewer than:
 	ProcessGroupID           string       `json:"-" scope:"processGroupId"` // The scope of this settings. If the settings should cover the whole environment, just don't specify any scope.
@@ -33,7 +33,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"alerting_mode": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `ON_PGI_UNAVAILABILITY`, `ON_INSTANCE_COUNT_VIOLATION`",
+			Description: "Possible Values: `ON_INSTANCE_COUNT_VIOLATION`, `ON_PGI_UNAVAILABILITY`",
 			Required:    true,
 		},
 		"enabled": {

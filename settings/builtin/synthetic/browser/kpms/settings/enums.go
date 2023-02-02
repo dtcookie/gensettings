@@ -31,16 +31,16 @@ var LoadKpms = struct {
 	UserActionDuration     LoadKpm
 	VisuallyComplete       LoadKpm
 }{
-	LoadKpm("CUMULATIVE_LAYOUT_SHIFT"),
-	LoadKpm("DOM_INTERACTIVE"),
-	LoadKpm("LARGEST_CONTENTFUL_PAINT"),
-	LoadKpm("LOAD_EVENT_END"),
-	LoadKpm("LOAD_EVENT_START"),
-	LoadKpm("RESPONSE_END"),
-	LoadKpm("RESPONSE_START"),
-	LoadKpm("SPEED_INDEX"),
-	LoadKpm("USER_ACTION_DURATION"),
-	LoadKpm("VISUALLY_COMPLETE"),
+	"CUMULATIVE_LAYOUT_SHIFT",
+	"DOM_INTERACTIVE",
+	"LARGEST_CONTENTFUL_PAINT",
+	"LOAD_EVENT_END",
+	"LOAD_EVENT_START",
+	"RESPONSE_END",
+	"RESPONSE_START",
+	"SPEED_INDEX",
+	"USER_ACTION_DURATION",
+	"VISUALLY_COMPLETE",
 }
 
 type XhrKpm string
@@ -51,8 +51,8 @@ var XhrKpms = struct {
 	UserActionDuration XhrKpm
 	VisuallyComplete   XhrKpm
 }{
-	XhrKpm("RESPONSE_END"),
-	XhrKpm("RESPONSE_START"),
-	XhrKpm("USER_ACTION_DURATION"),
-	XhrKpm("VISUALLY_COMPLETE"),
+	"RESPONSE_END",
+	"RESPONSE_START",
+	"USER_ACTION_DURATION",
+	"VISUALLY_COMPLETE",
 }

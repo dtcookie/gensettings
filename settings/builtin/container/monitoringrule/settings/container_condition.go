@@ -23,8 +23,8 @@ import (
 )
 
 type ContainerCondition struct {
-	Operator ConditionOperator `json:"operator"`        // Possible Values: `EXISTS`, `NOT_STARTS`, `ENDS`, `NOT_ENDS`, `NOT_EXISTS`, `CONTAINS`, `EQUALS`, `NOT_EQUALS`, `STARTS`, `NOT_CONTAINS`
-	Property ContainerItem     `json:"property"`        // Possible Values: `CONTAINER_NAME`, `IMAGE_NAME`, `KUBERNETES_NAMESPACE`, `KUBERNETES_CONTAINERNAME`, `KUBERNETES_BASEPODNAME`, `KUBERNETES_FULLPODNAME`, `KUBERNETES_PODUID`
+	Operator ConditionOperator `json:"operator"`        // Possible Values: `NOT_CONTAINS`, `NOT_ENDS`, `EQUALS`, `NOT_EQUALS`, `NOT_STARTS`, `ENDS`, `CONTAINS`, `EXISTS`, `STARTS`, `NOT_EXISTS`
+	Property ContainerItem     `json:"property"`        // Possible Values: `KUBERNETES_NAMESPACE`, `KUBERNETES_CONTAINERNAME`, `KUBERNETES_BASEPODNAME`, `KUBERNETES_FULLPODNAME`, `KUBERNETES_PODUID`, `CONTAINER_NAME`, `IMAGE_NAME`
 	Value    *string           `json:"value,omitempty"` // Condition value
 }
 
@@ -32,12 +32,12 @@ func (me *ContainerCondition) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"operator": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `EXISTS`, `NOT_STARTS`, `ENDS`, `NOT_ENDS`, `NOT_EXISTS`, `CONTAINS`, `EQUALS`, `NOT_EQUALS`, `STARTS`, `NOT_CONTAINS`",
+			Description: "Possible Values: `NOT_CONTAINS`, `NOT_ENDS`, `EQUALS`, `NOT_EQUALS`, `NOT_STARTS`, `ENDS`, `CONTAINS`, `EXISTS`, `STARTS`, `NOT_EXISTS`",
 			Required:    true,
 		},
 		"property": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `CONTAINER_NAME`, `IMAGE_NAME`, `KUBERNETES_NAMESPACE`, `KUBERNETES_CONTAINERNAME`, `KUBERNETES_BASEPODNAME`, `KUBERNETES_FULLPODNAME`, `KUBERNETES_PODUID`",
+			Description: "Possible Values: `KUBERNETES_NAMESPACE`, `KUBERNETES_CONTAINERNAME`, `KUBERNETES_BASEPODNAME`, `KUBERNETES_FULLPODNAME`, `KUBERNETES_PODUID`, `CONTAINER_NAME`, `IMAGE_NAME`",
 			Required:    true,
 		},
 		"value": {

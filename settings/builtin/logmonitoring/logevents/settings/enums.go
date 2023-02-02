@@ -31,14 +31,14 @@ var EventTypeEnums = struct {
 	Resource             EventTypeEnum
 	Slowdown             EventTypeEnum
 }{
-	EventTypeEnum("AVAILABILITY"),
-	EventTypeEnum("CUSTOM_ALERT"),
-	EventTypeEnum("CUSTOM_ANNOTATION"),
-	EventTypeEnum("CUSTOM_CONFIGURATION"),
-	EventTypeEnum("CUSTOM_DEPLOYMENT"),
-	EventTypeEnum("ERROR"),
-	EventTypeEnum("INFO"),
-	EventTypeEnum("MARKED_FOR_TERMINATION"),
-	EventTypeEnum("RESOURCE"),
-	EventTypeEnum("SLOWDOWN"),
+	"AVAILABILITY",
+	"CUSTOM_ALERT",
+	"CUSTOM_ANNOTATION",
+	"CUSTOM_CONFIGURATION",
+	"CUSTOM_DEPLOYMENT",
+	"ERROR",
+	"INFO",
+	"MARKED_FOR_TERMINATION",
+	"RESOURCE",
+	"SLOWDOWN",
 }

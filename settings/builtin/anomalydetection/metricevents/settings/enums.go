@@ -29,14 +29,14 @@ var Aggregations = struct {
 	Sum          Aggregation
 	Value        Aggregation
 }{
-	Aggregation("AVG"),
-	Aggregation("COUNT"),
-	Aggregation("MAX"),
-	Aggregation("MEDIAN"),
-	Aggregation("MIN"),
-	Aggregation("PERCENTILE90"),
-	Aggregation("SUM"),
-	Aggregation("VALUE"),
+	"AVG",
+	"COUNT",
+	"MAX",
+	"MEDIAN",
+	"MIN",
+	"PERCENTILE90",
+	"SUM",
+	"VALUE",
 }
 
 type AlertCondition string
@@ -46,9 +46,9 @@ var AlertConditions = struct {
 	Below   AlertCondition
 	Outside AlertCondition
 }{
-	AlertCondition("ABOVE"),
-	AlertCondition("BELOW"),
-	AlertCondition("OUTSIDE"),
+	"ABOVE",
+	"BELOW",
+	"OUTSIDE",
 }
 
 type EntityFilterOperator string
@@ -58,9 +58,9 @@ var EntityFilterOperators = struct {
 	ContainsCaseSensitive   EntityFilterOperator
 	Equals                  EntityFilterOperator
 }{
-	EntityFilterOperator("CONTAINS_CASE_INSENSITIVE"),
-	EntityFilterOperator("CONTAINS_CASE_SENSITIVE"),
-	EntityFilterOperator("EQUALS"),
+	"CONTAINS_CASE_INSENSITIVE",
+	"CONTAINS_CASE_SENSITIVE",
+	"EQUALS",
 }
 
 type EntityFilterType string
@@ -76,15 +76,15 @@ var EntityFilterTypes = struct {
 	ProcessGroupName      EntityFilterType
 	Tag                   EntityFilterType
 }{
-	EntityFilterType("CUSTOM_DEVICE_GROUP_NAME"),
-	EntityFilterType("ENTITY_ID"),
-	EntityFilterType("HOST_GROUP_NAME"),
-	EntityFilterType("HOST_NAME"),
-	EntityFilterType("MANAGEMENT_ZONE"),
-	EntityFilterType("NAME"),
-	EntityFilterType("PROCESS_GROUP_ID"),
-	EntityFilterType("PROCESS_GROUP_NAME"),
-	EntityFilterType("TAG"),
+	"CUSTOM_DEVICE_GROUP_NAME",
+	"ENTITY_ID",
+	"HOST_GROUP_NAME",
+	"HOST_NAME",
+	"MANAGEMENT_ZONE",
+	"NAME",
+	"PROCESS_GROUP_ID",
+	"PROCESS_GROUP_NAME",
+	"TAG",
 }
 
 type EventTypeEnum string
@@ -101,16 +101,16 @@ var EventTypeEnums = struct {
 	Resource             EventTypeEnum
 	Slowdown             EventTypeEnum
 }{
-	EventTypeEnum("AVAILABILITY"),
-	EventTypeEnum("CUSTOM_ALERT"),
-	EventTypeEnum("CUSTOM_ANNOTATION"),
-	EventTypeEnum("CUSTOM_CONFIGURATION"),
-	EventTypeEnum("CUSTOM_DEPLOYMENT"),
-	EventTypeEnum("ERROR"),
-	EventTypeEnum("INFO"),
-	EventTypeEnum("MARKED_FOR_TERMINATION"),
-	EventTypeEnum("RESOURCE"),
-	EventTypeEnum("SLOWDOWN"),
+	"AVAILABILITY",
+	"CUSTOM_ALERT",
+	"CUSTOM_ANNOTATION",
+	"CUSTOM_CONFIGURATION",
+	"CUSTOM_DEPLOYMENT",
+	"ERROR",
+	"INFO",
+	"MARKED_FOR_TERMINATION",
+	"RESOURCE",
+	"SLOWDOWN",
 }
 
 type ModelType string
@@ -120,9 +120,9 @@ var ModelTypes = struct {
 	SeasonalBaseline      ModelType
 	StaticThreshold       ModelType
 }{
-	ModelType("AUTO_ADAPTIVE_THRESHOLD"),
-	ModelType("SEASONAL_BASELINE"),
-	ModelType("STATIC_THRESHOLD"),
+	"AUTO_ADAPTIVE_THRESHOLD",
+	"SEASONAL_BASELINE",
+	"STATIC_THRESHOLD",
 }
 
 type Type string
@@ -131,6 +131,6 @@ var Types = struct {
 	MetricKey      Type
 	MetricSelector Type
 }{
-	Type("METRIC_KEY"),
-	Type("METRIC_SELECTOR"),
+	"METRIC_KEY",
+	"METRIC_SELECTOR",
 }

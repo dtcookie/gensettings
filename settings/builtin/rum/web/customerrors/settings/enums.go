@@ -26,9 +26,9 @@ var Matchers = struct {
 	EndsWith   Matcher
 	Equals     Matcher
 }{
-	Matcher("ALL"),
-	Matcher("BEGINS_WITH"),
-	Matcher("CONTAINS"),
-	Matcher("ENDS_WITH"),
-	Matcher("EQUALS"),
+	"ALL",
+	"BEGINS_WITH",
+	"CONTAINS",
+	"ENDS_WITH",
+	"EQUALS",
 }

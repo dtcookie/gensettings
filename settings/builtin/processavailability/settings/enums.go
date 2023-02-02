@@ -24,7 +24,7 @@ var ProcessItems = struct {
 	Executable     ProcessItem
 	Executablepath ProcessItem
 }{
-	ProcessItem("CommandLine"),
-	ProcessItem("Executable"),
-	ProcessItem("ExecutablePath"),
+	"CommandLine",
+	"Executable",
+	"ExecutablePath",
 }

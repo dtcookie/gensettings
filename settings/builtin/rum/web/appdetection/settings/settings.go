@@ -24,7 +24,7 @@ import (
 
 type Settings struct {
 	ApplicationID string  `json:"applicationId"` // Select an existing application or create a new one.
-	Matcher       Matcher `json:"matcher"`       // Possible Values: `URL_STARTS_WITH`, `DOMAIN_MATCHES`, `URL_EQUALS`, `URL_ENDS_WITH`, `DOMAIN_ENDS_WITH`, `DOMAIN_EQUALS`, `DOMAIN_CONTAINS`, `DOMAIN_STARTS_WITH`, `URL_CONTAINS`
+	Matcher       Matcher `json:"matcher"`       // Possible Values: `URL_CONTAINS`, `URL_ENDS_WITH`, `DOMAIN_MATCHES`, `DOMAIN_STARTS_WITH`, `DOMAIN_CONTAINS`, `DOMAIN_ENDS_WITH`, `DOMAIN_EQUALS`, `URL_EQUALS`, `URL_STARTS_WITH`
 	Pattern       string  `json:"pattern"`       // Pattern
 }
 
@@ -37,7 +37,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		},
 		"matcher": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `URL_STARTS_WITH`, `DOMAIN_MATCHES`, `URL_EQUALS`, `URL_ENDS_WITH`, `DOMAIN_ENDS_WITH`, `DOMAIN_EQUALS`, `DOMAIN_CONTAINS`, `DOMAIN_STARTS_WITH`, `URL_CONTAINS`",
+			Description: "Possible Values: `URL_CONTAINS`, `URL_ENDS_WITH`, `DOMAIN_MATCHES`, `DOMAIN_STARTS_WITH`, `DOMAIN_CONTAINS`, `DOMAIN_ENDS_WITH`, `DOMAIN_EQUALS`, `URL_EQUALS`, `URL_STARTS_WITH`",
 			Required:    true,
 		},
 		"pattern": {

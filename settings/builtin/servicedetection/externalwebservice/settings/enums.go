@@ -24,9 +24,9 @@ var ContributionTypeWithOverrides = struct {
 	Overridevalue  ContributionTypeWithOverride
 	Transformvalue ContributionTypeWithOverride
 }{
-	ContributionTypeWithOverride("OriginalValue"),
-	ContributionTypeWithOverride("OverrideValue"),
-	ContributionTypeWithOverride("TransformValue"),
+	"OriginalValue",
+	"OverrideValue",
+	"TransformValue",
 }
 
 type FrameworkType string
@@ -48,21 +48,21 @@ var FrameworkTypes = struct {
 	Websphere  FrameworkType
 	Wink       FrameworkType
 }{
-	FrameworkType("AXIS"),
-	FrameworkType("CXF"),
-	FrameworkType("HESSIAN"),
-	FrameworkType("JAX_WS_RI"),
-	FrameworkType("JBOSS"),
-	FrameworkType("JERSEY"),
-	FrameworkType("PROGRESS"),
-	FrameworkType("RESTEASY"),
-	FrameworkType("RESTLET"),
-	FrameworkType("SPRING"),
-	FrameworkType("TIBCO"),
-	FrameworkType("WEBLOGIC"),
-	FrameworkType("WEBMETHODS"),
-	FrameworkType("WEBSPHERE"),
-	FrameworkType("WINK"),
+	"AXIS",
+	"CXF",
+	"HESSIAN",
+	"JAX_WS_RI",
+	"JBOSS",
+	"JERSEY",
+	"PROGRESS",
+	"RESTEASY",
+	"RESTLET",
+	"SPRING",
+	"TIBCO",
+	"WEBLOGIC",
+	"WEBMETHODS",
+	"WEBSPHERE",
+	"WINK",
 }
 
 type TransformationType string
@@ -79,14 +79,14 @@ var TransformationTypes = struct {
 	SplitSelect       TransformationType
 	TakeSegments      TransformationType
 }{
-	TransformationType("AFTER"),
-	TransformationType("BEFORE"),
-	TransformationType("BETWEEN"),
-	TransformationType("REMOVE_CREDIT_CARDS"),
-	TransformationType("REMOVE_IBANS"),
-	TransformationType("REMOVE_IPS"),
-	TransformationType("REMOVE_NUMBERS"),
-	TransformationType("REPLACE_BETWEEN"),
-	TransformationType("SPLIT_SELECT"),
-	TransformationType("TAKE_SEGMENTS"),
+	"AFTER",
+	"BEFORE",
+	"BETWEEN",
+	"REMOVE_CREDIT_CARDS",
+	"REMOVE_IBANS",
+	"REMOVE_IPS",
+	"REMOVE_NUMBERS",
+	"REPLACE_BETWEEN",
+	"SPLIT_SELECT",
+	"TAKE_SEGMENTS",
 }

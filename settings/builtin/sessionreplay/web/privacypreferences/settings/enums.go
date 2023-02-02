@@ -25,10 +25,10 @@ var MaskingPresets = struct {
 	MaskAll       MaskingPreset
 	MaskUserInput MaskingPreset
 }{
-	MaskingPreset("ALLOW_LIST"),
-	MaskingPreset("BLOCK_LIST"),
-	MaskingPreset("MASK_ALL"),
-	MaskingPreset("MASK_USER_INPUT"),
+	"ALLOW_LIST",
+	"BLOCK_LIST",
+	"MASK_ALL",
+	"MASK_USER_INPUT",
 }
 
 type MaskingTargetType string
@@ -37,6 +37,6 @@ var MaskingTargetTypes = struct {
 	Attribute MaskingTargetType
 	Element   MaskingTargetType
 }{
-	MaskingTargetType("ATTRIBUTE"),
-	MaskingTargetType("ELEMENT"),
+	"ATTRIBUTE",
+	"ELEMENT",
 }

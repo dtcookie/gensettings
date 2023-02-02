@@ -25,8 +25,8 @@ var UrlFilters = struct {
 	EndsWith   UrlFilter
 	Equals     UrlFilter
 }{
-	UrlFilter("BEGINS_WITH"),
-	UrlFilter("CONTAINS"),
-	UrlFilter("ENDS_WITH"),
-	UrlFilter("EQUALS"),
+	"BEGINS_WITH",
+	"CONTAINS",
+	"ENDS_WITH",
+	"EQUALS",
 }

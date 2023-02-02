@@ -23,6 +23,6 @@ var DetectionRuleTypes = struct {
 	Env  DetectionRuleType
 	Prop DetectionRuleType
 }{
-	DetectionRuleType("Env"),
-	DetectionRuleType("Prop"),
+	"Env",
+	"Prop",
 }

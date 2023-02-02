@@ -23,6 +23,6 @@ var AlertingModes = struct {
 	OnInstanceCountViolation AlertingMode
 	OnPgiUnavailability      AlertingMode
 }{
-	AlertingMode("ON_INSTANCE_COUNT_VIOLATION"),
-	AlertingMode("ON_PGI_UNAVAILABILITY"),
+	"ON_INSTANCE_COUNT_VIOLATION",
+	"ON_PGI_UNAVAILABILITY",
 }

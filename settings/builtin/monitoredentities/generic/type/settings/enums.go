@@ -27,10 +27,10 @@ var IngestDataSources = struct {
 	Spans    IngestDataSource
 	Topology IngestDataSource
 }{
-	IngestDataSource("Entities"),
-	IngestDataSource("Events"),
-	IngestDataSource("Logs"),
-	IngestDataSource("Metrics"),
-	IngestDataSource("Spans"),
-	IngestDataSource("Topology"),
+	"Entities",
+	"Events",
+	"Logs",
+	"Metrics",
+	"Spans",
+	"Topology",
 }

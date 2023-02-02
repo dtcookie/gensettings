@@ -24,7 +24,7 @@ var Scopes = struct {
 	External Scope
 	Internal Scope
 }{
-	Scope("CLUSTER"),
-	Scope("EXTERNAL"),
-	Scope("INTERNAL"),
+	"CLUSTER",
+	"EXTERNAL",
+	"INTERNAL",
 }

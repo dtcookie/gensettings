@@ -26,7 +26,7 @@ type Settings struct {
 	Dimensions       []string `json:"dimensions"`
 	Enabled          bool     `json:"enabled"`          // This setting is enabled (`true`) or disabled (`false`)
 	Key              string   `json:"key"`              // Metric key
-	Measure          Measure  `json:"measure"`          // Possible Values: `ATTRIBUTE`, `OCCURRENCE`
+	Measure          Measure  `json:"measure"`          // Possible Values: `OCCURRENCE`, `ATTRIBUTE`
 	MeasureAttribute string   `json:"measureAttribute"` // Attribute
 	Query            string   `json:"query"`            // Matcher
 }
@@ -52,7 +52,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		},
 		"measure": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `ATTRIBUTE`, `OCCURRENCE`",
+			Description: "Possible Values: `OCCURRENCE`, `ATTRIBUTE`",
 			Required:    true,
 		},
 		"measure_attribute": {

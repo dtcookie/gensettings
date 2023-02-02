@@ -23,6 +23,6 @@ var Measures = struct {
 	Attribute  Measure
 	Occurrence Measure
 }{
-	Measure("ATTRIBUTE"),
-	Measure("OCCURRENCE"),
+	"ATTRIBUTE",
+	"OCCURRENCE",
 }

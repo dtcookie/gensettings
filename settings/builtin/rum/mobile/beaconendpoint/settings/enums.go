@@ -24,7 +24,7 @@ var BeaconEndpointTypes = struct {
 	EnvironmentActivegate BeaconEndpointType
 	InstrumentedWebserver BeaconEndpointType
 }{
-	BeaconEndpointType("CLUSTER_ACTIVEGATE"),
-	BeaconEndpointType("ENVIRONMENT_ACTIVEGATE"),
-	BeaconEndpointType("INSTRUMENTED_WEBSERVER"),
+	"CLUSTER_ACTIVEGATE",
+	"ENVIRONMENT_ACTIVEGATE",
+	"INSTRUMENTED_WEBSERVER",
 }

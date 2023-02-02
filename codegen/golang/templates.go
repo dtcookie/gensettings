@@ -87,7 +87,7 @@ var {{.Plural}} = struct{
 	{{with .Instances}}{{ range .}}
 	{{.Name}} {{$name}}{{end}}{{end}}
 }{
-	{{with .Instances}}{{ range .}}{{$name}}("{{.Literal}}"),
+	{{with .Instances}}{{ range .}}"{{.Literal}}",
 	{{end}}{{end}} }
 `
 

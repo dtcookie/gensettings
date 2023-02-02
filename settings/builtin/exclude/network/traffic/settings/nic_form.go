@@ -46,7 +46,7 @@ func (me *NicForms) UnmarshalHCL(decoder hcl.Decoder) error {
 
 type NicForm struct {
 	Interface string     `json:"interface"` // Network interface
-	Os        OsTypeEnum `json:"os"`        // Possible Values: `OS_TYPE_LINUX`, `OS_TYPE_SOLARIS`, `OS_TYPE_WINDOWS`, `OS_TYPE_ZOS`, `OS_TYPE_UNKNOWN`, `OS_TYPE_AIX`, `OS_TYPE_DARWIN`, `OS_TYPE_HPUX`
+	Os        OsTypeEnum `json:"os"`        // Possible Values: `OS_TYPE_WINDOWS`, `OS_TYPE_ZOS`, `OS_TYPE_UNKNOWN`, `OS_TYPE_AIX`, `OS_TYPE_DARWIN`, `OS_TYPE_HPUX`, `OS_TYPE_LINUX`, `OS_TYPE_SOLARIS`
 }
 
 func (me *NicForm) Schema() map[string]*schema.Schema {
@@ -58,7 +58,7 @@ func (me *NicForm) Schema() map[string]*schema.Schema {
 		},
 		"os": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `OS_TYPE_LINUX`, `OS_TYPE_SOLARIS`, `OS_TYPE_WINDOWS`, `OS_TYPE_ZOS`, `OS_TYPE_UNKNOWN`, `OS_TYPE_AIX`, `OS_TYPE_DARWIN`, `OS_TYPE_HPUX`",
+			Description: "Possible Values: `OS_TYPE_WINDOWS`, `OS_TYPE_ZOS`, `OS_TYPE_UNKNOWN`, `OS_TYPE_AIX`, `OS_TYPE_DARWIN`, `OS_TYPE_HPUX`, `OS_TYPE_LINUX`, `OS_TYPE_SOLARIS`",
 			Required:    true,
 		},
 	}

@@ -29,14 +29,14 @@ var MatcherTypes = struct {
 	LogSource              MatcherType
 	ProcessTechnology      MatcherType
 }{
-	MatcherType("Container_name"),
-	MatcherType("Dt_entity_container_group"),
-	MatcherType("Dt_entity_process_group"),
-	MatcherType("K8s_container_name"),
-	MatcherType("K8s_deployment_name"),
-	MatcherType("K8s_namespace_name"),
-	MatcherType("Log_source"),
-	MatcherType("Process_technology"),
+	"Container_name",
+	"Dt_entity_container_group",
+	"Dt_entity_process_group",
+	"K8s_container_name",
+	"K8s_deployment_name",
+	"K8s_namespace_name",
+	"Log_source",
+	"Process_technology",
 }
 
 type Operator string
@@ -44,5 +44,5 @@ type Operator string
 var Operators = struct {
 	Matches Operator
 }{
-	Operator("MATCHES"),
+	"MATCHES",
 }

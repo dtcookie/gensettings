@@ -29,14 +29,14 @@ var Browsers = struct {
 	Opera            Browser
 	Safari           Browser
 }{
-	Browser("ANDROID_WEBKIT"),
-	Browser("BOTS_AND_SPIDERS"),
-	Browser("CHROME"),
-	Browser("EDGE"),
-	Browser("FIREFOX"),
-	Browser("INTERNET_EXPLORER"),
-	Browser("OPERA"),
-	Browser("SAFARI"),
+	"ANDROID_WEBKIT",
+	"BOTS_AND_SPIDERS",
+	"CHROME",
+	"EDGE",
+	"FIREFOX",
+	"INTERNET_EXPLORER",
+	"OPERA",
+	"SAFARI",
 }
 
 type Platform string
@@ -46,9 +46,9 @@ var Platforms = struct {
 	Desktop Platform
 	Mobile  Platform
 }{
-	Platform("ALL"),
-	Platform("DESKTOP"),
-	Platform("MOBILE"),
+	"ALL",
+	"DESKTOP",
+	"MOBILE",
 }
 
 type VersionComparator string
@@ -58,7 +58,7 @@ var VersionComparators = struct {
 	GreaterOrEqual VersionComparator
 	LessOrEqual    VersionComparator
 }{
-	VersionComparator("EQUALS"),
-	VersionComparator("GREATER_OR_EQUAL"),
-	VersionComparator("LESS_OR_EQUAL"),
+	"EQUALS",
+	"GREATER_OR_EQUAL",
+	"LESS_OR_EQUAL",
 }

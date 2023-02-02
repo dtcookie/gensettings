@@ -25,10 +25,10 @@ var RecurrenceEnums = struct {
 	Once    RecurrenceEnum
 	Weekly  RecurrenceEnum
 }{
-	RecurrenceEnum("DAILY"),
-	RecurrenceEnum("MONTHLY"),
-	RecurrenceEnum("ONCE"),
-	RecurrenceEnum("WEEKLY"),
+	"DAILY",
+	"MONTHLY",
+	"ONCE",
+	"WEEKLY",
 }
 
 type TimezoneEnum string
@@ -48,17 +48,17 @@ var TimezoneEnums = struct {
 	Gmt1100 TimezoneEnum
 	Gmt1200 TimezoneEnum
 }{
-	TimezoneEnum("GMT_00_00"),
-	TimezoneEnum("GMT_01_00"),
-	TimezoneEnum("GMT_02_00"),
-	TimezoneEnum("GMT_03_00"),
-	TimezoneEnum("GMT_04_00"),
-	TimezoneEnum("GMT_05_00"),
-	TimezoneEnum("GMT_06_00"),
-	TimezoneEnum("GMT_07_00"),
-	TimezoneEnum("GMT_08_00"),
-	TimezoneEnum("GMT_09_00"),
-	TimezoneEnum("GMT_10_00"),
-	TimezoneEnum("GMT_11_00"),
-	TimezoneEnum("GMT_12_00"),
+	"GMT_00_00",
+	"GMT_01_00",
+	"GMT_02_00",
+	"GMT_03_00",
+	"GMT_04_00",
+	"GMT_05_00",
+	"GMT_06_00",
+	"GMT_07_00",
+	"GMT_08_00",
+	"GMT_09_00",
+	"GMT_10_00",
+	"GMT_11_00",
+	"GMT_12_00",
 }

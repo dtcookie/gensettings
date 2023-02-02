@@ -24,9 +24,9 @@ var Languages = struct {
 	En   Language
 	Ja   Language
 }{
-	Language("Auto"),
-	Language("En"),
-	Language("Ja"),
+	"Auto",
+	"En",
+	"Ja",
 }
 
 type Theme string
@@ -36,7 +36,7 @@ var Themes = struct {
 	Dark  Theme
 	Light Theme
 }{
-	Theme("Auto"),
-	Theme("Dark"),
-	Theme("Light"),
+	"Auto",
+	"Dark",
+	"Light",
 }

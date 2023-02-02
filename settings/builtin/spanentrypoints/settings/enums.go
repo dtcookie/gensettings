@@ -23,8 +23,8 @@ var SpanEntrypointActions = struct {
 	CreateEntrypoint     SpanEntrypointAction
 	DontCreateEntrypoint SpanEntrypointAction
 }{
-	SpanEntrypointAction("CREATE_ENTRYPOINT"),
-	SpanEntrypointAction("DONT_CREATE_ENTRYPOINT"),
+	"CREATE_ENTRYPOINT",
+	"DONT_CREATE_ENTRYPOINT",
 }
 
 type SpanKind string
@@ -36,11 +36,11 @@ var SpanKinds = struct {
 	Producer SpanKind
 	Server   SpanKind
 }{
-	SpanKind("CLIENT"),
-	SpanKind("CONSUMER"),
-	SpanKind("INTERNAL"),
-	SpanKind("PRODUCER"),
-	SpanKind("SERVER"),
+	"CLIENT",
+	"CONSUMER",
+	"INTERNAL",
+	"PRODUCER",
+	"SERVER",
 }
 
 type SpanMatcherSource string
@@ -52,11 +52,11 @@ var SpanMatcherSources = struct {
 	SpanKind                    SpanMatcherSource
 	SpanName                    SpanMatcherSource
 }{
-	SpanMatcherSource("ATTRIBUTE"),
-	SpanMatcherSource("INSTRUMENTATION_SCOPE_NAME"),
-	SpanMatcherSource("INSTRUMENTATION_SCOPE_VERSION"),
-	SpanMatcherSource("SPAN_KIND"),
-	SpanMatcherSource("SPAN_NAME"),
+	"ATTRIBUTE",
+	"INSTRUMENTATION_SCOPE_NAME",
+	"INSTRUMENTATION_SCOPE_VERSION",
+	"SPAN_KIND",
+	"SPAN_NAME",
 }
 
 type SpanMatcherType string
@@ -71,12 +71,12 @@ var SpanMatcherTypes = struct {
 	Equals           SpanMatcherType
 	StartsWith       SpanMatcherType
 }{
-	SpanMatcherType("CONTAINS"),
-	SpanMatcherType("DOES_NOT_CONTAIN"),
-	SpanMatcherType("DOES_NOT_END_WITH"),
-	SpanMatcherType("DOES_NOT_EQUAL"),
-	SpanMatcherType("DOES_NOT_START_WITH"),
-	SpanMatcherType("ENDS_WITH"),
-	SpanMatcherType("EQUALS"),
-	SpanMatcherType("STARTS_WITH"),
+	"CONTAINS",
+	"DOES_NOT_CONTAIN",
+	"DOES_NOT_END_WITH",
+	"DOES_NOT_EQUAL",
+	"DOES_NOT_START_WITH",
+	"ENDS_WITH",
+	"EQUALS",
+	"STARTS_WITH",
 }

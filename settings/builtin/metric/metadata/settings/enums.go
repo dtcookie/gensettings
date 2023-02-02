@@ -23,8 +23,8 @@ var UnitDisplayFormats = struct {
 	Binary  UnitDisplayFormat
 	Decimal UnitDisplayFormat
 }{
-	UnitDisplayFormat("Binary"),
-	UnitDisplayFormat("Decimal"),
+	"Binary",
+	"Decimal",
 }
 
 type ValueType string
@@ -34,7 +34,7 @@ var ValueTypes = struct {
 	Score   ValueType
 	Unknown ValueType
 }{
-	ValueType("Error"),
-	ValueType("Score"),
-	ValueType("Unknown"),
+	"Error",
+	"Score",
+	"Unknown",
 }

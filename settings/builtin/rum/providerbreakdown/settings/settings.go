@@ -27,7 +27,7 @@ type Settings struct {
 	IconUrl                 *string                      `json:"iconUrl,omitempty"`       // Specify an URL for the provider's brand icon
 	ReportPublicImprovement bool                         `json:"reportPublicImprovement"` // Send the patterns of this provider to Dynatrace to help us improve 3rd-party detection.
 	ResourceName            string                       `json:"resourceName"`            // Resource name
-	ResourceType            ResourceType                 `json:"resourceType"`            // Possible Values: `FirstParty`, `ThirdParty`, `Cdn`
+	ResourceType            ResourceType                 `json:"resourceType"`            // Possible Values: `Cdn`, `FirstParty`, `ThirdParty`
 }
 
 func (me *Settings) Schema() map[string]*schema.Schema {
@@ -58,7 +58,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		},
 		"resource_type": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `FirstParty`, `ThirdParty`, `Cdn`",
+			Description: "Possible Values: `Cdn`, `FirstParty`, `ThirdParty`",
 			Required:    true,
 		},
 	}

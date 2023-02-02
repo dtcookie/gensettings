@@ -25,8 +25,8 @@ var OriginMatcherTypes = struct {
 	Equals     OriginMatcherType
 	StartsWith OriginMatcherType
 }{
-	OriginMatcherType("CONTAINS"),
-	OriginMatcherType("ENDS_WITH"),
-	OriginMatcherType("EQUALS"),
-	OriginMatcherType("STARTS_WITH"),
+	"CONTAINS",
+	"ENDS_WITH",
+	"EQUALS",
+	"STARTS_WITH",
 }

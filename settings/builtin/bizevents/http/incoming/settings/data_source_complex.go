@@ -23,7 +23,7 @@ import (
 )
 
 type DataSourceComplex struct {
-	DataSource DataSourceEnum `json:"dataSource"`     // Possible Values: `Request_path`, `Request_method`, `Request_headers`, `Request_parameters`, `Request_body`, `Response_body`, `Response_headers`, `Response_statusCode`
+	DataSource DataSourceEnum `json:"dataSource"`     // Possible Values: `Request_headers`, `Request_parameters`, `Request_body`, `Response_body`, `Response_headers`, `Response_statusCode`, `Request_path`, `Request_method`
 	Path       *string        `json:"path,omitempty"` // [See our documentation](https://dt-url.net/ei034bx)
 }
 
@@ -31,7 +31,7 @@ func (me *DataSourceComplex) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"data_source": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `Request_path`, `Request_method`, `Request_headers`, `Request_parameters`, `Request_body`, `Response_body`, `Response_headers`, `Response_statusCode`",
+			Description: "Possible Values: `Request_headers`, `Request_parameters`, `Request_body`, `Response_body`, `Response_headers`, `Response_statusCode`, `Request_path`, `Request_method`",
 			Required:    true,
 		},
 		"path": {

@@ -23,8 +23,8 @@ var AuthTypes = struct {
 	Basic  AuthType
 	Oauth2 AuthType
 }{
-	AuthType("Basic"),
-	AuthType("Oauth2"),
+	"Basic",
+	"Oauth2",
 }
 
 type GrantType string
@@ -32,7 +32,7 @@ type GrantType string
 var GrantTypes = struct {
 	Clientcredentials GrantType
 }{
-	GrantType("ClientCredentials"),
+	"ClientCredentials",
 }
 
 type SendCredentials string
@@ -40,5 +40,5 @@ type SendCredentials string
 var SendCredentialss = struct {
 	Header SendCredentials
 }{
-	SendCredentials("Header"),
+	"Header",
 }

@@ -23,8 +23,8 @@ var LinuxServiceProps = struct {
 	Servicename LinuxServiceProp
 	Startuptype LinuxServiceProp
 }{
-	LinuxServiceProp("ServiceName"),
-	LinuxServiceProp("StartupType"),
+	"ServiceName",
+	"StartupType",
 }
 
 type System string
@@ -33,8 +33,8 @@ var Systems = struct {
 	Linux   System
 	Windows System
 }{
-	System("LINUX"),
-	System("WINDOWS"),
+	"LINUX",
+	"WINDOWS",
 }
 
 type WindowsServiceProps string
@@ -46,9 +46,9 @@ var WindowsServicePropss = struct {
 	Servicename  WindowsServiceProps
 	Startuptype  WindowsServiceProps
 }{
-	WindowsServiceProps("DisplayName"),
-	WindowsServiceProps("Manufacturer"),
-	WindowsServiceProps("Path"),
-	WindowsServiceProps("ServiceName"),
-	WindowsServiceProps("StartupType"),
+	"DisplayName",
+	"Manufacturer",
+	"Path",
+	"ServiceName",
+	"StartupType",
 }

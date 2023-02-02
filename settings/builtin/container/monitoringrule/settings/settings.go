@@ -25,8 +25,8 @@ import (
 type Settings struct {
 	Enabled  bool              `json:"enabled"`  // This setting is enabled (`true`) or disabled (`false`)
 	Mode     MonitoringMode    `json:"mode"`     // Possible Values: `MONITORING_OFF`, `MONITORING_ON`
-	Operator ConditionOperator `json:"operator"` // Possible Values: `EQUALS`, `NOT_EQUALS`, `STARTS`, `NOT_CONTAINS`, `NOT_EXISTS`, `CONTAINS`, `ENDS`, `NOT_ENDS`, `EXISTS`, `NOT_STARTS`
-	Property ContainerItem     `json:"property"` // Possible Values: `IMAGE_NAME`, `KUBERNETES_NAMESPACE`, `KUBERNETES_CONTAINERNAME`, `KUBERNETES_BASEPODNAME`, `KUBERNETES_FULLPODNAME`, `KUBERNETES_PODUID`, `CONTAINER_NAME`
+	Operator ConditionOperator `json:"operator"` // Possible Values: `NOT_EQUALS`, `NOT_STARTS`, `ENDS`, `NOT_CONTAINS`, `NOT_ENDS`, `EQUALS`, `STARTS`, `NOT_EXISTS`, `CONTAINS`, `EXISTS`
+	Property ContainerItem     `json:"property"` // Possible Values: `KUBERNETES_FULLPODNAME`, `KUBERNETES_PODUID`, `CONTAINER_NAME`, `IMAGE_NAME`, `KUBERNETES_NAMESPACE`, `KUBERNETES_CONTAINERNAME`, `KUBERNETES_BASEPODNAME`
 	Value    string            `json:"value"`    // Condition value
 }
 
@@ -44,12 +44,12 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		},
 		"operator": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `EQUALS`, `NOT_EQUALS`, `STARTS`, `NOT_CONTAINS`, `NOT_EXISTS`, `CONTAINS`, `ENDS`, `NOT_ENDS`, `EXISTS`, `NOT_STARTS`",
+			Description: "Possible Values: `NOT_EQUALS`, `NOT_STARTS`, `ENDS`, `NOT_CONTAINS`, `NOT_ENDS`, `EQUALS`, `STARTS`, `NOT_EXISTS`, `CONTAINS`, `EXISTS`",
 			Required:    true,
 		},
 		"property": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `IMAGE_NAME`, `KUBERNETES_NAMESPACE`, `KUBERNETES_CONTAINERNAME`, `KUBERNETES_BASEPODNAME`, `KUBERNETES_FULLPODNAME`, `KUBERNETES_PODUID`, `CONTAINER_NAME`",
+			Description: "Possible Values: `KUBERNETES_FULLPODNAME`, `KUBERNETES_PODUID`, `CONTAINER_NAME`, `IMAGE_NAME`, `KUBERNETES_NAMESPACE`, `KUBERNETES_CONTAINERNAME`, `KUBERNETES_BASEPODNAME`",
 			Required:    true,
 		},
 		"value": {

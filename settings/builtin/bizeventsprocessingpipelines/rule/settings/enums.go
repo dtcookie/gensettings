@@ -29,12 +29,12 @@ var TransformationFieldTypes = struct {
 	String    TransformationFieldType
 	Timestamp TransformationFieldType
 }{
-	TransformationFieldType("BOOLEAN"),
-	TransformationFieldType("DOUBLE"),
-	TransformationFieldType("DURATION"),
-	TransformationFieldType("INT"),
-	TransformationFieldType("IPADDR"),
-	TransformationFieldType("LONG"),
-	TransformationFieldType("STRING"),
-	TransformationFieldType("TIMESTAMP"),
+	"BOOLEAN",
+	"DOUBLE",
+	"DURATION",
+	"INT",
+	"IPADDR",
+	"LONG",
+	"STRING",
+	"TIMESTAMP",
 }

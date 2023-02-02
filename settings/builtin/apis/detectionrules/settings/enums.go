@@ -24,9 +24,9 @@ var Bases = struct {
 	Fqcn     Base
 	Package  Base
 }{
-	Base("FILE_NAME"),
-	Base("FQCN"),
-	Base("PACKAGE"),
+	"FILE_NAME",
+	"FQCN",
+	"PACKAGE",
 }
 
 type Matcher string
@@ -35,8 +35,8 @@ var Matchers = struct {
 	BeginsWith Matcher
 	Contains   Matcher
 }{
-	Matcher("BEGINS_WITH"),
-	Matcher("CONTAINS"),
+	"BEGINS_WITH",
+	"CONTAINS",
 }
 
 type Technology string
@@ -48,9 +48,9 @@ var Technologies = struct {
 	Nodejs Technology
 	Php    Technology
 }{
-	Technology("DotNet"),
-	Technology("Go"),
-	Technology("Java"),
-	Technology("Nodejs"),
-	Technology("PHP"),
+	"DotNet",
+	"Go",
+	"Java",
+	"Nodejs",
+	"PHP",
 }

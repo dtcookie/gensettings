@@ -25,8 +25,8 @@ var UnitCombinationss = struct {
 	Quotient UnitCombinations
 	Scalar   UnitCombinations
 }{
-	UnitCombinations("POWER"),
-	UnitCombinations("PRODUCT"),
-	UnitCombinations("QUOTIENT"),
-	UnitCombinations("SCALAR"),
+	"POWER",
+	"PRODUCT",
+	"QUOTIENT",
+	"SCALAR",
 }

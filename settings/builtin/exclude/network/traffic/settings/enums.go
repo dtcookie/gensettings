@@ -29,12 +29,12 @@ var OsTypeEnums = struct {
 	OsTypeWindows OsTypeEnum
 	OsTypeZos     OsTypeEnum
 }{
-	OsTypeEnum("OS_TYPE_AIX"),
-	OsTypeEnum("OS_TYPE_DARWIN"),
-	OsTypeEnum("OS_TYPE_HPUX"),
-	OsTypeEnum("OS_TYPE_LINUX"),
-	OsTypeEnum("OS_TYPE_SOLARIS"),
-	OsTypeEnum("OS_TYPE_UNKNOWN"),
-	OsTypeEnum("OS_TYPE_WINDOWS"),
-	OsTypeEnum("OS_TYPE_ZOS"),
+	"OS_TYPE_AIX",
+	"OS_TYPE_DARWIN",
+	"OS_TYPE_HPUX",
+	"OS_TYPE_LINUX",
+	"OS_TYPE_SOLARIS",
+	"OS_TYPE_UNKNOWN",
+	"OS_TYPE_WINDOWS",
+	"OS_TYPE_ZOS",
 }

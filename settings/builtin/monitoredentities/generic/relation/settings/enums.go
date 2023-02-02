@@ -27,12 +27,12 @@ var IngestDataSources = struct {
 	Spans    IngestDataSource
 	Topology IngestDataSource
 }{
-	IngestDataSource("Entities"),
-	IngestDataSource("Events"),
-	IngestDataSource("Logs"),
-	IngestDataSource("Metrics"),
-	IngestDataSource("Spans"),
-	IngestDataSource("Topology"),
+	"Entities",
+	"Events",
+	"Logs",
+	"Metrics",
+	"Spans",
+	"Topology",
 }
 
 type Normalization string
@@ -42,9 +42,9 @@ var Normalizations = struct {
 	Tolowercase   Normalization
 	Touppercase   Normalization
 }{
-	Normalization("Leavetextas_is"),
-	Normalization("Tolowercase"),
-	Normalization("Touppercase"),
+	"Leavetextas_is",
+	"Tolowercase",
+	"Touppercase",
 }
 
 type RelationType string
@@ -57,10 +57,10 @@ var RelationTypes = struct {
 	RunsOn     RelationType
 	SameAs     RelationType
 }{
-	RelationType("CALLS"),
-	RelationType("CHILD_OF"),
-	RelationType("INSTANCE_OF"),
-	RelationType("PART_OF"),
-	RelationType("RUNS_ON"),
-	RelationType("SAME_AS"),
+	"CALLS",
+	"CHILD_OF",
+	"INSTANCE_OF",
+	"PART_OF",
+	"RUNS_ON",
+	"SAME_AS",
 }

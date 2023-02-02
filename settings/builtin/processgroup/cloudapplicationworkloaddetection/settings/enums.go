@@ -30,13 +30,13 @@ var MatchEnums = struct {
 	NotStarts   MatchEnum
 	Starts      MatchEnum
 }{
-	MatchEnum("CONTAINS"),
-	MatchEnum("ENDS"),
-	MatchEnum("EQUALS"),
-	MatchEnum("EXISTS"),
-	MatchEnum("NOT_CONTAINS"),
-	MatchEnum("NOT_ENDS"),
-	MatchEnum("NOT_EQUALS"),
-	MatchEnum("NOT_STARTS"),
-	MatchEnum("STARTS"),
+	"CONTAINS",
+	"ENDS",
+	"EQUALS",
+	"EXISTS",
+	"NOT_CONTAINS",
+	"NOT_ENDS",
+	"NOT_EQUALS",
+	"NOT_STARTS",
+	"STARTS",
 }

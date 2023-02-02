@@ -25,8 +25,8 @@ var JavascriptVersions = struct {
 	LatestStable         JavascriptVersion
 	PreviousStable       JavascriptVersion
 }{
-	JavascriptVersion("CUSTOM"),
-	JavascriptVersion("LATEST_IE7_10_SUPPORTED"),
-	JavascriptVersion("LATEST_STABLE"),
-	JavascriptVersion("PREVIOUS_STABLE"),
+	"CUSTOM",
+	"LATEST_IE7_10_SUPPORTED",
+	"LATEST_STABLE",
+	"PREVIOUS_STABLE",
 }

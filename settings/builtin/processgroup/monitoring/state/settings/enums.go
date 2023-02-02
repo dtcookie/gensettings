@@ -24,7 +24,7 @@ var ProcessGroupMonitoringModes = struct {
 	MonitoringOff ProcessGroupMonitoringMode
 	MonitoringOn  ProcessGroupMonitoringMode
 }{
-	ProcessGroupMonitoringMode("DEFAULT"),
-	ProcessGroupMonitoringMode("MONITORING_OFF"),
-	ProcessGroupMonitoringMode("MONITORING_ON"),
+	"DEFAULT",
+	"MONITORING_OFF",
+	"MONITORING_ON",
 }

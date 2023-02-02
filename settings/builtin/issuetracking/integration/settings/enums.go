@@ -24,9 +24,9 @@ var IssueThemes = struct {
 	Info     IssueTheme
 	Resolved IssueTheme
 }{
-	IssueTheme("ERROR"),
-	IssueTheme("INFO"),
-	IssueTheme("RESOLVED"),
+	"ERROR",
+	"INFO",
+	"RESOLVED",
 }
 
 type IssueTrackerSystem string
@@ -39,10 +39,10 @@ var IssueTrackerSystems = struct {
 	JiraOnPremise IssueTrackerSystem
 	Servicenow    IssueTrackerSystem
 }{
-	IssueTrackerSystem("GITHUB"),
-	IssueTrackerSystem("GITLAB"),
-	IssueTrackerSystem("JIRA"),
-	IssueTrackerSystem("JIRA_CLOUD"),
-	IssueTrackerSystem("JIRA_ON_PREMISE"),
-	IssueTrackerSystem("SERVICENOW"),
+	"GITHUB",
+	"GITLAB",
+	"JIRA",
+	"JIRA_CLOUD",
+	"JIRA_ON_PREMISE",
+	"SERVICENOW",
 }

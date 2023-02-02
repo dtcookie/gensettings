@@ -24,7 +24,7 @@ var ResourceTypes = struct {
 	Firstparty ResourceType
 	Thirdparty ResourceType
 }{
-	ResourceType("Cdn"),
-	ResourceType("FirstParty"),
-	ResourceType("ThirdParty"),
+	"Cdn",
+	"FirstParty",
+	"ThirdParty",
 }

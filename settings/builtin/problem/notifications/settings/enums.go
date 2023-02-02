@@ -32,15 +32,15 @@ var NotificationTypes = struct {
 	Webhook      NotificationType
 	Xmatters     NotificationType
 }{
-	NotificationType("ANSIBLETOWER"),
-	NotificationType("EMAIL"),
-	NotificationType("JIRA"),
-	NotificationType("OPS_GENIE"),
-	NotificationType("PAGER_DUTY"),
-	NotificationType("SERVICE_NOW"),
-	NotificationType("SLACK"),
-	NotificationType("TRELLO"),
-	NotificationType("VICTOROPS"),
-	NotificationType("WEBHOOK"),
-	NotificationType("XMATTERS"),
+	"ANSIBLETOWER",
+	"EMAIL",
+	"JIRA",
+	"OPS_GENIE",
+	"PAGER_DUTY",
+	"SERVICE_NOW",
+	"SLACK",
+	"TRELLO",
+	"VICTOROPS",
+	"WEBHOOK",
+	"XMATTERS",
 }

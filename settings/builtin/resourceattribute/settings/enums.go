@@ -24,7 +24,7 @@ var MaskingTypes = struct {
 	MaskOnlyConfidentialData MaskingType
 	NotMasked                MaskingType
 }{
-	MaskingType("MASK_ENTIRE_VALUE"),
-	MaskingType("MASK_ONLY_CONFIDENTIAL_DATA"),
-	MaskingType("NOT_MASKED"),
+	"MASK_ENTIRE_VALUE",
+	"MASK_ONLY_CONFIDENTIAL_DATA",
+	"NOT_MASKED",
 }
