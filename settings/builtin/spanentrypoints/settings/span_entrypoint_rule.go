@@ -24,7 +24,7 @@ import (
 
 type SpanEntrypointRule struct {
 	Matchers   SpanMatchers         `json:"matchers"`
-	RuleAction SpanEntrypointAction `json:"ruleAction"` // Rule action
+	RuleAction SpanEntrypointAction `json:"ruleAction"` // Possible Values: `CREATE_ENTRYPOINT`, `DONT_CREATE_ENTRYPOINT`
 	RuleName   string               `json:"ruleName"`   // Rule name
 }
 
@@ -41,7 +41,7 @@ func (me *SpanEntrypointRule) Schema() map[string]*schema.Schema {
 		},
 		"rule_action": {
 			Type:        schema.TypeString,
-			Description: "Rule action",
+			Description: "Possible Values: `CREATE_ENTRYPOINT`, `DONT_CREATE_ENTRYPOINT`",
 			Required:    true,
 		},
 		"rule_name": {

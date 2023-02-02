@@ -24,7 +24,7 @@ import (
 
 type HighMemoryDetection struct {
 	CustomThresholds *HighMemoryDetectionThresholds `json:"customThresholds,omitempty"` // Alert if **both** the memory usage and the memory page fault rate thresholds are exceeded on Windows or on Unix systems
-	DetectionMode    *DetectionMode                 `json:"detectionMode,omitempty"`    // Detection mode for high memory usage
+	DetectionMode    *DetectionMode                 `json:"detectionMode,omitempty"`    // Possible Values: `Auto`, `Custom`
 	Enabled          bool                           `json:"enabled"`                    // Detect high memory usage on host
 }
 
@@ -41,7 +41,7 @@ func (me *HighMemoryDetection) Schema() map[string]*schema.Schema {
 		},
 		"detection_mode": {
 			Type:        schema.TypeString,
-			Description: "Detection mode for high memory usage",
+			Description: "Possible Values: `Auto`, `Custom`",
 			Optional:    true,
 		},
 		"enabled": {

@@ -26,9 +26,9 @@ type OAuth2 struct {
 	AccessTokenUrl  string          `json:"accessTokenUrl"`  // Access token URL
 	ClientID        string          `json:"clientId"`        // Client ID
 	ClientSecret    string          `json:"clientSecret"`    // Client secret
-	GrantType       GrantType       `json:"grantType"`       // Grant type
+	GrantType       GrantType       `json:"grantType"`       // Possible Values: `ClientCredentials`
 	Scope           string          `json:"scope"`           // The scope of access you are requesting
-	SendCredentials SendCredentials `json:"sendCredentials"` // Send credentials
+	SendCredentials SendCredentials `json:"sendCredentials"` // Possible Values: `Header`
 }
 
 func (me *OAuth2) Schema() map[string]*schema.Schema {
@@ -50,7 +50,7 @@ func (me *OAuth2) Schema() map[string]*schema.Schema {
 		},
 		"grant_type": {
 			Type:        schema.TypeString,
-			Description: "Grant type",
+			Description: "Possible Values: `ClientCredentials`",
 			Required:    true,
 		},
 		"scope": {
@@ -60,7 +60,7 @@ func (me *OAuth2) Schema() map[string]*schema.Schema {
 		},
 		"send_credentials": {
 			Type:        schema.TypeString,
-			Description: "Send credentials",
+			Description: "Possible Values: `Header`",
 			Required:    true,
 		},
 	}

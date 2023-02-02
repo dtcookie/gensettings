@@ -27,7 +27,7 @@ type Settings struct {
 	GroupIdentifier    string            `json:"groupIdentifier"`       // If Dynatrace detects this property at startup of a process, it will use its value to identify process groups more granular.
 	InstanceIdentifier string            `json:"instanceIdentifier"`    // Use a variable to identify instances within a process group.\n\nThe type of variable is the same as selected in 'Property source'.
 	ProcessType        *string           `json:"processType,omitempty"` // Note: Not all types can be detected at startup.
-	RuleType           DetectionRuleType `json:"ruleType"`              // Source to use to separate processes into multiple process groups.
+	RuleType           DetectionRuleType `json:"ruleType"`              // Possible Values: `Prop`, `Env`
 }
 
 func (me *Settings) Schema() map[string]*schema.Schema {
@@ -54,7 +54,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		},
 		"rule_type": {
 			Type:        schema.TypeString,
-			Description: "Source to use to separate processes into multiple process groups.",
+			Description: "Possible Values: `Prop`, `Env`",
 			Required:    true,
 		},
 	}

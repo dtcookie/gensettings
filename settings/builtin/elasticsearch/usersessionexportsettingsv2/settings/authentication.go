@@ -24,7 +24,7 @@ import (
 
 type Authentication struct {
 	Active    bool       `json:"active"`              // Activate
-	AuthType  *AuthType  `json:"authType,omitempty"`  // Authentication type
+	AuthType  *AuthType  `json:"authType,omitempty"`  // Possible Values: `Basic`, `Oauth2`
 	BasicAuth *BasicAuth `json:"basicAuth,omitempty"` // Basic authentication
 	OAuth2    *OAuth2    `json:"oAuth2,omitempty"`    // OAuth 2.0 (Early Adopter)
 }
@@ -38,7 +38,7 @@ func (me *Authentication) Schema() map[string]*schema.Schema {
 		},
 		"auth_type": {
 			Type:        schema.TypeString,
-			Description: "Authentication type",
+			Description: "Possible Values: `Basic`, `Oauth2`",
 			Optional:    true,
 		},
 		"basic_auth": {

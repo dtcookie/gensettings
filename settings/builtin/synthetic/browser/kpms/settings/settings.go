@@ -23,16 +23,16 @@ import (
 )
 
 type Settings struct {
-	LoadActionKpm LoadKpm `json:"loadActionKpm"`   // Load action key performance metric
+	LoadActionKpm LoadKpm `json:"loadActionKpm"`   // Possible Values: `SPEED_INDEX`, `LOAD_EVENT_START`, `USER_ACTION_DURATION`, `RESPONSE_END`, `CUMULATIVE_LAYOUT_SHIFT`, `DOM_INTERACTIVE`, `LOAD_EVENT_END`, `RESPONSE_START`, `LARGEST_CONTENTFUL_PAINT`, `VISUALLY_COMPLETE`
 	Scope         string  `json:"-" scope:"scope"` // The scope of this setting (SYNTHETIC_TEST)
-	XhrActionKpm  XhrKpm  `json:"xhrActionKpm"`    // XHR action key performance metric
+	XhrActionKpm  XhrKpm  `json:"xhrActionKpm"`    // Possible Values: `VISUALLY_COMPLETE`, `RESPONSE_START`, `RESPONSE_END`, `USER_ACTION_DURATION`
 }
 
 func (me *Settings) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"load_action_kpm": {
 			Type:        schema.TypeString,
-			Description: "Load action key performance metric",
+			Description: "Possible Values: `SPEED_INDEX`, `LOAD_EVENT_START`, `USER_ACTION_DURATION`, `RESPONSE_END`, `CUMULATIVE_LAYOUT_SHIFT`, `DOM_INTERACTIVE`, `LOAD_EVENT_END`, `RESPONSE_START`, `LARGEST_CONTENTFUL_PAINT`, `VISUALLY_COMPLETE`",
 			Required:    true,
 		},
 		"scope": {
@@ -42,7 +42,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		},
 		"xhr_action_kpm": {
 			Type:        schema.TypeString,
-			Description: "XHR action key performance metric",
+			Description: "Possible Values: `VISUALLY_COMPLETE`, `RESPONSE_START`, `RESPONSE_END`, `USER_ACTION_DURATION`",
 			Required:    true,
 		},
 	}

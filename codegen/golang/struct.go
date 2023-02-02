@@ -109,9 +109,18 @@ func NewStruct(t *reflection.Type) *Struct {
 				defVal = "environment"
 			}
 		}
+		comment := strings.ReplaceAll(Comment(property.Comment), "\n", "\\n")
+		if propType.Kind == reflection.EnumKind {
+			comment = "Possible Values:"
+			sep := " "
+			for _, p := range propType.Properties {
+				comment = comment + sep + "`" + p.Name + "`"
+				sep = ", "
+			}
+		}
 		structDef.Properties = append(structDef.Properties, HCLKind(propType, &Property{
 			Name:     PropertyName(propertyName),
-			Comment:  strings.ReplaceAll(Comment(property.Comment), "\n", "\\n"),
+			Comment:  comment,
 			HCLTag:   camel.Strip(propertyName),
 			JSONTag:  jsonTag,
 			Type:     TypeName(PointerIfOptional(propType, property.Optional)),

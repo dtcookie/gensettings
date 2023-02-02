@@ -24,7 +24,7 @@ import (
 
 type SpanCaptureRule struct {
 	Matchers   SpanMatchers      `json:"matchers"`
-	RuleAction SpanCaptureAction `json:"ruleAction"` // Rule action
+	RuleAction SpanCaptureAction `json:"ruleAction"` // Possible Values: `CAPTURE`, `IGNORE`
 	RuleName   string            `json:"ruleName"`   // Rule name
 }
 
@@ -41,7 +41,7 @@ func (me *SpanCaptureRule) Schema() map[string]*schema.Schema {
 		},
 		"rule_action": {
 			Type:        schema.TypeString,
-			Description: "Rule action",
+			Description: "Possible Values: `CAPTURE`, `IGNORE`",
 			Required:    true,
 		},
 		"rule_name": {

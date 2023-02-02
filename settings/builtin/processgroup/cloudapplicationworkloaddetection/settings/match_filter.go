@@ -23,7 +23,7 @@ import (
 )
 
 type MatchFilter struct {
-	MatchOperator MatchEnum `json:"matchOperator"`       // Match operator
+	MatchOperator MatchEnum `json:"matchOperator"`       // Possible Values: `CONTAINS`, `NOT_CONTAINS`, `EXISTS`, `STARTS`, `ENDS`, `NOT_EQUALS`, `NOT_STARTS`, `NOT_ENDS`, `EQUALS`
 	Namespace     *string   `json:"namespace,omitempty"` // Namespace name
 }
 
@@ -31,7 +31,7 @@ func (me *MatchFilter) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"match_operator": {
 			Type:        schema.TypeString,
-			Description: "Match operator",
+			Description: "Possible Values: `CONTAINS`, `NOT_CONTAINS`, `EXISTS`, `STARTS`, `ENDS`, `NOT_EQUALS`, `NOT_STARTS`, `NOT_ENDS`, `EQUALS`",
 			Required:    true,
 		},
 		"namespace": {

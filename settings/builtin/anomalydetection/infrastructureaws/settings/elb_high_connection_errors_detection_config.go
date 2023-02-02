@@ -24,7 +24,7 @@ import (
 
 type ElbHighConnectionErrorsDetectionConfig struct {
 	CustomThresholds *ElbHighConnectionErrorsDetectionThresholds `json:"customThresholds,omitempty"` // Alert if the condition is met in 3 out of 5 samples
-	DetectionMode    *DetectionMode                              `json:"detectionMode,omitempty"`    // Detection mode
+	DetectionMode    *DetectionMode                              `json:"detectionMode,omitempty"`    // Possible Values: `Auto`, `Custom`
 	Enabled          bool                                        `json:"enabled"`                    // Detect high number of backend connection errors on ELB
 }
 
@@ -41,7 +41,7 @@ func (me *ElbHighConnectionErrorsDetectionConfig) Schema() map[string]*schema.Sc
 		},
 		"detection_mode": {
 			Type:        schema.TypeString,
-			Description: "Detection mode",
+			Description: "Possible Values: `Auto`, `Custom`",
 			Optional:    true,
 		},
 		"enabled": {

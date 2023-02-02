@@ -25,7 +25,7 @@ import (
 type CrashRateIncrease struct {
 	CrashRateIncreaseAuto  *CrashRateIncreaseAuto  `json:"crashRateIncreaseAuto,omitempty"`  // Alert crash rate increases when auto-detected baseline is exceeded by a certain number of users
 	CrashRateIncreaseFixed *CrashRateIncreaseFixed `json:"crashRateIncreaseFixed,omitempty"` // Alert crash rate increases when the defined threshold is exceeded by a certain number of users
-	DetectionMode          *DetectionMode          `json:"detectionMode,omitempty"`          // Detection strategy for crash rate increases
+	DetectionMode          *DetectionMode          `json:"detectionMode,omitempty"`          // Possible Values: `Auto`, `Fixed`
 	Enabled                bool                    `json:"enabled"`                          // Detect crash rate increase
 }
 
@@ -51,7 +51,7 @@ func (me *CrashRateIncrease) Schema() map[string]*schema.Schema {
 		},
 		"detection_mode": {
 			Type:        schema.TypeString,
-			Description: "Detection strategy for crash rate increases",
+			Description: "Possible Values: `Auto`, `Fixed`",
 			Optional:    true,
 		},
 		"enabled": {

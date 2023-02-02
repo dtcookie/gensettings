@@ -24,7 +24,7 @@ import (
 
 type NetworkDroppedPacketsDetection struct {
 	CustomThresholds *NetworkDroppedPacketsDetectionThresholds `json:"customThresholds,omitempty"` // Alert if the dropped packet percentage is higher than the specified threshold **and** the total packets rate is higher than the defined threshold for the defined amount of samples
-	DetectionMode    *DetectionMode                            `json:"detectionMode,omitempty"`    // Detection mode for high number of dropped packets
+	DetectionMode    *DetectionMode                            `json:"detectionMode,omitempty"`    // Possible Values: `Auto`, `Custom`
 	Enabled          bool                                      `json:"enabled"`                    // Detect high number of dropped packets
 }
 
@@ -41,7 +41,7 @@ func (me *NetworkDroppedPacketsDetection) Schema() map[string]*schema.Schema {
 		},
 		"detection_mode": {
 			Type:        schema.TypeString,
-			Description: "Detection mode for high number of dropped packets",
+			Description: "Possible Values: `Auto`, `Custom`",
 			Optional:    true,
 		},
 		"enabled": {

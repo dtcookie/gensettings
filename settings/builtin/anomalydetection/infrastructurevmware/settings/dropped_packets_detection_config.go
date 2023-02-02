@@ -24,7 +24,7 @@ import (
 
 type DroppedPacketsDetectionConfig struct {
 	CustomThresholds *DroppedPacketsDetectionThresholds `json:"customThresholds,omitempty"` // Alert if the condition is met in 3 out of 5 samples
-	DetectionMode    *DetectionMode                     `json:"detectionMode,omitempty"`    // Detection mode
+	DetectionMode    *DetectionMode                     `json:"detectionMode,omitempty"`    // Possible Values: `Custom`, `Auto`
 	Enabled          bool                               `json:"enabled"`                    // Detect high number of dropped packets
 }
 
@@ -41,7 +41,7 @@ func (me *DroppedPacketsDetectionConfig) Schema() map[string]*schema.Schema {
 		},
 		"detection_mode": {
 			Type:        schema.TypeString,
-			Description: "Detection mode",
+			Description: "Possible Values: `Custom`, `Auto`",
 			Optional:    true,
 		},
 		"enabled": {

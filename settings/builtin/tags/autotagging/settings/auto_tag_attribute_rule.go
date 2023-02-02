@@ -26,7 +26,7 @@ type AutoTagAttributeRule struct {
 	AzureToPGPropagation      *bool               `json:"azureToPGPropagation,omitempty"`      // Apply to process groups connected to matching Azure entities
 	AzureToServicePropagation *bool               `json:"azureToServicePropagation,omitempty"` // Apply to services provided by matching Azure entities
 	Conditions                AttributeConditions `json:"conditions"`
-	EntityType                AutoTagMeType       `json:"entityType"`                         // Rule applies to
+	EntityType                AutoTagMeType       `json:"entityType"`                         // Possible Values: `AWS_RELATIONAL_DATABASE_SERVICE`, `AWS_NETWORK_LOAD_BALANCER`, `AWS_CLASSIC_LOAD_BALANCER`, `SERVICE`, `ESXI_HOST`, `CUSTOM_APPLICATION`, `EXTERNAL_SYNTHETIC_TEST`, `AZURE`, `DCRUM_APPLICATION`, `SYNTHETIC_TEST`, `AWS_APPLICATION_LOAD_BALANCER`, `PROCESS_GROUP`, `HOST`, `HTTP_CHECK`, `MOBILE_APPLICATION`, `CUSTOM_DEVICE`, `APPLICATION`
 	HostToPGPropagation       *bool               `json:"hostToPGPropagation,omitempty"`      // Apply to processes running on matching hosts
 	PGToHostPropagation       *bool               `json:"pgToHostPropagation,omitempty"`      // Apply to underlying hosts of matching process groups
 	PGToServicePropagation    *bool               `json:"pgToServicePropagation,omitempty"`   // Apply to all services provided by the process groups
@@ -57,7 +57,7 @@ func (me *AutoTagAttributeRule) Schema() map[string]*schema.Schema {
 		},
 		"entity_type": {
 			Type:        schema.TypeString,
-			Description: "Rule applies to",
+			Description: "Possible Values: `AWS_RELATIONAL_DATABASE_SERVICE`, `AWS_NETWORK_LOAD_BALANCER`, `AWS_CLASSIC_LOAD_BALANCER`, `SERVICE`, `ESXI_HOST`, `CUSTOM_APPLICATION`, `EXTERNAL_SYNTHETIC_TEST`, `AZURE`, `DCRUM_APPLICATION`, `SYNTHETIC_TEST`, `AWS_APPLICATION_LOAD_BALANCER`, `PROCESS_GROUP`, `HOST`, `HTTP_CHECK`, `MOBILE_APPLICATION`, `CUSTOM_DEVICE`, `APPLICATION`",
 			Required:    true,
 		},
 		"host_to_pgpropagation": {

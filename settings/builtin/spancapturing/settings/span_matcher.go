@@ -46,10 +46,10 @@ func (me *SpanMatchers) UnmarshalHCL(decoder hcl.Decoder) error {
 
 type SpanMatcher struct {
 	CaseSensitive *bool             `json:"caseSensitive,omitempty"` // affects value and key
-	Source        SpanMatcherSource `json:"source"`
+	Source        SpanMatcherSource `json:"source"`                  // Possible Values: `SPAN_NAME`, `SPAN_KIND`, `ATTRIBUTE`, `INSTRUMENTATION_SCOPE_NAME`, `INSTRUMENTATION_SCOPE_VERSION`
 	SourceKey     *string           `json:"sourceKey,omitempty"`     // Key
-	SpanKindValue *SpanKind         `json:"spanKindValue,omitempty"` // Value
-	Type          SpanMatcherType   `json:"type"`                    // affects value
+	SpanKindValue *SpanKind         `json:"spanKindValue,omitempty"` // Possible Values: `PRODUCER`, `CONSUMER`, `INTERNAL`, `SERVER`, `CLIENT`
+	Type          SpanMatcherType   `json:"type"`                    // Possible Values: `STARTS_WITH`, `ENDS_WITH`, `DOES_NOT_EQUAL`, `DOES_NOT_CONTAIN`, `DOES_NOT_START_WITH`, `DOES_NOT_END_WITH`, `EQUALS`, `CONTAINS`
 	Value         *string           `json:"value,omitempty"`         // evaluated at span start
 }
 
@@ -62,7 +62,7 @@ func (me *SpanMatcher) Schema() map[string]*schema.Schema {
 		},
 		"source": {
 			Type:        schema.TypeString,
-			Description: "no documentation available",
+			Description: "Possible Values: `SPAN_NAME`, `SPAN_KIND`, `ATTRIBUTE`, `INSTRUMENTATION_SCOPE_NAME`, `INSTRUMENTATION_SCOPE_VERSION`",
 			Required:    true,
 		},
 		"source_key": {
@@ -72,12 +72,12 @@ func (me *SpanMatcher) Schema() map[string]*schema.Schema {
 		},
 		"span_kind_value": {
 			Type:        schema.TypeString,
-			Description: "Value",
+			Description: "Possible Values: `PRODUCER`, `CONSUMER`, `INTERNAL`, `SERVER`, `CLIENT`",
 			Optional:    true,
 		},
 		"type": {
 			Type:        schema.TypeString,
-			Description: "affects value",
+			Description: "Possible Values: `STARTS_WITH`, `ENDS_WITH`, `DOES_NOT_EQUAL`, `DOES_NOT_CONTAIN`, `DOES_NOT_START_WITH`, `DOES_NOT_END_WITH`, `EQUALS`, `CONTAINS`",
 			Required:    true,
 		},
 		"value": {

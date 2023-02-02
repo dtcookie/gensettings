@@ -23,10 +23,10 @@ import (
 )
 
 type Settings struct {
-	Language Language `json:"language"`        // Language
+	Language Language `json:"language"`        // Possible Values: `Auto`, `En`, `Ja`
 	Region   string   `json:"region"`          // Region
 	Scope    string   `json:"-" scope:"scope"` // The scope of this setting (user userdefaults)
-	Theme    Theme    `json:"theme"`           // Page refresh required to view changes
+	Theme    Theme    `json:"theme"`           // Possible Values: `Auto`, `Light`, `Dark`
 	Timezone string   `json:"timezone"`        // Timezone
 }
 
@@ -34,7 +34,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"language": {
 			Type:        schema.TypeString,
-			Description: "Language",
+			Description: "Possible Values: `Auto`, `En`, `Ja`",
 			Required:    true,
 		},
 		"region": {
@@ -49,7 +49,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		},
 		"theme": {
 			Type:        schema.TypeString,
-			Description: "Page refresh required to view changes",
+			Description: "Possible Values: `Auto`, `Light`, `Dark`",
 			Required:    true,
 		},
 		"timezone": {

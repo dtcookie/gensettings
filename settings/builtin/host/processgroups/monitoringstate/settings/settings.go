@@ -23,7 +23,7 @@ import (
 )
 
 type Settings struct {
-	MonitoringState ProcessGroupMonitoringMode `json:"MonitoringState"`     // Monitoring state
+	MonitoringState ProcessGroupMonitoringMode `json:"MonitoringState"`     // Possible Values: `DEFAULT`, `MONITORING_OFF`, `MONITORING_ON`
 	ProcessGroup    string                     `json:"ProcessGroup"`        // Process group
 	ServiceID       string                     `json:"-" scope:"serviceId"` // The scope of this setting (HOST)
 }
@@ -32,7 +32,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"monitoring_state": {
 			Type:        schema.TypeString,
-			Description: "Monitoring state",
+			Description: "Possible Values: `DEFAULT`, `MONITORING_OFF`, `MONITORING_ON`",
 			Required:    true,
 		},
 		"process_group": {

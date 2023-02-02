@@ -23,7 +23,7 @@ import (
 )
 
 type Settings struct {
-	PerformanceProfile PerformanceProfile `json:"performanceProfile"` // Select performance profile for Extension Execution Controller
+	PerformanceProfile PerformanceProfile `json:"performanceProfile"` // Possible Values: `HIGH`, `DEFAULT`
 	Scope              string             `json:"-" scope:"scope"`    // The scope of this setting (ENVIRONMENT_ACTIVE_GATE)
 }
 
@@ -31,7 +31,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"performance_profile": {
 			Type:        schema.TypeString,
-			Description: "Select performance profile for Extension Execution Controller",
+			Description: "Possible Values: `HIGH`, `DEFAULT`",
 			Required:    true,
 		},
 		"scope": {

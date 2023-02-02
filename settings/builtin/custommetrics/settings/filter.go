@@ -46,7 +46,7 @@ func (me *Filters) UnmarshalHCL(decoder hcl.Decoder) error {
 
 type Filter struct {
 	FieldName string    `json:"fieldName"` // Field name
-	Operator  Operator  `json:"operator"`
+	Operator  Operator  `json:"operator"`  // Possible Values: `LIKE`, `IN`, `IS_NOT_NULL`, `NOT_LIKE`, `LESS_THAN_OR_EQUAL_TO`, `GREATER_THAN_OR_EQUAL_TO`, `NOT_EQUAL`, `IS_NULL`, `STARTS_WITH`, `LESS_THAN`, `EQUALS`, `GREATER_THAN`
 	Value     *string   `json:"value,omitempty"`
 	ValueIn   *[]string `json:"valueIn,omitempty"` // Values
 }
@@ -60,7 +60,7 @@ func (me *Filter) Schema() map[string]*schema.Schema {
 		},
 		"operator": {
 			Type:        schema.TypeString,
-			Description: "no documentation available",
+			Description: "Possible Values: `LIKE`, `IN`, `IS_NOT_NULL`, `NOT_LIKE`, `LESS_THAN_OR_EQUAL_TO`, `GREATER_THAN_OR_EQUAL_TO`, `NOT_EQUAL`, `IS_NULL`, `STARTS_WITH`, `LESS_THAN`, `EQUALS`, `GREATER_THAN`",
 			Required:    true,
 		},
 		"value": {

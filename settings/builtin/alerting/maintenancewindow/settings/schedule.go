@@ -26,7 +26,7 @@ type Schedule struct {
 	DailyRecurrence   *DailyRecurrence   `json:"dailyRecurrence,omitempty"`
 	MonthlyRecurrence *MonthlyRecurrence `json:"monthlyRecurrence,omitempty"`
 	OnceRecurrence    *OnceRecurrence    `json:"onceRecurrence,omitempty"`
-	ScheduleType      ScheduleType       `json:"scheduleType"` // Defines the recurrence type of the maintenance window.. * **Once**: One time maintenance window with start and end date time.\n* **Daily**: Maintenance window occurs every day during the configured time window.\n* **Weekly**: Maintenance window occurs each week on one day during the configured time window.\n* **Monthly**: Maintenance window occurs each month on one day during the configured time window.
+	ScheduleType      ScheduleType       `json:"scheduleType"` // Possible Values: `MONTHLY`, `ONCE`, `DAILY`, `WEEKLY`
 	WeeklyRecurrence  *WeeklyRecurrence  `json:"weeklyRecurrence,omitempty"`
 }
 
@@ -61,7 +61,7 @@ func (me *Schedule) Schema() map[string]*schema.Schema {
 		},
 		"schedule_type": {
 			Type:        schema.TypeString,
-			Description: "Defines the recurrence type of the maintenance window.. * **Once**: One time maintenance window with start and end date time.\n* **Daily**: Maintenance window occurs every day during the configured time window.\n* **Weekly**: Maintenance window occurs each week on one day during the configured time window.\n* **Monthly**: Maintenance window occurs each month on one day during the configured time window.",
+			Description: "Possible Values: `MONTHLY`, `ONCE`, `DAILY`, `WEEKLY`",
 			Required:    true,
 		},
 		"weekly_recurrence": {

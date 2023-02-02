@@ -54,7 +54,7 @@ type Transformation struct {
 	SplitDelimiter     *string            `json:"splitDelimiter,omitempty"`   // split by
 	Suffix             *string            `json:"suffix,omitempty"`
 	TakeFromEnd        *bool              `json:"takeFromEnd,omitempty"` // take from end
-	TransformationType TransformationType `json:"transformationType"`    // Defines what kind of transformation will be applied on the original value.
+	TransformationType TransformationType `json:"transformationType"`    // Possible Values: `REPLACE_BETWEEN`, `REMOVE_NUMBERS`, `TAKE_SEGMENTS`, `BEFORE`, `REMOVE_IPS`, `BETWEEN`, `REMOVE_CREDIT_CARDS`, `REMOVE_IBANS`, `SPLIT_SELECT`, `AFTER`
 }
 
 func (me *Transformation) Schema() map[string]*schema.Schema {
@@ -106,7 +106,7 @@ func (me *Transformation) Schema() map[string]*schema.Schema {
 		},
 		"transformation_type": {
 			Type:        schema.TypeString,
-			Description: "Defines what kind of transformation will be applied on the original value.",
+			Description: "Possible Values: `REPLACE_BETWEEN`, `REMOVE_NUMBERS`, `TAKE_SEGMENTS`, `BEFORE`, `REMOVE_IPS`, `BETWEEN`, `REMOVE_CREDIT_CARDS`, `REMOVE_IBANS`, `SPLIT_SELECT`, `AFTER`",
 			Required:    true,
 		},
 	}

@@ -48,9 +48,9 @@ type Rule struct {
 	AttributeRule      *AutoTagAttributeRule `json:"attributeRule,omitempty"`
 	Enabled            bool                  `json:"enabled"`
 	EntitySelector     *string               `json:"entitySelector,omitempty"` // The documentation of the entity selector can be found [here](https://dt-url.net/apientityselector).
-	Type               RuleType              `json:"type"`                     // Rule type
+	Type               RuleType              `json:"type"`                     // Possible Values: `ME`, `SELECTOR`
 	ValueFormat        string                `json:"valueFormat"`              // Type '{' for placeholder suggestions
-	ValueNormalization Normalization         `json:"valueNormalization"`       // Value Normalization
+	ValueNormalization Normalization         `json:"valueNormalization"`       // Possible Values: `Leavetextas_is`, `Touppercase`, `Tolowercase`
 }
 
 func (me *Rule) Schema() map[string]*schema.Schema {
@@ -76,7 +76,7 @@ func (me *Rule) Schema() map[string]*schema.Schema {
 		},
 		"type": {
 			Type:        schema.TypeString,
-			Description: "Rule type",
+			Description: "Possible Values: `ME`, `SELECTOR`",
 			Required:    true,
 		},
 		"value_format": {
@@ -86,7 +86,7 @@ func (me *Rule) Schema() map[string]*schema.Schema {
 		},
 		"value_normalization": {
 			Type:        schema.TypeString,
-			Description: "Value Normalization",
+			Description: "Possible Values: `Leavetextas_is`, `Touppercase`, `Tolowercase`",
 			Required:    true,
 		},
 	}

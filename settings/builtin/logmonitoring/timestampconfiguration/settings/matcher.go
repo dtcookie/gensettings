@@ -45,8 +45,8 @@ func (me *Matchers) UnmarshalHCL(decoder hcl.Decoder) error {
 }
 
 type Matcher struct {
-	Attribute MatcherType `json:"attribute"`
-	Operator  Operator    `json:"operator"`
+	Attribute MatcherType `json:"attribute"` // Possible Values: `Container_name`, `Dt_entity_container_group`, `Process_technology`, `Dt_entity_process_group`, `Log_source`, `K8s_container_name`, `K8s_namespace_name`, `K8s_deployment_name`
+	Operator  Operator    `json:"operator"`  // Possible Values: `MATCHES`
 	Values    []string    `json:"values"`
 }
 
@@ -54,12 +54,12 @@ func (me *Matcher) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"attribute": {
 			Type:        schema.TypeString,
-			Description: "no documentation available",
+			Description: "Possible Values: `Container_name`, `Dt_entity_container_group`, `Process_technology`, `Dt_entity_process_group`, `Log_source`, `K8s_container_name`, `K8s_namespace_name`, `K8s_deployment_name`",
 			Required:    true,
 		},
 		"operator": {
 			Type:        schema.TypeString,
-			Description: "no documentation available",
+			Description: "Possible Values: `MATCHES`",
 			Required:    true,
 		},
 		"values": {

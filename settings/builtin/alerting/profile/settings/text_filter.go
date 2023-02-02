@@ -26,7 +26,7 @@ type TextFilter struct {
 	CaseSensitive bool               `json:"caseSensitive"` // Case sensitive
 	Enabled       bool               `json:"enabled"`
 	Negate        bool               `json:"negate"`
-	Operator      ComparisonOperator `json:"operator"` // Operator of the comparison
+	Operator      ComparisonOperator `json:"operator"` // Possible Values: `REGEX_MATCHES`, `STRING_EQUALS`, `BEGINS_WITH`, `ENDS_WITH`, `CONTAINS`
 	Value         string             `json:"value"`
 }
 
@@ -49,7 +49,7 @@ func (me *TextFilter) Schema() map[string]*schema.Schema {
 		},
 		"operator": {
 			Type:        schema.TypeString,
-			Description: "Operator of the comparison",
+			Description: "Possible Values: `REGEX_MATCHES`, `STRING_EQUALS`, `BEGINS_WITH`, `ENDS_WITH`, `CONTAINS`",
 			Required:    true,
 		},
 		"value": {

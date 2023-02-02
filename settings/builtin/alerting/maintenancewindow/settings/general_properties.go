@@ -25,9 +25,9 @@ import (
 type GeneralProperties struct {
 	Description                      string          `json:"description"`                      // A short description of the maintenance purpose.
 	DisableSyntheticMonitorExecution bool            `json:"disableSyntheticMonitorExecution"` // Disables the execution of the synthetic monitors that are within [the scope of this maintenance window](https://dt-url.net/0e0341m).
-	MaintenanceType                  MaintenanceType `json:"maintenanceType"`                  // Whether the maintenance is planned or unplanned.
+	MaintenanceType                  MaintenanceType `json:"maintenanceType"`                  // Possible Values: `PLANNED`, `UNPLANNED`
 	Name                             string          `json:"name"`
-	Suppression                      SuppressionType `json:"suppression"` // Defines if alerting or problem generation is disabled.. * **Detect problems and alert**: Problems are generated and alerted.\n* **Detect problems but don't alert**: Problems are generated but no alerts are sent out.\n* **Disable problem detection during maintenance**: Neither problems are generated nor alerts are sent out.
+	Suppression                      SuppressionType `json:"suppression"` // Possible Values: `DETECT_PROBLEMS_AND_ALERT`, `DETECT_PROBLEMS_DONT_ALERT`, `DONT_DETECT_PROBLEMS`
 }
 
 func (me *GeneralProperties) Schema() map[string]*schema.Schema {
@@ -44,7 +44,7 @@ func (me *GeneralProperties) Schema() map[string]*schema.Schema {
 		},
 		"maintenance_type": {
 			Type:        schema.TypeString,
-			Description: "Whether the maintenance is planned or unplanned.",
+			Description: "Possible Values: `PLANNED`, `UNPLANNED`",
 			Required:    true,
 		},
 		"name": {
@@ -54,7 +54,7 @@ func (me *GeneralProperties) Schema() map[string]*schema.Schema {
 		},
 		"suppression": {
 			Type:        schema.TypeString,
-			Description: "Defines if alerting or problem generation is disabled.. * **Detect problems and alert**: Problems are generated and alerted.\n* **Detect problems but don't alert**: Problems are generated but no alerts are sent out.\n* **Disable problem detection during maintenance**: Neither problems are generated nor alerts are sent out.",
+			Description: "Possible Values: `DETECT_PROBLEMS_AND_ALERT`, `DETECT_PROBLEMS_DONT_ALERT`, `DONT_DETECT_PROBLEMS`",
 			Required:    true,
 		},
 	}

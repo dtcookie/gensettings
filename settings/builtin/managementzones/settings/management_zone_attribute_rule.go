@@ -27,7 +27,7 @@ type ManagementZoneAttributeRule struct {
 	AzureToServicePropagation                  *bool                `json:"azureToServicePropagation,omitempty"` // Apply to services provided by matching Azure entities
 	Conditions                                 AttributeConditions  `json:"conditions"`
 	CustomDeviceGroupToCustomDevicePropagation *bool                `json:"customDeviceGroupToCustomDevicePropagation,omitempty"` // Apply to custom devices in a custom device group
-	EntityType                                 ManagementZoneMeType `json:"entityType"`                                           // Rule applies to
+	EntityType                                 ManagementZoneMeType `json:"entityType"`                                           // Possible Values: `CLOUD_APPLICATION`, `MOBILE_APPLICATION`, `CUSTOM_DEVICE`, `OPENSTACK_ACCOUNT`, `AWS_CLASSIC_LOAD_BALANCER`, `AZURE`, `DATA_CENTER_SERVICE`, `EXTERNAL_MONITOR`, `APPMON_SYSTEM_PROFILE`, `AWS_RELATIONAL_DATABASE_SERVICE`, `HOST`, `WEB_APPLICATION`, `AWS_AUTO_SCALING_GROUP`, `KUBERNETES_CLUSTER`, `SERVICE`, `HOST_GROUP`, `CLOUD_FOUNDRY_FOUNDATION`, `AWS_NETWORK_LOAD_BALANCER`, `CUSTOM_DEVICE_GROUP`, `CLOUD_APPLICATION_NAMESPACE`, `ENTERPRISE_APPLICATION`, `AWS_ACCOUNT`, `ESXI_HOST`, `BROWSER_MONITOR`, `APPMON_SERVER`, `AWS_APPLICATION_LOAD_BALANCER`, `KUBERNETES_SERVICE`, `PROCESS_GROUP`, `HTTP_MONITOR`, `QUEUE`, `CUSTOM_APPLICATION`
 	HostToPGPropagation                        *bool                `json:"hostToPGPropagation,omitempty"`                        // Apply to processes running on matching hosts
 	PGToHostPropagation                        *bool                `json:"pgToHostPropagation,omitempty"`                        // Apply to underlying hosts of matching process groups
 	PGToServicePropagation                     *bool                `json:"pgToServicePropagation,omitempty"`                     // Apply to all services provided by the process groups
@@ -63,7 +63,7 @@ func (me *ManagementZoneAttributeRule) Schema() map[string]*schema.Schema {
 		},
 		"entity_type": {
 			Type:        schema.TypeString,
-			Description: "Rule applies to",
+			Description: "Possible Values: `CLOUD_APPLICATION`, `MOBILE_APPLICATION`, `CUSTOM_DEVICE`, `OPENSTACK_ACCOUNT`, `AWS_CLASSIC_LOAD_BALANCER`, `AZURE`, `DATA_CENTER_SERVICE`, `EXTERNAL_MONITOR`, `APPMON_SYSTEM_PROFILE`, `AWS_RELATIONAL_DATABASE_SERVICE`, `HOST`, `WEB_APPLICATION`, `AWS_AUTO_SCALING_GROUP`, `KUBERNETES_CLUSTER`, `SERVICE`, `HOST_GROUP`, `CLOUD_FOUNDRY_FOUNDATION`, `AWS_NETWORK_LOAD_BALANCER`, `CUSTOM_DEVICE_GROUP`, `CLOUD_APPLICATION_NAMESPACE`, `ENTERPRISE_APPLICATION`, `AWS_ACCOUNT`, `ESXI_HOST`, `BROWSER_MONITOR`, `APPMON_SERVER`, `AWS_APPLICATION_LOAD_BALANCER`, `KUBERNETES_SERVICE`, `PROCESS_GROUP`, `HTTP_MONITOR`, `QUEUE`, `CUSTOM_APPLICATION`",
 			Required:    true,
 		},
 		"host_to_pgpropagation": {

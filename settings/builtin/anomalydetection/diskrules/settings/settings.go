@@ -26,7 +26,7 @@ type Settings struct {
 	DiskNameFilter        *DiskNameFilter `json:"diskNameFilter"`        // Only apply to disks whose name matches
 	Enabled               bool            `json:"enabled"`               // Enabled
 	HostID                *string         `json:"-" scope:"hostId"`      // The scope of this setting (HOST_GROUP environment)
-	Metric                DiskMetric      `json:"metric"`                // Metric to alert on
+	Metric                DiskMetric      `json:"metric"`                // Possible Values: `LOW_DISK_SPACE`, `LOW_INODES`, `READ_TIME_EXCEEDING`, `WRITE_TIME_EXCEEDING`
 	Name                  string          `json:"name"`                  // Name
 	SampleLimit           *SampleLimit    `json:"sampleLimit"`           // Only alert if the threshold was violated in at least *n* of the last *m* samples
 	TagFilters            []string        `json:"tagFilters"`            // Only apply to hosts that have the following tags
@@ -58,7 +58,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		},
 		"metric": {
 			Type:        schema.TypeString,
-			Description: "Metric to alert on",
+			Description: "Possible Values: `LOW_DISK_SPACE`, `LOW_INODES`, `READ_TIME_EXCEEDING`, `WRITE_TIME_EXCEEDING`",
 			Required:    true,
 		},
 		"name": {

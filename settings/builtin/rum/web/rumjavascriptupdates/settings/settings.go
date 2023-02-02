@@ -24,7 +24,7 @@ import (
 
 type Settings struct {
 	ApplicationID     *string           `json:"-" scope:"applicationId"` // The scope of this setting (APPLICATION environment)
-	JavascriptVersion JavascriptVersion `json:"JavascriptVersion"`       // Choose version
+	JavascriptVersion JavascriptVersion `json:"JavascriptVersion"`       // Possible Values: `LATEST_STABLE`, `PREVIOUS_STABLE`, `LATEST_IE7_10_SUPPORTED`, `CUSTOM`
 }
 
 func (me *Settings) Schema() map[string]*schema.Schema {
@@ -37,7 +37,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		},
 		"javascript_version": {
 			Type:        schema.TypeString,
-			Description: "Choose version",
+			Description: "Possible Values: `LATEST_STABLE`, `PREVIOUS_STABLE`, `LATEST_IE7_10_SUPPORTED`, `CUSTOM`",
 			Required:    true,
 		},
 	}

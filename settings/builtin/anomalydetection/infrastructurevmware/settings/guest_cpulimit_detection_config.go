@@ -24,7 +24,7 @@ import (
 
 type GuestCPULimitDetectionConfig struct {
 	CustomThresholds *GuestCPULimitDetectionThresholds `json:"customThresholds,omitempty"` // Alert if **all three** conditions are met in 3 out of 5 samples
-	DetectionMode    *DetectionMode                    `json:"detectionMode,omitempty"`    // Detection mode
+	DetectionMode    *DetectionMode                    `json:"detectionMode,omitempty"`    // Possible Values: `Custom`, `Auto`
 	Enabled          bool                              `json:"enabled"`                    // Detect guest CPU limit reached
 }
 
@@ -41,7 +41,7 @@ func (me *GuestCPULimitDetectionConfig) Schema() map[string]*schema.Schema {
 		},
 		"detection_mode": {
 			Type:        schema.TypeString,
-			Description: "Detection mode",
+			Description: "Possible Values: `Custom`, `Auto`",
 			Optional:    true,
 		},
 		"enabled": {

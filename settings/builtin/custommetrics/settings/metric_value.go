@@ -24,7 +24,7 @@ import (
 
 type MetricValue struct {
 	FieldName *string   `json:"fieldName,omitempty"` // Field name
-	Type      ValueType `json:"type"`
+	Type      ValueType `json:"type"`                // Possible Values: `COUNTER`, `FIELD`
 }
 
 func (me *MetricValue) Schema() map[string]*schema.Schema {
@@ -36,7 +36,7 @@ func (me *MetricValue) Schema() map[string]*schema.Schema {
 		},
 		"type": {
 			Type:        schema.TypeString,
-			Description: "no documentation available",
+			Description: "Possible Values: `COUNTER`, `FIELD`",
 			Required:    true,
 		},
 	}

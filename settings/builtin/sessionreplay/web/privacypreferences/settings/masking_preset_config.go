@@ -26,10 +26,10 @@ import (
 type MaskingPresetConfig struct {
 	PlaybackMaskingAllowListRules  *AllowListRules `json:"playbackMaskingAllowListRules,omitempty"`  // The elements are defined by the CSS selector or attribute name.
 	PlaybackMaskingBlockListRules  *BlockListRules `json:"playbackMaskingBlockListRules,omitempty"`  // The elements are defined by the CSS selector or attribute name.
-	PlaybackMaskingPreset          MaskingPreset   `json:"playbackMaskingPreset"`                    // Playback masking settings are applied during playback of recorded sessions, including playback of sessions that were recorded before these settings were applied.
+	PlaybackMaskingPreset          MaskingPreset   `json:"playbackMaskingPreset"`                    // Possible Values: `MASK_ALL`, `MASK_USER_INPUT`, `ALLOW_LIST`, `BLOCK_LIST`
 	RecordingMaskingAllowListRules *AllowListRules `json:"recordingMaskingAllowListRules,omitempty"` // The elements are defined by the CSS selector or attribute name.
 	RecordingMaskingBlockListRules *BlockListRules `json:"recordingMaskingBlockListRules,omitempty"` // The elements are defined by the CSS selector or attribute name.
-	RecordingMaskingPreset         MaskingPreset   `json:"recordingMaskingPreset"`                   // Recording masking settings are applied at record time. When you set these settings to a more restrictive option, the same option is also enabled for the playback masking settings.
+	RecordingMaskingPreset         MaskingPreset   `json:"recordingMaskingPreset"`                   // Possible Values: `MASK_ALL`, `MASK_USER_INPUT`, `ALLOW_LIST`, `BLOCK_LIST`
 }
 
 func (me *MaskingPresetConfig) Schema() map[string]*schema.Schema {
@@ -54,7 +54,7 @@ func (me *MaskingPresetConfig) Schema() map[string]*schema.Schema {
 		},
 		"playback_masking_preset": {
 			Type:        schema.TypeString,
-			Description: "Playback masking settings are applied during playback of recorded sessions, including playback of sessions that were recorded before these settings were applied.",
+			Description: "Possible Values: `MASK_ALL`, `MASK_USER_INPUT`, `ALLOW_LIST`, `BLOCK_LIST`",
 			Required:    true,
 		},
 		"recording_masking_allow_list_rules": {
@@ -77,7 +77,7 @@ func (me *MaskingPresetConfig) Schema() map[string]*schema.Schema {
 		},
 		"recording_masking_preset": {
 			Type:        schema.TypeString,
-			Description: "Recording masking settings are applied at record time. When you set these settings to a more restrictive option, the same option is also enabled for the playback masking settings.",
+			Description: "Possible Values: `MASK_ALL`, `MASK_USER_INPUT`, `ALLOW_LIST`, `BLOCK_LIST`",
 			Required:    true,
 		},
 	}

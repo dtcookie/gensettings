@@ -28,7 +28,7 @@ type MetricProperties struct {
 	MaxValue          float64   `json:"maxValue"`          // The maximum allowed value of the metric.
 	MinValue          float64   `json:"minValue"`          // The minimum allowed value of the metric.
 	RootCauseRelevant bool      `json:"rootCauseRelevant"` // Whether (true or false) the metric is related to a root cause of a problem.\n\nA root-cause relevant metric represents a strong indicator for a faulty component.
-	ValueType         ValueType `json:"valueType"`         // The type of the metric's value. You have these options:\n\nscore: A score metric is a metric where high values indicate a good situation, while low values indicate trouble. An example of such a metric is a success rate.\n\nerror: An error metric is a metric where high values indicate trouble, while low values indicate a good situation. An example of such a metric is an error count.
+	ValueType         ValueType `json:"valueType"`         // Possible Values: `Unknown`, `Error`, `Score`
 }
 
 func (me *MetricProperties) Schema() map[string]*schema.Schema {
@@ -60,7 +60,7 @@ func (me *MetricProperties) Schema() map[string]*schema.Schema {
 		},
 		"value_type": {
 			Type:        schema.TypeString,
-			Description: "The type of the metric's value. You have these options:\n\nscore: A score metric is a metric where high values indicate a good situation, while low values indicate trouble. An example of such a metric is a success rate.\n\nerror: An error metric is a metric where high values indicate trouble, while low values indicate a good situation. An example of such a metric is an error count.",
+			Description: "Possible Values: `Unknown`, `Error`, `Score`",
 			Required:    true,
 		},
 	}

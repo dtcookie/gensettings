@@ -24,7 +24,7 @@ import (
 
 type NetworkTcpProblemsDetection struct {
 	CustomThresholds *NetworkTcpProblemsDetectionThresholds `json:"customThresholds,omitempty"` // Alert if the percentage of new connection failures is higher than the specified threshold **and** the number of failed connections is higher than the defined threshold for the defined amount of samples
-	DetectionMode    *DetectionMode                         `json:"detectionMode,omitempty"`    // Detection mode for TCP connectivity problems
+	DetectionMode    *DetectionMode                         `json:"detectionMode,omitempty"`    // Possible Values: `Auto`, `Custom`
 	Enabled          bool                                   `json:"enabled"`                    // Detect TCP connectivity problems for process
 }
 
@@ -41,7 +41,7 @@ func (me *NetworkTcpProblemsDetection) Schema() map[string]*schema.Schema {
 		},
 		"detection_mode": {
 			Type:        schema.TypeString,
-			Description: "Detection mode for TCP connectivity problems",
+			Description: "Possible Values: `Auto`, `Custom`",
 			Optional:    true,
 		},
 		"enabled": {

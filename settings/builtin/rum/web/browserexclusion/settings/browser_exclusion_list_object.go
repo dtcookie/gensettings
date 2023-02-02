@@ -45,22 +45,22 @@ func (me *BrowserExclusionListObjects) UnmarshalHCL(decoder hcl.Decoder) error {
 }
 
 type BrowserExclusionListObject struct {
-	BrowserName       Browser            `json:"browserName"` // Browser
-	Platform          *Platform          `json:"platform,omitempty"`
+	BrowserName       Browser            `json:"browserName"`        // Possible Values: `SAFARI`, `EDGE`, `BOTS_AND_SPIDERS`, `ANDROID_WEBKIT`, `CHROME`, `FIREFOX`, `INTERNET_EXPLORER`, `OPERA`
+	Platform          *Platform          `json:"platform,omitempty"` // Possible Values: `ALL`, `MOBILE`, `DESKTOP`
 	Version           *int               `json:"version,omitempty"`
-	VersionComparator *VersionComparator `json:"versionComparator,omitempty"` // Browser version comparator
+	VersionComparator *VersionComparator `json:"versionComparator,omitempty"` // Possible Values: `GREATER_OR_EQUAL`, `EQUALS`, `LESS_OR_EQUAL`
 }
 
 func (me *BrowserExclusionListObject) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"browser_name": {
 			Type:        schema.TypeString,
-			Description: "Browser",
+			Description: "Possible Values: `SAFARI`, `EDGE`, `BOTS_AND_SPIDERS`, `ANDROID_WEBKIT`, `CHROME`, `FIREFOX`, `INTERNET_EXPLORER`, `OPERA`",
 			Required:    true,
 		},
 		"platform": {
 			Type:        schema.TypeString,
-			Description: "no documentation available",
+			Description: "Possible Values: `ALL`, `MOBILE`, `DESKTOP`",
 			Optional:    true,
 		},
 		"version": {
@@ -70,7 +70,7 @@ func (me *BrowserExclusionListObject) Schema() map[string]*schema.Schema {
 		},
 		"version_comparator": {
 			Type:        schema.TypeString,
-			Description: "Browser version comparator",
+			Description: "Possible Values: `GREATER_OR_EQUAL`, `EQUALS`, `LESS_OR_EQUAL`",
 			Optional:    true,
 		},
 	}

@@ -23,7 +23,7 @@ import (
 )
 
 type WeeklyRecurrence struct {
-	DayOfWeek       DayOfWeekType    `json:"dayOfWeek"`       // Day of week
+	DayOfWeek       DayOfWeekType    `json:"dayOfWeek"`       // Possible Values: `SUNDAY`, `MONDAY`, `TUESDAY`, `WEDNESDAY`, `THURSDAY`, `FRIDAY`, `SATURDAY`
 	RecurrenceRange *RecurrenceRange `json:"recurrenceRange"` // Recurrence range
 	TimeWindow      *TimeWindow      `json:"timeWindow"`      // Time window
 }
@@ -32,7 +32,7 @@ func (me *WeeklyRecurrence) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"day_of_week": {
 			Type:        schema.TypeString,
-			Description: "Day of week",
+			Description: "Possible Values: `SUNDAY`, `MONDAY`, `TUESDAY`, `WEDNESDAY`, `THURSDAY`, `FRIDAY`, `SATURDAY`",
 			Required:    true,
 		},
 		"recurrence_range": {

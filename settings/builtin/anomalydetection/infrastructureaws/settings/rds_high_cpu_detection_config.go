@@ -24,7 +24,7 @@ import (
 
 type RdsHighCpuDetectionConfig struct {
 	CustomThresholds *RdsHighCpuDetectionThresholds `json:"customThresholds,omitempty"` // Alert if the condition is met in 3 out of 5 samples
-	DetectionMode    *DetectionMode                 `json:"detectionMode,omitempty"`    // Detection mode
+	DetectionMode    *DetectionMode                 `json:"detectionMode,omitempty"`    // Possible Values: `Auto`, `Custom`
 	Enabled          bool                           `json:"enabled"`                    // Detect high CPU utilization on RDS
 }
 
@@ -41,7 +41,7 @@ func (me *RdsHighCpuDetectionConfig) Schema() map[string]*schema.Schema {
 		},
 		"detection_mode": {
 			Type:        schema.TypeString,
-			Description: "Detection mode",
+			Description: "Possible Values: `Auto`, `Custom`",
 			Optional:    true,
 		},
 		"enabled": {

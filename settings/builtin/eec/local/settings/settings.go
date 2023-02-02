@@ -25,7 +25,7 @@ import (
 type Settings struct {
 	Enabled            bool               `json:"enabled"`            // Enable Extension Execution Controller
 	IngestActive       bool               `json:"ingestActive"`       // Enable local PIPE/HTTP metric and Log Ingest API
-	PerformanceProfile PerformanceProfile `json:"performanceProfile"` // Select performance profile for Extension Execution Controller
+	PerformanceProfile PerformanceProfile `json:"performanceProfile"` // Possible Values: `HIGH`, `DEFAULT`
 	Scope              *string            `json:"-" scope:"scope"`    // The scope of this setting (HOST HOST_GROUP environment)
 	StatsdActive       bool               `json:"statsdActive"`       // Enable Dynatrace StatsD
 }
@@ -44,7 +44,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		},
 		"performance_profile": {
 			Type:        schema.TypeString,
-			Description: "Select performance profile for Extension Execution Controller",
+			Description: "Possible Values: `HIGH`, `DEFAULT`",
 			Required:    true,
 		},
 		"scope": {

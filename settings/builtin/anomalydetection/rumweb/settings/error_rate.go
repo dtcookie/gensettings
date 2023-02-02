@@ -25,7 +25,7 @@ import (
 type ErrorRate struct {
 	Enabled                bool            `json:"enabled"`                          // Detect increases in JavaScript errors
 	ErrorRateAuto          *ErrorRateAuto  `json:"errorRateAuto,omitempty"`          // Alert if the percentage of failing user actions increases by **both** the absolute and relative thresholds:
-	ErrorRateDetectionMode *DetectionMode  `json:"errorRateDetectionMode,omitempty"` // Detection strategy for increases in JavaScript errors
+	ErrorRateDetectionMode *DetectionMode  `json:"errorRateDetectionMode,omitempty"` // Possible Values: `Auto`, `Fixed`
 	ErrorRateFixed         *ErrorRateFixed `json:"errorRateFixed,omitempty"`
 }
 
@@ -47,7 +47,7 @@ func (me *ErrorRate) Schema() map[string]*schema.Schema {
 		},
 		"error_rate_detection_mode": {
 			Type:        schema.TypeString,
-			Description: "Detection strategy for increases in JavaScript errors",
+			Description: "Possible Values: `Auto`, `Fixed`",
 			Optional:    true,
 		},
 		"error_rate_fixed": {

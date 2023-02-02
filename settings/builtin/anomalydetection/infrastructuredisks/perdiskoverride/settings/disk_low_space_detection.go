@@ -24,7 +24,7 @@ import (
 
 type DiskLowSpaceDetection struct {
 	CustomThresholds *DiskLowSpaceDetectionThresholds `json:"customThresholds,omitempty"`
-	DetectionMode    *DetectionMode                   `json:"detectionMode,omitempty"` // Detection mode for low disk space
+	DetectionMode    *DetectionMode                   `json:"detectionMode,omitempty"` // Possible Values: `Auto`, `Custom`
 	Enabled          bool                             `json:"enabled"`                 // Detect low disk space
 }
 
@@ -41,7 +41,7 @@ func (me *DiskLowSpaceDetection) Schema() map[string]*schema.Schema {
 		},
 		"detection_mode": {
 			Type:        schema.TypeString,
-			Description: "Detection mode for low disk space",
+			Description: "Possible Values: `Auto`, `Custom`",
 			Optional:    true,
 		},
 		"enabled": {

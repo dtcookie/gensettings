@@ -23,7 +23,7 @@ import (
 )
 
 type Settings struct {
-	AlertingMode             AlertingMode `json:"alertingMode"`             // **if any process becomes unavailable:**\nDynatrace will open a new problem if a single process in this group shuts down or crashes. \n\n**if minimum threshold is not met:**\nDynatrace tracks the number of process instances that comprise this process group and treats the group as a cluster. This setting enables you to define a minimum number of process instances that must be available. A problem will be opened if this process group has fewer than the minimum number of required process instances. \n\n Details of the related impact on service requests will be included in the problem summary.\n\n**Note:** If a process is intentionally shutdown or retired while this setting is active, you'll need to manually close the problem.
+	AlertingMode             AlertingMode `json:"alertingMode"`             // Possible Values: `ON_PGI_UNAVAILABILITY`, `ON_INSTANCE_COUNT_VIOLATION`
 	Enabled                  bool         `json:"enabled"`                  // Enable process group availability monitoring
 	MinimumInstanceThreshold int          `json:"minimumInstanceThreshold"` // Open a new problem if the number of active process instances in the group is fewer than:
 	ProcessGroupID           string       `json:"-" scope:"processGroupId"` // The scope of this setting (PROCESS_GROUP)
@@ -33,7 +33,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"alerting_mode": {
 			Type:        schema.TypeString,
-			Description: "**if any process becomes unavailable:**\nDynatrace will open a new problem if a single process in this group shuts down or crashes. \n\n**if minimum threshold is not met:**\nDynatrace tracks the number of process instances that comprise this process group and treats the group as a cluster. This setting enables you to define a minimum number of process instances that must be available. A problem will be opened if this process group has fewer than the minimum number of required process instances. \n\n Details of the related impact on service requests will be included in the problem summary.\n\n**Note:** If a process is intentionally shutdown or retired while this setting is active, you'll need to manually close the problem.",
+			Description: "Possible Values: `ON_PGI_UNAVAILABILITY`, `ON_INSTANCE_COUNT_VIOLATION`",
 			Required:    true,
 		},
 		"enabled": {

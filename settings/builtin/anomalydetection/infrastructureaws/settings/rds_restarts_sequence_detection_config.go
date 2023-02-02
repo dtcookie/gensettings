@@ -24,7 +24,7 @@ import (
 
 type RdsRestartsSequenceDetectionConfig struct {
 	CustomThresholds *RdsRestartsSequenceDetectionThresholds `json:"customThresholds,omitempty"` // Alert if the condition is met in 2 out of 20 samples
-	DetectionMode    *DetectionMode                          `json:"detectionMode,omitempty"`    // Detection mode
+	DetectionMode    *DetectionMode                          `json:"detectionMode,omitempty"`    // Possible Values: `Auto`, `Custom`
 	Enabled          bool                                    `json:"enabled"`                    // Detect restarts sequence on RDS
 }
 
@@ -41,7 +41,7 @@ func (me *RdsRestartsSequenceDetectionConfig) Schema() map[string]*schema.Schema
 		},
 		"detection_mode": {
 			Type:        schema.TypeString,
-			Description: "Detection mode",
+			Description: "Possible Values: `Auto`, `Custom`",
 			Optional:    true,
 		},
 		"enabled": {

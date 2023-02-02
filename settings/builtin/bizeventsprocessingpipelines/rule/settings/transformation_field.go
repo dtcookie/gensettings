@@ -49,7 +49,7 @@ type TransformationField struct {
 	Name     string                  `json:"name"`
 	Optional bool                    `json:"optional"`
 	Readonly bool                    `json:"readonly"` // Read-only
-	Type     TransformationFieldType `json:"type"`
+	Type     TransformationFieldType `json:"type"`     // Possible Values: `BOOLEAN`, `INT`, `LONG`, `DOUBLE`, `DURATION`, `TIMESTAMP`, `IPADDR`, `STRING`
 }
 
 func (me *TransformationField) Schema() map[string]*schema.Schema {
@@ -76,7 +76,7 @@ func (me *TransformationField) Schema() map[string]*schema.Schema {
 		},
 		"type": {
 			Type:        schema.TypeString,
-			Description: "no documentation available",
+			Description: "Possible Values: `BOOLEAN`, `INT`, `LONG`, `DOUBLE`, `DURATION`, `TIMESTAMP`, `IPADDR`, `STRING`",
 			Required:    true,
 		},
 	}

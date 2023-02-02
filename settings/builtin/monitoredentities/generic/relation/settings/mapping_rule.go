@@ -46,9 +46,9 @@ func (me *MappingRules) UnmarshalHCL(decoder hcl.Decoder) error {
 
 type MappingRule struct {
 	DestinationProperty       string        `json:"destinationProperty"`       // The case-sensitive name of a property of the destination type.
-	DestinationTransformation Normalization `json:"destinationTransformation"` // Normalize text or leave it as-is?
+	DestinationTransformation Normalization `json:"destinationTransformation"` // Possible Values: `Touppercase`, `Tolowercase`, `Leavetextas_is`
 	SourceProperty            string        `json:"sourceProperty"`            // The case-sensitive name of a property of the source type.
-	SourceTransformation      Normalization `json:"sourceTransformation"`      // Normalize text or leave it as-is?
+	SourceTransformation      Normalization `json:"sourceTransformation"`      // Possible Values: `Tolowercase`, `Leavetextas_is`, `Touppercase`
 }
 
 func (me *MappingRule) Schema() map[string]*schema.Schema {
@@ -60,7 +60,7 @@ func (me *MappingRule) Schema() map[string]*schema.Schema {
 		},
 		"destination_transformation": {
 			Type:        schema.TypeString,
-			Description: "Normalize text or leave it as-is?",
+			Description: "Possible Values: `Touppercase`, `Tolowercase`, `Leavetextas_is`",
 			Required:    true,
 		},
 		"source_property": {
@@ -70,7 +70,7 @@ func (me *MappingRule) Schema() map[string]*schema.Schema {
 		},
 		"source_transformation": {
 			Type:        schema.TypeString,
-			Description: "Normalize text or leave it as-is?",
+			Description: "Possible Values: `Tolowercase`, `Leavetextas_is`, `Touppercase`",
 			Required:    true,
 		},
 	}

@@ -28,7 +28,7 @@ type Settings struct {
 	MonthlyRecurrence *MonthlyRecurrence `json:"monthlyRecurrence"`
 	Name              string             `json:"name"` // Name
 	OnceRecurrence    *OnceRecurrence    `json:"onceRecurrence"`
-	Recurrence        RecurrenceEnum     `json:"recurrence"` // Recurrence
+	Recurrence        RecurrenceEnum     `json:"recurrence"` // Possible Values: `WEEKLY`, `MONTHLY`, `ONCE`, `DAILY`
 	WeeklyRecurrence  *WeeklyRecurrence  `json:"weeklyRecurrence"`
 }
 
@@ -73,7 +73,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		},
 		"recurrence": {
 			Type:        schema.TypeString,
-			Description: "Recurrence",
+			Description: "Possible Values: `WEEKLY`, `MONTHLY`, `ONCE`, `DAILY`",
 			Required:    true,
 		},
 		"weekly_recurrence": {

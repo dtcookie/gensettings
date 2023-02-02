@@ -26,7 +26,7 @@ type Settings struct {
 	CustomDescription   *string              `json:"customDescription,omitempty"` // The description of the SLO
 	Enabled             bool                 `json:"enabled"`                     // Enabled
 	ErrorBudgetBurnRate *ErrorBudgetBurnRate `json:"errorBudgetBurnRate"`         // ### Error budget burn rate
-	EvaluationType      SloEvaluationType    `json:"evaluationType"`              // Select \"Aggregate\" to have the measurements of this success metric aggregated into a single percentage-rate metric.
+	EvaluationType      SloEvaluationType    `json:"evaluationType"`              // Possible Values: `AGGREGATE`
 	EvaluationWindow    string               `json:"evaluationWindow"`            // Define the timeframe during which the SLO is to be evaluated. For the timeframe you can enter expressions like -1h (last hour), -1w (last week) or complex expressions like -2d to now (last two days), -1d/d to now/d (beginning of yesterday to beginning of today).
 	Filter              string               `json:"filter"`                      // Set a filter parameter (entitySelector) on any GET call to evaluate this SLO against specific services only (for example, type(\"SERVICE\")).  For details, see the [Entity Selector documentation](https://dt-url.net/entityselector).
 	MetricExpression    string               `json:"metricExpression"`            // For details, see the [Metrics page](/ui/metrics \"Metrics page\").
@@ -59,7 +59,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		},
 		"evaluation_type": {
 			Type:        schema.TypeString,
-			Description: "Select \"Aggregate\" to have the measurements of this success metric aggregated into a single percentage-rate metric.",
+			Description: "Possible Values: `AGGREGATE`",
 			Required:    true,
 		},
 		"evaluation_window": {

@@ -24,7 +24,7 @@ import (
 
 type NetworkErrorsDetection struct {
 	CustomThresholds *NetworkErrorsDetectionThresholds `json:"customThresholds,omitempty"` // Alert if the receive/transmit error packet percentage is higher than the specified threshold **and** the total packets rate is higher than the defined threshold for the defined amount of samples
-	DetectionMode    *DetectionMode                    `json:"detectionMode,omitempty"`    // Detection mode for high number of network errors
+	DetectionMode    *DetectionMode                    `json:"detectionMode,omitempty"`    // Possible Values: `Auto`, `Custom`
 	Enabled          bool                              `json:"enabled"`                    // Detect high number of network errors
 }
 
@@ -41,7 +41,7 @@ func (me *NetworkErrorsDetection) Schema() map[string]*schema.Schema {
 		},
 		"detection_mode": {
 			Type:        schema.TypeString,
-			Description: "Detection mode for high number of network errors",
+			Description: "Possible Values: `Auto`, `Custom`",
 			Optional:    true,
 		},
 		"enabled": {
