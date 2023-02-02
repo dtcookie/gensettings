@@ -26,7 +26,7 @@ type Settings struct {
 	Detection ProcessDefinitions `json:"detection"`       // Enter a descriptive process group display name and a unique identifier that Dynatrace can use to recognize this process group.
 	Enabled   bool               `json:"enabled"`         // Enabled
 	Name      string             `json:"name"`            // Monitored technology name
-	Scope     string             `json:"-" scope:"scope"` // The scope of this setting (HOST HOST_GROUP environment)
+	Scope     *string            `json:"-" scope:"scope"` // The scope of this setting (HOST HOST_GROUP environment)
 }
 
 func (me *Settings) Schema() map[string]*schema.Schema {
@@ -35,9 +35,10 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "Enter a descriptive process group display name and a unique identifier that Dynatrace can use to recognize this process group.",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(ProcessDefinitions).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(ProcessDefinitions).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"enabled": {
 			Type:        schema.TypeBool,
@@ -52,7 +53,8 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"scope": {
 			Type:        schema.TypeString,
 			Description: "The scope of this setting (HOST HOST_GROUP environment)",
-			Required:    true,
+			Optional:    true,
+			Default:     "environment",
 		},
 	}
 }

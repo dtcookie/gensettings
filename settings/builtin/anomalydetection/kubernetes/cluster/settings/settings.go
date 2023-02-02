@@ -28,7 +28,7 @@ type Settings struct {
 	MonitoringIssues         *MonitoringIssues         `json:"monitoringIssues"`
 	PodsSaturation           *PodsSaturation           `json:"podsSaturation"`
 	ReadinessIssues          *ReadinessIssues          `json:"readinessIssues"` // Alerts if cluster has not been ready for a given amount of time
-	Scope                    string                    `json:"-" scope:"scope"` // The scope of this setting (KUBERNETES_CLUSTER environment)
+	Scope                    *string                   `json:"-" scope:"scope"` // The scope of this setting (KUBERNETES_CLUSTER environment)
 }
 
 func (me *Settings) Schema() map[string]*schema.Schema {
@@ -37,46 +37,52 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "no documentation available",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(CpuRequestsSaturation).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(CpuRequestsSaturation).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"memory_requests_saturation": {
 			Type:        schema.TypeList,
 			Description: "no documentation available",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(MemoryRequestsSaturation).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(MemoryRequestsSaturation).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"monitoring_issues": {
 			Type:        schema.TypeList,
 			Description: "no documentation available",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(MonitoringIssues).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(MonitoringIssues).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"pods_saturation": {
 			Type:        schema.TypeList,
 			Description: "no documentation available",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(PodsSaturation).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(PodsSaturation).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"readiness_issues": {
 			Type:        schema.TypeList,
 			Description: "Alerts if cluster has not been ready for a given amount of time",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(ReadinessIssues).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(ReadinessIssues).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"scope": {
 			Type:        schema.TypeString,
 			Description: "The scope of this setting (KUBERNETES_CLUSTER environment)",
-			Required:    true,
+			Optional:    true,
+			Default:     "environment",
 		},
 	}
 }

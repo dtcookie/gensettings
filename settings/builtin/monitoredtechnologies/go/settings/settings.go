@@ -23,9 +23,9 @@ import (
 )
 
 type Settings struct {
-	Enabled                   bool   `json:"enabled"`                   // Monitor Go
-	EnabledGoStaticMonitoring bool   `json:"enabledGoStaticMonitoring"` // Learn more about the [known limitations for Go static monitoring](https://www.dynatrace.com/support/help/technology-support/application-software/go/support/go-known-limitations#limitations)
-	Scope                     string `json:"-" scope:"scope"`           // The scope of this setting (HOST environment)
+	Enabled                   bool    `json:"enabled"`                   // Monitor Go
+	EnabledGoStaticMonitoring bool    `json:"enabledGoStaticMonitoring"` // Learn more about the [known limitations for Go static monitoring](https://www.dynatrace.com/support/help/technology-support/application-software/go/support/go-known-limitations#limitations)
+	ServiceID                 *string `json:"-" scope:"serviceId"`       // The scope of this setting (HOST environment)
 }
 
 func (me *Settings) Schema() map[string]*schema.Schema {
@@ -40,10 +40,11 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 			Description: "Learn more about the [known limitations for Go static monitoring](https://www.dynatrace.com/support/help/technology-support/application-software/go/support/go-known-limitations#limitations)",
 			Required:    true,
 		},
-		"scope": {
+		"service_id": {
 			Type:        schema.TypeString,
 			Description: "The scope of this setting (HOST environment)",
-			Required:    true,
+			Optional:    true,
+			Default:     "environment",
 		},
 	}
 }
@@ -52,7 +53,7 @@ func (me *Settings) MarshalHCL(properties hcl.Properties) error {
 	return properties.EncodeAll(map[string]any{
 		"enabled":                      me.Enabled,
 		"enabled_go_static_monitoring": me.EnabledGoStaticMonitoring,
-		"scope":                        me.Scope,
+		"service_id":                   me.ServiceID,
 	})
 }
 
@@ -60,6 +61,6 @@ func (me *Settings) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"enabled":                      &me.Enabled,
 		"enabled_go_static_monitoring": &me.EnabledGoStaticMonitoring,
-		"scope":                        &me.Scope,
+		"service_id":                   &me.ServiceID,
 	})
 }

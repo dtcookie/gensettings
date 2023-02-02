@@ -39,9 +39,10 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "Customize failure detection for specific exceptions and errors",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(ExceptionRules).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(ExceptionRules).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"service_id": {
 			Type:        schema.TypeString,

@@ -38,17 +38,19 @@ func (me *MaskingPresetConfig) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "The elements are defined by the CSS selector or attribute name.",
 			Optional:    true,
-			Elem:        &schema.Resource{Schema: new(AllowListRules).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(AllowListRules).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"playback_masking_block_list_rules": {
 			Type:        schema.TypeList,
 			Description: "The elements are defined by the CSS selector or attribute name.",
 			Optional:    true,
-			Elem:        &schema.Resource{Schema: new(BlockListRules).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(BlockListRules).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"playback_masking_preset": {
 			Type:        schema.TypeString,
@@ -59,17 +61,19 @@ func (me *MaskingPresetConfig) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "The elements are defined by the CSS selector or attribute name.",
 			Optional:    true,
-			Elem:        &schema.Resource{Schema: new(AllowListRules).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(AllowListRules).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"recording_masking_block_list_rules": {
 			Type:        schema.TypeList,
 			Description: "The elements are defined by the CSS selector or attribute name.",
 			Optional:    true,
-			Elem:        &schema.Resource{Schema: new(BlockListRules).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(BlockListRules).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"recording_masking_preset": {
 			Type:        schema.TypeString,

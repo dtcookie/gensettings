@@ -34,9 +34,10 @@ func (me *DroppedPacketsDetectionConfig) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "Alert if the condition is met in 3 out of 5 samples",
 			Optional:    true,
-			Elem:        &schema.Resource{Schema: new(DroppedPacketsDetectionThresholds).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(DroppedPacketsDetectionThresholds).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"detection_mode": {
 			Type:        schema.TypeString,

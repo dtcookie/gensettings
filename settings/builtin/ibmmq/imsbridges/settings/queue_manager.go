@@ -60,7 +60,8 @@ func (me *QueueManager) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeSet,
 			Description: "Queues",
 			Required:    true,
-			Elem:        &schema.Schema{Type: schema.TypeString},
+
+			Elem: &schema.Schema{Type: schema.TypeString},
 		},
 	}
 }

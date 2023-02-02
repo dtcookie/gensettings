@@ -62,9 +62,10 @@ func (me *SourceFilter) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "Specify all properties which should be compared. If all mapping rules match a relationship between entities will be created.",
 			Optional:    true,
-			Elem:        &schema.Resource{Schema: new(MappingRules).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(MappingRules).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"source_type": {
 			Type:        schema.TypeString,

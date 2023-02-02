@@ -32,9 +32,10 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "List of URL pattern matchers",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(URLPatterns).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(URLPatterns).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 	}
 }

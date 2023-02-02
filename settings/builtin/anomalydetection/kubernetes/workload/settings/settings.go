@@ -26,7 +26,7 @@ type Settings struct {
 	ContainerRestarts        *ContainerRestarts        `json:"containerRestarts"`
 	NotAllPodsReady          *NotAllPodsReady          `json:"notAllPodsReady"`
 	PendingPods              *PendingPods              `json:"pendingPods"`
-	Scope                    string                    `json:"-" scope:"scope"` // The scope of this setting (CLOUD_APPLICATION_NAMESPACE KUBERNETES_CLUSTER environment)
+	Scope                    *string                   `json:"-" scope:"scope"` // The scope of this setting (CLOUD_APPLICATION_NAMESPACE KUBERNETES_CLUSTER environment)
 	WorkloadWithoutReadyPods *WorkloadWithoutReadyPods `json:"workloadWithoutReadyPods"`
 }
 
@@ -36,38 +36,43 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "no documentation available",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(ContainerRestarts).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(ContainerRestarts).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"not_all_pods_ready": {
 			Type:        schema.TypeList,
 			Description: "no documentation available",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(NotAllPodsReady).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(NotAllPodsReady).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"pending_pods": {
 			Type:        schema.TypeList,
 			Description: "no documentation available",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(PendingPods).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(PendingPods).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"scope": {
 			Type:        schema.TypeString,
 			Description: "The scope of this setting (CLOUD_APPLICATION_NAMESPACE KUBERNETES_CLUSTER environment)",
-			Required:    true,
+			Optional:    true,
+			Default:     "environment",
 		},
 		"workload_without_ready_pods": {
 			Type:        schema.TypeList,
 			Description: "no documentation available",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(WorkloadWithoutReadyPods).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(WorkloadWithoutReadyPods).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 	}
 }

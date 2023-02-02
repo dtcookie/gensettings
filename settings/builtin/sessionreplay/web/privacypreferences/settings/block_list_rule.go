@@ -26,7 +26,7 @@ type BlockListRules []*BlockListRule
 
 func (me *BlockListRules) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
-		"playbackMaskingBlockListRule": {
+		"recordingMaskingBlockListRule": {
 			Type:        schema.TypeSet,
 			Required:    true,
 			MinItems:    1,
@@ -37,11 +37,11 @@ func (me *BlockListRules) Schema() map[string]*schema.Schema {
 }
 
 func (me BlockListRules) MarshalHCL(properties hcl.Properties) error {
-	return properties.EncodeSlice("playbackMaskingBlockListRule", me)
+	return properties.EncodeSlice("recordingMaskingBlockListRule", me)
 }
 
 func (me *BlockListRules) UnmarshalHCL(decoder hcl.Decoder) error {
-	return decoder.DecodeSlice("playbackMaskingBlockListRule", me)
+	return decoder.DecodeSlice("recordingMaskingBlockListRule", me)
 }
 
 type BlockListRule struct {

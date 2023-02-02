@@ -33,9 +33,10 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "Configure home dashboard for selected user group. The selected preset dashboard will be loaded as default landing page for this environment.",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(UserGroupss).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(UserGroupss).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"enable_public_sharing": {
 			Type:        schema.TypeBool,

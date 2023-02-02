@@ -38,9 +38,10 @@ func (me *PublicDomainIdContributor) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "Service identifier contributor",
 			Optional:    true,
-			Elem:        &schema.Resource{Schema: new(PublicDomainTransformationSet).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(PublicDomainTransformationSet).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 	}
 }

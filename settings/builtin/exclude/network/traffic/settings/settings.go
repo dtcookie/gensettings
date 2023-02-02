@@ -23,9 +23,9 @@ import (
 )
 
 type Settings struct {
-	ExcludeIp  IpAddressForms `json:"excludeIp"`       // Providing a host IP address, you will exclude network traffic only in calculating connectivity (other metrics will still be calculated).
-	ExcludeNic NicForms       `json:"excludeNic"`      // Selecting a network interface, you will exclude all network traffic on that interface from being monitored. You can select from the list below what to not monitor, or input it manually using the \"other one\" option.
-	Scope      string         `json:"-" scope:"scope"` // The scope of this setting (HOST)
+	ExcludeIp  IpAddressForms `json:"excludeIp"`           // Providing a host IP address, you will exclude network traffic only in calculating connectivity (other metrics will still be calculated).
+	ExcludeNic NicForms       `json:"excludeNic"`          // Selecting a network interface, you will exclude all network traffic on that interface from being monitored. You can select from the list below what to not monitor, or input it manually using the \"other one\" option.
+	ServiceID  string         `json:"-" scope:"serviceId"` // The scope of this setting (HOST)
 }
 
 func (me *Settings) Schema() map[string]*schema.Schema {
@@ -34,19 +34,21 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "Providing a host IP address, you will exclude network traffic only in calculating connectivity (other metrics will still be calculated).",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(IpAddressForms).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(IpAddressForms).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"exclude_nic": {
 			Type:        schema.TypeList,
 			Description: "Selecting a network interface, you will exclude all network traffic on that interface from being monitored. You can select from the list below what to not monitor, or input it manually using the \"other one\" option.",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(NicForms).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(NicForms).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
-		"scope": {
+		"service_id": {
 			Type:        schema.TypeString,
 			Description: "The scope of this setting (HOST)",
 			Required:    true,
@@ -58,7 +60,7 @@ func (me *Settings) MarshalHCL(properties hcl.Properties) error {
 	return properties.EncodeAll(map[string]any{
 		"exclude_ip":  me.ExcludeIp,
 		"exclude_nic": me.ExcludeNic,
-		"scope":       me.Scope,
+		"service_id":  me.ServiceID,
 	})
 }
 
@@ -66,6 +68,6 @@ func (me *Settings) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"exclude_ip":  &me.ExcludeIp,
 		"exclude_nic": &me.ExcludeNic,
-		"scope":       &me.Scope,
+		"service_id":  &me.ServiceID,
 	})
 }

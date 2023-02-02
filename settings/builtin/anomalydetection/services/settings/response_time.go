@@ -35,9 +35,10 @@ func (me *ResponseTime) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "no documentation available",
 			Optional:    true,
-			Elem:        &schema.Resource{Schema: new(ResponseTimeAuto).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(ResponseTimeAuto).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"detection_mode": {
 			Type:        schema.TypeString,
@@ -53,9 +54,10 @@ func (me *ResponseTime) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "no documentation available",
 			Optional:    true,
-			Elem:        &schema.Resource{Schema: new(ResponseTimeFixed).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(ResponseTimeFixed).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 	}
 }

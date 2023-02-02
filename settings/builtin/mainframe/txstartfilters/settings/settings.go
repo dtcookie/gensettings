@@ -34,19 +34,22 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeSet,
 			Description: "You can use * as wildcard. For example use A* to trace all transaction IDs that start with A.",
 			Required:    true,
-			Elem:        &schema.Schema{Type: schema.TypeString},
+
+			Elem: &schema.Schema{Type: schema.TypeString},
 		},
 		"included_cics_transaction_ids": {
 			Type:        schema.TypeSet,
 			Description: "You can use * as wildcard. For example use A* to trace all transaction IDs that start with A.",
 			Required:    true,
-			Elem:        &schema.Schema{Type: schema.TypeString},
+
+			Elem: &schema.Schema{Type: schema.TypeString},
 		},
 		"included_ims_transaction_ids": {
 			Type:        schema.TypeSet,
 			Description: "You can use * as wildcard. For example use A* to trace all transaction IDs that start with A.",
 			Required:    true,
-			Elem:        &schema.Schema{Type: schema.TypeString},
+
+			Elem: &schema.Schema{Type: schema.TypeString},
 		},
 	}
 }

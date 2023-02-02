@@ -67,7 +67,8 @@ func (me *AliasQueue) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeSet,
 			Description: "Name of the cluster(s) this alias should be visible in",
 			Required:    true,
-			Elem:        &schema.Schema{Type: schema.TypeString},
+
+			Elem: &schema.Schema{Type: schema.TypeString},
 		},
 	}
 }

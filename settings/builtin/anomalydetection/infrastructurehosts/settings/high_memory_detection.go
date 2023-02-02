@@ -34,9 +34,10 @@ func (me *HighMemoryDetection) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "Alert if **both** the memory usage and the memory page fault rate thresholds are exceeded on Windows or on Unix systems",
 			Optional:    true,
-			Elem:        &schema.Resource{Schema: new(HighMemoryDetectionThresholds).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(HighMemoryDetectionThresholds).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"detection_mode": {
 			Type:        schema.TypeString,

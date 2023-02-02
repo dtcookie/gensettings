@@ -23,8 +23,8 @@ import (
 )
 
 type Settings struct {
-	AutoUpdate bool   `json:"autoUpdate"`      // Automatic updates at earliest convenience
-	Scope      string `json:"-" scope:"scope"` // The scope of this setting (ENVIRONMENT_ACTIVE_GATE environment)
+	AutoUpdate bool    `json:"autoUpdate"`      // Automatic updates at earliest convenience
+	Scope      *string `json:"-" scope:"scope"` // The scope of this setting (ENVIRONMENT_ACTIVE_GATE environment)
 }
 
 func (me *Settings) Schema() map[string]*schema.Schema {
@@ -37,7 +37,8 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"scope": {
 			Type:        schema.TypeString,
 			Description: "The scope of this setting (ENVIRONMENT_ACTIVE_GATE environment)",
-			Required:    true,
+			Optional:    true,
+			Default:     "environment",
 		},
 	}
 }

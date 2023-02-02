@@ -23,20 +23,21 @@ import (
 )
 
 type Settings struct {
-	DetectRageClicks bool   `json:"detectRageClicks"` // Three or more rapid clicks within the same area of a web page are considered to be rage clicks. Rage clicks commonly reflect slow-loading or failed page resources. Rage click counts are compiled for each session and considered in the [User Experience Score](https://dt-url.net/39034wt) .\nWith this setting enabled, a rage click count is compiled for each monitored user session.
-	Scope            string `json:"-" scope:"scope"`  // The scope of this setting (APPLICATION environment)
+	ApplicationID    *string `json:"-" scope:"applicationId"` // The scope of this setting (APPLICATION environment)
+	DetectRageClicks bool    `json:"detectRageClicks"`        // Three or more rapid clicks within the same area of a web page are considered to be rage clicks. Rage clicks commonly reflect slow-loading or failed page resources. Rage click counts are compiled for each session and considered in the [User Experience Score](https://dt-url.net/39034wt) .\nWith this setting enabled, a rage click count is compiled for each monitored user session.
 }
 
 func (me *Settings) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
+		"application_id": {
+			Type:        schema.TypeString,
+			Description: "The scope of this setting (APPLICATION environment)",
+			Optional:    true,
+			Default:     "environment",
+		},
 		"detect_rage_clicks": {
 			Type:        schema.TypeBool,
 			Description: "Three or more rapid clicks within the same area of a web page are considered to be rage clicks. Rage clicks commonly reflect slow-loading or failed page resources. Rage click counts are compiled for each session and considered in the [User Experience Score](https://dt-url.net/39034wt) .\nWith this setting enabled, a rage click count is compiled for each monitored user session.",
-			Required:    true,
-		},
-		"scope": {
-			Type:        schema.TypeString,
-			Description: "The scope of this setting (APPLICATION environment)",
 			Required:    true,
 		},
 	}
@@ -44,14 +45,14 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 
 func (me *Settings) MarshalHCL(properties hcl.Properties) error {
 	return properties.EncodeAll(map[string]any{
+		"application_id":     me.ApplicationID,
 		"detect_rage_clicks": me.DetectRageClicks,
-		"scope":              me.Scope,
 	})
 }
 
 func (me *Settings) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
+		"application_id":     &me.ApplicationID,
 		"detect_rage_clicks": &me.DetectRageClicks,
-		"scope":              &me.Scope,
 	})
 }

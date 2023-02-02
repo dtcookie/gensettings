@@ -73,7 +73,8 @@ func (me *Condition) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeSet,
 			Description: "Technology",
 			Optional:    true,
-			Elem:        &schema.Schema{Type: schema.TypeString},
+
+			Elem: &schema.Schema{Type: schema.TypeString},
 		},
 		"ignore_case": {
 			Type:        schema.TypeBool,
@@ -89,7 +90,8 @@ func (me *Condition) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeSet,
 			Description: "Values",
 			Optional:    true,
-			Elem:        &schema.Schema{Type: schema.TypeInt},
+
+			Elem: &schema.Schema{Type: schema.TypeInt},
 		},
 		"ip_range_from": {
 			Type:        schema.TypeString,
@@ -105,13 +107,15 @@ func (me *Condition) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeSet,
 			Description: "If multiple values are specified, at least one of them must match for the condition to match",
 			Optional:    true,
-			Elem:        &schema.Schema{Type: schema.TypeString},
+
+			Elem: &schema.Schema{Type: schema.TypeString},
 		},
 		"text_values": {
 			Type:        schema.TypeSet,
 			Description: "If multiple values are specified, at least one of them must match for the condition to match",
 			Optional:    true,
-			Elem:        &schema.Schema{Type: schema.TypeString},
+
+			Elem: &schema.Schema{Type: schema.TypeString},
 		},
 	}
 }

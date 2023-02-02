@@ -34,25 +34,28 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "Enable this setting to get \n * Processes of Cloud Foundry application instances merged into process groups by Cloud Foundry application. \n *  Container resource metrics (Container group instance entities) and [related screens](https://www.dynatrace.com/support/help/shortlink/container-groups).",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(CloudFoundryCAWD).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(CloudFoundryCAWD).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"docker": {
 			Type:        schema.TypeList,
 			Description: "Enable this setting for plain Docker environments to get \n * Container resource metrics (Container group instance entities) and [related screens](https://www.dynatrace.com/support/help/shortlink/container-groups).",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(DockerCAWD).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(DockerCAWD).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"kubernetes": {
 			Type:        schema.TypeList,
 			Description: "Enable this setting to get \n * Insights into your Kubernetes namespaces, workloads and pods (cloud application namespace, cloud application and cloud application instance and entities). \n * Container resource metrics (container group instance entities) and [related screens](https://www.dynatrace.com/support/help/shortlink/container-groups). \n * Similar workloads merged into process groups based on defined rules (see below). \n * Version detection for services that run in Kubernetes workloads.",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(KubernetesOpenShiftCAWD).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(KubernetesOpenShiftCAWD).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 	}
 }

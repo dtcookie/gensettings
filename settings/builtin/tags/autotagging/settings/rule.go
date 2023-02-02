@@ -59,9 +59,10 @@ func (me *Rule) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "no documentation available",
 			Optional:    true,
-			Elem:        &schema.Resource{Schema: new(AutoTagAttributeRule).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(AutoTagAttributeRule).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"enabled": {
 			Type:        schema.TypeBool,

@@ -23,10 +23,10 @@ import (
 )
 
 type Settings struct {
-	DisplayName string `json:"displayName"`     // Display name
-	Enabled     bool   `json:"enabled"`         // Enabled
-	Scope       string `json:"-" scope:"scope"` // The scope of this setting (HOST HOST_GROUP environment)
-	ServiceName string `json:"serviceName"`     // Service name
+	DisplayName string  `json:"displayName"`     // Display name
+	Enabled     bool    `json:"enabled"`         // Enabled
+	Scope       *string `json:"-" scope:"scope"` // The scope of this setting (HOST HOST_GROUP environment)
+	ServiceName string  `json:"serviceName"`     // Service name
 }
 
 func (me *Settings) Schema() map[string]*schema.Schema {
@@ -44,7 +44,8 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"scope": {
 			Type:        schema.TypeString,
 			Description: "The scope of this setting (HOST HOST_GROUP environment)",
-			Required:    true,
+			Optional:    true,
+			Default:     "environment",
 		},
 		"service_name": {
 			Type:        schema.TypeString,

@@ -36,25 +36,28 @@ func (me *Schedule) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "no documentation available",
 			Optional:    true,
-			Elem:        &schema.Resource{Schema: new(DailyRecurrence).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(DailyRecurrence).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"monthly_recurrence": {
 			Type:        schema.TypeList,
 			Description: "no documentation available",
 			Optional:    true,
-			Elem:        &schema.Resource{Schema: new(MonthlyRecurrence).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(MonthlyRecurrence).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"once_recurrence": {
 			Type:        schema.TypeList,
 			Description: "no documentation available",
 			Optional:    true,
-			Elem:        &schema.Resource{Schema: new(OnceRecurrence).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(OnceRecurrence).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"schedule_type": {
 			Type:        schema.TypeString,
@@ -65,9 +68,10 @@ func (me *Schedule) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "no documentation available",
 			Optional:    true,
-			Elem:        &schema.Resource{Schema: new(WeeklyRecurrence).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(WeeklyRecurrence).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 	}
 }

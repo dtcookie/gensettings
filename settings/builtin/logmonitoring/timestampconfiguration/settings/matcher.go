@@ -66,7 +66,8 @@ func (me *Matcher) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeSet,
 			Description: "no documentation available",
 			Required:    true,
-			Elem:        &schema.Schema{Type: schema.TypeString},
+
+			Elem: &schema.Schema{Type: schema.TypeString},
 		},
 	}
 }

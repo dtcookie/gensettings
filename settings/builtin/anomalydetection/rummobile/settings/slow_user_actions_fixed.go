@@ -35,25 +35,28 @@ func (me *SlowUserActionsFixed) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "To avoid over-alerting do not alert for low traffic applications with less than",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(SlowUserActionsAvoidOveralerting).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(SlowUserActionsAvoidOveralerting).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"duration_threshold_all_fixed": {
 			Type:        schema.TypeList,
 			Description: "Alert if the action duration of all user actions degrades beyond the absolute threshold:",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(SlowUserActionsManualAll).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(SlowUserActionsManualAll).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"duration_threshold_slowest": {
 			Type:        schema.TypeList,
 			Description: "Alert if the action duration of the slowest 10% of user actions degrades beyond the absolute threshold:",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(SlowUserActionsManualSlowest).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(SlowUserActionsManualSlowest).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"sensitivity": {
 			Type:        schema.TypeString,

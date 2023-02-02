@@ -23,8 +23,8 @@ import (
 )
 
 type Settings struct {
-	Enable bool   `json:"enable"`          // Allows OneAgent to:\n* automatically inject the RUM JavaScript tag into each page delivered by this process group\n* provide the necessary info to correlate RUM data with server-side PurePaths\n* forward beacons to the cluster\n* deliver the monitoring code
-	Scope  string `json:"-" scope:"scope"` // The scope of this setting (PROCESS_GROUP environment)
+	Enable         bool    `json:"enable"`                   // Allows OneAgent to:\n* automatically inject the RUM JavaScript tag into each page delivered by this process group\n* provide the necessary info to correlate RUM data with server-side PurePaths\n* forward beacons to the cluster\n* deliver the monitoring code
+	ProcessGroupID *string `json:"-" scope:"processGroupId"` // The scope of this setting (PROCESS_GROUP environment)
 }
 
 func (me *Settings) Schema() map[string]*schema.Schema {
@@ -34,24 +34,25 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 			Description: "Allows OneAgent to:\n* automatically inject the RUM JavaScript tag into each page delivered by this process group\n* provide the necessary info to correlate RUM data with server-side PurePaths\n* forward beacons to the cluster\n* deliver the monitoring code",
 			Required:    true,
 		},
-		"scope": {
+		"process_group_id": {
 			Type:        schema.TypeString,
 			Description: "The scope of this setting (PROCESS_GROUP environment)",
-			Required:    true,
+			Optional:    true,
+			Default:     "environment",
 		},
 	}
 }
 
 func (me *Settings) MarshalHCL(properties hcl.Properties) error {
 	return properties.EncodeAll(map[string]any{
-		"enable": me.Enable,
-		"scope":  me.Scope,
+		"enable":           me.Enable,
+		"process_group_id": me.ProcessGroupID,
 	})
 }
 
 func (me *Settings) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
-		"enable": &me.Enable,
-		"scope":  &me.Scope,
+		"enable":           &me.Enable,
+		"process_group_id": &me.ProcessGroupID,
 	})
 }

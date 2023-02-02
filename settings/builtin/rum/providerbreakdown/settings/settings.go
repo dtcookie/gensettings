@@ -36,9 +36,10 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "Domain name pattern",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(DomainNamePatternListObjects).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(DomainNamePatternListObjects).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"icon_url": {
 			Type:        schema.TypeString,

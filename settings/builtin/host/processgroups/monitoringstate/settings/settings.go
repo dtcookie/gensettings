@@ -23,9 +23,9 @@ import (
 )
 
 type Settings struct {
-	MonitoringState ProcessGroupMonitoringMode `json:"MonitoringState"` // Monitoring state
-	ProcessGroup    string                     `json:"ProcessGroup"`    // Process group
-	Scope           string                     `json:"-" scope:"scope"` // The scope of this setting (HOST)
+	MonitoringState ProcessGroupMonitoringMode `json:"MonitoringState"`     // Monitoring state
+	ProcessGroup    string                     `json:"ProcessGroup"`        // Process group
+	ServiceID       string                     `json:"-" scope:"serviceId"` // The scope of this setting (HOST)
 }
 
 func (me *Settings) Schema() map[string]*schema.Schema {
@@ -40,7 +40,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 			Description: "Process group",
 			Required:    true,
 		},
-		"scope": {
+		"service_id": {
 			Type:        schema.TypeString,
 			Description: "The scope of this setting (HOST)",
 			Required:    true,
@@ -52,7 +52,7 @@ func (me *Settings) MarshalHCL(properties hcl.Properties) error {
 	return properties.EncodeAll(map[string]any{
 		"monitoring_state": me.MonitoringState,
 		"process_group":    me.ProcessGroup,
-		"scope":            me.Scope,
+		"service_id":       me.ServiceID,
 	})
 }
 
@@ -60,6 +60,6 @@ func (me *Settings) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"monitoring_state": &me.MonitoringState,
 		"process_group":    &me.ProcessGroup,
-		"scope":            &me.Scope,
+		"service_id":       &me.ServiceID,
 	})
 }

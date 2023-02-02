@@ -45,17 +45,19 @@ func (me *SlowUserActions) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "no documentation available",
 			Optional:    true,
-			Elem:        &schema.Resource{Schema: new(SlowUserActionsAuto).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(SlowUserActionsAuto).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"slow_user_actions_fixed": {
 			Type:        schema.TypeList,
 			Description: "no documentation available",
 			Optional:    true,
-			Elem:        &schema.Resource{Schema: new(SlowUserActionsFixed).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(SlowUserActionsFixed).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 	}
 }

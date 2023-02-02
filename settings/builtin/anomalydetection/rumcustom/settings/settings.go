@@ -24,7 +24,7 @@ import (
 
 type Settings struct {
 	ErrorRateIncrease  *ErrorRateIncrease  `json:"errorRateIncrease"`  // Error rate increase
-	Scope              string              `json:"-" scope:"scope"`    // The scope of this setting (DEVICE_APPLICATION_METHOD CUSTOM_APPLICATION environment)
+	Scope              *string             `json:"-" scope:"scope"`    // The scope of this setting (DEVICE_APPLICATION_METHOD CUSTOM_APPLICATION environment)
 	SlowUserActions    *SlowUserActions    `json:"slowUserActions"`    // Slow user actions
 	UnexpectedHighLoad *UnexpectedHighLoad `json:"unexpectedHighLoad"` // Unexpected high load
 	UnexpectedLowLoad  *UnexpectedLowLoad  `json:"unexpectedLowLoad"`  // Unexpected low load
@@ -36,38 +36,43 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "Error rate increase",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(ErrorRateIncrease).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(ErrorRateIncrease).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"scope": {
 			Type:        schema.TypeString,
 			Description: "The scope of this setting (DEVICE_APPLICATION_METHOD CUSTOM_APPLICATION environment)",
-			Required:    true,
+			Optional:    true,
+			Default:     "environment",
 		},
 		"slow_user_actions": {
 			Type:        schema.TypeList,
 			Description: "Slow user actions",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(SlowUserActions).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(SlowUserActions).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"unexpected_high_load": {
 			Type:        schema.TypeList,
 			Description: "Unexpected high load",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(UnexpectedHighLoad).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(UnexpectedHighLoad).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"unexpected_low_load": {
 			Type:        schema.TypeList,
 			Description: "Unexpected low load",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(UnexpectedLowLoad).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(UnexpectedLowLoad).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 	}
 }

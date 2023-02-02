@@ -11,6 +11,7 @@ import (
 	"strings"
 
 	"github.com/dtcookie/dynatrace/gensettings/codegen/golang"
+	"github.com/dtcookie/dynatrace/gensettings/collections"
 	"github.com/dtcookie/dynatrace/gensettings/reflection"
 	"github.com/dtcookie/dynatrace/gensettings/schema"
 )
@@ -99,6 +100,29 @@ type Schema struct {
 	JSON       []byte
 }
 
+func checkScope(scopes collections.Set[string], elem string) bool {
+	if len(scopes) > 2 {
+		return false
+	}
+	if len(scopes) == 1 {
+		return scopes.Contains(elem)
+	}
+	if len(scopes) == 2 {
+		return scopes.Contains("environment") && scopes.Contains(elem)
+	}
+	return false
+}
+
+var scopeIds = map[string]string{
+	"SERVICE":            "serviceId",
+	"PROCESS_GROUP":      "processGroupId",
+	"HOST_GROUP":         "hostId",
+	"HOST":               "serviceId",
+	"MOBILE_APPLICATION": "applicationId",
+	"APPLICATION":        "applicationId",
+	"DISK":               "diskId",
+}
+
 func main() {
 	LoadCredentials()
 	var schemaList schema.List
@@ -162,12 +186,15 @@ func main() {
 				Name:     "scope",
 				Type:     &reflection.TypeString,
 				Comment:  "The scope of this setting (" + schema.Definition.AllowedScopes.ToString() + ")",
-				Optional: false,
+				Optional: schema.Definition.AllowedScopes.Contains("environment"),
 				Scope:    "scope",
 			}
-			if len(schema.Definition.AllowedScopes) == 1 && schema.Definition.AllowedScopes.Contains("SERVICE") {
-				scopeProperty.Name = "serviceId"
-				scopeProperty.Scope = "serviceId"
+			for k, v := range scopeIds {
+				if checkScope(schema.Definition.AllowedScopes, k) {
+					scopeProperty.Name = v
+					scopeProperty.Scope = v
+					break
+				}
 			}
 			rootType.Properties[scopeProperty.Name] = scopeProperty
 		}

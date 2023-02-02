@@ -23,40 +23,48 @@ import (
 )
 
 type Settings struct {
+	DiskID                              string                           `json:"-" scope:"diskId"` // The scope of this setting (DISK)
 	DiskLowInodesDetection              *DiskLowInodesDetection          `json:"diskLowInodesDetection"`
 	DiskLowSpaceDetection               *DiskLowSpaceDetection           `json:"diskLowSpaceDetection"`
 	DiskSlowWritesAndReadsDetection     *DiskSlowWritesAndReadsDetection `json:"diskSlowWritesAndReadsDetection"`
 	OverrideDiskLowSpaceDetection       bool                             `json:"overrideDiskLowSpaceDetection"`       // Override low disk space detection settings
 	OverrideLowInodesDetection          bool                             `json:"overrideLowInodesDetection"`          // Override low inodes detection settings
 	OverrideSlowWritesAndReadsDetection bool                             `json:"overrideSlowWritesAndReadsDetection"` // Override slow writes and reads detection settings
-	Scope                               string                           `json:"-" scope:"scope"`                     // The scope of this setting (DISK)
 }
 
 func (me *Settings) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
+		"disk_id": {
+			Type:        schema.TypeString,
+			Description: "The scope of this setting (DISK)",
+			Required:    true,
+		},
 		"disk_low_inodes_detection": {
 			Type:        schema.TypeList,
 			Description: "no documentation available",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(DiskLowInodesDetection).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(DiskLowInodesDetection).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"disk_low_space_detection": {
 			Type:        schema.TypeList,
 			Description: "no documentation available",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(DiskLowSpaceDetection).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(DiskLowSpaceDetection).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"disk_slow_writes_and_reads_detection": {
 			Type:        schema.TypeList,
 			Description: "no documentation available",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(DiskSlowWritesAndReadsDetection).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(DiskSlowWritesAndReadsDetection).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"override_disk_low_space_detection": {
 			Type:        schema.TypeBool,
@@ -73,34 +81,29 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 			Description: "Override slow writes and reads detection settings",
 			Required:    true,
 		},
-		"scope": {
-			Type:        schema.TypeString,
-			Description: "The scope of this setting (DISK)",
-			Required:    true,
-		},
 	}
 }
 
 func (me *Settings) MarshalHCL(properties hcl.Properties) error {
 	return properties.EncodeAll(map[string]any{
+		"disk_id":                                  me.DiskID,
 		"disk_low_inodes_detection":                me.DiskLowInodesDetection,
 		"disk_low_space_detection":                 me.DiskLowSpaceDetection,
 		"disk_slow_writes_and_reads_detection":     me.DiskSlowWritesAndReadsDetection,
 		"override_disk_low_space_detection":        me.OverrideDiskLowSpaceDetection,
 		"override_low_inodes_detection":            me.OverrideLowInodesDetection,
 		"override_slow_writes_and_reads_detection": me.OverrideSlowWritesAndReadsDetection,
-		"scope": me.Scope,
 	})
 }
 
 func (me *Settings) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
+		"disk_id":                                  &me.DiskID,
 		"disk_low_inodes_detection":                &me.DiskLowInodesDetection,
 		"disk_low_space_detection":                 &me.DiskLowSpaceDetection,
 		"disk_slow_writes_and_reads_detection":     &me.DiskSlowWritesAndReadsDetection,
 		"override_disk_low_space_detection":        &me.OverrideDiskLowSpaceDetection,
 		"override_low_inodes_detection":            &me.OverrideLowInodesDetection,
 		"override_slow_writes_and_reads_detection": &me.OverrideSlowWritesAndReadsDetection,
-		"scope": &me.Scope,
 	})
 }

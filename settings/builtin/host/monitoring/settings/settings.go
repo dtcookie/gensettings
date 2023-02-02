@@ -23,10 +23,10 @@ import (
 )
 
 type Settings struct {
-	AutoInjection bool   `json:"autoInjection"`   // An auto-injection disabled with [oneagentctl](https://dt-url.net/oneagentctl) takes precedence over this setting and cannot be changed from the Dynatrace web UI.
-	Enabled       bool   `json:"enabled"`         // Turn on monitoring to gain visibility into this host, its processes, services, and applications.
-	FullStack     bool   `json:"fullStack"`       // Dynatrace uses full-stack monitoring by default, to monitor every aspect of your environment, including all processes, services, and applications detected on your hosts. \n\nIf you turn off full-stack monitoring, Dynatrace will only monitor your infrastructure. You will lose access to application performance, user experience data, code-level visibility and PurePath insights. \n\nTo learn more, visit [Infrastructure Monitoring mode](https://www.dynatrace.com/support/help/shortlink/infrastructure).\n\nPlease note that changing the monitoring mode will impact the license consumption of this OneAgent. To learn more, visit [Host units](https://dt-url.net/hi03uns).
-	Scope         string `json:"-" scope:"scope"` // The scope of this setting (HOST)
+	AutoInjection bool   `json:"autoInjection"`       // An auto-injection disabled with [oneagentctl](https://dt-url.net/oneagentctl) takes precedence over this setting and cannot be changed from the Dynatrace web UI.
+	Enabled       bool   `json:"enabled"`             // Turn on monitoring to gain visibility into this host, its processes, services, and applications.
+	FullStack     bool   `json:"fullStack"`           // Dynatrace uses full-stack monitoring by default, to monitor every aspect of your environment, including all processes, services, and applications detected on your hosts. \n\nIf you turn off full-stack monitoring, Dynatrace will only monitor your infrastructure. You will lose access to application performance, user experience data, code-level visibility and PurePath insights. \n\nTo learn more, visit [Infrastructure Monitoring mode](https://www.dynatrace.com/support/help/shortlink/infrastructure).\n\nPlease note that changing the monitoring mode will impact the license consumption of this OneAgent. To learn more, visit [Host units](https://dt-url.net/hi03uns).
+	ServiceID     string `json:"-" scope:"serviceId"` // The scope of this setting (HOST)
 }
 
 func (me *Settings) Schema() map[string]*schema.Schema {
@@ -46,7 +46,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 			Description: "Dynatrace uses full-stack monitoring by default, to monitor every aspect of your environment, including all processes, services, and applications detected on your hosts. \n\nIf you turn off full-stack monitoring, Dynatrace will only monitor your infrastructure. You will lose access to application performance, user experience data, code-level visibility and PurePath insights. \n\nTo learn more, visit [Infrastructure Monitoring mode](https://www.dynatrace.com/support/help/shortlink/infrastructure).\n\nPlease note that changing the monitoring mode will impact the license consumption of this OneAgent. To learn more, visit [Host units](https://dt-url.net/hi03uns).",
 			Required:    true,
 		},
-		"scope": {
+		"service_id": {
 			Type:        schema.TypeString,
 			Description: "The scope of this setting (HOST)",
 			Required:    true,
@@ -59,7 +59,7 @@ func (me *Settings) MarshalHCL(properties hcl.Properties) error {
 		"auto_injection": me.AutoInjection,
 		"enabled":        me.Enabled,
 		"full_stack":     me.FullStack,
-		"scope":          me.Scope,
+		"service_id":     me.ServiceID,
 	})
 }
 
@@ -68,6 +68,6 @@ func (me *Settings) UnmarshalHCL(decoder hcl.Decoder) error {
 		"auto_injection": &me.AutoInjection,
 		"enabled":        &me.Enabled,
 		"full_stack":     &me.FullStack,
-		"scope":          &me.Scope,
+		"service_id":     &me.ServiceID,
 	})
 }

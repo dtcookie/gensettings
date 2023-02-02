@@ -23,13 +23,18 @@ import (
 )
 
 type Settings struct {
+	ApplicationID           string                      `json:"-" scope:"applicationId"` // The scope of this setting (APPLICATION)
 	BrowserExclusionInclude bool                        `json:"browserExclusionInclude"` // These are the only browsers that should be monitored
 	BrowserExclusionList    BrowserExclusionListObjects `json:"browserExclusionList"`    // Browser exclusion list
-	Scope                   string                      `json:"-" scope:"scope"`         // The scope of this setting (APPLICATION)
 }
 
 func (me *Settings) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
+		"application_id": {
+			Type:        schema.TypeString,
+			Description: "The scope of this setting (APPLICATION)",
+			Required:    true,
+		},
 		"browser_exclusion_include": {
 			Type:        schema.TypeBool,
 			Description: "These are the only browsers that should be monitored",
@@ -39,30 +44,26 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "Browser exclusion list",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(BrowserExclusionListObjects).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
-		},
-		"scope": {
-			Type:        schema.TypeString,
-			Description: "The scope of this setting (APPLICATION)",
-			Required:    true,
+
+			Elem:     &schema.Resource{Schema: new(BrowserExclusionListObjects).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 	}
 }
 
 func (me *Settings) MarshalHCL(properties hcl.Properties) error {
 	return properties.EncodeAll(map[string]any{
+		"application_id":            me.ApplicationID,
 		"browser_exclusion_include": me.BrowserExclusionInclude,
 		"browser_exclusion_list":    me.BrowserExclusionList,
-		"scope":                     me.Scope,
 	})
 }
 
 func (me *Settings) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
+		"application_id":            &me.ApplicationID,
 		"browser_exclusion_include": &me.BrowserExclusionInclude,
 		"browser_exclusion_list":    &me.BrowserExclusionList,
-		"scope":                     &me.Scope,
 	})
 }

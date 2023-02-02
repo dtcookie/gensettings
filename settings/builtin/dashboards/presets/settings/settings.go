@@ -33,9 +33,10 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "Show selected preset to respective user group only.",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(DashboardPresetsList).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(DashboardPresetsList).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"enable_dashboard_presets": {
 			Type:        schema.TypeBool,

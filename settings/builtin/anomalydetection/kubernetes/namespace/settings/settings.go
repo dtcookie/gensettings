@@ -28,7 +28,7 @@ type Settings struct {
 	MemoryLimitsQuotaSaturation   *MemoryLimitsQuotaSaturation   `json:"memoryLimitsQuotaSaturation"`   // Alerts if almost no memory limits quota left in namespace
 	MemoryRequestsQuotaSaturation *MemoryRequestsQuotaSaturation `json:"memoryRequestsQuotaSaturation"` // Alerts if almost no memory requests quota left in namespace
 	PodsQuotaSaturation           *PodsQuotaSaturation           `json:"podsQuotaSaturation"`           // Alerts if almost no pod number limits quota left in namespace
-	Scope                         string                         `json:"-" scope:"scope"`               // The scope of this setting (CLOUD_APPLICATION_NAMESPACE KUBERNETES_CLUSTER environment)
+	Scope                         *string                        `json:"-" scope:"scope"`               // The scope of this setting (CLOUD_APPLICATION_NAMESPACE KUBERNETES_CLUSTER environment)
 }
 
 func (me *Settings) Schema() map[string]*schema.Schema {
@@ -37,46 +37,52 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "Alerts if almost no CPU limits quota left in namespace",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(CpuLimitsQuotaSaturation).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(CpuLimitsQuotaSaturation).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"cpu_requests_quota_saturation": {
 			Type:        schema.TypeList,
 			Description: "Alerts if almost no CPU requests quota left in namespace",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(CpuRequestsQuotaSaturation).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(CpuRequestsQuotaSaturation).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"memory_limits_quota_saturation": {
 			Type:        schema.TypeList,
 			Description: "Alerts if almost no memory limits quota left in namespace",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(MemoryLimitsQuotaSaturation).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(MemoryLimitsQuotaSaturation).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"memory_requests_quota_saturation": {
 			Type:        schema.TypeList,
 			Description: "Alerts if almost no memory requests quota left in namespace",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(MemoryRequestsQuotaSaturation).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(MemoryRequestsQuotaSaturation).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"pods_quota_saturation": {
 			Type:        schema.TypeList,
 			Description: "Alerts if almost no pod number limits quota left in namespace",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(PodsQuotaSaturation).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(PodsQuotaSaturation).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"scope": {
 			Type:        schema.TypeString,
 			Description: "The scope of this setting (CLOUD_APPLICATION_NAMESPACE KUBERNETES_CLUSTER environment)",
-			Required:    true,
+			Optional:    true,
+			Default:     "environment",
 		},
 	}
 }

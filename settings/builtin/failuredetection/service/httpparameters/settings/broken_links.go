@@ -33,7 +33,8 @@ func (me *BrokenLinks) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeSet,
 			Description: "If your application relies on other hosts at other domains, add the associated domain names here. Once configured, Dynatrace will consider 404s thrown by hosts at these domains to be service failures related to your application.",
 			Optional:    true,
-			Elem:        &schema.Schema{Type: schema.TypeString},
+
+			Elem: &schema.Schema{Type: schema.TypeString},
 		},
 		"http_404_not_found_failures": {
 			Type:        schema.TypeBool,

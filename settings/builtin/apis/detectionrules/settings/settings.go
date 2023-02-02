@@ -46,9 +46,10 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "List of conditions",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(ApiRules).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(ApiRules).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"technology": {
 			Type:        schema.TypeString,

@@ -40,9 +40,10 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "Event template",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(EventTemplate).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(EventTemplate).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"query": {
 			Type:        schema.TypeString,

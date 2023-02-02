@@ -33,9 +33,10 @@ func (me *CpuLimitsQuotaSaturation) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "Alert if",
 			Optional:    true,
-			Elem:        &schema.Resource{Schema: new(CpuLimitsQuotaSaturationConfig).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(CpuLimitsQuotaSaturationConfig).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"enabled": {
 			Type:        schema.TypeBool,

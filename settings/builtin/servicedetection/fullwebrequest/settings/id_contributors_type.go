@@ -34,25 +34,28 @@ func (me *IdContributorsType) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "Let the detected application identifier contribute to the service identifier calculation",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(ServiceIdContributor).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(ServiceIdContributor).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"context_root": {
 			Type:        schema.TypeList,
 			Description: "Let the detected context root contribute to the service identifier calculation.\nThe context root is the first segment of the request URL after the Server name. For example, in the www.dynatrace.com/support/help/dynatrace-api/ URL the context root is `support`.",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(ContextIdContributor).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(ContextIdContributor).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"server_name": {
 			Type:        schema.TypeList,
 			Description: "Let the detected server name contribute to the service identifier calculation",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(ServiceIdContributor).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(ServiceIdContributor).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 	}
 }

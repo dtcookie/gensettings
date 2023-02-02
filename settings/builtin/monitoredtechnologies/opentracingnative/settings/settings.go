@@ -23,8 +23,8 @@ import (
 )
 
 type Settings struct {
-	Enabled bool   `json:"enabled"`         // Monitor Envoy
-	Scope   string `json:"-" scope:"scope"` // The scope of this setting (HOST environment)
+	Enabled   bool    `json:"enabled"`             // Monitor Envoy
+	ServiceID *string `json:"-" scope:"serviceId"` // The scope of this setting (HOST environment)
 }
 
 func (me *Settings) Schema() map[string]*schema.Schema {
@@ -34,24 +34,25 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 			Description: "Monitor Envoy",
 			Required:    true,
 		},
-		"scope": {
+		"service_id": {
 			Type:        schema.TypeString,
 			Description: "The scope of this setting (HOST environment)",
-			Required:    true,
+			Optional:    true,
+			Default:     "environment",
 		},
 	}
 }
 
 func (me *Settings) MarshalHCL(properties hcl.Properties) error {
 	return properties.EncodeAll(map[string]any{
-		"enabled": me.Enabled,
-		"scope":   me.Scope,
+		"enabled":    me.Enabled,
+		"service_id": me.ServiceID,
 	})
 }
 
 func (me *Settings) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
-		"enabled": &me.Enabled,
-		"scope":   &me.Scope,
+		"enabled":    &me.Enabled,
+		"service_id": &me.ServiceID,
 	})
 }

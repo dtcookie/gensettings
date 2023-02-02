@@ -43,17 +43,19 @@ func (me *QueryDefinition) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "Dimension filter",
 			Optional:    true,
-			Elem:        &schema.Resource{Schema: new(DimensionFilters).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(DimensionFilters).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"entity_filter": {
 			Type:        schema.TypeList,
 			Description: "Use rule-based filters to define the scope this event monitors.",
 			Optional:    true,
-			Elem:        &schema.Resource{Schema: new(EntityFilter).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(EntityFilter).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"metric_key": {
 			Type:        schema.TypeString,

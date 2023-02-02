@@ -36,23 +36,26 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "Alias queues",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(AliasQueues).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(AliasQueues).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"cluster_queues": {
 			Type:        schema.TypeList,
 			Description: "Cluster queues",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(ClusterQueues).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(ClusterQueues).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"clusters": {
 			Type:        schema.TypeSet,
 			Description: "Name of the cluster(s) this queue manager is part of",
 			Required:    true,
-			Elem:        &schema.Schema{Type: schema.TypeString},
+
+			Elem: &schema.Schema{Type: schema.TypeString},
 		},
 		"name": {
 			Type:        schema.TypeString,
@@ -63,9 +66,10 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "Remote queues",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(RemoteQueues).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(RemoteQueues).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 	}
 }

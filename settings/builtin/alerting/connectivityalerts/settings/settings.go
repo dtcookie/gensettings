@@ -23,8 +23,8 @@ import (
 )
 
 type Settings struct {
-	ConnectivityAlerts bool   `json:"connectivityAlerts"` // TCP connectivity problems
-	Scope              string `json:"-" scope:"scope"`    // The scope of this setting (PROCESS_GROUP)
+	ConnectivityAlerts bool   `json:"connectivityAlerts"`       // TCP connectivity problems
+	ProcessGroupID     string `json:"-" scope:"processGroupId"` // The scope of this setting (PROCESS_GROUP)
 }
 
 func (me *Settings) Schema() map[string]*schema.Schema {
@@ -34,7 +34,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 			Description: "TCP connectivity problems",
 			Required:    true,
 		},
-		"scope": {
+		"process_group_id": {
 			Type:        schema.TypeString,
 			Description: "The scope of this setting (PROCESS_GROUP)",
 			Required:    true,
@@ -45,13 +45,13 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 func (me *Settings) MarshalHCL(properties hcl.Properties) error {
 	return properties.EncodeAll(map[string]any{
 		"connectivity_alerts": me.ConnectivityAlerts,
-		"scope":               me.Scope,
+		"process_group_id":    me.ProcessGroupID,
 	})
 }
 
 func (me *Settings) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"connectivity_alerts": &me.ConnectivityAlerts,
-		"scope":               &me.Scope,
+		"process_group_id":    &me.ProcessGroupID,
 	})
 }

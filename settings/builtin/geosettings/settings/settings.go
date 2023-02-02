@@ -23,8 +23,8 @@ import (
 )
 
 type Settings struct {
-	DisplayWorldmap bool   `json:"displayWorldmap"` // Display the world map
-	Scope           string `json:"-" scope:"scope"` // The scope of this setting (environment environment-default)
+	DisplayWorldmap bool    `json:"displayWorldmap"` // Display the world map
+	Scope           *string `json:"-" scope:"scope"` // The scope of this setting (environment environment-default)
 }
 
 func (me *Settings) Schema() map[string]*schema.Schema {
@@ -37,7 +37,8 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"scope": {
 			Type:        schema.TypeString,
 			Description: "The scope of this setting (environment environment-default)",
-			Required:    true,
+			Optional:    true,
+			Default:     "environment",
 		},
 	}
 }

@@ -40,9 +40,10 @@ func (me *XMattersNotification) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "A list of the additional HTTP headers.",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(WebHookNotificationHeaders).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(WebHookNotificationHeaders).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"payload": {
 			Type:        schema.TypeString,

@@ -34,9 +34,10 @@ func (me *NetworkHighRetransmissionDetection) Schema() map[string]*schema.Schema
 			Type:        schema.TypeList,
 			Description: "Alert if the retransmission rate is higher than the specified threshold **and** the number of retransmitted packets is higher than the defined threshold for the defined amount of samples",
 			Optional:    true,
-			Elem:        &schema.Resource{Schema: new(NetworkHighRetransmissionDetectionThresholds).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(NetworkHighRetransmissionDetectionThresholds).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"detection_mode": {
 			Type:        schema.TypeString,

@@ -23,10 +23,10 @@ import (
 )
 
 type Settings struct {
-	Condition *Condition     `json:"condition"`       // Condition
-	Enabled   bool           `json:"enabled"`         // Enabled
-	Mode      MonitoringMode `json:"mode"`            // Mode
-	Scope     string         `json:"-" scope:"scope"` // The scope of this setting (HOST_GROUP environment)
+	Condition *Condition     `json:"condition"`        // Condition
+	Enabled   bool           `json:"enabled"`          // Enabled
+	HostID    *string        `json:"-" scope:"hostId"` // The scope of this setting (HOST_GROUP environment)
+	Mode      MonitoringMode `json:"mode"`             // Mode
 }
 
 func (me *Settings) Schema() map[string]*schema.Schema {
@@ -35,23 +35,25 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "Condition",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(Condition).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(Condition).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"enabled": {
 			Type:        schema.TypeBool,
 			Description: "Enabled",
 			Required:    true,
 		},
+		"host_id": {
+			Type:        schema.TypeString,
+			Description: "The scope of this setting (HOST_GROUP environment)",
+			Optional:    true,
+			Default:     "environment",
+		},
 		"mode": {
 			Type:        schema.TypeString,
 			Description: "Mode",
-			Required:    true,
-		},
-		"scope": {
-			Type:        schema.TypeString,
-			Description: "The scope of this setting (HOST_GROUP environment)",
 			Required:    true,
 		},
 	}
@@ -61,8 +63,8 @@ func (me *Settings) MarshalHCL(properties hcl.Properties) error {
 	return properties.EncodeAll(map[string]any{
 		"condition": me.Condition,
 		"enabled":   me.Enabled,
+		"host_id":   me.HostID,
 		"mode":      me.Mode,
-		"scope":     me.Scope,
 	})
 }
 
@@ -70,7 +72,7 @@ func (me *Settings) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"condition": &me.Condition,
 		"enabled":   &me.Enabled,
+		"host_id":   &me.HostID,
 		"mode":      &me.Mode,
-		"scope":     &me.Scope,
 	})
 }

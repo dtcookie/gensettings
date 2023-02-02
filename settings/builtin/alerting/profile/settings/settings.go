@@ -35,9 +35,10 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "Define event filters for profile. A maximum of 100 event filters is allowed.",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(AlertingProfileEventFilters).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(AlertingProfileEventFilters).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"management_zone": {
 			Type:        schema.TypeString,
@@ -53,9 +54,10 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "Define severity rules for profile. A maximum of 100 severity rules is allowed.",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(AlertingProfileSeverityRules).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(AlertingProfileSeverityRules).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 	}
 }

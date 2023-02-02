@@ -51,9 +51,10 @@ func (me *EventTemplate) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "Set of additional key-value properties to be attached to the triggered event.",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(MetadataItems).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(MetadataItems).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"title": {
 			Type:        schema.TypeString,

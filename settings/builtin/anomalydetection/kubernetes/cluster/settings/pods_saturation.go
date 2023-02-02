@@ -33,9 +33,10 @@ func (me *PodsSaturation) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "Alert if",
 			Optional:    true,
-			Elem:        &schema.Resource{Schema: new(PodsSaturationConfig).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(PodsSaturationConfig).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"enabled": {
 			Type:        schema.TypeBool,

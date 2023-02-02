@@ -34,9 +34,10 @@ func (me *RdsRestartsSequenceDetectionConfig) Schema() map[string]*schema.Schema
 			Type:        schema.TypeList,
 			Description: "Alert if the condition is met in 2 out of 20 samples",
 			Optional:    true,
-			Elem:        &schema.Resource{Schema: new(RdsRestartsSequenceDetectionThresholds).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(RdsRestartsSequenceDetectionThresholds).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"detection_mode": {
 			Type:        schema.TypeString,

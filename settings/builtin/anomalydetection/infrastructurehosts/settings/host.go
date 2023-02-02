@@ -37,49 +37,55 @@ func (me *Host) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "no documentation available",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(ConnectionLostDetection).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(ConnectionLostDetection).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"high_cpu_saturation_detection": {
 			Type:        schema.TypeList,
 			Description: "no documentation available",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(HighCpuSaturationDetection).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(HighCpuSaturationDetection).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"high_gc_activity_detection": {
 			Type:        schema.TypeList,
 			Description: "no documentation available",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(HighGcActivityDetection).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(HighGcActivityDetection).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"high_memory_detection": {
 			Type:        schema.TypeList,
 			Description: "no documentation available",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(HighMemoryDetection).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(HighMemoryDetection).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"out_of_memory_detection": {
 			Type:        schema.TypeList,
 			Description: "no documentation available",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(OutOfMemoryDetection).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(OutOfMemoryDetection).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"out_of_threads_detection": {
 			Type:        schema.TypeList,
 			Description: "no documentation available",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(OutOfThreadsDetection).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(OutOfThreadsDetection).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 	}
 }

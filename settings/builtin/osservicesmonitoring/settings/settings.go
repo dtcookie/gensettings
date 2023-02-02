@@ -32,7 +32,7 @@ type Settings struct {
 	Monitoring                 bool                       `json:"monitoring"`                 // Toggle the switch in order to enable or disable availability metric monitoring for this policy. Availability metrics consume custom metrics (DDUs). Refer to [documentation](https://dt-url.net/vl03xzk) for DDU consumption examples. Each monitored service consumes one custom metric.
 	Name                       string                     `json:"name"`                       // Rule name
 	NotInstalledAlerting       bool                       `json:"notInstalledAlerting"`       // By default, Dynatrace does not alert if the service is not installed. Toggle the switch to enable or disable this feature
-	Scope                      string                     `json:"-" scope:"scope"`            // The scope of this setting (HOST HOST_GROUP environment)
+	Scope                      *string                    `json:"-" scope:"scope"`            // The scope of this setting (HOST HOST_GROUP environment)
 	StatusConditionLinux       string                     `json:"statusConditionLinux"`       // This string has to match a required format. See [OS services monitoring](https://dt-url.net/vl03xzk).\n\n- `$eq(failed)` – Matches services that are in failed state.\n\nAvailable logic operations:\n- `$not($eq(active))` – Matches services with state different from active.\n- `$or($eq(inactive),$eq(failed))` – Matches services that are either in inactive or failed state.\n\nUse one of the following values as a parameter for this condition:\n\n- `reloading`\n- `activating`\n- `deactivating`\n- `failed`\n- `inactive`\n- `active`
 	StatusConditionWindows     string                     `json:"statusConditionWindows"`     // This string has to match a required format. See [OS services monitoring](https://dt-url.net/vl03xzk).\n\n- `$eq(paused)` – Matches services that are in paused state.\n\nAvailable logic operations:\n- `$not($eq(paused))` – Matches services that are in state different from paused.\n- `$or($eq(paused),$eq(running))` – Matches services that are either in paused or running state.\n\nUse one of the following values as a parameter for this condition:\n\n- `running`\n- `stopped`\n- `start_pending`\n- `stop_pending`\n- `continue_pending`\n- `pause_pending`\n- `paused`
 	System                     System                     `json:"system"`                     // System
@@ -54,17 +54,19 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "Detection rules",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(LinuxDetectionConditions).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(LinuxDetectionConditions).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"detection_conditions_windows": {
 			Type:        schema.TypeList,
 			Description: "Detection rules",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(WindowsDetectionConditions).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(WindowsDetectionConditions).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"enabled": {
 			Type:        schema.TypeBool,
@@ -75,9 +77,10 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "Set of additional key-value properties to be attached to the triggered event.",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(MetadataItems).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(MetadataItems).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"monitoring": {
 			Type:        schema.TypeBool,
@@ -97,7 +100,8 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"scope": {
 			Type:        schema.TypeString,
 			Description: "The scope of this setting (HOST HOST_GROUP environment)",
-			Required:    true,
+			Optional:    true,
+			Default:     "environment",
 		},
 		"status_condition_linux": {
 			Type:        schema.TypeString,

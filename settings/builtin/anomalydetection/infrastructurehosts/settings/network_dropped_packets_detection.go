@@ -34,9 +34,10 @@ func (me *NetworkDroppedPacketsDetection) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "Alert if the dropped packet percentage is higher than the specified threshold **and** the total packets rate is higher than the defined threshold for the defined amount of samples",
 			Optional:    true,
-			Elem:        &schema.Resource{Schema: new(NetworkDroppedPacketsDetectionThresholds).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(NetworkDroppedPacketsDetectionThresholds).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"detection_mode": {
 			Type:        schema.TypeString,

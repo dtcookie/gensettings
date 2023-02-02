@@ -23,9 +23,9 @@ import (
 )
 
 type Settings struct {
-	Enabled           bool   `json:"enabled"`           // Allow AIX kernel extension
-	Scope             string `json:"-" scope:"scope"`   // The scope of this setting (HOST)
-	UseGlobalSettings bool   `json:"useGlobalSettings"` // Use global settings
+	Enabled           bool   `json:"enabled"`             // Allow AIX kernel extension
+	ServiceID         string `json:"-" scope:"serviceId"` // The scope of this setting (HOST)
+	UseGlobalSettings bool   `json:"useGlobalSettings"`   // Use global settings
 }
 
 func (me *Settings) Schema() map[string]*schema.Schema {
@@ -35,7 +35,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 			Description: "Allow AIX kernel extension",
 			Required:    true,
 		},
-		"scope": {
+		"service_id": {
 			Type:        schema.TypeString,
 			Description: "The scope of this setting (HOST)",
 			Required:    true,
@@ -51,7 +51,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 func (me *Settings) MarshalHCL(properties hcl.Properties) error {
 	return properties.EncodeAll(map[string]any{
 		"enabled":             me.Enabled,
-		"scope":               me.Scope,
+		"service_id":          me.ServiceID,
 		"use_global_settings": me.UseGlobalSettings,
 	})
 }
@@ -59,7 +59,7 @@ func (me *Settings) MarshalHCL(properties hcl.Properties) error {
 func (me *Settings) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"enabled":             &me.Enabled,
-		"scope":               &me.Scope,
+		"service_id":          &me.ServiceID,
 		"use_global_settings": &me.UseGlobalSettings,
 	})
 }

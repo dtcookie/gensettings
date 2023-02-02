@@ -25,7 +25,7 @@ import (
 type Settings struct {
 	Host    *Host    `json:"host"`            // Hosts
 	Network *Network `json:"network"`         // Network
-	Scope   string   `json:"-" scope:"scope"` // The scope of this setting (HOST HOST_GROUP environment)
+	Scope   *string  `json:"-" scope:"scope"` // The scope of this setting (HOST HOST_GROUP environment)
 }
 
 func (me *Settings) Schema() map[string]*schema.Schema {
@@ -34,22 +34,25 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "Hosts",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(Host).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(Host).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"network": {
 			Type:        schema.TypeList,
 			Description: "Network",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(Network).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(Network).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"scope": {
 			Type:        schema.TypeString,
 			Description: "The scope of this setting (HOST HOST_GROUP environment)",
-			Required:    true,
+			Optional:    true,
+			Default:     "environment",
 		},
 	}
 }

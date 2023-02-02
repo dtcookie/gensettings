@@ -36,9 +36,10 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "HTTP 404 response codes are thrown when a web server can't find a certain page. 404s are classified as broken links on the client side and therefore aren't considered to be service failures. By enabling this setting, you can have 404s treated as server-side service failures.",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(BrokenLinks).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(BrokenLinks).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"description": {
 			Type:        schema.TypeString,
@@ -49,17 +50,19 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "Customize failure detection for specific exceptions and errors",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(ExceptionRules).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(ExceptionRules).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"http_response_codes": {
 			Type:        schema.TypeList,
 			Description: "HTTP response codes",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(HttpResponseCodes).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(HttpResponseCodes).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"name": {
 			Type:        schema.TypeString,

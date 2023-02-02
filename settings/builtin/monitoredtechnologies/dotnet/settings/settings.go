@@ -23,9 +23,9 @@ import (
 )
 
 type Settings struct {
-	Enabled           bool   `json:"enabled"`           // Requires Dynatrace OneAgent version 1.75 or later on Windows
-	EnabledDotNetCore bool   `json:"enabledDotNetCore"` // Requires Dynatrace OneAgent version 1.117 or later on Windows and version 1.127 or later on Linux and .NET monitoring enabled
-	Scope             string `json:"-" scope:"scope"`   // The scope of this setting (HOST environment)
+	Enabled           bool    `json:"enabled"`             // Requires Dynatrace OneAgent version 1.75 or later on Windows
+	EnabledDotNetCore bool    `json:"enabledDotNetCore"`   // Requires Dynatrace OneAgent version 1.117 or later on Windows and version 1.127 or later on Linux and .NET monitoring enabled
+	ServiceID         *string `json:"-" scope:"serviceId"` // The scope of this setting (HOST environment)
 }
 
 func (me *Settings) Schema() map[string]*schema.Schema {
@@ -40,10 +40,11 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 			Description: "Requires Dynatrace OneAgent version 1.117 or later on Windows and version 1.127 or later on Linux and .NET monitoring enabled",
 			Required:    true,
 		},
-		"scope": {
+		"service_id": {
 			Type:        schema.TypeString,
 			Description: "The scope of this setting (HOST environment)",
-			Required:    true,
+			Optional:    true,
+			Default:     "environment",
 		},
 	}
 }
@@ -52,7 +53,7 @@ func (me *Settings) MarshalHCL(properties hcl.Properties) error {
 	return properties.EncodeAll(map[string]any{
 		"enabled":              me.Enabled,
 		"enabled_dot_net_core": me.EnabledDotNetCore,
-		"scope":                me.Scope,
+		"service_id":           me.ServiceID,
 	})
 }
 
@@ -60,6 +61,6 @@ func (me *Settings) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"enabled":              &me.Enabled,
 		"enabled_dot_net_core": &me.EnabledDotNetCore,
-		"scope":                &me.Scope,
+		"service_id":           &me.ServiceID,
 	})
 }

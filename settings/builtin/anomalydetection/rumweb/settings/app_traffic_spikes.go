@@ -38,9 +38,10 @@ func (me *AppTrafficSpikes) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "Dynatrace learns your typical application traffic over an observation period of one week.\n\nDepending on this expected value Dynatrace detects abnormal traffic spikes within your application.",
 			Optional:    true,
-			Elem:        &schema.Resource{Schema: new(TrafficSpikes).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(TrafficSpikes).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 	}
 }

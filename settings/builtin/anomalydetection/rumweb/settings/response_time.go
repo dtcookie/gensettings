@@ -45,17 +45,19 @@ func (me *ResponseTime) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "no documentation available",
 			Optional:    true,
-			Elem:        &schema.Resource{Schema: new(ResponseTimeAuto).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(ResponseTimeAuto).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"response_time_fixed": {
 			Type:        schema.TypeList,
 			Description: "no documentation available",
 			Optional:    true,
-			Elem:        &schema.Resource{Schema: new(ResponseTimeFixed).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(ResponseTimeFixed).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 	}
 }

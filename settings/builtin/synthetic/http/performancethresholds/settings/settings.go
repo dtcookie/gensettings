@@ -44,9 +44,10 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "Performance thresholds",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(ThresholdEntries).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(ThresholdEntries).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 	}
 }

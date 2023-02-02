@@ -24,7 +24,7 @@ import (
 
 type Settings struct {
 	CrashRateIncrease *CrashRateIncrease `json:"crashRateIncrease"` // Crash rate increase
-	Scope             string             `json:"-" scope:"scope"`   // The scope of this setting (CUSTOM_APPLICATION environment)
+	Scope             *string            `json:"-" scope:"scope"`   // The scope of this setting (CUSTOM_APPLICATION environment)
 }
 
 func (me *Settings) Schema() map[string]*schema.Schema {
@@ -33,14 +33,16 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "Crash rate increase",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(CrashRateIncrease).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(CrashRateIncrease).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"scope": {
 			Type:        schema.TypeString,
 			Description: "The scope of this setting (CUSTOM_APPLICATION environment)",
-			Required:    true,
+			Optional:    true,
+			Default:     "environment",
 		},
 	}
 }

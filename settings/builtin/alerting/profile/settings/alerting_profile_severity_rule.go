@@ -67,7 +67,8 @@ func (me *AlertingProfileSeverityRule) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeSet,
 			Description: "Tags",
 			Optional:    true,
-			Elem:        &schema.Schema{Type: schema.TypeString},
+
+			Elem: &schema.Schema{Type: schema.TypeString},
 		},
 		"tag_filter_include_mode": {
 			Type:        schema.TypeString,

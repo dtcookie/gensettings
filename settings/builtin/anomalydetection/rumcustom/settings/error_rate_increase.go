@@ -45,17 +45,19 @@ func (me *ErrorRateIncrease) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "Alert if the percentage of user actions affected by reported errors exceeds **both** the absolute threshold and the relative threshold",
 			Optional:    true,
-			Elem:        &schema.Resource{Schema: new(ErrorRateIncreaseAuto).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(ErrorRateIncreaseAuto).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"error_rate_increase_fixed": {
 			Type:        schema.TypeList,
 			Description: "Alert if the custom reported error rate threshold is exceeded during any 5-minute period",
 			Optional:    true,
-			Elem:        &schema.Resource{Schema: new(ErrorRateIncreaseFixed).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(ErrorRateIncreaseFixed).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 	}
 }

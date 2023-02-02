@@ -34,25 +34,28 @@ func (me *Disk) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "no documentation available",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(DiskLowInodesDetection).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(DiskLowInodesDetection).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"disk_low_space_detection": {
 			Type:        schema.TypeList,
 			Description: "no documentation available",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(DiskLowSpaceDetection).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(DiskLowSpaceDetection).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"disk_slow_writes_and_reads_detection": {
 			Type:        schema.TypeList,
 			Description: "no documentation available",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(DiskSlowWritesAndReadsDetection).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(DiskSlowWritesAndReadsDetection).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 	}
 }

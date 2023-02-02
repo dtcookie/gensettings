@@ -55,7 +55,8 @@ func (me *ClusterQueue) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeSet,
 			Description: "Name of the cluster(s) this local queue should be visible in",
 			Required:    true,
-			Elem:        &schema.Schema{Type: schema.TypeString},
+
+			Elem: &schema.Schema{Type: schema.TypeString},
 		},
 		"local_queue": {
 			Type:        schema.TypeString,

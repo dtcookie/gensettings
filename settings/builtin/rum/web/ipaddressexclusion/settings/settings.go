@@ -23,13 +23,18 @@ import (
 )
 
 type Settings struct {
+	ApplicationID             string                  `json:"-" scope:"applicationId"`   // The scope of this setting (APPLICATION)
 	IpAddressExclusionInclude bool                    `json:"ipAddressExclusionInclude"` // These are the only IP addresses that should be monitored
 	IpExclusionList           IpAddressExclusionRules `json:"ipExclusionList"`           // **Examples:**\n\n   - 84.112.10.5\n   - fe80::10a1:c6b2:5f68:785d
-	Scope                     string                  `json:"-" scope:"scope"`           // The scope of this setting (APPLICATION)
 }
 
 func (me *Settings) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
+		"application_id": {
+			Type:        schema.TypeString,
+			Description: "The scope of this setting (APPLICATION)",
+			Required:    true,
+		},
 		"ip_address_exclusion_include": {
 			Type:        schema.TypeBool,
 			Description: "These are the only IP addresses that should be monitored",
@@ -39,30 +44,26 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "**Examples:**\n\n   - 84.112.10.5\n   - fe80::10a1:c6b2:5f68:785d",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(IpAddressExclusionRules).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
-		},
-		"scope": {
-			Type:        schema.TypeString,
-			Description: "The scope of this setting (APPLICATION)",
-			Required:    true,
+
+			Elem:     &schema.Resource{Schema: new(IpAddressExclusionRules).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 	}
 }
 
 func (me *Settings) MarshalHCL(properties hcl.Properties) error {
 	return properties.EncodeAll(map[string]any{
+		"application_id":               me.ApplicationID,
 		"ip_address_exclusion_include": me.IpAddressExclusionInclude,
 		"ip_exclusion_list":            me.IpExclusionList,
-		"scope":                        me.Scope,
 	})
 }
 
 func (me *Settings) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
+		"application_id":               &me.ApplicationID,
 		"ip_address_exclusion_include": &me.IpAddressExclusionInclude,
 		"ip_exclusion_list":            &me.IpExclusionList,
-		"scope":                        &me.Scope,
 	})
 }

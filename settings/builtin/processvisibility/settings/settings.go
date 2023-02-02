@@ -23,9 +23,9 @@ import (
 )
 
 type Settings struct {
-	Enabled      bool   `json:"enabled"`         // Enable Process instance snapshots
-	MaxProcesses int    `json:"maxProcesses"`    // The maximum amount of processes that host may report is **100**
-	Scope        string `json:"-" scope:"scope"` // The scope of this setting (HOST HOST_GROUP environment)
+	Enabled      bool    `json:"enabled"`         // Enable Process instance snapshots
+	MaxProcesses int     `json:"maxProcesses"`    // The maximum amount of processes that host may report is **100**
+	Scope        *string `json:"-" scope:"scope"` // The scope of this setting (HOST HOST_GROUP environment)
 }
 
 func (me *Settings) Schema() map[string]*schema.Schema {
@@ -43,7 +43,8 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"scope": {
 			Type:        schema.TypeString,
 			Description: "The scope of this setting (HOST HOST_GROUP environment)",
-			Required:    true,
+			Optional:    true,
+			Default:     "environment",
 		},
 	}
 }

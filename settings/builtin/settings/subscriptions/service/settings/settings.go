@@ -33,7 +33,8 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeSet,
 			Description: "Key request names",
 			Required:    true,
-			Elem:        &schema.Schema{Type: schema.TypeString},
+
+			Elem: &schema.Schema{Type: schema.TypeString},
 		},
 		"service_id": {
 			Type:        schema.TypeString,

@@ -37,37 +37,43 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeSet,
 			Description: "CICS: Excluded MQ queues",
 			Required:    true,
-			Elem:        &schema.Schema{Type: schema.TypeString},
+
+			Elem: &schema.Schema{Type: schema.TypeString},
 		},
 		"cics_mq_queue_id_includes": {
 			Type:        schema.TypeSet,
 			Description: "CICS: Included MQ queues",
 			Required:    true,
-			Elem:        &schema.Schema{Type: schema.TypeString},
+
+			Elem: &schema.Schema{Type: schema.TypeString},
 		},
 		"ims_cr_trn_id_excludes": {
 			Type:        schema.TypeSet,
 			Description: "When you add a transaction ID to the exclude list remaining transactions are still monitored.",
 			Required:    true,
-			Elem:        &schema.Schema{Type: schema.TypeString},
+
+			Elem: &schema.Schema{Type: schema.TypeString},
 		},
 		"ims_cr_trn_id_includes": {
 			Type:        schema.TypeSet,
 			Description: "When you add a transaction ID to the include list, all the remaining transactions are ignored.",
 			Required:    true,
-			Elem:        &schema.Schema{Type: schema.TypeString},
+
+			Elem: &schema.Schema{Type: schema.TypeString},
 		},
 		"ims_mq_queue_id_excludes": {
 			Type:        schema.TypeSet,
 			Description: "IMS: Excluded MQ queues",
 			Required:    true,
-			Elem:        &schema.Schema{Type: schema.TypeString},
+
+			Elem: &schema.Schema{Type: schema.TypeString},
 		},
 		"ims_mq_queue_id_includes": {
 			Type:        schema.TypeSet,
 			Description: "IMS: Included MQ queues",
 			Required:    true,
-			Elem:        &schema.Schema{Type: schema.TypeString},
+
+			Elem: &schema.Schema{Type: schema.TypeString},
 		},
 	}
 }

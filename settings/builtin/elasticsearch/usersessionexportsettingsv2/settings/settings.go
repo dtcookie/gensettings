@@ -35,33 +35,37 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "Dynatrace can automatically send bulk data to Elasticsearch. You can use an SSL certificate, basic authentication or OAuth 2.0 to secure access. For Dynatrace SaaS installations, the Elasticsearch instance must be publicly reachable by the Dynatrace Cluster.",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(Authentication).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(Authentication).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"endpoint_definition": {
 			Type:        schema.TypeList,
 			Description: "Dynatrace will send JSON data periodically to this endpoint. You can also pause and disable an endpoint to stop the data stream from Dynatrace to your endpoint.",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(EndpointDefinition).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(EndpointDefinition).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"export_behavior": {
 			Type:        schema.TypeList,
 			Description: "Define the scope of your export by using a specific management zone. You can also disable UI notifications for failing exports, or add special settings provided by Dynatrace support for troubleshooting.",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(ExportBehavior).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(ExportBehavior).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"send_direct": {
 			Type:        schema.TypeList,
 			Description: "Activate this if you want to export user session data to your own Elasticsearch cluster. If you run Elasticsearch 7, make sure to enter <em>_doc</em> as the type. For Elasticsearch 8 omit the type. If you really want to use a type, then you have to add <em>include_type_name=true</em> when creating your Elasticsearch index. See more information in the Dynatrace help.",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(SendDirect).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(SendDirect).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 	}
 }

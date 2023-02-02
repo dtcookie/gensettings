@@ -33,17 +33,19 @@ func (me *CustomEventFilter) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "Description filter",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(TextFilter).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(TextFilter).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"title_filter": {
 			Type:        schema.TypeList,
 			Description: "Title filter",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(TextFilter).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(TextFilter).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 	}
 }

@@ -27,7 +27,7 @@ type Settings struct {
 	LoadDrops    *LoadDrops    `json:"loadDrops"`       // Alert if the observed load is lower than the expected load by a specified margin for a specified amount of time:
 	LoadSpikes   *LoadSpikes   `json:"loadSpikes"`      // Alert if the observed load exceeds the expected load by a specified margin for a specified amount of time:
 	ResponseTime *ResponseTime `json:"responseTime"`    // Response time
-	Scope        string        `json:"-" scope:"scope"` // The scope of this setting (SERVICE_METHOD SERVICE HOST_GROUP environment)
+	Scope        *string       `json:"-" scope:"scope"` // The scope of this setting (SERVICE_METHOD SERVICE HOST_GROUP environment)
 }
 
 func (me *Settings) Schema() map[string]*schema.Schema {
@@ -36,38 +36,43 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "Failure rate",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(FailureRate).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(FailureRate).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"load_drops": {
 			Type:        schema.TypeList,
 			Description: "Alert if the observed load is lower than the expected load by a specified margin for a specified amount of time:",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(LoadDrops).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(LoadDrops).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"load_spikes": {
 			Type:        schema.TypeList,
 			Description: "Alert if the observed load exceeds the expected load by a specified margin for a specified amount of time:",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(LoadSpikes).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(LoadSpikes).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"response_time": {
 			Type:        schema.TypeList,
 			Description: "Response time",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(ResponseTime).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(ResponseTime).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"scope": {
 			Type:        schema.TypeString,
 			Description: "The scope of this setting (SERVICE_METHOD SERVICE HOST_GROUP environment)",
-			Required:    true,
+			Optional:    true,
+			Default:     "environment",
 		},
 	}
 }

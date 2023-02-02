@@ -23,20 +23,20 @@ import (
 )
 
 type Settings struct {
-	ApplicationName string `json:"applicationName"` // Update app name
-	Scope           string `json:"-" scope:"scope"` // The scope of this setting (MOBILE_APPLICATION)
+	ApplicationID   string `json:"-" scope:"applicationId"` // The scope of this setting (MOBILE_APPLICATION)
+	ApplicationName string `json:"applicationName"`         // Update app name
 }
 
 func (me *Settings) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
+		"application_id": {
+			Type:        schema.TypeString,
+			Description: "The scope of this setting (MOBILE_APPLICATION)",
+			Required:    true,
+		},
 		"application_name": {
 			Type:        schema.TypeString,
 			Description: "Update app name",
-			Required:    true,
-		},
-		"scope": {
-			Type:        schema.TypeString,
-			Description: "The scope of this setting (MOBILE_APPLICATION)",
 			Required:    true,
 		},
 	}
@@ -44,14 +44,14 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 
 func (me *Settings) MarshalHCL(properties hcl.Properties) error {
 	return properties.EncodeAll(map[string]any{
+		"application_id":   me.ApplicationID,
 		"application_name": me.ApplicationName,
-		"scope":            me.Scope,
 	})
 }
 
 func (me *Settings) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
+		"application_id":   &me.ApplicationID,
 		"application_name": &me.ApplicationName,
-		"scope":            &me.Scope,
 	})
 }

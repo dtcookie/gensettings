@@ -34,9 +34,10 @@ func (me *SpanCaptureRule) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "no documentation available",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(SpanMatchers).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(SpanMatchers).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"rule_action": {
 			Type:        schema.TypeString,

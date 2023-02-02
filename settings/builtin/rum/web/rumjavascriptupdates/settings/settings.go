@@ -23,20 +23,21 @@ import (
 )
 
 type Settings struct {
-	JavascriptVersion JavascriptVersion `json:"JavascriptVersion"` // Choose version
-	Scope             string            `json:"-" scope:"scope"`   // The scope of this setting (APPLICATION environment)
+	ApplicationID     *string           `json:"-" scope:"applicationId"` // The scope of this setting (APPLICATION environment)
+	JavascriptVersion JavascriptVersion `json:"JavascriptVersion"`       // Choose version
 }
 
 func (me *Settings) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
+		"application_id": {
+			Type:        schema.TypeString,
+			Description: "The scope of this setting (APPLICATION environment)",
+			Optional:    true,
+			Default:     "environment",
+		},
 		"javascript_version": {
 			Type:        schema.TypeString,
 			Description: "Choose version",
-			Required:    true,
-		},
-		"scope": {
-			Type:        schema.TypeString,
-			Description: "The scope of this setting (APPLICATION environment)",
 			Required:    true,
 		},
 	}
@@ -44,14 +45,14 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 
 func (me *Settings) MarshalHCL(properties hcl.Properties) error {
 	return properties.EncodeAll(map[string]any{
+		"application_id":     me.ApplicationID,
 		"javascript_version": me.JavascriptVersion,
-		"scope":              me.Scope,
 	})
 }
 
 func (me *Settings) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
+		"application_id":     &me.ApplicationID,
 		"javascript_version": &me.JavascriptVersion,
-		"scope":              &me.Scope,
 	})
 }

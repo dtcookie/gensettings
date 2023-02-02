@@ -59,6 +59,7 @@ func (me *{{.Name}}) Schema() map[string]*schema.Schema {
 			Type: {{.HCLType}},
 			Description: "{{if .Comment}}{{.Comment}}{{else}}no documentation available{{end}}",
 			{{if .Optional}} Optional: true {{else}} Required: true {{end}},
+			{{if .Default}} Default: "{{.Default}}",{{end}}
 			{{if .Elem}} Elem: {{.Elem}},{{end}}
 			{{if .MinItems}} MinItems: {{.MinItems}},{{end}}
 			{{if .MaxItems}} MaxItems: {{.MaxItems}},{{end}}

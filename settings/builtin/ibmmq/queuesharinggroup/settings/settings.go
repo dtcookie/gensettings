@@ -39,13 +39,15 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeSet,
 			Description: "Queue managers",
 			Required:    true,
-			Elem:        &schema.Schema{Type: schema.TypeString},
+
+			Elem: &schema.Schema{Type: schema.TypeString},
 		},
 		"shared_queues": {
 			Type:        schema.TypeSet,
 			Description: "Shared queues",
 			Required:    true,
-			Elem:        &schema.Schema{Type: schema.TypeString},
+
+			Elem: &schema.Schema{Type: schema.TypeString},
 		},
 	}
 }

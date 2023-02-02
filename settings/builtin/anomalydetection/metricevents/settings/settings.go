@@ -48,9 +48,10 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "Event template",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(EventTemplate).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(EventTemplate).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"legacy_id": {
 			Type:        schema.TypeString,
@@ -61,17 +62,19 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "Monitoring strategy",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(ModelProperties).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(ModelProperties).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"query_definition": {
 			Type:        schema.TypeList,
 			Description: "Query definition",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(QueryDefinition).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(QueryDefinition).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"summary": {
 			Type:        schema.TypeString,

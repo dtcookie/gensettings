@@ -37,9 +37,10 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "A list of conditions for the rule.\nIf multiple conditions are specified, they *all* must match for the rule to apply.",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(Conditions).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(Conditions).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"description": {
 			Type:        schema.TypeString,
@@ -55,15 +56,17 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "All contributors of the service identifier calculation.",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(IdContributorsType).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(IdContributorsType).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"management_zones": {
 			Type:        schema.TypeSet,
 			Description: "Define a management zone filter for this service detection rule.",
 			Required:    true,
-			Elem:        &schema.Schema{Type: schema.TypeString},
+
+			Elem: &schema.Schema{Type: schema.TypeString},
 		},
 		"name": {
 			Type:        schema.TypeString,

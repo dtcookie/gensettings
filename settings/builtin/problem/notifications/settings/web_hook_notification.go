@@ -44,9 +44,10 @@ func (me *WebHookNotification) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "A list of the additional HTTP headers.",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(WebHookNotificationHeaders).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(WebHookNotificationHeaders).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"notify_closed_problems": {
 			Type:        schema.TypeBool,
@@ -62,9 +63,10 @@ func (me *WebHookNotification) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "To authenticate your integration, the OAuth 2.0 *Client Credentials* Flow (Grant Type) is used. For details see [Client Credentials Flow](https://dt-url.net/ym22wsm)).\n\nThe obtained Access Token is subsequently provided in the *Authorization* header of the request carrying the notification payload.",
 			Optional:    true,
-			Elem:        &schema.Resource{Schema: new(OAuth2Credentials).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(OAuth2Credentials).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"payload": {
 			Type:        schema.TypeString,

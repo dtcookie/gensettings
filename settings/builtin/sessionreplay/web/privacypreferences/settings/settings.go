@@ -23,14 +23,20 @@ import (
 )
 
 type Settings struct {
+	ApplicationID           *string              `json:"-" scope:"applicationId"` // The scope of this setting (APPLICATION environment)
 	EnableOptInMode         bool                 `json:"enableOptInMode"`         // When [Session Replay opt-in mode](https://dt-url.net/sr-opt-in-mode) is turned on, Session Replay is deactivated until explicitly activated via an API call.
 	MaskingPresets          *MaskingPresetConfig `json:"maskingPresets"`          // To protect your end users' privacy, select or customize [predefined masking options](https://dt-url.net/sr-masking-preset-options) that suit your content recording and playback requirements.
-	Scope                   string               `json:"-" scope:"scope"`         // The scope of this setting (APPLICATION environment)
 	UrlExclusionPatternList []string             `json:"urlExclusionPatternList"` // Exclude webpages or views from Session Replay recording by adding [URL exclusion rules](https://dt-url.net/sr-url-exclusion)
 }
 
 func (me *Settings) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
+		"application_id": {
+			Type:        schema.TypeString,
+			Description: "The scope of this setting (APPLICATION environment)",
+			Optional:    true,
+			Default:     "environment",
+		},
 		"enable_opt_in_mode": {
 			Type:        schema.TypeBool,
 			Description: "When [Session Replay opt-in mode](https://dt-url.net/sr-opt-in-mode) is turned on, Session Replay is deactivated until explicitly activated via an API call.",
@@ -40,38 +46,35 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "To protect your end users' privacy, select or customize [predefined masking options](https://dt-url.net/sr-masking-preset-options) that suit your content recording and playback requirements.",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(MaskingPresetConfig).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
-		},
-		"scope": {
-			Type:        schema.TypeString,
-			Description: "The scope of this setting (APPLICATION environment)",
-			Required:    true,
+
+			Elem:     &schema.Resource{Schema: new(MaskingPresetConfig).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"url_exclusion_pattern_list": {
 			Type:        schema.TypeSet,
 			Description: "Exclude webpages or views from Session Replay recording by adding [URL exclusion rules](https://dt-url.net/sr-url-exclusion)",
 			Required:    true,
-			Elem:        &schema.Schema{Type: schema.TypeString},
+
+			Elem: &schema.Schema{Type: schema.TypeString},
 		},
 	}
 }
 
 func (me *Settings) MarshalHCL(properties hcl.Properties) error {
 	return properties.EncodeAll(map[string]any{
+		"application_id":             me.ApplicationID,
 		"enable_opt_in_mode":         me.EnableOptInMode,
 		"masking_presets":            me.MaskingPresets,
-		"scope":                      me.Scope,
 		"url_exclusion_pattern_list": me.UrlExclusionPatternList,
 	})
 }
 
 func (me *Settings) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
+		"application_id":             &me.ApplicationID,
 		"enable_opt_in_mode":         &me.EnableOptInMode,
 		"masking_presets":            &me.MaskingPresets,
-		"scope":                      &me.Scope,
 		"url_exclusion_pattern_list": &me.UrlExclusionPatternList,
 	})
 }

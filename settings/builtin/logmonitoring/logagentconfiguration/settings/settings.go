@@ -23,21 +23,21 @@ import (
 )
 
 type Settings struct {
-	LAConfigContainersLogsDetectionEnabled bool   `json:"LAConfigContainersLogsDetectionEnabled"` // If set to FALSE - logs from containers won't be detected
-	LAConfigDateSearchLimit_Bytes          int    `json:"LAConfigDateSearchLimit_Bytes"`          // Defines the number of characters in every log line (starting from the first chracter in the line) where the timestamp is searched.
-	LAConfigDefaultTimezone                string `json:"LAConfigDefaultTimezone"`                // Default timezone for agent if more specific configurations is not defined.
-	LAConfigEventLogQueryTimeout_Sec       int    `json:"LAConfigEventLogQueryTimeout_Sec"`       // Defines the maximum timeout value, in seconds, for the query extracting Windows Event Logs
-	LAConfigIISDetectionEnabled            bool   `json:"LAConfigIISDetectionEnabled"`            // If set to FALSE - IIS log detection mechanism will be disabled
-	LAConfigLogScannerLinuxNfsEnabled      bool   `json:"LAConfigLogScannerLinuxNfsEnabled"`      // If set to FALSE - logs on NFS won't be detected
-	LAConfigMaxLgisPerEntityCount          int    `json:"LAConfigMaxLgisPerEntityCount"`          // Defines the maximum number of log group instances per entity after which, the new automatic ones wouldn't be added.
-	LAConfigMinBinaryDetectionLimit_Bytes  int    `json:"LAConfigMinBinaryDetectionLimit_Bytes"`  // Defines the minimum number of bytes in log file required for binary detection.
-	LAConfigMonitorOwnLogsEnabled          bool   `json:"LAConfigMonitorOwnLogsEnabled"`          // If set to FALSE - logs produced by OneAgent won't be monitored. Enabling this option may affect your DDU consumption.
-	LAConfigOpenLogFilesDetectionEnabled   bool   `json:"LAConfigOpenLogFilesDetectionEnabled"`   // Enables auto-detection of log files on hosts. If set to false, logs won't be auto-detected.
-	LAConfigSeverityDetectionLimit_Bytes   int    `json:"LAConfigSeverityDetectionLimit_Bytes"`   // Defines the number of characters in every log line (starting from the first character in the line) where severity is searched.
-	LAConfigSeverityDetectionLinesLimit    int    `json:"LAConfigSeverityDetectionLinesLimit"`    // Defines the number of the first lines of every log entry where severity is searched.
-	LAConfigSystemLogsDetectionEnabled     bool   `json:"LAConfigSystemLogsDetectionEnabled"`     // If set to FALSE - system logs detection mechanism will be disabled (Linux: syslog, message log) (Windows: System, Application, Security event logs)
-	LAConfigUTCAsDefaultContainerTimezone  bool   `json:"LAConfigUTCAsDefaultContainerTimezone"`  // Defines if UTC is used as a default timezone in containers. This option is deprecated for agents in version 1.247 or newer.
-	Scope                                  string `json:"-" scope:"scope"`                        // The scope of this setting (HOST HOST_GROUP environment)
+	LAConfigContainersLogsDetectionEnabled bool    `json:"LAConfigContainersLogsDetectionEnabled"` // If set to FALSE - logs from containers won't be detected
+	LAConfigDateSearchLimit_Bytes          int     `json:"LAConfigDateSearchLimit_Bytes"`          // Defines the number of characters in every log line (starting from the first chracter in the line) where the timestamp is searched.
+	LAConfigDefaultTimezone                string  `json:"LAConfigDefaultTimezone"`                // Default timezone for agent if more specific configurations is not defined.
+	LAConfigEventLogQueryTimeout_Sec       int     `json:"LAConfigEventLogQueryTimeout_Sec"`       // Defines the maximum timeout value, in seconds, for the query extracting Windows Event Logs
+	LAConfigIISDetectionEnabled            bool    `json:"LAConfigIISDetectionEnabled"`            // If set to FALSE - IIS log detection mechanism will be disabled
+	LAConfigLogScannerLinuxNfsEnabled      bool    `json:"LAConfigLogScannerLinuxNfsEnabled"`      // If set to FALSE - logs on NFS won't be detected
+	LAConfigMaxLgisPerEntityCount          int     `json:"LAConfigMaxLgisPerEntityCount"`          // Defines the maximum number of log group instances per entity after which, the new automatic ones wouldn't be added.
+	LAConfigMinBinaryDetectionLimit_Bytes  int     `json:"LAConfigMinBinaryDetectionLimit_Bytes"`  // Defines the minimum number of bytes in log file required for binary detection.
+	LAConfigMonitorOwnLogsEnabled          bool    `json:"LAConfigMonitorOwnLogsEnabled"`          // If set to FALSE - logs produced by OneAgent won't be monitored. Enabling this option may affect your DDU consumption.
+	LAConfigOpenLogFilesDetectionEnabled   bool    `json:"LAConfigOpenLogFilesDetectionEnabled"`   // Enables auto-detection of log files on hosts. If set to false, logs won't be auto-detected.
+	LAConfigSeverityDetectionLimit_Bytes   int     `json:"LAConfigSeverityDetectionLimit_Bytes"`   // Defines the number of characters in every log line (starting from the first character in the line) where severity is searched.
+	LAConfigSeverityDetectionLinesLimit    int     `json:"LAConfigSeverityDetectionLinesLimit"`    // Defines the number of the first lines of every log entry where severity is searched.
+	LAConfigSystemLogsDetectionEnabled     bool    `json:"LAConfigSystemLogsDetectionEnabled"`     // If set to FALSE - system logs detection mechanism will be disabled (Linux: syslog, message log) (Windows: System, Application, Security event logs)
+	LAConfigUTCAsDefaultContainerTimezone  bool    `json:"LAConfigUTCAsDefaultContainerTimezone"`  // Defines if UTC is used as a default timezone in containers. This option is deprecated for agents in version 1.247 or newer.
+	Scope                                  *string `json:"-" scope:"scope"`                        // The scope of this setting (HOST HOST_GROUP environment)
 }
 
 func (me *Settings) Schema() map[string]*schema.Schema {
@@ -115,7 +115,8 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"scope": {
 			Type:        schema.TypeString,
 			Description: "The scope of this setting (HOST HOST_GROUP environment)",
-			Required:    true,
+			Optional:    true,
+			Default:     "environment",
 		},
 	}
 }

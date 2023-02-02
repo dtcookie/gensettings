@@ -72,9 +72,10 @@ func (me *ProcessDefinition) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "Define process detection rules by selecting a process property and a condition. Each process group can have multiple detection rules associated with it.",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(DetectionConditions).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(DetectionConditions).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 	}
 }

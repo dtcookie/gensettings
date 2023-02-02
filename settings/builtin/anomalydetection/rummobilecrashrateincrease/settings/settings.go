@@ -23,38 +23,40 @@ import (
 )
 
 type Settings struct {
-	CrashRateIncrease *CrashRateIncrease `json:"crashRateIncrease"` // Crash rate increase
-	Scope             string             `json:"-" scope:"scope"`   // The scope of this setting (MOBILE_APPLICATION environment)
+	ApplicationID     *string            `json:"-" scope:"applicationId"` // The scope of this setting (MOBILE_APPLICATION environment)
+	CrashRateIncrease *CrashRateIncrease `json:"crashRateIncrease"`       // Crash rate increase
 }
 
 func (me *Settings) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
+		"application_id": {
+			Type:        schema.TypeString,
+			Description: "The scope of this setting (MOBILE_APPLICATION environment)",
+			Optional:    true,
+			Default:     "environment",
+		},
 		"crash_rate_increase": {
 			Type:        schema.TypeList,
 			Description: "Crash rate increase",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(CrashRateIncrease).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
-		},
-		"scope": {
-			Type:        schema.TypeString,
-			Description: "The scope of this setting (MOBILE_APPLICATION environment)",
-			Required:    true,
+
+			Elem:     &schema.Resource{Schema: new(CrashRateIncrease).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 	}
 }
 
 func (me *Settings) MarshalHCL(properties hcl.Properties) error {
 	return properties.EncodeAll(map[string]any{
+		"application_id":      me.ApplicationID,
 		"crash_rate_increase": me.CrashRateIncrease,
-		"scope":               me.Scope,
 	})
 }
 
 func (me *Settings) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
+		"application_id":      &me.ApplicationID,
 		"crash_rate_increase": &me.CrashRateIncrease,
-		"scope":               &me.Scope,
 	})
 }

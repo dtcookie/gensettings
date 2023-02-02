@@ -36,41 +36,46 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "Events",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(Limit).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(Limit).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"log_monitoring": {
 			Type:        schema.TypeList,
 			Description: "Log Monitoring",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(Limit).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(Limit).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"metrics": {
 			Type:        schema.TypeList,
 			Description: "Metrics",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(Limit).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(Limit).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"serverless": {
 			Type:        schema.TypeList,
 			Description: "Serverless",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(Limit).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(Limit).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"traces": {
 			Type:        schema.TypeList,
 			Description: "Traces",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(Limit).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(Limit).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 	}
 }

@@ -45,9 +45,10 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "Define metadata per metric dimension.",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(Dimensions).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(Dimensions).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"display_name": {
 			Type:        schema.TypeString,
@@ -58,9 +59,10 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "Metric properties",
 			Optional:    true,
-			Elem:        &schema.Resource{Schema: new(MetricProperties).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(MetricProperties).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"scope": {
 			Type:        schema.TypeString,
@@ -76,7 +78,8 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeSet,
 			Description: "Tags",
 			Required:    true,
-			Elem:        &schema.Schema{Type: schema.TypeString},
+
+			Elem: &schema.Schema{Type: schema.TypeString},
 		},
 		"unit": {
 			Type:        schema.TypeString,

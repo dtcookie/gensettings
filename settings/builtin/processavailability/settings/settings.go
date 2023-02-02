@@ -27,7 +27,7 @@ type Settings struct {
 	Metadata MetadataItems       `json:"metadata"`        // Set of additional key-value properties to be attached to the triggered event.
 	Name     string              `json:"name"`            // Monitored rule name
 	Rules    DetectionConditions `json:"rules"`           // Define process detection rules by selecting a process property and a condition. Each monitoring rule can have multiple detection rules associated with it.
-	Scope    string              `json:"-" scope:"scope"` // The scope of this setting (HOST HOST_GROUP environment)
+	Scope    *string             `json:"-" scope:"scope"` // The scope of this setting (HOST HOST_GROUP environment)
 }
 
 func (me *Settings) Schema() map[string]*schema.Schema {
@@ -41,9 +41,10 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "Set of additional key-value properties to be attached to the triggered event.",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(MetadataItems).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(MetadataItems).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"name": {
 			Type:        schema.TypeString,
@@ -54,14 +55,16 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "Define process detection rules by selecting a process property and a condition. Each monitoring rule can have multiple detection rules associated with it.",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(DetectionConditions).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(DetectionConditions).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"scope": {
 			Type:        schema.TypeString,
 			Description: "The scope of this setting (HOST HOST_GROUP environment)",
-			Required:    true,
+			Optional:    true,
+			Default:     "environment",
 		},
 	}
 }

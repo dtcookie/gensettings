@@ -44,9 +44,10 @@ func (me *IdContributorsType) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "Let the request's URL contribute to the service identifier calculation.",
 			Optional:    true,
-			Elem:        &schema.Resource{Schema: new(ServiceIdContributor).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(ServiceIdContributor).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 	}
 }

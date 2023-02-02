@@ -22,6 +22,7 @@ type Property struct {
 	MaxItems int
 	HCLType  string
 	Elem     string
+	Default  string
 }
 
 func (me *Property) Prettify() {
@@ -101,8 +102,12 @@ func NewStruct(t *reflection.Type) *Struct {
 		if property.Optional {
 			jsonTag = jsonTag + ",omitempty"
 		}
+		defVal := ""
 		if len(property.Scope) > 0 {
 			jsonTag = "-\" scope:\"" + property.Scope
+			if property.Optional {
+				defVal = "environment"
+			}
 		}
 		structDef.Properties = append(structDef.Properties, HCLKind(propType, &Property{
 			Name:     PropertyName(propertyName),
@@ -111,6 +116,7 @@ func NewStruct(t *reflection.Type) *Struct {
 			JSONTag:  jsonTag,
 			Type:     TypeName(PointerIfOptional(propType, property.Optional)),
 			Optional: property.Optional,
+			Default:  defVal,
 		}))
 	}
 	sort.Slice(structDef.Properties, func(i, j int) bool {

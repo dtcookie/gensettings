@@ -88,9 +88,10 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "Define Kubernetes event filters to ingest events into your environment. For more details, see the [documentation](https://dt-url.net/2201p0u).",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(EventComplexTypes).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(EventComplexTypes).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"event_processing_active": {
 			Type:        schema.TypeBool,

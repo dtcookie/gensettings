@@ -72,7 +72,8 @@ func (me *Filter) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "Values",
 			Optional:    true,
-			Elem:        &schema.Schema{Type: schema.TypeString},
+
+			Elem: &schema.Schema{Type: schema.TypeString},
 		},
 	}
 }

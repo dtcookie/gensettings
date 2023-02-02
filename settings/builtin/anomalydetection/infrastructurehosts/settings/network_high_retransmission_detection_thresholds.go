@@ -34,9 +34,10 @@ func (me *NetworkHighRetransmissionDetectionThresholds) Schema() map[string]*sch
 			Type:        schema.TypeList,
 			Description: "no documentation available",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(EventThresholds).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(EventThresholds).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"retransmission_rate_percentage": {
 			Type:        schema.TypeInt,

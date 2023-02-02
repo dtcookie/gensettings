@@ -37,7 +37,8 @@ func (me *EmailNotification) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeSet,
 			Description: "BCC",
 			Required:    true,
-			Elem:        &schema.Schema{Type: schema.TypeString},
+
+			Elem: &schema.Schema{Type: schema.TypeString},
 		},
 		"body": {
 			Type:        schema.TypeString,
@@ -48,7 +49,8 @@ func (me *EmailNotification) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeSet,
 			Description: "CC",
 			Required:    true,
-			Elem:        &schema.Schema{Type: schema.TypeString},
+
+			Elem: &schema.Schema{Type: schema.TypeString},
 		},
 		"notify_closed_problems": {
 			Type:        schema.TypeBool,
@@ -59,7 +61,8 @@ func (me *EmailNotification) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeSet,
 			Description: "To",
 			Required:    true,
-			Elem:        &schema.Schema{Type: schema.TypeString},
+
+			Elem: &schema.Schema{Type: schema.TypeString},
 		},
 		"subject": {
 			Type:        schema.TypeString,

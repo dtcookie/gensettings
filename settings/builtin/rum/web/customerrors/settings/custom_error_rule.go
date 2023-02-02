@@ -58,9 +58,10 @@ func (me *CustomErrorRule) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "Capture settings",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(CaptureSettings).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(CaptureSettings).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"key_matcher": {
 			Type:        schema.TypeString,

@@ -34,9 +34,10 @@ func (me *GuestCPULimitDetectionConfig) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "Alert if **all three** conditions are met in 3 out of 5 samples",
 			Optional:    true,
-			Elem:        &schema.Resource{Schema: new(GuestCPULimitDetectionThresholds).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(GuestCPULimitDetectionThresholds).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"detection_mode": {
 			Type:        schema.TypeString,

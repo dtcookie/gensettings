@@ -23,13 +23,19 @@ import (
 )
 
 type Settings struct {
+	ApplicationID                          *string  `json:"-" scope:"applicationId"`                // The scope of this setting (APPLICATION environment)
 	EnableResourceCapturing                bool     `json:"enableResourceCapturing"`                // When turned on, all CSS resources from all sessions are captured. For details, see [Resource capture](https://dt-url.net/sr-resource-capturing).
 	ResourceCaptureUrlExclusionPatternList []string `json:"resourceCaptureUrlExclusionPatternList"` // Add exclusion rules to avoid the capture of resources from certain pages.
-	Scope                                  string   `json:"-" scope:"scope"`                        // The scope of this setting (APPLICATION environment)
 }
 
 func (me *Settings) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
+		"application_id": {
+			Type:        schema.TypeString,
+			Description: "The scope of this setting (APPLICATION environment)",
+			Optional:    true,
+			Default:     "environment",
+		},
 		"enable_resource_capturing": {
 			Type:        schema.TypeBool,
 			Description: "When turned on, all CSS resources from all sessions are captured. For details, see [Resource capture](https://dt-url.net/sr-resource-capturing).",
@@ -39,28 +45,24 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeSet,
 			Description: "Add exclusion rules to avoid the capture of resources from certain pages.",
 			Required:    true,
-			Elem:        &schema.Schema{Type: schema.TypeString},
-		},
-		"scope": {
-			Type:        schema.TypeString,
-			Description: "The scope of this setting (APPLICATION environment)",
-			Required:    true,
+
+			Elem: &schema.Schema{Type: schema.TypeString},
 		},
 	}
 }
 
 func (me *Settings) MarshalHCL(properties hcl.Properties) error {
 	return properties.EncodeAll(map[string]any{
+		"application_id":                              me.ApplicationID,
 		"enable_resource_capturing":                   me.EnableResourceCapturing,
 		"resource_capture_url_exclusion_pattern_list": me.ResourceCaptureUrlExclusionPatternList,
-		"scope": me.Scope,
 	})
 }
 
 func (me *Settings) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
+		"application_id":                              &me.ApplicationID,
 		"enable_resource_capturing":                   &me.EnableResourceCapturing,
 		"resource_capture_url_exclusion_pattern_list": &me.ResourceCaptureUrlExclusionPatternList,
-		"scope": &me.Scope,
 	})
 }

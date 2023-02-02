@@ -45,17 +45,19 @@ func (me *Authentication) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "Basic authentication",
 			Optional:    true,
-			Elem:        &schema.Resource{Schema: new(BasicAuth).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(BasicAuth).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"o_auth_2": {
 			Type:        schema.TypeList,
 			Description: "OAuth 2.0 (Early Adopter)",
 			Optional:    true,
-			Elem:        &schema.Resource{Schema: new(OAuth2).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(OAuth2).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 	}
 }

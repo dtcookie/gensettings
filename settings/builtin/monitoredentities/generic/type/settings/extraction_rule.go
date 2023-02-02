@@ -61,9 +61,10 @@ func (me *ExtractionRule) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "All attribute extraction rules will be applied and found attributes will be added to the extracted type.",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(AttributeEntries).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(AttributeEntries).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"icon_pattern": {
 			Type:        schema.TypeString,
@@ -84,9 +85,10 @@ func (me *ExtractionRule) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "In addition to the dimensions already referred to in the ID pattern, you may specify additional dimensions which must be present in order to evaluate this rule.",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(DimensionFilters).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(DimensionFilters).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"role": {
 			Type:        schema.TypeString,
@@ -97,9 +99,10 @@ func (me *ExtractionRule) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "Specify all sources which should be evaluated for this rule. A rule is evaluated if any of the specified source filters match.",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(SourceFilters).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(SourceFilters).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 	}
 }

@@ -23,12 +23,12 @@ import (
 )
 
 type Settings struct {
-	GlobalConsecutiveOutageCountThreshold int    `json:"globalConsecutiveOutageCountThreshold"` // Alert if all locations are unable to access my web application
-	GlobalOutages                         bool   `json:"globalOutages"`                         // Generate a problem and send an alert when the monitor is unavailable at all configured locations.
-	LocalConsecutiveOutageCountThreshold  int    `json:"localConsecutiveOutageCountThreshold"`  // are unable to access my web application
-	LocalLocationOutageCountThreshold     int    `json:"localLocationOutageCountThreshold"`     // Alert if at least
-	LocalOutages                          bool   `json:"localOutages"`                          // Generate a problem and send an alert when the monitor is unavailable for one or more consecutive runs at any location.
-	Scope                                 string `json:"-" scope:"scope"`                       // The scope of this setting (HTTP_CHECK environment)
+	GlobalConsecutiveOutageCountThreshold int     `json:"globalConsecutiveOutageCountThreshold"` // Alert if all locations are unable to access my web application
+	GlobalOutages                         bool    `json:"globalOutages"`                         // Generate a problem and send an alert when the monitor is unavailable at all configured locations.
+	LocalConsecutiveOutageCountThreshold  int     `json:"localConsecutiveOutageCountThreshold"`  // are unable to access my web application
+	LocalLocationOutageCountThreshold     int     `json:"localLocationOutageCountThreshold"`     // Alert if at least
+	LocalOutages                          bool    `json:"localOutages"`                          // Generate a problem and send an alert when the monitor is unavailable for one or more consecutive runs at any location.
+	Scope                                 *string `json:"-" scope:"scope"`                       // The scope of this setting (HTTP_CHECK environment)
 }
 
 func (me *Settings) Schema() map[string]*schema.Schema {
@@ -61,7 +61,8 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"scope": {
 			Type:        schema.TypeString,
 			Description: "The scope of this setting (HTTP_CHECK environment)",
-			Required:    true,
+			Optional:    true,
+			Default:     "environment",
 		},
 	}
 }

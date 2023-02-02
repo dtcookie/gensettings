@@ -59,9 +59,10 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "Specify all sources which should be evaluated for this relationship rule. The relationship is only created when any of the filters match.",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(SourceFilters).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(SourceFilters).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"to_role": {
 			Type:        schema.TypeString,

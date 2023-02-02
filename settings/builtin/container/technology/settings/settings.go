@@ -23,14 +23,14 @@ import (
 )
 
 type Settings struct {
-	BoshProcessManager bool   `json:"boshProcessManager"` // Platform: Cloud Foundry\n\nStatus: Released\n\nOperating system: Linux\n\nMin agent version: 1.159
-	Containerd         bool   `json:"containerd"`         // Platform: Kubernetes\n\nStatus: Released\n\nOperating system: Linux\n\nMin agent version: 1.169
-	Crio               bool   `json:"crio"`               // Platform: Kubernetes\n\nStatus: Released\n\nOperating system: Linux\n\nMin agent version: 1.163
-	Docker             bool   `json:"docker"`             // Platform: Docker and Kubernetes\n\nStatus: Released\n\nOperating system: Linux
-	DockerWindows      bool   `json:"dockerWindows"`      // Platform: Docker\n\nStatus: Early adopter\n\nOperating system: Windows\n\nMin agent version: 1.149
-	Garden             bool   `json:"garden"`             // Platform: Cloud Foundry\n\nStatus: Released\n\nOperating system: Linux\n\nMin agent version: 1.133
-	Scope              string `json:"-" scope:"scope"`    // The scope of this setting (HOST HOST_GROUP environment)
-	Winc               bool   `json:"winc"`               // Platform: Cloud Foundry\n\nStatus: Early adopter\n\nOperating system: Windows\n\nMin agent version: 1.175
+	BoshProcessManager bool    `json:"boshProcessManager"` // Platform: Cloud Foundry\n\nStatus: Released\n\nOperating system: Linux\n\nMin agent version: 1.159
+	Containerd         bool    `json:"containerd"`         // Platform: Kubernetes\n\nStatus: Released\n\nOperating system: Linux\n\nMin agent version: 1.169
+	Crio               bool    `json:"crio"`               // Platform: Kubernetes\n\nStatus: Released\n\nOperating system: Linux\n\nMin agent version: 1.163
+	Docker             bool    `json:"docker"`             // Platform: Docker and Kubernetes\n\nStatus: Released\n\nOperating system: Linux
+	DockerWindows      bool    `json:"dockerWindows"`      // Platform: Docker\n\nStatus: Early adopter\n\nOperating system: Windows\n\nMin agent version: 1.149
+	Garden             bool    `json:"garden"`             // Platform: Cloud Foundry\n\nStatus: Released\n\nOperating system: Linux\n\nMin agent version: 1.133
+	Scope              *string `json:"-" scope:"scope"`    // The scope of this setting (HOST HOST_GROUP environment)
+	Winc               bool    `json:"winc"`               // Platform: Cloud Foundry\n\nStatus: Early adopter\n\nOperating system: Windows\n\nMin agent version: 1.175
 }
 
 func (me *Settings) Schema() map[string]*schema.Schema {
@@ -68,7 +68,8 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"scope": {
 			Type:        schema.TypeString,
 			Description: "The scope of this setting (HOST HOST_GROUP environment)",
-			Required:    true,
+			Optional:    true,
+			Default:     "environment",
 		},
 		"winc": {
 			Type:        schema.TypeBool,

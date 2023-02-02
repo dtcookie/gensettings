@@ -52,9 +52,10 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "## Rule testing\n### 1. Paste an event sample",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(RuleTesting).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(RuleTesting).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"script": {
 			Type:        schema.TypeString,
@@ -65,9 +66,10 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "Transformation fields",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(TransformationFields).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(TransformationFields).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 	}
 }

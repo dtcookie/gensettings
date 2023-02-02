@@ -63,7 +63,8 @@ func (me *Filter) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeSet,
 			Description: "Entities which contain all of the configured tags will match this maintenance window.",
 			Required:    true,
-			Elem:        &schema.Schema{Type: schema.TypeString},
+
+			Elem: &schema.Schema{Type: schema.TypeString},
 		},
 		"entity_type": {
 			Type:        schema.TypeString,
@@ -74,7 +75,8 @@ func (me *Filter) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeSet,
 			Description: "Entities which are part of all the configured management zones will match this maintenance window.",
 			Required:    true,
-			Elem:        &schema.Schema{Type: schema.TypeString},
+
+			Elem: &schema.Schema{Type: schema.TypeString},
 		},
 	}
 }

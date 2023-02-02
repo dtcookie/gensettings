@@ -25,7 +25,7 @@ import (
 type Settings struct {
 	ErrorRate     *ErrorRate        `json:"errorRate"`       // Error rate
 	ResponseTime  *ResponseTime     `json:"responseTime"`    // Response time
-	Scope         string            `json:"-" scope:"scope"` // The scope of this setting (APPLICATION_METHOD APPLICATION environment)
+	Scope         *string           `json:"-" scope:"scope"` // The scope of this setting (APPLICATION_METHOD APPLICATION environment)
 	TrafficDrops  *AppTrafficDrops  `json:"trafficDrops"`    // Detect traffic drops
 	TrafficSpikes *AppTrafficSpikes `json:"trafficSpikes"`   // Detect traffic spikes
 }
@@ -36,38 +36,43 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "Error rate",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(ErrorRate).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(ErrorRate).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"response_time": {
 			Type:        schema.TypeList,
 			Description: "Response time",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(ResponseTime).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(ResponseTime).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"scope": {
 			Type:        schema.TypeString,
 			Description: "The scope of this setting (APPLICATION_METHOD APPLICATION environment)",
-			Required:    true,
+			Optional:    true,
+			Default:     "environment",
 		},
 		"traffic_drops": {
 			Type:        schema.TypeList,
 			Description: "Detect traffic drops",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(AppTrafficDrops).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(AppTrafficDrops).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"traffic_spikes": {
 			Type:        schema.TypeList,
 			Description: "Detect traffic spikes",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(AppTrafficSpikes).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(AppTrafficSpikes).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 	}
 }

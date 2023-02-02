@@ -61,17 +61,19 @@ func (me *FilterComplex) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "ID calculation based on",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(InclusionToggles).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(InclusionToggles).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"match_filter": {
 			Type:        schema.TypeList,
 			Description: "When namespace",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(MatchFilter).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(MatchFilter).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 	}
 }

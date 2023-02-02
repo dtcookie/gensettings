@@ -45,17 +45,19 @@ func (me *PublicDomainTransformationSet) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "no documentation available",
 			Optional:    true,
-			Elem:        &schema.Resource{Schema: new(Transformations).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(Transformations).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"value_override": {
 			Type:        schema.TypeList,
 			Description: "The value to be used instead of the detected value.",
 			Optional:    true,
-			Elem:        &schema.Resource{Schema: new(ValueOverride).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(ValueOverride).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 	}
 }

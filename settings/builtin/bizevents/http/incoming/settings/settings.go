@@ -26,7 +26,7 @@ type Settings struct {
 	Enabled  bool             `json:"enabled"`         // Enabled
 	Event    *EventComplex    `json:"event"`           // Event meta data
 	RuleName string           `json:"ruleName"`        // Rule name
-	Scope    string           `json:"-" scope:"scope"` // The scope of this setting (HOST HOST_GROUP environment)
+	Scope    *string          `json:"-" scope:"scope"` // The scope of this setting (HOST HOST_GROUP environment)
 	Triggers MatcherComplexes `json:"triggers"`        // Define conditions to trigger business events from incoming web requests. Whenever one condition applies the event gets captured.
 }
 
@@ -41,9 +41,10 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "Event meta data",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(EventComplex).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(EventComplex).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 		"rule_name": {
 			Type:        schema.TypeString,
@@ -53,15 +54,17 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"scope": {
 			Type:        schema.TypeString,
 			Description: "The scope of this setting (HOST HOST_GROUP environment)",
-			Required:    true,
+			Optional:    true,
+			Default:     "environment",
 		},
 		"triggers": {
 			Type:        schema.TypeList,
 			Description: "Define conditions to trigger business events from incoming web requests. Whenever one condition applies the event gets captured.",
 			Required:    true,
-			Elem:        &schema.Resource{Schema: new(MatcherComplexes).Schema()},
-			MinItems:    1,
-			MaxItems:    1,
+
+			Elem:     &schema.Resource{Schema: new(MatcherComplexes).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
 	}
 }
