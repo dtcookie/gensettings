@@ -25,7 +25,7 @@ import (
 type Settings struct {
 	Conditions      Conditions          `json:"conditions"`            // A list of conditions for the rule.\nIf multiple conditions are specified, they *all* must match for the rule to apply.
 	Description     *string             `json:"description,omitempty"` // Description
-	Enabled         bool                `json:"enabled"`               // Enabled
+	Enabled         bool                `json:"enabled"`               // This setting is enabled (`true`) or disabled (`false`)
 	IdContributors  *IdContributorsType `json:"idContributors"`        // All contributors of the service identifier calculation.
 	ManagementZones []string            `json:"managementZones"`       // Define a management zone filter for this service detection rule.
 	Name            string              `json:"name"`                  // Rule name
@@ -49,7 +49,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		},
 		"enabled": {
 			Type:        schema.TypeBool,
-			Description: "Enabled",
+			Description: "This setting is enabled (`true`) or disabled (`false`)",
 			Required:    true,
 		},
 		"id_contributors": {

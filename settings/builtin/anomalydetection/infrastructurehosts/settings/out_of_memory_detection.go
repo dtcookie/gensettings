@@ -25,7 +25,7 @@ import (
 type OutOfMemoryDetection struct {
 	CustomThresholds *OutOfMemoryDetectionThresholds `json:"customThresholds,omitempty"`
 	DetectionMode    *DetectionMode                  `json:"detectionMode,omitempty"` // Possible Values: `Auto`, `Custom`
-	Enabled          bool                            `json:"enabled"`                 // Detect Java out of memory problem
+	Enabled          bool                            `json:"enabled"`                 // This setting is enabled (`true`) or disabled (`false`)
 }
 
 func (me *OutOfMemoryDetection) Schema() map[string]*schema.Schema {
@@ -46,7 +46,7 @@ func (me *OutOfMemoryDetection) Schema() map[string]*schema.Schema {
 		},
 		"enabled": {
 			Type:        schema.TypeBool,
-			Description: "Detect Java out of memory problem",
+			Description: "This setting is enabled (`true`) or disabled (`false`)",
 			Required:    true,
 		},
 	}

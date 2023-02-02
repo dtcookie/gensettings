@@ -23,14 +23,14 @@ import (
 )
 
 type CloudFoundryCAWD struct {
-	Enabled bool `json:"enabled"` // Enable cloud application and workload detection for Cloud Foundry
+	Enabled bool `json:"enabled"` // This setting is enabled (`true`) or disabled (`false`)
 }
 
 func (me *CloudFoundryCAWD) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"enabled": {
 			Type:        schema.TypeBool,
-			Description: "Enable cloud application and workload detection for Cloud Foundry",
+			Description: "This setting is enabled (`true`) or disabled (`false`)",
 			Required:    true,
 		},
 	}

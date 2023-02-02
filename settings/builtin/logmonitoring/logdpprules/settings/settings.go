@@ -23,7 +23,7 @@ import (
 )
 
 type Settings struct {
-	Enabled             bool                 `json:"enabled"`             // Active
+	Enabled             bool                 `json:"enabled"`             // This setting is enabled (`true`) or disabled (`false`)
 	ProcessorDefinition *ProcessorDefinition `json:"ProcessorDefinition"` // ## Processor definition\nAdd a rule definition using our syntax. [In our documentation](https://dt-url.net/8k03xm2) you will find instructions and application [examples](https://dt-url.net/m24305t).
 	Query               string               `json:"query"`               // Matcher
 	RuleName            string               `json:"ruleName"`            // Rule name
@@ -34,7 +34,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"enabled": {
 			Type:        schema.TypeBool,
-			Description: "Active",
+			Description: "This setting is enabled (`true`) or disabled (`false`)",
 			Required:    true,
 		},
 		"processor_definition": {

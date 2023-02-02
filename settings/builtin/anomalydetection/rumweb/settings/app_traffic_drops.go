@@ -23,7 +23,7 @@ import (
 )
 
 type AppTrafficDrops struct {
-	Enabled      bool          `json:"enabled"`                // Detect traffic drops
+	Enabled      bool          `json:"enabled"`                // This setting is enabled (`true`) or disabled (`false`)
 	TrafficDrops *TrafficDrops `json:"trafficDrops,omitempty"` // Dynatrace learns your typical application traffic over an observation period of one week.\n\nDepending on this expected value Dynatrace detects abnormal traffic drops within your application.
 }
 
@@ -31,7 +31,7 @@ func (me *AppTrafficDrops) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"enabled": {
 			Type:        schema.TypeBool,
-			Description: "Detect traffic drops",
+			Description: "This setting is enabled (`true`) or disabled (`false`)",
 			Required:    true,
 		},
 		"traffic_drops": {

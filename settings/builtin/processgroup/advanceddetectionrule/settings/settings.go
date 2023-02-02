@@ -23,7 +23,7 @@ import (
 )
 
 type Settings struct {
-	Enabled            bool                       `json:"enabled"`            // Enabled
+	Enabled            bool                       `json:"enabled"`            // This setting is enabled (`true`) or disabled (`false`)
 	GroupExtraction    *ProcessGroupExtraction    `json:"groupExtraction"`    // You can define the properties that should be used to identify your process groups.
 	InstanceExtraction *ProcessInstanceExtraction `json:"instanceExtraction"` // You can define the properties that should be used to identify your process instances.
 	ProcessDetection   *ProcessGroupDetection     `json:"processDetection"`   // Apply this rule to processes where the selected property contains the specified string.
@@ -33,7 +33,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"enabled": {
 			Type:        schema.TypeBool,
-			Description: "Enabled",
+			Description: "This setting is enabled (`true`) or disabled (`false`)",
 			Required:    true,
 		},
 		"group_extraction": {

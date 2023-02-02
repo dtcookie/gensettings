@@ -27,14 +27,14 @@ type Settings struct {
 	AnsibleTowerNotification *AnsibleTowerNotification `json:"ansibleTowerNotification"`
 	DisplayName              string                    `json:"displayName"` // The name of the notification configuration.
 	EmailNotification        *EmailNotification        `json:"emailNotification"`
-	Enabled                  bool                      `json:"enabled"` // Enabled
+	Enabled                  bool                      `json:"enabled"` // This setting is enabled (`true`) or disabled (`false`)
 	JiraNotification         *JiraNotification         `json:"jiraNotification"`
 	OpsGenieNotification     *OpsGenieNotification     `json:"opsGenieNotification"`
 	PagerDutyNotification    *PagerDutyNotification    `json:"pagerDutyNotification"`
 	ServiceNowNotification   *ServiceNowNotification   `json:"serviceNowNotification"`
 	SlackNotification        *SlackNotification        `json:"slackNotification"`
 	TrelloNotification       *TrelloNotification       `json:"trelloNotification"`
-	Type                     NotificationType          `json:"type"` // Possible Values: `EMAIL`, `SLACK`, `TRELLO`, `VICTOROPS`, `JIRA`, `OPS_GENIE`, `SERVICE_NOW`, `ANSIBLETOWER`, `PAGER_DUTY`, `WEBHOOK`, `XMATTERS`
+	Type                     NotificationType          `json:"type"` // Possible Values: `SERVICE_NOW`, `SLACK`, `XMATTERS`, `JIRA`, `PAGER_DUTY`, `TRELLO`, `EMAIL`, `ANSIBLETOWER`, `VICTOROPS`, `WEBHOOK`, `OPS_GENIE`
 	VictorOpsNotification    *VictorOpsNotification    `json:"victorOpsNotification"`
 	WebHookNotification      *WebHookNotification      `json:"webHookNotification"`
 	XMattersNotification     *XMattersNotification     `json:"xMattersNotification"`
@@ -72,7 +72,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		},
 		"enabled": {
 			Type:        schema.TypeBool,
-			Description: "Enabled",
+			Description: "This setting is enabled (`true`) or disabled (`false`)",
 			Required:    true,
 		},
 		"jira_notification": {
@@ -131,7 +131,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		},
 		"type": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `EMAIL`, `SLACK`, `TRELLO`, `VICTOROPS`, `JIRA`, `OPS_GENIE`, `SERVICE_NOW`, `ANSIBLETOWER`, `PAGER_DUTY`, `WEBHOOK`, `XMATTERS`",
+			Description: "Possible Values: `SERVICE_NOW`, `SLACK`, `XMATTERS`, `JIRA`, `PAGER_DUTY`, `TRELLO`, `EMAIL`, `ANSIBLETOWER`, `VICTOROPS`, `WEBHOOK`, `OPS_GENIE`",
 			Required:    true,
 		},
 		"victor_ops_notification": {

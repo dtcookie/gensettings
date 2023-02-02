@@ -23,7 +23,7 @@ import (
 )
 
 type Settings struct {
-	Enabled        bool    `json:"enabled"`             // Monitor PHP
+	Enabled        bool    `json:"enabled"`             // This setting is enabled (`true`) or disabled (`false`)
 	EnabledFastCGI bool    `json:"enabledFastCGI"`      // Requires PHP monitoring enabled and from Dynatrace OneAgent version 1.191 it's ignored and permanently enabled
 	ServiceID      *string `json:"-" scope:"serviceId"` // The scope of this settings. If the settings should cover the whole environment, just don't specify any scope.
 }
@@ -32,7 +32,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"enabled": {
 			Type:        schema.TypeBool,
-			Description: "Monitor PHP",
+			Description: "This setting is enabled (`true`) or disabled (`false`)",
 			Required:    true,
 		},
 		"enabled_fast_cgi": {

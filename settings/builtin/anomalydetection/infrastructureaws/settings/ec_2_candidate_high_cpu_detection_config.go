@@ -25,7 +25,7 @@ import (
 type Ec2CandidateHighCpuDetectionConfig struct {
 	CustomThresholds *Ec2CandidateHighCpuDetectionThresholds `json:"customThresholds,omitempty"` // Alert if the condition is met in 3 out of 5 samples
 	DetectionMode    *DetectionMode                          `json:"detectionMode,omitempty"`    // Possible Values: `Auto`, `Custom`
-	Enabled          bool                                    `json:"enabled"`                    // Detect high CPU saturation on EC2 monitoring candidate
+	Enabled          bool                                    `json:"enabled"`                    // This setting is enabled (`true`) or disabled (`false`)
 }
 
 func (me *Ec2CandidateHighCpuDetectionConfig) Schema() map[string]*schema.Schema {
@@ -46,7 +46,7 @@ func (me *Ec2CandidateHighCpuDetectionConfig) Schema() map[string]*schema.Schema
 		},
 		"enabled": {
 			Type:        schema.TypeBool,
-			Description: "Detect high CPU saturation on EC2 monitoring candidate",
+			Description: "This setting is enabled (`true`) or disabled (`false`)",
 			Required:    true,
 		},
 	}

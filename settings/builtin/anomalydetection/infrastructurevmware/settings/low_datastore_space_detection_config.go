@@ -25,7 +25,7 @@ import (
 type LowDatastoreSpaceDetectionConfig struct {
 	CustomThresholds *LowDatastoreSpaceDetectionThresholds `json:"customThresholds,omitempty"` // Alert if the condition is met in 1 out of 5 samples
 	DetectionMode    *DetectionMode                        `json:"detectionMode,omitempty"`    // Possible Values: `Auto`, `Custom`
-	Enabled          bool                                  `json:"enabled"`                    // Detect low datastore space
+	Enabled          bool                                  `json:"enabled"`                    // This setting is enabled (`true`) or disabled (`false`)
 }
 
 func (me *LowDatastoreSpaceDetectionConfig) Schema() map[string]*schema.Schema {
@@ -46,7 +46,7 @@ func (me *LowDatastoreSpaceDetectionConfig) Schema() map[string]*schema.Schema {
 		},
 		"enabled": {
 			Type:        schema.TypeBool,
-			Description: "Detect low datastore space",
+			Description: "This setting is enabled (`true`) or disabled (`false`)",
 			Required:    true,
 		},
 	}

@@ -24,11 +24,11 @@ import (
 
 type Settings struct {
 	DailyRecurrence   *DailyRecurrence   `json:"dailyRecurrence"`
-	Enabled           bool               `json:"enabled"` // On/Off
+	Enabled           bool               `json:"enabled"` // This setting is enabled (`true`) or disabled (`false`)
 	MonthlyRecurrence *MonthlyRecurrence `json:"monthlyRecurrence"`
 	Name              string             `json:"name"` // Name
 	OnceRecurrence    *OnceRecurrence    `json:"onceRecurrence"`
-	Recurrence        RecurrenceEnum     `json:"recurrence"` // Possible Values: `ONCE`, `DAILY`, `WEEKLY`, `MONTHLY`
+	Recurrence        RecurrenceEnum     `json:"recurrence"` // Possible Values: `WEEKLY`, `MONTHLY`, `ONCE`, `DAILY`
 	WeeklyRecurrence  *WeeklyRecurrence  `json:"weeklyRecurrence"`
 }
 
@@ -45,7 +45,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		},
 		"enabled": {
 			Type:        schema.TypeBool,
-			Description: "On/Off",
+			Description: "This setting is enabled (`true`) or disabled (`false`)",
 			Required:    true,
 		},
 		"monthly_recurrence": {
@@ -73,7 +73,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		},
 		"recurrence": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `ONCE`, `DAILY`, `WEEKLY`, `MONTHLY`",
+			Description: "Possible Values: `WEEKLY`, `MONTHLY`, `ONCE`, `DAILY`",
 			Required:    true,
 		},
 		"weekly_recurrence": {

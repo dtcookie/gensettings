@@ -23,7 +23,7 @@ import (
 )
 
 type Settings struct {
-	Enabled bool    `json:"enabled"`         // For details, see [Network zones](https://www.dynatrace.com/support/help/shortlink/network-zones). \n\n⚠ Warning: You may experience network imbalance if you suddenly introduce network zones into an environment that has a high number of OneAgents. To avoid this and to ensure smooth adoption of network zones, follow best practices for planning and proper naming, as explained in [Network zones](https://www.dynatrace.com/support/help/shortlink/network-zones).
+	Enabled bool    `json:"enabled"`         // This setting is enabled (`true`) or disabled (`false`)
 	Scope   *string `json:"-" scope:"scope"` // The scope of this setting (environment environment-default)
 }
 
@@ -31,7 +31,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"enabled": {
 			Type:        schema.TypeBool,
-			Description: "For details, see [Network zones](https://www.dynatrace.com/support/help/shortlink/network-zones). \n\n⚠ Warning: You may experience network imbalance if you suddenly introduce network zones into an environment that has a high number of OneAgents. To avoid this and to ensure smooth adoption of network zones, follow best practices for planning and proper naming, as explained in [Network zones](https://www.dynatrace.com/support/help/shortlink/network-zones).",
+			Description: "This setting is enabled (`true`) or disabled (`false`)",
 			Required:    true,
 		},
 		"scope": {

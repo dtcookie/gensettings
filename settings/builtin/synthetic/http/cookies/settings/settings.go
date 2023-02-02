@@ -24,7 +24,7 @@ import (
 
 type Settings struct {
 	Cookies CookieEntries `json:"cookies"`
-	Enabled bool          `json:"enabled"`         // Set cookies
+	Enabled bool          `json:"enabled"`         // This setting is enabled (`true`) or disabled (`false`)
 	Scope   string        `json:"-" scope:"scope"` // The scope of this setting (HTTP_CHECK)
 }
 
@@ -41,7 +41,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		},
 		"enabled": {
 			Type:        schema.TypeBool,
-			Description: "Set cookies",
+			Description: "This setting is enabled (`true`) or disabled (`false`)",
 			Required:    true,
 		},
 		"scope": {

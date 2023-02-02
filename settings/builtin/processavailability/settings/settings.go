@@ -23,7 +23,7 @@ import (
 )
 
 type Settings struct {
-	Enabled  bool                `json:"enabled"`         // Enabled
+	Enabled  bool                `json:"enabled"`         // This setting is enabled (`true`) or disabled (`false`)
 	Metadata MetadataItems       `json:"metadata"`        // Set of additional key-value properties to be attached to the triggered event.
 	Name     string              `json:"name"`            // Monitored rule name
 	Rules    DetectionConditions `json:"rules"`           // Define process detection rules by selecting a process property and a condition. Each monitoring rule can have multiple detection rules associated with it.
@@ -34,7 +34,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"enabled": {
 			Type:        schema.TypeBool,
-			Description: "Enabled",
+			Description: "This setting is enabled (`true`) or disabled (`false`)",
 			Required:    true,
 		},
 		"metadata": {

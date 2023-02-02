@@ -24,7 +24,7 @@ import (
 
 type Settings struct {
 	BrokenLinks       *BrokenLinks       `json:"brokenLinks"`         // HTTP 404 response codes are thrown when a web server can't find a certain page. 404s are classified as broken links on the client side and therefore aren't considered to be service failures. By enabling this setting, you can have 404s treated as server-side service failures.
-	Enabled           bool               `json:"enabled"`             // Override global failure detection settings
+	Enabled           bool               `json:"enabled"`             // This setting is enabled (`true`) or disabled (`false`)
 	HttpResponseCodes *HttpResponseCodes `json:"httpResponseCodes"`   // HTTP response codes
 	ServiceID         string             `json:"-" scope:"serviceId"` // The scope of this settings. If the settings should cover the whole environment, just don't specify any scope.
 }
@@ -42,7 +42,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		},
 		"enabled": {
 			Type:        schema.TypeBool,
-			Description: "Override global failure detection settings",
+			Description: "This setting is enabled (`true`) or disabled (`false`)",
 			Required:    true,
 		},
 		"http_response_codes": {

@@ -23,14 +23,14 @@ import (
 )
 
 type FlagDefaultTrue struct {
-	Enabled bool `json:"enabled"`
+	Enabled bool `json:"enabled"` // This setting is enabled (`true`) or disabled (`false`)
 }
 
 func (me *FlagDefaultTrue) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"enabled": {
 			Type:        schema.TypeBool,
-			Description: "no documentation available",
+			Description: "This setting is enabled (`true`) or disabled (`false`)",
 			Required:    true,
 		},
 	}

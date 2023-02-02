@@ -23,7 +23,7 @@ import (
 )
 
 type Settings struct {
-	Enabled         bool    `json:"enabled"`                   // Enabled
+	Enabled         bool    `json:"enabled"`                   // This setting is enabled (`true`) or disabled (`false`)
 	Forcible        *bool   `json:"forcible,omitempty"`        // Activate this feature also in OneAgents only fulfilling the minimum Opt-In version
 	Instrumentation *bool   `json:"instrumentation,omitempty"` // Instrumentation enabled (change needs a process restart)
 	Key             string  `json:"key"`                       // Feature
@@ -34,7 +34,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"enabled": {
 			Type:        schema.TypeBool,
-			Description: "Enabled",
+			Description: "This setting is enabled (`true`) or disabled (`false`)",
 			Required:    true,
 		},
 		"forcible": {

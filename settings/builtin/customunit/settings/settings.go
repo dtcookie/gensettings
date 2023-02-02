@@ -32,7 +32,7 @@ type Settings struct {
 	PowerFactor           int              `json:"powerFactor"`           // (existing unit) ^ (exponent) = (new unit)
 	ScalingFactor         float64          `json:"scalingFactor"`         // (existing unit) * (Scaling factor) = new unit
 	SecondUnit            string           `json:"secondUnit"`            // New unit depends on existing unit (based on selection at unit composition).
-	UnitCombinationSelect UnitCombinations `json:"unitCombinationSelect"` // Possible Values: `POWER`, `SCALAR`, `QUOTIENT`, `PRODUCT`
+	UnitCombinationSelect UnitCombinations `json:"unitCombinationSelect"` // Possible Values: `PRODUCT`, `POWER`, `SCALAR`, `QUOTIENT`
 }
 
 func (me *Settings) Schema() map[string]*schema.Schema {
@@ -84,7 +84,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		},
 		"unit_combination_select": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `POWER`, `SCALAR`, `QUOTIENT`, `PRODUCT`",
+			Description: "Possible Values: `PRODUCT`, `POWER`, `SCALAR`, `QUOTIENT`",
 			Required:    true,
 		},
 	}

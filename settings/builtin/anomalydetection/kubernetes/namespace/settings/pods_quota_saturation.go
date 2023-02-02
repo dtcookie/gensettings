@@ -24,7 +24,7 @@ import (
 
 type PodsQuotaSaturation struct {
 	Configuration *PodsQuotaSaturationConfig `json:"configuration,omitempty"` // Alert if
-	Enabled       bool                       `json:"enabled"`                 // Detect pods quota saturation
+	Enabled       bool                       `json:"enabled"`                 // This setting is enabled (`true`) or disabled (`false`)
 }
 
 func (me *PodsQuotaSaturation) Schema() map[string]*schema.Schema {
@@ -40,7 +40,7 @@ func (me *PodsQuotaSaturation) Schema() map[string]*schema.Schema {
 		},
 		"enabled": {
 			Type:        schema.TypeBool,
-			Description: "Detect pods quota saturation",
+			Description: "This setting is enabled (`true`) or disabled (`false`)",
 			Required:    true,
 		},
 	}

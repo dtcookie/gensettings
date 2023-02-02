@@ -25,7 +25,7 @@ import (
 type HighGcActivityDetection struct {
 	CustomThresholds *HighGcActivityDetectionThresholds `json:"customThresholds,omitempty"` // Alert if the GC time **or** the GC suspension is exceeded
 	DetectionMode    *DetectionMode                     `json:"detectionMode,omitempty"`    // Possible Values: `Auto`, `Custom`
-	Enabled          bool                               `json:"enabled"`                    // You may also configure high GC activity alerting for .NET processes on [extensions events page](/#settings/anomalydetection/extensionevents).
+	Enabled          bool                               `json:"enabled"`                    // This setting is enabled (`true`) or disabled (`false`)
 }
 
 func (me *HighGcActivityDetection) Schema() map[string]*schema.Schema {
@@ -46,7 +46,7 @@ func (me *HighGcActivityDetection) Schema() map[string]*schema.Schema {
 		},
 		"enabled": {
 			Type:        schema.TypeBool,
-			Description: "You may also configure high GC activity alerting for .NET processes on [extensions events page](/#settings/anomalydetection/extensionevents).",
+			Description: "This setting is enabled (`true`) or disabled (`false`)",
 			Required:    true,
 		},
 	}

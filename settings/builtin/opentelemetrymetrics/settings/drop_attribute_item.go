@@ -46,7 +46,7 @@ func (me *DropAttributeItems) UnmarshalHCL(decoder hcl.Decoder) error {
 
 type DropAttributeItem struct {
 	AttributeKey string `json:"attributeKey"` // Attribute key
-	Enabled      bool   `json:"enabled"`      // When enabled, the attribute will be dropped on all ingested metrics.
+	Enabled      bool   `json:"enabled"`      // This setting is enabled (`true`) or disabled (`false`)
 }
 
 func (me *DropAttributeItem) Schema() map[string]*schema.Schema {
@@ -58,7 +58,7 @@ func (me *DropAttributeItem) Schema() map[string]*schema.Schema {
 		},
 		"enabled": {
 			Type:        schema.TypeBool,
-			Description: "When enabled, the attribute will be dropped on all ingested metrics.",
+			Description: "This setting is enabled (`true`) or disabled (`false`)",
 			Required:    true,
 		},
 	}

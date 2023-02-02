@@ -25,7 +25,7 @@ import (
 type OutOfThreadsDetection struct {
 	CustomThresholds *OutOfThreadsDetectionThresholds `json:"customThresholds,omitempty"`
 	DetectionMode    *DetectionMode                   `json:"detectionMode,omitempty"` // Possible Values: `Auto`, `Custom`
-	Enabled          bool                             `json:"enabled"`                 // Detect Java out of threads problem
+	Enabled          bool                             `json:"enabled"`                 // This setting is enabled (`true`) or disabled (`false`)
 }
 
 func (me *OutOfThreadsDetection) Schema() map[string]*schema.Schema {
@@ -46,7 +46,7 @@ func (me *OutOfThreadsDetection) Schema() map[string]*schema.Schema {
 		},
 		"enabled": {
 			Type:        schema.TypeBool,
-			Description: "Detect Java out of threads problem",
+			Description: "This setting is enabled (`true`) or disabled (`false`)",
 			Required:    true,
 		},
 	}

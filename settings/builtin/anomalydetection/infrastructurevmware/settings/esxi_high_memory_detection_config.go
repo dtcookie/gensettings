@@ -24,8 +24,8 @@ import (
 
 type EsxiHighMemoryDetectionConfig struct {
 	CustomThresholds *EsxiHighMemoryDetectionThresholds `json:"customThresholds,omitempty"` // Alert if the condition is met in 3 out of 5 samples
-	DetectionMode    *DetectionMode                     `json:"detectionMode,omitempty"`    // Possible Values: `Custom`, `Auto`
-	Enabled          bool                               `json:"enabled"`                    // Detect memory saturation on ESXi host
+	DetectionMode    *DetectionMode                     `json:"detectionMode,omitempty"`    // Possible Values: `Auto`, `Custom`
+	Enabled          bool                               `json:"enabled"`                    // This setting is enabled (`true`) or disabled (`false`)
 }
 
 func (me *EsxiHighMemoryDetectionConfig) Schema() map[string]*schema.Schema {
@@ -41,12 +41,12 @@ func (me *EsxiHighMemoryDetectionConfig) Schema() map[string]*schema.Schema {
 		},
 		"detection_mode": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `Custom`, `Auto`",
+			Description: "Possible Values: `Auto`, `Custom`",
 			Optional:    true,
 		},
 		"enabled": {
 			Type:        schema.TypeBool,
-			Description: "Detect memory saturation on ESXi host",
+			Description: "This setting is enabled (`true`) or disabled (`false`)",
 			Required:    true,
 		},
 	}

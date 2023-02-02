@@ -23,11 +23,11 @@ import (
 )
 
 type Settings struct {
-	Enabled            bool               `json:"enabled"`            // Enabled
+	Enabled            bool               `json:"enabled"`            // This setting is enabled (`true`) or disabled (`false`)
 	Issuelabel         string             `json:"issuelabel"`         // Set a label to identify these issues, for example, `release_blocker` or `non-critical`
 	Issuequery         string             `json:"issuequery"`         // You can use the following placeholders to automatically insert values from the **Release monitoring** page in your query: `{NAME}`, `{VERSION}`, `{STAGE}`, `{PRODUCT}`.
 	Issuetheme         IssueTheme         `json:"issuetheme"`         // Possible Values: `INFO`, `ERROR`, `RESOLVED`
-	Issuetrackersystem IssueTrackerSystem `json:"issuetrackersystem"` // Possible Values: `JIRA_ON_PREMISE`, `JIRA_CLOUD`, `JIRA`, `GITHUB`, `GITLAB`, `SERVICENOW`
+	Issuetrackersystem IssueTrackerSystem `json:"issuetrackersystem"` // Possible Values: `JIRA_CLOUD`, `JIRA`, `GITHUB`, `GITLAB`, `SERVICENOW`, `JIRA_ON_PREMISE`
 	Password           *string            `json:"password,omitempty"` // Password
 	Token              *string            `json:"token,omitempty"`    // Token
 	Url                string             `json:"url"`                // For Jira, use the base URL (for example, https://jira.yourcompany.com); for GitHub, use the repository URL (for example, https://github.com/org/repo); for GitLab, use the specific project API for a single project (for example, https://gitlab.com/api/v4/projects/:projectId), and the specific group API for a multiple projects (for example, https://gitlab.com/api/v4/groups/:groupId); for ServiceNow, use your company instance URL (for example, https://yourinstance.service-now.com/)
@@ -38,7 +38,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"enabled": {
 			Type:        schema.TypeBool,
-			Description: "Enabled",
+			Description: "This setting is enabled (`true`) or disabled (`false`)",
 			Required:    true,
 		},
 		"issuelabel": {
@@ -58,7 +58,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		},
 		"issuetrackersystem": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `JIRA_ON_PREMISE`, `JIRA_CLOUD`, `JIRA`, `GITHUB`, `GITLAB`, `SERVICENOW`",
+			Description: "Possible Values: `JIRA_CLOUD`, `JIRA`, `GITHUB`, `GITLAB`, `SERVICENOW`, `JIRA_ON_PREMISE`",
 			Required:    true,
 		},
 		"password": {

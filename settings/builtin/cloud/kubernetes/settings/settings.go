@@ -29,7 +29,7 @@ type Settings struct {
 	CloudApplicationPipelineEnabled bool              `json:"cloudApplicationPipelineEnabled"` // Monitor Kubernetes namespaces, services, workloads, and pods
 	ClusterID                       string            `json:"clusterId"`                       // Unique ID of the cluster, the containerized ActiveGate is deployed to. Defaults to the UUID of the kube-system namespace. The cluster ID of containerized ActiveGates is shown on the Deployment status screen.
 	ClusterIdEnabled                bool              `json:"clusterIdEnabled"`                // This is required for monitoring persistent volume claims. For more information on local Kubernetes API monitoring, see the [documentation](https://dt-url.net/6q62uep).
-	Enabled                         bool              `json:"enabled"`                         // Enabled
+	Enabled                         bool              `json:"enabled"`                         // This setting is enabled (`true`) or disabled (`false`)
 	EndpointUrl                     string            `json:"endpointUrl"`                     // Get the API URL for [Kubernetes](https://dt-url.net/kz23snj \"Kubernetes\") or [OpenShift](https://dt-url.net/d623xgw \"OpenShift\").
 	EventPatterns                   EventComplexTypes `json:"eventPatterns"`                   // Define Kubernetes event filters to ingest events into your environment. For more details, see the [documentation](https://dt-url.net/2201p0u).
 	EventProcessingActive           bool              `json:"eventProcessingActive"`           // All events are monitored by default unless event filters are specified.\n\nKubernetes events are subject to Davis data units (DDU) licensing.\nSee [DDUs for events](https://dt-url.net/5n03vcu) for details.
@@ -76,7 +76,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		},
 		"enabled": {
 			Type:        schema.TypeBool,
-			Description: "Enabled",
+			Description: "This setting is enabled (`true`) or disabled (`false`)",
 			Required:    true,
 		},
 		"endpoint_url": {

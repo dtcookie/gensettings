@@ -24,7 +24,7 @@ import (
 
 type PodsSaturation struct {
 	Configuration *PodsSaturationConfig `json:"configuration,omitempty"` // Alert if
-	Enabled       bool                  `json:"enabled"`                 // Number of running pods in percent of the node's maximum pod capacity
+	Enabled       bool                  `json:"enabled"`                 // This setting is enabled (`true`) or disabled (`false`)
 }
 
 func (me *PodsSaturation) Schema() map[string]*schema.Schema {
@@ -40,7 +40,7 @@ func (me *PodsSaturation) Schema() map[string]*schema.Schema {
 		},
 		"enabled": {
 			Type:        schema.TypeBool,
-			Description: "Number of running pods in percent of the node's maximum pod capacity",
+			Description: "This setting is enabled (`true`) or disabled (`false`)",
 			Required:    true,
 		},
 	}

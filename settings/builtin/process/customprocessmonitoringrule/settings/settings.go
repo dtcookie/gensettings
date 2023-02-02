@@ -24,9 +24,9 @@ import (
 
 type Settings struct {
 	Condition *Condition     `json:"condition"`        // Condition
-	Enabled   bool           `json:"enabled"`          // Enabled
+	Enabled   bool           `json:"enabled"`          // This setting is enabled (`true`) or disabled (`false`)
 	HostID    *string        `json:"-" scope:"hostId"` // The scope of this settings. If the settings should cover the whole environment, just don't specify any scope.
-	Mode      MonitoringMode `json:"mode"`             // Possible Values: `MONITORING_OFF`, `MONITORING_ON`
+	Mode      MonitoringMode `json:"mode"`             // Possible Values: `MONITORING_ON`, `MONITORING_OFF`
 }
 
 func (me *Settings) Schema() map[string]*schema.Schema {
@@ -42,7 +42,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		},
 		"enabled": {
 			Type:        schema.TypeBool,
-			Description: "Enabled",
+			Description: "This setting is enabled (`true`) or disabled (`false`)",
 			Required:    true,
 		},
 		"host_id": {
@@ -53,7 +53,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		},
 		"mode": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `MONITORING_OFF`, `MONITORING_ON`",
+			Description: "Possible Values: `MONITORING_ON`, `MONITORING_OFF`",
 			Required:    true,
 		},
 	}

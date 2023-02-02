@@ -23,7 +23,7 @@ import (
 )
 
 type Settings struct {
-	Enabled            bool               `json:"enabled"`            // Enable Extension Execution Controller
+	Enabled            bool               `json:"enabled"`            // This setting is enabled (`true`) or disabled (`false`)
 	IngestActive       bool               `json:"ingestActive"`       // Enable local PIPE/HTTP metric and Log Ingest API
 	PerformanceProfile PerformanceProfile `json:"performanceProfile"` // Possible Values: `DEFAULT`, `HIGH`
 	Scope              *string            `json:"-" scope:"scope"`    // The scope of this setting (HOST HOST_GROUP environment)
@@ -34,7 +34,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"enabled": {
 			Type:        schema.TypeBool,
-			Description: "Enable Extension Execution Controller",
+			Description: "This setting is enabled (`true`) or disabled (`false`)",
 			Required:    true,
 		},
 		"ingest_active": {

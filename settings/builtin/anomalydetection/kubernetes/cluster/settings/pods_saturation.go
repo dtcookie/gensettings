@@ -24,7 +24,7 @@ import (
 
 type PodsSaturation struct {
 	Configuration *PodsSaturationConfig `json:"configuration,omitempty"` // Alert if
-	Enabled       bool                  `json:"enabled"`                 // Detect cluster pods saturation
+	Enabled       bool                  `json:"enabled"`                 // This setting is enabled (`true`) or disabled (`false`)
 }
 
 func (me *PodsSaturation) Schema() map[string]*schema.Schema {
@@ -40,7 +40,7 @@ func (me *PodsSaturation) Schema() map[string]*schema.Schema {
 		},
 		"enabled": {
 			Type:        schema.TypeBool,
-			Description: "Detect cluster pods saturation",
+			Description: "This setting is enabled (`true`) or disabled (`false`)",
 			Required:    true,
 		},
 	}

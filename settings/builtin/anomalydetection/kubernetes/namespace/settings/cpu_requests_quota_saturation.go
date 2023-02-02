@@ -24,7 +24,7 @@ import (
 
 type CpuRequestsQuotaSaturation struct {
 	Configuration *CpuRequestsQuotaSaturationConfig `json:"configuration,omitempty"` // Alert if
-	Enabled       bool                              `json:"enabled"`                 // Detect CPU requests quota saturation
+	Enabled       bool                              `json:"enabled"`                 // This setting is enabled (`true`) or disabled (`false`)
 }
 
 func (me *CpuRequestsQuotaSaturation) Schema() map[string]*schema.Schema {
@@ -40,7 +40,7 @@ func (me *CpuRequestsQuotaSaturation) Schema() map[string]*schema.Schema {
 		},
 		"enabled": {
 			Type:        schema.TypeBool,
-			Description: "Detect CPU requests quota saturation",
+			Description: "This setting is enabled (`true`) or disabled (`false`)",
 			Required:    true,
 		},
 	}

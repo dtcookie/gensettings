@@ -23,7 +23,7 @@ import (
 )
 
 type Settings struct {
-	Enabled           bool    `json:"enabled"`             // Requires Dynatrace OneAgent version 1.75 or later on Windows
+	Enabled           bool    `json:"enabled"`             // This setting is enabled (`true`) or disabled (`false`)
 	EnabledDotNetCore bool    `json:"enabledDotNetCore"`   // Requires Dynatrace OneAgent version 1.117 or later on Windows and version 1.127 or later on Linux and .NET monitoring enabled
 	ServiceID         *string `json:"-" scope:"serviceId"` // The scope of this settings. If the settings should cover the whole environment, just don't specify any scope.
 }
@@ -32,7 +32,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"enabled": {
 			Type:        schema.TypeBool,
-			Description: "Requires Dynatrace OneAgent version 1.75 or later on Windows",
+			Description: "This setting is enabled (`true`) or disabled (`false`)",
 			Required:    true,
 		},
 		"enabled_dot_net_core": {

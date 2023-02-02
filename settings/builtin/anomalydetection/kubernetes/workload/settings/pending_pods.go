@@ -24,7 +24,7 @@ import (
 
 type PendingPods struct {
 	Configuration *PendingPodsConfig `json:"configuration,omitempty"` // Alert if
-	Enabled       bool               `json:"enabled"`                 // Number of pods in pending phase
+	Enabled       bool               `json:"enabled"`                 // This setting is enabled (`true`) or disabled (`false`)
 }
 
 func (me *PendingPods) Schema() map[string]*schema.Schema {
@@ -40,7 +40,7 @@ func (me *PendingPods) Schema() map[string]*schema.Schema {
 		},
 		"enabled": {
 			Type:        schema.TypeBool,
-			Description: "Number of pods in pending phase",
+			Description: "This setting is enabled (`true`) or disabled (`false`)",
 			Required:    true,
 		},
 	}

@@ -23,7 +23,7 @@ import (
 )
 
 type Settings struct {
-	Enabled        bool            `json:"enabled"`             // Override global failure detection settings
+	Enabled        bool            `json:"enabled"`             // This setting is enabled (`true`) or disabled (`false`)
 	ExceptionRules *ExceptionRules `json:"exceptionRules"`      // Customize failure detection for specific exceptions and errors
 	ServiceID      string          `json:"-" scope:"serviceId"` // The scope of this settings. If the settings should cover the whole environment, just don't specify any scope.
 }
@@ -32,7 +32,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"enabled": {
 			Type:        schema.TypeBool,
-			Description: "Override global failure detection settings",
+			Description: "This setting is enabled (`true`) or disabled (`false`)",
 			Required:    true,
 		},
 		"exception_rules": {

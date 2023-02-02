@@ -23,7 +23,7 @@ import (
 )
 
 type Settings struct {
-	Enabled   bool    `json:"enabled"`             // Monitor Nginx
+	Enabled   bool    `json:"enabled"`             // This setting is enabled (`true`) or disabled (`false`)
 	ServiceID *string `json:"-" scope:"serviceId"` // The scope of this settings. If the settings should cover the whole environment, just don't specify any scope.
 }
 
@@ -31,7 +31,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"enabled": {
 			Type:        schema.TypeBool,
-			Description: "Monitor Nginx",
+			Description: "This setting is enabled (`true`) or disabled (`false`)",
 			Required:    true,
 		},
 		"service_id": {

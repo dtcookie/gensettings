@@ -25,7 +25,7 @@ import (
 type Settings struct {
 	CreatedBy   string          `json:"createdBy"`   // The user or extension that created this type.
 	DisplayName string          `json:"displayName"` // The human readable type name for this entity type.
-	Enabled     bool            `json:"enabled"`     // Enables or disables the type
+	Enabled     bool            `json:"enabled"`     // This setting is enabled (`true`) or disabled (`false`)
 	Name        string          `json:"name"`        // The entity type name. This type name must be unique and must not be changed after creation.
 	Rules       ExtractionRules `json:"rules"`       // Specify a list of rules which are evaluated in order. When **any** rule matches, the entity defined according to that rule will be extracted. Subsequent rules will not be evaluated.
 }
@@ -44,7 +44,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		},
 		"enabled": {
 			Type:        schema.TypeBool,
-			Description: "Enables or disables the type",
+			Description: "This setting is enabled (`true`) or disabled (`false`)",
 			Required:    true,
 		},
 		"name": {

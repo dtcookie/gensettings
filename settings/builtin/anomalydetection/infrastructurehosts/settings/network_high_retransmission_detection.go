@@ -25,7 +25,7 @@ import (
 type NetworkHighRetransmissionDetection struct {
 	CustomThresholds *NetworkHighRetransmissionDetectionThresholds `json:"customThresholds,omitempty"` // Alert if the retransmission rate is higher than the specified threshold **and** the number of retransmitted packets is higher than the defined threshold for the defined amount of samples
 	DetectionMode    *DetectionMode                                `json:"detectionMode,omitempty"`    // Possible Values: `Auto`, `Custom`
-	Enabled          bool                                          `json:"enabled"`                    // Detect high retransmission rate
+	Enabled          bool                                          `json:"enabled"`                    // This setting is enabled (`true`) or disabled (`false`)
 }
 
 func (me *NetworkHighRetransmissionDetection) Schema() map[string]*schema.Schema {
@@ -46,7 +46,7 @@ func (me *NetworkHighRetransmissionDetection) Schema() map[string]*schema.Schema
 		},
 		"enabled": {
 			Type:        schema.TypeBool,
-			Description: "Detect high retransmission rate",
+			Description: "This setting is enabled (`true`) or disabled (`false`)",
 			Required:    true,
 		},
 	}

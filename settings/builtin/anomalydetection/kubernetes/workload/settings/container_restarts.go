@@ -24,7 +24,7 @@ import (
 
 type ContainerRestarts struct {
 	Configuration *ContainerRestartsConfig `json:"configuration,omitempty"` // Alert if
-	Enabled       bool                     `json:"enabled"`                 // Detect container restarts
+	Enabled       bool                     `json:"enabled"`                 // This setting is enabled (`true`) or disabled (`false`)
 }
 
 func (me *ContainerRestarts) Schema() map[string]*schema.Schema {
@@ -40,7 +40,7 @@ func (me *ContainerRestarts) Schema() map[string]*schema.Schema {
 		},
 		"enabled": {
 			Type:        schema.TypeBool,
-			Description: "Detect container restarts",
+			Description: "This setting is enabled (`true`) or disabled (`false`)",
 			Required:    true,
 		},
 	}

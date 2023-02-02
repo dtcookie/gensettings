@@ -46,7 +46,7 @@ func (me *Filters) UnmarshalHCL(decoder hcl.Decoder) error {
 
 type Filter struct {
 	FieldName string    `json:"fieldName"` // Field name
-	Operator  Operator  `json:"operator"`  // Possible Values: `IS_NULL`, `LESS_THAN_OR_EQUAL_TO`, `GREATER_THAN_OR_EQUAL_TO`, `IS_NOT_NULL`, `LESS_THAN`, `NOT_EQUAL`, `IN`, `LIKE`, `NOT_LIKE`, `EQUALS`, `STARTS_WITH`, `GREATER_THAN`
+	Operator  Operator  `json:"operator"`  // Possible Values: `LESS_THAN_OR_EQUAL_TO`, `IN`, `STARTS_WITH`, `GREATER_THAN_OR_EQUAL_TO`, `LIKE`, `NOT_LIKE`, `LESS_THAN`, `GREATER_THAN`, `EQUALS`, `NOT_EQUAL`, `IS_NULL`, `IS_NOT_NULL`
 	Value     *string   `json:"value,omitempty"`
 	ValueIn   *[]string `json:"valueIn,omitempty"` // Values
 }
@@ -60,7 +60,7 @@ func (me *Filter) Schema() map[string]*schema.Schema {
 		},
 		"operator": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `IS_NULL`, `LESS_THAN_OR_EQUAL_TO`, `GREATER_THAN_OR_EQUAL_TO`, `IS_NOT_NULL`, `LESS_THAN`, `NOT_EQUAL`, `IN`, `LIKE`, `NOT_LIKE`, `EQUALS`, `STARTS_WITH`, `GREATER_THAN`",
+			Description: "Possible Values: `LESS_THAN_OR_EQUAL_TO`, `IN`, `STARTS_WITH`, `GREATER_THAN_OR_EQUAL_TO`, `LIKE`, `NOT_LIKE`, `LESS_THAN`, `GREATER_THAN`, `EQUALS`, `NOT_EQUAL`, `IS_NULL`, `IS_NOT_NULL`",
 			Required:    true,
 		},
 		"value": {

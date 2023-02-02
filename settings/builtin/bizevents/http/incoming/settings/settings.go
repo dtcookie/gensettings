@@ -23,7 +23,7 @@ import (
 )
 
 type Settings struct {
-	Enabled  bool             `json:"enabled"`         // Enabled
+	Enabled  bool             `json:"enabled"`         // This setting is enabled (`true`) or disabled (`false`)
 	Event    *EventComplex    `json:"event"`           // Event meta data
 	RuleName string           `json:"ruleName"`        // Rule name
 	Scope    *string          `json:"-" scope:"scope"` // The scope of this setting (HOST HOST_GROUP environment)
@@ -34,7 +34,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"enabled": {
 			Type:        schema.TypeBool,
-			Description: "Enabled",
+			Description: "This setting is enabled (`true`) or disabled (`false`)",
 			Required:    true,
 		},
 		"event": {

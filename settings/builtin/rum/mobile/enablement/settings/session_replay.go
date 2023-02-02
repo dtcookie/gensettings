@@ -23,14 +23,14 @@ import (
 )
 
 type SessionReplay struct {
-	Enabled bool `json:"enabled"` // Before enabling, Dynatrace checks your system against the [prerequisites for Session Replay](https://dt-url.net/t23s0ppi).
+	Enabled bool `json:"enabled"` // This setting is enabled (`true`) or disabled (`false`)
 }
 
 func (me *SessionReplay) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"enabled": {
 			Type:        schema.TypeBool,
-			Description: "Before enabling, Dynatrace checks your system against the [prerequisites for Session Replay](https://dt-url.net/t23s0ppi).",
+			Description: "This setting is enabled (`true`) or disabled (`false`)",
 			Required:    true,
 		},
 	}

@@ -24,7 +24,7 @@ import (
 
 type Settings struct {
 	Dimensions       []string `json:"dimensions"`
-	Enabled          bool     `json:"enabled"`          // Enabled
+	Enabled          bool     `json:"enabled"`          // This setting is enabled (`true`) or disabled (`false`)
 	Key              string   `json:"key"`              // Key
 	Matcher          string   `json:"matcher"`          // [See our documentation](https://dt-url.net/bp234rv)
 	Measure          Measure  `json:"measure"`          // Possible Values: `OCCURRENCE`, `ATTRIBUTE`
@@ -42,7 +42,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		},
 		"enabled": {
 			Type:        schema.TypeBool,
-			Description: "Enabled",
+			Description: "This setting is enabled (`true`) or disabled (`false`)",
 			Required:    true,
 		},
 		"key": {

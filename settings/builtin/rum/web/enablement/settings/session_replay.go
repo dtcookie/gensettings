@@ -24,7 +24,7 @@ import (
 
 type SessionReplay struct {
 	CostAndTrafficControl int  `json:"costAndTrafficControl"` // [Percentage of user sessions recorded with Session Replay](https://dt-url.net/sr-cost-traffic-control). For example, if you have 50% for RUM and 50% for Session Replay, it results in 25% of sessions recorded with Session Replay.
-	Enabled               bool `json:"enabled"`               // Before enabling, Dynatrace checks your system against the prerequisites for [Session Replay](https://dt-url.net/ma3m0psf).
+	Enabled               bool `json:"enabled"`               // This setting is enabled (`true`) or disabled (`false`)
 }
 
 func (me *SessionReplay) Schema() map[string]*schema.Schema {
@@ -36,7 +36,7 @@ func (me *SessionReplay) Schema() map[string]*schema.Schema {
 		},
 		"enabled": {
 			Type:        schema.TypeBool,
-			Description: "Before enabling, Dynatrace checks your system against the prerequisites for [Session Replay](https://dt-url.net/ma3m0psf).",
+			Description: "This setting is enabled (`true`) or disabled (`false`)",
 			Required:    true,
 		},
 	}

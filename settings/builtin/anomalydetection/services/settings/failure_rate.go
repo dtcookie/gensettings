@@ -25,7 +25,7 @@ import (
 type FailureRate struct {
 	AutoDetection  *FailureRateAuto  `json:"autoDetection,omitempty"`  // Alert if the percentage of failing service calls increases by **both** the absolute and relative thresholds:
 	DetectionMode  *DetectionMode    `json:"detectionMode,omitempty"`  // Possible Values: `Auto`, `Fixed`
-	Enabled        bool              `json:"enabled"`                  // Detect increases in failure rate
+	Enabled        bool              `json:"enabled"`                  // This setting is enabled (`true`) or disabled (`false`)
 	FixedDetection *FailureRateFixed `json:"fixedDetection,omitempty"` // Alert if a given failure rate is exceeded during any 5-minute-period
 }
 
@@ -47,7 +47,7 @@ func (me *FailureRate) Schema() map[string]*schema.Schema {
 		},
 		"enabled": {
 			Type:        schema.TypeBool,
-			Description: "Detect increases in failure rate",
+			Description: "This setting is enabled (`true`) or disabled (`false`)",
 			Required:    true,
 		},
 		"fixed_detection": {

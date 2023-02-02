@@ -23,7 +23,7 @@ import (
 )
 
 type Settings struct {
-	Enabled                   bool    `json:"enabled"`                   // Monitor Go
+	Enabled                   bool    `json:"enabled"`                   // This setting is enabled (`true`) or disabled (`false`)
 	EnabledGoStaticMonitoring bool    `json:"enabledGoStaticMonitoring"` // Learn more about the [known limitations for Go static monitoring](https://www.dynatrace.com/support/help/technology-support/application-software/go/support/go-known-limitations#limitations)
 	ServiceID                 *string `json:"-" scope:"serviceId"`       // The scope of this settings. If the settings should cover the whole environment, just don't specify any scope.
 }
@@ -32,7 +32,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"enabled": {
 			Type:        schema.TypeBool,
-			Description: "Monitor Go",
+			Description: "This setting is enabled (`true`) or disabled (`false`)",
 			Required:    true,
 		},
 		"enabled_go_static_monitoring": {

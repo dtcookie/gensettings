@@ -25,7 +25,7 @@ import (
 type DiskLowInodesDetection struct {
 	CustomThresholds *DiskLowInodesDetectionThresholds `json:"customThresholds,omitempty"`
 	DetectionMode    *DetectionMode                    `json:"detectionMode,omitempty"` // Possible Values: `Auto`, `Custom`
-	Enabled          bool                              `json:"enabled"`                 // Detect low inodes number available
+	Enabled          bool                              `json:"enabled"`                 // This setting is enabled (`true`) or disabled (`false`)
 }
 
 func (me *DiskLowInodesDetection) Schema() map[string]*schema.Schema {
@@ -46,7 +46,7 @@ func (me *DiskLowInodesDetection) Schema() map[string]*schema.Schema {
 		},
 		"enabled": {
 			Type:        schema.TypeBool,
-			Description: "Detect low inodes number available",
+			Description: "This setting is enabled (`true`) or disabled (`false`)",
 			Required:    true,
 		},
 	}

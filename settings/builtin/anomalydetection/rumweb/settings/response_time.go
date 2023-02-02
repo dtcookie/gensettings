@@ -24,7 +24,7 @@ import (
 
 type ResponseTime struct {
 	DetectionMode     *DetectionMode     `json:"detectionMode,omitempty"` // Possible Values: `Auto`, `Fixed`
-	Enabled           bool               `json:"enabled"`                 // Detect key performance metric degradations
+	Enabled           bool               `json:"enabled"`                 // This setting is enabled (`true`) or disabled (`false`)
 	ResponseTimeAuto  *ResponseTimeAuto  `json:"responseTimeAuto,omitempty"`
 	ResponseTimeFixed *ResponseTimeFixed `json:"responseTimeFixed,omitempty"`
 }
@@ -38,7 +38,7 @@ func (me *ResponseTime) Schema() map[string]*schema.Schema {
 		},
 		"enabled": {
 			Type:        schema.TypeBool,
-			Description: "Detect key performance metric degradations",
+			Description: "This setting is enabled (`true`) or disabled (`false`)",
 			Required:    true,
 		},
 		"response_time_auto": {

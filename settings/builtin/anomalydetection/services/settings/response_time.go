@@ -25,7 +25,7 @@ import (
 type ResponseTime struct {
 	AutoDetection  *ResponseTimeAuto  `json:"autoDetection,omitempty"`
 	DetectionMode  *DetectionMode     `json:"detectionMode,omitempty"` // Possible Values: `Auto`, `Fixed`
-	Enabled        bool               `json:"enabled"`                 // Detect response time degradations
+	Enabled        bool               `json:"enabled"`                 // This setting is enabled (`true`) or disabled (`false`)
 	FixedDetection *ResponseTimeFixed `json:"fixedDetection,omitempty"`
 }
 
@@ -47,7 +47,7 @@ func (me *ResponseTime) Schema() map[string]*schema.Schema {
 		},
 		"enabled": {
 			Type:        schema.TypeBool,
-			Description: "Detect response time degradations",
+			Description: "This setting is enabled (`true`) or disabled (`false`)",
 			Required:    true,
 		},
 		"fixed_detection": {

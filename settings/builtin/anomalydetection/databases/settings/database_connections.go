@@ -23,7 +23,7 @@ import (
 )
 
 type DatabaseConnections struct {
-	Enabled           bool `json:"enabled"`                     // Detect failed database connects
+	Enabled           bool `json:"enabled"`                     // This setting is enabled (`true`) or disabled (`false`)
 	MaxFailedConnects *int `json:"maxFailedConnects,omitempty"` // Threshold
 	TimePeriod        *int `json:"timePeriod,omitempty"`        // Time span
 }
@@ -32,7 +32,7 @@ func (me *DatabaseConnections) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"enabled": {
 			Type:        schema.TypeBool,
-			Description: "Detect failed database connects",
+			Description: "This setting is enabled (`true`) or disabled (`false`)",
 			Required:    true,
 		},
 		"max_failed_connects": {

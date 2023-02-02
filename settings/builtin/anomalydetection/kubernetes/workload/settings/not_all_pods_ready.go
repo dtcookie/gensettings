@@ -24,7 +24,7 @@ import (
 
 type NotAllPodsReady struct {
 	Configuration *NotAllPodsReadyConfig `json:"configuration,omitempty"` // Alert if
-	Enabled       bool                   `json:"enabled"`                 // Detect workloads with non-ready pods
+	Enabled       bool                   `json:"enabled"`                 // This setting is enabled (`true`) or disabled (`false`)
 }
 
 func (me *NotAllPodsReady) Schema() map[string]*schema.Schema {
@@ -40,7 +40,7 @@ func (me *NotAllPodsReady) Schema() map[string]*schema.Schema {
 		},
 		"enabled": {
 			Type:        schema.TypeBool,
-			Description: "Detect workloads with non-ready pods",
+			Description: "This setting is enabled (`true`) or disabled (`false`)",
 			Required:    true,
 		},
 	}

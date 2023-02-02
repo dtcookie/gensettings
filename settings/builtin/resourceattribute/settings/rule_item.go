@@ -46,8 +46,8 @@ func (me *RuleItems) UnmarshalHCL(decoder hcl.Decoder) error {
 
 type RuleItem struct {
 	AttributeKey string      `json:"attributeKey"` // Attribute key **service.name** is automatically captured by default
-	Enabled      bool        `json:"enabled"`      // If this is true, the value of the specified key is stored.
-	Masking      MaskingType `json:"masking"`      // Possible Values: `NOT_MASKED`, `MASK_ONLY_CONFIDENTIAL_DATA`, `MASK_ENTIRE_VALUE`
+	Enabled      bool        `json:"enabled"`      // This setting is enabled (`true`) or disabled (`false`)
+	Masking      MaskingType `json:"masking"`      // Possible Values: `MASK_ONLY_CONFIDENTIAL_DATA`, `MASK_ENTIRE_VALUE`, `NOT_MASKED`
 }
 
 func (me *RuleItem) Schema() map[string]*schema.Schema {
@@ -59,12 +59,12 @@ func (me *RuleItem) Schema() map[string]*schema.Schema {
 		},
 		"enabled": {
 			Type:        schema.TypeBool,
-			Description: "If this is true, the value of the specified key is stored.",
+			Description: "This setting is enabled (`true`) or disabled (`false`)",
 			Required:    true,
 		},
 		"masking": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `NOT_MASKED`, `MASK_ONLY_CONFIDENTIAL_DATA`, `MASK_ENTIRE_VALUE`",
+			Description: "Possible Values: `MASK_ONLY_CONFIDENTIAL_DATA`, `MASK_ENTIRE_VALUE`, `NOT_MASKED`",
 			Required:    true,
 		},
 	}

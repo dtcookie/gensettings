@@ -23,7 +23,7 @@ import (
 )
 
 type DimensionRule struct {
-	AppliesTo  DimensionType       `json:"appliesTo"` // Possible Values: `ANY`, `LOG`, `METRIC`
+	AppliesTo  DimensionType       `json:"appliesTo"` // Possible Values: `METRIC`, `ANY`, `LOG`
 	Conditions DimensionConditions `json:"conditions"`
 }
 
@@ -31,7 +31,7 @@ func (me *DimensionRule) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"applies_to": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `ANY`, `LOG`, `METRIC`",
+			Description: "Possible Values: `METRIC`, `ANY`, `LOG`",
 			Required:    true,
 		},
 		"conditions": {

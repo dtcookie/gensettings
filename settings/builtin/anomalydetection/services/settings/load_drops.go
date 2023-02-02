@@ -23,7 +23,7 @@ import (
 )
 
 type LoadDrops struct {
-	Enabled              bool     `json:"enabled"`                        // Detect service load drops
+	Enabled              bool     `json:"enabled"`                        // This setting is enabled (`true`) or disabled (`false`)
 	LoadDropPercent      *float64 `json:"loadDropPercent,omitempty"`      // Threshold
 	MinutesAbnormalState *int     `json:"minutesAbnormalState,omitempty"` // Time span
 }
@@ -32,7 +32,7 @@ func (me *LoadDrops) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"enabled": {
 			Type:        schema.TypeBool,
-			Description: "Detect service load drops",
+			Description: "This setting is enabled (`true`) or disabled (`false`)",
 			Required:    true,
 		},
 		"load_drop_percent": {

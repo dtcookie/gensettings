@@ -25,7 +25,7 @@ import (
 type HighNetworkDetection struct {
 	CustomThresholds *HighNetworkDetectionThresholds `json:"customThresholds,omitempty"`
 	DetectionMode    *DetectionMode                  `json:"detectionMode,omitempty"` // Possible Values: `Auto`, `Custom`
-	Enabled          bool                            `json:"enabled"`                 // Detect high network utilization
+	Enabled          bool                            `json:"enabled"`                 // This setting is enabled (`true`) or disabled (`false`)
 }
 
 func (me *HighNetworkDetection) Schema() map[string]*schema.Schema {
@@ -46,7 +46,7 @@ func (me *HighNetworkDetection) Schema() map[string]*schema.Schema {
 		},
 		"enabled": {
 			Type:        schema.TypeBool,
-			Description: "Detect high network utilization",
+			Description: "This setting is enabled (`true`) or disabled (`false`)",
 			Required:    true,
 		},
 	}

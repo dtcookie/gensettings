@@ -25,7 +25,7 @@ import (
 type DiskSlowWritesAndReadsDetection struct {
 	CustomThresholds *DiskSlowWritesAndReadsDetectionThresholds `json:"customThresholds,omitempty"`
 	DetectionMode    *DetectionMode                             `json:"detectionMode,omitempty"` // Possible Values: `Auto`, `Custom`
-	Enabled          bool                                       `json:"enabled"`                 // Detect slow-running disks
+	Enabled          bool                                       `json:"enabled"`                 // This setting is enabled (`true`) or disabled (`false`)
 }
 
 func (me *DiskSlowWritesAndReadsDetection) Schema() map[string]*schema.Schema {
@@ -46,7 +46,7 @@ func (me *DiskSlowWritesAndReadsDetection) Schema() map[string]*schema.Schema {
 		},
 		"enabled": {
 			Type:        schema.TypeBool,
-			Description: "Detect slow-running disks",
+			Description: "This setting is enabled (`true`) or disabled (`false`)",
 			Required:    true,
 		},
 	}

@@ -23,7 +23,7 @@ import (
 )
 
 type AppTrafficSpikes struct {
-	Enabled       bool           `json:"enabled"`                 // Detect traffic spikes
+	Enabled       bool           `json:"enabled"`                 // This setting is enabled (`true`) or disabled (`false`)
 	TrafficSpikes *TrafficSpikes `json:"trafficSpikes,omitempty"` // Dynatrace learns your typical application traffic over an observation period of one week.\n\nDepending on this expected value Dynatrace detects abnormal traffic spikes within your application.
 }
 
@@ -31,7 +31,7 @@ func (me *AppTrafficSpikes) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"enabled": {
 			Type:        schema.TypeBool,
-			Description: "Detect traffic spikes",
+			Description: "This setting is enabled (`true`) or disabled (`false`)",
 			Required:    true,
 		},
 		"traffic_spikes": {

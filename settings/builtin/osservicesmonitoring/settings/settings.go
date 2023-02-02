@@ -27,7 +27,7 @@ type Settings struct {
 	Alerting                   bool                       `json:"alerting"`                   // Toggle the switch in order to enable or disable alerting for this policy
 	DetectionConditionsLinux   LinuxDetectionConditions   `json:"detectionConditionsLinux"`   // Detection rules
 	DetectionConditionsWindows WindowsDetectionConditions `json:"detectionConditionsWindows"` // Detection rules
-	Enabled                    bool                       `json:"enabled"`                    // Enabled
+	Enabled                    bool                       `json:"enabled"`                    // This setting is enabled (`true`) or disabled (`false`)
 	Metadata                   MetadataItems              `json:"metadata"`                   // Set of additional key-value properties to be attached to the triggered event.
 	Monitoring                 bool                       `json:"monitoring"`                 // Toggle the switch in order to enable or disable availability metric monitoring for this policy. Availability metrics consume custom metrics (DDUs). Refer to [documentation](https://dt-url.net/vl03xzk) for DDU consumption examples. Each monitored service consumes one custom metric.
 	Name                       string                     `json:"name"`                       // Rule name
@@ -70,7 +70,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		},
 		"enabled": {
 			Type:        schema.TypeBool,
-			Description: "Enabled",
+			Description: "This setting is enabled (`true`) or disabled (`false`)",
 			Required:    true,
 		},
 		"metadata": {

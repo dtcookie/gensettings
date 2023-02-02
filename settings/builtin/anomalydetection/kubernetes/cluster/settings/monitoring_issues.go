@@ -24,7 +24,7 @@ import (
 
 type MonitoringIssues struct {
 	Configuration *MonitoringIssuesConfig `json:"configuration,omitempty"` // Alert if
-	Enabled       bool                    `json:"enabled"`                 // Detect monitoring issues
+	Enabled       bool                    `json:"enabled"`                 // This setting is enabled (`true`) or disabled (`false`)
 }
 
 func (me *MonitoringIssues) Schema() map[string]*schema.Schema {
@@ -40,7 +40,7 @@ func (me *MonitoringIssues) Schema() map[string]*schema.Schema {
 		},
 		"enabled": {
 			Type:        schema.TypeBool,
-			Description: "Detect monitoring issues",
+			Description: "This setting is enabled (`true`) or disabled (`false`)",
 			Required:    true,
 		},
 	}

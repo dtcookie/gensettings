@@ -24,8 +24,8 @@ import (
 
 type RdsHighMemoryDetectionConfig struct {
 	CustomThresholds *RdsHighMemoryDetectionThresholds `json:"customThresholds,omitempty"` // Alert if **both** conditions is met in 3 out of 5 samples
-	DetectionMode    *DetectionMode                    `json:"detectionMode,omitempty"`    // Possible Values: `Custom`, `Auto`
-	Enabled          bool                              `json:"enabled"`                    // Detect RDS running out of memory
+	DetectionMode    *DetectionMode                    `json:"detectionMode,omitempty"`    // Possible Values: `Auto`, `Custom`
+	Enabled          bool                              `json:"enabled"`                    // This setting is enabled (`true`) or disabled (`false`)
 }
 
 func (me *RdsHighMemoryDetectionConfig) Schema() map[string]*schema.Schema {
@@ -41,12 +41,12 @@ func (me *RdsHighMemoryDetectionConfig) Schema() map[string]*schema.Schema {
 		},
 		"detection_mode": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `Custom`, `Auto`",
+			Description: "Possible Values: `Auto`, `Custom`",
 			Optional:    true,
 		},
 		"enabled": {
 			Type:        schema.TypeBool,
-			Description: "Detect RDS running out of memory",
+			Description: "This setting is enabled (`true`) or disabled (`false`)",
 			Required:    true,
 		},
 	}

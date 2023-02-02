@@ -118,6 +118,9 @@ func NewStruct(t *reflection.Type) *Struct {
 				sep = ", "
 			}
 		}
+		if strings.ToLower(property.Name) == "enabled" {
+			comment = "This setting is enabled (`true`) or disabled (`false`)"
+		}
 		structDef.Properties = append(structDef.Properties, HCLKind(propType, &Property{
 			Name:     PropertyName(propertyName),
 			Comment:  comment,

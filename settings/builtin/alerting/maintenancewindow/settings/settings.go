@@ -23,7 +23,7 @@ import (
 )
 
 type Settings struct {
-	Enabled           bool               `json:"enabled"`           // The status of the maintenance window. If `false`, it is not considered during the maintenance window evaluation.
+	Enabled           bool               `json:"enabled"`           // This setting is enabled (`true`) or disabled (`false`)
 	Filters           Filters            `json:"filters"`           // ## Filters\nAdd filters to limit the scope of maintenance to only select matching entities. If no filter is defined, the maintenance window is valid for the whole environment. Each filter is evaluated separately (**OR**).
 	GeneralProperties *GeneralProperties `json:"generalProperties"` // ## Properties
 	Schedule          *Schedule          `json:"schedule"`          // ## Schedule
@@ -33,7 +33,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"enabled": {
 			Type:        schema.TypeBool,
-			Description: "The status of the maintenance window. If `false`, it is not considered during the maintenance window evaluation.",
+			Description: "This setting is enabled (`true`) or disabled (`false`)",
 			Required:    true,
 		},
 		"filters": {

@@ -25,7 +25,7 @@ import (
 type Settings struct {
 	ActiveGateGroup *string `json:"activeGateGroup,omitempty"` // ActiveGate group
 	ApiUrl          string  `json:"apiUrl"`                    // Cloud Foundry API Target
-	Enabled         bool    `json:"enabled"`                   // Enabled
+	Enabled         bool    `json:"enabled"`                   // This setting is enabled (`true`) or disabled (`false`)
 	Label           string  `json:"label"`                     // Name this connection
 	LoginUrl        string  `json:"loginUrl"`                  // Cloud Foundry Authentication Endpoint
 	Password        string  `json:"password"`                  // Cloud Foundry Password
@@ -46,7 +46,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		},
 		"enabled": {
 			Type:        schema.TypeBool,
-			Description: "Enabled",
+			Description: "This setting is enabled (`true`) or disabled (`false`)",
 			Required:    true,
 		},
 		"label": {

@@ -25,7 +25,7 @@ import (
 type EventDataAttributeComplex struct {
 	Path       *string                        `json:"path,omitempty"`   // [See our documentation](https://dt-url.net/ei034bx)
 	Source     *string                        `json:"source,omitempty"` // Fixed value
-	SourceType DataSourceWithStaticStringEnum `json:"sourceType"`       // Possible Values: `Response_statusCode`, `Request_path`, `Request_body`, `Response_body`, `Response_headers`, `Request_method`, `Request_headers`, `Request_parameters`, `Constant_string`
+	SourceType DataSourceWithStaticStringEnum `json:"sourceType"`       // Possible Values: `Request_parameters`, `Request_body`, `Response_statusCode`, `Request_method`, `Request_path`, `Response_body`, `Response_headers`, `Constant_string`, `Request_headers`
 }
 
 func (me *EventDataAttributeComplex) Schema() map[string]*schema.Schema {
@@ -42,7 +42,7 @@ func (me *EventDataAttributeComplex) Schema() map[string]*schema.Schema {
 		},
 		"source_type": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `Response_statusCode`, `Request_path`, `Request_body`, `Response_body`, `Response_headers`, `Request_method`, `Request_headers`, `Request_parameters`, `Constant_string`",
+			Description: "Possible Values: `Request_parameters`, `Request_body`, `Response_statusCode`, `Request_method`, `Request_path`, `Response_body`, `Response_headers`, `Constant_string`, `Request_headers`",
 			Required:    true,
 		},
 	}

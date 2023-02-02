@@ -24,7 +24,7 @@ import (
 
 type MemoryRequestsQuotaSaturation struct {
 	Configuration *MemoryRequestsQuotaSaturationConfig `json:"configuration,omitempty"` // Alert if
-	Enabled       bool                                 `json:"enabled"`                 // Detect memory requests quota saturation
+	Enabled       bool                                 `json:"enabled"`                 // This setting is enabled (`true`) or disabled (`false`)
 }
 
 func (me *MemoryRequestsQuotaSaturation) Schema() map[string]*schema.Schema {
@@ -40,7 +40,7 @@ func (me *MemoryRequestsQuotaSaturation) Schema() map[string]*schema.Schema {
 		},
 		"enabled": {
 			Type:        schema.TypeBool,
-			Description: "Detect memory requests quota saturation",
+			Description: "This setting is enabled (`true`) or disabled (`false`)",
 			Required:    true,
 		},
 	}

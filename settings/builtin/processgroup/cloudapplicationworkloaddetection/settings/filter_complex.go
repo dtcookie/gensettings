@@ -45,7 +45,7 @@ func (me *FilterComplexes) UnmarshalHCL(decoder hcl.Decoder) error {
 }
 
 type FilterComplex struct {
-	Enabled          bool              `json:"enabled"`
+	Enabled          bool              `json:"enabled"`          // This setting is enabled (`true`) or disabled (`false`)
 	InclusionToggles *InclusionToggles `json:"inclusionToggles"` // ID calculation based on
 	MatchFilter      *MatchFilter      `json:"matchFilter"`      // When namespace
 }
@@ -54,7 +54,7 @@ func (me *FilterComplex) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"enabled": {
 			Type:        schema.TypeBool,
-			Description: "no documentation available",
+			Description: "This setting is enabled (`true`) or disabled (`false`)",
 			Required:    true,
 		},
 		"inclusion_toggles": {

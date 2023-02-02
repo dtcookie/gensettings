@@ -23,7 +23,7 @@ import (
 )
 
 type UnexpectedHighLoad struct {
-	Enabled             bool     `json:"enabled"`                       // Detect unexpected high load
+	Enabled             bool     `json:"enabled"`                       // This setting is enabled (`true`) or disabled (`false`)
 	ThresholdPercentage *float64 `json:"thresholdPercentage,omitempty"` // Dynatrace learns your typical application traffic over an observation period of one week. Depending on this expected value Dynatrace detects abnormal traffic spikes within your application.
 }
 
@@ -31,7 +31,7 @@ func (me *UnexpectedHighLoad) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"enabled": {
 			Type:        schema.TypeBool,
-			Description: "Detect unexpected high load",
+			Description: "This setting is enabled (`true`) or disabled (`false`)",
 			Required:    true,
 		},
 		"threshold_percentage": {

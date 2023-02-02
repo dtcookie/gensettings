@@ -45,8 +45,8 @@ func (me *EntityFilterConditions) UnmarshalHCL(decoder hcl.Decoder) error {
 }
 
 type EntityFilterCondition struct {
-	Operator EntityFilterOperator `json:"operator"` // Possible Values: `CONTAINS_CASE_INSENSITIVE`, `CONTAINS_CASE_SENSITIVE`, `EQUALS`
-	Type     EntityFilterType     `json:"type"`     // Possible Values: `NAME`, `PROCESS_GROUP_NAME`, `CUSTOM_DEVICE_GROUP_NAME`, `HOST_GROUP_NAME`, `PROCESS_GROUP_ID`, `ENTITY_ID`, `MANAGEMENT_ZONE`, `TAG`, `HOST_NAME`
+	Operator EntityFilterOperator `json:"operator"` // Possible Values: `EQUALS`, `CONTAINS_CASE_INSENSITIVE`, `CONTAINS_CASE_SENSITIVE`
+	Type     EntityFilterType     `json:"type"`     // Possible Values: `ENTITY_ID`, `TAG`, `PROCESS_GROUP_NAME`, `CUSTOM_DEVICE_GROUP_NAME`, `HOST_GROUP_NAME`, `NAME`, `MANAGEMENT_ZONE`, `HOST_NAME`, `PROCESS_GROUP_ID`
 	Value    string               `json:"value"`
 }
 
@@ -54,12 +54,12 @@ func (me *EntityFilterCondition) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"operator": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `CONTAINS_CASE_INSENSITIVE`, `CONTAINS_CASE_SENSITIVE`, `EQUALS`",
+			Description: "Possible Values: `EQUALS`, `CONTAINS_CASE_INSENSITIVE`, `CONTAINS_CASE_SENSITIVE`",
 			Required:    true,
 		},
 		"type": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `NAME`, `PROCESS_GROUP_NAME`, `CUSTOM_DEVICE_GROUP_NAME`, `HOST_GROUP_NAME`, `PROCESS_GROUP_ID`, `ENTITY_ID`, `MANAGEMENT_ZONE`, `TAG`, `HOST_NAME`",
+			Description: "Possible Values: `ENTITY_ID`, `TAG`, `PROCESS_GROUP_NAME`, `CUSTOM_DEVICE_GROUP_NAME`, `HOST_GROUP_NAME`, `NAME`, `MANAGEMENT_ZONE`, `HOST_NAME`, `PROCESS_GROUP_ID`",
 			Required:    true,
 		},
 		"value": {

@@ -23,9 +23,9 @@ import (
 )
 
 type Settings struct {
-	Enabled  bool              `json:"enabled"`  // Enabled
+	Enabled  bool              `json:"enabled"`  // This setting is enabled (`true`) or disabled (`false`)
 	Mode     MonitoringMode    `json:"mode"`     // Possible Values: `MONITORING_OFF`, `MONITORING_ON`
-	Operator ConditionOperator `json:"operator"` // Possible Values: `EXISTS`, `ENDS`, `NOT_ENDS`, `NOT_EQUALS`, `NOT_EXISTS`, `STARTS`, `NOT_STARTS`, `CONTAINS`, `NOT_CONTAINS`, `EQUALS`
+	Operator ConditionOperator `json:"operator"` // Possible Values: `EQUALS`, `NOT_EQUALS`, `STARTS`, `NOT_CONTAINS`, `NOT_EXISTS`, `CONTAINS`, `ENDS`, `NOT_ENDS`, `EXISTS`, `NOT_STARTS`
 	Property ContainerItem     `json:"property"` // Possible Values: `IMAGE_NAME`, `KUBERNETES_NAMESPACE`, `KUBERNETES_CONTAINERNAME`, `KUBERNETES_BASEPODNAME`, `KUBERNETES_FULLPODNAME`, `KUBERNETES_PODUID`, `CONTAINER_NAME`
 	Value    string            `json:"value"`    // Condition value
 }
@@ -34,7 +34,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"enabled": {
 			Type:        schema.TypeBool,
-			Description: "Enabled",
+			Description: "This setting is enabled (`true`) or disabled (`false`)",
 			Required:    true,
 		},
 		"mode": {
@@ -44,7 +44,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		},
 		"operator": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `EXISTS`, `ENDS`, `NOT_ENDS`, `NOT_EQUALS`, `NOT_EXISTS`, `STARTS`, `NOT_STARTS`, `CONTAINS`, `NOT_CONTAINS`, `EQUALS`",
+			Description: "Possible Values: `EQUALS`, `NOT_EQUALS`, `STARTS`, `NOT_CONTAINS`, `NOT_EXISTS`, `CONTAINS`, `ENDS`, `NOT_ENDS`, `EXISTS`, `NOT_STARTS`",
 			Required:    true,
 		},
 		"property": {

@@ -24,7 +24,7 @@ import (
 
 type MemoryRequestsSaturation struct {
 	Configuration *MemoryRequestsSaturationConfig `json:"configuration,omitempty"` // Alert if
-	Enabled       bool                            `json:"enabled"`                 // Detect cluster memory requests saturation
+	Enabled       bool                            `json:"enabled"`                 // This setting is enabled (`true`) or disabled (`false`)
 }
 
 func (me *MemoryRequestsSaturation) Schema() map[string]*schema.Schema {
@@ -40,7 +40,7 @@ func (me *MemoryRequestsSaturation) Schema() map[string]*schema.Schema {
 		},
 		"enabled": {
 			Type:        schema.TypeBool,
-			Description: "Detect cluster memory requests saturation",
+			Description: "This setting is enabled (`true`) or disabled (`false`)",
 			Required:    true,
 		},
 	}

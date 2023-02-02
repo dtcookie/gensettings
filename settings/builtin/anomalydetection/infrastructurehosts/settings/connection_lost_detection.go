@@ -23,7 +23,7 @@ import (
 )
 
 type ConnectionLostDetection struct {
-	Enabled             bool                                `json:"enabled"`                       // Detect host or monitoring connection lost problems
+	Enabled             bool                                `json:"enabled"`                       // This setting is enabled (`true`) or disabled (`false`)
 	OnGracefulShutdowns *ConnectionLostDetectionSensitivity `json:"onGracefulShutdowns,omitempty"` // Possible Values: `DONT_ALERT_ON_GRACEFUL_SHUTDOWN`, `ALERT_ON_GRACEFUL_SHUTDOWN`
 }
 
@@ -31,7 +31,7 @@ func (me *ConnectionLostDetection) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"enabled": {
 			Type:        schema.TypeBool,
-			Description: "Detect host or monitoring connection lost problems",
+			Description: "This setting is enabled (`true`) or disabled (`false`)",
 			Required:    true,
 		},
 		"on_graceful_shutdowns": {

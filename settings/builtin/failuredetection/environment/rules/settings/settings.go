@@ -25,7 +25,7 @@ import (
 type Settings struct {
 	Conditions  Conditions `json:"conditions"`            // Conditions
 	Description *string    `json:"description,omitempty"` // Rule description
-	Enabled     bool       `json:"enabled"`               // Enabled
+	Enabled     bool       `json:"enabled"`               // This setting is enabled (`true`) or disabled (`false`)
 	Name        string     `json:"name"`                  // Rule name
 	ParameterID string     `json:"parameterId"`           // Failure detection parameters
 }
@@ -48,7 +48,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		},
 		"enabled": {
 			Type:        schema.TypeBool,
-			Description: "Enabled",
+			Description: "This setting is enabled (`true`) or disabled (`false`)",
 			Required:    true,
 		},
 		"name": {

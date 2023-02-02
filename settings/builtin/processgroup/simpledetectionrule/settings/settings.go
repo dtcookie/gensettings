@@ -23,7 +23,7 @@ import (
 )
 
 type Settings struct {
-	Enabled            bool              `json:"enabled"`               // Enabled
+	Enabled            bool              `json:"enabled"`               // This setting is enabled (`true`) or disabled (`false`)
 	GroupIdentifier    string            `json:"groupIdentifier"`       // If Dynatrace detects this property at startup of a process, it will use its value to identify process groups more granular.
 	InstanceIdentifier string            `json:"instanceIdentifier"`    // Use a variable to identify instances within a process group.\n\nThe type of variable is the same as selected in 'Property source'.
 	ProcessType        *string           `json:"processType,omitempty"` // Note: Not all types can be detected at startup.
@@ -34,7 +34,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"enabled": {
 			Type:        schema.TypeBool,
-			Description: "Enabled",
+			Description: "This setting is enabled (`true`) or disabled (`false`)",
 			Required:    true,
 		},
 		"group_identifier": {

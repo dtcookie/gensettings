@@ -46,7 +46,7 @@ func (me *AdditionalAttributeItems) UnmarshalHCL(decoder hcl.Decoder) error {
 
 type AdditionalAttributeItem struct {
 	AttributeKey string `json:"attributeKey"` // Attribute key
-	Enabled      bool   `json:"enabled"`      // When enabled, the attribute will be added as a dimension to ingested metrics if present in the OpenTelemetry resource or in the instrumentation scope.
+	Enabled      bool   `json:"enabled"`      // This setting is enabled (`true`) or disabled (`false`)
 }
 
 func (me *AdditionalAttributeItem) Schema() map[string]*schema.Schema {
@@ -58,7 +58,7 @@ func (me *AdditionalAttributeItem) Schema() map[string]*schema.Schema {
 		},
 		"enabled": {
 			Type:        schema.TypeBool,
-			Description: "When enabled, the attribute will be added as a dimension to ingested metrics if present in the OpenTelemetry resource or in the instrumentation scope.",
+			Description: "This setting is enabled (`true`) or disabled (`false`)",
 			Required:    true,
 		},
 	}

@@ -23,14 +23,14 @@ import (
 )
 
 type Settings struct {
-	Enabled bool `json:"enabled"` // Log all audit-related system events
+	Enabled bool `json:"enabled"` // This setting is enabled (`true`) or disabled (`false`)
 }
 
 func (me *Settings) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"enabled": {
 			Type:        schema.TypeBool,
-			Description: "Log all audit-related system events",
+			Description: "This setting is enabled (`true`) or disabled (`false`)",
 			Required:    true,
 		},
 	}

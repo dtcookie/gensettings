@@ -23,7 +23,7 @@ import (
 )
 
 type LoadSpikes struct {
-	Enabled              bool     `json:"enabled"`                        // Detect service load spikes
+	Enabled              bool     `json:"enabled"`                        // This setting is enabled (`true`) or disabled (`false`)
 	LoadSpikePercent     *float64 `json:"loadSpikePercent,omitempty"`     // Threshold
 	MinutesAbnormalState *int     `json:"minutesAbnormalState,omitempty"` // Time span
 }
@@ -32,7 +32,7 @@ func (me *LoadSpikes) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"enabled": {
 			Type:        schema.TypeBool,
-			Description: "Detect service load spikes",
+			Description: "This setting is enabled (`true`) or disabled (`false`)",
 			Required:    true,
 		},
 		"load_spike_percent": {

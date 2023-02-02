@@ -24,8 +24,8 @@ import (
 
 type RdsHighWriteReadLatencyDetectionConfig struct {
 	CustomThresholds *RdsHighWriteReadLatencyDetectionThresholds `json:"customThresholds,omitempty"` // Alert if the condition is met in 3 out of 5 samples
-	DetectionMode    *DetectionMode                              `json:"detectionMode,omitempty"`    // Possible Values: `Auto`, `Custom`
-	Enabled          bool                                        `json:"enabled"`                    // Detect high RDS write/read latency
+	DetectionMode    *DetectionMode                              `json:"detectionMode,omitempty"`    // Possible Values: `Custom`, `Auto`
+	Enabled          bool                                        `json:"enabled"`                    // This setting is enabled (`true`) or disabled (`false`)
 }
 
 func (me *RdsHighWriteReadLatencyDetectionConfig) Schema() map[string]*schema.Schema {
@@ -41,12 +41,12 @@ func (me *RdsHighWriteReadLatencyDetectionConfig) Schema() map[string]*schema.Sc
 		},
 		"detection_mode": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `Auto`, `Custom`",
+			Description: "Possible Values: `Custom`, `Auto`",
 			Optional:    true,
 		},
 		"enabled": {
 			Type:        schema.TypeBool,
-			Description: "Detect high RDS write/read latency",
+			Description: "This setting is enabled (`true`) or disabled (`false`)",
 			Required:    true,
 		},
 	}

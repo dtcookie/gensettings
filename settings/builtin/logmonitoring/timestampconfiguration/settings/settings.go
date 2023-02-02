@@ -25,7 +25,7 @@ import (
 type Settings struct {
 	Config_item_title string   `json:"config-item-title"` // Name
 	Date_time_pattern string   `json:"date-time-pattern"` // Date-time pattern
-	Enabled           bool     `json:"enabled"`           // Active
+	Enabled           bool     `json:"enabled"`           // This setting is enabled (`true`) or disabled (`false`)
 	Matchers          Matchers `json:"matchers"`
 	Scope             *string  `json:"-" scope:"scope"` // The scope of this setting (HOST HOST_GROUP environment)
 	Timezone          string   `json:"timezone"`        // Timezone
@@ -45,7 +45,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		},
 		"enabled": {
 			Type:        schema.TypeBool,
-			Description: "Active",
+			Description: "This setting is enabled (`true`) or disabled (`false`)",
 			Required:    true,
 		},
 		"matchers": {

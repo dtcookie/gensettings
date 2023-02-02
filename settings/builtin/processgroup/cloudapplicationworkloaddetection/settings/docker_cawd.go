@@ -23,14 +23,14 @@ import (
 )
 
 type DockerCAWD struct {
-	Enabled bool `json:"enabled"` // Enable cloud application and workload detection for Docker
+	Enabled bool `json:"enabled"` // This setting is enabled (`true`) or disabled (`false`)
 }
 
 func (me *DockerCAWD) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"enabled": {
 			Type:        schema.TypeBool,
-			Description: "Enable cloud application and workload detection for Docker",
+			Description: "This setting is enabled (`true`) or disabled (`false`)",
 			Required:    true,
 		},
 	}

@@ -23,7 +23,7 @@ import (
 )
 
 type Settings struct {
-	Enabled              bool                 `json:"enabled"`              // Enabled
+	Enabled              bool                 `json:"enabled"`              // This setting is enabled (`true`) or disabled (`false`)
 	Matcher              string               `json:"matcher"`              // [See our documentation](https://dt-url.net/bp234rv)
 	RuleName             string               `json:"ruleName"`             // Rule name
 	RuleTesting          *RuleTesting         `json:"RuleTesting"`          // ## Rule testing\n### 1. Paste an event sample
@@ -35,7 +35,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"enabled": {
 			Type:        schema.TypeBool,
-			Description: "Enabled",
+			Description: "This setting is enabled (`true`) or disabled (`false`)",
 			Required:    true,
 		},
 		"matcher": {

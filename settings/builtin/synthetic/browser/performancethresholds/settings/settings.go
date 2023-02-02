@@ -23,7 +23,7 @@ import (
 )
 
 type Settings struct {
-	Enabled    bool             `json:"enabled"`         // Generate a problem and send an alert on performance threshold violations
+	Enabled    bool             `json:"enabled"`         // This setting is enabled (`true`) or disabled (`false`)
 	Scope      string           `json:"-" scope:"scope"` // The scope of this setting (SYNTHETIC_TEST)
 	Thresholds ThresholdEntries `json:"thresholds"`      // Performance thresholds
 }
@@ -32,7 +32,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"enabled": {
 			Type:        schema.TypeBool,
-			Description: "Generate a problem and send an alert on performance threshold violations",
+			Description: "This setting is enabled (`true`) or disabled (`false`)",
 			Required:    true,
 		},
 		"scope": {

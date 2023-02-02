@@ -47,7 +47,7 @@ func (me *SourceFilters) UnmarshalHCL(decoder hcl.Decoder) error {
 // Ingest source filter. The source filter is matched against the source of the ingest data. This way a subset of a specified data source can be used for creating the type.
 type SourceFilter struct {
 	Condition  *string          `json:"condition,omitempty"` // Specify a filter that needs to match in order for the extraction to happen.. Three different filters are supported: `$eq(value)` will ensure that the source matches exactly 'value', `$prefix(value)` will ensure that the source begins with exactly 'value', '$exists()' will ensure that any source with matching dimension filter exists.\nIf your value contains the characters '(', ')' or '\\~', you need to escape them by adding a '\\~' in front of them.
-	SourceType IngestDataSource `json:"sourceType"`          // Possible Values: `Spans`, `Entities`, `Topology`, `Events`, `Metrics`, `Logs`
+	SourceType IngestDataSource `json:"sourceType"`          // Possible Values: `Logs`, `Spans`, `Entities`, `Topology`, `Events`, `Metrics`
 }
 
 func (me *SourceFilter) Schema() map[string]*schema.Schema {
@@ -59,7 +59,7 @@ func (me *SourceFilter) Schema() map[string]*schema.Schema {
 		},
 		"source_type": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `Spans`, `Entities`, `Topology`, `Events`, `Metrics`, `Logs`",
+			Description: "Possible Values: `Logs`, `Spans`, `Entities`, `Topology`, `Events`, `Metrics`",
 			Required:    true,
 		},
 	}

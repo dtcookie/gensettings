@@ -24,8 +24,8 @@ import (
 
 type LambdaHighErrorRateDetectionConfig struct {
 	CustomThresholds *LambdaHighErrorRateDetectionThresholds `json:"customThresholds,omitempty"` // Alert if the condition is met in 3 out of 5 samples
-	DetectionMode    *DetectionMode                          `json:"detectionMode,omitempty"`    // Possible Values: `Auto`, `Custom`
-	Enabled          bool                                    `json:"enabled"`                    // Detect AWS Lambda high error rate
+	DetectionMode    *DetectionMode                          `json:"detectionMode,omitempty"`    // Possible Values: `Custom`, `Auto`
+	Enabled          bool                                    `json:"enabled"`                    // This setting is enabled (`true`) or disabled (`false`)
 }
 
 func (me *LambdaHighErrorRateDetectionConfig) Schema() map[string]*schema.Schema {
@@ -41,12 +41,12 @@ func (me *LambdaHighErrorRateDetectionConfig) Schema() map[string]*schema.Schema
 		},
 		"detection_mode": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `Auto`, `Custom`",
+			Description: "Possible Values: `Custom`, `Auto`",
 			Optional:    true,
 		},
 		"enabled": {
 			Type:        schema.TypeBool,
-			Description: "Detect AWS Lambda high error rate",
+			Description: "This setting is enabled (`true`) or disabled (`false`)",
 			Required:    true,
 		},
 	}

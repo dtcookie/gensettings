@@ -24,7 +24,7 @@ import (
 
 type Settings struct {
 	Detection ProcessDefinitions `json:"detection"`       // Enter a descriptive process group display name and a unique identifier that Dynatrace can use to recognize this process group.
-	Enabled   bool               `json:"enabled"`         // Enabled
+	Enabled   bool               `json:"enabled"`         // This setting is enabled (`true`) or disabled (`false`)
 	Name      string             `json:"name"`            // Monitored technology name
 	Scope     *string            `json:"-" scope:"scope"` // The scope of this setting (HOST HOST_GROUP environment)
 }
@@ -42,7 +42,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		},
 		"enabled": {
 			Type:        schema.TypeBool,
-			Description: "Enabled",
+			Description: "This setting is enabled (`true`) or disabled (`false`)",
 			Required:    true,
 		},
 		"name": {

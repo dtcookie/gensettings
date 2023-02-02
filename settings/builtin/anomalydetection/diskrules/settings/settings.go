@@ -24,9 +24,9 @@ import (
 
 type Settings struct {
 	DiskNameFilter        *DiskNameFilter `json:"diskNameFilter"`        // Only apply to disks whose name matches
-	Enabled               bool            `json:"enabled"`               // Enabled
+	Enabled               bool            `json:"enabled"`               // This setting is enabled (`true`) or disabled (`false`)
 	HostID                *string         `json:"-" scope:"hostId"`      // The scope of this settings. If the settings should cover the whole environment, just don't specify any scope.
-	Metric                DiskMetric      `json:"metric"`                // Possible Values: `LOW_DISK_SPACE`, `LOW_INODES`, `READ_TIME_EXCEEDING`, `WRITE_TIME_EXCEEDING`
+	Metric                DiskMetric      `json:"metric"`                // Possible Values: `LOW_INODES`, `READ_TIME_EXCEEDING`, `WRITE_TIME_EXCEEDING`, `LOW_DISK_SPACE`
 	Name                  string          `json:"name"`                  // Name
 	SampleLimit           *SampleLimit    `json:"sampleLimit"`           // Only alert if the threshold was violated in at least *n* of the last *m* samples
 	TagFilters            []string        `json:"tagFilters"`            // Only apply to hosts that have the following tags
@@ -47,7 +47,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		},
 		"enabled": {
 			Type:        schema.TypeBool,
-			Description: "Enabled",
+			Description: "This setting is enabled (`true`) or disabled (`false`)",
 			Required:    true,
 		},
 		"host_id": {
@@ -58,7 +58,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		},
 		"metric": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `LOW_DISK_SPACE`, `LOW_INODES`, `READ_TIME_EXCEEDING`, `WRITE_TIME_EXCEEDING`",
+			Description: "Possible Values: `LOW_INODES`, `READ_TIME_EXCEEDING`, `WRITE_TIME_EXCEEDING`, `LOW_DISK_SPACE`",
 			Required:    true,
 		},
 		"name": {

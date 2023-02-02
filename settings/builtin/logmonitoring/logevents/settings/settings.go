@@ -23,7 +23,7 @@ import (
 )
 
 type Settings struct {
-	Enabled       bool           `json:"enabled"`       // Enabled
+	Enabled       bool           `json:"enabled"`       // This setting is enabled (`true`) or disabled (`false`)
 	EventTemplate *EventTemplate `json:"eventTemplate"` // Event template
 	Query         string         `json:"query"`         // Log query
 	Summary       string         `json:"summary"`       // The textual summary of the log event entry
@@ -33,7 +33,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"enabled": {
 			Type:        schema.TypeBool,
-			Description: "Enabled",
+			Description: "This setting is enabled (`true`) or disabled (`false`)",
 			Required:    true,
 		},
 		"event_template": {

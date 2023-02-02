@@ -25,7 +25,7 @@ import (
 type HighCpuSaturationDetection struct {
 	CustomThresholds *HighCpuSaturationDetectionThresholds `json:"customThresholds,omitempty"`
 	DetectionMode    *DetectionMode                        `json:"detectionMode,omitempty"` // Possible Values: `Auto`, `Custom`
-	Enabled          bool                                  `json:"enabled"`                 // Detect CPU saturation on host
+	Enabled          bool                                  `json:"enabled"`                 // This setting is enabled (`true`) or disabled (`false`)
 }
 
 func (me *HighCpuSaturationDetection) Schema() map[string]*schema.Schema {
@@ -46,7 +46,7 @@ func (me *HighCpuSaturationDetection) Schema() map[string]*schema.Schema {
 		},
 		"enabled": {
 			Type:        schema.TypeBool,
-			Description: "Detect CPU saturation on host",
+			Description: "This setting is enabled (`true`) or disabled (`false`)",
 			Required:    true,
 		},
 	}

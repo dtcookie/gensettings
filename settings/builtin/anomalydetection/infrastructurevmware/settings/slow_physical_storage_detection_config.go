@@ -25,7 +25,7 @@ import (
 type SlowPhysicalStorageDetectionConfig struct {
 	CustomThresholds *SlowPhysicalStorageDetectionThresholds `json:"customThresholds,omitempty"` // Alert if **any** condition is met in 4 out of 5 samples
 	DetectionMode    *DetectionMode                          `json:"detectionMode,omitempty"`    // Possible Values: `Auto`, `Custom`
-	Enabled          bool                                    `json:"enabled"`                    // Detect physical storage device running slow
+	Enabled          bool                                    `json:"enabled"`                    // This setting is enabled (`true`) or disabled (`false`)
 }
 
 func (me *SlowPhysicalStorageDetectionConfig) Schema() map[string]*schema.Schema {
@@ -46,7 +46,7 @@ func (me *SlowPhysicalStorageDetectionConfig) Schema() map[string]*schema.Schema
 		},
 		"enabled": {
 			Type:        schema.TypeBool,
-			Description: "Detect physical storage device running slow",
+			Description: "This setting is enabled (`true`) or disabled (`false`)",
 			Required:    true,
 		},
 	}

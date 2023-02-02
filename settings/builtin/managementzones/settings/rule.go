@@ -47,9 +47,9 @@ func (me *Rules) UnmarshalHCL(decoder hcl.Decoder) error {
 type Rule struct {
 	AttributeRule  *ManagementZoneAttributeRule `json:"attributeRule,omitempty"`
 	DimensionRule  *DimensionRule               `json:"dimensionRule,omitempty"`
-	Enabled        bool                         `json:"enabled"`
+	Enabled        bool                         `json:"enabled"`                  // This setting is enabled (`true`) or disabled (`false`)
 	EntitySelector *string                      `json:"entitySelector,omitempty"` // The documentation of the entity selector can be found [here](https://dt-url.net/apientityselector).
-	Type           RuleType                     `json:"type"`                     // Possible Values: `ME`, `DIMENSION`, `SELECTOR`
+	Type           RuleType                     `json:"type"`                     // Possible Values: `DIMENSION`, `SELECTOR`, `ME`
 }
 
 func (me *Rule) Schema() map[string]*schema.Schema {
@@ -74,7 +74,7 @@ func (me *Rule) Schema() map[string]*schema.Schema {
 		},
 		"enabled": {
 			Type:        schema.TypeBool,
-			Description: "no documentation available",
+			Description: "This setting is enabled (`true`) or disabled (`false`)",
 			Required:    true,
 		},
 		"entity_selector": {
@@ -84,7 +84,7 @@ func (me *Rule) Schema() map[string]*schema.Schema {
 		},
 		"type": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `ME`, `DIMENSION`, `SELECTOR`",
+			Description: "Possible Values: `DIMENSION`, `SELECTOR`, `ME`",
 			Required:    true,
 		},
 	}

@@ -26,7 +26,7 @@ type AutoTagAttributeRule struct {
 	AzureToPGPropagation      *bool               `json:"azureToPGPropagation,omitempty"`      // Apply to process groups connected to matching Azure entities
 	AzureToServicePropagation *bool               `json:"azureToServicePropagation,omitempty"` // Apply to services provided by matching Azure entities
 	Conditions                AttributeConditions `json:"conditions"`
-	EntityType                AutoTagMeType       `json:"entityType"`                         // Possible Values: `AZURE`, `EXTERNAL_SYNTHETIC_TEST`, `AWS_RELATIONAL_DATABASE_SERVICE`, `HOST`, `MOBILE_APPLICATION`, `PROCESS_GROUP`, `SYNTHETIC_TEST`, `DCRUM_APPLICATION`, `APPLICATION`, `HTTP_CHECK`, `AWS_CLASSIC_LOAD_BALANCER`, `CUSTOM_APPLICATION`, `ESXI_HOST`, `CUSTOM_DEVICE`, `AWS_APPLICATION_LOAD_BALANCER`, `SERVICE`, `AWS_NETWORK_LOAD_BALANCER`
+	EntityType                AutoTagMeType       `json:"entityType"`                         // Possible Values: `AWS_NETWORK_LOAD_BALANCER`, `AWS_APPLICATION_LOAD_BALANCER`, `SYNTHETIC_TEST`, `CUSTOM_DEVICE`, `HTTP_CHECK`, `SERVICE`, `APPLICATION`, `AWS_RELATIONAL_DATABASE_SERVICE`, `HOST`, `AWS_CLASSIC_LOAD_BALANCER`, `ESXI_HOST`, `DCRUM_APPLICATION`, `AZURE`, `MOBILE_APPLICATION`, `CUSTOM_APPLICATION`, `EXTERNAL_SYNTHETIC_TEST`, `PROCESS_GROUP`
 	HostToPGPropagation       *bool               `json:"hostToPGPropagation,omitempty"`      // Apply to processes running on matching hosts
 	PGToHostPropagation       *bool               `json:"pgToHostPropagation,omitempty"`      // Apply to underlying hosts of matching process groups
 	PGToServicePropagation    *bool               `json:"pgToServicePropagation,omitempty"`   // Apply to all services provided by the process groups
@@ -57,7 +57,7 @@ func (me *AutoTagAttributeRule) Schema() map[string]*schema.Schema {
 		},
 		"entity_type": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `AZURE`, `EXTERNAL_SYNTHETIC_TEST`, `AWS_RELATIONAL_DATABASE_SERVICE`, `HOST`, `MOBILE_APPLICATION`, `PROCESS_GROUP`, `SYNTHETIC_TEST`, `DCRUM_APPLICATION`, `APPLICATION`, `HTTP_CHECK`, `AWS_CLASSIC_LOAD_BALANCER`, `CUSTOM_APPLICATION`, `ESXI_HOST`, `CUSTOM_DEVICE`, `AWS_APPLICATION_LOAD_BALANCER`, `SERVICE`, `AWS_NETWORK_LOAD_BALANCER`",
+			Description: "Possible Values: `AWS_NETWORK_LOAD_BALANCER`, `AWS_APPLICATION_LOAD_BALANCER`, `SYNTHETIC_TEST`, `CUSTOM_DEVICE`, `HTTP_CHECK`, `SERVICE`, `APPLICATION`, `AWS_RELATIONAL_DATABASE_SERVICE`, `HOST`, `AWS_CLASSIC_LOAD_BALANCER`, `ESXI_HOST`, `DCRUM_APPLICATION`, `AZURE`, `MOBILE_APPLICATION`, `CUSTOM_APPLICATION`, `EXTERNAL_SYNTHETIC_TEST`, `PROCESS_GROUP`",
 			Required:    true,
 		},
 		"host_to_pgpropagation": {

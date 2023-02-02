@@ -23,7 +23,7 @@ import (
 )
 
 type Settings struct {
-	Enabled                 bool             `json:"enabled"`                           // Enabled
+	Enabled                 bool             `json:"enabled"`                           // This setting is enabled (`true`) or disabled (`false`)
 	EventEntityDimensionKey *string          `json:"eventEntityDimensionKey,omitempty"` // Controls the preferred entity type used for triggered events.
 	EventTemplate           *EventTemplate   `json:"eventTemplate"`                     // Event template
 	LegacyID                *string          `json:"legacyId,omitempty"`                // Config id
@@ -36,7 +36,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"enabled": {
 			Type:        schema.TypeBool,
-			Description: "Enabled",
+			Description: "This setting is enabled (`true`) or disabled (`false`)",
 			Required:    true,
 		},
 		"event_entity_dimension_key": {

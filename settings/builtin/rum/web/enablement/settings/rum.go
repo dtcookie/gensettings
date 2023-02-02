@@ -24,7 +24,7 @@ import (
 
 type Rum struct {
 	CostAndTrafficControl int  `json:"costAndTrafficControl"` // Percentage of user sessions captured and analyzed
-	Enabled               bool `json:"enabled"`               // Enable Real User Monitoring
+	Enabled               bool `json:"enabled"`               // This setting is enabled (`true`) or disabled (`false`)
 }
 
 func (me *Rum) Schema() map[string]*schema.Schema {
@@ -36,7 +36,7 @@ func (me *Rum) Schema() map[string]*schema.Schema {
 		},
 		"enabled": {
 			Type:        schema.TypeBool,
-			Description: "Enable Real User Monitoring",
+			Description: "This setting is enabled (`true`) or disabled (`false`)",
 			Required:    true,
 		},
 	}

@@ -29,7 +29,7 @@ type MaskingPresetConfig struct {
 	PlaybackMaskingPreset          MaskingPreset   `json:"playbackMaskingPreset"`                    // Possible Values: `MASK_ALL`, `MASK_USER_INPUT`, `ALLOW_LIST`, `BLOCK_LIST`
 	RecordingMaskingAllowListRules *AllowListRules `json:"recordingMaskingAllowListRules,omitempty"` // The elements are defined by the CSS selector or attribute name.
 	RecordingMaskingBlockListRules *BlockListRules `json:"recordingMaskingBlockListRules,omitempty"` // The elements are defined by the CSS selector or attribute name.
-	RecordingMaskingPreset         MaskingPreset   `json:"recordingMaskingPreset"`                   // Possible Values: `MASK_ALL`, `MASK_USER_INPUT`, `ALLOW_LIST`, `BLOCK_LIST`
+	RecordingMaskingPreset         MaskingPreset   `json:"recordingMaskingPreset"`                   // Possible Values: `ALLOW_LIST`, `BLOCK_LIST`, `MASK_ALL`, `MASK_USER_INPUT`
 }
 
 func (me *MaskingPresetConfig) Schema() map[string]*schema.Schema {
@@ -77,7 +77,7 @@ func (me *MaskingPresetConfig) Schema() map[string]*schema.Schema {
 		},
 		"recording_masking_preset": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `MASK_ALL`, `MASK_USER_INPUT`, `ALLOW_LIST`, `BLOCK_LIST`",
+			Description: "Possible Values: `ALLOW_LIST`, `BLOCK_LIST`, `MASK_ALL`, `MASK_USER_INPUT`",
 			Required:    true,
 		},
 	}

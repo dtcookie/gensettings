@@ -24,7 +24,7 @@ import (
 
 type Settings struct {
 	BucketName string `json:"bucketName"` // A 'bucket' is the length of time your logs will be stored. Select the bucket that's best for you.
-	Enabled    bool   `json:"enabled"`    // Enabled
+	Enabled    bool   `json:"enabled"`    // This setting is enabled (`true`) or disabled (`false`)
 	Matcher    string `json:"matcher"`    // Matcher (DQL)
 	RuleName   string `json:"ruleName"`   // Rule name
 }
@@ -38,7 +38,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		},
 		"enabled": {
 			Type:        schema.TypeBool,
-			Description: "Enabled",
+			Description: "This setting is enabled (`true`) or disabled (`false`)",
 			Required:    true,
 		},
 		"matcher": {

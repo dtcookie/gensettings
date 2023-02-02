@@ -24,7 +24,7 @@ import (
 
 type ReadinessIssues struct {
 	Configuration *ReadinessIssuesConfig `json:"configuration,omitempty"` // Alert if
-	Enabled       bool                   `json:"enabled"`                 // Evaluates the Kubernetes readyz endpoint
+	Enabled       bool                   `json:"enabled"`                 // This setting is enabled (`true`) or disabled (`false`)
 }
 
 func (me *ReadinessIssues) Schema() map[string]*schema.Schema {
@@ -40,7 +40,7 @@ func (me *ReadinessIssues) Schema() map[string]*schema.Schema {
 		},
 		"enabled": {
 			Type:        schema.TypeBool,
-			Description: "Evaluates the Kubernetes readyz endpoint",
+			Description: "This setting is enabled (`true`) or disabled (`false`)",
 			Required:    true,
 		},
 	}
