@@ -1,0 +1,91 @@
+{
+	"allowedScopes": [
+		"MOBILE_APPLICATION",
+		"CUSTOM_APPLICATION"
+	],
+	"constraints": [
+		{
+			"customMessage": "Please enter a valid beacon endpoint URL.",
+			"customValidatorId": "beacon-endpoint-valid",
+			"type": "CUSTOM_VALIDATOR_REF"
+		}
+	],
+	"description": "Define where OneAgent is to send your iOS and Android monitoring data.  \n**Note:** To use an Environment ActiveGate as beacon endpoint, beacon forwarding must be enabled in the ActiveGate config first. Learn more about how to [configure an ActiveGate](https://dt-url.net/90r039v).",
+	"displayName": "Beacon endpoint settings",
+	"documentation": "",
+	"dynatrace": "1",
+	"enums": {
+		"BeaconEndpointType": {
+			"description": "",
+			"displayName": "Type",
+			"documentation": "",
+			"items": [
+				{
+					"displayName": "Cluster ActiveGate",
+					"value": "CLUSTER_ACTIVEGATE"
+				},
+				{
+					"displayName": "Environment ActiveGate",
+					"value": "ENVIRONMENT_ACTIVEGATE"
+				},
+				{
+					"displayName": "Instrumented web server",
+					"value": "INSTRUMENTED_WEBSERVER"
+				}
+			],
+			"type": "enum"
+		}
+	},
+	"maxObjects": 1,
+	"multiObject": false,
+	"properties": {
+		"type": {
+			"default": "CLUSTER_ACTIVEGATE",
+			"description": "",
+			"displayName": "Type",
+			"documentation": "",
+			"maxObjects": 1,
+			"modificationPolicy": "DEFAULT",
+			"nullable": false,
+			"type": {
+				"$ref": "#/enums/BeaconEndpointType"
+			}
+		},
+		"url": {
+			"constraints": [
+				{
+					"maxLength": 255,
+					"minLength": 1,
+					"type": "LENGTH"
+				},
+				{
+					"customMessage": "The URL must start with 'http://' or 'https://'.",
+					"pattern": "^http(s)?://.*$",
+					"type": "PATTERN"
+				}
+			],
+			"default": "",
+			"description": "This must be a valid beacon endpoint URL.",
+			"displayName": "URL",
+			"documentation": "The URL must start with 'http://' or 'https://'. Environment ActiveGate URLs must end with '/mbeacon/{{environment-id}}', Instrumented Web Server URLs must end with '/dtmb'.",
+			"maxObjects": 1,
+			"modificationPolicy": "DEFAULT",
+			"nullable": false,
+			"precondition": {
+				"precondition": {
+					"expectedValue": "CLUSTER_ACTIVEGATE",
+					"property": "type",
+					"type": "EQUALS"
+				},
+				"type": "NOT"
+			},
+			"type": "text"
+		}
+	},
+	"schemaGroups": [
+		"group:rum-general"
+	],
+	"schemaId": "builtin:rum.mobile.beacon-endpoint",
+	"types": {},
+	"version": "1.1.6"
+}

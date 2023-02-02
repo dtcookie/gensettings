@@ -1,0 +1,37 @@
+{
+	"allowedScopes": [
+		"environment",
+		"environment-default"
+	],
+	"description": "In combination with ActiveGates, network zones save bandwidth and infrastructure costs by \n* Compressing traffic \n* Optimizing traffic routing \n* Preventing unrelated traffic in between data centers and regions",
+	"displayName": "Network zones settings",
+	"documentation": "",
+	"dynatrace": "1",
+	"enums": {},
+	"maxObjects": 1,
+	"multiObject": false,
+	"properties": {
+		"enabled": {
+			"constraints": [
+				{
+					"customValidatorId": "network-zones-validator",
+					"type": "CUSTOM_VALIDATOR_REF"
+				}
+			],
+			"default": false,
+			"description": "For details, see [Network zones](https://www.dynatrace.com/support/help/shortlink/network-zones). \n\n⚠ Warning: You may experience network imbalance if you suddenly introduce network zones into an environment that has a high number of OneAgents. To avoid this and to ensure smooth adoption of network zones, follow best practices for planning and proper naming, as explained in [Network zones](https://www.dynatrace.com/support/help/shortlink/network-zones).",
+			"displayName": "Enable network zones in this environment. ",
+			"documentation": "",
+			"maxObjects": 1,
+			"modificationPolicy": "DEFAULT",
+			"nullable": false,
+			"type": "boolean"
+		}
+	},
+	"schemaGroups": [
+		"group:preferences"
+	],
+	"schemaId": "builtin:networkzones",
+	"types": {},
+	"version": "1.0.2"
+}

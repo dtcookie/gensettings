@@ -1,0 +1,37 @@
+{
+	"allowedScopes": [
+		"APPLICATION"
+	],
+	"description": "This name is used to refer to your application throughout this Dynatrace environment. Be sure that your application has a meaningful name.",
+	"displayName": "Application name",
+	"documentation": "",
+	"dynatrace": "1",
+	"enums": {},
+	"maxObjects": 1,
+	"multiObject": false,
+	"properties": {
+		"applicationName": {
+			"constraints": [
+				{
+					"maxLength": 255,
+					"minLength": 1,
+					"type": "LENGTH"
+				}
+			],
+			"default": "",
+			"description": "",
+			"displayName": "Update application name",
+			"documentation": "",
+			"maxObjects": 1,
+			"modificationPolicy": "DEFAULT",
+			"nullable": false,
+			"type": "text"
+		}
+	},
+	"schemaGroups": [
+		"group:rum-settings"
+	],
+	"schemaId": "builtin:rum.web.name",
+	"types": {},
+	"version": "1.0.2"
+}

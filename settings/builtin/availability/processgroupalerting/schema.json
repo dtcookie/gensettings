@@ -1,0 +1,82 @@
+{
+	"allowedScopes": [
+		"PROCESS_GROUP"
+	],
+	"description": "Dynatrace continuously monitors the availability of this process group. Use the settings below to define the approach that Dynatrace should use for monitoring the availability of this process group.",
+	"displayName": "Process group availability monitoring",
+	"documentation": "",
+	"dynatrace": "1",
+	"enums": {
+		"AlertingMode": {
+			"description": "",
+			"displayName": "AlertingMode",
+			"documentation": "",
+			"items": [
+				{
+					"displayName": "if any process becomes unavailable",
+					"value": "ON_PGI_UNAVAILABILITY"
+				},
+				{
+					"displayName": "if minimum threshold is not met",
+					"value": "ON_INSTANCE_COUNT_VIOLATION"
+				}
+			],
+			"type": "enum"
+		}
+	},
+	"maxObjects": 1,
+	"multiObject": false,
+	"properties": {
+		"alertingMode": {
+			"default": "ON_PGI_UNAVAILABILITY",
+			"description": "**if any process becomes unavailable:**\nDynatrace will open a new problem if a single process in this group shuts down or crashes. \n\n**if minimum threshold is not met:**\nDynatrace tracks the number of process instances that comprise this process group and treats the group as a cluster. This setting enables you to define a minimum number of process instances that must be available. A problem will be opened if this process group has fewer than the minimum number of required process instances. \n\n Details of the related impact on service requests will be included in the problem summary.\n\n**Note:** If a process is intentionally shutdown or retired while this setting is active, you'll need to manually close the problem.",
+			"displayName": "Open a new problem",
+			"documentation": "",
+			"maxObjects": 1,
+			"modificationPolicy": "DEFAULT",
+			"nullable": false,
+			"precondition": {
+				"expectedValue": true,
+				"property": "enabled",
+				"type": "EQUALS"
+			},
+			"type": {
+				"$ref": "#/enums/AlertingMode"
+			}
+		},
+		"enabled": {
+			"default": false,
+			"description": "",
+			"displayName": "Enable process group availability monitoring",
+			"documentation": "",
+			"maxObjects": 1,
+			"modificationPolicy": "DEFAULT",
+			"nullable": false,
+			"type": "boolean"
+		},
+		"minimumInstanceThreshold": {
+			"constraints": [
+				{
+					"minimum": 1,
+					"type": "RANGE"
+				}
+			],
+			"default": 1,
+			"description": "",
+			"displayName": "Open a new problem if the number of active process instances in the group is fewer than:",
+			"documentation": "",
+			"maxObjects": 1,
+			"modificationPolicy": "DEFAULT",
+			"nullable": false,
+			"precondition": {
+				"expectedValue": "ON_INSTANCE_COUNT_VIOLATION",
+				"property": "alertingMode",
+				"type": "EQUALS"
+			},
+			"type": "integer"
+		}
+	},
+	"schemaId": "builtin:availability.process-group-alerting",
+	"types": {},
+	"version": "1"
+}

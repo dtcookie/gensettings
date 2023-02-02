@@ -1,0 +1,37 @@
+{
+	"allowedScopes": [
+		"SYNTHETIC_TEST"
+	],
+	"description": "Define the display name of your browser monitor",
+	"displayName": "Monitor name",
+	"documentation": "",
+	"dynatrace": "1",
+	"enums": {},
+	"maxObjects": 1,
+	"multiObject": false,
+	"properties": {
+		"name": {
+			"constraints": [
+				{
+					"maxLength": 500,
+					"minLength": 1,
+					"type": "LENGTH"
+				}
+			],
+			"default": "",
+			"description": "",
+			"displayName": "Monitor name",
+			"documentation": "",
+			"maxObjects": 1,
+			"modificationPolicy": "DEFAULT",
+			"nullable": false,
+			"type": "text"
+		}
+	},
+	"schemaGroups": [
+		"group:synthetic.browser"
+	],
+	"schemaId": "builtin:synthetic.browser.name",
+	"types": {},
+	"version": "1.0.1"
+}

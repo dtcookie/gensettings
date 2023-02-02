@@ -1,0 +1,117 @@
+{
+	"allowedScopes": [
+		"SYNTHETIC_TEST"
+	],
+	"description": "Select the [key performance metric](https://dt-url.net/kpms) that best represents the user experience of this synthetic monitor.",
+	"displayName": "Key performance metrics",
+	"documentation": "\n\n**Visually complete** is the default metric for load and XHR actions. It measures how long it takes for the visible portion of each user’s browser screen to be fully rendered.\n\nThe key performance metric for custom actions is always **User action duration**.",
+	"dynatrace": "1",
+	"enums": {
+		"LoadKpm": {
+			"description": "",
+			"displayName": "LoadKpm",
+			"documentation": "",
+			"items": [
+				{
+					"displayName": "User action duration",
+					"value": "USER_ACTION_DURATION"
+				},
+				{
+					"displayName": "Visually complete",
+					"value": "VISUALLY_COMPLETE"
+				},
+				{
+					"displayName": "Speed index",
+					"value": "SPEED_INDEX"
+				},
+				{
+					"displayName": "DOM interactive",
+					"value": "DOM_INTERACTIVE"
+				},
+				{
+					"displayName": "Load event start",
+					"value": "LOAD_EVENT_START"
+				},
+				{
+					"displayName": "Load event end",
+					"value": "LOAD_EVENT_END"
+				},
+				{
+					"displayName": "Time to first byte",
+					"value": "RESPONSE_START"
+				},
+				{
+					"displayName": "HTML downloaded",
+					"value": "RESPONSE_END"
+				},
+				{
+					"displayName": "Largest contentful paint",
+					"value": "LARGEST_CONTENTFUL_PAINT"
+				},
+				{
+					"displayName": "Cumulative layout shift",
+					"value": "CUMULATIVE_LAYOUT_SHIFT"
+				}
+			],
+			"type": "enum"
+		},
+		"XhrKpm": {
+			"description": "",
+			"displayName": "XhrKpm",
+			"documentation": "",
+			"items": [
+				{
+					"displayName": "User action duration",
+					"value": "USER_ACTION_DURATION"
+				},
+				{
+					"displayName": "Visually complete",
+					"value": "VISUALLY_COMPLETE"
+				},
+				{
+					"displayName": "Time to first byte",
+					"value": "RESPONSE_START"
+				},
+				{
+					"displayName": "Response end",
+					"value": "RESPONSE_END"
+				}
+			],
+			"type": "enum"
+		}
+	},
+	"maxObjects": 1,
+	"multiObject": false,
+	"properties": {
+		"loadActionKpm": {
+			"default": "VISUALLY_COMPLETE",
+			"description": "",
+			"displayName": "Load action key performance metric",
+			"documentation": "",
+			"maxObjects": 1,
+			"modificationPolicy": "DEFAULT",
+			"nullable": false,
+			"type": {
+				"$ref": "#/enums/LoadKpm"
+			}
+		},
+		"xhrActionKpm": {
+			"default": "VISUALLY_COMPLETE",
+			"description": "",
+			"displayName": "XHR action key performance metric",
+			"documentation": "",
+			"maxObjects": 1,
+			"modificationPolicy": "DEFAULT",
+			"nullable": false,
+			"type": {
+				"$ref": "#/enums/XhrKpm"
+			}
+		}
+	},
+	"schemaGroups": [
+		"group:synthetic.browser"
+	],
+	"schemaId": "builtin:synthetic.browser.kpms",
+	"types": {},
+	"version": "0.0.1"
+}

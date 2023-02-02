@@ -1,0 +1,42 @@
+{
+	"allowedScopes": [
+		"APPLICATION"
+	],
+	"description": "Specify a regular expression to match all URLs that should be excluded from becoming XHR actions. \n\nDynatrace supports the JavaScript Regular Expressions syntax. The separation between different protocols of the URIs is not supported (every protocol of the URI will be excluded).",
+	"displayName": "Exclude XHR requests from monitoring",
+	"documentation": "",
+	"dynatrace": "1",
+	"enums": {},
+	"maxObjects": 100,
+	"metadata": {
+		"addItemButton": "Add an XHR exclusion rule"
+	},
+	"multiObject": true,
+	"ordered": true,
+	"properties": {
+		"xhrExclusionRule": {
+			"constraints": [
+				{
+					"maxLength": 500,
+					"minLength": 1,
+					"type": "LENGTH"
+				}
+			],
+			"default": "",
+			"description": "",
+			"displayName": "XHR exclusion rule",
+			"documentation": "**Examples:**\n\n   - \\\\/segment1\\\\/segment2\n   - dynatrace\\\\.com\n   - www\\\\.dynatrace\\\\.com\\\\/segment1\\\\/.*[a-zA-Z]\n   - www\\\\.dynatrace\\\\.com:8080\n   - www\\\\.dynatrace\\\\.com:([0-9]{1,4}|[1-5][0-9]{4}|6[0-4][0-9]{3}|65[0-4][0-9]{2}|655[0-2][0-9]|6553[0-5])\n   - www\\\\.dynatrace\\\\.com\\\\?param1=value1\u0026param2=.*[a-zA-Z]\n",
+			"maxObjects": 1,
+			"modificationPolicy": "DEFAULT",
+			"nullable": false,
+			"type": "text"
+		}
+	},
+	"schemaGroups": [
+		"group:capturing",
+		"group:capturing.exclusions"
+	],
+	"schemaId": "builtin:rum.web.xhr-exclusion",
+	"types": {},
+	"version": "1.0.1"
+}

@@ -1,0 +1,76 @@
+{
+	"allowedScopes": [
+		"MOBILE_APPLICATION"
+	],
+	"constraints": [
+		{
+			"customMessage": "This scope does not identify a valid application.",
+			"customValidatorId": "valid-application-scope",
+			"type": "CUSTOM_VALIDATOR_REF"
+		}
+	],
+	"description": "This name is used to refer to your mobile app throughout this Dynatrace environment. Be sure that your app has a meaningful name.",
+	"displayName": "Application name",
+	"documentation": "",
+	"dynatrace": "1",
+	"enums": {},
+	"maxObjects": 1,
+	"metadata": {
+		"reloadUiContext": "enabled"
+	},
+	"multiObject": false,
+	"properties": {
+		"applicationName": {
+			"constraints": [
+				{
+					"maxLength": 255,
+					"minLength": 1,
+					"type": "LENGTH"
+				}
+			],
+			"default": "",
+			"description": "",
+			"displayName": "Update app name",
+			"documentation": "",
+			"maxObjects": 1,
+			"modificationPolicy": "DEFAULT",
+			"nullable": false,
+			"type": "text"
+		}
+	},
+	"schemaGroups": [
+		"group:rum-general"
+	],
+	"schemaId": "builtin:rum.mobile.name",
+	"types": {
+		"ApplicationName": {
+			"description": "",
+			"displayName": "ApplicationName",
+			"documentation": "",
+			"properties": {
+				"name": {
+					"constraints": [
+						{
+							"maxLength": 500,
+							"minLength": 1,
+							"type": "LENGTH"
+						}
+					],
+					"default": "",
+					"description": "",
+					"displayName": "Name",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"type": "text"
+				}
+			},
+			"summaryPattern": "",
+			"type": "object",
+			"version": "0",
+			"versionInfo": ""
+		}
+	},
+	"version": "1.1.7"
+}

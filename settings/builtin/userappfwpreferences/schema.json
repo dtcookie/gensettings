@@ -1,0 +1,17 @@
+{
+	"allowedScopes": [
+		"user",
+		"userdefaults"
+	],
+	"description": "Set user preferences for App Framework",
+	"displayName": "App Framework user Preferences",
+	"documentation": "",
+	"dynatrace": "1",
+	"enums": {},
+	"maxObjects": 1,
+	"multiObject": false,
+	"properties": {},
+	"schemaId": "builtin:user-appfw-preferences",
+	"types": {},
+	"version": "1"
+}

@@ -1,0 +1,304 @@
+{
+	"allowedScopes": [
+		"environment"
+	],
+	"description": "Here you can create custom units.",
+	"displayName": "Custom units",
+	"documentation": "",
+	"dynatrace": "1",
+	"enums": {
+		"unitCombinations": {
+			"description": "",
+			"displayName": "Unit combination",
+			"documentation": "",
+			"items": [
+				{
+					"displayName": "Scalar",
+					"value": "SCALAR"
+				},
+				{
+					"displayName": "Quotient",
+					"value": "QUOTIENT"
+				},
+				{
+					"displayName": "Product",
+					"value": "PRODUCT"
+				},
+				{
+					"displayName": "Power",
+					"value": "POWER"
+				}
+			],
+			"type": "enum"
+		}
+	},
+	"maxObjects": 100,
+	"multiObject": true,
+	"ordered": false,
+	"properties": {
+		"advancedSettings": {
+			"default": false,
+			"description": "If not enabled a simple custom unit with the information above is created. If the advanced custom unit option is enabled, dependencies to already existing units can be defined.",
+			"displayName": "Advanced custom unit",
+			"documentation": "",
+			"maxObjects": 1,
+			"modificationPolicy": "DEFAULT",
+			"nullable": false,
+			"precondition": {
+				"expectedValues": [
+					true
+				],
+				"property": "advancedSettings",
+				"type": "IN"
+			},
+			"type": "boolean"
+		},
+		"firstUnit": {
+			"constraints": [
+				{
+					"maxLength": 63,
+					"type": "LENGTH"
+				}
+			],
+			"datasource": {
+				"filterProperties": [],
+				"fullContext": false,
+				"identifier": "all-units-data-source",
+				"resetValue": "NEVER",
+				"useApiSearch": true,
+				"validate": true
+			},
+			"default": "unspecified",
+			"description": "The new unit depends on existing unit.",
+			"displayName": "Existing unit",
+			"documentation": "",
+			"maxObjects": 1,
+			"metadata": {
+				"useCombobox": "enabled"
+			},
+			"modificationPolicy": "DEFAULT",
+			"nullable": false,
+			"precondition": {
+				"expectedValue": true,
+				"property": "advancedSettings",
+				"type": "EQUALS"
+			},
+			"subType": "datasource",
+			"type": "text"
+		},
+		"newUnitDescription": {
+			"constraints": [
+				{
+					"type": "NOT_EMPTY"
+				},
+				{
+					"maxLength": 200,
+					"minLength": 1,
+					"type": "LENGTH"
+				}
+			],
+			"default": "",
+			"description": "Unit description should provide additional information about the new unit",
+			"displayName": "Unit description",
+			"documentation": "E.g: Byte: 8 bits of information",
+			"maxObjects": 1,
+			"modificationPolicy": "ALWAYS",
+			"nullable": false,
+			"type": "text"
+		},
+		"newUnitName": {
+			"constraints": [
+				{
+					"type": "NOT_EMPTY"
+				},
+				{
+					"maxLength": 63,
+					"minLength": 1,
+					"type": "LENGTH"
+				},
+				{
+					"customMessage": "Only uppercase and lowercase letters are allowed in units.",
+					"pattern": "^[a-zA-Z]+$",
+					"type": "PATTERN"
+				}
+			],
+			"default": "",
+			"description": "Unit name has to be unique and is used as identifier.",
+			"displayName": "Unit name",
+			"documentation": "E.g: Byte, Second, BytePerMinute",
+			"maxObjects": 1,
+			"modificationPolicy": "NEVER",
+			"nullable": false,
+			"type": "text"
+		},
+		"newUnitPluralName": {
+			"constraints": [
+				{
+					"type": "NOT_EMPTY"
+				},
+				{
+					"maxLength": 65,
+					"minLength": 1,
+					"type": "LENGTH"
+				},
+				{
+					"customMessage": "Only uppercase and lowercase letters are allowed in units.",
+					"pattern": "^[a-zA-Z]+$",
+					"type": "PATTERN"
+				}
+			],
+			"default": "",
+			"description": "Unit plural name represent the plural form of the unit name.",
+			"displayName": "Unit plural name",
+			"documentation": "E.g: Bytes, Seconds",
+			"maxObjects": 1,
+			"modificationPolicy": "ALWAYS",
+			"nullable": false,
+			"type": "text"
+		},
+		"newUnitSymbol": {
+			"constraints": [
+				{
+					"type": "NOT_EMPTY"
+				},
+				{
+					"maxLength": 63,
+					"minLength": 1,
+					"type": "LENGTH"
+				},
+				{
+					"customMessage": "Only uppercase and lowercase letters, as well as / and ^ symbols are allowed in units.",
+					"pattern": "^[a-zA-Z][a-zA-Z\\/\\^]*$",
+					"type": "PATTERN"
+				}
+			],
+			"default": "",
+			"description": "Unit symbol has to be unique.",
+			"displayName": "Unit symbol",
+			"documentation": "E.g: s, m/s, B/min, bit/s",
+			"maxObjects": 1,
+			"modificationPolicy": "ALWAYS",
+			"nullable": false,
+			"type": "text"
+		},
+		"powerFactor": {
+			"default": 1,
+			"description": "(existing unit) ^ (exponent) = (new unit)",
+			"displayName": "Exponent",
+			"documentation": "(m) ^ (2) = (m^2)",
+			"maxObjects": 1,
+			"modificationPolicy": "DEFAULT",
+			"nullable": false,
+			"precondition": {
+				"preconditions": [
+					{
+						"expectedValue": true,
+						"property": "advancedSettings",
+						"type": "EQUALS"
+					},
+					{
+						"expectedValue": "POWER",
+						"property": "unitCombinationSelect",
+						"type": "EQUALS"
+					}
+				],
+				"type": "AND"
+			},
+			"type": "integer"
+		},
+		"scalingFactor": {
+			"default": 1,
+			"description": "(existing unit) * (Scaling factor) = new unit",
+			"displayName": "Scaling factor",
+			"documentation": "(m) * (3.2) = ft",
+			"maxObjects": 1,
+			"modificationPolicy": "DEFAULT",
+			"nullable": false,
+			"precondition": {
+				"preconditions": [
+					{
+						"expectedValue": true,
+						"property": "advancedSettings",
+						"type": "EQUALS"
+					},
+					{
+						"expectedValue": "SCALAR",
+						"property": "unitCombinationSelect",
+						"type": "EQUALS"
+					}
+				],
+				"type": "AND"
+			},
+			"type": "float"
+		},
+		"secondUnit": {
+			"constraints": [
+				{
+					"maxLength": 63,
+					"type": "LENGTH"
+				}
+			],
+			"datasource": {
+				"filterProperties": [],
+				"fullContext": false,
+				"identifier": "all-units-data-source",
+				"resetValue": "NEVER",
+				"useApiSearch": true,
+				"validate": true
+			},
+			"default": "unspecified",
+			"description": "New unit depends on existing unit (based on selection at unit composition).",
+			"displayName": "Existing unit (multiplicator unit or divisor unit)",
+			"documentation": "",
+			"maxObjects": 1,
+			"metadata": {
+				"useCombobox": "enabled"
+			},
+			"modificationPolicy": "DEFAULT",
+			"nullable": false,
+			"precondition": {
+				"preconditions": [
+					{
+						"expectedValues": [
+							"QUOTIENT",
+							"PRODUCT"
+						],
+						"property": "unitCombinationSelect",
+						"type": "IN"
+					},
+					{
+						"expectedValue": true,
+						"property": "advancedSettings",
+						"type": "EQUALS"
+					}
+				],
+				"type": "AND"
+			},
+			"subType": "datasource",
+			"type": "text"
+		},
+		"unitCombinationSelect": {
+			"default": "SCALAR",
+			"description": "Unit composition defines the way the new unit depends on already existing ones.",
+			"displayName": "Unit composition",
+			"documentation": "",
+			"maxObjects": 1,
+			"modificationPolicy": "DEFAULT",
+			"nullable": false,
+			"precondition": {
+				"expectedValue": true,
+				"property": "advancedSettings",
+				"type": "EQUALS"
+			},
+			"type": {
+				"$ref": "#/enums/unitCombinations"
+			}
+		}
+	},
+	"schemaGroups": [
+		"group:metrics"
+	],
+	"schemaId": "builtin:custom-unit",
+	"types": {},
+	"version": "0.2"
+}

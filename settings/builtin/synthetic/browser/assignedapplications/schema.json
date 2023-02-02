@@ -1,0 +1,93 @@
+{
+	"allowedScopes": [
+		"SYNTHETIC_TEST"
+	],
+	"description": "Assigned web applications will gain availability information and be considered in the root cause analysis of problems that impact this monitor.",
+	"displayName": "Assign synthetic monitor to web applications",
+	"documentation": "",
+	"dynatrace": "1",
+	"enums": {},
+	"maxObjects": 1,
+	"multiObject": false,
+	"properties": {
+		"applications": {
+			"constraints": [
+				{
+					"customMessage": "The monitor is already assigned to this application",
+					"type": "UNIQUE",
+					"uniqueProperties": [
+						"application"
+					]
+				}
+			],
+			"description": "",
+			"displayName": "Assigned applications",
+			"documentation": "",
+			"items": {
+				"description": "",
+				"displayName": "",
+				"documentation": "",
+				"type": {
+					"$ref": "#/types/Application"
+				}
+			},
+			"maxObjects": 100,
+			"metadata": {
+				"addItemButton": "Assign to application"
+			},
+			"minObjects": 0,
+			"modificationPolicy": "DEFAULT",
+			"nullable": false,
+			"type": "set"
+		}
+	},
+	"schemaId": "builtin:synthetic.browser.assigned-applications",
+	"types": {
+		"Application": {
+			"description": "",
+			"displayName": "",
+			"documentation": "",
+			"properties": {
+				"application": {
+					"constraints": [
+						{
+							"customMessage": "Browser monitors can only be assigned to web applications",
+							"customValidatorId": "connectable-applications-validator",
+							"type": "CUSTOM_VALIDATOR_REF"
+						},
+						{
+							"maxLength": 500,
+							"minLength": 1,
+							"type": "LENGTH"
+						}
+					],
+					"datasource": {
+						"filterProperties": [],
+						"fullContext": false,
+						"identifier": "connect_application_datasource",
+						"resetValue": "NEVER",
+						"useApiSearch": false,
+						"validate": true
+					},
+					"default": "",
+					"description": "",
+					"displayName": "Application",
+					"documentation": "",
+					"maxObjects": 1,
+					"metadata": {
+						"useCombobox": "enabled"
+					},
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"subType": "datasource",
+					"type": "text"
+				}
+			},
+			"summaryPattern": "{application}",
+			"type": "object",
+			"version": "0",
+			"versionInfo": ""
+		}
+	},
+	"version": "1.1"
+}

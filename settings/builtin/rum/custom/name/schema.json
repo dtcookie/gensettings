@@ -1,0 +1,127 @@
+{
+	"allowedScopes": [
+		"CUSTOM_APPLICATION"
+	],
+	"constraints": [
+		{
+			"customMessage": "This scope does not identify a valid application.",
+			"customValidatorId": "valid-application-scope",
+			"type": "CUSTOM_VALIDATOR_REF"
+		}
+	],
+	"description": "This name is used to refer to your custom application throughout this Dynatrace environment. Be sure that your application has a meaningful name.\nTo use a different icon to represent your application, change the application type.",
+	"displayName": "Application name and type",
+	"documentation": "",
+	"dynatrace": "1",
+	"enums": {
+		"ApplicationType": {
+			"description": "",
+			"displayName": "Application type",
+			"documentation": "",
+			"items": [
+				{
+					"displayName": "Internet of Things",
+					"icon": "iot",
+					"value": "iot"
+				},
+				{
+					"displayName": "Embedded Device",
+					"icon": "embedded-pc",
+					"value": "embedded-pc"
+				},
+				{
+					"displayName": "UFO",
+					"icon": "ufo",
+					"value": "ufo"
+				},
+				{
+					"displayName": "Desktop",
+					"icon": "desktop",
+					"value": "desktop"
+				},
+				{
+					"displayName": "Amazon Echo",
+					"icon": "amazon-echo",
+					"value": "echo"
+				},
+				{
+					"displayName": "Microsoft Hololens",
+					"icon": "microsoft-hololens",
+					"value": "hololens"
+				}
+			],
+			"type": "enum"
+		}
+	},
+	"maxObjects": 1,
+	"metadata": {
+		"reloadUiContext": "enabled"
+	},
+	"multiObject": false,
+	"properties": {
+		"applicationName": {
+			"constraints": [
+				{
+					"maxLength": 255,
+					"minLength": 1,
+					"type": "LENGTH"
+				}
+			],
+			"default": "",
+			"description": "",
+			"displayName": "Update application name",
+			"documentation": "",
+			"maxObjects": 1,
+			"modificationPolicy": "DEFAULT",
+			"nullable": false,
+			"type": "text"
+		},
+		"applicationType": {
+			"default": "desktop",
+			"description": "",
+			"displayName": "Update application type",
+			"documentation": "",
+			"maxObjects": 1,
+			"modificationPolicy": "DEFAULT",
+			"nullable": false,
+			"type": {
+				"$ref": "#/enums/ApplicationType"
+			}
+		}
+	},
+	"schemaGroups": [
+		"group:rum-general"
+	],
+	"schemaId": "builtin:rum.custom.name",
+	"types": {
+		"ApplicationName": {
+			"description": "",
+			"displayName": "ApplicationName",
+			"documentation": "",
+			"properties": {
+				"name": {
+					"constraints": [
+						{
+							"maxLength": 500,
+							"minLength": 1,
+							"type": "LENGTH"
+						}
+					],
+					"default": "",
+					"description": "",
+					"displayName": "Name",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"type": "text"
+				}
+			},
+			"summaryPattern": "",
+			"type": "object",
+			"version": "0",
+			"versionInfo": ""
+		}
+	},
+	"version": "1.1.7"
+}

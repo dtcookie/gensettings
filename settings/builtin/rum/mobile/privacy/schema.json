@@ -1,0 +1,30 @@
+{
+	"allowedScopes": [
+		"MOBILE_APPLICATION"
+	],
+	"description": "Enable user opt-in mode to allow your users to decide what types of data they are willing to share. For details, see [Opt-in mode](https://dt-url.net/9602z8z)",
+	"displayName": "Privacy settings",
+	"documentation": "",
+	"dynatrace": "1",
+	"enums": {},
+	"maxObjects": 1,
+	"multiObject": false,
+	"properties": {
+		"optInModeEnabled": {
+			"default": false,
+			"description": "",
+			"displayName": "Enable user opt-in mode",
+			"documentation": "",
+			"maxObjects": 1,
+			"modificationPolicy": "DEFAULT",
+			"nullable": false,
+			"type": "boolean"
+		}
+	},
+	"schemaGroups": [
+		"group:rum-general"
+	],
+	"schemaId": "builtin:rum.mobile.privacy",
+	"types": {},
+	"version": "1.1.7"
+}
