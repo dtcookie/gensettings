@@ -9,6 +9,8 @@ github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/dtcookie/assert v1.1.0 h1:fDgkQfoy1Ey7GysXDpH3ARw8TwcQGoNIVhoQ3uybivY=
 github.com/dtcookie/assert v1.1.0/go.mod h1:jstJ5I2nwiemSNjyDSEucqN3LprvdtrbzkWGe/nRS90=
+github.com/dynatrace-oss/terraform-provider-dynatrace v1.18.1 h1:mwiLJU1RQZOK0DTfyNkyVmdeP7qQp9WdOj7L291lLOg=
+github.com/dynatrace-oss/terraform-provider-dynatrace v1.18.1/go.mod h1:T/WiY6Kl2oFRzosk0zQkbnitytqoM+69iqCdB7Sk54E=
 github.com/fatih/color v1.13.0 h1:8LOYc1KYPPmyKMuN8QV2DNRWNbLo6LZ0iLs8+mlH53w=
 github.com/fatih/color v1.13.0/go.mod h1:kLAiJbzzSOZDVNGyDpeOxJ47H46qBXwg5ILebYFFOfk=
 github.com/go-test/deep v1.0.3 h1:ZrJSEWsXzPOxaZnFteGEfooLba+ju3FYIbOrS+rQd68=
