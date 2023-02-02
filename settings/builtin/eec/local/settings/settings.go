@@ -25,8 +25,8 @@ import (
 type Settings struct {
 	Enabled            bool               `json:"enabled"`            // This setting is enabled (`true`) or disabled (`false`)
 	IngestActive       bool               `json:"ingestActive"`       // Enable local PIPE/HTTP metric and Log Ingest API
-	PerformanceProfile PerformanceProfile `json:"performanceProfile"` // Possible Values: `HIGH`, `DEFAULT`
-	Scope              *string            `json:"-" scope:"scope"`    // The scope of this setting (HOST HOST_GROUP environment)
+	PerformanceProfile PerformanceProfile `json:"performanceProfile"` // Possible Values: `DEFAULT`, `HIGH`
+	Scope              *string            `json:"-" scope:"scope"`    // The scope of this setting (HOST, HOST_GROUP). Omit this property if you want to cover the whole environment.
 	StatsdActive       bool               `json:"statsdActive"`       // Enable Dynatrace StatsD
 }
 
@@ -44,12 +44,12 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		},
 		"performance_profile": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `HIGH`, `DEFAULT`",
+			Description: "Possible Values: `DEFAULT`, `HIGH`",
 			Required:    true,
 		},
 		"scope": {
 			Type:        schema.TypeString,
-			Description: "The scope of this setting (HOST HOST_GROUP environment)",
+			Description: "The scope of this setting (HOST, HOST_GROUP). Omit this property if you want to cover the whole environment.",
 			Optional:    true,
 			Default:     "environment",
 		},

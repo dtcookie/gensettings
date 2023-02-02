@@ -24,7 +24,7 @@ import (
 
 type Settings struct {
 	FrustratingIfReportedOrWebRequestError bool        `json:"frustratingIfReportedOrWebRequestError"` // Treat user actions with reported errors or web request errors as erroneous and rate their performance as Frustrating. Turn off this setting if errors should not affect the Apdex rate.
-	Scope                                  string      `json:"-" scope:"scope"`                        // The scope of this setting (DEVICE_APPLICATION_METHOD MOBILE_APPLICATION CUSTOM_APPLICATION)
+	Scope                                  string      `json:"-" scope:"scope"`                        // The scope of this setting (DEVICE_APPLICATION_METHOD, MOBILE_APPLICATION, CUSTOM_APPLICATION)
 	Thresholds                             *Thresholds `json:"thresholds"`
 }
 
@@ -37,7 +37,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		},
 		"scope": {
 			Type:        schema.TypeString,
-			Description: "The scope of this setting (DEVICE_APPLICATION_METHOD MOBILE_APPLICATION CUSTOM_APPLICATION)",
+			Description: "The scope of this setting (DEVICE_APPLICATION_METHOD, MOBILE_APPLICATION, CUSTOM_APPLICATION)",
 			Required:    true,
 		},
 		"thresholds": {

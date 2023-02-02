@@ -24,7 +24,7 @@ import (
 
 type Settings struct {
 	NetTracer bool    `json:"netTracer"`       // When disabled, OneAgent won't use NetTracer to collect network data from containers. Disabled by default. Applies only to Linux hosts. Requires OneAgent 1.231+.
-	Scope     *string `json:"-" scope:"scope"` // The scope of this setting (HOST HOST_GROUP environment)
+	Scope     *string `json:"-" scope:"scope"` // The scope of this setting (HOST, HOST_GROUP). Omit this property if you want to cover the whole environment.
 }
 
 func (me *Settings) Schema() map[string]*schema.Schema {
@@ -36,7 +36,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		},
 		"scope": {
 			Type:        schema.TypeString,
-			Description: "The scope of this setting (HOST HOST_GROUP environment)",
+			Description: "The scope of this setting (HOST, HOST_GROUP). Omit this property if you want to cover the whole environment.",
 			Optional:    true,
 			Default:     "environment",
 		},

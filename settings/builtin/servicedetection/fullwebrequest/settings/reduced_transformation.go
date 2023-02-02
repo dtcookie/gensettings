@@ -50,7 +50,7 @@ type ReducedTransformation struct {
 	Prefix             *string                       `json:"prefix,omitempty"`
 	ReplacementValue   *string                       `json:"replacementValue,omitempty"` // replacement
 	Suffix             *string                       `json:"suffix,omitempty"`
-	TransformationType ContextRootTransformationType `json:"transformationType"` // Possible Values: `REMOVE_NUMBERS`, `REMOVE_CREDIT_CARDS`, `REMOVE_IBANS`, `REMOVE_IPS`, `BEFORE`, `REPLACE_BETWEEN`
+	TransformationType ContextRootTransformationType `json:"transformationType"` // Possible Values: `REPLACE_BETWEEN`, `REMOVE_NUMBERS`, `REMOVE_CREDIT_CARDS`, `REMOVE_IBANS`, `REMOVE_IPS`, `BEFORE`
 }
 
 func (me *ReducedTransformation) Schema() map[string]*schema.Schema {
@@ -82,7 +82,7 @@ func (me *ReducedTransformation) Schema() map[string]*schema.Schema {
 		},
 		"transformation_type": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `REMOVE_NUMBERS`, `REMOVE_CREDIT_CARDS`, `REMOVE_IBANS`, `REMOVE_IPS`, `BEFORE`, `REPLACE_BETWEEN`",
+			Description: "Possible Values: `REPLACE_BETWEEN`, `REMOVE_NUMBERS`, `REMOVE_CREDIT_CARDS`, `REMOVE_IBANS`, `REMOVE_IPS`, `BEFORE`",
 			Required:    true,
 		},
 	}

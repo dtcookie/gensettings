@@ -46,7 +46,7 @@ func (me *BrowserExclusionListObjects) UnmarshalHCL(decoder hcl.Decoder) error {
 
 type BrowserExclusionListObject struct {
 	BrowserName       Browser            `json:"browserName"`        // Possible Values: `BOTS_AND_SPIDERS`, `ANDROID_WEBKIT`, `CHROME`, `FIREFOX`, `INTERNET_EXPLORER`, `OPERA`, `SAFARI`, `EDGE`
-	Platform          *Platform          `json:"platform,omitempty"` // Possible Values: `ALL`, `MOBILE`, `DESKTOP`
+	Platform          *Platform          `json:"platform,omitempty"` // Possible Values: `DESKTOP`, `ALL`, `MOBILE`
 	Version           *int               `json:"version,omitempty"`
 	VersionComparator *VersionComparator `json:"versionComparator,omitempty"` // Possible Values: `GREATER_OR_EQUAL`, `EQUALS`, `LESS_OR_EQUAL`
 }
@@ -60,7 +60,7 @@ func (me *BrowserExclusionListObject) Schema() map[string]*schema.Schema {
 		},
 		"platform": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `ALL`, `MOBILE`, `DESKTOP`",
+			Description: "Possible Values: `DESKTOP`, `ALL`, `MOBILE`",
 			Optional:    true,
 		},
 		"version": {

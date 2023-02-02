@@ -26,7 +26,7 @@ type Settings struct {
 	Enabled  bool             `json:"enabled"`         // This setting is enabled (`true`) or disabled (`false`)
 	Event    *EventComplex    `json:"event"`           // Event meta data
 	RuleName string           `json:"ruleName"`        // Rule name
-	Scope    *string          `json:"-" scope:"scope"` // The scope of this setting (HOST HOST_GROUP environment)
+	Scope    *string          `json:"-" scope:"scope"` // The scope of this setting (HOST, HOST_GROUP). Omit this property if you want to cover the whole environment.
 	Triggers MatcherComplexes `json:"triggers"`        // Define conditions to trigger business events from incoming web requests. Whenever one condition applies the event gets captured.
 }
 
@@ -53,7 +53,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		},
 		"scope": {
 			Type:        schema.TypeString,
-			Description: "The scope of this setting (HOST HOST_GROUP environment)",
+			Description: "The scope of this setting (HOST, HOST_GROUP). Omit this property if you want to cover the whole environment.",
 			Optional:    true,
 			Default:     "environment",
 		},

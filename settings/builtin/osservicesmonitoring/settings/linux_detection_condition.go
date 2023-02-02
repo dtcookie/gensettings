@@ -46,7 +46,7 @@ func (me *LinuxDetectionConditions) UnmarshalHCL(decoder hcl.Decoder) error {
 
 type LinuxDetectionCondition struct {
 	Condition        *string          `json:"condition,omitempty"`        // This string has to match a required format. See [OS services monitoring](https://dt-url.net/vl03xzk).\n\n- `$contains(ssh)` – Matches if `ssh` appears anywhere in the service's property value.\n- `$eq(sshd)` – Matches if `sshd` matches the service's property value exactly.\n- `$prefix(ss)` – Matches if `ss` matches the prefix of the service's property value.\n- `$suffix(hd)` – Matches if `hd` matches the suffix of the service's property value.\n\nAvailable logic operations:\n- `$not($eq(sshd))` – Matches if the service's property value is different from `sshd`.\n- `$and($prefix(ss),$suffix(hd))` – Matches if service's property value starts with `ss` and ends with `hd`.\n- `$or($prefix(ss),$suffix(hd))` – Matches if service's property value starts with `ss` or ends with `hd`.
-	Property         LinuxServiceProp `json:"property"`                   // Possible Values: `ServiceName`, `StartupType`
+	Property         LinuxServiceProp `json:"property"`                   // Possible Values: `StartupType`, `ServiceName`
 	StartupCondition *string          `json:"startupCondition,omitempty"` // This string has to match a required format. See [OS services monitoring](https://dt-url.net/vl03xzk).\n\n- `$eq(enabled)` – Matches services with startup type equal to enabled.\n\nAvailable logic operations:\n- `$not($eq(enabled))` – Matches services with startup type different from enabled.\n- `$or($eq(enabled),$eq(disabled))` - Matches services that are either enabled or disabled.\n\nUse one of the following values as a parameter for this condition:\n\n- `enabled`\n- `enabled-runtime`\n- `static`\n- `disabled`
 }
 
@@ -59,7 +59,7 @@ func (me *LinuxDetectionCondition) Schema() map[string]*schema.Schema {
 		},
 		"property": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `ServiceName`, `StartupType`",
+			Description: "Possible Values: `StartupType`, `ServiceName`",
 			Required:    true,
 		},
 		"startup_condition": {

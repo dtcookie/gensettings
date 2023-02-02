@@ -25,7 +25,7 @@ import (
 type Settings struct {
 	ErrorRules                           CustomErrorRules `json:"errorRules"`
 	IgnoreCustomErrorsInApdexCalculation bool             `json:"ignoreCustomErrorsInApdexCalculation"` // This setting overrides Apdex settings for individual rules listed below
-	Scope                                string           `json:"-" scope:"scope"`                      // The scope of this setting (APPLICATION environment-default)
+	Scope                                string           `json:"-" scope:"scope"`                      // The scope of this setting (APPLICATION, environment-default)
 }
 
 func (me *Settings) Schema() map[string]*schema.Schema {
@@ -46,7 +46,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		},
 		"scope": {
 			Type:        schema.TypeString,
-			Description: "The scope of this setting (APPLICATION environment-default)",
+			Description: "The scope of this setting (APPLICATION, environment-default)",
 			Required:    true,
 		},
 	}

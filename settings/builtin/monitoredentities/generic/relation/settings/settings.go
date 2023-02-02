@@ -30,7 +30,7 @@ type Settings struct {
 	Sources        SourceFilters `json:"sources"`            // Specify all sources which should be evaluated for this relationship rule. The relationship is only created when any of the filters match.
 	ToRole         *string       `json:"toRole,omitempty"`   // Specify a role for the destination entity. If both source and destination type are the same, referring different roles will allow identification of a relationships direction. If role is left blank, any role of the destination type is considered for the relationship.
 	ToType         string        `json:"toType"`             // Define an entity type as the destination of the relationship. You can choose the same type as the source type. In this case you also may assign different roles for source and destination for having directed relationships.
-	TypeOfRelation RelationType  `json:"typeOfRelation"`     // Possible Values: `RUNS_ON`, `CHILD_OF`, `CALLS`, `PART_OF`, `SAME_AS`, `INSTANCE_OF`
+	TypeOfRelation RelationType  `json:"typeOfRelation"`     // Possible Values: `PART_OF`, `SAME_AS`, `INSTANCE_OF`, `RUNS_ON`, `CHILD_OF`, `CALLS`
 }
 
 func (me *Settings) Schema() map[string]*schema.Schema {
@@ -76,7 +76,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		},
 		"type_of_relation": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `RUNS_ON`, `CHILD_OF`, `CALLS`, `PART_OF`, `SAME_AS`, `INSTANCE_OF`",
+			Description: "Possible Values: `PART_OF`, `SAME_AS`, `INSTANCE_OF`, `RUNS_ON`, `CHILD_OF`, `CALLS`",
 			Required:    true,
 		},
 	}

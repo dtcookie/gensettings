@@ -28,7 +28,7 @@ type Settings struct {
 	LoadDrops           *LoadDrops           `json:"loadDrops"`           // Alert if the observed load is lower than the expected load by a specified margin for a specified amount of time.
 	LoadSpikes          *LoadSpikes          `json:"loadSpikes"`          // Alert if the observed load exceeds the expected load by a specified margin for a specified amount of time.
 	ResponseTime        *ResponseTime        `json:"responseTime"`        // Response time
-	Scope               *string              `json:"-" scope:"scope"`     // The scope of this setting (SERVICE_METHOD SERVICE HOST_GROUP environment)
+	Scope               *string              `json:"-" scope:"scope"`     // The scope of this setting (SERVICE_METHOD, SERVICE, HOST_GROUP). Omit this property if you want to cover the whole environment.
 }
 
 func (me *Settings) Schema() map[string]*schema.Schema {
@@ -80,7 +80,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		},
 		"scope": {
 			Type:        schema.TypeString,
-			Description: "The scope of this setting (SERVICE_METHOD SERVICE HOST_GROUP environment)",
+			Description: "The scope of this setting (SERVICE_METHOD, SERVICE, HOST_GROUP). Omit this property if you want to cover the whole environment.",
 			Optional:    true,
 			Default:     "environment",
 		},

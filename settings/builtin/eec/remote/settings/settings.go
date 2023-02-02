@@ -23,7 +23,7 @@ import (
 )
 
 type Settings struct {
-	PerformanceProfile PerformanceProfile `json:"performanceProfile"` // Possible Values: `DEFAULT`, `HIGH`
+	PerformanceProfile PerformanceProfile `json:"performanceProfile"` // Possible Values: `HIGH`, `DEFAULT`
 	Scope              string             `json:"-" scope:"scope"`    // The scope of this setting (ENVIRONMENT_ACTIVE_GATE)
 }
 
@@ -31,7 +31,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"performance_profile": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `DEFAULT`, `HIGH`",
+			Description: "Possible Values: `HIGH`, `DEFAULT`",
 			Required:    true,
 		},
 		"scope": {

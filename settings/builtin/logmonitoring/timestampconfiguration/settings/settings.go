@@ -27,7 +27,7 @@ type Settings struct {
 	Date_time_pattern string   `json:"date-time-pattern"` // Date-time pattern
 	Enabled           bool     `json:"enabled"`           // This setting is enabled (`true`) or disabled (`false`)
 	Matchers          Matchers `json:"matchers"`
-	Scope             *string  `json:"-" scope:"scope"` // The scope of this setting (HOST HOST_GROUP environment)
+	Scope             *string  `json:"-" scope:"scope"` // The scope of this setting (HOST, HOST_GROUP). Omit this property if you want to cover the whole environment.
 	Timezone          string   `json:"timezone"`        // Timezone
 }
 
@@ -59,7 +59,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		},
 		"scope": {
 			Type:        schema.TypeString,
-			Description: "The scope of this setting (HOST HOST_GROUP environment)",
+			Description: "The scope of this setting (HOST, HOST_GROUP). Omit this property if you want to cover the whole environment.",
 			Optional:    true,
 			Default:     "environment",
 		},

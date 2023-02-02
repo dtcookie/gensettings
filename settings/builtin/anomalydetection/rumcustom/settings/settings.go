@@ -24,7 +24,7 @@ import (
 
 type Settings struct {
 	ErrorRateIncrease  *ErrorRateIncrease  `json:"errorRateIncrease"`  // Error rate increase
-	Scope              *string             `json:"-" scope:"scope"`    // The scope of this setting (DEVICE_APPLICATION_METHOD CUSTOM_APPLICATION environment)
+	Scope              *string             `json:"-" scope:"scope"`    // The scope of this setting (DEVICE_APPLICATION_METHOD, CUSTOM_APPLICATION). Omit this property if you want to cover the whole environment.
 	SlowUserActions    *SlowUserActions    `json:"slowUserActions"`    // Slow user actions
 	UnexpectedHighLoad *UnexpectedHighLoad `json:"unexpectedHighLoad"` // Unexpected high load
 	UnexpectedLowLoad  *UnexpectedLowLoad  `json:"unexpectedLowLoad"`  // Unexpected low load
@@ -43,7 +43,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		},
 		"scope": {
 			Type:        schema.TypeString,
-			Description: "The scope of this setting (DEVICE_APPLICATION_METHOD CUSTOM_APPLICATION environment)",
+			Description: "The scope of this setting (DEVICE_APPLICATION_METHOD, CUSTOM_APPLICATION). Omit this property if you want to cover the whole environment.",
 			Optional:    true,
 			Default:     "environment",
 		},

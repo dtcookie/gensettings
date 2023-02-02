@@ -23,14 +23,14 @@ import (
 )
 
 type Settings struct {
-	Scope string `json:"-" scope:"scope"` // The scope of this setting (user userdefaults)
+	Scope string `json:"-" scope:"scope"` // The scope of this setting (user, userdefaults)
 }
 
 func (me *Settings) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"scope": {
 			Type:        schema.TypeString,
-			Description: "The scope of this setting (user userdefaults)",
+			Description: "The scope of this setting (user, userdefaults)",
 			Required:    true,
 		},
 	}

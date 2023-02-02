@@ -27,7 +27,7 @@ type GeneralProperties struct {
 	DisableSyntheticMonitorExecution bool            `json:"disableSyntheticMonitorExecution"` // Disables the execution of the synthetic monitors that are within [the scope of this maintenance window](https://dt-url.net/0e0341m).
 	MaintenanceType                  MaintenanceType `json:"maintenanceType"`                  // Possible Values: `PLANNED`, `UNPLANNED`
 	Name                             string          `json:"name"`
-	Suppression                      SuppressionType `json:"suppression"` // Possible Values: `DETECT_PROBLEMS_DONT_ALERT`, `DONT_DETECT_PROBLEMS`, `DETECT_PROBLEMS_AND_ALERT`
+	Suppression                      SuppressionType `json:"suppression"` // Possible Values: `DETECT_PROBLEMS_AND_ALERT`, `DETECT_PROBLEMS_DONT_ALERT`, `DONT_DETECT_PROBLEMS`
 }
 
 func (me *GeneralProperties) Schema() map[string]*schema.Schema {
@@ -54,7 +54,7 @@ func (me *GeneralProperties) Schema() map[string]*schema.Schema {
 		},
 		"suppression": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `DETECT_PROBLEMS_DONT_ALERT`, `DONT_DETECT_PROBLEMS`, `DETECT_PROBLEMS_AND_ALERT`",
+			Description: "Possible Values: `DETECT_PROBLEMS_AND_ALERT`, `DETECT_PROBLEMS_DONT_ALERT`, `DONT_DETECT_PROBLEMS`",
 			Required:    true,
 		},
 	}

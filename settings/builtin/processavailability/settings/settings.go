@@ -27,7 +27,7 @@ type Settings struct {
 	Metadata MetadataItems       `json:"metadata"`        // Set of additional key-value properties to be attached to the triggered event.
 	Name     string              `json:"name"`            // Monitored rule name
 	Rules    DetectionConditions `json:"rules"`           // Define process detection rules by selecting a process property and a condition. Each monitoring rule can have multiple detection rules associated with it.
-	Scope    *string             `json:"-" scope:"scope"` // The scope of this setting (HOST HOST_GROUP environment)
+	Scope    *string             `json:"-" scope:"scope"` // The scope of this setting (HOST, HOST_GROUP). Omit this property if you want to cover the whole environment.
 }
 
 func (me *Settings) Schema() map[string]*schema.Schema {
@@ -62,7 +62,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		},
 		"scope": {
 			Type:        schema.TypeString,
-			Description: "The scope of this setting (HOST HOST_GROUP environment)",
+			Description: "The scope of this setting (HOST, HOST_GROUP). Omit this property if you want to cover the whole environment.",
 			Optional:    true,
 			Default:     "environment",
 		},

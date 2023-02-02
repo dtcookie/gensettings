@@ -24,7 +24,7 @@ import (
 
 type Settings struct {
 	ErrorRules RequestErrorRules `json:"errorRules"`
-	Scope      string            `json:"-" scope:"scope"` // The scope of this setting (MOBILE_APPLICATION CUSTOM_APPLICATION)
+	Scope      string            `json:"-" scope:"scope"` // The scope of this setting (MOBILE_APPLICATION, CUSTOM_APPLICATION)
 }
 
 func (me *Settings) Schema() map[string]*schema.Schema {
@@ -40,7 +40,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		},
 		"scope": {
 			Type:        schema.TypeString,
-			Description: "The scope of this setting (MOBILE_APPLICATION CUSTOM_APPLICATION)",
+			Description: "The scope of this setting (MOBILE_APPLICATION, CUSTOM_APPLICATION)",
 			Required:    true,
 		},
 	}

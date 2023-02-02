@@ -29,7 +29,7 @@ type Settings struct {
 	LocalLocationOutageCountThreshold     int     `json:"localLocationOutageCountThreshold"`     // Alert if at least
 	LocalOutages                          bool    `json:"localOutages"`                          // Generate a problem and send an alert when the monitor is unavailable for one or more consecutive runs at any location.
 	RetryOnError                          bool    `json:"retryOnError"`                          // When enabled, which is the default, failing monitor executions are retried immediately one time to avoid false positives and only the second result is used. When disabled, we use the first result right away.\nRequires ActiveGate version 1.207+ for private locations.
-	Scope                                 *string `json:"-" scope:"scope"`                       // The scope of this setting (SYNTHETIC_TEST environment)
+	Scope                                 *string `json:"-" scope:"scope"`                       // The scope of this setting (SYNTHETIC_TEST). Omit this property if you want to cover the whole environment.
 }
 
 func (me *Settings) Schema() map[string]*schema.Schema {
@@ -66,7 +66,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		},
 		"scope": {
 			Type:        schema.TypeString,
-			Description: "The scope of this setting (SYNTHETIC_TEST environment)",
+			Description: "The scope of this setting (SYNTHETIC_TEST). Omit this property if you want to cover the whole environment.",
 			Optional:    true,
 			Default:     "environment",
 		},

@@ -28,7 +28,7 @@ type Settings struct {
 	MemoryLimitsQuotaSaturation   *MemoryLimitsQuotaSaturation   `json:"memoryLimitsQuotaSaturation"`   // Alerts if almost no memory limits quota left in namespace
 	MemoryRequestsQuotaSaturation *MemoryRequestsQuotaSaturation `json:"memoryRequestsQuotaSaturation"` // Alerts if almost no memory requests quota left in namespace
 	PodsQuotaSaturation           *PodsQuotaSaturation           `json:"podsQuotaSaturation"`           // Alerts if almost no pod number limits quota left in namespace
-	Scope                         *string                        `json:"-" scope:"scope"`               // The scope of this setting (CLOUD_APPLICATION_NAMESPACE KUBERNETES_CLUSTER environment)
+	Scope                         *string                        `json:"-" scope:"scope"`               // The scope of this setting (CLOUD_APPLICATION_NAMESPACE, KUBERNETES_CLUSTER). Omit this property if you want to cover the whole environment.
 }
 
 func (me *Settings) Schema() map[string]*schema.Schema {
@@ -80,7 +80,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		},
 		"scope": {
 			Type:        schema.TypeString,
-			Description: "The scope of this setting (CLOUD_APPLICATION_NAMESPACE KUBERNETES_CLUSTER environment)",
+			Description: "The scope of this setting (CLOUD_APPLICATION_NAMESPACE, KUBERNETES_CLUSTER). Omit this property if you want to cover the whole environment.",
 			Optional:    true,
 			Default:     "environment",
 		},

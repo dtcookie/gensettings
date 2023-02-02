@@ -25,7 +25,7 @@ import (
 type Settings struct {
 	ErrorRate     *ErrorRate        `json:"errorRate"`       // Error rate
 	ResponseTime  *ResponseTime     `json:"responseTime"`    // Response time
-	Scope         *string           `json:"-" scope:"scope"` // The scope of this setting (APPLICATION_METHOD APPLICATION environment)
+	Scope         *string           `json:"-" scope:"scope"` // The scope of this setting (APPLICATION_METHOD, APPLICATION). Omit this property if you want to cover the whole environment.
 	TrafficDrops  *AppTrafficDrops  `json:"trafficDrops"`    // Detect traffic drops
 	TrafficSpikes *AppTrafficSpikes `json:"trafficSpikes"`   // Detect traffic spikes
 }
@@ -52,7 +52,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		},
 		"scope": {
 			Type:        schema.TypeString,
-			Description: "The scope of this setting (APPLICATION_METHOD APPLICATION environment)",
+			Description: "The scope of this setting (APPLICATION_METHOD, APPLICATION). Omit this property if you want to cover the whole environment.",
 			Optional:    true,
 			Default:     "environment",
 		},

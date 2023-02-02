@@ -24,7 +24,7 @@ import (
 
 type Settings struct {
 	DiskDeviceMonitoringExtensionActive bool   `json:"diskDeviceMonitoringExtensionActive"` // The Disk Analytics feature requires an extension to be added to your environment. The Disk Analytics extension consumes custom metrics and [Davis data units](https://www.dynatrace.com/support/help/shortlink/metric-cost-calculation).\n\nAfter you have installed the Disk Analytics extension, you can enable the Data Collection in host or host-group level settings. If you enable the Data Collection without adding the extension the data is only visible in the data explorer.\n\nFor details, see [Disk Analytics extension documentation](https://dt-url.net/3a03v9v).
-	Scope                               string `json:"-" scope:"scope"`                     // The scope of this setting (HOST HOST_GROUP)
+	Scope                               string `json:"-" scope:"scope"`                     // The scope of this setting (HOST, HOST_GROUP)
 }
 
 func (me *Settings) Schema() map[string]*schema.Schema {
@@ -36,7 +36,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		},
 		"scope": {
 			Type:        schema.TypeString,
-			Description: "The scope of this setting (HOST HOST_GROUP)",
+			Description: "The scope of this setting (HOST, HOST_GROUP)",
 			Required:    true,
 		},
 	}

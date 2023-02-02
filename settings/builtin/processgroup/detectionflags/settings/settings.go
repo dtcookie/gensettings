@@ -33,7 +33,7 @@ type Settings struct {
 	GroupIBMMQbyInstanceName               bool    `json:"groupIBMMQbyInstanceName"`               // Enable to group and separately analyze the processes of each IBM MQ Queue manager instance. Each process group receives a unique name based on the queue manager instance name.
 	IdentifyJbossServerBySystemProperty    bool    `json:"identifyJbossServerBySystemProperty"`    // Enabling this flag will detect the JBoss server name from the system property jboss.server.name=<server-name>, only if -D[Server:<server-name>] is not set.
 	IgnoreUniqueIdentifiers                bool    `json:"ignoreUniqueIdentifiers"`                // To determine the unique identity of each detected process, and to generate a unique name for each detected process, Dynatrace evaluates the name of the directory that each process binary is contained within. For application containers like Tomcat and JBoss, Dynatrace evaluates important directories like CATALINA_HOME and JBOSS_HOME for this information. In some automated deployment scenarios such directory names are updated automatically with new version numbers, build numbers, dates, or GUIDs. Enable this setting to ensure that automated directory name changes don't result in Dynatrace registering pre-existing processes as new processes.
-	Scope                                  *string `json:"-" scope:"scope"`                        // The scope of this setting (HOST HOST_GROUP environment)
+	Scope                                  *string `json:"-" scope:"scope"`                        // The scope of this setting (HOST, HOST_GROUP). Omit this property if you want to cover the whole environment.
 	ShortLivedProcessesMonitoring          bool    `json:"shortLivedProcessesMonitoring"`          // Enable to monitor CPU and memory usage of short lived processes, otherwise being lost by traditional monitoring. Disabling this flag blocks passing data to cluster only, it does not stop data collection and has no effect on performance.
 	SplitOracleDatabasePG                  bool    `json:"splitOracleDatabasePG"`                  // Enable to group and separately analyze the processes of each Oracle DB. Each process group receives a unique name based on the Oracle DB SID.
 	SplitOracleListenerPG                  bool    `json:"splitOracleListenerPG"`                  // Enable to group and separately analyze the processes of each Oracle Listener. Each process group receives a unique name based on the Oracle Listener name.
@@ -95,7 +95,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		},
 		"scope": {
 			Type:        schema.TypeString,
-			Description: "The scope of this setting (HOST HOST_GROUP environment)",
+			Description: "The scope of this setting (HOST, HOST_GROUP). Omit this property if you want to cover the whole environment.",
 			Optional:    true,
 			Default:     "environment",
 		},

@@ -37,7 +37,7 @@ type Settings struct {
 	LAConfigSeverityDetectionLinesLimit    int     `json:"LAConfigSeverityDetectionLinesLimit"`    // Defines the number of the first lines of every log entry where severity is searched.
 	LAConfigSystemLogsDetectionEnabled     bool    `json:"LAConfigSystemLogsDetectionEnabled"`     // If set to FALSE - system logs detection mechanism will be disabled (Linux: syslog, message log) (Windows: System, Application, Security event logs)
 	LAConfigUTCAsDefaultContainerTimezone  bool    `json:"LAConfigUTCAsDefaultContainerTimezone"`  // Defines if UTC is used as a default timezone in containers. This option is deprecated for agents in version 1.247 or newer.
-	Scope                                  *string `json:"-" scope:"scope"`                        // The scope of this setting (HOST HOST_GROUP environment)
+	Scope                                  *string `json:"-" scope:"scope"`                        // The scope of this setting (HOST, HOST_GROUP). Omit this property if you want to cover the whole environment.
 }
 
 func (me *Settings) Schema() map[string]*schema.Schema {
@@ -114,7 +114,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		},
 		"scope": {
 			Type:        schema.TypeString,
-			Description: "The scope of this setting (HOST HOST_GROUP environment)",
+			Description: "The scope of this setting (HOST, HOST_GROUP). Omit this property if you want to cover the whole environment.",
 			Optional:    true,
 			Default:     "environment",
 		},

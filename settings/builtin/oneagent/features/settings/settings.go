@@ -27,7 +27,7 @@ type Settings struct {
 	Forcible        *bool   `json:"forcible,omitempty"`        // Activate this feature also in OneAgents only fulfilling the minimum Opt-In version
 	Instrumentation *bool   `json:"instrumentation,omitempty"` // Instrumentation enabled (change needs a process restart)
 	Key             string  `json:"key"`                       // Feature
-	Scope           *string `json:"-" scope:"scope"`           // The scope of this setting (PROCESS_GROUP_INSTANCE PROCESS_GROUP environment)
+	Scope           *string `json:"-" scope:"scope"`           // The scope of this setting (PROCESS_GROUP_INSTANCE, PROCESS_GROUP). Omit this property if you want to cover the whole environment.
 }
 
 func (me *Settings) Schema() map[string]*schema.Schema {
@@ -54,7 +54,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		},
 		"scope": {
 			Type:        schema.TypeString,
-			Description: "The scope of this setting (PROCESS_GROUP_INSTANCE PROCESS_GROUP environment)",
+			Description: "The scope of this setting (PROCESS_GROUP_INSTANCE, PROCESS_GROUP). Omit this property if you want to cover the whole environment.",
 			Optional:    true,
 			Default:     "environment",
 		},

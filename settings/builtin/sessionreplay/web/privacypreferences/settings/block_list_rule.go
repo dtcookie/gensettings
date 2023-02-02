@@ -48,7 +48,7 @@ type BlockListRule struct {
 	AttributeExpression *string           `json:"attributeExpression,omitempty"` // Attribute masking can be applied to web applications that store data within attributes, typically data-NAME attributes in HTML5. When you define attributes, their values are masked while recording but not removed.
 	CssExpression       *string           `json:"cssExpression,omitempty"`       // Content masking can be applied to webpages where personal data is displayed. When content masking is applied to parent elements, all child elements are masked by default.
 	HideUserInteraction *bool             `json:"hideUserInteraction,omitempty"` // Hide user interactions with these elements, including clicks that expand elements, highlighting that results from hovering a cursor over an option, and selection of specific form options.
-	Target              MaskingTargetType `json:"target"`                        // Possible Values: `ATTRIBUTE`, `ELEMENT`
+	Target              MaskingTargetType `json:"target"`                        // Possible Values: `ELEMENT`, `ATTRIBUTE`
 }
 
 func (me *BlockListRule) Schema() map[string]*schema.Schema {
@@ -70,7 +70,7 @@ func (me *BlockListRule) Schema() map[string]*schema.Schema {
 		},
 		"target": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `ATTRIBUTE`, `ELEMENT`",
+			Description: "Possible Values: `ELEMENT`, `ATTRIBUTE`",
 			Required:    true,
 		},
 	}

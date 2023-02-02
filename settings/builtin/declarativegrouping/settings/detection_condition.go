@@ -46,7 +46,7 @@ func (me *DetectionConditions) UnmarshalHCL(decoder hcl.Decoder) error {
 
 type DetectionCondition struct {
 	Condition string      `json:"condition"` // - $contains(svc) – Matches if svc appears anywhere in the process property value.\n- $eq(svc.exe) – Matches if svc.exe matches the process property value exactly.\n- $prefix(svc) – Matches if app matches the prefix of the process property value.\n- $suffix(svc.py) – Matches if svc.py matches the suffix of the process property value.\n\nFor example, $suffix(svc.py) would detect processes named loyaltysvc.py and paymentssvc.py.\n\nFor more details, see [Declarative process grouping](https://dt-url.net/j142w57).
-	Property  ProcessItem `json:"property"`  // Possible Values: `ExecutablePath`, `CommandLine`, `Executable`
+	Property  ProcessItem `json:"property"`  // Possible Values: `Executable`, `ExecutablePath`, `CommandLine`
 }
 
 func (me *DetectionCondition) Schema() map[string]*schema.Schema {
@@ -58,7 +58,7 @@ func (me *DetectionCondition) Schema() map[string]*schema.Schema {
 		},
 		"property": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `ExecutablePath`, `CommandLine`, `Executable`",
+			Description: "Possible Values: `Executable`, `ExecutablePath`, `CommandLine`",
 			Required:    true,
 		},
 	}

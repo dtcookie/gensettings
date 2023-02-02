@@ -23,7 +23,7 @@ import (
 )
 
 type ModelProperties struct {
-	AlertCondition    AlertCondition `json:"alertCondition"`              // Possible Values: `BELOW`, `OUTSIDE`, `ABOVE`
+	AlertCondition    AlertCondition `json:"alertCondition"`              // Possible Values: `ABOVE`, `BELOW`, `OUTSIDE`
 	AlertOnNoData     bool           `json:"alertOnNoData"`               // The ability to set an alert on missing data in a metric. When enabled, missing data samples will contribute as violating samples defined in advanced model properties. We recommend to not alert on missing data for sparse timeseries as this leads to alert spam.
 	DealertingSamples int            `json:"dealertingSamples"`           // The number of one-minute samples within the evaluation window that must go back to normal to close the event.
 	Samples           int            `json:"samples"`                     // The number of one-minute samples that form the sliding evaluation window.
@@ -38,7 +38,7 @@ func (me *ModelProperties) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"alert_condition": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `BELOW`, `OUTSIDE`, `ABOVE`",
+			Description: "Possible Values: `ABOVE`, `BELOW`, `OUTSIDE`",
 			Required:    true,
 		},
 		"alert_on_no_data": {

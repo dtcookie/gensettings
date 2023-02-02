@@ -24,7 +24,7 @@ import (
 
 type Settings struct {
 	Rum   *Rum    `json:"rum"`             // Capture and analyze all user actions within your application. Enable [Real User Monitoring (RUM)](https://dt-url.net/1n2b0prq) to monitor and improve your application's performance, identify errors, and gain insight into your user's behavior and experience.
-	Scope *string `json:"-" scope:"scope"` // The scope of this setting (CUSTOM_APPLICATION environment)
+	Scope *string `json:"-" scope:"scope"` // The scope of this setting (CUSTOM_APPLICATION). Omit this property if you want to cover the whole environment.
 }
 
 func (me *Settings) Schema() map[string]*schema.Schema {
@@ -40,7 +40,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		},
 		"scope": {
 			Type:        schema.TypeString,
-			Description: "The scope of this setting (CUSTOM_APPLICATION environment)",
+			Description: "The scope of this setting (CUSTOM_APPLICATION). Omit this property if you want to cover the whole environment.",
 			Optional:    true,
 			Default:     "environment",
 		},

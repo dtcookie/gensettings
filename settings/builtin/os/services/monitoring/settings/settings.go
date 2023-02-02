@@ -25,7 +25,7 @@ import (
 type Settings struct {
 	DisplayName string  `json:"displayName"`     // Display name
 	Enabled     bool    `json:"enabled"`         // This setting is enabled (`true`) or disabled (`false`)
-	Scope       *string `json:"-" scope:"scope"` // The scope of this setting (HOST HOST_GROUP environment)
+	Scope       *string `json:"-" scope:"scope"` // The scope of this setting (HOST, HOST_GROUP). Omit this property if you want to cover the whole environment.
 	ServiceName string  `json:"serviceName"`     // Service name
 }
 
@@ -43,7 +43,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		},
 		"scope": {
 			Type:        schema.TypeString,
-			Description: "The scope of this setting (HOST HOST_GROUP environment)",
+			Description: "The scope of this setting (HOST, HOST_GROUP). Omit this property if you want to cover the whole environment.",
 			Optional:    true,
 			Default:     "environment",
 		},

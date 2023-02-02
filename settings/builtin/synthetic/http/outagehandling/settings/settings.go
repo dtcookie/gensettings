@@ -28,7 +28,7 @@ type Settings struct {
 	LocalConsecutiveOutageCountThreshold  int     `json:"localConsecutiveOutageCountThreshold"`  // are unable to access my web application
 	LocalLocationOutageCountThreshold     int     `json:"localLocationOutageCountThreshold"`     // Alert if at least
 	LocalOutages                          bool    `json:"localOutages"`                          // Generate a problem and send an alert when the monitor is unavailable for one or more consecutive runs at any location.
-	Scope                                 *string `json:"-" scope:"scope"`                       // The scope of this setting (HTTP_CHECK environment)
+	Scope                                 *string `json:"-" scope:"scope"`                       // The scope of this setting (HTTP_CHECK). Omit this property if you want to cover the whole environment.
 }
 
 func (me *Settings) Schema() map[string]*schema.Schema {
@@ -60,7 +60,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		},
 		"scope": {
 			Type:        schema.TypeString,
-			Description: "The scope of this setting (HTTP_CHECK environment)",
+			Description: "The scope of this setting (HTTP_CHECK). Omit this property if you want to cover the whole environment.",
 			Optional:    true,
 			Default:     "environment",
 		},

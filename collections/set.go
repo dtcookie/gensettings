@@ -21,8 +21,13 @@ func (s Set[T]) Contains(v T) bool {
 
 func (s Set[T]) ToString() string {
 	result := ""
+	sep := ""
 	for _, elem := range s {
-		result = result + fmt.Sprintf(" %v", elem)
+		if any(elem).(string) == "environment" {
+			continue
+		}
+		result = result + sep + fmt.Sprintf("%v", elem)
+		sep = ", "
 	}
 	return strings.TrimSpace(result)
 }

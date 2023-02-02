@@ -46,9 +46,9 @@ func (me *CustomErrorRules) UnmarshalHCL(decoder hcl.Decoder) error {
 
 type CustomErrorRule struct {
 	CaptureSettings *CaptureSettings `json:"captureSettings"`        // Capture settings
-	KeyMatcher      Matcher          `json:"keyMatcher"`             // Possible Values: `EQUALS`, `ALL`, `BEGINS_WITH`, `ENDS_WITH`, `CONTAINS`
+	KeyMatcher      Matcher          `json:"keyMatcher"`             // Possible Values: `CONTAINS`, `EQUALS`, `ALL`, `BEGINS_WITH`, `ENDS_WITH`
 	KeyPattern      *string          `json:"keyPattern,omitempty"`   // A case-insensitive key pattern
-	ValueMatcher    Matcher          `json:"valueMatcher"`           // Possible Values: `EQUALS`, `ALL`, `BEGINS_WITH`, `ENDS_WITH`, `CONTAINS`
+	ValueMatcher    Matcher          `json:"valueMatcher"`           // Possible Values: `CONTAINS`, `EQUALS`, `ALL`, `BEGINS_WITH`, `ENDS_WITH`
 	ValuePattern    *string          `json:"valuePattern,omitempty"` // A case-insensitive value pattern
 }
 
@@ -65,7 +65,7 @@ func (me *CustomErrorRule) Schema() map[string]*schema.Schema {
 		},
 		"key_matcher": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `EQUALS`, `ALL`, `BEGINS_WITH`, `ENDS_WITH`, `CONTAINS`",
+			Description: "Possible Values: `CONTAINS`, `EQUALS`, `ALL`, `BEGINS_WITH`, `ENDS_WITH`",
 			Required:    true,
 		},
 		"key_pattern": {
@@ -75,7 +75,7 @@ func (me *CustomErrorRule) Schema() map[string]*schema.Schema {
 		},
 		"value_matcher": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `EQUALS`, `ALL`, `BEGINS_WITH`, `ENDS_WITH`, `CONTAINS`",
+			Description: "Possible Values: `CONTAINS`, `EQUALS`, `ALL`, `BEGINS_WITH`, `ENDS_WITH`",
 			Required:    true,
 		},
 		"value_pattern": {

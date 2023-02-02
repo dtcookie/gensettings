@@ -23,7 +23,7 @@ import (
 )
 
 type Settings struct {
-	PrimaryResourceType   PrimaryResourceType `json:"primaryResourceType"`             // Possible Values: `IMAGE`, `SCRIPT`, `OTHER`, `CSS`
+	PrimaryResourceType   PrimaryResourceType `json:"primaryResourceType"`             // Possible Values: `CSS`, `IMAGE`, `SCRIPT`, `OTHER`
 	RegularExpression     string              `json:"regularExpression"`               // The regular expression to detect the resource.
 	SecondaryResourceType *string             `json:"secondaryResourceType,omitempty"` // The secondary type of the resource.
 }
@@ -32,7 +32,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"primary_resource_type": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `IMAGE`, `SCRIPT`, `OTHER`, `CSS`",
+			Description: "Possible Values: `CSS`, `IMAGE`, `SCRIPT`, `OTHER`",
 			Required:    true,
 		},
 		"regular_expression": {

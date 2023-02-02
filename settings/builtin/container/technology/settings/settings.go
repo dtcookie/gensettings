@@ -29,7 +29,7 @@ type Settings struct {
 	Docker             bool    `json:"docker"`             // Platform: Docker and Kubernetes\n\nStatus: Released\n\nOperating system: Linux
 	DockerWindows      bool    `json:"dockerWindows"`      // Platform: Docker\n\nStatus: Early adopter\n\nOperating system: Windows\n\nMin agent version: 1.149
 	Garden             bool    `json:"garden"`             // Platform: Cloud Foundry\n\nStatus: Released\n\nOperating system: Linux\n\nMin agent version: 1.133
-	Scope              *string `json:"-" scope:"scope"`    // The scope of this setting (HOST HOST_GROUP environment)
+	Scope              *string `json:"-" scope:"scope"`    // The scope of this setting (HOST, HOST_GROUP). Omit this property if you want to cover the whole environment.
 	Winc               bool    `json:"winc"`               // Platform: Cloud Foundry\n\nStatus: Early adopter\n\nOperating system: Windows\n\nMin agent version: 1.175
 }
 
@@ -67,7 +67,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		},
 		"scope": {
 			Type:        schema.TypeString,
-			Description: "The scope of this setting (HOST HOST_GROUP environment)",
+			Description: "The scope of this setting (HOST, HOST_GROUP). Omit this property if you want to cover the whole environment.",
 			Optional:    true,
 			Default:     "environment",
 		},

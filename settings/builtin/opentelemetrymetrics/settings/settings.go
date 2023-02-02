@@ -26,7 +26,7 @@ type Settings struct {
 	AdditionalAttributes                   AdditionalAttributeItems `json:"additionalAttributes"`                   // When enabled, the attributes defined in the list below will be added as dimensions to ingested OTLP metrics if they are present in the OpenTelemetry resource or in the instrumentation scope.\n\n**Notes:**\n\n* Modifying this setting (renaming, disabling or removing attributes) will cause the metric to change. This may have an impact on existing dashboards, events and alerts that make use of these dimensions. In this case, they will need to be updated manually.\n\n* Dynatrace does not recommend changing/removing the attributes starting with \"dt.\". Dynatrace leverages these attributes to [Enrich metrics](https://www.dynatrace.com/support/help/extend-dynatrace/extend-metrics/reference/enrich-metrics).
 	AdditionalAttributesToDimensionEnabled bool                     `json:"additionalAttributesToDimensionEnabled"` // Add the resource and scope attributes configured below as dimensions
 	MeterNameToDimensionEnabled            bool                     `json:"meterNameToDimensionEnabled"`            // When enabled, the Meter name (also referred to as InstrumentationScope or InstrumentationLibrary in OpenTelemetry SDKs) and version will be added as dimensions (`otel.scope.name` and `otel.scope.version`) to ingested OTLP metrics.\n\n**Note:** Modifying this setting will cause the metric to change. This may have an impact on existing dashboards, events and alerts that make use of these dimensions. In this case, they will need to be updated manually.
-	Scope                                  *string                  `json:"-" scope:"scope"`                        // The scope of this setting (environment environment-default)
+	Scope                                  *string                  `json:"-" scope:"scope"`                        // The scope of this setting (environment-default). Omit this property if you want to cover the whole environment.
 	ToDropAttributes                       DropAttributeItems       `json:"toDropAttributes"`                       // The attributes defined in the list below will be dropped from all ingested OTLP metrics.\n\nUpon ingest, the *Allow list: resource and scope attributes* above is applied first. Then, the *Deny list: all attributes* below is applied. The deny list therefore applies to all attributes from all sources (data points, scope and resource).\n\n**Notes:**\n\n* Modifying this setting (adding, renaming, disabling or removing attributes) will cause the metric to change. This may have an impact on existing dashboards, events and alerts that make use of these dimensions. In this case, they will need to be updated manually.\n\n* Dynatrace does not recommend including attributes starting with \"dt.\" to the deny list. Dynatrace leverages these attributes to [Enrich metrics](https://www.dynatrace.com/support/help/extend-dynatrace/extend-metrics/reference/enrich-metrics).
 }
 
@@ -53,7 +53,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		},
 		"scope": {
 			Type:        schema.TypeString,
-			Description: "The scope of this setting (environment environment-default)",
+			Description: "The scope of this setting (environment-default). Omit this property if you want to cover the whole environment.",
 			Optional:    true,
 			Default:     "environment",
 		},

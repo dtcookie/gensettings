@@ -34,7 +34,7 @@ type Settings struct {
 	ServiceNowNotification   *ServiceNowNotification   `json:"serviceNowNotification"`
 	SlackNotification        *SlackNotification        `json:"slackNotification"`
 	TrelloNotification       *TrelloNotification       `json:"trelloNotification"`
-	Type                     NotificationType          `json:"type"` // Possible Values: `SLACK`, `SERVICE_NOW`, `JIRA`, `EMAIL`, `OPS_GENIE`, `PAGER_DUTY`, `VICTOROPS`, `XMATTERS`, `WEBHOOK`, `TRELLO`, `ANSIBLETOWER`
+	Type                     NotificationType          `json:"type"` // Possible Values: `XMATTERS`, `EMAIL`, `ANSIBLETOWER`, `TRELLO`, `SERVICE_NOW`, `JIRA`, `OPS_GENIE`, `WEBHOOK`, `SLACK`, `PAGER_DUTY`, `VICTOROPS`
 	VictorOpsNotification    *VictorOpsNotification    `json:"victorOpsNotification"`
 	WebHookNotification      *WebHookNotification      `json:"webHookNotification"`
 	XMattersNotification     *XMattersNotification     `json:"xMattersNotification"`
@@ -131,7 +131,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		},
 		"type": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `SLACK`, `SERVICE_NOW`, `JIRA`, `EMAIL`, `OPS_GENIE`, `PAGER_DUTY`, `VICTOROPS`, `XMATTERS`, `WEBHOOK`, `TRELLO`, `ANSIBLETOWER`",
+			Description: "Possible Values: `XMATTERS`, `EMAIL`, `ANSIBLETOWER`, `TRELLO`, `SERVICE_NOW`, `JIRA`, `OPS_GENIE`, `WEBHOOK`, `SLACK`, `PAGER_DUTY`, `VICTOROPS`",
 			Required:    true,
 		},
 		"victor_ops_notification": {

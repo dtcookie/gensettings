@@ -182,10 +182,14 @@ func main() {
 			Properties: reflection.Properties{},
 		}
 		if len(schema.Definition.AllowedScopes) > 1 || !schema.Definition.AllowedScopes.Contains("environment") {
+			comment := "The scope of this setting (" + schema.Definition.AllowedScopes.ToString() + ")"
+			if schema.Definition.AllowedScopes.Contains("environment") {
+				comment = comment + ". Omit this property if you want to cover the whole environment."
+			}
 			scopeProperty := &reflection.Property{
 				Name:     "scope",
 				Type:     &reflection.TypeString,
-				Comment:  "The scope of this setting (" + schema.Definition.AllowedScopes.ToString() + ")",
+				Comment:  comment,
 				Optional: schema.Definition.AllowedScopes.Contains("environment"),
 				Scope:    "scope",
 			}

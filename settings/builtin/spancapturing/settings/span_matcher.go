@@ -46,10 +46,10 @@ func (me *SpanMatchers) UnmarshalHCL(decoder hcl.Decoder) error {
 
 type SpanMatcher struct {
 	CaseSensitive *bool             `json:"caseSensitive,omitempty"` // affects value and key
-	Source        SpanMatcherSource `json:"source"`                  // Possible Values: `INSTRUMENTATION_SCOPE_VERSION`, `SPAN_NAME`, `SPAN_KIND`, `ATTRIBUTE`, `INSTRUMENTATION_SCOPE_NAME`
+	Source        SpanMatcherSource `json:"source"`                  // Possible Values: `INSTRUMENTATION_SCOPE_NAME`, `INSTRUMENTATION_SCOPE_VERSION`, `SPAN_NAME`, `SPAN_KIND`, `ATTRIBUTE`
 	SourceKey     *string           `json:"sourceKey,omitempty"`     // Key
-	SpanKindValue *SpanKind         `json:"spanKindValue,omitempty"` // Possible Values: `PRODUCER`, `CONSUMER`, `INTERNAL`, `SERVER`, `CLIENT`
-	Type          SpanMatcherType   `json:"type"`                    // Possible Values: `CONTAINS`, `STARTS_WITH`, `ENDS_WITH`, `DOES_NOT_EQUAL`, `DOES_NOT_CONTAIN`, `DOES_NOT_START_WITH`, `DOES_NOT_END_WITH`, `EQUALS`
+	SpanKindValue *SpanKind         `json:"spanKindValue,omitempty"` // Possible Values: `CLIENT`, `PRODUCER`, `CONSUMER`, `INTERNAL`, `SERVER`
+	Type          SpanMatcherType   `json:"type"`                    // Possible Values: `DOES_NOT_START_WITH`, `DOES_NOT_END_WITH`, `EQUALS`, `CONTAINS`, `STARTS_WITH`, `ENDS_WITH`, `DOES_NOT_EQUAL`, `DOES_NOT_CONTAIN`
 	Value         *string           `json:"value,omitempty"`         // evaluated at span start
 }
 
@@ -62,7 +62,7 @@ func (me *SpanMatcher) Schema() map[string]*schema.Schema {
 		},
 		"source": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `INSTRUMENTATION_SCOPE_VERSION`, `SPAN_NAME`, `SPAN_KIND`, `ATTRIBUTE`, `INSTRUMENTATION_SCOPE_NAME`",
+			Description: "Possible Values: `INSTRUMENTATION_SCOPE_NAME`, `INSTRUMENTATION_SCOPE_VERSION`, `SPAN_NAME`, `SPAN_KIND`, `ATTRIBUTE`",
 			Required:    true,
 		},
 		"source_key": {
@@ -72,12 +72,12 @@ func (me *SpanMatcher) Schema() map[string]*schema.Schema {
 		},
 		"span_kind_value": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `PRODUCER`, `CONSUMER`, `INTERNAL`, `SERVER`, `CLIENT`",
+			Description: "Possible Values: `CLIENT`, `PRODUCER`, `CONSUMER`, `INTERNAL`, `SERVER`",
 			Optional:    true,
 		},
 		"type": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `CONTAINS`, `STARTS_WITH`, `ENDS_WITH`, `DOES_NOT_EQUAL`, `DOES_NOT_CONTAIN`, `DOES_NOT_START_WITH`, `DOES_NOT_END_WITH`, `EQUALS`",
+			Description: "Possible Values: `DOES_NOT_START_WITH`, `DOES_NOT_END_WITH`, `EQUALS`, `CONTAINS`, `STARTS_WITH`, `ENDS_WITH`, `DOES_NOT_EQUAL`, `DOES_NOT_CONTAIN`",
 			Required:    true,
 		},
 		"value": {

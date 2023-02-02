@@ -27,7 +27,7 @@ type Settings struct {
 	MemoryRequestsSaturation *MemoryRequestsSaturation `json:"memoryRequestsSaturation"`
 	PodsSaturation           *PodsSaturation           `json:"podsSaturation"`
 	ReadinessIssues          *ReadinessIssues          `json:"readinessIssues"` // Alerts if node has not been available for a given amount of time
-	Scope                    *string                   `json:"-" scope:"scope"` // The scope of this setting (KUBERNETES_CLUSTER environment)
+	Scope                    *string                   `json:"-" scope:"scope"` // The scope of this setting (KUBERNETES_CLUSTER). Omit this property if you want to cover the whole environment.
 }
 
 func (me *Settings) Schema() map[string]*schema.Schema {
@@ -70,7 +70,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		},
 		"scope": {
 			Type:        schema.TypeString,
-			Description: "The scope of this setting (KUBERNETES_CLUSTER environment)",
+			Description: "The scope of this setting (KUBERNETES_CLUSTER). Omit this property if you want to cover the whole environment.",
 			Optional:    true,
 			Default:     "environment",
 		},
