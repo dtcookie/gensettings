@@ -24,7 +24,7 @@ import (
 
 type Settings struct {
 	HostID          string                     `json:"-" scope:"hostId"` // The scope of this settings. If the settings should cover the whole environment, just don't specify any scope.
-	MonitoringState ProcessGroupMonitoringMode `json:"MonitoringState"`  // Possible Values: `MONITORING_OFF`, `MONITORING_ON`, `DEFAULT`
+	MonitoringState ProcessGroupMonitoringMode `json:"MonitoringState"`  // Possible Values: `DEFAULT`, `MONITORING_OFF`, `MONITORING_ON`
 	ProcessGroup    string                     `json:"ProcessGroup"`     // Process group
 }
 
@@ -37,7 +37,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		},
 		"monitoring_state": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `MONITORING_OFF`, `MONITORING_ON`, `DEFAULT`",
+			Description: "Possible Values: `DEFAULT`, `MONITORING_OFF`, `MONITORING_ON`",
 			Required:    true,
 		},
 		"process_group": {

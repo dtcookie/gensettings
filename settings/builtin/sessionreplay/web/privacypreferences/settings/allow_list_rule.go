@@ -26,7 +26,7 @@ type AllowListRules []*AllowListRule
 
 func (me *AllowListRules) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
-		"playbackMaskingAllowListRule": {
+		"recordingMaskingAllowListRule": {
 			Type:        schema.TypeSet,
 			Required:    true,
 			MinItems:    1,
@@ -37,17 +37,17 @@ func (me *AllowListRules) Schema() map[string]*schema.Schema {
 }
 
 func (me AllowListRules) MarshalHCL(properties hcl.Properties) error {
-	return properties.EncodeSlice("playbackMaskingAllowListRule", me)
+	return properties.EncodeSlice("recordingMaskingAllowListRule", me)
 }
 
 func (me *AllowListRules) UnmarshalHCL(decoder hcl.Decoder) error {
-	return decoder.DecodeSlice("playbackMaskingAllowListRule", me)
+	return decoder.DecodeSlice("recordingMaskingAllowListRule", me)
 }
 
 type AllowListRule struct {
 	AttributeExpression *string           `json:"attributeExpression,omitempty"` // Attribute masking can be applied to web applications that store data within attributes, typically data-NAME attributes in HTML5. When you define attributes, their values are masked while recording but not removed.
 	CssExpression       *string           `json:"cssExpression,omitempty"`       // Content masking can be applied to webpages where personal data is displayed. When content masking is applied to parent elements, all child elements are masked by default.
-	Target              MaskingTargetType `json:"target"`                        // Possible Values: `ELEMENT`, `ATTRIBUTE`
+	Target              MaskingTargetType `json:"target"`                        // Possible Values: `ATTRIBUTE`, `ELEMENT`
 }
 
 func (me *AllowListRule) Schema() map[string]*schema.Schema {
@@ -64,7 +64,7 @@ func (me *AllowListRule) Schema() map[string]*schema.Schema {
 		},
 		"target": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `ELEMENT`, `ATTRIBUTE`",
+			Description: "Possible Values: `ATTRIBUTE`, `ELEMENT`",
 			Required:    true,
 		},
 	}

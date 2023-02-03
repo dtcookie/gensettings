@@ -23,7 +23,7 @@ import (
 )
 
 type SlowUserActions struct {
-	DetectionMode        *DetectionMode        `json:"detectionMode,omitempty"` // Possible Values: `Auto`, `Fixed`
+	DetectionMode        *DetectionMode        `json:"detectionMode,omitempty"` // Possible Values: `Fixed`, `Auto`
 	Enabled              bool                  `json:"enabled"`                 // This setting is enabled (`true`) or disabled (`false`)
 	SlowUserActionsAuto  *SlowUserActionsAuto  `json:"slowUserActionsAuto,omitempty"`
 	SlowUserActionsFixed *SlowUserActionsFixed `json:"slowUserActionsFixed,omitempty"`
@@ -33,7 +33,7 @@ func (me *SlowUserActions) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"detection_mode": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `Auto`, `Fixed`",
+			Description: "Possible Values: `Fixed`, `Auto`",
 			Optional:    true,
 		},
 		"enabled": {

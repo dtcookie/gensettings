@@ -23,8 +23,8 @@ import (
 )
 
 type CustomEventFilter struct {
-	DescriptionFilter *TextFilter `json:"descriptionFilter"` // Description filter
-	TitleFilter       *TextFilter `json:"titleFilter"`       // Title filter
+	DescriptionFilter *TextFilter `json:"descriptionFilter,omitempty"` // Description filter
+	TitleFilter       *TextFilter `json:"titleFilter,omitempty"`       // Title filter
 }
 
 func (me *CustomEventFilter) Schema() map[string]*schema.Schema {
@@ -32,7 +32,7 @@ func (me *CustomEventFilter) Schema() map[string]*schema.Schema {
 		"description_filter": {
 			Type:        schema.TypeList,
 			Description: "Description filter",
-			Required:    true,
+			Optional:    true,
 
 			Elem:     &schema.Resource{Schema: new(TextFilter).Schema()},
 			MinItems: 1,
@@ -41,7 +41,7 @@ func (me *CustomEventFilter) Schema() map[string]*schema.Schema {
 		"title_filter": {
 			Type:        schema.TypeList,
 			Description: "Title filter",
-			Required:    true,
+			Optional:    true,
 
 			Elem:     &schema.Resource{Schema: new(TextFilter).Schema()},
 			MinItems: 1,

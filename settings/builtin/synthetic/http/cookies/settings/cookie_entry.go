@@ -45,10 +45,10 @@ func (me *CookieEntries) UnmarshalHCL(decoder hcl.Decoder) error {
 }
 
 type CookieEntry struct {
-	Domain string `json:"domain"` // Enclose placeholder values in brackets, for example \\{email\\}
-	Name   string `json:"name"`   // Enclose placeholder values in brackets, for example \\{email\\}
-	Path   string `json:"path"`   // Enclose placeholder values in brackets, for example \\{email\\}
-	Value  string `json:"value"`  // Enclose placeholder values in brackets, for example \\{email\\}
+	Domain string  `json:"domain"`         // Enclose placeholder values in brackets, for example \\{email\\}
+	Name   string  `json:"name"`           // Enclose placeholder values in brackets, for example \\{email\\}
+	Path   *string `json:"path,omitempty"` // Enclose placeholder values in brackets, for example \\{email\\}
+	Value  string  `json:"value"`          // Enclose placeholder values in brackets, for example \\{email\\}
 }
 
 func (me *CookieEntry) Schema() map[string]*schema.Schema {
@@ -66,7 +66,7 @@ func (me *CookieEntry) Schema() map[string]*schema.Schema {
 		"path": {
 			Type:        schema.TypeString,
 			Description: "Enclose placeholder values in brackets, for example \\{email\\}",
-			Required:    true,
+			Optional:    true,
 		},
 		"value": {
 			Type:        schema.TypeString,

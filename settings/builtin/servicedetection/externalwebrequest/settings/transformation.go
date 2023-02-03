@@ -54,7 +54,7 @@ type Transformation struct {
 	SplitDelimiter     *string            `json:"splitDelimiter,omitempty"`   // split by
 	Suffix             *string            `json:"suffix,omitempty"`
 	TakeFromEnd        *bool              `json:"takeFromEnd,omitempty"` // take from end
-	TransformationType TransformationType `json:"transformationType"`    // Possible Values: `REMOVE_NUMBERS`, `REMOVE_CREDIT_CARDS`, `SPLIT_SELECT`, `REMOVE_IPS`, `REPLACE_BETWEEN`, `REMOVE_IBANS`, `TAKE_SEGMENTS`, `BEFORE`, `AFTER`, `BETWEEN`
+	TransformationType TransformationType `json:"transformationType"`    // Possible Values: `REMOVE_IPS`, `SPLIT_SELECT`, `AFTER`, `BEFORE`, `REMOVE_CREDIT_CARDS`, `TAKE_SEGMENTS`, `BETWEEN`, `REPLACE_BETWEEN`, `REMOVE_NUMBERS`, `REMOVE_IBANS`
 }
 
 func (me *Transformation) Schema() map[string]*schema.Schema {
@@ -106,7 +106,7 @@ func (me *Transformation) Schema() map[string]*schema.Schema {
 		},
 		"transformation_type": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `REMOVE_NUMBERS`, `REMOVE_CREDIT_CARDS`, `SPLIT_SELECT`, `REMOVE_IPS`, `REPLACE_BETWEEN`, `REMOVE_IBANS`, `TAKE_SEGMENTS`, `BEFORE`, `AFTER`, `BETWEEN`",
+			Description: "Possible Values: `REMOVE_IPS`, `SPLIT_SELECT`, `AFTER`, `BEFORE`, `REMOVE_CREDIT_CARDS`, `TAKE_SEGMENTS`, `BETWEEN`, `REPLACE_BETWEEN`, `REMOVE_NUMBERS`, `REMOVE_IBANS`",
 			Required:    true,
 		},
 	}

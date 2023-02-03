@@ -45,8 +45,8 @@ func (me *Exceptions) UnmarshalHCL(decoder hcl.Decoder) error {
 }
 
 type Exception struct {
-	ClassPattern   string `json:"classPattern"`   // The pattern will match if it is contained within the actual class name.
-	MessagePattern string `json:"messagePattern"` // Optionally, define an exception message pattern. The pattern will match if the actual exception message contains the pattern.
+	ClassPattern   *string `json:"classPattern,omitempty"`   // The pattern will match if it is contained within the actual class name.
+	MessagePattern *string `json:"messagePattern,omitempty"` // Optionally, define an exception message pattern. The pattern will match if the actual exception message contains the pattern.
 }
 
 func (me *Exception) Schema() map[string]*schema.Schema {
@@ -54,12 +54,12 @@ func (me *Exception) Schema() map[string]*schema.Schema {
 		"class_pattern": {
 			Type:        schema.TypeString,
 			Description: "The pattern will match if it is contained within the actual class name.",
-			Required:    true,
+			Optional:    true,
 		},
 		"message_pattern": {
 			Type:        schema.TypeString,
 			Description: "Optionally, define an exception message pattern. The pattern will match if the actual exception message contains the pattern.",
-			Required:    true,
+			Optional:    true,
 		},
 	}
 }

@@ -24,7 +24,7 @@ import (
 
 type ProcessInstanceExtraction struct {
 	Delimiter *Delimiter `json:"delimiter,omitempty"` // Optionally delimit this property between *From* and *To*.
-	Property  string     `json:"property"`
+	Property  *string    `json:"property,omitempty"`
 }
 
 func (me *ProcessInstanceExtraction) Schema() map[string]*schema.Schema {
@@ -41,7 +41,7 @@ func (me *ProcessInstanceExtraction) Schema() map[string]*schema.Schema {
 		"property": {
 			Type:        schema.TypeString,
 			Description: "no documentation available",
-			Required:    true,
+			Optional:    true,
 		},
 	}
 }

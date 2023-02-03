@@ -26,7 +26,7 @@ type SlowUserActionsFixed struct {
 	DurationAvoidOveralerting *SlowUserActionsAvoidOveralerting `json:"durationAvoidOveralerting"` // To avoid over-alerting do not alert for low traffic applications with less than
 	DurationThresholdAllFixed *SlowUserActionsManualAll         `json:"durationThresholdAllFixed"` // Alert if the action duration of all user actions degrades beyond the absolute threshold:
 	DurationThresholdSlowest  *SlowUserActionsManualSlowest     `json:"durationThresholdSlowest"`  // Alert if the action duration of the slowest 10% of user actions degrades beyond the absolute threshold:
-	Sensitivity               Sensitivity                       `json:"sensitivity"`               // Possible Values: `Low`, `Medium`, `High`
+	Sensitivity               Sensitivity                       `json:"sensitivity"`               // Possible Values: `Medium`, `High`, `Low`
 }
 
 func (me *SlowUserActionsFixed) Schema() map[string]*schema.Schema {
@@ -60,7 +60,7 @@ func (me *SlowUserActionsFixed) Schema() map[string]*schema.Schema {
 		},
 		"sensitivity": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `Low`, `Medium`, `High`",
+			Description: "Possible Values: `Medium`, `High`, `Low`",
 			Required:    true,
 		},
 	}

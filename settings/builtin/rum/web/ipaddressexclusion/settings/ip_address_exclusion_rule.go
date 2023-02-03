@@ -45,8 +45,8 @@ func (me *IpAddressExclusionRules) UnmarshalHCL(decoder hcl.Decoder) error {
 }
 
 type IpAddressExclusionRule struct {
-	Ip   string `json:"ip"`   // Single IP or IP range start address
-	IpTo string `json:"ipTo"` // IP range end
+	Ip   string  `json:"ip"`             // Single IP or IP range start address
+	IpTo *string `json:"ipTo,omitempty"` // IP range end
 }
 
 func (me *IpAddressExclusionRule) Schema() map[string]*schema.Schema {
@@ -59,7 +59,7 @@ func (me *IpAddressExclusionRule) Schema() map[string]*schema.Schema {
 		"ip_to": {
 			Type:        schema.TypeString,
 			Description: "IP range end",
-			Required:    true,
+			Optional:    true,
 		},
 	}
 }

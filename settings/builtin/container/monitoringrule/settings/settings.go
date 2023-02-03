@@ -24,9 +24,9 @@ import (
 
 type Settings struct {
 	Enabled  bool              `json:"enabled"`  // This setting is enabled (`true`) or disabled (`false`)
-	Mode     MonitoringMode    `json:"mode"`     // Possible Values: `MONITORING_ON`, `MONITORING_OFF`
-	Operator ConditionOperator `json:"operator"` // Possible Values: `NOT_STARTS`, `EXISTS`, `NOT_EQUALS`, `ENDS`, `NOT_CONTAINS`, `EQUALS`, `NOT_EXISTS`, `STARTS`, `NOT_ENDS`, `CONTAINS`
-	Property ContainerItem     `json:"property"` // Possible Values: `KUBERNETES_FULLPODNAME`, `KUBERNETES_PODUID`, `CONTAINER_NAME`, `IMAGE_NAME`, `KUBERNETES_NAMESPACE`, `KUBERNETES_CONTAINERNAME`, `KUBERNETES_BASEPODNAME`
+	Mode     MonitoringMode    `json:"mode"`     // Possible Values: `MONITORING_OFF`, `MONITORING_ON`
+	Operator ConditionOperator `json:"operator"` // Possible Values: `NOT_EQUALS`, `STARTS`, `CONTAINS`, `EQUALS`, `NOT_STARTS`, `NOT_ENDS`, `EXISTS`, `ENDS`, `NOT_CONTAINS`, `NOT_EXISTS`
+	Property ContainerItem     `json:"property"` // Possible Values: `KUBERNETES_BASEPODNAME`, `KUBERNETES_FULLPODNAME`, `KUBERNETES_PODUID`, `CONTAINER_NAME`, `IMAGE_NAME`, `KUBERNETES_NAMESPACE`, `KUBERNETES_CONTAINERNAME`
 	Value    string            `json:"value"`    // Condition value
 }
 
@@ -39,17 +39,17 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		},
 		"mode": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `MONITORING_ON`, `MONITORING_OFF`",
+			Description: "Possible Values: `MONITORING_OFF`, `MONITORING_ON`",
 			Required:    true,
 		},
 		"operator": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `NOT_STARTS`, `EXISTS`, `NOT_EQUALS`, `ENDS`, `NOT_CONTAINS`, `EQUALS`, `NOT_EXISTS`, `STARTS`, `NOT_ENDS`, `CONTAINS`",
+			Description: "Possible Values: `NOT_EQUALS`, `STARTS`, `CONTAINS`, `EQUALS`, `NOT_STARTS`, `NOT_ENDS`, `EXISTS`, `ENDS`, `NOT_CONTAINS`, `NOT_EXISTS`",
 			Required:    true,
 		},
 		"property": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `KUBERNETES_FULLPODNAME`, `KUBERNETES_PODUID`, `CONTAINER_NAME`, `IMAGE_NAME`, `KUBERNETES_NAMESPACE`, `KUBERNETES_CONTAINERNAME`, `KUBERNETES_BASEPODNAME`",
+			Description: "Possible Values: `KUBERNETES_BASEPODNAME`, `KUBERNETES_FULLPODNAME`, `KUBERNETES_PODUID`, `CONTAINER_NAME`, `IMAGE_NAME`, `KUBERNETES_NAMESPACE`, `KUBERNETES_CONTAINERNAME`",
 			Required:    true,
 		},
 		"value": {

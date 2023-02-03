@@ -23,9 +23,9 @@ import (
 )
 
 type ExportBehavior struct {
-	CustomConfiguration string `json:"customConfiguration"` // Here you can set additional properties for this export configuration. Changing these values might only be necessary in some rare cases. Please contact support before changing this field.
-	DisableNotification bool   `json:"disableNotification"` // Disable notification
-	ManagementZone      string `json:"managementZone"`      // Restrict exported sessions to management zone
+	CustomConfiguration *string `json:"customConfiguration,omitempty"` // Here you can set additional properties for this export configuration. Changing these values might only be necessary in some rare cases. Please contact support before changing this field.
+	DisableNotification bool    `json:"disableNotification"`           // Disable notification
+	ManagementZone      *string `json:"managementZone,omitempty"`      // Restrict exported sessions to management zone
 }
 
 func (me *ExportBehavior) Schema() map[string]*schema.Schema {
@@ -33,7 +33,7 @@ func (me *ExportBehavior) Schema() map[string]*schema.Schema {
 		"custom_configuration": {
 			Type:        schema.TypeString,
 			Description: "Here you can set additional properties for this export configuration. Changing these values might only be necessary in some rare cases. Please contact support before changing this field.",
-			Required:    true,
+			Optional:    true,
 		},
 		"disable_notification": {
 			Type:        schema.TypeBool,
@@ -43,7 +43,7 @@ func (me *ExportBehavior) Schema() map[string]*schema.Schema {
 		"management_zone": {
 			Type:        schema.TypeString,
 			Description: "Restrict exported sessions to management zone",
-			Required:    true,
+			Optional:    true,
 		},
 	}
 }

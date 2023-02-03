@@ -45,8 +45,8 @@ func (me *Dimensions) UnmarshalHCL(decoder hcl.Decoder) error {
 }
 
 type Dimension struct {
-	DisplayName string `json:"displayName"` // Display name
-	Key         string `json:"key"`         // Dimension key
+	DisplayName *string `json:"displayName,omitempty"` // Display name
+	Key         string  `json:"key"`                   // Dimension key
 }
 
 func (me *Dimension) Schema() map[string]*schema.Schema {
@@ -54,7 +54,7 @@ func (me *Dimension) Schema() map[string]*schema.Schema {
 		"display_name": {
 			Type:        schema.TypeString,
 			Description: "Display name",
-			Required:    true,
+			Optional:    true,
 		},
 		"key": {
 			Type:        schema.TypeString,

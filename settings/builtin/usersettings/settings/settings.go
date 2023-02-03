@@ -26,7 +26,7 @@ type Settings struct {
 	Language Language `json:"language"`        // Possible Values: `Auto`, `En`, `Ja`
 	Region   string   `json:"region"`          // Region
 	Scope    string   `json:"-" scope:"scope"` // The scope of this setting (user, userdefaults)
-	Theme    Theme    `json:"theme"`           // Possible Values: `Auto`, `Light`, `Dark`
+	Theme    Theme    `json:"theme"`           // Possible Values: `Dark`, `Auto`, `Light`
 	Timezone string   `json:"timezone"`        // Timezone
 }
 
@@ -49,7 +49,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		},
 		"theme": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `Auto`, `Light`, `Dark`",
+			Description: "Possible Values: `Dark`, `Auto`, `Light`",
 			Required:    true,
 		},
 		"timezone": {

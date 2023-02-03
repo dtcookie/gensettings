@@ -47,7 +47,7 @@ func (me *ProcessDefinitions) UnmarshalHCL(decoder hcl.Decoder) error {
 type ProcessDefinition struct {
 	ID               string              `json:"id"`               // Process group identifier
 	ProcessGroupName string              `json:"processGroupName"` // This identifier is used by Dynatrace to recognize this process group.
-	Report           ReportItem          `json:"report"`           // Possible Values: `Always`, `HighResourceUsage`, `Never`
+	Report           ReportItem          `json:"report"`           // Possible Values: `Never`, `Always`, `HighResourceUsage`
 	Rules            DetectionConditions `json:"rules"`            // Define process detection rules by selecting a process property and a condition. Each process group can have multiple detection rules associated with it.
 }
 
@@ -65,7 +65,7 @@ func (me *ProcessDefinition) Schema() map[string]*schema.Schema {
 		},
 		"report": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `Always`, `HighResourceUsage`, `Never`",
+			Description: "Possible Values: `Never`, `Always`, `HighResourceUsage`",
 			Required:    true,
 		},
 		"rules": {

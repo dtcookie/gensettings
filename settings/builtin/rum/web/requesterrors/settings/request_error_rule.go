@@ -48,7 +48,7 @@ type RequestErrorRule struct {
 	CaptureSettings       *CaptureSettings `json:"captureSettings"`       // Capture settings
 	ConsiderCspViolations bool             `json:"considerCspViolations"` // Match by errors that have CSP violations
 	ConsiderFailedImages  bool             `json:"considerFailedImages"`  // Match by errors that have failed image requests
-	ErrorCodes            string           `json:"errorCodes"`            // Match by error code
+	ErrorCodes            *string          `json:"errorCodes,omitempty"`  // Match by error code
 	FilterSettings        *FilterSettings  `json:"filterSettings"`        // Filter settings
 }
 
@@ -76,7 +76,7 @@ func (me *RequestErrorRule) Schema() map[string]*schema.Schema {
 		"error_codes": {
 			Type:        schema.TypeString,
 			Description: "Match by error code",
-			Required:    true,
+			Optional:    true,
 		},
 		"filter_settings": {
 			Type:        schema.TypeList,

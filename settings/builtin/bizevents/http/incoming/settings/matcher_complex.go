@@ -48,7 +48,7 @@ func (me *MatcherComplexes) UnmarshalHCL(decoder hcl.Decoder) error {
 type MatcherComplex struct {
 	CaseSensitive *bool              `json:"caseSensitive,omitempty"` // Case sensitive
 	Source        *DataSourceComplex `json:"source"`
-	Type          ComparisonEnum     `json:"type"` // Possible Values: `CONTAINS`, `N_CONTAINS`, `EXISTS`, `STARTS_WITH`, `N_EXISTS`, `ENDS_WITH`, `N_ENDS_WITH`, `EQUALS`, `N_EQUALS`, `N_STARTS_WITH`
+	Type          ComparisonEnum     `json:"type"` // Possible Values: `N_CONTAINS`, `ENDS_WITH`, `EXISTS`, `N_EQUALS`, `N_STARTS_WITH`, `CONTAINS`, `N_ENDS_WITH`, `STARTS_WITH`, `N_EXISTS`, `EQUALS`
 	Value         *string            `json:"value,omitempty"`
 }
 
@@ -70,7 +70,7 @@ func (me *MatcherComplex) Schema() map[string]*schema.Schema {
 		},
 		"type": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `CONTAINS`, `N_CONTAINS`, `EXISTS`, `STARTS_WITH`, `N_EXISTS`, `ENDS_WITH`, `N_ENDS_WITH`, `EQUALS`, `N_EQUALS`, `N_STARTS_WITH`",
+			Description: "Possible Values: `N_CONTAINS`, `ENDS_WITH`, `EXISTS`, `N_EQUALS`, `N_STARTS_WITH`, `CONTAINS`, `N_ENDS_WITH`, `STARTS_WITH`, `N_EXISTS`, `EQUALS`",
 			Required:    true,
 		},
 		"value": {

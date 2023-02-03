@@ -23,9 +23,9 @@ import (
 )
 
 type ProcessGroupDetection struct {
-	ContainedString       string `json:"containedString"` // (case sensitive)
-	Property              string `json:"property"`
-	RestrictToProcessType string `json:"restrictToProcessType"` // Note: Not all types can be detected at startup.
+	ContainedString       string  `json:"containedString"` // (case sensitive)
+	Property              string  `json:"property"`
+	RestrictToProcessType *string `json:"restrictToProcessType,omitempty"` // Note: Not all types can be detected at startup.
 }
 
 func (me *ProcessGroupDetection) Schema() map[string]*schema.Schema {
@@ -43,7 +43,7 @@ func (me *ProcessGroupDetection) Schema() map[string]*schema.Schema {
 		"restrict_to_process_type": {
 			Type:        schema.TypeString,
 			Description: "Note: Not all types can be detected at startup.",
-			Required:    true,
+			Optional:    true,
 		},
 	}
 }

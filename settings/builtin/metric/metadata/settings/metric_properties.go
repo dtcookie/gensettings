@@ -23,12 +23,12 @@ import (
 )
 
 type MetricProperties struct {
-	ImpactRelevant    bool      `json:"impactRelevant"`    // Whether (true or false) the metric is relevant to a problem's impact.\n\nAn impact-relevant metric is highly dependent on other metrics and changes because an underlying root-cause metric has changed.
-	Latency           int       `json:"latency"`           // The latency of the metric, in minutes. \n\n The latency is the expected reporting delay (for example, caused by constraints of cloud vendors or other third-party data sources) between the observation of a metric data point and its availability in Dynatrace. \n\nThe allowed value range is from 1 to 60 minutes.
-	MaxValue          float64   `json:"maxValue"`          // The maximum allowed value of the metric.
-	MinValue          float64   `json:"minValue"`          // The minimum allowed value of the metric.
-	RootCauseRelevant bool      `json:"rootCauseRelevant"` // Whether (true or false) the metric is related to a root cause of a problem.\n\nA root-cause relevant metric represents a strong indicator for a faulty component.
-	ValueType         ValueType `json:"valueType"`         // Possible Values: `Score`, `Unknown`, `Error`
+	ImpactRelevant    *bool     `json:"impactRelevant,omitempty"`    // Whether (true or false) the metric is relevant to a problem's impact.\n\nAn impact-relevant metric is highly dependent on other metrics and changes because an underlying root-cause metric has changed.
+	Latency           *int      `json:"latency,omitempty"`           // The latency of the metric, in minutes. \n\n The latency is the expected reporting delay (for example, caused by constraints of cloud vendors or other third-party data sources) between the observation of a metric data point and its availability in Dynatrace. \n\nThe allowed value range is from 1 to 60 minutes.
+	MaxValue          *float64  `json:"maxValue,omitempty"`          // The maximum allowed value of the metric.
+	MinValue          *float64  `json:"minValue,omitempty"`          // The minimum allowed value of the metric.
+	RootCauseRelevant *bool     `json:"rootCauseRelevant,omitempty"` // Whether (true or false) the metric is related to a root cause of a problem.\n\nA root-cause relevant metric represents a strong indicator for a faulty component.
+	ValueType         ValueType `json:"valueType"`                   // Possible Values: `Error`, `Score`, `Unknown`
 }
 
 func (me *MetricProperties) Schema() map[string]*schema.Schema {
@@ -36,31 +36,31 @@ func (me *MetricProperties) Schema() map[string]*schema.Schema {
 		"impact_relevant": {
 			Type:        schema.TypeBool,
 			Description: "Whether (true or false) the metric is relevant to a problem's impact.\n\nAn impact-relevant metric is highly dependent on other metrics and changes because an underlying root-cause metric has changed.",
-			Required:    true,
+			Optional:    true,
 		},
 		"latency": {
 			Type:        schema.TypeInt,
 			Description: "The latency of the metric, in minutes. \n\n The latency is the expected reporting delay (for example, caused by constraints of cloud vendors or other third-party data sources) between the observation of a metric data point and its availability in Dynatrace. \n\nThe allowed value range is from 1 to 60 minutes.",
-			Required:    true,
+			Optional:    true,
 		},
 		"max_value": {
 			Type:        schema.TypeFloat,
 			Description: "The maximum allowed value of the metric.",
-			Required:    true,
+			Optional:    true,
 		},
 		"min_value": {
 			Type:        schema.TypeFloat,
 			Description: "The minimum allowed value of the metric.",
-			Required:    true,
+			Optional:    true,
 		},
 		"root_cause_relevant": {
 			Type:        schema.TypeBool,
 			Description: "Whether (true or false) the metric is related to a root cause of a problem.\n\nA root-cause relevant metric represents a strong indicator for a faulty component.",
-			Required:    true,
+			Optional:    true,
 		},
 		"value_type": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `Score`, `Unknown`, `Error`",
+			Description: "Possible Values: `Error`, `Score`, `Unknown`",
 			Required:    true,
 		},
 	}

@@ -46,9 +46,9 @@ func (me *AttributeEntries) UnmarshalHCL(decoder hcl.Decoder) error {
 
 // Attribute entry. Describe how an attribute is extracted from ingest data.
 type AttributeEntry struct {
-	DisplayName string `json:"displayName"` // The human readable attribute name for this extraction rule. Leave blank to use the key as the display name.
-	Key         string `json:"key"`         // The attribute key is the unique name of the attribute.
-	Pattern     string `json:"pattern"`     // Pattern for specifying the value for the extracted attribute. Can be a static value, placeholders or a combination of both.
+	DisplayName *string `json:"displayName,omitempty"` // The human readable attribute name for this extraction rule. Leave blank to use the key as the display name.
+	Key         string  `json:"key"`                   // The attribute key is the unique name of the attribute.
+	Pattern     string  `json:"pattern"`               // Pattern for specifying the value for the extracted attribute. Can be a static value, placeholders or a combination of both.
 }
 
 func (me *AttributeEntry) Schema() map[string]*schema.Schema {
@@ -56,7 +56,7 @@ func (me *AttributeEntry) Schema() map[string]*schema.Schema {
 		"display_name": {
 			Type:        schema.TypeString,
 			Description: "The human readable attribute name for this extraction rule. Leave blank to use the key as the display name.",
-			Required:    true,
+			Optional:    true,
 		},
 		"key": {
 			Type:        schema.TypeString,

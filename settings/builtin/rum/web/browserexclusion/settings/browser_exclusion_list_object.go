@@ -45,22 +45,22 @@ func (me *BrowserExclusionListObjects) UnmarshalHCL(decoder hcl.Decoder) error {
 }
 
 type BrowserExclusionListObject struct {
-	BrowserName       Browser            `json:"browserName"`        // Possible Values: `BOTS_AND_SPIDERS`, `ANDROID_WEBKIT`, `CHROME`, `FIREFOX`, `INTERNET_EXPLORER`, `OPERA`, `SAFARI`, `EDGE`
-	Platform          *Platform          `json:"platform,omitempty"` // Possible Values: `DESKTOP`, `ALL`, `MOBILE`
+	BrowserName       Browser            `json:"browserName"`        // Possible Values: `FIREFOX`, `INTERNET_EXPLORER`, `OPERA`, `SAFARI`, `EDGE`, `BOTS_AND_SPIDERS`, `ANDROID_WEBKIT`, `CHROME`
+	Platform          *Platform          `json:"platform,omitempty"` // Possible Values: `MOBILE`, `DESKTOP`, `ALL`
 	Version           *int               `json:"version,omitempty"`
-	VersionComparator *VersionComparator `json:"versionComparator,omitempty"` // Possible Values: `EQUALS`, `LESS_OR_EQUAL`, `GREATER_OR_EQUAL`
+	VersionComparator *VersionComparator `json:"versionComparator,omitempty"` // Possible Values: `LESS_OR_EQUAL`, `GREATER_OR_EQUAL`, `EQUALS`
 }
 
 func (me *BrowserExclusionListObject) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"browser_name": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `BOTS_AND_SPIDERS`, `ANDROID_WEBKIT`, `CHROME`, `FIREFOX`, `INTERNET_EXPLORER`, `OPERA`, `SAFARI`, `EDGE`",
+			Description: "Possible Values: `FIREFOX`, `INTERNET_EXPLORER`, `OPERA`, `SAFARI`, `EDGE`, `BOTS_AND_SPIDERS`, `ANDROID_WEBKIT`, `CHROME`",
 			Required:    true,
 		},
 		"platform": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `DESKTOP`, `ALL`, `MOBILE`",
+			Description: "Possible Values: `MOBILE`, `DESKTOP`, `ALL`",
 			Optional:    true,
 		},
 		"version": {
@@ -70,7 +70,7 @@ func (me *BrowserExclusionListObject) Schema() map[string]*schema.Schema {
 		},
 		"version_comparator": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `EQUALS`, `LESS_OR_EQUAL`, `GREATER_OR_EQUAL`",
+			Description: "Possible Values: `LESS_OR_EQUAL`, `GREATER_OR_EQUAL`, `EQUALS`",
 			Optional:    true,
 		},
 	}

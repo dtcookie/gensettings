@@ -45,7 +45,7 @@ func (me *Locations) UnmarshalHCL(decoder hcl.Decoder) error {
 }
 
 type Location struct {
-	Location string `json:"location"`
+	Location *string `json:"location,omitempty"`
 }
 
 func (me *Location) Schema() map[string]*schema.Schema {
@@ -53,7 +53,7 @@ func (me *Location) Schema() map[string]*schema.Schema {
 		"location": {
 			Type:        schema.TypeString,
 			Description: "no documentation available",
-			Required:    true,
+			Optional:    true,
 		},
 	}
 }

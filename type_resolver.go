@@ -91,7 +91,7 @@ func (me *TypeResolver) ResolveType(name string) *reflection.Type {
 			Name:     propertyName,
 			Type:     me.resolvePropertyType(propertyName, propertyDefinition),
 			Comment:  comment,
-			Optional: propertyDefinition.Precondition != nil,
+			Optional: propertyDefinition.Nullable || propertyDefinition.Precondition != nil,
 		}
 		structType.Properties[propertyName] = property
 	}

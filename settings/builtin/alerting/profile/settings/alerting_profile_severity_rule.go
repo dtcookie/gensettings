@@ -46,9 +46,9 @@ func (me *AlertingProfileSeverityRules) UnmarshalHCL(decoder hcl.Decoder) error 
 
 type AlertingProfileSeverityRule struct {
 	DelayInMinutes       int                  `json:"delayInMinutes"`       // Send a notification if a problem remains open longer than X minutes.
-	SeverityLevel        SeverityLevel        `json:"severityLevel"`        // Possible Values: `RESOURCE_CONTENTION`, `AVAILABILITY`, `CUSTOM_ALERT`, `ERRORS`, `MONITORING_UNAVAILABLE`, `PERFORMANCE`
+	SeverityLevel        SeverityLevel        `json:"severityLevel"`        // Possible Values: `ERRORS`, `MONITORING_UNAVAILABLE`, `PERFORMANCE`, `RESOURCE_CONTENTION`, `AVAILABILITY`, `CUSTOM_ALERT`
 	TagFilter            *[]string            `json:"tagFilter,omitempty"`  // Tags
-	TagFilterIncludeMode TagFilterIncludeMode `json:"tagFilterIncludeMode"` // Possible Values: `INCLUDE_ALL`, `NONE`, `INCLUDE_ANY`
+	TagFilterIncludeMode TagFilterIncludeMode `json:"tagFilterIncludeMode"` // Possible Values: `NONE`, `INCLUDE_ANY`, `INCLUDE_ALL`
 }
 
 func (me *AlertingProfileSeverityRule) Schema() map[string]*schema.Schema {
@@ -60,7 +60,7 @@ func (me *AlertingProfileSeverityRule) Schema() map[string]*schema.Schema {
 		},
 		"severity_level": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `RESOURCE_CONTENTION`, `AVAILABILITY`, `CUSTOM_ALERT`, `ERRORS`, `MONITORING_UNAVAILABLE`, `PERFORMANCE`",
+			Description: "Possible Values: `ERRORS`, `MONITORING_UNAVAILABLE`, `PERFORMANCE`, `RESOURCE_CONTENTION`, `AVAILABILITY`, `CUSTOM_ALERT`",
 			Required:    true,
 		},
 		"tag_filter": {
@@ -72,7 +72,7 @@ func (me *AlertingProfileSeverityRule) Schema() map[string]*schema.Schema {
 		},
 		"tag_filter_include_mode": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `INCLUDE_ALL`, `NONE`, `INCLUDE_ANY`",
+			Description: "Possible Values: `NONE`, `INCLUDE_ANY`, `INCLUDE_ALL`",
 			Required:    true,
 		},
 	}

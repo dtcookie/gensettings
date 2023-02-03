@@ -24,7 +24,7 @@ import (
 
 type GuestCPULimitDetectionConfig struct {
 	CustomThresholds *GuestCPULimitDetectionThresholds `json:"customThresholds,omitempty"` // Alert if **all three** conditions are met in 3 out of 5 samples
-	DetectionMode    *DetectionMode                    `json:"detectionMode,omitempty"`    // Possible Values: `Custom`, `Auto`
+	DetectionMode    *DetectionMode                    `json:"detectionMode,omitempty"`    // Possible Values: `Auto`, `Custom`
 	Enabled          bool                              `json:"enabled"`                    // This setting is enabled (`true`) or disabled (`false`)
 }
 
@@ -41,7 +41,7 @@ func (me *GuestCPULimitDetectionConfig) Schema() map[string]*schema.Schema {
 		},
 		"detection_mode": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `Custom`, `Auto`",
+			Description: "Possible Values: `Auto`, `Custom`",
 			Optional:    true,
 		},
 		"enabled": {

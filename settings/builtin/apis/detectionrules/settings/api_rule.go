@@ -45,8 +45,8 @@ func (me *ApiRules) UnmarshalHCL(decoder hcl.Decoder) error {
 }
 
 type ApiRule struct {
-	Base    Base    `json:"base"`    // Possible Values: `PACKAGE`, `FQCN`, `FILE_NAME`
-	Matcher Matcher `json:"matcher"` // Possible Values: `BEGINS_WITH`, `CONTAINS`
+	Base    Base    `json:"base"`    // Possible Values: `FQCN`, `FILE_NAME`, `PACKAGE`
+	Matcher Matcher `json:"matcher"` // Possible Values: `CONTAINS`, `BEGINS_WITH`
 	Pattern string  `json:"pattern"`
 }
 
@@ -54,12 +54,12 @@ func (me *ApiRule) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"base": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `PACKAGE`, `FQCN`, `FILE_NAME`",
+			Description: "Possible Values: `FQCN`, `FILE_NAME`, `PACKAGE`",
 			Required:    true,
 		},
 		"matcher": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `BEGINS_WITH`, `CONTAINS`",
+			Description: "Possible Values: `CONTAINS`, `BEGINS_WITH`",
 			Required:    true,
 		},
 		"pattern": {

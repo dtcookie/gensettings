@@ -23,10 +23,10 @@ import (
 )
 
 type OAuth2Credentials struct {
-	AccessTokenUrl string `json:"accessTokenUrl"` // Access token URL
-	ClientID       string `json:"clientId"`       // Client ID
-	ClientSecret   string `json:"clientSecret"`   // Client secret
-	Scope          string `json:"scope"`          // The scope of access you are requesting
+	AccessTokenUrl string  `json:"accessTokenUrl"`  // Access token URL
+	ClientID       string  `json:"clientId"`        // Client ID
+	ClientSecret   string  `json:"clientSecret"`    // Client secret
+	Scope          *string `json:"scope,omitempty"` // The scope of access you are requesting
 }
 
 func (me *OAuth2Credentials) Schema() map[string]*schema.Schema {
@@ -49,7 +49,7 @@ func (me *OAuth2Credentials) Schema() map[string]*schema.Schema {
 		"scope": {
 			Type:        schema.TypeString,
 			Description: "The scope of access you are requesting",
-			Required:    true,
+			Optional:    true,
 		},
 	}
 }

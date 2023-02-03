@@ -46,8 +46,8 @@ func (me *DimensionFilters) UnmarshalHCL(decoder hcl.Decoder) error {
 
 // Ingest dimension filter. A dimension describes a property key which is present in the ingest data.
 type DimensionFilter struct {
-	Key          string `json:"key"`          // A dimension key which needs to exist in the ingest data to match this filter.
-	ValuePattern string `json:"valuePattern"` // A dimension value pattern which needs to exist in the ingest data to match this filter.
+	Key          string  `json:"key"`                    // A dimension key which needs to exist in the ingest data to match this filter.
+	ValuePattern *string `json:"valuePattern,omitempty"` // A dimension value pattern which needs to exist in the ingest data to match this filter.
 }
 
 func (me *DimensionFilter) Schema() map[string]*schema.Schema {
@@ -60,7 +60,7 @@ func (me *DimensionFilter) Schema() map[string]*schema.Schema {
 		"value_pattern": {
 			Type:        schema.TypeString,
 			Description: "A dimension value pattern which needs to exist in the ingest data to match this filter.",
-			Required:    true,
+			Optional:    true,
 		},
 	}
 }

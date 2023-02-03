@@ -23,8 +23,8 @@ import (
 )
 
 type FilterSettings struct {
-	Filter UrlFilter `json:"filter"` // Possible Values: `BEGINS_WITH`, `ENDS_WITH`, `CONTAINS`, `EQUALS`
-	Url    *string   `json:"url,omitempty"`
+	Filter *UrlFilter `json:"filter,omitempty"` // Possible Values: `BEGINS_WITH`, `ENDS_WITH`, `CONTAINS`, `EQUALS`
+	Url    *string    `json:"url,omitempty"`
 }
 
 func (me *FilterSettings) Schema() map[string]*schema.Schema {
@@ -32,7 +32,7 @@ func (me *FilterSettings) Schema() map[string]*schema.Schema {
 		"filter": {
 			Type:        schema.TypeString,
 			Description: "Possible Values: `BEGINS_WITH`, `ENDS_WITH`, `CONTAINS`, `EQUALS`",
-			Required:    true,
+			Optional:    true,
 		},
 		"url": {
 			Type:        schema.TypeString,
