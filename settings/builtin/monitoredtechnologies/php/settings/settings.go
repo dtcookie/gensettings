@@ -23,9 +23,9 @@ import (
 )
 
 type Settings struct {
-	Enabled        bool    `json:"enabled"`             // This setting is enabled (`true`) or disabled (`false`)
-	EnabledFastCGI bool    `json:"enabledFastCGI"`      // Requires PHP monitoring enabled and from Dynatrace OneAgent version 1.191 it's ignored and permanently enabled
-	ServiceID      *string `json:"-" scope:"serviceId"` // The scope of this settings. If the settings should cover the whole environment, just don't specify any scope.
+	Enabled        bool    `json:"enabled"`          // This setting is enabled (`true`) or disabled (`false`)
+	EnabledFastCGI bool    `json:"enabledFastCGI"`   // Requires PHP monitoring enabled and from Dynatrace OneAgent version 1.191 it's ignored and permanently enabled
+	HostID         *string `json:"-" scope:"hostId"` // The scope of this settings. If the settings should cover the whole environment, just don't specify any scope.
 }
 
 func (me *Settings) Schema() map[string]*schema.Schema {
@@ -40,7 +40,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 			Description: "Requires PHP monitoring enabled and from Dynatrace OneAgent version 1.191 it's ignored and permanently enabled",
 			Required:    true,
 		},
-		"service_id": {
+		"host_id": {
 			Type:        schema.TypeString,
 			Description: "The scope of this settings. If the settings should cover the whole environment, just don't specify any scope.",
 			Optional:    true,
@@ -53,7 +53,7 @@ func (me *Settings) MarshalHCL(properties hcl.Properties) error {
 	return properties.EncodeAll(map[string]any{
 		"enabled":          me.Enabled,
 		"enabled_fast_cgi": me.EnabledFastCGI,
-		"service_id":       me.ServiceID,
+		"host_id":          me.HostID,
 	})
 }
 
@@ -61,6 +61,6 @@ func (me *Settings) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"enabled":          &me.Enabled,
 		"enabled_fast_cgi": &me.EnabledFastCGI,
-		"service_id":       &me.ServiceID,
+		"host_id":          &me.HostID,
 	})
 }

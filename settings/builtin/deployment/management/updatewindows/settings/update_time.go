@@ -25,7 +25,7 @@ import (
 type UpdateTime struct {
 	Duration  int          `json:"duration"`  // Duration (minutes)
 	StartTime string       `json:"startTime"` // Start time (24-hour clock)
-	TimeZone  TimezoneEnum `json:"timeZone"`  // Possible Values: `GMT_07_00`, `GMT_08_00`, `GMT_02_00`, `GMT_10_00`, `GMT_00_00`, `GMT_05_00`, `GMT_04_00`, `GMT_03_00`, `GMT_12_00`, `GMT_01_00`, `GMT_11_00`, `GMT_09_00`, `GMT_06_00`
+	TimeZone  TimezoneEnum `json:"timeZone"`  // Possible Values: `GMT_09_00`, `GMT_00_00`, `GMT_07_00`, `GMT_08_00`, `GMT_05_00`, `GMT_01_00`, `GMT_02_00`, `GMT_12_00`, `GMT_03_00`, `GMT_06_00`, `GMT_04_00`, `GMT_11_00`, `GMT_10_00`
 }
 
 func (me *UpdateTime) Schema() map[string]*schema.Schema {
@@ -42,7 +42,7 @@ func (me *UpdateTime) Schema() map[string]*schema.Schema {
 		},
 		"time_zone": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `GMT_07_00`, `GMT_08_00`, `GMT_02_00`, `GMT_10_00`, `GMT_00_00`, `GMT_05_00`, `GMT_04_00`, `GMT_03_00`, `GMT_12_00`, `GMT_01_00`, `GMT_11_00`, `GMT_09_00`, `GMT_06_00`",
+			Description: "Possible Values: `GMT_09_00`, `GMT_00_00`, `GMT_07_00`, `GMT_08_00`, `GMT_05_00`, `GMT_01_00`, `GMT_02_00`, `GMT_12_00`, `GMT_03_00`, `GMT_06_00`, `GMT_04_00`, `GMT_11_00`, `GMT_10_00`",
 			Required:    true,
 		},
 	}

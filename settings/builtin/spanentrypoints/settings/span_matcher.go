@@ -49,7 +49,7 @@ type SpanMatcher struct {
 	Source        SpanMatcherSource `json:"source"`                  // Possible Values: `INSTRUMENTATION_SCOPE_NAME`, `INSTRUMENTATION_SCOPE_VERSION`, `SPAN_NAME`, `SPAN_KIND`, `ATTRIBUTE`
 	SourceKey     *string           `json:"sourceKey,omitempty"`     // Key
 	SpanKindValue *SpanKind         `json:"spanKindValue,omitempty"` // Possible Values: `INTERNAL`, `SERVER`, `CLIENT`, `PRODUCER`, `CONSUMER`
-	Type          SpanMatcherType   `json:"type"`                    // Possible Values: `DOES_NOT_START_WITH`, `DOES_NOT_END_WITH`, `EQUALS`, `CONTAINS`, `STARTS_WITH`, `ENDS_WITH`, `DOES_NOT_EQUAL`, `DOES_NOT_CONTAIN`
+	Type          SpanMatcherType   `json:"type"`                    // Possible Values: `ENDS_WITH`, `DOES_NOT_EQUAL`, `DOES_NOT_CONTAIN`, `DOES_NOT_START_WITH`, `DOES_NOT_END_WITH`, `EQUALS`, `CONTAINS`, `STARTS_WITH`
 	Value         *string           `json:"value,omitempty"`         // evaluated at span start
 }
 
@@ -77,7 +77,7 @@ func (me *SpanMatcher) Schema() map[string]*schema.Schema {
 		},
 		"type": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `DOES_NOT_START_WITH`, `DOES_NOT_END_WITH`, `EQUALS`, `CONTAINS`, `STARTS_WITH`, `ENDS_WITH`, `DOES_NOT_EQUAL`, `DOES_NOT_CONTAIN`",
+			Description: "Possible Values: `ENDS_WITH`, `DOES_NOT_EQUAL`, `DOES_NOT_CONTAIN`, `DOES_NOT_START_WITH`, `DOES_NOT_END_WITH`, `EQUALS`, `CONTAINS`, `STARTS_WITH`",
 			Required:    true,
 		},
 		"value": {

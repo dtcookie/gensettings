@@ -23,7 +23,7 @@ import (
 )
 
 type ErrorRateIncrease struct {
-	DetectionMode          *DetectionMode          `json:"detectionMode,omitempty"`          // Possible Values: `Fixed`, `Auto`
+	DetectionMode          *DetectionMode          `json:"detectionMode,omitempty"`          // Possible Values: `Auto`, `Fixed`
 	Enabled                bool                    `json:"enabled"`                          // This setting is enabled (`true`) or disabled (`false`)
 	ErrorRateIncreaseAuto  *ErrorRateIncreaseAuto  `json:"errorRateIncreaseAuto,omitempty"`  // Alert if the percentage of user actions affected by reported errors exceeds **both** the absolute threshold and the relative threshold
 	ErrorRateIncreaseFixed *ErrorRateIncreaseFixed `json:"errorRateIncreaseFixed,omitempty"` // Alert if the custom reported error rate threshold is exceeded during any 5-minute period
@@ -33,7 +33,7 @@ func (me *ErrorRateIncrease) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"detection_mode": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `Fixed`, `Auto`",
+			Description: "Possible Values: `Auto`, `Fixed`",
 			Optional:    true,
 		},
 		"enabled": {

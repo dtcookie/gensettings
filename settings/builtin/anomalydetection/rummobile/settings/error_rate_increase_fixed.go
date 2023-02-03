@@ -23,7 +23,7 @@ import (
 )
 
 type ErrorRateIncreaseFixed struct {
-	Sensitivity       Sensitivity `json:"sensitivity"`       // Possible Values: `Low`, `Medium`, `High`
+	Sensitivity       Sensitivity `json:"sensitivity"`       // Possible Values: `Medium`, `High`, `Low`
 	ThresholdAbsolute float64     `json:"thresholdAbsolute"` // Absolute threshold
 }
 
@@ -31,7 +31,7 @@ func (me *ErrorRateIncreaseFixed) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"sensitivity": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `Low`, `Medium`, `High`",
+			Description: "Possible Values: `Medium`, `High`, `Low`",
 			Required:    true,
 		},
 		"threshold_absolute": {

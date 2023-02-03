@@ -47,7 +47,7 @@ func (me *AlertingProfileEventFilters) UnmarshalHCL(decoder hcl.Decoder) error {
 type AlertingProfileEventFilter struct {
 	CustomFilter     *CustomEventFilter             `json:"customFilter,omitempty"`
 	PredefinedFilter *PredefinedEventFilter         `json:"predefinedFilter,omitempty"`
-	Type             AlertingProfileEventFilterType `json:"type"` // Possible Values: `PREDEFINED`, `CUSTOM`
+	Type             AlertingProfileEventFilterType `json:"type"` // Possible Values: `CUSTOM`, `PREDEFINED`
 }
 
 func (me *AlertingProfileEventFilter) Schema() map[string]*schema.Schema {
@@ -72,7 +72,7 @@ func (me *AlertingProfileEventFilter) Schema() map[string]*schema.Schema {
 		},
 		"type": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `PREDEFINED`, `CUSTOM`",
+			Description: "Possible Values: `CUSTOM`, `PREDEFINED`",
 			Required:    true,
 		},
 	}

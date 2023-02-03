@@ -26,7 +26,7 @@ type AllowListRules []*AllowListRule
 
 func (me *AllowListRules) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
-		"recordingMaskingAllowListRule": {
+		"playbackMaskingAllowListRule": {
 			Type:        schema.TypeSet,
 			Required:    true,
 			MinItems:    1,
@@ -37,11 +37,11 @@ func (me *AllowListRules) Schema() map[string]*schema.Schema {
 }
 
 func (me AllowListRules) MarshalHCL(properties hcl.Properties) error {
-	return properties.EncodeSlice("recordingMaskingAllowListRule", me)
+	return properties.EncodeSlice("playbackMaskingAllowListRule", me)
 }
 
 func (me *AllowListRules) UnmarshalHCL(decoder hcl.Decoder) error {
-	return decoder.DecodeSlice("recordingMaskingAllowListRule", me)
+	return decoder.DecodeSlice("playbackMaskingAllowListRule", me)
 }
 
 type AllowListRule struct {

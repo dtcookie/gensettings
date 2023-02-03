@@ -23,16 +23,21 @@ import (
 )
 
 type Settings struct {
-	MonitoringState ProcessGroupMonitoringMode `json:"MonitoringState"`     // Possible Values: `DEFAULT`, `MONITORING_OFF`, `MONITORING_ON`
-	ProcessGroup    string                     `json:"ProcessGroup"`        // Process group
-	ServiceID       string                     `json:"-" scope:"serviceId"` // The scope of this settings. If the settings should cover the whole environment, just don't specify any scope.
+	HostID          string                     `json:"-" scope:"hostId"` // The scope of this settings. If the settings should cover the whole environment, just don't specify any scope.
+	MonitoringState ProcessGroupMonitoringMode `json:"MonitoringState"`  // Possible Values: `MONITORING_OFF`, `MONITORING_ON`, `DEFAULT`
+	ProcessGroup    string                     `json:"ProcessGroup"`     // Process group
 }
 
 func (me *Settings) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
+		"host_id": {
+			Type:        schema.TypeString,
+			Description: "The scope of this settings. If the settings should cover the whole environment, just don't specify any scope.",
+			Required:    true,
+		},
 		"monitoring_state": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `DEFAULT`, `MONITORING_OFF`, `MONITORING_ON`",
+			Description: "Possible Values: `MONITORING_OFF`, `MONITORING_ON`, `DEFAULT`",
 			Required:    true,
 		},
 		"process_group": {
@@ -40,26 +45,21 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 			Description: "Process group",
 			Required:    true,
 		},
-		"service_id": {
-			Type:        schema.TypeString,
-			Description: "The scope of this settings. If the settings should cover the whole environment, just don't specify any scope.",
-			Required:    true,
-		},
 	}
 }
 
 func (me *Settings) MarshalHCL(properties hcl.Properties) error {
 	return properties.EncodeAll(map[string]any{
+		"host_id":          me.HostID,
 		"monitoring_state": me.MonitoringState,
 		"process_group":    me.ProcessGroup,
-		"service_id":       me.ServiceID,
 	})
 }
 
 func (me *Settings) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
+		"host_id":          &me.HostID,
 		"monitoring_state": &me.MonitoringState,
 		"process_group":    &me.ProcessGroup,
-		"service_id":       &me.ServiceID,
 	})
 }

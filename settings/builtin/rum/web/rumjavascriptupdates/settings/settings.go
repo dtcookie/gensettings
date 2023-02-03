@@ -24,7 +24,7 @@ import (
 
 type Settings struct {
 	ApplicationID     *string           `json:"-" scope:"applicationId"` // The scope of this settings. If the settings should cover the whole environment, just don't specify any scope.
-	JavascriptVersion JavascriptVersion `json:"JavascriptVersion"`       // Possible Values: `CUSTOM`, `LATEST_STABLE`, `PREVIOUS_STABLE`, `LATEST_IE7_10_SUPPORTED`
+	JavascriptVersion JavascriptVersion `json:"JavascriptVersion"`       // Possible Values: `PREVIOUS_STABLE`, `LATEST_IE7_10_SUPPORTED`, `CUSTOM`, `LATEST_STABLE`
 }
 
 func (me *Settings) Schema() map[string]*schema.Schema {
@@ -37,7 +37,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		},
 		"javascript_version": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `CUSTOM`, `LATEST_STABLE`, `PREVIOUS_STABLE`, `LATEST_IE7_10_SUPPORTED`",
+			Description: "Possible Values: `PREVIOUS_STABLE`, `LATEST_IE7_10_SUPPORTED`, `CUSTOM`, `LATEST_STABLE`",
 			Required:    true,
 		},
 	}

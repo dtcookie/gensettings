@@ -23,7 +23,7 @@ import (
 )
 
 type TransformationSet struct {
-	ContributionType ContributionTypeWithOverride `json:"contributionType"` // Possible Values: `TransformValue`, `OriginalValue`, `OverrideValue`
+	ContributionType ContributionTypeWithOverride `json:"contributionType"` // Possible Values: `OverrideValue`, `TransformValue`, `OriginalValue`
 	Transformations  *Transformations             `json:"transformations,omitempty"`
 	ValueOverride    *ValueOverride               `json:"valueOverride,omitempty"` // The value to be used instead of the detected value.
 }
@@ -32,7 +32,7 @@ func (me *TransformationSet) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"contribution_type": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `TransformValue`, `OriginalValue`, `OverrideValue`",
+			Description: "Possible Values: `OverrideValue`, `TransformValue`, `OriginalValue`",
 			Required:    true,
 		},
 		"transformations": {

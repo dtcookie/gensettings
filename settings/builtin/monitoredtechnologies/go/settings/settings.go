@@ -25,7 +25,7 @@ import (
 type Settings struct {
 	Enabled                   bool    `json:"enabled"`                   // This setting is enabled (`true`) or disabled (`false`)
 	EnabledGoStaticMonitoring bool    `json:"enabledGoStaticMonitoring"` // Learn more about the [known limitations for Go static monitoring](https://www.dynatrace.com/support/help/technology-support/application-software/go/support/go-known-limitations#limitations)
-	ServiceID                 *string `json:"-" scope:"serviceId"`       // The scope of this settings. If the settings should cover the whole environment, just don't specify any scope.
+	HostID                    *string `json:"-" scope:"hostId"`          // The scope of this settings. If the settings should cover the whole environment, just don't specify any scope.
 }
 
 func (me *Settings) Schema() map[string]*schema.Schema {
@@ -40,7 +40,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 			Description: "Learn more about the [known limitations for Go static monitoring](https://www.dynatrace.com/support/help/technology-support/application-software/go/support/go-known-limitations#limitations)",
 			Required:    true,
 		},
-		"service_id": {
+		"host_id": {
 			Type:        schema.TypeString,
 			Description: "The scope of this settings. If the settings should cover the whole environment, just don't specify any scope.",
 			Optional:    true,
@@ -53,7 +53,7 @@ func (me *Settings) MarshalHCL(properties hcl.Properties) error {
 	return properties.EncodeAll(map[string]any{
 		"enabled":                      me.Enabled,
 		"enabled_go_static_monitoring": me.EnabledGoStaticMonitoring,
-		"service_id":                   me.ServiceID,
+		"host_id":                      me.HostID,
 	})
 }
 
@@ -61,6 +61,6 @@ func (me *Settings) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"enabled":                      &me.Enabled,
 		"enabled_go_static_monitoring": &me.EnabledGoStaticMonitoring,
-		"service_id":                   &me.ServiceID,
+		"host_id":                      &me.HostID,
 	})
 }

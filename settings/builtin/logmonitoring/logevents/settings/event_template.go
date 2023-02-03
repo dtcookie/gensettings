@@ -25,7 +25,7 @@ import (
 type EventTemplate struct {
 	DavisMerge  *bool         `json:"davisMerge,omitempty"` // Davis® AI will try to merge this event into existing problems, otherwise a new problem will always be created.
 	Description string        `json:"description"`          // The description of the event to trigger.
-	EventType   EventTypeEnum `json:"eventType"`            // Possible Values: `CUSTOM_CONFIGURATION`, `CUSTOM_DEPLOYMENT`, `AVAILABILITY`, `RESOURCE`, `INFO`, `MARKED_FOR_TERMINATION`, `ERROR`, `SLOWDOWN`, `CUSTOM_ALERT`, `CUSTOM_ANNOTATION`
+	EventType   EventTypeEnum `json:"eventType"`            // Possible Values: `CUSTOM_ALERT`, `CUSTOM_ANNOTATION`, `MARKED_FOR_TERMINATION`, `SLOWDOWN`, `CUSTOM_CONFIGURATION`, `CUSTOM_DEPLOYMENT`, `INFO`, `AVAILABILITY`, `RESOURCE`, `ERROR`
 	Metadata    MetadataItems `json:"metadata"`             // Set of additional key-value properties to be attached to the triggered event.
 	Title       string        `json:"title"`                // The title of the event to trigger.
 }
@@ -44,7 +44,7 @@ func (me *EventTemplate) Schema() map[string]*schema.Schema {
 		},
 		"event_type": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `CUSTOM_CONFIGURATION`, `CUSTOM_DEPLOYMENT`, `AVAILABILITY`, `RESOURCE`, `INFO`, `MARKED_FOR_TERMINATION`, `ERROR`, `SLOWDOWN`, `CUSTOM_ALERT`, `CUSTOM_ANNOTATION`",
+			Description: "Possible Values: `CUSTOM_ALERT`, `CUSTOM_ANNOTATION`, `MARKED_FOR_TERMINATION`, `SLOWDOWN`, `CUSTOM_CONFIGURATION`, `CUSTOM_DEPLOYMENT`, `INFO`, `AVAILABILITY`, `RESOURCE`, `ERROR`",
 			Required:    true,
 		},
 		"metadata": {

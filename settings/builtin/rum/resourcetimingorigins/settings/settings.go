@@ -23,7 +23,7 @@ import (
 )
 
 type Settings struct {
-	Matcher OriginMatcherType `json:"matcher"` // Possible Values: `EQUALS`, `STARTS_WITH`, `ENDS_WITH`, `CONTAINS`
+	Matcher OriginMatcherType `json:"matcher"` // Possible Values: `CONTAINS`, `EQUALS`, `STARTS_WITH`, `ENDS_WITH`
 	Pattern string            `json:"pattern"` // Pattern
 }
 
@@ -31,7 +31,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"matcher": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `EQUALS`, `STARTS_WITH`, `ENDS_WITH`, `CONTAINS`",
+			Description: "Possible Values: `CONTAINS`, `EQUALS`, `STARTS_WITH`, `ENDS_WITH`",
 			Required:    true,
 		},
 		"pattern": {

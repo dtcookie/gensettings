@@ -116,8 +116,8 @@ func checkScope(scopes collections.Set[string], elem string) bool {
 var scopeIds = map[string]string{
 	"SERVICE":            "serviceId",
 	"PROCESS_GROUP":      "processGroupId",
-	"HOST_GROUP":         "hostId",
-	"HOST":               "serviceId",
+	"HOST_GROUP":         "hostGroupId",
+	"HOST":               "hostId",
 	"MOBILE_APPLICATION": "applicationId",
 	"APPLICATION":        "applicationId",
 	"DISK":               "diskId",

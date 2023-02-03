@@ -46,7 +46,7 @@ func (me *WindowsDetectionConditions) UnmarshalHCL(decoder hcl.Decoder) error {
 
 type WindowsDetectionCondition struct {
 	Condition        *string             `json:"condition,omitempty"`        // This string has to match a required format. See [OS services monitoring](https://dt-url.net/vl03xzk).\n\n- `$contains(ssh)` – Matches if `ssh` appears anywhere in the service's property value.\n- `$eq(sshd)` – Matches if `sshd` matches the service's property value exactly.\n- `$prefix(ss)` – Matches if `ss` matches the prefix of the service's property value.\n- `$suffix(hd)` – Matches if `hd` matches the suffix of the service's property value.\n\nAvailable logic operations:\n- `$not($eq(sshd))` – Matches if the service's property value is different from `sshd`.\n- `$and($prefix(ss),$suffix(hd))` – Matches if service's property value starts with `ss` and ends with `hd`.\n- `$or($prefix(ss),$suffix(hd))` – Matches if service's property value starts with `ss` or ends with `hd`.
-	Property         WindowsServiceProps `json:"property"`                   // Possible Values: `Manufacturer`, `DisplayName`, `ServiceName`, `Path`, `StartupType`
+	Property         WindowsServiceProps `json:"property"`                   // Possible Values: `StartupType`, `Manufacturer`, `DisplayName`, `ServiceName`, `Path`
 	StartupCondition *string             `json:"startupCondition,omitempty"` // This string has to match a required format. See [OS services monitoring](https://dt-url.net/vl03xzk).\n\n- `$eq(manual)` – Matches services that are started manually.\n\nAvailable logic operations:\n- `$not($eq(auto))` – Matches services with startup type different from Automatic.\n- `$or($eq(auto),$eq(manual))` – Matches if service's startup type is either Automatic or Manual.\n\nUse one of the following values as a parameter for this condition:\n\n- `manual` for Manual\n- `manual_trigger` for Manual (Trigger Start)\n- `auto` for Automatic\n- `auto_delay` for Automatic (Delayed Start)\n- `auto_trigger` for Automatic (Trigger Start)\n- `auto_delay_trigger` for Automatic (Delayed Start, Trigger Start)\n- `disabled` for Disabled
 }
 
@@ -59,7 +59,7 @@ func (me *WindowsDetectionCondition) Schema() map[string]*schema.Schema {
 		},
 		"property": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `Manufacturer`, `DisplayName`, `ServiceName`, `Path`, `StartupType`",
+			Description: "Possible Values: `StartupType`, `Manufacturer`, `DisplayName`, `ServiceName`, `Path`",
 			Required:    true,
 		},
 		"startup_condition": {

@@ -23,9 +23,9 @@ import (
 )
 
 type Settings struct {
-	Enabled           bool    `json:"enabled"`             // This setting is enabled (`true`) or disabled (`false`)
-	EnabledDotNetCore bool    `json:"enabledDotNetCore"`   // Requires Dynatrace OneAgent version 1.117 or later on Windows and version 1.127 or later on Linux and .NET monitoring enabled
-	ServiceID         *string `json:"-" scope:"serviceId"` // The scope of this settings. If the settings should cover the whole environment, just don't specify any scope.
+	Enabled           bool    `json:"enabled"`           // This setting is enabled (`true`) or disabled (`false`)
+	EnabledDotNetCore bool    `json:"enabledDotNetCore"` // Requires Dynatrace OneAgent version 1.117 or later on Windows and version 1.127 or later on Linux and .NET monitoring enabled
+	HostID            *string `json:"-" scope:"hostId"`  // The scope of this settings. If the settings should cover the whole environment, just don't specify any scope.
 }
 
 func (me *Settings) Schema() map[string]*schema.Schema {
@@ -40,7 +40,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 			Description: "Requires Dynatrace OneAgent version 1.117 or later on Windows and version 1.127 or later on Linux and .NET monitoring enabled",
 			Required:    true,
 		},
-		"service_id": {
+		"host_id": {
 			Type:        schema.TypeString,
 			Description: "The scope of this settings. If the settings should cover the whole environment, just don't specify any scope.",
 			Optional:    true,
@@ -53,7 +53,7 @@ func (me *Settings) MarshalHCL(properties hcl.Properties) error {
 	return properties.EncodeAll(map[string]any{
 		"enabled":              me.Enabled,
 		"enabled_dot_net_core": me.EnabledDotNetCore,
-		"service_id":           me.ServiceID,
+		"host_id":              me.HostID,
 	})
 }
 
@@ -61,6 +61,6 @@ func (me *Settings) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"enabled":              &me.Enabled,
 		"enabled_dot_net_core": &me.EnabledDotNetCore,
-		"service_id":           &me.ServiceID,
+		"host_id":              &me.HostID,
 	})
 }

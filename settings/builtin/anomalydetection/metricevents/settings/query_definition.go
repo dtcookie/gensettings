@@ -23,7 +23,7 @@ import (
 )
 
 type QueryDefinition struct {
-	Aggregation     *Aggregation      `json:"aggregation,omitempty"`     // Possible Values: `PERCENTILE90`, `MIN`, `MAX`, `SUM`, `COUNT`, `AVG`, `VALUE`, `MEDIAN`
+	Aggregation     *Aggregation      `json:"aggregation,omitempty"`     // Possible Values: `MAX`, `SUM`, `COUNT`, `AVG`, `VALUE`, `MEDIAN`, `PERCENTILE90`, `MIN`
 	DimensionFilter *DimensionFilters `json:"dimensionFilter,omitempty"` // Dimension filter
 	EntityFilter    *EntityFilter     `json:"entityFilter,omitempty"`    // Use rule-based filters to define the scope this event monitors.
 	MetricKey       *string           `json:"metricKey,omitempty"`       // Metric key
@@ -36,7 +36,7 @@ func (me *QueryDefinition) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"aggregation": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `PERCENTILE90`, `MIN`, `MAX`, `SUM`, `COUNT`, `AVG`, `VALUE`, `MEDIAN`",
+			Description: "Possible Values: `MAX`, `SUM`, `COUNT`, `AVG`, `VALUE`, `MEDIAN`, `PERCENTILE90`, `MIN`",
 			Optional:    true,
 		},
 		"dimension_filter": {

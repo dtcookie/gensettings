@@ -48,7 +48,7 @@ type BrowserExclusionListObject struct {
 	BrowserName       Browser            `json:"browserName"`        // Possible Values: `BOTS_AND_SPIDERS`, `ANDROID_WEBKIT`, `CHROME`, `FIREFOX`, `INTERNET_EXPLORER`, `OPERA`, `SAFARI`, `EDGE`
 	Platform          *Platform          `json:"platform,omitempty"` // Possible Values: `DESKTOP`, `ALL`, `MOBILE`
 	Version           *int               `json:"version,omitempty"`
-	VersionComparator *VersionComparator `json:"versionComparator,omitempty"` // Possible Values: `GREATER_OR_EQUAL`, `EQUALS`, `LESS_OR_EQUAL`
+	VersionComparator *VersionComparator `json:"versionComparator,omitempty"` // Possible Values: `EQUALS`, `LESS_OR_EQUAL`, `GREATER_OR_EQUAL`
 }
 
 func (me *BrowserExclusionListObject) Schema() map[string]*schema.Schema {
@@ -70,7 +70,7 @@ func (me *BrowserExclusionListObject) Schema() map[string]*schema.Schema {
 		},
 		"version_comparator": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `GREATER_OR_EQUAL`, `EQUALS`, `LESS_OR_EQUAL`",
+			Description: "Possible Values: `EQUALS`, `LESS_OR_EQUAL`, `GREATER_OR_EQUAL`",
 			Optional:    true,
 		},
 	}

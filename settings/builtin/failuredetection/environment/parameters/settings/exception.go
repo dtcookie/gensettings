@@ -26,7 +26,7 @@ type Exceptions []*Exception
 
 func (me *Exceptions) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
-		"successForcingException": {
+		"customHandledException": {
 			Type:        schema.TypeSet,
 			Required:    true,
 			MinItems:    1,
@@ -37,11 +37,11 @@ func (me *Exceptions) Schema() map[string]*schema.Schema {
 }
 
 func (me Exceptions) MarshalHCL(properties hcl.Properties) error {
-	return properties.EncodeSlice("successForcingException", me)
+	return properties.EncodeSlice("customHandledException", me)
 }
 
 func (me *Exceptions) UnmarshalHCL(decoder hcl.Decoder) error {
-	return decoder.DecodeSlice("successForcingException", me)
+	return decoder.DecodeSlice("customHandledException", me)
 }
 
 type Exception struct {
