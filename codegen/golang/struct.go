@@ -112,9 +112,14 @@ func NewStruct(t *reflection.Type) *Struct {
 		comment := strings.ReplaceAll(Comment(property.Comment), "\n", "\\n")
 		if propType.Kind == reflection.EnumKind {
 			comment = "Possible Values:"
-			sep := " "
+			pnames := []string{}
 			for _, p := range propType.Properties {
-				comment = comment + sep + "`" + p.Name + "`"
+				pnames = append(pnames, p.Name)
+			}
+			sort.Strings(pnames)
+			sep := " "
+			for _, pname := range pnames {
+				comment = comment + sep + "`" + pname + "`"
 				sep = ", "
 			}
 		}
