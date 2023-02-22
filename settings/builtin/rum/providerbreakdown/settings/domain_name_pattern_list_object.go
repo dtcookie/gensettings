@@ -26,7 +26,7 @@ type DomainNamePatternListObjects []*DomainNamePatternListObject
 
 func (me *DomainNamePatternListObjects) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
-		"domainNamePattern": {
+		"domain_name_pattern": {
 			Type:        schema.TypeSet,
 			Required:    true,
 			MinItems:    1,
@@ -37,11 +37,11 @@ func (me *DomainNamePatternListObjects) Schema() map[string]*schema.Schema {
 }
 
 func (me DomainNamePatternListObjects) MarshalHCL(properties hcl.Properties) error {
-	return properties.EncodeSlice("domainNamePattern", me)
+	return properties.EncodeSlice("domain_name_pattern", me)
 }
 
 func (me *DomainNamePatternListObjects) UnmarshalHCL(decoder hcl.Decoder) error {
-	return decoder.DecodeSlice("domainNamePattern", me)
+	return decoder.DecodeSlice("domain_name_pattern", me)
 }
 
 type DomainNamePatternListObject struct {

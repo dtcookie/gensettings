@@ -26,7 +26,7 @@ type AlertingProfileSeverityRules []*AlertingProfileSeverityRule
 
 func (me *AlertingProfileSeverityRules) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
-		"severityRule": {
+		"severity_rule": {
 			Type:        schema.TypeSet,
 			Required:    true,
 			MinItems:    1,
@@ -37,18 +37,18 @@ func (me *AlertingProfileSeverityRules) Schema() map[string]*schema.Schema {
 }
 
 func (me AlertingProfileSeverityRules) MarshalHCL(properties hcl.Properties) error {
-	return properties.EncodeSlice("severityRule", me)
+	return properties.EncodeSlice("severity_rule", me)
 }
 
 func (me *AlertingProfileSeverityRules) UnmarshalHCL(decoder hcl.Decoder) error {
-	return decoder.DecodeSlice("severityRule", me)
+	return decoder.DecodeSlice("severity_rule", me)
 }
 
 type AlertingProfileSeverityRule struct {
 	DelayInMinutes       int                  `json:"delayInMinutes"`       // Send a notification if a problem remains open longer than X minutes.
-	SeverityLevel        SeverityLevel        `json:"severityLevel"`        // Possible Values: `ERRORS`, `MONITORING_UNAVAILABLE`, `PERFORMANCE`, `RESOURCE_CONTENTION`, `AVAILABILITY`, `CUSTOM_ALERT`
+	SeverityLevel        SeverityLevel        `json:"severityLevel"`        // Possible Values: `AVAILABILITY`, `CUSTOM_ALERT`, `ERRORS`, `MONITORING_UNAVAILABLE`, `PERFORMANCE`, `RESOURCE_CONTENTION`
 	TagFilter            *[]string            `json:"tagFilter,omitempty"`  // Tags
-	TagFilterIncludeMode TagFilterIncludeMode `json:"tagFilterIncludeMode"` // Possible Values: `NONE`, `INCLUDE_ANY`, `INCLUDE_ALL`
+	TagFilterIncludeMode TagFilterIncludeMode `json:"tagFilterIncludeMode"` // Possible Values: `INCLUDE_ALL`, `INCLUDE_ANY`, `NONE`
 }
 
 func (me *AlertingProfileSeverityRule) Schema() map[string]*schema.Schema {
@@ -60,7 +60,7 @@ func (me *AlertingProfileSeverityRule) Schema() map[string]*schema.Schema {
 		},
 		"severity_level": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `ERRORS`, `MONITORING_UNAVAILABLE`, `PERFORMANCE`, `RESOURCE_CONTENTION`, `AVAILABILITY`, `CUSTOM_ALERT`",
+			Description: "Possible Values: `AVAILABILITY`, `CUSTOM_ALERT`, `ERRORS`, `MONITORING_UNAVAILABLE`, `PERFORMANCE`, `RESOURCE_CONTENTION`",
 			Required:    true,
 		},
 		"tag_filter": {
@@ -72,7 +72,7 @@ func (me *AlertingProfileSeverityRule) Schema() map[string]*schema.Schema {
 		},
 		"tag_filter_include_mode": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `NONE`, `INCLUDE_ANY`, `INCLUDE_ALL`",
+			Description: "Possible Values: `INCLUDE_ALL`, `INCLUDE_ANY`, `NONE`",
 			Required:    true,
 		},
 	}

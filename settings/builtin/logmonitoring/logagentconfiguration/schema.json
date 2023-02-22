@@ -12,6 +12,19 @@
 	"maxObjects": 1,
 	"multiObject": false,
 	"properties": {
+		"LAConfigContainerTimezoneHeuristicEnabled": {
+			"default": true,
+			"description": "Enables automatic detection of timezone in container's logs if it is not explicitly defined in content or configured",
+			"displayName": "Enable container timezone detection",
+			"documentation": "",
+			"maxObjects": 1,
+			"metadata": {
+				"minAgentVersion": "1.259"
+			},
+			"modificationPolicy": "DEFAULT",
+			"nullable": false,
+			"type": "boolean"
+		},
 		"LAConfigContainersLogsDetectionEnabled": {
 			"default": true,
 			"description": "If set to FALSE - logs from containers won't be detected",
@@ -31,7 +44,7 @@
 				}
 			],
 			"default": 64,
-			"description": "Defines the number of characters in every log line (starting from the first chracter in the line) where the timestamp is searched.",
+			"description": "Defines the number of characters in every log line (starting from the first character in the line) where the timestamp is searched.",
 			"displayName": "Timestamp search limit",
 			"documentation": "",
 			"maxObjects": 1,
@@ -237,5 +250,5 @@
 	],
 	"schemaId": "builtin:logmonitoring.log-agent-configuration",
 	"types": {},
-	"version": "1.1.10"
+	"version": "1.1.11"
 }

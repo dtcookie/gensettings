@@ -35,7 +35,7 @@ type Settings struct {
 	Scope                      *string                    `json:"-" scope:"scope"`            // The scope of this setting (HOST, HOST_GROUP). Omit this property if you want to cover the whole environment.
 	StatusConditionLinux       string                     `json:"statusConditionLinux"`       // This string has to match a required format. See [OS services monitoring](https://dt-url.net/vl03xzk).\n\n- `$eq(failed)` – Matches services that are in failed state.\n\nAvailable logic operations:\n- `$not($eq(active))` – Matches services with state different from active.\n- `$or($eq(inactive),$eq(failed))` – Matches services that are either in inactive or failed state.\n\nUse one of the following values as a parameter for this condition:\n\n- `reloading`\n- `activating`\n- `deactivating`\n- `failed`\n- `inactive`\n- `active`
 	StatusConditionWindows     string                     `json:"statusConditionWindows"`     // This string has to match a required format. See [OS services monitoring](https://dt-url.net/vl03xzk).\n\n- `$eq(paused)` – Matches services that are in paused state.\n\nAvailable logic operations:\n- `$not($eq(paused))` – Matches services that are in state different from paused.\n- `$or($eq(paused),$eq(running))` – Matches services that are either in paused or running state.\n\nUse one of the following values as a parameter for this condition:\n\n- `running`\n- `stopped`\n- `start_pending`\n- `stop_pending`\n- `continue_pending`\n- `pause_pending`\n- `paused`
-	System                     System                     `json:"system"`                     // Possible Values: `WINDOWS`, `LINUX`
+	System                     System                     `json:"system"`                     // Possible Values: `LINUX`, `WINDOWS`
 }
 
 func (me *Settings) Schema() map[string]*schema.Schema {
@@ -115,7 +115,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		},
 		"system": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `WINDOWS`, `LINUX`",
+			Description: "Possible Values: `LINUX`, `WINDOWS`",
 			Required:    true,
 		},
 	}

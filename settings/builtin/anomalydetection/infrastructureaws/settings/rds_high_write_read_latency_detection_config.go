@@ -24,7 +24,7 @@ import (
 
 type RdsHighWriteReadLatencyDetectionConfig struct {
 	CustomThresholds *RdsHighWriteReadLatencyDetectionThresholds `json:"customThresholds,omitempty"` // Alert if the condition is met in 3 out of 5 samples
-	DetectionMode    *DetectionMode                              `json:"detectionMode,omitempty"`    // Possible Values: `Custom`, `Auto`
+	DetectionMode    *DetectionMode                              `json:"detectionMode,omitempty"`    // Possible Values: `Auto`, `Custom`
 	Enabled          bool                                        `json:"enabled"`                    // This setting is enabled (`true`) or disabled (`false`)
 }
 
@@ -41,7 +41,7 @@ func (me *RdsHighWriteReadLatencyDetectionConfig) Schema() map[string]*schema.Sc
 		},
 		"detection_mode": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `Custom`, `Auto`",
+			Description: "Possible Values: `Auto`, `Custom`",
 			Optional:    true,
 		},
 		"enabled": {

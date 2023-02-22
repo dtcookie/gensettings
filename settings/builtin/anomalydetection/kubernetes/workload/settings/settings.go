@@ -24,8 +24,10 @@ import (
 
 type Settings struct {
 	ContainerRestarts        *ContainerRestarts        `json:"containerRestarts"`
+	DeploymentStuck          *DeploymentStuck          `json:"deploymentStuck"`
 	NotAllPodsReady          *NotAllPodsReady          `json:"notAllPodsReady"`
 	PendingPods              *PendingPods              `json:"pendingPods"`
+	PodStuckInTerminating    *PodStuckInTerminating    `json:"podStuckInTerminating"`
 	Scope                    *string                   `json:"-" scope:"scope"` // The scope of this setting (CLOUD_APPLICATION_NAMESPACE, KUBERNETES_CLUSTER). Omit this property if you want to cover the whole environment.
 	WorkloadWithoutReadyPods *WorkloadWithoutReadyPods `json:"workloadWithoutReadyPods"`
 }
@@ -38,6 +40,15 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 			Required:    true,
 
 			Elem:     &schema.Resource{Schema: new(ContainerRestarts).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
+		},
+		"deployment_stuck": {
+			Type:        schema.TypeList,
+			Description: "no documentation available",
+			Required:    true,
+
+			Elem:     &schema.Resource{Schema: new(DeploymentStuck).Schema()},
 			MinItems: 1,
 			MaxItems: 1,
 		},
@@ -56,6 +67,15 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 			Required:    true,
 
 			Elem:     &schema.Resource{Schema: new(PendingPods).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
+		},
+		"pod_stuck_in_terminating": {
+			Type:        schema.TypeList,
+			Description: "no documentation available",
+			Required:    true,
+
+			Elem:     &schema.Resource{Schema: new(PodStuckInTerminating).Schema()},
 			MinItems: 1,
 			MaxItems: 1,
 		},
@@ -80,8 +100,10 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 func (me *Settings) MarshalHCL(properties hcl.Properties) error {
 	return properties.EncodeAll(map[string]any{
 		"container_restarts":          me.ContainerRestarts,
+		"deployment_stuck":            me.DeploymentStuck,
 		"not_all_pods_ready":          me.NotAllPodsReady,
 		"pending_pods":                me.PendingPods,
+		"pod_stuck_in_terminating":    me.PodStuckInTerminating,
 		"scope":                       me.Scope,
 		"workload_without_ready_pods": me.WorkloadWithoutReadyPods,
 	})
@@ -90,8 +112,10 @@ func (me *Settings) MarshalHCL(properties hcl.Properties) error {
 func (me *Settings) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"container_restarts":          &me.ContainerRestarts,
+		"deployment_stuck":            &me.DeploymentStuck,
 		"not_all_pods_ready":          &me.NotAllPodsReady,
 		"pending_pods":                &me.PendingPods,
+		"pod_stuck_in_terminating":    &me.PodStuckInTerminating,
 		"scope":                       &me.Scope,
 		"workload_without_ready_pods": &me.WorkloadWithoutReadyPods,
 	})

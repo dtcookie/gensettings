@@ -190,7 +190,7 @@
 						}
 					],
 					"default": "{\n\t\"id\": \"OR-838475\",\n\t\"paymentType\": \"paypal\",\n\t\"plannedDeliveryDate\": \"01.01.2021\",\n\t\"total\": 234\n}",
-					"description": "Sample event to use for the test run.",
+					"description": "Sample event to use for the test run. Only JSON format is supported.",
 					"displayName": "Event sample",
 					"documentation": "",
 					"maxObjects": 1,
@@ -278,5 +278,5 @@
 			"versionInfo": ""
 		}
 	},
-	"version": "1.0.4"
+	"version": "1.0.5"
 }

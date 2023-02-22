@@ -852,16 +852,17 @@
 				"minDigitCount": {
 					"constraints": [
 						{
-							"minimum": 0,
+							"minimum": 1,
 							"type": "RANGE"
 						}
 					],
+					"default": 1,
 					"description": "",
 					"displayName": "min digit count",
 					"documentation": "",
 					"maxObjects": 1,
 					"modificationPolicy": "DEFAULT",
-					"nullable": true,
+					"nullable": false,
 					"precondition": {
 						"expectedValue": "REMOVE_NUMBERS",
 						"property": "transformationType",
@@ -1322,5 +1323,5 @@
 			]
 		}
 	},
-	"version": "2.1.6"
+	"version": "2.1.7"
 }

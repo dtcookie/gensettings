@@ -23,9 +23,9 @@ import (
 )
 
 type PublicDomainTransformationSet struct {
-	ContributionType ContributionTypeWithOverride `json:"contributionType"`           // Possible Values: `OverrideValue`, `TransformValue`, `OriginalValue`
+	ContributionType ContributionTypeWithOverride `json:"contributionType"`           // Possible Values: `OriginalValue`, `OverrideValue`, `TransformValue`
 	CopyFromHostName *bool                        `json:"copyFromHostName,omitempty"` // Use the detected host name instead of the request's domain name.
-	Transformations  *Transformations             `json:"transformations,omitempty"`
+	Transformations  Transformations              `json:"transformations,omitempty"`
 	ValueOverride    *ValueOverride               `json:"valueOverride,omitempty"` // The value to be used instead of the detected value.
 }
 
@@ -33,7 +33,7 @@ func (me *PublicDomainTransformationSet) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"contribution_type": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `OverrideValue`, `TransformValue`, `OriginalValue`",
+			Description: "Possible Values: `OriginalValue`, `OverrideValue`, `TransformValue`",
 			Required:    true,
 		},
 		"copy_from_host_name": {

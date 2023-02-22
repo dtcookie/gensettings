@@ -24,8 +24,8 @@ import (
 
 type MemoryRequestsQuotaSaturationConfig struct {
 	ObservationPeriodInMinutes int `json:"observationPeriodInMinutes"` // within the last
-	SamplePeriodInMinutes      int `json:"samplePeriodInMinutes"`      // for at least
-	Threshold                  int `json:"threshold"`                  // Utilized memory requests quota has been higher than
+	SamplePeriodInMinutes      int `json:"samplePeriodInMinutes"`      // of quota for at least
+	Threshold                  int `json:"threshold"`                  // amount of requested namespace memory is above
 }
 
 func (me *MemoryRequestsQuotaSaturationConfig) Schema() map[string]*schema.Schema {
@@ -37,12 +37,12 @@ func (me *MemoryRequestsQuotaSaturationConfig) Schema() map[string]*schema.Schem
 		},
 		"sample_period_in_minutes": {
 			Type:        schema.TypeInt,
-			Description: "for at least",
+			Description: "of quota for at least",
 			Required:    true,
 		},
 		"threshold": {
 			Type:        schema.TypeInt,
-			Description: "Utilized memory requests quota has been higher than",
+			Description: "amount of requested namespace memory is above",
 			Required:    true,
 		},
 	}

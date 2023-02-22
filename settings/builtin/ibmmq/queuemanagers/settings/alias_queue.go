@@ -26,7 +26,7 @@ type AliasQueues []*AliasQueue
 
 func (me *AliasQueues) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
-		"aliasQueue": {
+		"alias_queue": {
 			Type:        schema.TypeSet,
 			Required:    true,
 			MinItems:    1,
@@ -37,11 +37,11 @@ func (me *AliasQueues) Schema() map[string]*schema.Schema {
 }
 
 func (me AliasQueues) MarshalHCL(properties hcl.Properties) error {
-	return properties.EncodeSlice("aliasQueue", me)
+	return properties.EncodeSlice("alias_queue", me)
 }
 
 func (me *AliasQueues) UnmarshalHCL(decoder hcl.Decoder) error {
-	return decoder.DecodeSlice("aliasQueue", me)
+	return decoder.DecodeSlice("alias_queue", me)
 }
 
 // AliasQueue. Alias queue

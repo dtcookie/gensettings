@@ -26,7 +26,7 @@ type DropAttributeItems []*DropAttributeItem
 
 func (me *DropAttributeItems) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
-		"toDropAttribute": {
+		"to_drop_attribute": {
 			Type:        schema.TypeSet,
 			Required:    true,
 			MinItems:    1,
@@ -37,11 +37,11 @@ func (me *DropAttributeItems) Schema() map[string]*schema.Schema {
 }
 
 func (me DropAttributeItems) MarshalHCL(properties hcl.Properties) error {
-	return properties.EncodeSlice("toDropAttribute", me)
+	return properties.EncodeSlice("to_drop_attribute", me)
 }
 
 func (me *DropAttributeItems) UnmarshalHCL(decoder hcl.Decoder) error {
-	return decoder.DecodeSlice("toDropAttribute", me)
+	return decoder.DecodeSlice("to_drop_attribute", me)
 }
 
 type DropAttributeItem struct {

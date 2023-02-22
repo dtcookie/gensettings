@@ -26,7 +26,7 @@ type CustomErrorRules []*CustomErrorRule
 
 func (me *CustomErrorRules) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
-		"customErrorRule": {
+		"custom_error_rule": {
 			Type:        schema.TypeSet,
 			Required:    true,
 			MinItems:    1,
@@ -37,11 +37,11 @@ func (me *CustomErrorRules) Schema() map[string]*schema.Schema {
 }
 
 func (me CustomErrorRules) MarshalHCL(properties hcl.Properties) error {
-	return properties.EncodeSlice("customErrorRule", me)
+	return properties.EncodeSlice("custom_error_rule", me)
 }
 
 func (me *CustomErrorRules) UnmarshalHCL(decoder hcl.Decoder) error {
-	return decoder.DecodeSlice("customErrorRule", me)
+	return decoder.DecodeSlice("custom_error_rule", me)
 }
 
 type CustomErrorRule struct {

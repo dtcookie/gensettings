@@ -26,7 +26,7 @@ type RemoteQueues []*RemoteQueue
 
 func (me *RemoteQueues) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
-		"remoteQueue": {
+		"remote_queue": {
 			Type:        schema.TypeSet,
 			Required:    true,
 			MinItems:    1,
@@ -37,11 +37,11 @@ func (me *RemoteQueues) Schema() map[string]*schema.Schema {
 }
 
 func (me RemoteQueues) MarshalHCL(properties hcl.Properties) error {
-	return properties.EncodeSlice("remoteQueue", me)
+	return properties.EncodeSlice("remote_queue", me)
 }
 
 func (me *RemoteQueues) UnmarshalHCL(decoder hcl.Decoder) error {
-	return decoder.DecodeSlice("remoteQueue", me)
+	return decoder.DecodeSlice("remote_queue", me)
 }
 
 type RemoteQueue struct {

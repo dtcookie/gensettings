@@ -26,7 +26,7 @@ type CustomErrorRules []*CustomErrorRule
 
 func (me *CustomErrorRules) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
-		"errorRule": {
+		"error_rule": {
 			Type:        schema.TypeList,
 			Required:    true,
 			MinItems:    1,
@@ -37,18 +37,18 @@ func (me *CustomErrorRules) Schema() map[string]*schema.Schema {
 }
 
 func (me CustomErrorRules) MarshalHCL(properties hcl.Properties) error {
-	return properties.EncodeSlice("errorRule", me)
+	return properties.EncodeSlice("error_rule", me)
 }
 
 func (me *CustomErrorRules) UnmarshalHCL(decoder hcl.Decoder) error {
-	return decoder.DecodeSlice("errorRule", me)
+	return decoder.DecodeSlice("error_rule", me)
 }
 
 type CustomErrorRule struct {
 	CaptureSettings *CaptureSettings `json:"captureSettings"`        // Capture settings
-	KeyMatcher      Matcher          `json:"keyMatcher"`             // Possible Values: `EQUALS`, `ALL`, `BEGINS_WITH`, `ENDS_WITH`, `CONTAINS`
+	KeyMatcher      Matcher          `json:"keyMatcher"`             // Possible Values: `ALL`, `BEGINS_WITH`, `CONTAINS`, `ENDS_WITH`, `EQUALS`
 	KeyPattern      *string          `json:"keyPattern,omitempty"`   // A case-insensitive key pattern
-	ValueMatcher    Matcher          `json:"valueMatcher"`           // Possible Values: `BEGINS_WITH`, `ENDS_WITH`, `CONTAINS`, `EQUALS`, `ALL`
+	ValueMatcher    Matcher          `json:"valueMatcher"`           // Possible Values: `ALL`, `BEGINS_WITH`, `CONTAINS`, `ENDS_WITH`, `EQUALS`
 	ValuePattern    *string          `json:"valuePattern,omitempty"` // A case-insensitive value pattern
 }
 
@@ -65,7 +65,7 @@ func (me *CustomErrorRule) Schema() map[string]*schema.Schema {
 		},
 		"key_matcher": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `EQUALS`, `ALL`, `BEGINS_WITH`, `ENDS_WITH`, `CONTAINS`",
+			Description: "Possible Values: `ALL`, `BEGINS_WITH`, `CONTAINS`, `ENDS_WITH`, `EQUALS`",
 			Required:    true,
 		},
 		"key_pattern": {
@@ -75,7 +75,7 @@ func (me *CustomErrorRule) Schema() map[string]*schema.Schema {
 		},
 		"value_matcher": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `BEGINS_WITH`, `ENDS_WITH`, `CONTAINS`, `EQUALS`, `ALL`",
+			Description: "Possible Values: `ALL`, `BEGINS_WITH`, `CONTAINS`, `ENDS_WITH`, `EQUALS`",
 			Required:    true,
 		},
 		"value_pattern": {

@@ -26,7 +26,7 @@ type MetadataFilterItems []*MetadataFilterItem
 
 func (me *MetadataFilterItems) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
-		"metadataFilterItem": {
+		"metadata_filter_item": {
 			Type:        schema.TypeSet,
 			Required:    true,
 			MinItems:    1,
@@ -37,11 +37,11 @@ func (me *MetadataFilterItems) Schema() map[string]*schema.Schema {
 }
 
 func (me MetadataFilterItems) MarshalHCL(properties hcl.Properties) error {
-	return properties.EncodeSlice("metadataFilterItem", me)
+	return properties.EncodeSlice("metadata_filter_item", me)
 }
 
 func (me *MetadataFilterItems) UnmarshalHCL(decoder hcl.Decoder) error {
-	return decoder.DecodeSlice("metadataFilterItem", me)
+	return decoder.DecodeSlice("metadata_filter_item", me)
 }
 
 type MetadataFilterItem struct {

@@ -26,7 +26,7 @@ type DimensionFilters []*DimensionFilter
 
 func (me *DimensionFilters) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
-		"requiredDimension": {
+		"required_dimension": {
 			Type:        schema.TypeSet,
 			Required:    true,
 			MinItems:    1,
@@ -37,11 +37,11 @@ func (me *DimensionFilters) Schema() map[string]*schema.Schema {
 }
 
 func (me DimensionFilters) MarshalHCL(properties hcl.Properties) error {
-	return properties.EncodeSlice("requiredDimension", me)
+	return properties.EncodeSlice("required_dimension", me)
 }
 
 func (me *DimensionFilters) UnmarshalHCL(decoder hcl.Decoder) error {
-	return decoder.DecodeSlice("requiredDimension", me)
+	return decoder.DecodeSlice("required_dimension", me)
 }
 
 // Ingest dimension filter. A dimension describes a property key which is present in the ingest data.

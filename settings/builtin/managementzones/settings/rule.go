@@ -49,7 +49,7 @@ type Rule struct {
 	DimensionRule  *DimensionRule               `json:"dimensionRule,omitempty"`
 	Enabled        bool                         `json:"enabled"`                  // This setting is enabled (`true`) or disabled (`false`)
 	EntitySelector *string                      `json:"entitySelector,omitempty"` // The documentation of the entity selector can be found [here](https://dt-url.net/apientityselector).
-	Type           RuleType                     `json:"type"`                     // Possible Values: `DIMENSION`, `SELECTOR`, `ME`
+	Type           RuleType                     `json:"type"`                     // Possible Values: `DIMENSION`, `ME`, `SELECTOR`
 }
 
 func (me *Rule) Schema() map[string]*schema.Schema {
@@ -84,7 +84,7 @@ func (me *Rule) Schema() map[string]*schema.Schema {
 		},
 		"type": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `DIMENSION`, `SELECTOR`, `ME`",
+			Description: "Possible Values: `DIMENSION`, `ME`, `SELECTOR`",
 			Required:    true,
 		},
 	}

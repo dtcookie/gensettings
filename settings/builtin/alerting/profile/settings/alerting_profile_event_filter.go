@@ -26,7 +26,7 @@ type AlertingProfileEventFilters []*AlertingProfileEventFilter
 
 func (me *AlertingProfileEventFilters) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
-		"eventFilter": {
+		"event_filter": {
 			Type:        schema.TypeSet,
 			Required:    true,
 			MinItems:    1,
@@ -37,17 +37,17 @@ func (me *AlertingProfileEventFilters) Schema() map[string]*schema.Schema {
 }
 
 func (me AlertingProfileEventFilters) MarshalHCL(properties hcl.Properties) error {
-	return properties.EncodeSlice("eventFilter", me)
+	return properties.EncodeSlice("event_filter", me)
 }
 
 func (me *AlertingProfileEventFilters) UnmarshalHCL(decoder hcl.Decoder) error {
-	return decoder.DecodeSlice("eventFilter", me)
+	return decoder.DecodeSlice("event_filter", me)
 }
 
 type AlertingProfileEventFilter struct {
 	CustomFilter     *CustomEventFilter             `json:"customFilter,omitempty"`
 	PredefinedFilter *PredefinedEventFilter         `json:"predefinedFilter,omitempty"`
-	Type             AlertingProfileEventFilterType `json:"type"` // Possible Values: `PREDEFINED`, `CUSTOM`
+	Type             AlertingProfileEventFilterType `json:"type"` // Possible Values: `CUSTOM`, `PREDEFINED`
 }
 
 func (me *AlertingProfileEventFilter) Schema() map[string]*schema.Schema {
@@ -72,7 +72,7 @@ func (me *AlertingProfileEventFilter) Schema() map[string]*schema.Schema {
 		},
 		"type": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `PREDEFINED`, `CUSTOM`",
+			Description: "Possible Values: `CUSTOM`, `PREDEFINED`",
 			Required:    true,
 		},
 	}

@@ -25,7 +25,7 @@ import (
 type PendingPodsConfig struct {
 	ObservationPeriodInMinutes int `json:"observationPeriodInMinutes"` // within the last
 	SamplePeriodInMinutes      int `json:"samplePeriodInMinutes"`      // stuck in pending state for at least
-	Threshold                  int `json:"threshold"`                  // there were at least
+	Threshold                  int `json:"threshold"`                  // there is at least
 }
 
 func (me *PendingPodsConfig) Schema() map[string]*schema.Schema {
@@ -42,7 +42,7 @@ func (me *PendingPodsConfig) Schema() map[string]*schema.Schema {
 		},
 		"threshold": {
 			Type:        schema.TypeInt,
-			Description: "there were at least",
+			Description: "there is at least",
 			Required:    true,
 		},
 	}

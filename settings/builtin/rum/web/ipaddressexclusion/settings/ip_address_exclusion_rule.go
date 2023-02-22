@@ -26,7 +26,7 @@ type IpAddressExclusionRules []*IpAddressExclusionRule
 
 func (me *IpAddressExclusionRules) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
-		"ipExclusion": {
+		"ip_exclusion": {
 			Type:        schema.TypeList,
 			Required:    true,
 			MinItems:    1,
@@ -37,11 +37,11 @@ func (me *IpAddressExclusionRules) Schema() map[string]*schema.Schema {
 }
 
 func (me IpAddressExclusionRules) MarshalHCL(properties hcl.Properties) error {
-	return properties.EncodeSlice("ipExclusion", me)
+	return properties.EncodeSlice("ip_exclusion", me)
 }
 
 func (me *IpAddressExclusionRules) UnmarshalHCL(decoder hcl.Decoder) error {
-	return decoder.DecodeSlice("ipExclusion", me)
+	return decoder.DecodeSlice("ip_exclusion", me)
 }
 
 type IpAddressExclusionRule struct {

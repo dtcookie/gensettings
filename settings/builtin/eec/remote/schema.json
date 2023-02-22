@@ -2,7 +2,7 @@
 	"allowedScopes": [
 		"ENVIRONMENT_ACTIVE_GATE"
 	],
-	"description": "Extension Execution Controller configuration for Active Gate deployment",
+	"description": "Extension Execution Controller configuration for ActiveGate deployment",
 	"displayName": "Extension Execution Controller",
 	"documentation": "",
 	"dynatrace": "1",
@@ -34,10 +34,13 @@
 	"properties": {
 		"performanceProfile": {
 			"default": "DEFAULT",
-			"description": "Select performance profile for Extension Execution Controller",
+			"description": "Select performance profile for Extension Execution Controller [Documentation](https://www.dynatrace.com/support/help/shortlink/extensions-concepts#resource-consumption \"More about performance profiles\")",
 			"displayName": "Performance profile",
 			"documentation": "",
 			"maxObjects": 1,
+			"metadata": {
+				"sortItems": "disabled"
+			},
 			"modificationPolicy": "DEFAULT",
 			"nullable": false,
 			"type": {
@@ -47,5 +50,5 @@
 	},
 	"schemaId": "builtin:eec.remote",
 	"types": {},
-	"version": "0.0.1"
+	"version": "0.0.2"
 }

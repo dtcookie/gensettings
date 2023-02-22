@@ -18,7 +18,7 @@
 		"cpuLimitsQuotaSaturation": {
 			"description": "",
 			"displayName": "",
-			"documentation": "Alerts if almost no CPU limits quota left in namespace",
+			"documentation": "Alerts if almost no CPU-limit quota left in namespace",
 			"maxObjects": 1,
 			"modificationPolicy": "DEFAULT",
 			"nullable": false,
@@ -29,7 +29,7 @@
 		"cpuRequestsQuotaSaturation": {
 			"description": "",
 			"displayName": "",
-			"documentation": "Alerts if almost no CPU requests quota left in namespace",
+			"documentation": "Alerts if almost no CPU-request quota left in namespace",
 			"maxObjects": 1,
 			"modificationPolicy": "DEFAULT",
 			"nullable": false,
@@ -40,7 +40,7 @@
 		"memoryLimitsQuotaSaturation": {
 			"description": "",
 			"displayName": "",
-			"documentation": "Alerts if almost no memory limits quota left in namespace",
+			"documentation": "Alerts if almost no memory-limit quota left in namespace",
 			"maxObjects": 1,
 			"modificationPolicy": "DEFAULT",
 			"nullable": false,
@@ -51,7 +51,7 @@
 		"memoryRequestsQuotaSaturation": {
 			"description": "",
 			"displayName": "",
-			"documentation": "Alerts if almost no memory requests quota left in namespace",
+			"documentation": "Alerts if almost no memory-request quota left in namespace",
 			"maxObjects": 1,
 			"modificationPolicy": "DEFAULT",
 			"nullable": false,
@@ -62,7 +62,7 @@
 		"podsQuotaSaturation": {
 			"description": "",
 			"displayName": "",
-			"documentation": "Alerts if almost no pod number limits quota left in namespace",
+			"documentation": "Alerts if almost no pod quota left in namespace",
 			"maxObjects": 1,
 			"modificationPolicy": "DEFAULT",
 			"nullable": false,
@@ -99,14 +99,14 @@
 					},
 					"uiCustomization": {
 						"expandable": {
-							"displayName": "Configuration"
+							"displayName": "Configure"
 						}
 					}
 				},
 				"enabled": {
 					"default": false,
 					"description": "",
-					"displayName": "Detect CPU limits quota saturation",
+					"displayName": "Detect namespace CPU-limit quota saturation",
 					"documentation": "",
 					"maxObjects": 1,
 					"modificationPolicy": "DEFAULT",
@@ -164,7 +164,7 @@
 					],
 					"default": 10,
 					"description": "",
-					"displayName": "for at least",
+					"displayName": "of quota for at least",
 					"documentation": "",
 					"maxObjects": 1,
 					"metadata": {
@@ -184,7 +184,7 @@
 					],
 					"default": 90,
 					"description": "",
-					"displayName": "Utilized CPU limits quota has been higher than",
+					"displayName": "amount of utilized namespace CPU is above",
 					"documentation": "",
 					"maxObjects": 1,
 					"modificationPolicy": "DEFAULT",
@@ -220,14 +220,14 @@
 					},
 					"uiCustomization": {
 						"expandable": {
-							"displayName": "Configuration"
+							"displayName": "Configure"
 						}
 					}
 				},
 				"enabled": {
 					"default": false,
 					"description": "",
-					"displayName": "Detect CPU requests quota saturation",
+					"displayName": "Detect namespace CPU-request quota saturation",
 					"documentation": "",
 					"maxObjects": 1,
 					"modificationPolicy": "DEFAULT",
@@ -285,7 +285,7 @@
 					],
 					"default": 10,
 					"description": "",
-					"displayName": "for at least",
+					"displayName": "of quota for at least",
 					"documentation": "",
 					"maxObjects": 1,
 					"metadata": {
@@ -305,7 +305,7 @@
 					],
 					"default": 90,
 					"description": "",
-					"displayName": "Utilized CPU requests quota has been higher than",
+					"displayName": "amount of requested namespace CPU is above",
 					"documentation": "",
 					"maxObjects": 1,
 					"modificationPolicy": "DEFAULT",
@@ -341,14 +341,14 @@
 					},
 					"uiCustomization": {
 						"expandable": {
-							"displayName": "Configuration"
+							"displayName": "Configure"
 						}
 					}
 				},
 				"enabled": {
 					"default": false,
 					"description": "",
-					"displayName": "Detect memory limits quota saturation",
+					"displayName": "Detect namespace memory-limit quota saturation",
 					"documentation": "",
 					"maxObjects": 1,
 					"modificationPolicy": "DEFAULT",
@@ -406,7 +406,7 @@
 					],
 					"default": 10,
 					"description": "",
-					"displayName": "for at least",
+					"displayName": "of quota for at least",
 					"documentation": "",
 					"maxObjects": 1,
 					"metadata": {
@@ -426,7 +426,7 @@
 					],
 					"default": 90,
 					"description": "",
-					"displayName": "Utilized memory limits quota has been higher than",
+					"displayName": "amount of utilized namespace memory is above",
 					"documentation": "",
 					"maxObjects": 1,
 					"modificationPolicy": "DEFAULT",
@@ -462,14 +462,14 @@
 					},
 					"uiCustomization": {
 						"expandable": {
-							"displayName": "Configuration"
+							"displayName": "Configure"
 						}
 					}
 				},
 				"enabled": {
 					"default": false,
 					"description": "",
-					"displayName": "Detect memory requests quota saturation",
+					"displayName": "Detect namespace memory-request quota saturation",
 					"documentation": "",
 					"maxObjects": 1,
 					"modificationPolicy": "DEFAULT",
@@ -527,7 +527,7 @@
 					],
 					"default": 10,
 					"description": "",
-					"displayName": "for at least",
+					"displayName": "of quota for at least",
 					"documentation": "",
 					"maxObjects": 1,
 					"metadata": {
@@ -547,7 +547,7 @@
 					],
 					"default": 90,
 					"description": "",
-					"displayName": "Utilized memory requests quota has been higher than",
+					"displayName": "amount of requested namespace memory is above",
 					"documentation": "",
 					"maxObjects": 1,
 					"modificationPolicy": "DEFAULT",
@@ -583,14 +583,14 @@
 					},
 					"uiCustomization": {
 						"expandable": {
-							"displayName": "Configuration"
+							"displayName": "Configure"
 						}
 					}
 				},
 				"enabled": {
 					"default": false,
 					"description": "",
-					"displayName": "Detect pods quota saturation",
+					"displayName": "Detect namespace pod quota saturation",
 					"documentation": "",
 					"maxObjects": 1,
 					"modificationPolicy": "DEFAULT",
@@ -648,7 +648,7 @@
 					],
 					"default": 10,
 					"description": "",
-					"displayName": "for at least",
+					"displayName": "of quota for at least",
 					"documentation": "",
 					"maxObjects": 1,
 					"metadata": {
@@ -668,7 +668,7 @@
 					],
 					"default": 90,
 					"description": "",
-					"displayName": "Utilized pod number limits quota has been higher than",
+					"displayName": "number of utilized namespace pods is above",
 					"documentation": "",
 					"maxObjects": 1,
 					"modificationPolicy": "DEFAULT",
@@ -683,5 +683,5 @@
 			"versionInfo": ""
 		}
 	},
-	"version": "1.0.1"
+	"version": "1.1"
 }

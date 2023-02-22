@@ -24,7 +24,7 @@ import (
 
 type TransformationSet struct {
 	ContributionType ContributionTypeWithOverride `json:"contributionType"` // Possible Values: `OriginalValue`, `OverrideValue`, `TransformValue`
-	Transformations  *Transformations             `json:"transformations,omitempty"`
+	Transformations  Transformations              `json:"transformations,omitempty"`
 	ValueOverride    *ValueOverride               `json:"valueOverride,omitempty"` // The value to be used instead of the detected value.
 }
 

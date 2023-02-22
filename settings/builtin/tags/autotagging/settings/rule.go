@@ -50,7 +50,7 @@ type Rule struct {
 	EntitySelector     *string               `json:"entitySelector,omitempty"` // The documentation of the entity selector can be found [here](https://dt-url.net/apientityselector).
 	Type               RuleType              `json:"type"`                     // Possible Values: `ME`, `SELECTOR`
 	ValueFormat        *string               `json:"valueFormat,omitempty"`    // Type '{' for placeholder suggestions
-	ValueNormalization Normalization         `json:"valueNormalization"`       // Possible Values: `Leavetextas_is`, `Touppercase`, `Tolowercase`
+	ValueNormalization Normalization         `json:"valueNormalization"`       // Possible Values: `Leavetextas_is`, `Tolowercase`, `Touppercase`
 }
 
 func (me *Rule) Schema() map[string]*schema.Schema {
@@ -86,7 +86,7 @@ func (me *Rule) Schema() map[string]*schema.Schema {
 		},
 		"value_normalization": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `Leavetextas_is`, `Touppercase`, `Tolowercase`",
+			Description: "Possible Values: `Leavetextas_is`, `Tolowercase`, `Touppercase`",
 			Required:    true,
 		},
 	}

@@ -98,14 +98,14 @@
 					},
 					"uiCustomization": {
 						"expandable": {
-							"displayName": "Configuration"
+							"displayName": "Configure"
 						}
 					}
 				},
 				"enabled": {
 					"default": false,
 					"description": "",
-					"displayName": "Detect cluster CPU requests saturation",
+					"displayName": "Detect cluster CPU-request saturation",
 					"documentation": "",
 					"maxObjects": 1,
 					"modificationPolicy": "DEFAULT",
@@ -163,7 +163,7 @@
 					],
 					"default": 10,
 					"description": "",
-					"displayName": "of total cluster CPU capacities for at least",
+					"displayName": "of cluster CPU capacity for at least",
 					"documentation": "",
 					"maxObjects": 1,
 					"metadata": {
@@ -183,7 +183,7 @@
 					],
 					"default": 90,
 					"description": "",
-					"displayName": "Requested CPU capacities have been higher than",
+					"displayName": "amount of requested CPU is above",
 					"documentation": "",
 					"maxObjects": 1,
 					"modificationPolicy": "DEFAULT",
@@ -219,14 +219,14 @@
 					},
 					"uiCustomization": {
 						"expandable": {
-							"displayName": "Configuration"
+							"displayName": "Configure"
 						}
 					}
 				},
 				"enabled": {
 					"default": false,
 					"description": "",
-					"displayName": "Detect cluster memory requests saturation",
+					"displayName": "Detect cluster memory-request saturation",
 					"documentation": "",
 					"maxObjects": 1,
 					"modificationPolicy": "DEFAULT",
@@ -284,7 +284,7 @@
 					],
 					"default": 10,
 					"description": "",
-					"displayName": "of total cluster memory capacities for at least",
+					"displayName": "of cluster memory capacity for at least",
 					"documentation": "",
 					"maxObjects": 1,
 					"metadata": {
@@ -304,7 +304,7 @@
 					],
 					"default": 90,
 					"description": "",
-					"displayName": "Requested memory capacities have been higher than",
+					"displayName": "amount of requested memory is above",
 					"documentation": "",
 					"maxObjects": 1,
 					"modificationPolicy": "DEFAULT",
@@ -340,7 +340,7 @@
 					},
 					"uiCustomization": {
 						"expandable": {
-							"displayName": "Configuration"
+							"displayName": "Configure"
 						}
 					}
 				},
@@ -405,7 +405,7 @@
 					],
 					"default": 15,
 					"description": "",
-					"displayName": "Monitoring has not been available for at least",
+					"displayName": "monitoring is not available for at least",
 					"documentation": "",
 					"maxObjects": 1,
 					"metadata": {
@@ -443,14 +443,14 @@
 					},
 					"uiCustomization": {
 						"expandable": {
-							"displayName": "Configuration"
+							"displayName": "Configure"
 						}
 					}
 				},
 				"enabled": {
 					"default": false,
 					"description": "",
-					"displayName": "Detect cluster pods saturation",
+					"displayName": "Detect cluster pod-saturation",
 					"documentation": "",
 					"maxObjects": 1,
 					"modificationPolicy": "DEFAULT",
@@ -508,7 +508,7 @@
 					],
 					"default": 3,
 					"description": "",
-					"displayName": "of total schedulable pods capacities for at least",
+					"displayName": "of schedulable pod capacity for at least",
 					"documentation": "",
 					"maxObjects": 1,
 					"metadata": {
@@ -528,7 +528,7 @@
 					],
 					"default": 90,
 					"description": "",
-					"displayName": "Number of running pods has been higher than",
+					"displayName": "number of running pods is higher than",
 					"documentation": "",
 					"maxObjects": 1,
 					"modificationPolicy": "DEFAULT",
@@ -564,7 +564,7 @@
 					},
 					"uiCustomization": {
 						"expandable": {
-							"displayName": "Configuration"
+							"displayName": "Configure"
 						}
 					}
 				},
@@ -629,7 +629,7 @@
 					],
 					"default": 3,
 					"description": "",
-					"displayName": "Cluster has not been ready for at least",
+					"displayName": "cluster is not ready for at least",
 					"documentation": "",
 					"maxObjects": 1,
 					"metadata": {
@@ -646,5 +646,5 @@
 			"versionInfo": ""
 		}
 	},
-	"version": "1.2"
+	"version": "1.3"
 }

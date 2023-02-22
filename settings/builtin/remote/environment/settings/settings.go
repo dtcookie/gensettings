@@ -24,7 +24,7 @@ import (
 
 type Settings struct {
 	Name         string `json:"name"`         // Name
-	NetworkScope Scope  `json:"networkScope"` // Possible Values: `INTERNAL`, `CLUSTER`, `EXTERNAL`
+	NetworkScope Scope  `json:"networkScope"` // Possible Values: `CLUSTER`, `EXTERNAL`, `INTERNAL`
 	Token        string `json:"token"`        // Provide a valid token created on the remote environment.
 	Uri          string `json:"uri"`          // Specify the full URI to the remote environment. Your local environment will have to be able to connect this URI on a network level.
 }
@@ -38,7 +38,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		},
 		"network_scope": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `INTERNAL`, `CLUSTER`, `EXTERNAL`",
+			Description: "Possible Values: `CLUSTER`, `EXTERNAL`, `INTERNAL`",
 			Required:    true,
 		},
 		"token": {

@@ -697,6 +697,13 @@
 			"documentation": "",
 			"properties": {
 				"metadataFilterItems": {
+					"constraints": [
+						{
+							"customMessage": "Property keys must be distinct.",
+							"customValidatorId": "alerting-profile-distinct-metadata-filters-validator",
+							"type": "CUSTOM_VALIDATOR_REF"
+						}
+					],
 					"description": "Define filters for event properties. A maximum of 20 properties is allowed.",
 					"displayName": "",
 					"documentation": "",
@@ -906,5 +913,5 @@
 			"versionInfo": ""
 		}
 	},
-	"version": "8.1"
+	"version": "8.1.1"
 }

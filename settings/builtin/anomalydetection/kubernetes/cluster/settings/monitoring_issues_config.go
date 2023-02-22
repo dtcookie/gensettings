@@ -24,7 +24,7 @@ import (
 
 type MonitoringIssuesConfig struct {
 	ObservationPeriodInMinutes int `json:"observationPeriodInMinutes"` // within the last
-	SamplePeriodInMinutes      int `json:"samplePeriodInMinutes"`      // Monitoring has not been available for at least
+	SamplePeriodInMinutes      int `json:"samplePeriodInMinutes"`      // monitoring is not available for at least
 }
 
 func (me *MonitoringIssuesConfig) Schema() map[string]*schema.Schema {
@@ -36,7 +36,7 @@ func (me *MonitoringIssuesConfig) Schema() map[string]*schema.Schema {
 		},
 		"sample_period_in_minutes": {
 			Type:        schema.TypeInt,
-			Description: "Monitoring has not been available for at least",
+			Description: "monitoring is not available for at least",
 			Required:    true,
 		},
 	}

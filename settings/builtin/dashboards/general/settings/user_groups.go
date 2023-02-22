@@ -26,7 +26,7 @@ type UserGroupss []*UserGroups
 
 func (me *UserGroupss) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
-		"defaultDashboard": {
+		"default_dashboard": {
 			Type:        schema.TypeList,
 			Required:    true,
 			MinItems:    1,
@@ -37,11 +37,11 @@ func (me *UserGroupss) Schema() map[string]*schema.Schema {
 }
 
 func (me UserGroupss) MarshalHCL(properties hcl.Properties) error {
-	return properties.EncodeSlice("defaultDashboard", me)
+	return properties.EncodeSlice("default_dashboard", me)
 }
 
 func (me *UserGroupss) UnmarshalHCL(decoder hcl.Decoder) error {
-	return decoder.DecodeSlice("defaultDashboard", me)
+	return decoder.DecodeSlice("default_dashboard", me)
 }
 
 type UserGroups struct {

@@ -24,7 +24,7 @@ import (
 
 type ReadinessIssuesConfig struct {
 	ObservationPeriodInMinutes int `json:"observationPeriodInMinutes"` // within the last
-	SamplePeriodInMinutes      int `json:"samplePeriodInMinutes"`      // Cluster has not been ready for at least
+	SamplePeriodInMinutes      int `json:"samplePeriodInMinutes"`      // cluster is not ready for at least
 }
 
 func (me *ReadinessIssuesConfig) Schema() map[string]*schema.Schema {
@@ -36,7 +36,7 @@ func (me *ReadinessIssuesConfig) Schema() map[string]*schema.Schema {
 		},
 		"sample_period_in_minutes": {
 			Type:        schema.TypeInt,
-			Description: "Cluster has not been ready for at least",
+			Description: "cluster is not ready for at least",
 			Required:    true,
 		},
 	}

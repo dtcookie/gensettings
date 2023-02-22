@@ -26,7 +26,7 @@ type MappingRules []*MappingRule
 
 func (me *MappingRules) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
-		"mappingRule": {
+		"mapping_rule": {
 			Type:        schema.TypeSet,
 			Required:    true,
 			MinItems:    1,
@@ -37,18 +37,18 @@ func (me *MappingRules) Schema() map[string]*schema.Schema {
 }
 
 func (me MappingRules) MarshalHCL(properties hcl.Properties) error {
-	return properties.EncodeSlice("mappingRule", me)
+	return properties.EncodeSlice("mapping_rule", me)
 }
 
 func (me *MappingRules) UnmarshalHCL(decoder hcl.Decoder) error {
-	return decoder.DecodeSlice("mappingRule", me)
+	return decoder.DecodeSlice("mapping_rule", me)
 }
 
 type MappingRule struct {
 	DestinationProperty       string        `json:"destinationProperty"`       // The case-sensitive name of a property of the destination type.
-	DestinationTransformation Normalization `json:"destinationTransformation"` // Possible Values: `Leavetextas_is`, `Touppercase`, `Tolowercase`
+	DestinationTransformation Normalization `json:"destinationTransformation"` // Possible Values: `Leavetextas_is`, `Tolowercase`, `Touppercase`
 	SourceProperty            string        `json:"sourceProperty"`            // The case-sensitive name of a property of the source type.
-	SourceTransformation      Normalization `json:"sourceTransformation"`      // Possible Values: `Leavetextas_is`, `Touppercase`, `Tolowercase`
+	SourceTransformation      Normalization `json:"sourceTransformation"`      // Possible Values: `Leavetextas_is`, `Tolowercase`, `Touppercase`
 }
 
 func (me *MappingRule) Schema() map[string]*schema.Schema {
@@ -60,7 +60,7 @@ func (me *MappingRule) Schema() map[string]*schema.Schema {
 		},
 		"destination_transformation": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `Leavetextas_is`, `Touppercase`, `Tolowercase`",
+			Description: "Possible Values: `Leavetextas_is`, `Tolowercase`, `Touppercase`",
 			Required:    true,
 		},
 		"source_property": {
@@ -70,7 +70,7 @@ func (me *MappingRule) Schema() map[string]*schema.Schema {
 		},
 		"source_transformation": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `Leavetextas_is`, `Touppercase`, `Tolowercase`",
+			Description: "Possible Values: `Leavetextas_is`, `Tolowercase`, `Touppercase`",
 			Required:    true,
 		},
 	}

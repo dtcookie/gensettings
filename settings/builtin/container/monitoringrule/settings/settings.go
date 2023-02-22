@@ -25,8 +25,8 @@ import (
 type Settings struct {
 	Enabled  bool              `json:"enabled"`  // This setting is enabled (`true`) or disabled (`false`)
 	Mode     MonitoringMode    `json:"mode"`     // Possible Values: `MONITORING_OFF`, `MONITORING_ON`
-	Operator ConditionOperator `json:"operator"` // Possible Values: `NOT_EQUALS`, `STARTS`, `CONTAINS`, `EQUALS`, `NOT_STARTS`, `NOT_ENDS`, `EXISTS`, `ENDS`, `NOT_CONTAINS`, `NOT_EXISTS`
-	Property ContainerItem     `json:"property"` // Possible Values: `KUBERNETES_BASEPODNAME`, `KUBERNETES_FULLPODNAME`, `KUBERNETES_PODUID`, `CONTAINER_NAME`, `IMAGE_NAME`, `KUBERNETES_NAMESPACE`, `KUBERNETES_CONTAINERNAME`
+	Operator ConditionOperator `json:"operator"` // Possible Values: `CONTAINS`, `ENDS`, `EQUALS`, `EXISTS`, `NOT_CONTAINS`, `NOT_ENDS`, `NOT_EQUALS`, `NOT_EXISTS`, `NOT_STARTS`, `STARTS`
+	Property ContainerItem     `json:"property"` // Possible Values: `CONTAINER_NAME`, `IMAGE_NAME`, `KUBERNETES_BASEPODNAME`, `KUBERNETES_CONTAINERNAME`, `KUBERNETES_FULLPODNAME`, `KUBERNETES_NAMESPACE`, `KUBERNETES_PODUID`
 	Value    string            `json:"value"`    // Condition value
 }
 
@@ -44,12 +44,12 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		},
 		"operator": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `NOT_EQUALS`, `STARTS`, `CONTAINS`, `EQUALS`, `NOT_STARTS`, `NOT_ENDS`, `EXISTS`, `ENDS`, `NOT_CONTAINS`, `NOT_EXISTS`",
+			Description: "Possible Values: `CONTAINS`, `ENDS`, `EQUALS`, `EXISTS`, `NOT_CONTAINS`, `NOT_ENDS`, `NOT_EQUALS`, `NOT_EXISTS`, `NOT_STARTS`, `STARTS`",
 			Required:    true,
 		},
 		"property": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `KUBERNETES_BASEPODNAME`, `KUBERNETES_FULLPODNAME`, `KUBERNETES_PODUID`, `CONTAINER_NAME`, `IMAGE_NAME`, `KUBERNETES_NAMESPACE`, `KUBERNETES_CONTAINERNAME`",
+			Description: "Possible Values: `CONTAINER_NAME`, `IMAGE_NAME`, `KUBERNETES_BASEPODNAME`, `KUBERNETES_CONTAINERNAME`, `KUBERNETES_FULLPODNAME`, `KUBERNETES_NAMESPACE`, `KUBERNETES_PODUID`",
 			Required:    true,
 		},
 		"value": {

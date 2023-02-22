@@ -24,8 +24,8 @@ import (
 
 type PodsSaturationConfig struct {
 	ObservationPeriodInMinutes int `json:"observationPeriodInMinutes"` // within the last
-	SamplePeriodInMinutes      int `json:"samplePeriodInMinutes"`      // of total node capacities for at least
-	Threshold                  int `json:"threshold"`                  // Number of pods running on this node has been higher than
+	SamplePeriodInMinutes      int `json:"samplePeriodInMinutes"`      // of node capacity for at least
+	Threshold                  int `json:"threshold"`                  // number of pods running on node is higher than
 }
 
 func (me *PodsSaturationConfig) Schema() map[string]*schema.Schema {
@@ -37,12 +37,12 @@ func (me *PodsSaturationConfig) Schema() map[string]*schema.Schema {
 		},
 		"sample_period_in_minutes": {
 			Type:        schema.TypeInt,
-			Description: "of total node capacities for at least",
+			Description: "of node capacity for at least",
 			Required:    true,
 		},
 		"threshold": {
 			Type:        schema.TypeInt,
-			Description: "Number of pods running on this node has been higher than",
+			Description: "number of pods running on node is higher than",
 			Required:    true,
 		},
 	}

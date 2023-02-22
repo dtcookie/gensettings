@@ -41,6 +41,9 @@
 			"type": "set"
 		}
 	},
+	"schemaGroups": [
+		"group:synthetic.http"
+	],
 	"schemaId": "builtin:synthetic.http.assigned-applications",
 	"types": {
 		"Application": {
@@ -89,5 +92,5 @@
 			"versionInfo": ""
 		}
 	},
-	"version": "1.1"
+	"version": "1.1.1"
 }

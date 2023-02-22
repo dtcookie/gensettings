@@ -45,7 +45,7 @@ func (me *DimensionConditions) UnmarshalHCL(decoder hcl.Decoder) error {
 }
 
 type DimensionCondition struct {
-	ConditionType DimensionConditionType `json:"conditionType"` // Possible Values: `LOG_FILE_NAME`, `METRIC_KEY`, `DIMENSION`
+	ConditionType DimensionConditionType `json:"conditionType"` // Possible Values: `DIMENSION`, `LOG_FILE_NAME`, `METRIC_KEY`
 	Key           *string                `json:"key,omitempty"`
 	RuleMatcher   DimensionOperator      `json:"ruleMatcher"` // Possible Values: `BEGINS_WITH`, `EQUALS`
 	Value         string                 `json:"value"`
@@ -55,7 +55,7 @@ func (me *DimensionCondition) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"condition_type": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `LOG_FILE_NAME`, `METRIC_KEY`, `DIMENSION`",
+			Description: "Possible Values: `DIMENSION`, `LOG_FILE_NAME`, `METRIC_KEY`",
 			Required:    true,
 		},
 		"key": {

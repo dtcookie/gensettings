@@ -23,16 +23,16 @@ import (
 )
 
 type Settings struct {
-	LoadActionKpm LoadKpm `json:"loadActionKpm"`   // Possible Values: `RESPONSE_END`, `VISUALLY_COMPLETE`, `LARGEST_CONTENTFUL_PAINT`, `DOM_INTERACTIVE`, `CUMULATIVE_LAYOUT_SHIFT`, `USER_ACTION_DURATION`, `LOAD_EVENT_END`, `RESPONSE_START`, `SPEED_INDEX`, `LOAD_EVENT_START`
+	LoadActionKpm LoadKpm `json:"loadActionKpm"`   // Possible Values: `CUMULATIVE_LAYOUT_SHIFT`, `DOM_INTERACTIVE`, `LARGEST_CONTENTFUL_PAINT`, `LOAD_EVENT_END`, `LOAD_EVENT_START`, `RESPONSE_END`, `RESPONSE_START`, `SPEED_INDEX`, `USER_ACTION_DURATION`, `VISUALLY_COMPLETE`
 	Scope         string  `json:"-" scope:"scope"` // The scope of this setting (SYNTHETIC_TEST)
-	XhrActionKpm  XhrKpm  `json:"xhrActionKpm"`    // Possible Values: `USER_ACTION_DURATION`, `VISUALLY_COMPLETE`, `RESPONSE_START`, `RESPONSE_END`
+	XhrActionKpm  XhrKpm  `json:"xhrActionKpm"`    // Possible Values: `RESPONSE_END`, `RESPONSE_START`, `USER_ACTION_DURATION`, `VISUALLY_COMPLETE`
 }
 
 func (me *Settings) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"load_action_kpm": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `RESPONSE_END`, `VISUALLY_COMPLETE`, `LARGEST_CONTENTFUL_PAINT`, `DOM_INTERACTIVE`, `CUMULATIVE_LAYOUT_SHIFT`, `USER_ACTION_DURATION`, `LOAD_EVENT_END`, `RESPONSE_START`, `SPEED_INDEX`, `LOAD_EVENT_START`",
+			Description: "Possible Values: `CUMULATIVE_LAYOUT_SHIFT`, `DOM_INTERACTIVE`, `LARGEST_CONTENTFUL_PAINT`, `LOAD_EVENT_END`, `LOAD_EVENT_START`, `RESPONSE_END`, `RESPONSE_START`, `SPEED_INDEX`, `USER_ACTION_DURATION`, `VISUALLY_COMPLETE`",
 			Required:    true,
 		},
 		"scope": {
@@ -42,7 +42,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		},
 		"xhr_action_kpm": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `USER_ACTION_DURATION`, `VISUALLY_COMPLETE`, `RESPONSE_START`, `RESPONSE_END`",
+			Description: "Possible Values: `RESPONSE_END`, `RESPONSE_START`, `USER_ACTION_DURATION`, `VISUALLY_COMPLETE`",
 			Required:    true,
 		},
 	}

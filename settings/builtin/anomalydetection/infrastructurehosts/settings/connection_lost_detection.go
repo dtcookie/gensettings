@@ -24,7 +24,7 @@ import (
 
 type ConnectionLostDetection struct {
 	Enabled             bool                                `json:"enabled"`                       // This setting is enabled (`true`) or disabled (`false`)
-	OnGracefulShutdowns *ConnectionLostDetectionSensitivity `json:"onGracefulShutdowns,omitempty"` // Possible Values: `DONT_ALERT_ON_GRACEFUL_SHUTDOWN`, `ALERT_ON_GRACEFUL_SHUTDOWN`
+	OnGracefulShutdowns *ConnectionLostDetectionSensitivity `json:"onGracefulShutdowns,omitempty"` // Possible Values: `ALERT_ON_GRACEFUL_SHUTDOWN`, `DONT_ALERT_ON_GRACEFUL_SHUTDOWN`
 }
 
 func (me *ConnectionLostDetection) Schema() map[string]*schema.Schema {
@@ -36,7 +36,7 @@ func (me *ConnectionLostDetection) Schema() map[string]*schema.Schema {
 		},
 		"on_graceful_shutdowns": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `DONT_ALERT_ON_GRACEFUL_SHUTDOWN`, `ALERT_ON_GRACEFUL_SHUTDOWN`",
+			Description: "Possible Values: `ALERT_ON_GRACEFUL_SHUTDOWN`, `DONT_ALERT_ON_GRACEFUL_SHUTDOWN`",
 			Optional:    true,
 		},
 	}

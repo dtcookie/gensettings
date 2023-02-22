@@ -24,7 +24,7 @@ import (
 
 type SpanContextPropagationRule struct {
 	Matchers   SpanMatchers                 `json:"matchers"`
-	RuleAction SpanContextPropagationAction `json:"ruleAction"` // Possible Values: `PROPAGATE`, `DONT_PROPAGATE`
+	RuleAction SpanContextPropagationAction `json:"ruleAction"` // Possible Values: `DONT_PROPAGATE`, `PROPAGATE`
 	RuleName   string                       `json:"ruleName"`   // Rule name
 }
 
@@ -41,7 +41,7 @@ func (me *SpanContextPropagationRule) Schema() map[string]*schema.Schema {
 		},
 		"rule_action": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `PROPAGATE`, `DONT_PROPAGATE`",
+			Description: "Possible Values: `DONT_PROPAGATE`, `PROPAGATE`",
 			Required:    true,
 		},
 		"rule_name": {

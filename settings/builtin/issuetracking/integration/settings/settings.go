@@ -26,8 +26,8 @@ type Settings struct {
 	Enabled            bool               `json:"enabled"`            // This setting is enabled (`true`) or disabled (`false`)
 	Issuelabel         string             `json:"issuelabel"`         // Set a label to identify these issues, for example, `release_blocker` or `non-critical`
 	Issuequery         string             `json:"issuequery"`         // You can use the following placeholders to automatically insert values from the **Release monitoring** page in your query: `{NAME}`, `{VERSION}`, `{STAGE}`, `{PRODUCT}`.
-	Issuetheme         IssueTheme         `json:"issuetheme"`         // Possible Values: `INFO`, `ERROR`, `RESOLVED`
-	Issuetrackersystem IssueTrackerSystem `json:"issuetrackersystem"` // Possible Values: `GITLAB`, `SERVICENOW`, `JIRA_ON_PREMISE`, `JIRA_CLOUD`, `JIRA`, `GITHUB`
+	Issuetheme         IssueTheme         `json:"issuetheme"`         // Possible Values: `ERROR`, `INFO`, `RESOLVED`
+	Issuetrackersystem IssueTrackerSystem `json:"issuetrackersystem"` // Possible Values: `GITHUB`, `GITLAB`, `JIRA`, `JIRA_CLOUD`, `JIRA_ON_PREMISE`, `SERVICENOW`
 	Password           *string            `json:"password,omitempty"` // Password
 	Token              *string            `json:"token,omitempty"`    // Token
 	Url                string             `json:"url"`                // For Jira, use the base URL (for example, https://jira.yourcompany.com); for GitHub, use the repository URL (for example, https://github.com/org/repo); for GitLab, use the specific project API for a single project (for example, https://gitlab.com/api/v4/projects/:projectId), and the specific group API for a multiple projects (for example, https://gitlab.com/api/v4/groups/:groupId); for ServiceNow, use your company instance URL (for example, https://yourinstance.service-now.com/)
@@ -53,12 +53,12 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		},
 		"issuetheme": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `INFO`, `ERROR`, `RESOLVED`",
+			Description: "Possible Values: `ERROR`, `INFO`, `RESOLVED`",
 			Required:    true,
 		},
 		"issuetrackersystem": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `GITLAB`, `SERVICENOW`, `JIRA_ON_PREMISE`, `JIRA_CLOUD`, `JIRA`, `GITHUB`",
+			Description: "Possible Values: `GITHUB`, `GITLAB`, `JIRA`, `JIRA_CLOUD`, `JIRA_ON_PREMISE`, `SERVICENOW`",
 			Required:    true,
 		},
 		"password": {

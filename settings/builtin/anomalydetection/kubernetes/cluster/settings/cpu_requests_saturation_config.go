@@ -24,8 +24,8 @@ import (
 
 type CpuRequestsSaturationConfig struct {
 	ObservationPeriodInMinutes int `json:"observationPeriodInMinutes"` // within the last
-	SamplePeriodInMinutes      int `json:"samplePeriodInMinutes"`      // of total cluster CPU capacities for at least
-	Threshold                  int `json:"threshold"`                  // Requested CPU capacities have been higher than
+	SamplePeriodInMinutes      int `json:"samplePeriodInMinutes"`      // of cluster CPU capacity for at least
+	Threshold                  int `json:"threshold"`                  // amount of requested CPU is above
 }
 
 func (me *CpuRequestsSaturationConfig) Schema() map[string]*schema.Schema {
@@ -37,12 +37,12 @@ func (me *CpuRequestsSaturationConfig) Schema() map[string]*schema.Schema {
 		},
 		"sample_period_in_minutes": {
 			Type:        schema.TypeInt,
-			Description: "of total cluster CPU capacities for at least",
+			Description: "of cluster CPU capacity for at least",
 			Required:    true,
 		},
 		"threshold": {
 			Type:        schema.TypeInt,
-			Description: "Requested CPU capacities have been higher than",
+			Description: "amount of requested CPU is above",
 			Required:    true,
 		},
 	}

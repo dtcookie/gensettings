@@ -26,7 +26,7 @@ type RuleItems []*RuleItem
 
 func (me *RuleItems) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
-		"attributeKey": {
+		"attribute_key": {
 			Type:        schema.TypeSet,
 			Required:    true,
 			MinItems:    1,
@@ -37,17 +37,17 @@ func (me *RuleItems) Schema() map[string]*schema.Schema {
 }
 
 func (me RuleItems) MarshalHCL(properties hcl.Properties) error {
-	return properties.EncodeSlice("attributeKey", me)
+	return properties.EncodeSlice("attribute_key", me)
 }
 
 func (me *RuleItems) UnmarshalHCL(decoder hcl.Decoder) error {
-	return decoder.DecodeSlice("attributeKey", me)
+	return decoder.DecodeSlice("attribute_key", me)
 }
 
 type RuleItem struct {
 	AttributeKey string      `json:"attributeKey"` // Attribute key **service.name** is automatically captured by default
 	Enabled      bool        `json:"enabled"`      // This setting is enabled (`true`) or disabled (`false`)
-	Masking      MaskingType `json:"masking"`      // Possible Values: `NOT_MASKED`, `MASK_ONLY_CONFIDENTIAL_DATA`, `MASK_ENTIRE_VALUE`
+	Masking      MaskingType `json:"masking"`      // Possible Values: `MASK_ENTIRE_VALUE`, `MASK_ONLY_CONFIDENTIAL_DATA`, `NOT_MASKED`
 }
 
 func (me *RuleItem) Schema() map[string]*schema.Schema {
@@ -64,7 +64,7 @@ func (me *RuleItem) Schema() map[string]*schema.Schema {
 		},
 		"masking": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `NOT_MASKED`, `MASK_ONLY_CONFIDENTIAL_DATA`, `MASK_ENTIRE_VALUE`",
+			Description: "Possible Values: `MASK_ENTIRE_VALUE`, `MASK_ONLY_CONFIDENTIAL_DATA`, `NOT_MASKED`",
 			Required:    true,
 		},
 	}

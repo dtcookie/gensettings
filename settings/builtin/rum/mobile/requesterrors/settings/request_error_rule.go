@@ -26,7 +26,7 @@ type RequestErrorRules []*RequestErrorRule
 
 func (me *RequestErrorRules) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
-		"errorRule": {
+		"error_rule": {
 			Type:        schema.TypeSet,
 			Required:    true,
 			MinItems:    1,
@@ -37,11 +37,11 @@ func (me *RequestErrorRules) Schema() map[string]*schema.Schema {
 }
 
 func (me RequestErrorRules) MarshalHCL(properties hcl.Properties) error {
-	return properties.EncodeSlice("errorRule", me)
+	return properties.EncodeSlice("error_rule", me)
 }
 
 func (me *RequestErrorRules) UnmarshalHCL(decoder hcl.Decoder) error {
-	return decoder.DecodeSlice("errorRule", me)
+	return decoder.DecodeSlice("error_rule", me)
 }
 
 type RequestErrorRule struct {

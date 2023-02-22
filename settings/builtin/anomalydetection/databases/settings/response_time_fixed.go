@@ -26,7 +26,7 @@ type ResponseTimeFixed struct {
 	OverAlertingProtection *OverAlertingProtection   `json:"overAlertingProtection"` // Avoid over-alerting
 	ResponseTimeAll        *ResponseTimeFixedAll     `json:"responseTimeAll"`        // Alert if the median response time of all requests degrades beyond this threshold within an observation period of 5 minutes:
 	ResponseTimeSlowest    *ResponseTimeFixedSlowest `json:"responseTimeSlowest"`    // Alert if the response time of the slowest 10% of requests degrades beyond this threshold within an observation period of 5 minutes:
-	Sensitivity            Sensitivity               `json:"sensitivity"`            // Possible Values: `Low`, `Medium`, `High`
+	Sensitivity            Sensitivity               `json:"sensitivity"`            // Possible Values: `High`, `Low`, `Medium`
 }
 
 func (me *ResponseTimeFixed) Schema() map[string]*schema.Schema {
@@ -60,7 +60,7 @@ func (me *ResponseTimeFixed) Schema() map[string]*schema.Schema {
 		},
 		"sensitivity": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `Low`, `Medium`, `High`",
+			Description: "Possible Values: `High`, `Low`, `Medium`",
 			Required:    true,
 		},
 	}

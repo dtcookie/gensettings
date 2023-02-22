@@ -24,8 +24,8 @@ import (
 
 type CpuLimitsQuotaSaturationConfig struct {
 	ObservationPeriodInMinutes int `json:"observationPeriodInMinutes"` // within the last
-	SamplePeriodInMinutes      int `json:"samplePeriodInMinutes"`      // for at least
-	Threshold                  int `json:"threshold"`                  // Utilized CPU limits quota has been higher than
+	SamplePeriodInMinutes      int `json:"samplePeriodInMinutes"`      // of quota for at least
+	Threshold                  int `json:"threshold"`                  // amount of utilized namespace CPU is above
 }
 
 func (me *CpuLimitsQuotaSaturationConfig) Schema() map[string]*schema.Schema {
@@ -37,12 +37,12 @@ func (me *CpuLimitsQuotaSaturationConfig) Schema() map[string]*schema.Schema {
 		},
 		"sample_period_in_minutes": {
 			Type:        schema.TypeInt,
-			Description: "for at least",
+			Description: "of quota for at least",
 			Required:    true,
 		},
 		"threshold": {
 			Type:        schema.TypeInt,
-			Description: "Utilized CPU limits quota has been higher than",
+			Description: "amount of utilized namespace CPU is above",
 			Required:    true,
 		},
 	}

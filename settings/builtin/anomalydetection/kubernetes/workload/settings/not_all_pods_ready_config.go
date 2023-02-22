@@ -24,7 +24,7 @@ import (
 
 type NotAllPodsReadyConfig struct {
 	ObservationPeriodInMinutes int `json:"observationPeriodInMinutes"` // within the last
-	SamplePeriodInMinutes      int `json:"samplePeriodInMinutes"`      // some pods of the workload have not been ready for at least
+	SamplePeriodInMinutes      int `json:"samplePeriodInMinutes"`      // some workload pods are not ready for at least
 }
 
 func (me *NotAllPodsReadyConfig) Schema() map[string]*schema.Schema {
@@ -36,7 +36,7 @@ func (me *NotAllPodsReadyConfig) Schema() map[string]*schema.Schema {
 		},
 		"sample_period_in_minutes": {
 			Type:        schema.TypeInt,
-			Description: "some pods of the workload have not been ready for at least",
+			Description: "some workload pods are not ready for at least",
 			Required:    true,
 		},
 	}

@@ -24,7 +24,7 @@ import (
 
 type DiskLowInodesDetection struct {
 	CustomThresholds *DiskLowInodesDetectionThresholds `json:"customThresholds,omitempty"`
-	DetectionMode    *DetectionMode                    `json:"detectionMode,omitempty"` // Possible Values: `Custom`, `Auto`
+	DetectionMode    *DetectionMode                    `json:"detectionMode,omitempty"` // Possible Values: `Auto`, `Custom`
 	Enabled          bool                              `json:"enabled"`                 // This setting is enabled (`true`) or disabled (`false`)
 }
 
@@ -41,7 +41,7 @@ func (me *DiskLowInodesDetection) Schema() map[string]*schema.Schema {
 		},
 		"detection_mode": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `Custom`, `Auto`",
+			Description: "Possible Values: `Auto`, `Custom`",
 			Optional:    true,
 		},
 		"enabled": {

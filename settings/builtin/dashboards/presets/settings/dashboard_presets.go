@@ -26,7 +26,7 @@ type DashboardPresetsList []*DashboardPresets
 
 func (me *DashboardPresetsList) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
-		"dashboardPresets": {
+		"dashboard_presets": {
 			Type:        schema.TypeList,
 			Required:    true,
 			MinItems:    1,
@@ -37,11 +37,11 @@ func (me *DashboardPresetsList) Schema() map[string]*schema.Schema {
 }
 
 func (me DashboardPresetsList) MarshalHCL(properties hcl.Properties) error {
-	return properties.EncodeSlice("dashboardPresets", me)
+	return properties.EncodeSlice("dashboard_presets", me)
 }
 
 func (me *DashboardPresetsList) UnmarshalHCL(decoder hcl.Decoder) error {
-	return decoder.DecodeSlice("dashboardPresets", me)
+	return decoder.DecodeSlice("dashboard_presets", me)
 }
 
 type DashboardPresets struct {

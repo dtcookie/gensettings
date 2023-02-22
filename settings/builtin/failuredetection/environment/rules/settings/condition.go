@@ -45,7 +45,7 @@ func (me *Conditions) UnmarshalHCL(decoder hcl.Decoder) error {
 }
 
 type Condition struct {
-	Attribute Attributes `json:"attribute"` // Possible Values: `SERVICE_MANAGEMENT_ZONE`, `SERVICE_NAME`, `SERVICE_TYPE`, `SERVICE_TAG`, `PG_NAME`, `PG_TAG`
+	Attribute Attributes `json:"attribute"` // Possible Values: `PG_NAME`, `PG_TAG`, `SERVICE_MANAGEMENT_ZONE`, `SERVICE_NAME`, `SERVICE_TAG`, `SERVICE_TYPE`
 	Predicate *Predicate `json:"predicate"` // Condition to check the attribute against
 }
 
@@ -53,7 +53,7 @@ func (me *Condition) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"attribute": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `SERVICE_MANAGEMENT_ZONE`, `SERVICE_NAME`, `SERVICE_TYPE`, `SERVICE_TAG`, `PG_NAME`, `PG_TAG`",
+			Description: "Possible Values: `PG_NAME`, `PG_TAG`, `SERVICE_MANAGEMENT_ZONE`, `SERVICE_NAME`, `SERVICE_TAG`, `SERVICE_TYPE`",
 			Required:    true,
 		},
 		"predicate": {

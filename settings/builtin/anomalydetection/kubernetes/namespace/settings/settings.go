@@ -23,11 +23,11 @@ import (
 )
 
 type Settings struct {
-	CpuLimitsQuotaSaturation      *CpuLimitsQuotaSaturation      `json:"cpuLimitsQuotaSaturation"`      // Alerts if almost no CPU limits quota left in namespace
-	CpuRequestsQuotaSaturation    *CpuRequestsQuotaSaturation    `json:"cpuRequestsQuotaSaturation"`    // Alerts if almost no CPU requests quota left in namespace
-	MemoryLimitsQuotaSaturation   *MemoryLimitsQuotaSaturation   `json:"memoryLimitsQuotaSaturation"`   // Alerts if almost no memory limits quota left in namespace
-	MemoryRequestsQuotaSaturation *MemoryRequestsQuotaSaturation `json:"memoryRequestsQuotaSaturation"` // Alerts if almost no memory requests quota left in namespace
-	PodsQuotaSaturation           *PodsQuotaSaturation           `json:"podsQuotaSaturation"`           // Alerts if almost no pod number limits quota left in namespace
+	CpuLimitsQuotaSaturation      *CpuLimitsQuotaSaturation      `json:"cpuLimitsQuotaSaturation"`      // Alerts if almost no CPU-limit quota left in namespace
+	CpuRequestsQuotaSaturation    *CpuRequestsQuotaSaturation    `json:"cpuRequestsQuotaSaturation"`    // Alerts if almost no CPU-request quota left in namespace
+	MemoryLimitsQuotaSaturation   *MemoryLimitsQuotaSaturation   `json:"memoryLimitsQuotaSaturation"`   // Alerts if almost no memory-limit quota left in namespace
+	MemoryRequestsQuotaSaturation *MemoryRequestsQuotaSaturation `json:"memoryRequestsQuotaSaturation"` // Alerts if almost no memory-request quota left in namespace
+	PodsQuotaSaturation           *PodsQuotaSaturation           `json:"podsQuotaSaturation"`           // Alerts if almost no pod quota left in namespace
 	Scope                         *string                        `json:"-" scope:"scope"`               // The scope of this setting (CLOUD_APPLICATION_NAMESPACE, KUBERNETES_CLUSTER). Omit this property if you want to cover the whole environment.
 }
 
@@ -35,7 +35,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"cpu_limits_quota_saturation": {
 			Type:        schema.TypeList,
-			Description: "Alerts if almost no CPU limits quota left in namespace",
+			Description: "Alerts if almost no CPU-limit quota left in namespace",
 			Required:    true,
 
 			Elem:     &schema.Resource{Schema: new(CpuLimitsQuotaSaturation).Schema()},
@@ -44,7 +44,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		},
 		"cpu_requests_quota_saturation": {
 			Type:        schema.TypeList,
-			Description: "Alerts if almost no CPU requests quota left in namespace",
+			Description: "Alerts if almost no CPU-request quota left in namespace",
 			Required:    true,
 
 			Elem:     &schema.Resource{Schema: new(CpuRequestsQuotaSaturation).Schema()},
@@ -53,7 +53,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		},
 		"memory_limits_quota_saturation": {
 			Type:        schema.TypeList,
-			Description: "Alerts if almost no memory limits quota left in namespace",
+			Description: "Alerts if almost no memory-limit quota left in namespace",
 			Required:    true,
 
 			Elem:     &schema.Resource{Schema: new(MemoryLimitsQuotaSaturation).Schema()},
@@ -62,7 +62,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		},
 		"memory_requests_quota_saturation": {
 			Type:        schema.TypeList,
-			Description: "Alerts if almost no memory requests quota left in namespace",
+			Description: "Alerts if almost no memory-request quota left in namespace",
 			Required:    true,
 
 			Elem:     &schema.Resource{Schema: new(MemoryRequestsQuotaSaturation).Schema()},
@@ -71,7 +71,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		},
 		"pods_quota_saturation": {
 			Type:        schema.TypeList,
-			Description: "Alerts if almost no pod number limits quota left in namespace",
+			Description: "Alerts if almost no pod quota left in namespace",
 			Required:    true,
 
 			Elem:     &schema.Resource{Schema: new(PodsQuotaSaturation).Schema()},

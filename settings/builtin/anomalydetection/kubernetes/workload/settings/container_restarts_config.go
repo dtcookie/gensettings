@@ -25,7 +25,7 @@ import (
 type ContainerRestartsConfig struct {
 	ObservationPeriodInMinutes int `json:"observationPeriodInMinutes"` // within the last
 	SamplePeriodInMinutes      int `json:"samplePeriodInMinutes"`      // per minute, for any
-	Threshold                  int `json:"threshold"`                  // there were at least
+	Threshold                  int `json:"threshold"`                  // there is at least
 }
 
 func (me *ContainerRestartsConfig) Schema() map[string]*schema.Schema {
@@ -42,7 +42,7 @@ func (me *ContainerRestartsConfig) Schema() map[string]*schema.Schema {
 		},
 		"threshold": {
 			Type:        schema.TypeInt,
-			Description: "there were at least",
+			Description: "there is at least",
 			Required:    true,
 		},
 	}

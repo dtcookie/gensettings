@@ -23,16 +23,16 @@ import (
 )
 
 type ContextRoot struct {
-	ContributionType ContributionType        `json:"contributionType"`       // Possible Values: `OriginalValue`, `TransformValue`, `TransformURL`
-	SegmentCount     *int                    `json:"segmentCount,omitempty"` // The number of segments of the URL to be kept.\nThe URL is divided by slashes (/), the indexing starts with 1 at context root.\nFor example, if you specify 2 for the www.dynatrace.com/support/help/dynatrace-api/ URL, the value of support/help is used.
-	Transformations  *ReducedTransformations `json:"transformations,omitempty"`
+	ContributionType ContributionType       `json:"contributionType"`       // Possible Values: `OriginalValue`, `TransformURL`, `TransformValue`
+	SegmentCount     *int                   `json:"segmentCount,omitempty"` // The number of segments of the URL to be kept.\nThe URL is divided by slashes (/), the indexing starts with 1 at context root.\nFor example, if you specify 2 for the www.dynatrace.com/support/help/dynatrace-api/ URL, the value of support/help is used.
+	Transformations  ReducedTransformations `json:"transformations,omitempty"`
 }
 
 func (me *ContextRoot) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"contribution_type": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `OriginalValue`, `TransformValue`, `TransformURL`",
+			Description: "Possible Values: `OriginalValue`, `TransformURL`, `TransformValue`",
 			Required:    true,
 		},
 		"segment_count": {

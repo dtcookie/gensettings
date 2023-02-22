@@ -24,7 +24,7 @@ import (
 
 type Limit struct {
 	LimitEnabled bool       `json:"limitEnabled"`         // Enable limit
-	LimitType    *LimitType `json:"limitType,omitempty"`  // Possible Values: `MONTHLY`, `ANNUAL`
+	LimitType    *LimitType `json:"limitType,omitempty"`  // Possible Values: `ANNUAL`, `MONTHLY`
 	LimitValue   *int       `json:"limitValue,omitempty"` // The upper limit for the defined time frame
 }
 
@@ -37,7 +37,7 @@ func (me *Limit) Schema() map[string]*schema.Schema {
 		},
 		"limit_type": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `MONTHLY`, `ANNUAL`",
+			Description: "Possible Values: `ANNUAL`, `MONTHLY`",
 			Optional:    true,
 		},
 		"limit_value": {

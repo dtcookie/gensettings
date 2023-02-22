@@ -23,7 +23,7 @@ import (
 )
 
 type DiskNameFilter struct {
-	Operator DiskNameFilterOperator `json:"operator"`        // Possible Values: `STARTS_WITH`, `DOES_NOT_START_WITH`, `CONTAINS`, `DOES_NOT_CONTAIN`, `EQUALS`, `DOES_NOT_EQUAL`
+	Operator DiskNameFilterOperator `json:"operator"`        // Possible Values: `CONTAINS`, `DOES_NOT_CONTAIN`, `DOES_NOT_EQUAL`, `DOES_NOT_START_WITH`, `EQUALS`, `STARTS_WITH`
 	Value    *string                `json:"value,omitempty"` // Matching text
 }
 
@@ -31,7 +31,7 @@ func (me *DiskNameFilter) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"operator": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `STARTS_WITH`, `DOES_NOT_START_WITH`, `CONTAINS`, `DOES_NOT_CONTAIN`, `EQUALS`, `DOES_NOT_EQUAL`",
+			Description: "Possible Values: `CONTAINS`, `DOES_NOT_CONTAIN`, `DOES_NOT_EQUAL`, `DOES_NOT_START_WITH`, `EQUALS`, `STARTS_WITH`",
 			Required:    true,
 		},
 		"value": {

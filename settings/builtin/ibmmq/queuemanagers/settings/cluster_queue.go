@@ -26,7 +26,7 @@ type ClusterQueues []*ClusterQueue
 
 func (me *ClusterQueues) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
-		"clusterQueue": {
+		"cluster_queue": {
 			Type:        schema.TypeSet,
 			Required:    true,
 			MinItems:    1,
@@ -37,11 +37,11 @@ func (me *ClusterQueues) Schema() map[string]*schema.Schema {
 }
 
 func (me ClusterQueues) MarshalHCL(properties hcl.Properties) error {
-	return properties.EncodeSlice("clusterQueue", me)
+	return properties.EncodeSlice("cluster_queue", me)
 }
 
 func (me *ClusterQueues) UnmarshalHCL(decoder hcl.Decoder) error {
-	return decoder.DecodeSlice("clusterQueue", me)
+	return decoder.DecodeSlice("cluster_queue", me)
 }
 
 type ClusterQueue struct {

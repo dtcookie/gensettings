@@ -26,7 +26,7 @@ type QueueManagers []*QueueManager
 
 func (me *QueueManagers) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
-		"queueManager": {
+		"queue_manager": {
 			Type:        schema.TypeSet,
 			Required:    true,
 			MinItems:    1,
@@ -37,11 +37,11 @@ func (me *QueueManagers) Schema() map[string]*schema.Schema {
 }
 
 func (me QueueManagers) MarshalHCL(properties hcl.Properties) error {
-	return properties.EncodeSlice("queueManager", me)
+	return properties.EncodeSlice("queue_manager", me)
 }
 
 func (me *QueueManagers) UnmarshalHCL(decoder hcl.Decoder) error {
-	return decoder.DecodeSlice("queueManager", me)
+	return decoder.DecodeSlice("queue_manager", me)
 }
 
 type QueueManager struct {

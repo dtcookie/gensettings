@@ -26,7 +26,7 @@ type TransformationFields []*TransformationField
 
 func (me *TransformationFields) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
-		"transformationField": {
+		"transformation_field": {
 			Type:        schema.TypeList,
 			Required:    true,
 			MinItems:    1,
@@ -37,11 +37,11 @@ func (me *TransformationFields) Schema() map[string]*schema.Schema {
 }
 
 func (me TransformationFields) MarshalHCL(properties hcl.Properties) error {
-	return properties.EncodeSlice("transformationField", me)
+	return properties.EncodeSlice("transformation_field", me)
 }
 
 func (me *TransformationFields) UnmarshalHCL(decoder hcl.Decoder) error {
-	return decoder.DecodeSlice("transformationField", me)
+	return decoder.DecodeSlice("transformation_field", me)
 }
 
 type TransformationField struct {
@@ -49,7 +49,7 @@ type TransformationField struct {
 	Name     string                  `json:"name"`
 	Optional bool                    `json:"optional"`
 	Readonly bool                    `json:"readonly"` // Read-only
-	Type     TransformationFieldType `json:"type"`     // Possible Values: `IPADDR`, `STRING`, `BOOLEAN`, `INT`, `LONG`, `DOUBLE`, `DURATION`, `TIMESTAMP`
+	Type     TransformationFieldType `json:"type"`     // Possible Values: `BOOLEAN`, `DOUBLE`, `DURATION`, `INT`, `IPADDR`, `LONG`, `STRING`, `TIMESTAMP`
 }
 
 func (me *TransformationField) Schema() map[string]*schema.Schema {
@@ -76,7 +76,7 @@ func (me *TransformationField) Schema() map[string]*schema.Schema {
 		},
 		"type": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `IPADDR`, `STRING`, `BOOLEAN`, `INT`, `LONG`, `DOUBLE`, `DURATION`, `TIMESTAMP`",
+			Description: "Possible Values: `BOOLEAN`, `DOUBLE`, `DURATION`, `INT`, `IPADDR`, `LONG`, `STRING`, `TIMESTAMP`",
 			Required:    true,
 		},
 	}

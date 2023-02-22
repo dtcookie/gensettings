@@ -23,20 +23,20 @@ import (
 )
 
 type QueryDefinition struct {
-	Aggregation     *Aggregation      `json:"aggregation,omitempty"`     // Possible Values: `MEDIAN`, `PERCENTILE90`, `MIN`, `MAX`, `SUM`, `COUNT`, `AVG`, `VALUE`
-	DimensionFilter *DimensionFilters `json:"dimensionFilter,omitempty"` // Dimension filter
-	EntityFilter    *EntityFilter     `json:"entityFilter,omitempty"`    // Use rule-based filters to define the scope this event monitors.
-	MetricKey       *string           `json:"metricKey,omitempty"`       // Metric key
-	MetricSelector  *string           `json:"metricSelector,omitempty"`  // To learn more, visit [Metric Selector](https://dt-url.net/metselad)
-	QueryOffset     *int              `json:"queryOffset,omitempty"`     // Minute offset of sliding evaluation window for metrics with latency
-	Type            Type              `json:"type"`                      // Possible Values: `METRIC_KEY`, `METRIC_SELECTOR`
+	Aggregation     *Aggregation     `json:"aggregation,omitempty"`     // Possible Values: `AVG`, `COUNT`, `MAX`, `MEDIAN`, `MIN`, `PERCENTILE90`, `SUM`, `VALUE`
+	DimensionFilter DimensionFilters `json:"dimensionFilter,omitempty"` // Dimension filter
+	EntityFilter    *EntityFilter    `json:"entityFilter,omitempty"`    // Use rule-based filters to define the scope this event monitors.
+	MetricKey       *string          `json:"metricKey,omitempty"`       // Metric key
+	MetricSelector  *string          `json:"metricSelector,omitempty"`  // To learn more, visit [Metric Selector](https://dt-url.net/metselad)
+	QueryOffset     *int             `json:"queryOffset,omitempty"`     // Minute offset of sliding evaluation window for metrics with latency
+	Type            Type             `json:"type"`                      // Possible Values: `METRIC_KEY`, `METRIC_SELECTOR`
 }
 
 func (me *QueryDefinition) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"aggregation": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `MEDIAN`, `PERCENTILE90`, `MIN`, `MAX`, `SUM`, `COUNT`, `AVG`, `VALUE`",
+			Description: "Possible Values: `AVG`, `COUNT`, `MAX`, `MEDIAN`, `MIN`, `PERCENTILE90`, `SUM`, `VALUE`",
 			Optional:    true,
 		},
 		"dimension_filter": {

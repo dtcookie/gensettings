@@ -87,14 +87,14 @@
 					},
 					"uiCustomization": {
 						"expandable": {
-							"displayName": "Configuration"
+							"displayName": "Configure"
 						}
 					}
 				},
 				"enabled": {
 					"default": false,
 					"description": "",
-					"displayName": "Detect node CPU requests saturation",
+					"displayName": "Detect node CPU-request saturation",
 					"documentation": "",
 					"maxObjects": 1,
 					"modificationPolicy": "DEFAULT",
@@ -152,7 +152,7 @@
 					],
 					"default": 3,
 					"description": "",
-					"displayName": "of total node CPU capacities for at least",
+					"displayName": "of node CPU capacity for at least",
 					"documentation": "",
 					"maxObjects": 1,
 					"metadata": {
@@ -172,7 +172,7 @@
 					],
 					"default": 90,
 					"description": "",
-					"displayName": "Requested CPU capacities have been higher than",
+					"displayName": "amount of requested CPU is higher than",
 					"documentation": "",
 					"maxObjects": 1,
 					"modificationPolicy": "DEFAULT",
@@ -208,14 +208,14 @@
 					},
 					"uiCustomization": {
 						"expandable": {
-							"displayName": "Configuration"
+							"displayName": "Configure"
 						}
 					}
 				},
 				"enabled": {
 					"default": false,
 					"description": "",
-					"displayName": "Detect node memory requests saturation",
+					"displayName": "Detect node memory-request saturation",
 					"documentation": "",
 					"maxObjects": 1,
 					"modificationPolicy": "DEFAULT",
@@ -273,7 +273,7 @@
 					],
 					"default": 3,
 					"description": "",
-					"displayName": "of total node memory capacities for at least",
+					"displayName": "of node memory capacity for at least",
 					"documentation": "",
 					"maxObjects": 1,
 					"metadata": {
@@ -293,7 +293,7 @@
 					],
 					"default": 90,
 					"description": "",
-					"displayName": "Requested memory capacities have been higher than",
+					"displayName": "amount of requested memory is higher than",
 					"documentation": "",
 					"maxObjects": 1,
 					"modificationPolicy": "DEFAULT",
@@ -329,14 +329,14 @@
 					},
 					"uiCustomization": {
 						"expandable": {
-							"displayName": "Configuration"
+							"displayName": "Configure"
 						}
 					}
 				},
 				"enabled": {
 					"default": false,
 					"description": "",
-					"displayName": "Detect node pods saturation",
+					"displayName": "Detect node pod-saturation",
 					"documentation": "Number of running pods in percent of the node's maximum pod capacity",
 					"maxObjects": 1,
 					"modificationPolicy": "DEFAULT",
@@ -394,7 +394,7 @@
 					],
 					"default": 3,
 					"description": "",
-					"displayName": "of total node capacities for at least",
+					"displayName": "of node capacity for at least",
 					"documentation": "",
 					"maxObjects": 1,
 					"metadata": {
@@ -414,7 +414,7 @@
 					],
 					"default": 90,
 					"description": "",
-					"displayName": "Number of pods running on this node has been higher than",
+					"displayName": "number of pods running on node is higher than",
 					"documentation": "",
 					"maxObjects": 1,
 					"modificationPolicy": "DEFAULT",
@@ -450,7 +450,7 @@
 					},
 					"uiCustomization": {
 						"expandable": {
-							"displayName": "Configuration"
+							"displayName": "Configure"
 						}
 					}
 				},
@@ -515,7 +515,7 @@
 					],
 					"default": 3,
 					"description": "",
-					"displayName": "Node has not been ready for at least",
+					"displayName": "node is not ready for at least",
 					"documentation": "",
 					"maxObjects": 1,
 					"metadata": {
@@ -532,5 +532,5 @@
 			"versionInfo": ""
 		}
 	},
-	"version": "1.0.1"
+	"version": "1.1"
 }

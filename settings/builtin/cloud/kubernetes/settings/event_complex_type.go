@@ -26,7 +26,7 @@ type EventComplexTypes []*EventComplexType
 
 func (me *EventComplexTypes) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
-		"eventPattern": {
+		"event_pattern": {
 			Type:        schema.TypeList,
 			Required:    true,
 			MinItems:    1,
@@ -37,11 +37,11 @@ func (me *EventComplexTypes) Schema() map[string]*schema.Schema {
 }
 
 func (me EventComplexTypes) MarshalHCL(properties hcl.Properties) error {
-	return properties.EncodeSlice("eventPattern", me)
+	return properties.EncodeSlice("event_pattern", me)
 }
 
 func (me *EventComplexTypes) UnmarshalHCL(decoder hcl.Decoder) error {
-	return decoder.DecodeSlice("eventPattern", me)
+	return decoder.DecodeSlice("event_pattern", me)
 }
 
 type EventComplexType struct {

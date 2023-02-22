@@ -23,14 +23,14 @@ import (
 )
 
 type RuleTesting struct {
-	SampleEvent string `json:"sampleEvent"` // Sample event to use for the test run.
+	SampleEvent string `json:"sampleEvent"` // Sample event to use for the test run. Only JSON format is supported.
 }
 
 func (me *RuleTesting) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"sample_event": {
 			Type:        schema.TypeString,
-			Description: "Sample event to use for the test run.",
+			Description: "Sample event to use for the test run. Only JSON format is supported.",
 			Required:    true,
 		},
 	}

@@ -24,7 +24,7 @@ import (
 
 type Settings struct {
 	ApplicationName string          `json:"applicationName"` // Update application name
-	ApplicationType ApplicationType `json:"applicationType"` // Possible Values: `Echo`, `Hololens`, `Iot`, `Embedded_pc`, `Ufo`, `Desktop`
+	ApplicationType ApplicationType `json:"applicationType"` // Possible Values: `Desktop`, `Echo`, `Embedded_pc`, `Hololens`, `Iot`, `Ufo`
 	Scope           string          `json:"-" scope:"scope"` // The scope of this setting (CUSTOM_APPLICATION)
 }
 
@@ -37,7 +37,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		},
 		"application_type": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `Echo`, `Hololens`, `Iot`, `Embedded_pc`, `Ufo`, `Desktop`",
+			Description: "Possible Values: `Desktop`, `Echo`, `Embedded_pc`, `Hololens`, `Iot`, `Ufo`",
 			Required:    true,
 		},
 		"scope": {
