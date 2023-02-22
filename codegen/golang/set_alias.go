@@ -52,6 +52,6 @@ func NewSetAlias(t *reflection.Type, item string) *SetAlias {
 	return &SetAlias{
 		Name: Plural(TypeName(t.Elem.Unref())),
 		Elem: TypeName(t.Elem.Unref()),
-		Item: item,
+		Item: camel.Strip(item),
 	}
 }

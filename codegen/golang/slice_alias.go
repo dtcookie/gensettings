@@ -52,6 +52,6 @@ func NewSliceAlias(t *reflection.Type, item string) *SliceAlias {
 	return &SliceAlias{
 		Name: Plural(TypeName(t.Elem.Unref())),
 		Elem: TypeName(t.Elem.Unref()),
-		Item: item,
+		Item: camel.Strip(item),
 	}
 }
