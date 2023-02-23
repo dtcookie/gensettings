@@ -23,11 +23,11 @@ import (
 )
 
 type Settings struct {
-	Enabled  bool              `json:"enabled"`  // This setting is enabled (`true`) or disabled (`false`)
-	Mode     MonitoringMode    `json:"mode"`     // Possible Values: `MONITORING_OFF`, `MONITORING_ON`
-	Operator ConditionOperator `json:"operator"` // Possible Values: `CONTAINS`, `ENDS`, `EQUALS`, `EXISTS`, `NOT_CONTAINS`, `NOT_ENDS`, `NOT_EQUALS`, `NOT_EXISTS`, `NOT_STARTS`, `STARTS`
-	Property ContainerItem     `json:"property"` // Possible Values: `CONTAINER_NAME`, `IMAGE_NAME`, `KUBERNETES_BASEPODNAME`, `KUBERNETES_CONTAINERNAME`, `KUBERNETES_FULLPODNAME`, `KUBERNETES_NAMESPACE`, `KUBERNETES_PODUID`
-	Value    string            `json:"value"`    // Condition value
+	Enabled  bool              `json:"enabled"`         // This setting is enabled (`true`) or disabled (`false`)
+	Mode     MonitoringMode    `json:"mode"`            // Possible Values: `MONITORING_OFF`, `MONITORING_ON`
+	Operator ConditionOperator `json:"operator"`        // Possible Values: `CONTAINS`, `ENDS`, `EQUALS`, `EXISTS`, `NOT_CONTAINS`, `NOT_ENDS`, `NOT_EQUALS`, `NOT_EXISTS`, `NOT_STARTS`, `STARTS`
+	Property ContainerItem     `json:"property"`        // Possible Values: `CONTAINER_NAME`, `IMAGE_NAME`, `KUBERNETES_BASEPODNAME`, `KUBERNETES_CONTAINERNAME`, `KUBERNETES_FULLPODNAME`, `KUBERNETES_NAMESPACE`, `KUBERNETES_PODUID`
+	Value    *string           `json:"value,omitempty"` // Condition value
 }
 
 func (me *Settings) Schema() map[string]*schema.Schema {
@@ -55,7 +55,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"value": {
 			Type:        schema.TypeString,
 			Description: "Condition value",
-			Required:    true,
+			Optional:    true,
 		},
 	}
 }

@@ -23,9 +23,9 @@ import (
 )
 
 type Settings struct {
-	Enabled        bool            `json:"enabled"`             // This setting is enabled (`true`) or disabled (`false`)
-	ExceptionRules *ExceptionRules `json:"exceptionRules"`      // Customize failure detection for specific exceptions and errors
-	ServiceID      string          `json:"-" scope:"serviceId"` // The scope of this settings. If the settings should cover the whole environment, just don't specify any scope.
+	Enabled        bool            `json:"enabled"`                  // This setting is enabled (`true`) or disabled (`false`)
+	ExceptionRules *ExceptionRules `json:"exceptionRules,omitempty"` // Customize failure detection for specific exceptions and errors
+	ServiceID      string          `json:"-" scope:"serviceId"`      // The scope of this settings. If the settings should cover the whole environment, just don't specify any scope.
 }
 
 func (me *Settings) Schema() map[string]*schema.Schema {
@@ -38,7 +38,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"exception_rules": {
 			Type:        schema.TypeList,
 			Description: "Customize failure detection for specific exceptions and errors",
-			Required:    true,
+			Optional:    true,
 
 			Elem:     &schema.Resource{Schema: new(ExceptionRules).Schema()},
 			MinItems: 1,

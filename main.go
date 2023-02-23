@@ -131,9 +131,9 @@ func main() {
 	}
 	schemata := map[string]*Schema{}
 	for _, schemaStub := range schemaList.Items {
-		if schemaStub.SchemaID != "builtin:synthetic.browser.outage-handling" {
-			continue
-		}
+		// if schemaStub.SchemaID != "builtin:synthetic.browser.outage-handling" {
+		// 	continue
+		// }
 		// if !strings.HasPrefix(schemaStub.SchemaID, "builtin:") {
 		// 	fmt.Println(schemaStub.SchemaID)
 		// }

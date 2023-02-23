@@ -23,7 +23,7 @@ import (
 )
 
 type Settings struct {
-	Enabled           bool   `json:"enabled"`           // This setting is enabled (`true`) or disabled (`false`)
+	Enabled           *bool  `json:"enabled,omitempty"` // This setting is enabled (`true`) or disabled (`false`)
 	HostID            string `json:"-" scope:"hostId"`  // The scope of this settings. If the settings should cover the whole environment, just don't specify any scope.
 	UseGlobalSettings bool   `json:"useGlobalSettings"` // Use global settings
 }
@@ -33,7 +33,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"enabled": {
 			Type:        schema.TypeBool,
 			Description: "This setting is enabled (`true`) or disabled (`false`)",
-			Required:    true,
+			Optional:    true,
 		},
 		"host_id": {
 			Type:        schema.TypeString,

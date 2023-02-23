@@ -23,13 +23,13 @@ import (
 )
 
 type Settings struct {
-	DailyRecurrence   *DailyRecurrence   `json:"dailyRecurrence"`
+	DailyRecurrence   *DailyRecurrence   `json:"dailyRecurrence,omitempty"`
 	Enabled           bool               `json:"enabled"` // This setting is enabled (`true`) or disabled (`false`)
-	MonthlyRecurrence *MonthlyRecurrence `json:"monthlyRecurrence"`
+	MonthlyRecurrence *MonthlyRecurrence `json:"monthlyRecurrence,omitempty"`
 	Name              string             `json:"name"` // Name
-	OnceRecurrence    *OnceRecurrence    `json:"onceRecurrence"`
+	OnceRecurrence    *OnceRecurrence    `json:"onceRecurrence,omitempty"`
 	Recurrence        RecurrenceEnum     `json:"recurrence"` // Possible Values: `DAILY`, `MONTHLY`, `ONCE`, `WEEKLY`
-	WeeklyRecurrence  *WeeklyRecurrence  `json:"weeklyRecurrence"`
+	WeeklyRecurrence  *WeeklyRecurrence  `json:"weeklyRecurrence,omitempty"`
 }
 
 func (me *Settings) Schema() map[string]*schema.Schema {
@@ -37,7 +37,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"daily_recurrence": {
 			Type:        schema.TypeList,
 			Description: "no documentation available",
-			Required:    true,
+			Optional:    true,
 
 			Elem:     &schema.Resource{Schema: new(DailyRecurrence).Schema()},
 			MinItems: 1,
@@ -51,7 +51,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"monthly_recurrence": {
 			Type:        schema.TypeList,
 			Description: "no documentation available",
-			Required:    true,
+			Optional:    true,
 
 			Elem:     &schema.Resource{Schema: new(MonthlyRecurrence).Schema()},
 			MinItems: 1,
@@ -65,7 +65,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"once_recurrence": {
 			Type:        schema.TypeList,
 			Description: "no documentation available",
-			Required:    true,
+			Optional:    true,
 
 			Elem:     &schema.Resource{Schema: new(OnceRecurrence).Schema()},
 			MinItems: 1,
@@ -79,7 +79,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"weekly_recurrence": {
 			Type:        schema.TypeList,
 			Description: "no documentation available",
-			Required:    true,
+			Optional:    true,
 
 			Elem:     &schema.Resource{Schema: new(WeeklyRecurrence).Schema()},
 			MinItems: 1,

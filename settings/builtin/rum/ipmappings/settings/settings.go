@@ -23,13 +23,13 @@ import (
 )
 
 type Settings struct {
-	City        *string `json:"city,omitempty"`       // The city name of the location.
-	CountryCode string  `json:"countryCode"`          // The country code of the location. \n\n Use the alpha-2 code of the [ISO 3166-2 standard](https://dt-url.net/iso3166-2), (for example, `AT` for Austria or `PL` for Poland).
-	Ip          string  `json:"ip"`                   // Single IP or IP range start address
-	IpTo        *string `json:"ipTo,omitempty"`       // IP range end
-	Latitude    float64 `json:"latitude"`             // Latitude
-	Longitude   float64 `json:"longitude"`            // Longitude
-	RegionCode  *string `json:"regionCode,omitempty"` // The region code of the location. \n\n For the [USA](https://dt-url.net/iso3166us) or [Canada](https://dt-url.net/iso3166ca) use ISO 3166-2 state codes without `US-` or `CA-` prefix. \n\n For the rest of the world use [FIPS 10-4 codes](https://dt-url.net/fipscodes) without country prefix.
+	City        *string  `json:"city,omitempty"`       // The city name of the location.
+	CountryCode string   `json:"countryCode"`          // The country code of the location. \n\n Use the alpha-2 code of the [ISO 3166-2 standard](https://dt-url.net/iso3166-2), (for example, `AT` for Austria or `PL` for Poland).
+	Ip          string   `json:"ip"`                   // Single IP or IP range start address
+	IpTo        *string  `json:"ipTo,omitempty"`       // IP range end
+	Latitude    *float64 `json:"latitude,omitempty"`   // Latitude
+	Longitude   *float64 `json:"longitude,omitempty"`  // Longitude
+	RegionCode  *string  `json:"regionCode,omitempty"` // The region code of the location. \n\n For the [USA](https://dt-url.net/iso3166us) or [Canada](https://dt-url.net/iso3166ca) use ISO 3166-2 state codes without `US-` or `CA-` prefix. \n\n For the rest of the world use [FIPS 10-4 codes](https://dt-url.net/fipscodes) without country prefix.
 }
 
 func (me *Settings) Schema() map[string]*schema.Schema {
@@ -57,12 +57,12 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"latitude": {
 			Type:        schema.TypeFloat,
 			Description: "Latitude",
-			Required:    true,
+			Optional:    true,
 		},
 		"longitude": {
 			Type:        schema.TypeFloat,
 			Description: "Longitude",
-			Required:    true,
+			Optional:    true,
 		},
 		"region_code": {
 			Type:        schema.TypeString,

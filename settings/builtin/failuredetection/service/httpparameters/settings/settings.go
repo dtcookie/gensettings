@@ -23,10 +23,10 @@ import (
 )
 
 type Settings struct {
-	BrokenLinks       *BrokenLinks       `json:"brokenLinks"`         // HTTP 404 response codes are thrown when a web server can't find a certain page. 404s are classified as broken links on the client side and therefore aren't considered to be service failures. By enabling this setting, you can have 404s treated as server-side service failures.
-	Enabled           bool               `json:"enabled"`             // This setting is enabled (`true`) or disabled (`false`)
-	HttpResponseCodes *HttpResponseCodes `json:"httpResponseCodes"`   // HTTP response codes
-	ServiceID         string             `json:"-" scope:"serviceId"` // The scope of this settings. If the settings should cover the whole environment, just don't specify any scope.
+	BrokenLinks       *BrokenLinks       `json:"brokenLinks,omitempty"`       // HTTP 404 response codes are thrown when a web server can't find a certain page. 404s are classified as broken links on the client side and therefore aren't considered to be service failures. By enabling this setting, you can have 404s treated as server-side service failures.
+	Enabled           bool               `json:"enabled"`                     // This setting is enabled (`true`) or disabled (`false`)
+	HttpResponseCodes *HttpResponseCodes `json:"httpResponseCodes,omitempty"` // HTTP response codes
+	ServiceID         string             `json:"-" scope:"serviceId"`         // The scope of this settings. If the settings should cover the whole environment, just don't specify any scope.
 }
 
 func (me *Settings) Schema() map[string]*schema.Schema {
@@ -34,7 +34,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"broken_links": {
 			Type:        schema.TypeList,
 			Description: "HTTP 404 response codes are thrown when a web server can't find a certain page. 404s are classified as broken links on the client side and therefore aren't considered to be service failures. By enabling this setting, you can have 404s treated as server-side service failures.",
-			Required:    true,
+			Optional:    true,
 
 			Elem:     &schema.Resource{Schema: new(BrokenLinks).Schema()},
 			MinItems: 1,
@@ -48,7 +48,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"http_response_codes": {
 			Type:        schema.TypeList,
 			Description: "HTTP response codes",
-			Required:    true,
+			Optional:    true,
 
 			Elem:     &schema.Resource{Schema: new(HttpResponseCodes).Schema()},
 			MinItems: 1,

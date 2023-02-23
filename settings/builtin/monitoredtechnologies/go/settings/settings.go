@@ -23,9 +23,9 @@ import (
 )
 
 type Settings struct {
-	Enabled                   bool    `json:"enabled"`                   // This setting is enabled (`true`) or disabled (`false`)
-	EnabledGoStaticMonitoring bool    `json:"enabledGoStaticMonitoring"` // Learn more about the [known limitations for Go static monitoring](https://www.dynatrace.com/support/help/technology-support/application-software/go/support/go-known-limitations#limitations)
-	HostID                    *string `json:"-" scope:"hostId"`          // The scope of this settings. If the settings should cover the whole environment, just don't specify any scope.
+	Enabled                   bool    `json:"enabled"`                             // This setting is enabled (`true`) or disabled (`false`)
+	EnabledGoStaticMonitoring *bool   `json:"enabledGoStaticMonitoring,omitempty"` // Learn more about the [known limitations for Go static monitoring](https://www.dynatrace.com/support/help/technology-support/application-software/go/support/go-known-limitations#limitations)
+	HostID                    *string `json:"-" scope:"hostId"`                    // The scope of this settings. If the settings should cover the whole environment, just don't specify any scope.
 }
 
 func (me *Settings) Schema() map[string]*schema.Schema {
@@ -38,7 +38,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"enabled_go_static_monitoring": {
 			Type:        schema.TypeBool,
 			Description: "Learn more about the [known limitations for Go static monitoring](https://www.dynatrace.com/support/help/technology-support/application-software/go/support/go-known-limitations#limitations)",
-			Required:    true,
+			Optional:    true,
 		},
 		"host_id": {
 			Type:        schema.TypeString,

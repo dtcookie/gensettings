@@ -23,23 +23,23 @@ import (
 )
 
 type Settings struct {
-	ActiveGateGroup                 *string           `json:"activeGateGroup,omitempty"`       // ActiveGate Group
-	AuthToken                       string            `json:"authToken"`                       // Create a bearer token for [Kubernetes](https://dt-url.net/og43szq \"Kubernetes\") or [OpenShift](https://dt-url.net/7l43xtp \"OpenShift\").
-	CertificateCheckEnabled         bool              `json:"certificateCheckEnabled"`         // Require valid certificates for communication with API server (recommended)
-	CloudApplicationPipelineEnabled bool              `json:"cloudApplicationPipelineEnabled"` // Monitor Kubernetes namespaces, services, workloads, and pods
-	ClusterID                       string            `json:"clusterId"`                       // Unique ID of the cluster, the containerized ActiveGate is deployed to. Defaults to the UUID of the kube-system namespace. The cluster ID of containerized ActiveGates is shown on the Deployment status screen.
-	ClusterIdEnabled                bool              `json:"clusterIdEnabled"`                // This is required for monitoring persistent volume claims. For more information on local Kubernetes API monitoring, see the [documentation](https://dt-url.net/6q62uep).
-	Enabled                         bool              `json:"enabled"`                         // This setting is enabled (`true`) or disabled (`false`)
-	EndpointUrl                     string            `json:"endpointUrl"`                     // Get the API URL for [Kubernetes](https://dt-url.net/kz23snj \"Kubernetes\") or [OpenShift](https://dt-url.net/d623xgw \"OpenShift\").
-	EventPatterns                   EventComplexTypes `json:"eventPatterns"`                   // Define Kubernetes event filters to ingest events into your environment. For more details, see the [documentation](https://dt-url.net/2201p0u).
-	EventProcessingActive           bool              `json:"eventProcessingActive"`           // All events are monitored by default unless event filters are specified.\n\nKubernetes events are subject to Davis data units (DDU) licensing.\nSee [DDUs for events](https://dt-url.net/5n03vcu) for details.
-	FilterEvents                    bool              `json:"filterEvents"`                    // Include only events specified by Events Field Selectors
-	HostnameVerificationEnabled     bool              `json:"hostnameVerificationEnabled"`     // Verify hostname in certificate against Kubernetes API URL
-	IncludeAllFdiEvents             bool              `json:"includeAllFdiEvents"`             // For a list of included events, see the [documentation](https://dt-url.net/l61d02no).
-	Label                           string            `json:"label"`                           // Renaming the cluster breaks configurations that are based on its name (e.g., management zones, and alerting).
-	OpenMetricsPipelineEnabled      bool              `json:"openMetricsPipelineEnabled"`      // For annotation guidance, see the [documentation](https://dt-url.net/g42i0ppw).
-	PvcMonitoringEnabled            bool              `json:"pvcMonitoringEnabled"`            // To enable dashboards and alerts, add the [Kubernetes persistent volume claims](ui/hub/ext/com.dynatrace.extension.kubernetes-pvc) extension to your environment.
-	Scope                           string            `json:"-" scope:"scope"`                 // The scope of this setting (KUBERNETES_CLUSTER)
+	ActiveGateGroup                 *string           `json:"activeGateGroup,omitempty"`             // ActiveGate Group
+	AuthToken                       *string           `json:"authToken,omitempty"`                   // Create a bearer token for [Kubernetes](https://dt-url.net/og43szq \"Kubernetes\") or [OpenShift](https://dt-url.net/7l43xtp \"OpenShift\").
+	CertificateCheckEnabled         *bool             `json:"certificateCheckEnabled,omitempty"`     // Require valid certificates for communication with API server (recommended)
+	CloudApplicationPipelineEnabled bool              `json:"cloudApplicationPipelineEnabled"`       // Monitor Kubernetes namespaces, services, workloads, and pods
+	ClusterID                       *string           `json:"clusterId,omitempty"`                   // Unique ID of the cluster, the containerized ActiveGate is deployed to. Defaults to the UUID of the kube-system namespace. The cluster ID of containerized ActiveGates is shown on the Deployment status screen.
+	ClusterIdEnabled                bool              `json:"clusterIdEnabled"`                      // This is required for monitoring persistent volume claims. For more information on local Kubernetes API monitoring, see the [documentation](https://dt-url.net/6q62uep).
+	Enabled                         bool              `json:"enabled"`                               // This setting is enabled (`true`) or disabled (`false`)
+	EndpointUrl                     *string           `json:"endpointUrl,omitempty"`                 // Get the API URL for [Kubernetes](https://dt-url.net/kz23snj \"Kubernetes\") or [OpenShift](https://dt-url.net/d623xgw \"OpenShift\").
+	EventPatterns                   EventComplexTypes `json:"eventPatterns,omitempty"`               // Define Kubernetes event filters to ingest events into your environment. For more details, see the [documentation](https://dt-url.net/2201p0u).
+	EventProcessingActive           bool              `json:"eventProcessingActive"`                 // All events are monitored by default unless event filters are specified.\n\nKubernetes events are subject to Davis data units (DDU) licensing.\nSee [DDUs for events](https://dt-url.net/5n03vcu) for details.
+	FilterEvents                    *bool             `json:"filterEvents,omitempty"`                // Include only events specified by Events Field Selectors
+	HostnameVerificationEnabled     *bool             `json:"hostnameVerificationEnabled,omitempty"` // Verify hostname in certificate against Kubernetes API URL
+	IncludeAllFdiEvents             *bool             `json:"includeAllFdiEvents,omitempty"`         // For a list of included events, see the [documentation](https://dt-url.net/l61d02no).
+	Label                           string            `json:"label"`                                 // Renaming the cluster breaks configurations that are based on its name (e.g., management zones, and alerting).
+	OpenMetricsPipelineEnabled      bool              `json:"openMetricsPipelineEnabled"`            // For annotation guidance, see the [documentation](https://dt-url.net/g42i0ppw).
+	PvcMonitoringEnabled            *bool             `json:"pvcMonitoringEnabled,omitempty"`        // To enable dashboards and alerts, add the [Kubernetes persistent volume claims](ui/hub/ext/com.dynatrace.extension.kubernetes-pvc) extension to your environment.
+	Scope                           string            `json:"-" scope:"scope"`                       // The scope of this setting (KUBERNETES_CLUSTER)
 }
 
 func (me *Settings) Schema() map[string]*schema.Schema {
@@ -52,12 +52,12 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"auth_token": {
 			Type:        schema.TypeString,
 			Description: "Create a bearer token for [Kubernetes](https://dt-url.net/og43szq \"Kubernetes\") or [OpenShift](https://dt-url.net/7l43xtp \"OpenShift\").",
-			Required:    true,
+			Optional:    true,
 		},
 		"certificate_check_enabled": {
 			Type:        schema.TypeBool,
 			Description: "Require valid certificates for communication with API server (recommended)",
-			Required:    true,
+			Optional:    true,
 		},
 		"cloud_application_pipeline_enabled": {
 			Type:        schema.TypeBool,
@@ -67,7 +67,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"cluster_id": {
 			Type:        schema.TypeString,
 			Description: "Unique ID of the cluster, the containerized ActiveGate is deployed to. Defaults to the UUID of the kube-system namespace. The cluster ID of containerized ActiveGates is shown on the Deployment status screen.",
-			Required:    true,
+			Optional:    true,
 		},
 		"cluster_id_enabled": {
 			Type:        schema.TypeBool,
@@ -82,12 +82,12 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"endpoint_url": {
 			Type:        schema.TypeString,
 			Description: "Get the API URL for [Kubernetes](https://dt-url.net/kz23snj \"Kubernetes\") or [OpenShift](https://dt-url.net/d623xgw \"OpenShift\").",
-			Required:    true,
+			Optional:    true,
 		},
 		"event_patterns": {
 			Type:        schema.TypeList,
 			Description: "Define Kubernetes event filters to ingest events into your environment. For more details, see the [documentation](https://dt-url.net/2201p0u).",
-			Required:    true,
+			Optional:    true,
 
 			Elem:     &schema.Resource{Schema: new(EventComplexTypes).Schema()},
 			MinItems: 1,
@@ -101,17 +101,17 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"filter_events": {
 			Type:        schema.TypeBool,
 			Description: "Include only events specified by Events Field Selectors",
-			Required:    true,
+			Optional:    true,
 		},
 		"hostname_verification_enabled": {
 			Type:        schema.TypeBool,
 			Description: "Verify hostname in certificate against Kubernetes API URL",
-			Required:    true,
+			Optional:    true,
 		},
 		"include_all_fdi_events": {
 			Type:        schema.TypeBool,
 			Description: "For a list of included events, see the [documentation](https://dt-url.net/l61d02no).",
-			Required:    true,
+			Optional:    true,
 		},
 		"label": {
 			Type:        schema.TypeString,
@@ -126,7 +126,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"pvc_monitoring_enabled": {
 			Type:        schema.TypeBool,
 			Description: "To enable dashboards and alerts, add the [Kubernetes persistent volume claims](ui/hub/ext/com.dynatrace.extension.kubernetes-pvc) extension to your environment.",
-			Required:    true,
+			Optional:    true,
 		},
 		"scope": {
 			Type:        schema.TypeString,

@@ -24,20 +24,20 @@ import (
 
 type Settings struct {
 	AlertingProfile          string                    `json:"alertingProfile"` // Select an [alerting profile](/ui/settings/builtin:alerting.profile) to control the delivery of problem notifications related to this integration.
-	AnsibleTowerNotification *AnsibleTowerNotification `json:"ansibleTowerNotification"`
+	AnsibleTowerNotification *AnsibleTowerNotification `json:"ansibleTowerNotification,omitempty"`
 	DisplayName              string                    `json:"displayName"` // The name of the notification configuration.
-	EmailNotification        *EmailNotification        `json:"emailNotification"`
+	EmailNotification        *EmailNotification        `json:"emailNotification,omitempty"`
 	Enabled                  bool                      `json:"enabled"` // This setting is enabled (`true`) or disabled (`false`)
-	JiraNotification         *JiraNotification         `json:"jiraNotification"`
-	OpsGenieNotification     *OpsGenieNotification     `json:"opsGenieNotification"`
-	PagerDutyNotification    *PagerDutyNotification    `json:"pagerDutyNotification"`
-	ServiceNowNotification   *ServiceNowNotification   `json:"serviceNowNotification"`
-	SlackNotification        *SlackNotification        `json:"slackNotification"`
-	TrelloNotification       *TrelloNotification       `json:"trelloNotification"`
+	JiraNotification         *JiraNotification         `json:"jiraNotification,omitempty"`
+	OpsGenieNotification     *OpsGenieNotification     `json:"opsGenieNotification,omitempty"`
+	PagerDutyNotification    *PagerDutyNotification    `json:"pagerDutyNotification,omitempty"`
+	ServiceNowNotification   *ServiceNowNotification   `json:"serviceNowNotification,omitempty"`
+	SlackNotification        *SlackNotification        `json:"slackNotification,omitempty"`
+	TrelloNotification       *TrelloNotification       `json:"trelloNotification,omitempty"`
 	Type                     NotificationType          `json:"type"` // Possible Values: `ANSIBLETOWER`, `EMAIL`, `JIRA`, `OPS_GENIE`, `PAGER_DUTY`, `SERVICE_NOW`, `SLACK`, `TRELLO`, `VICTOROPS`, `WEBHOOK`, `XMATTERS`
-	VictorOpsNotification    *VictorOpsNotification    `json:"victorOpsNotification"`
-	WebHookNotification      *WebHookNotification      `json:"webHookNotification"`
-	XMattersNotification     *XMattersNotification     `json:"xMattersNotification"`
+	VictorOpsNotification    *VictorOpsNotification    `json:"victorOpsNotification,omitempty"`
+	WebHookNotification      *WebHookNotification      `json:"webHookNotification,omitempty"`
+	XMattersNotification     *XMattersNotification     `json:"xMattersNotification,omitempty"`
 }
 
 func (me *Settings) Schema() map[string]*schema.Schema {
@@ -50,7 +50,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"ansible_tower_notification": {
 			Type:        schema.TypeList,
 			Description: "no documentation available",
-			Required:    true,
+			Optional:    true,
 
 			Elem:     &schema.Resource{Schema: new(AnsibleTowerNotification).Schema()},
 			MinItems: 1,
@@ -64,7 +64,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"email_notification": {
 			Type:        schema.TypeList,
 			Description: "no documentation available",
-			Required:    true,
+			Optional:    true,
 
 			Elem:     &schema.Resource{Schema: new(EmailNotification).Schema()},
 			MinItems: 1,
@@ -78,7 +78,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"jira_notification": {
 			Type:        schema.TypeList,
 			Description: "no documentation available",
-			Required:    true,
+			Optional:    true,
 
 			Elem:     &schema.Resource{Schema: new(JiraNotification).Schema()},
 			MinItems: 1,
@@ -87,7 +87,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"ops_genie_notification": {
 			Type:        schema.TypeList,
 			Description: "no documentation available",
-			Required:    true,
+			Optional:    true,
 
 			Elem:     &schema.Resource{Schema: new(OpsGenieNotification).Schema()},
 			MinItems: 1,
@@ -96,7 +96,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"pager_duty_notification": {
 			Type:        schema.TypeList,
 			Description: "no documentation available",
-			Required:    true,
+			Optional:    true,
 
 			Elem:     &schema.Resource{Schema: new(PagerDutyNotification).Schema()},
 			MinItems: 1,
@@ -105,7 +105,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"service_now_notification": {
 			Type:        schema.TypeList,
 			Description: "no documentation available",
-			Required:    true,
+			Optional:    true,
 
 			Elem:     &schema.Resource{Schema: new(ServiceNowNotification).Schema()},
 			MinItems: 1,
@@ -114,7 +114,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"slack_notification": {
 			Type:        schema.TypeList,
 			Description: "no documentation available",
-			Required:    true,
+			Optional:    true,
 
 			Elem:     &schema.Resource{Schema: new(SlackNotification).Schema()},
 			MinItems: 1,
@@ -123,7 +123,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"trello_notification": {
 			Type:        schema.TypeList,
 			Description: "no documentation available",
-			Required:    true,
+			Optional:    true,
 
 			Elem:     &schema.Resource{Schema: new(TrelloNotification).Schema()},
 			MinItems: 1,
@@ -137,7 +137,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"victor_ops_notification": {
 			Type:        schema.TypeList,
 			Description: "no documentation available",
-			Required:    true,
+			Optional:    true,
 
 			Elem:     &schema.Resource{Schema: new(VictorOpsNotification).Schema()},
 			MinItems: 1,
@@ -146,7 +146,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"web_hook_notification": {
 			Type:        schema.TypeList,
 			Description: "no documentation available",
-			Required:    true,
+			Optional:    true,
 
 			Elem:     &schema.Resource{Schema: new(WebHookNotification).Schema()},
 			MinItems: 1,
@@ -155,7 +155,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"x_matters_notification": {
 			Type:        schema.TypeList,
 			Description: "no documentation available",
-			Required:    true,
+			Optional:    true,
 
 			Elem:     &schema.Resource{Schema: new(XMattersNotification).Schema()},
 			MinItems: 1,

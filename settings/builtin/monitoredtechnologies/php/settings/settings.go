@@ -23,9 +23,9 @@ import (
 )
 
 type Settings struct {
-	Enabled        bool    `json:"enabled"`          // This setting is enabled (`true`) or disabled (`false`)
-	EnabledFastCGI bool    `json:"enabledFastCGI"`   // Requires PHP monitoring enabled and from Dynatrace OneAgent version 1.191 it's ignored and permanently enabled
-	HostID         *string `json:"-" scope:"hostId"` // The scope of this settings. If the settings should cover the whole environment, just don't specify any scope.
+	Enabled        bool    `json:"enabled"`                  // This setting is enabled (`true`) or disabled (`false`)
+	EnabledFastCGI *bool   `json:"enabledFastCGI,omitempty"` // Requires PHP monitoring enabled and from Dynatrace OneAgent version 1.191 it's ignored and permanently enabled
+	HostID         *string `json:"-" scope:"hostId"`         // The scope of this settings. If the settings should cover the whole environment, just don't specify any scope.
 }
 
 func (me *Settings) Schema() map[string]*schema.Schema {
@@ -38,7 +38,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"enabled_fast_cgi": {
 			Type:        schema.TypeBool,
 			Description: "Requires PHP monitoring enabled and from Dynatrace OneAgent version 1.191 it's ignored and permanently enabled",
-			Required:    true,
+			Optional:    true,
 		},
 		"host_id": {
 			Type:        schema.TypeString,

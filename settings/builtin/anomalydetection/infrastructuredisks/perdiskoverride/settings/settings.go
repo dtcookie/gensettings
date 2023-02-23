@@ -24,9 +24,9 @@ import (
 
 type Settings struct {
 	DiskID                              string                           `json:"-" scope:"diskId"` // The scope of this settings. If the settings should cover the whole environment, just don't specify any scope.
-	DiskLowInodesDetection              *DiskLowInodesDetection          `json:"diskLowInodesDetection"`
-	DiskLowSpaceDetection               *DiskLowSpaceDetection           `json:"diskLowSpaceDetection"`
-	DiskSlowWritesAndReadsDetection     *DiskSlowWritesAndReadsDetection `json:"diskSlowWritesAndReadsDetection"`
+	DiskLowInodesDetection              *DiskLowInodesDetection          `json:"diskLowInodesDetection,omitempty"`
+	DiskLowSpaceDetection               *DiskLowSpaceDetection           `json:"diskLowSpaceDetection,omitempty"`
+	DiskSlowWritesAndReadsDetection     *DiskSlowWritesAndReadsDetection `json:"diskSlowWritesAndReadsDetection,omitempty"`
 	OverrideDiskLowSpaceDetection       bool                             `json:"overrideDiskLowSpaceDetection"`       // Override low disk space detection settings
 	OverrideLowInodesDetection          bool                             `json:"overrideLowInodesDetection"`          // Override low inodes detection settings
 	OverrideSlowWritesAndReadsDetection bool                             `json:"overrideSlowWritesAndReadsDetection"` // Override slow writes and reads detection settings
@@ -42,7 +42,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"disk_low_inodes_detection": {
 			Type:        schema.TypeList,
 			Description: "no documentation available",
-			Required:    true,
+			Optional:    true,
 
 			Elem:     &schema.Resource{Schema: new(DiskLowInodesDetection).Schema()},
 			MinItems: 1,
@@ -51,7 +51,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"disk_low_space_detection": {
 			Type:        schema.TypeList,
 			Description: "no documentation available",
-			Required:    true,
+			Optional:    true,
 
 			Elem:     &schema.Resource{Schema: new(DiskLowSpaceDetection).Schema()},
 			MinItems: 1,
@@ -60,7 +60,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"disk_slow_writes_and_reads_detection": {
 			Type:        schema.TypeList,
 			Description: "no documentation available",
-			Required:    true,
+			Optional:    true,
 
 			Elem:     &schema.Resource{Schema: new(DiskSlowWritesAndReadsDetection).Schema()},
 			MinItems: 1,

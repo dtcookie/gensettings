@@ -23,9 +23,9 @@ import (
 )
 
 type Settings struct {
-	Enabled           bool    `json:"enabled"`           // This setting is enabled (`true`) or disabled (`false`)
-	EnabledDotNetCore bool    `json:"enabledDotNetCore"` // Requires Dynatrace OneAgent version 1.117 or later on Windows and version 1.127 or later on Linux and .NET monitoring enabled
-	HostID            *string `json:"-" scope:"hostId"`  // The scope of this settings. If the settings should cover the whole environment, just don't specify any scope.
+	Enabled           bool    `json:"enabled"`                     // This setting is enabled (`true`) or disabled (`false`)
+	EnabledDotNetCore *bool   `json:"enabledDotNetCore,omitempty"` // Requires Dynatrace OneAgent version 1.117 or later on Windows and version 1.127 or later on Linux and .NET monitoring enabled
+	HostID            *string `json:"-" scope:"hostId"`            // The scope of this settings. If the settings should cover the whole environment, just don't specify any scope.
 }
 
 func (me *Settings) Schema() map[string]*schema.Schema {
@@ -38,7 +38,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"enabled_dot_net_core": {
 			Type:        schema.TypeBool,
 			Description: "Requires Dynatrace OneAgent version 1.117 or later on Windows and version 1.127 or later on Linux and .NET monitoring enabled",
-			Required:    true,
+			Optional:    true,
 		},
 		"host_id": {
 			Type:        schema.TypeString,

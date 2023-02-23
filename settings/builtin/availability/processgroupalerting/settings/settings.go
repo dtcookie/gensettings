@@ -23,10 +23,10 @@ import (
 )
 
 type Settings struct {
-	AlertingMode             AlertingMode `json:"alertingMode"`             // Possible Values: `ON_INSTANCE_COUNT_VIOLATION`, `ON_PGI_UNAVAILABILITY`
-	Enabled                  bool         `json:"enabled"`                  // This setting is enabled (`true`) or disabled (`false`)
-	MinimumInstanceThreshold int          `json:"minimumInstanceThreshold"` // Open a new problem if the number of active process instances in the group is fewer than:
-	ProcessGroupID           string       `json:"-" scope:"processGroupId"` // The scope of this settings. If the settings should cover the whole environment, just don't specify any scope.
+	AlertingMode             *AlertingMode `json:"alertingMode,omitempty"`             // Possible Values: `ON_INSTANCE_COUNT_VIOLATION`, `ON_PGI_UNAVAILABILITY`
+	Enabled                  bool          `json:"enabled"`                            // This setting is enabled (`true`) or disabled (`false`)
+	MinimumInstanceThreshold *int          `json:"minimumInstanceThreshold,omitempty"` // Open a new problem if the number of active process instances in the group is fewer than:
+	ProcessGroupID           string        `json:"-" scope:"processGroupId"`           // The scope of this settings. If the settings should cover the whole environment, just don't specify any scope.
 }
 
 func (me *Settings) Schema() map[string]*schema.Schema {
@@ -34,7 +34,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"alerting_mode": {
 			Type:        schema.TypeString,
 			Description: "Possible Values: `ON_INSTANCE_COUNT_VIOLATION`, `ON_PGI_UNAVAILABILITY`",
-			Required:    true,
+			Optional:    true,
 		},
 		"enabled": {
 			Type:        schema.TypeBool,
@@ -44,7 +44,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"minimum_instance_threshold": {
 			Type:        schema.TypeInt,
 			Description: "Open a new problem if the number of active process instances in the group is fewer than:",
-			Required:    true,
+			Optional:    true,
 		},
 		"process_group_id": {
 			Type:        schema.TypeString,

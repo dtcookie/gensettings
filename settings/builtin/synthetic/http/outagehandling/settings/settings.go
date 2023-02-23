@@ -23,12 +23,12 @@ import (
 )
 
 type Settings struct {
-	GlobalConsecutiveOutageCountThreshold int     `json:"globalConsecutiveOutageCountThreshold"` // Alert if all locations are unable to access my web application
-	GlobalOutages                         bool    `json:"globalOutages"`                         // Generate a problem and send an alert when the monitor is unavailable at all configured locations.
-	LocalConsecutiveOutageCountThreshold  int     `json:"localConsecutiveOutageCountThreshold"`  // are unable to access my web application
-	LocalLocationOutageCountThreshold     int     `json:"localLocationOutageCountThreshold"`     // Alert if at least
-	LocalOutages                          bool    `json:"localOutages"`                          // Generate a problem and send an alert when the monitor is unavailable for one or more consecutive runs at any location.
-	Scope                                 *string `json:"-" scope:"scope"`                       // The scope of this setting (HTTP_CHECK). Omit this property if you want to cover the whole environment.
+	GlobalConsecutiveOutageCountThreshold *int    `json:"globalConsecutiveOutageCountThreshold,omitempty"` // Alert if all locations are unable to access my web application
+	GlobalOutages                         bool    `json:"globalOutages"`                                   // Generate a problem and send an alert when the monitor is unavailable at all configured locations.
+	LocalConsecutiveOutageCountThreshold  *int    `json:"localConsecutiveOutageCountThreshold,omitempty"`  // are unable to access my web application
+	LocalLocationOutageCountThreshold     *int    `json:"localLocationOutageCountThreshold,omitempty"`     // Alert if at least
+	LocalOutages                          bool    `json:"localOutages"`                                    // Generate a problem and send an alert when the monitor is unavailable for one or more consecutive runs at any location.
+	Scope                                 *string `json:"-" scope:"scope"`                                 // The scope of this setting (HTTP_CHECK). Omit this property if you want to cover the whole environment.
 }
 
 func (me *Settings) Schema() map[string]*schema.Schema {
@@ -36,7 +36,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"global_consecutive_outage_count_threshold": {
 			Type:        schema.TypeInt,
 			Description: "Alert if all locations are unable to access my web application",
-			Required:    true,
+			Optional:    true,
 		},
 		"global_outages": {
 			Type:        schema.TypeBool,
@@ -46,12 +46,12 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"local_consecutive_outage_count_threshold": {
 			Type:        schema.TypeInt,
 			Description: "are unable to access my web application",
-			Required:    true,
+			Optional:    true,
 		},
 		"local_location_outage_count_threshold": {
 			Type:        schema.TypeInt,
 			Description: "Alert if at least",
-			Required:    true,
+			Optional:    true,
 		},
 		"local_outages": {
 			Type:        schema.TypeBool,

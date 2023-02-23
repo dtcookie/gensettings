@@ -23,7 +23,7 @@ import (
 )
 
 type Settings struct {
-	Cookies CookieEntries `json:"cookies"`
+	Cookies CookieEntries `json:"cookies,omitempty"`
 	Enabled bool          `json:"enabled"`         // This setting is enabled (`true`) or disabled (`false`)
 	Scope   string        `json:"-" scope:"scope"` // The scope of this setting (HTTP_CHECK)
 }
@@ -33,7 +33,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"cookies": {
 			Type:        schema.TypeList,
 			Description: "no documentation available",
-			Required:    true,
+			Optional:    true,
 
 			Elem:     &schema.Resource{Schema: new(CookieEntries).Schema()},
 			MinItems: 1,

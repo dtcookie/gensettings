@@ -23,16 +23,16 @@ import (
 )
 
 type Settings struct {
-	AdvancedSettings      bool             `json:"advancedSettings"`      // If not enabled a simple custom unit with the information above is created. If the advanced custom unit option is enabled, dependencies to already existing units can be defined.
-	FirstUnit             string           `json:"firstUnit"`             // The new unit depends on existing unit.
-	NewUnitDescription    string           `json:"newUnitDescription"`    // Unit description should provide additional information about the new unit
-	NewUnitName           string           `json:"newUnitName"`           // Unit name has to be unique and is used as identifier.
-	NewUnitPluralName     string           `json:"newUnitPluralName"`     // Unit plural name represent the plural form of the unit name.
-	NewUnitSymbol         string           `json:"newUnitSymbol"`         // Unit symbol has to be unique.
-	PowerFactor           int              `json:"powerFactor"`           // (existing unit) ^ (exponent) = (new unit)
-	ScalingFactor         float64          `json:"scalingFactor"`         // (existing unit) * (Scaling factor) = new unit
-	SecondUnit            string           `json:"secondUnit"`            // New unit depends on existing unit (based on selection at unit composition).
-	UnitCombinationSelect UnitCombinations `json:"unitCombinationSelect"` // Possible Values: `POWER`, `PRODUCT`, `QUOTIENT`, `SCALAR`
+	AdvancedSettings      *bool             `json:"advancedSettings,omitempty"`      // If not enabled a simple custom unit with the information above is created. If the advanced custom unit option is enabled, dependencies to already existing units can be defined.
+	FirstUnit             *string           `json:"firstUnit,omitempty"`             // The new unit depends on existing unit.
+	NewUnitDescription    string            `json:"newUnitDescription"`              // Unit description should provide additional information about the new unit
+	NewUnitName           string            `json:"newUnitName"`                     // Unit name has to be unique and is used as identifier.
+	NewUnitPluralName     string            `json:"newUnitPluralName"`               // Unit plural name represent the plural form of the unit name.
+	NewUnitSymbol         string            `json:"newUnitSymbol"`                   // Unit symbol has to be unique.
+	PowerFactor           *int              `json:"powerFactor,omitempty"`           // (existing unit) ^ (exponent) = (new unit)
+	ScalingFactor         *float64          `json:"scalingFactor,omitempty"`         // (existing unit) * (Scaling factor) = new unit
+	SecondUnit            *string           `json:"secondUnit,omitempty"`            // New unit depends on existing unit (based on selection at unit composition).
+	UnitCombinationSelect *UnitCombinations `json:"unitCombinationSelect,omitempty"` // Possible Values: `POWER`, `PRODUCT`, `QUOTIENT`, `SCALAR`
 }
 
 func (me *Settings) Schema() map[string]*schema.Schema {
@@ -40,12 +40,12 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"advanced_settings": {
 			Type:        schema.TypeBool,
 			Description: "If not enabled a simple custom unit with the information above is created. If the advanced custom unit option is enabled, dependencies to already existing units can be defined.",
-			Required:    true,
+			Optional:    true,
 		},
 		"first_unit": {
 			Type:        schema.TypeString,
 			Description: "The new unit depends on existing unit.",
-			Required:    true,
+			Optional:    true,
 		},
 		"new_unit_description": {
 			Type:        schema.TypeString,
@@ -70,22 +70,22 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"power_factor": {
 			Type:        schema.TypeInt,
 			Description: "(existing unit) ^ (exponent) = (new unit)",
-			Required:    true,
+			Optional:    true,
 		},
 		"scaling_factor": {
 			Type:        schema.TypeFloat,
 			Description: "(existing unit) * (Scaling factor) = new unit",
-			Required:    true,
+			Optional:    true,
 		},
 		"second_unit": {
 			Type:        schema.TypeString,
 			Description: "New unit depends on existing unit (based on selection at unit composition).",
-			Required:    true,
+			Optional:    true,
 		},
 		"unit_combination_select": {
 			Type:        schema.TypeString,
 			Description: "Possible Values: `POWER`, `PRODUCT`, `QUOTIENT`, `SCALAR`",
-			Required:    true,
+			Optional:    true,
 		},
 	}
 }
