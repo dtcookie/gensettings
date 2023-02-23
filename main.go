@@ -131,9 +131,9 @@ func main() {
 	}
 	schemata := map[string]*Schema{}
 	for _, schemaStub := range schemaList.Items {
-		// if schemaStub.SchemaID != "builtin:settings.subscriptions.service" {
-		// 	continue
-		// }
+		if schemaStub.SchemaID != "builtin:synthetic.browser.outage-handling" {
+			continue
+		}
 		// if !strings.HasPrefix(schemaStub.SchemaID, "builtin:") {
 		// 	fmt.Println(schemaStub.SchemaID)
 		// }
@@ -216,7 +216,7 @@ func main() {
 				Name:     propertyName,
 				Type:     resolver.resolvePropertyType(propertyName, propertyDefinition),
 				Comment:  comment,
-				Optional: propertyDefinition.Nullable,
+				Optional: propertyDefinition.Nullable || propertyDefinition.Precondition != nil,
 			}
 			if propertyDefinition.Nullable {
 				property.Type = property.Type.Pointer()
