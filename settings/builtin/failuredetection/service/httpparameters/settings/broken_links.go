@@ -23,8 +23,8 @@ import (
 )
 
 type BrokenLinks struct {
-	BrokenLinkDomains       *[]string `json:"brokenLinkDomains,omitempty"` // If your application relies on other hosts at other domains, add the associated domain names here. Once configured, Dynatrace will consider 404s thrown by hosts at these domains to be service failures related to your application.
-	Http404NotFoundFailures bool      `json:"http404NotFoundFailures"`     // Consider 404 HTTP response codes as failures
+	BrokenLinkDomains       []string `json:"brokenLinkDomains,omitempty"` // If your application relies on other hosts at other domains, add the associated domain names here. Once configured, Dynatrace will consider 404s thrown by hosts at these domains to be service failures related to your application.
+	Http404NotFoundFailures bool     `json:"http404NotFoundFailures"`     // Consider 404 HTTP response codes as failures
 }
 
 func (me *BrokenLinks) Schema() map[string]*schema.Schema {

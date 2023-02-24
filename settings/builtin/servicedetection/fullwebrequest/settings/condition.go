@@ -45,16 +45,16 @@ func (me *Conditions) UnmarshalHCL(decoder hcl.Decoder) error {
 }
 
 type Condition struct {
-	Attribute            string           `json:"attribute"`             // Take the value of this attribute
-	CompareOperationType string           `json:"compareOperationType"`  // Apply this operation
-	Framework            *[]FrameworkType `json:"framework,omitempty"`   // Technology
-	IgnoreCase           *bool            `json:"ignoreCase,omitempty"`  // Ignore case sensitivity for texts.
-	IntValue             *int             `json:"intValue,omitempty"`    // Value
-	IntValues            *[]int           `json:"intValues,omitempty"`   // Values
-	IpRangeFrom          *string          `json:"ipRangeFrom,omitempty"` // From
-	IpRangeTo            *string          `json:"ipRangeTo,omitempty"`   // To
-	TagValues            *[]string        `json:"tagValues,omitempty"`   // If multiple values are specified, at least one of them must match for the condition to match
-	TextValues           *[]string        `json:"textValues,omitempty"`  // If multiple values are specified, at least one of them must match for the condition to match
+	Attribute            string          `json:"attribute"`             // Take the value of this attribute
+	CompareOperationType string          `json:"compareOperationType"`  // Apply this operation
+	Framework            []FrameworkType `json:"framework,omitempty"`   // Technology
+	IgnoreCase           *bool           `json:"ignoreCase,omitempty"`  // Ignore case sensitivity for texts.
+	IntValue             *int            `json:"intValue,omitempty"`    // Value
+	IntValues            []int           `json:"intValues,omitempty"`   // Values
+	IpRangeFrom          *string         `json:"ipRangeFrom,omitempty"` // From
+	IpRangeTo            *string         `json:"ipRangeTo,omitempty"`   // To
+	TagValues            []string        `json:"tagValues,omitempty"`   // If multiple values are specified, at least one of them must match for the condition to match
+	TextValues           []string        `json:"textValues,omitempty"`  // If multiple values are specified, at least one of them must match for the condition to match
 }
 
 func (me *Condition) Schema() map[string]*schema.Schema {

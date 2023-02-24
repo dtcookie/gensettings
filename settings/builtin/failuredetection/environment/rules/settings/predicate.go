@@ -23,13 +23,13 @@ import (
 )
 
 type Predicate struct {
-	CaseSensitive   *bool           `json:"caseSensitive,omitempty"`   // Case sensitive
-	ManagementZones *[]string       `json:"managementZones,omitempty"` // Management zones
-	PredicateType   string          `json:"predicateType"`             // Predicate type
-	ServiceType     *[]ServiceTypes `json:"serviceType,omitempty"`     // Service types
-	TagKeys         *[]string       `json:"tagKeys,omitempty"`         // Tag keys
-	Tags            *[]string       `json:"tags,omitempty"`            // Tags (exact match)
-	TextValues      *[]string       `json:"textValues,omitempty"`      // Names
+	CaseSensitive   *bool          `json:"caseSensitive,omitempty"`   // Case sensitive
+	ManagementZones []string       `json:"managementZones,omitempty"` // Management zones
+	PredicateType   string         `json:"predicateType"`             // Predicate type
+	ServiceType     []ServiceTypes `json:"serviceType,omitempty"`     // Service types
+	TagKeys         []string       `json:"tagKeys,omitempty"`         // Tag keys
+	Tags            []string       `json:"tags,omitempty"`            // Tags (exact match)
+	TextValues      []string       `json:"textValues,omitempty"`      // Names
 }
 
 func (me *Predicate) Schema() map[string]*schema.Schema {

@@ -47,7 +47,7 @@ func (me *AlertingProfileSeverityRules) UnmarshalHCL(decoder hcl.Decoder) error 
 type AlertingProfileSeverityRule struct {
 	DelayInMinutes       int                  `json:"delayInMinutes"`       // Send a notification if a problem remains open longer than X minutes.
 	SeverityLevel        SeverityLevel        `json:"severityLevel"`        // Possible Values: `AVAILABILITY`, `CUSTOM_ALERT`, `ERRORS`, `MONITORING_UNAVAILABLE`, `PERFORMANCE`, `RESOURCE_CONTENTION`
-	TagFilter            *[]string            `json:"tagFilter,omitempty"`  // Tags
+	TagFilter            []string             `json:"tagFilter,omitempty"`  // Tags
 	TagFilterIncludeMode TagFilterIncludeMode `json:"tagFilterIncludeMode"` // Possible Values: `INCLUDE_ALL`, `INCLUDE_ANY`, `NONE`
 }
 

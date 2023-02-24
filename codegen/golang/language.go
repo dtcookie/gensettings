@@ -14,6 +14,9 @@ func PointerIfOptional(t *reflection.Type, isOptional bool) *reflection.Type {
 	if t.Kind == reflection.SetAliasKind || t.Kind == reflection.SliceAliasKind {
 		return t
 	}
+	if t.Kind == reflection.ListKind || t.Kind == reflection.SetKind {
+		return t
+	}
 	return t.Pointer()
 }
 
