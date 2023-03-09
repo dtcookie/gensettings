@@ -48,7 +48,7 @@ var Technologies = struct {
 	Nodejs Technology
 	Php    Technology
 }{
-	"DotNet",
+	"dotNet",
 	"Go",
 	"Java",
 	"Nodejs",

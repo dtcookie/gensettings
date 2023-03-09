@@ -82,5 +82,5 @@ var ServiceTypess = struct {
 	"WebRequest",
 	"WebService",
 	"WebSite",
-	"ZOSConnect",
+	"zOSConnect",
 }

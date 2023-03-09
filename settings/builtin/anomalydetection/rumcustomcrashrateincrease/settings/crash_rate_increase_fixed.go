@@ -24,7 +24,7 @@ import (
 
 type CrashRateIncreaseFixed struct {
 	AbsoluteCrashRate float64 `json:"absoluteCrashRate"` // Absolute threshold
-	ConcurrentUsers   int     `json:"concurrentUsers"`   // Amount of users
+	ConcurrentUsers   int     `json:"concurrentUsers"`   // Minimum number of active, non-distinctive users
 }
 
 func (me *CrashRateIncreaseFixed) Schema() map[string]*schema.Schema {
@@ -36,7 +36,7 @@ func (me *CrashRateIncreaseFixed) Schema() map[string]*schema.Schema {
 		},
 		"concurrent_users": {
 			Type:        schema.TypeInt,
-			Description: "Amount of users",
+			Description: "Minimum number of active, non-distinctive users",
 			Required:    true,
 		},
 	}

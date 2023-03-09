@@ -23,15 +23,15 @@ import (
 )
 
 type Settings struct {
-	PerformanceProfile PerformanceProfile `json:"performanceProfile"` // Possible Values: `DEFAULT`, `HIGH`
-	Scope              string             `json:"-" scope:"scope"`    // The scope of this setting (ENVIRONMENT_ACTIVE_GATE)
+	PerformanceProfile string `json:"performanceProfile"` // Select performance profile for Extension Execution Controller [Documentation](https://www.dynatrace.com/support/help/shortlink/extensions-concepts#resource-consumption \"More about performance profiles\")
+	Scope              string `json:"-" scope:"scope"`    // The scope of this setting (ENVIRONMENT_ACTIVE_GATE)
 }
 
 func (me *Settings) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"performance_profile": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `DEFAULT`, `HIGH`",
+			Description: "Select performance profile for Extension Execution Controller [Documentation](https://www.dynatrace.com/support/help/shortlink/extensions-concepts#resource-consumption \"More about performance profiles\")",
 			Required:    true,
 		},
 		"scope": {

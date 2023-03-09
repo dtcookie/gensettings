@@ -674,6 +674,21 @@
 						"$ref": "#/types/TextFilter"
 					}
 				},
+				"metadataFilter": {
+					"description": "",
+					"displayName": "Property filters",
+					"documentation": "",
+					"maxObjects": 1,
+					"metadata": {
+						"featureFlag": "com.compuware.fdi.EnableEventPropertyFiltersInAlertingProfiles.feature",
+						"maturity": "IN_DEVELOPMENT"
+					},
+					"modificationPolicy": "DEFAULT",
+					"nullable": true,
+					"type": {
+						"$ref": "#/types/MetadataFilter"
+					}
+				},
 				"titleFilter": {
 					"description": "",
 					"displayName": "Title filter",
@@ -686,7 +701,7 @@
 					}
 				}
 			},
-			"summaryPattern": "{titleFilter|valueSet, select, true {Title {titleFilter}} other {}}{titleFilter|valueSet, select, true {{descriptionFilter|valueSet, select, true { **OR** } other {}}} other {}}{descriptionFilter|valueSet, select, true {Description {descriptionFilter}} other {}}{metadataFilter|valueSet, select, true {{titleFilter|valueSet, select, true { **OR** } other {{descriptionFilter|valueSet, select, true { **OR** } other {}}}}} other {}}{metadataFilter|valueSet, select, true {{metadataFilter}} other {}}",
+			"summaryPattern": "{titleFilter.enabled|valueSet, select, true {Title {titleFilter}} other {}}{titleFilter.enabled|valueSet, select, true {{descriptionFilter.enabled|valueSet, select, true { **OR** } other {}}} other {}}{descriptionFilter.enabled|valueSet, select, true {Description {descriptionFilter}} other {}}{metadataFilter|valueSet, select, true {{titleFilter.enabled|valueSet, select, true { **OR** } other {{descriptionFilter.enabled|valueSet, select, true { **OR** } other {}}}}} other {}}{metadataFilter|valueSet, select, true {{metadataFilter}} other {}}",
 			"type": "object",
 			"version": "0",
 			"versionInfo": ""
@@ -726,7 +741,7 @@
 					"type": "set"
 				}
 			},
-			"summaryPattern": "{metadataFilterItems|size, plural, =0 {} =1 {} other {**(** }}{metadataFilterItems|join: ' **AND** '}{metadataFilterItems|size, plural, =0 {} =1 {} other { **)** }}",
+			"summaryPattern": "{metadataFilterItems|size, plural, =0 {} =1 {event property } other {event properties **(** }}{metadataFilterItems|join: ' **AND** '}{metadataFilterItems|size, plural, =0 {} =1 {} other { **)** }}",
 			"type": "object",
 			"version": "0",
 			"versionInfo": ""
@@ -913,5 +928,5 @@
 			"versionInfo": ""
 		}
 	},
-	"version": "8.1.1"
+	"version": "8.2"
 }

@@ -15,14 +15,16 @@
 * limitations under the License.
  */
 
-package remote
+package updates
 
-type PerformanceProfile string
+type UpdateMode string
 
-var PerformanceProfiles = struct {
-	Default PerformanceProfile
-	High    PerformanceProfile
+var UpdateModes = struct {
+	Automatic         UpdateMode
+	AutomaticDuringMw UpdateMode
+	Manual            UpdateMode
 }{
-	"DEFAULT",
-	"HIGH",
+	"AUTOMATIC",
+	"AUTOMATIC_DURING_MW",
+	"MANUAL",
 }

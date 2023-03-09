@@ -7,7 +7,8 @@ import (
 )
 
 type Property struct {
-	Name          string                       `json:"name"`
+	Name          string `json:"name"`
+	RawName       string
 	Type          *Type                        `json:"type,omitempty"`
 	Comment       string                       `json:"comment,omitempty"`
 	Optional      bool                         `json:"optional"`

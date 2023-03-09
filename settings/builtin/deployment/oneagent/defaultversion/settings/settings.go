@@ -15,43 +15,43 @@
 * limitations under the License.
  */
 
-package rummobilecrashrateincrease
+package defaultversion
 
 import (
 	"github.com/dynatrace-oss/terraform-provider-dynatrace/terraform/hcl"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
-type CrashRateIncreaseFixed struct {
-	AbsoluteCrashRate float64 `json:"absoluteCrashRate"` // Absolute threshold
-	ConcurrentUsers   int     `json:"concurrentUsers"`   // Minimum number of active, non-distinctive users
+type Settings struct {
+	DefaultVersion string  `json:"defaultVersion"`     // Default version
+	Revision       *string `json:"revision,omitempty"` // Revision
 }
 
-func (me *CrashRateIncreaseFixed) Schema() map[string]*schema.Schema {
+func (me *Settings) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
-		"absolute_crash_rate": {
-			Type:        schema.TypeFloat,
-			Description: "Absolute threshold",
+		"default_version": {
+			Type:        schema.TypeString,
+			Description: "Default version",
 			Required:    true,
 		},
-		"concurrent_users": {
-			Type:        schema.TypeInt,
-			Description: "Minimum number of active, non-distinctive users",
-			Required:    true,
+		"revision": {
+			Type:        schema.TypeString,
+			Description: "Revision",
+			Optional:    true,
 		},
 	}
 }
 
-func (me *CrashRateIncreaseFixed) MarshalHCL(properties hcl.Properties) error {
+func (me *Settings) MarshalHCL(properties hcl.Properties) error {
 	return properties.EncodeAll(map[string]any{
-		"absolute_crash_rate": me.AbsoluteCrashRate,
-		"concurrent_users":    me.ConcurrentUsers,
+		"default_version": me.DefaultVersion,
+		"revision":        me.Revision,
 	})
 }
 
-func (me *CrashRateIncreaseFixed) UnmarshalHCL(decoder hcl.Decoder) error {
+func (me *Settings) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
-		"absolute_crash_rate": &me.AbsoluteCrashRate,
-		"concurrent_users":    &me.ConcurrentUsers,
+		"default_version": &me.DefaultVersion,
+		"revision":        &me.Revision,
 	})
 }

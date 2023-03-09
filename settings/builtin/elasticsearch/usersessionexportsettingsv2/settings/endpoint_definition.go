@@ -23,10 +23,10 @@ import (
 )
 
 type EndpointDefinition struct {
-	ContentType             string  `json:"contentType"`             // Content type
-	EnableUserSessionExport bool    `json:"enableUserSessionExport"` // Enable user session export
-	EndpointUrl             *string `json:"endpointUrl,omitempty"`   // Endpoint URL
-	UsePost                 bool    `json:"usePost"`                 // Use POST method (instead of PUT)
+	ContentType             string `json:"contentType"`             // Content type
+	EnableUserSessionExport bool   `json:"enableUserSessionExport"` // Enable user session export
+	EndpointUrl             string `json:"endpointUrl"`             // Endpoint URL
+	UsePost                 bool   `json:"usePost"`                 // Use POST method (instead of PUT)
 }
 
 func (me *EndpointDefinition) Schema() map[string]*schema.Schema {
@@ -44,7 +44,7 @@ func (me *EndpointDefinition) Schema() map[string]*schema.Schema {
 		"endpoint_url": {
 			Type:        schema.TypeString,
 			Description: "Endpoint URL",
-			Optional:    true,
+			Required:    true,
 		},
 		"use_post": {
 			Type:        schema.TypeBool,

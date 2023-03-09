@@ -21,6 +21,7 @@
 	"documentation": "",
 	"dynatrace": "1",
 	"enums": {},
+	"keyProperty": "key",
 	"maxObjects": 1000,
 	"metadata": {
 		"addItemButton": "Add override"

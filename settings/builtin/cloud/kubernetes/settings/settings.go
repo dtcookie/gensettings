@@ -38,7 +38,7 @@ type Settings struct {
 	IncludeAllFdiEvents             *bool             `json:"includeAllFdiEvents,omitempty"`         // For a list of included events, see the [documentation](https://dt-url.net/l61d02no).
 	Label                           string            `json:"label"`                                 // Renaming the cluster breaks configurations that are based on its name (e.g., management zones, and alerting).
 	OpenMetricsPipelineEnabled      bool              `json:"openMetricsPipelineEnabled"`            // For annotation guidance, see the [documentation](https://dt-url.net/g42i0ppw).
-	PvcMonitoringEnabled            *bool             `json:"pvcMonitoringEnabled,omitempty"`        // To enable dashboards and alerts, add the [Kubernetes persistent volume claims](ui/hub/ext/com.dynatrace.extension.kubernetes-pvc) extension to your environment.
+	PvcMonitoringEnabled            bool              `json:"pvcMonitoringEnabled"`                  // To enable dashboards and alerts, add the [Kubernetes persistent volume claims](ui/hub/ext/com.dynatrace.extension.kubernetes-pvc) extension to your environment.
 	Scope                           string            `json:"-" scope:"scope"`                       // The scope of this setting (KUBERNETES_CLUSTER)
 }
 
@@ -126,7 +126,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"pvc_monitoring_enabled": {
 			Type:        schema.TypeBool,
 			Description: "To enable dashboards and alerts, add the [Kubernetes persistent volume claims](ui/hub/ext/com.dynatrace.extension.kubernetes-pvc) extension to your environment.",
-			Optional:    true,
+			Required:    true,
 		},
 		"scope": {
 			Type:        schema.TypeString,

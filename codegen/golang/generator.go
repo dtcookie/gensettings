@@ -35,6 +35,7 @@ func (me *generator) Write(folder string) error {
 		case reflection.EnumKind:
 			props := reflection.Properties{}
 			for _, property := range t.Properties {
+				property.RawName = property.Name
 				property.Name = PropertyName(property.Name)
 				props[property.Name] = property
 			}

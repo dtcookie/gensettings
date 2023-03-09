@@ -342,11 +342,6 @@
 			},
 			"modificationPolicy": "DEFAULT",
 			"nullable": false,
-			"precondition": {
-				"expectedValue": true,
-				"property": "clusterIdEnabled",
-				"type": "EQUALS"
-			},
 			"type": "boolean"
 		}
 	},
@@ -449,5 +444,5 @@
 			"versionInfo": ""
 		}
 	},
-	"version": "2.3.1"
+	"version": "2.4"
 }

@@ -26,6 +26,7 @@ type QueryDefinition struct {
 	Aggregation     *Aggregation     `json:"aggregation,omitempty"`     // Possible Values: `AVG`, `COUNT`, `MAX`, `MEDIAN`, `MIN`, `PERCENTILE90`, `SUM`, `VALUE`
 	DimensionFilter DimensionFilters `json:"dimensionFilter,omitempty"` // Dimension filter
 	EntityFilter    *EntityFilter    `json:"entityFilter,omitempty"`    // Use rule-based filters to define the scope this event monitors.
+	ManagementZone  *string          `json:"managementZone,omitempty"`  // Management zone
 	MetricKey       *string          `json:"metricKey,omitempty"`       // Metric key
 	MetricSelector  *string          `json:"metricSelector,omitempty"`  // To learn more, visit [Metric Selector](https://dt-url.net/metselad)
 	QueryOffset     *int             `json:"queryOffset,omitempty"`     // Minute offset of sliding evaluation window for metrics with latency
@@ -57,6 +58,11 @@ func (me *QueryDefinition) Schema() map[string]*schema.Schema {
 			MinItems: 1,
 			MaxItems: 1,
 		},
+		"management_zone": {
+			Type:        schema.TypeString,
+			Description: "Management zone",
+			Optional:    true,
+		},
 		"metric_key": {
 			Type:        schema.TypeString,
 			Description: "Metric key",
@@ -85,6 +91,7 @@ func (me *QueryDefinition) MarshalHCL(properties hcl.Properties) error {
 		"aggregation":      me.Aggregation,
 		"dimension_filter": me.DimensionFilter,
 		"entity_filter":    me.EntityFilter,
+		"management_zone":  me.ManagementZone,
 		"metric_key":       me.MetricKey,
 		"metric_selector":  me.MetricSelector,
 		"query_offset":     me.QueryOffset,
@@ -97,6 +104,7 @@ func (me *QueryDefinition) UnmarshalHCL(decoder hcl.Decoder) error {
 		"aggregation":      &me.Aggregation,
 		"dimension_filter": &me.DimensionFilter,
 		"entity_filter":    &me.EntityFilter,
+		"management_zone":  &me.ManagementZone,
 		"metric_key":       &me.MetricKey,
 		"metric_selector":  &me.MetricSelector,
 		"query_offset":     &me.QueryOffset,

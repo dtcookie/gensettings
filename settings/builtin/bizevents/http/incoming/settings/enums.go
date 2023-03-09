@@ -55,14 +55,14 @@ var DataSourceEnums = struct {
 	ResponseHeaders    DataSourceEnum
 	ResponseStatuscode DataSourceEnum
 }{
-	"Request_body",
-	"Request_headers",
-	"Request_method",
-	"Request_parameters",
-	"Request_path",
-	"Response_body",
-	"Response_headers",
-	"Response_statusCode",
+	"request.body",
+	"request.headers",
+	"request.method",
+	"request.parameters",
+	"request.path",
+	"response.body",
+	"response.headers",
+	"response.statusCode",
 }
 
 type DataSourceWithStaticStringEnum string
@@ -78,13 +78,13 @@ var DataSourceWithStaticStringEnums = struct {
 	ResponseHeaders    DataSourceWithStaticStringEnum
 	ResponseStatuscode DataSourceWithStaticStringEnum
 }{
-	"Constant_string",
-	"Request_body",
-	"Request_headers",
-	"Request_method",
-	"Request_parameters",
-	"Request_path",
-	"Response_body",
-	"Response_headers",
-	"Response_statusCode",
+	"constant.string",
+	"request.body",
+	"request.headers",
+	"request.method",
+	"request.parameters",
+	"request.path",
+	"response.body",
+	"response.headers",
+	"response.statusCode",
 }

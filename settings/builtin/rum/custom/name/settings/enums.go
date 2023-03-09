@@ -27,10 +27,10 @@ var ApplicationTypes = struct {
 	Iot        ApplicationType
 	Ufo        ApplicationType
 }{
-	"Desktop",
-	"Echo",
-	"Embedded_pc",
-	"Hololens",
-	"Iot",
-	"Ufo",
+	"desktop",
+	"echo",
+	"embedded-pc",
+	"hololens",
+	"iot",
+	"ufo",
 }

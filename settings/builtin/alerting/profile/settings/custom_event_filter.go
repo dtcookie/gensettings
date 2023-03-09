@@ -23,8 +23,9 @@ import (
 )
 
 type CustomEventFilter struct {
-	DescriptionFilter *TextFilter `json:"descriptionFilter,omitempty"` // Description filter
-	TitleFilter       *TextFilter `json:"titleFilter,omitempty"`       // Title filter
+	DescriptionFilter *TextFilter     `json:"descriptionFilter,omitempty"` // Description filter
+	MetadataFilter    *MetadataFilter `json:"metadataFilter,omitempty"`    // Property filters
+	TitleFilter       *TextFilter     `json:"titleFilter,omitempty"`       // Title filter
 }
 
 func (me *CustomEventFilter) Schema() map[string]*schema.Schema {
@@ -35,6 +36,15 @@ func (me *CustomEventFilter) Schema() map[string]*schema.Schema {
 			Optional:    true,
 
 			Elem:     &schema.Resource{Schema: new(TextFilter).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
+		},
+		"metadata_filter": {
+			Type:        schema.TypeList,
+			Description: "Property filters",
+			Optional:    true,
+
+			Elem:     &schema.Resource{Schema: new(MetadataFilter).Schema()},
 			MinItems: 1,
 			MaxItems: 1,
 		},
@@ -53,6 +63,7 @@ func (me *CustomEventFilter) Schema() map[string]*schema.Schema {
 func (me *CustomEventFilter) MarshalHCL(properties hcl.Properties) error {
 	return properties.EncodeAll(map[string]any{
 		"description_filter": me.DescriptionFilter,
+		"metadata_filter":    me.MetadataFilter,
 		"title_filter":       me.TitleFilter,
 	})
 }
@@ -60,6 +71,7 @@ func (me *CustomEventFilter) MarshalHCL(properties hcl.Properties) error {
 func (me *CustomEventFilter) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"description_filter": &me.DescriptionFilter,
+		"metadata_filter":    &me.MetadataFilter,
 		"title_filter":       &me.TitleFilter,
 	})
 }

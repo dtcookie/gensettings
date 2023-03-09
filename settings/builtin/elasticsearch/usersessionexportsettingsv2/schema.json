@@ -284,12 +284,13 @@
 							"type": "LENGTH"
 						}
 					],
+					"default": "",
 					"description": "",
 					"displayName": "Endpoint URL",
 					"documentation": "",
 					"maxObjects": 1,
 					"modificationPolicy": "DEFAULT",
-					"nullable": true,
+					"nullable": false,
 					"subType": "url",
 					"type": "text"
 				},
@@ -590,5 +591,5 @@
 			"versionInfo": ""
 		}
 	},
-	"version": "0.0.14"
+	"version": "0.0.15"
 }

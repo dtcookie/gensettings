@@ -24,9 +24,9 @@ var ProcessItems = struct {
 	Executable     ProcessItem
 	Executablepath ProcessItem
 }{
-	"CommandLine",
-	"Executable",
-	"ExecutablePath",
+	"commandLine",
+	"executable",
+	"executablePath",
 }
 
 type ReportItem string
@@ -36,7 +36,7 @@ var ReportItems = struct {
 	Highresourceusage ReportItem
 	Never             ReportItem
 }{
-	"Always",
-	"HighResourceUsage",
-	"Never",
+	"always",
+	"highResourceUsage",
+	"never",
 }

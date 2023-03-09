@@ -6,26 +6,7 @@
 	"displayName": "Extension Execution Controller",
 	"documentation": "",
 	"dynatrace": "1",
-	"enums": {
-		"performanceProfile": {
-			"description": "",
-			"displayName": "Performance profile",
-			"documentation": "",
-			"items": [
-				{
-					"description": "Conservative settings.",
-					"displayName": "Default",
-					"value": "DEFAULT"
-				},
-				{
-					"description": "High performance profile.",
-					"displayName": "High limits",
-					"value": "HIGH"
-				}
-			],
-			"type": "enum"
-		}
-	},
+	"enums": {},
 	"maxObjects": 1,
 	"metadata": {
 		"minActiveGateVersion": "1.243"
@@ -33,22 +14,33 @@
 	"multiObject": false,
 	"properties": {
 		"performanceProfile": {
+			"constraints": [
+				{
+					"maxLength": 500,
+					"minLength": 1,
+					"type": "LENGTH"
+				}
+			],
+			"datasource": {
+				"filterProperties": [],
+				"fullContext": false,
+				"identifier": "available-remote-performance-profiles",
+				"resetValue": "NEVER",
+				"useApiSearch": false,
+				"validate": false
+			},
 			"default": "DEFAULT",
 			"description": "Select performance profile for Extension Execution Controller [Documentation](https://www.dynatrace.com/support/help/shortlink/extensions-concepts#resource-consumption \"More about performance profiles\")",
 			"displayName": "Performance profile",
 			"documentation": "",
 			"maxObjects": 1,
-			"metadata": {
-				"sortItems": "disabled"
-			},
 			"modificationPolicy": "DEFAULT",
 			"nullable": false,
-			"type": {
-				"$ref": "#/enums/performanceProfile"
-			}
+			"subType": "datasource",
+			"type": "text"
 		}
 	},
 	"schemaId": "builtin:eec.remote",
 	"types": {},
-	"version": "0.0.2"
+	"version": "0.1.1"
 }

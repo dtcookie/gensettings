@@ -71,7 +71,7 @@
 			"documentation": "",
 			"properties": {
 				"crashRateIncreaseAuto": {
-					"description": "Alert crash rate increases when auto-detected baseline is exceeded by a certain number of users",
+					"description": "Alert to crash rate increases when the auto-detected baseline is exceeded and the application has a minimum number of active, non-distinctive users.",
 					"displayName": "",
 					"documentation": "",
 					"maxObjects": 1,
@@ -97,7 +97,7 @@
 					}
 				},
 				"crashRateIncreaseFixed": {
-					"description": "Alert crash rate increases when the defined threshold is exceeded by a certain number of users",
+					"description": "Alert to crash rate increases when the defined threshold is exceeded and the application has a minimum number of active, non-distinctive users.",
 					"displayName": "",
 					"documentation": "",
 					"maxObjects": 1,
@@ -188,7 +188,7 @@
 					],
 					"default": 100,
 					"description": "",
-					"displayName": "Amount of users",
+					"displayName": "Minimum number of active, non-distinctive users",
 					"documentation": "",
 					"maxObjects": 1,
 					"modificationPolicy": "DEFAULT",
@@ -249,7 +249,7 @@
 					],
 					"default": 100,
 					"description": "",
-					"displayName": "Amount of users",
+					"displayName": "Minimum number of active, non-distinctive users",
 					"documentation": "",
 					"maxObjects": 1,
 					"modificationPolicy": "DEFAULT",

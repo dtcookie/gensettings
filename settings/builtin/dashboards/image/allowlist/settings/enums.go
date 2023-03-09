@@ -23,6 +23,6 @@ var RuleEnums = struct {
 	Equals     RuleEnum
 	Startswith RuleEnum
 }{
-	"Equals",
-	"StartsWith",
+	"equals",
+	"startsWith",
 }

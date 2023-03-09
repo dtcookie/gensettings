@@ -23,8 +23,8 @@ import (
 )
 
 type CrashRateIncrease struct {
-	CrashRateIncreaseAuto  *CrashRateIncreaseAuto  `json:"crashRateIncreaseAuto,omitempty"`  // Alert crash rate increases when auto-detected baseline is exceeded by a certain number of users
-	CrashRateIncreaseFixed *CrashRateIncreaseFixed `json:"crashRateIncreaseFixed,omitempty"` // Alert crash rate increases when the defined threshold is exceeded by a certain number of users
+	CrashRateIncreaseAuto  *CrashRateIncreaseAuto  `json:"crashRateIncreaseAuto,omitempty"`  // Alert to crash rate increases when the auto-detected baseline is exceeded and the application has a minimum number of active, non-distinctive users.
+	CrashRateIncreaseFixed *CrashRateIncreaseFixed `json:"crashRateIncreaseFixed,omitempty"` // Alert to crash rate increases when the defined threshold is exceeded and the application has a minimum number of active, non-distinctive users.
 	DetectionMode          *DetectionMode          `json:"detectionMode,omitempty"`          // Possible Values: `Auto`, `Fixed`
 	Enabled                bool                    `json:"enabled"`                          // This setting is enabled (`true`) or disabled (`false`)
 }
@@ -33,7 +33,7 @@ func (me *CrashRateIncrease) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"crash_rate_increase_auto": {
 			Type:        schema.TypeList,
-			Description: "Alert crash rate increases when auto-detected baseline is exceeded by a certain number of users",
+			Description: "Alert to crash rate increases when the auto-detected baseline is exceeded and the application has a minimum number of active, non-distinctive users.",
 			Optional:    true,
 
 			Elem:     &schema.Resource{Schema: new(CrashRateIncreaseAuto).Schema()},
@@ -42,7 +42,7 @@ func (me *CrashRateIncrease) Schema() map[string]*schema.Schema {
 		},
 		"crash_rate_increase_fixed": {
 			Type:        schema.TypeList,
-			Description: "Alert crash rate increases when the defined threshold is exceeded by a certain number of users",
+			Description: "Alert to crash rate increases when the defined threshold is exceeded and the application has a minimum number of active, non-distinctive users.",
 			Optional:    true,
 
 			Elem:     &schema.Resource{Schema: new(CrashRateIncreaseFixed).Schema()},

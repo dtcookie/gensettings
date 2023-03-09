@@ -24,7 +24,7 @@ import (
 
 type CrashRateIncreaseAuto struct {
 	BaselineViolationPercentage float64     `json:"baselineViolationPercentage"` // Dynatrace learns the typical crash rate for all app versions and will create an alert if the baseline is violated by more than a specified threshold. Analysis happens based on a sliding window of 10 minutes.
-	ConcurrentUsers             float64     `json:"concurrentUsers"`             // Amount of users
+	ConcurrentUsers             float64     `json:"concurrentUsers"`             // Minimum number of active, non-distinctive users
 	Sensitivity                 Sensitivity `json:"sensitivity"`                 // Possible Values: `High`, `Low`, `Medium`
 }
 
@@ -37,7 +37,7 @@ func (me *CrashRateIncreaseAuto) Schema() map[string]*schema.Schema {
 		},
 		"concurrent_users": {
 			Type:        schema.TypeFloat,
-			Description: "Amount of users",
+			Description: "Minimum number of active, non-distinctive users",
 			Required:    true,
 		},
 		"sensitivity": {

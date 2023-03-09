@@ -136,7 +136,7 @@
 				}
 			],
 			"default": "",
-			"description": "[See our documentation](https://dt-url.net/8k03xm2)",
+			"description": "[See our documentation](https://dt-url.net/pz030w5)",
 			"displayName": "Processor definition",
 			"documentation": "",
 			"maxObjects": 1,
@@ -278,5 +278,5 @@
 			"versionInfo": ""
 		}
 	},
-	"version": "1.0.5"
+	"version": "1.0.6"
 }

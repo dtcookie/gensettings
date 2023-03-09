@@ -29,14 +29,14 @@ var MatcherTypes = struct {
 	LogSource              MatcherType
 	ProcessTechnology      MatcherType
 }{
-	"Container_name",
-	"Dt_entity_container_group",
-	"Dt_entity_process_group",
-	"K8s_container_name",
-	"K8s_deployment_name",
-	"K8s_namespace_name",
-	"Log_source",
-	"Process_technology",
+	"container.name",
+	"dt.entity.container_group",
+	"dt.entity.process_group",
+	"k8s.container.name",
+	"k8s.deployment.name",
+	"k8s.namespace.name",
+	"log.source",
+	"process.technology",
 }
 
 type Operator string

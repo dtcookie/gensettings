@@ -38,10 +38,10 @@ func NewEnum(t *reflection.Type) *Enum {
 		Name:   EnumTypeName(t.ID),
 		Plural: Plural(EnumTypeName(t.ID)),
 	}
-	for propertyName := range t.Properties {
+	for propertyName, property := range t.Properties {
 		enumDef.Instances = append(enumDef.Instances, EnumField{
 			Name:    EnumInstance(propertyName),
-			Literal: propertyName,
+			Literal: property.RawName,
 		})
 	}
 	sort.Slice(enumDef.Instances, func(i, j int) bool {

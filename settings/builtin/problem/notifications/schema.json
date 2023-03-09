@@ -6,6 +6,10 @@
 		{
 			"customValidatorId": "problem-notification-oauth-validator",
 			"type": "CUSTOM_VALIDATOR_REF"
+		},
+		{
+			"customValidatorId": "problem-notification-webhook-url-validator",
+			"type": "CUSTOM_VALIDATOR_REF"
 		}
 	],
 	"description": "Although the Dynatrace mobile app is the preferred method for receiving real-time notifications related to problems in your environment, if your organization uses email or a different ticket/incident management system for alerting, click Add notification to configure integration with Dynatrace.",
@@ -1180,27 +1184,12 @@
 							"type": "PATTERN"
 						}
 					],
-					"default": "",
 					"description": "The URL of the on-premise ServiceNow installation. \n\n This field is mutually exclusive with the **instanceName** field. You can only use one of them.",
 					"displayName": "OnPremise URL",
 					"documentation": "",
 					"maxObjects": 1,
 					"modificationPolicy": "DEFAULT",
-					"nullable": false,
-					"precondition": {
-						"preconditions": [
-							{
-								"property": "instanceName",
-								"type": "NULL"
-							},
-							{
-								"expectedValue": "",
-								"property": "instanceName",
-								"type": "EQUALS"
-							}
-						],
-						"type": "OR"
-					},
+					"nullable": true,
 					"subType": "url",
 					"type": "text"
 				},
@@ -1660,10 +1649,6 @@
 							"type": "LENGTH"
 						},
 						{
-							"customValidatorId": "problem-notification-webhook-url-validator",
-							"type": "CUSTOM_VALIDATOR_REF"
-						},
-						{
 							"customMessage": "Not a valid URI",
 							"pattern": "^(([^\\s:/?#]+?):){1}((//)?([^\\s/?#]+?)){1}([^\\s?#]*?)(\\?([^\\s#]*?))?(#([^\\s]*?))?$",
 							"type": "PATTERN"
@@ -1880,5 +1865,5 @@
 			"versionInfo": ""
 		}
 	},
-	"version": "1.4.4"
+	"version": "1.4.7"
 }

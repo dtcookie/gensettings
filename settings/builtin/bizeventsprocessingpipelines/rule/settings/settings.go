@@ -27,7 +27,7 @@ type Settings struct {
 	Matcher              string               `json:"matcher"`              // [See our documentation](https://dt-url.net/bp234rv)
 	RuleName             string               `json:"ruleName"`             // Rule name
 	RuleTesting          *RuleTesting         `json:"RuleTesting"`          // ## Rule testing\n### 1. Paste an event sample
-	Script               string               `json:"script"`               // [See our documentation](https://dt-url.net/8k03xm2)
+	Script               string               `json:"script"`               // [See our documentation](https://dt-url.net/pz030w5)
 	TransformationFields TransformationFields `json:"transformationFields"` // Transformation fields
 }
 
@@ -59,7 +59,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		},
 		"script": {
 			Type:        schema.TypeString,
-			Description: "[See our documentation](https://dt-url.net/8k03xm2)",
+			Description: "[See our documentation](https://dt-url.net/pz030w5)",
 			Required:    true,
 		},
 		"transformation_fields": {
