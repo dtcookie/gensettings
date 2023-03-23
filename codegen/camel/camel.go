@@ -66,6 +66,9 @@ func Strip(s string) string {
 		res = res + string(unicode.ToLower(ch))
 		lastKind = kind
 	}
+	for strings.Contains(res, "-") {
+		res = strings.ReplaceAll(res, "-", "_")
+	}
 	for strings.Contains(res, "__") {
 		res = strings.ReplaceAll(res, "__", "_")
 	}

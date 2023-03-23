@@ -14,8 +14,8 @@
 	"properties": {
 		"LAConfigContainerTimezoneHeuristicEnabled": {
 			"default": true,
-			"description": "Enables automatic detection of timezone in container's logs if it is not explicitly defined in content or configured",
-			"displayName": "Enable container timezone detection",
+			"description": "",
+			"displayName": "Detect container time zones",
 			"documentation": "",
 			"maxObjects": 1,
 			"metadata": {
@@ -27,7 +27,7 @@
 		},
 		"LAConfigContainersLogsDetectionEnabled": {
 			"default": true,
-			"description": "If set to FALSE - logs from containers won't be detected",
+			"description": "",
 			"displayName": "Detect logs inside containers",
 			"documentation": "",
 			"maxObjects": 1,
@@ -108,7 +108,7 @@
 		},
 		"LAConfigIISDetectionEnabled": {
 			"default": true,
-			"description": "If set to FALSE - IIS log detection mechanism will be disabled",
+			"description": "",
 			"displayName": "Detect IIS logs",
 			"documentation": "",
 			"maxObjects": 1,
@@ -118,8 +118,8 @@
 		},
 		"LAConfigLogScannerLinuxNfsEnabled": {
 			"default": false,
-			"description": "If set to FALSE - logs on NFS won't be detected",
-			"displayName": "Detect logs on NFS",
+			"description": "",
+			"displayName": "Detect logs on Network File Systems (NFS)",
 			"documentation": "",
 			"maxObjects": 1,
 			"modificationPolicy": "DEFAULT",
@@ -165,7 +165,7 @@
 		},
 		"LAConfigMonitorOwnLogsEnabled": {
 			"default": false,
-			"description": "If set to FALSE - logs produced by OneAgent won't be monitored. Enabling this option may affect your DDU consumption.",
+			"description": "Enabling this option may affect your DDU consumption. For more details, see [documentation](https://dt-url.net/hp43ef8).",
 			"displayName": "Allow OneAgent to monitor OneAgent logs",
 			"documentation": "",
 			"maxObjects": 1,
@@ -175,7 +175,7 @@
 		},
 		"LAConfigOpenLogFilesDetectionEnabled": {
 			"default": true,
-			"description": "Enables auto-detection of log files on hosts. If set to false, logs won't be auto-detected.",
+			"description": "",
 			"displayName": "Detect open log files",
 			"documentation": "",
 			"maxObjects": 1,
@@ -225,7 +225,7 @@
 		},
 		"LAConfigSystemLogsDetectionEnabled": {
 			"default": true,
-			"description": "If set to FALSE - system logs detection mechanism will be disabled (Linux: syslog, message log) (Windows: System, Application, Security event logs)",
+			"description": "(Linux: syslog, message log) (Windows: system, application, security event logs)",
 			"displayName": "Detect system logs",
 			"documentation": "",
 			"maxObjects": 1,
@@ -235,8 +235,8 @@
 		},
 		"LAConfigUTCAsDefaultContainerTimezone": {
 			"default": true,
-			"description": "Defines if UTC is used as a default timezone in containers. This option is deprecated for agents in version 1.247 or newer.",
-			"displayName": "Set UTC as a default timezone in containers",
+			"description": "Deprecated for OneAgent 1.247+",
+			"displayName": "Set UTC as the default time zone for containers",
 			"documentation": "",
 			"maxObjects": 1,
 			"modificationPolicy": "DEFAULT",
@@ -250,5 +250,5 @@
 	],
 	"schemaId": "builtin:logmonitoring.log-agent-configuration",
 	"types": {},
-	"version": "1.1.11"
+	"version": "1.1.12"
 }

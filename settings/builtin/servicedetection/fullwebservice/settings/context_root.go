@@ -23,29 +23,39 @@ import (
 )
 
 type ContextRoot struct {
-	ContributionType ContributionType       `json:"contributionType"`       // Possible Values: `OriginalValue`, `TransformURL`, `TransformValue`
-	SegmentCount     *int                   `json:"segmentCount,omitempty"` // The number of segments of the URL to be kept.\nThe URL is divided by slashes (/), the indexing starts with 1 at context root.\nFor example, if you specify 2 for the www.dynatrace.com/support/help/dynatrace-api/ URL, the value of support/help is used.
-	Transformations  ReducedTransformations `json:"transformations,omitempty"`
+	ContributionType ContributionType       `json:"contributionType"`          // Possible Values: `OriginalValue`, `OverrideValue`, `TransformURL`, `TransformValue`
+	SegmentCount     *int                   `json:"segmentCount,omitempty"`    // The number of segments of the URL to be kept. The URL is divided by slashes (/), the indexing starts with 1 at context root. For example, if you specify 2 for the `www.dynatrace.com/support/help/dynatrace-api/` URL, the value of `support/help` is used.
+	Transformations  ReducedTransformations `json:"transformations,omitempty"` // Choose how the value will be transformed before contributing to the Service Id. All of the Transformations are always applied. Transformations are applied in the order they are specified, and the output of the previous transformation is the input for the next one. The resulting value contributes to the Service Id and can be found on the Service screen under **Properties and tags**.
+	ValueOverride    *ValueOverride         `json:"valueOverride,omitempty"`   // The value to be used instead of the detected value.
 }
 
 func (me *ContextRoot) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"contribution_type": {
 			Type:        schema.TypeString,
-			Description: "Possible Values: `OriginalValue`, `TransformURL`, `TransformValue`",
+			Description: "Possible Values: `OriginalValue`, `OverrideValue`, `TransformURL`, `TransformValue`",
 			Required:    true,
 		},
 		"segment_count": {
 			Type:        schema.TypeInt,
-			Description: "The number of segments of the URL to be kept.\nThe URL is divided by slashes (/), the indexing starts with 1 at context root.\nFor example, if you specify 2 for the www.dynatrace.com/support/help/dynatrace-api/ URL, the value of support/help is used.",
+			Description: "The number of segments of the URL to be kept. The URL is divided by slashes (/), the indexing starts with 1 at context root. For example, if you specify 2 for the `www.dynatrace.com/support/help/dynatrace-api/` URL, the value of `support/help` is used.",
 			Optional:    true,
 		},
 		"transformations": {
 			Type:        schema.TypeList,
-			Description: "no documentation available",
+			Description: "Choose how the value will be transformed before contributing to the Service Id. All of the Transformations are always applied. Transformations are applied in the order they are specified, and the output of the previous transformation is the input for the next one. The resulting value contributes to the Service Id and can be found on the Service screen under **Properties and tags**.",
 			Optional:    true,
 
 			Elem:     &schema.Resource{Schema: new(ReducedTransformations).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
+		},
+		"value_override": {
+			Type:        schema.TypeList,
+			Description: "The value to be used instead of the detected value.",
+			Optional:    true,
+
+			Elem:     &schema.Resource{Schema: new(ValueOverride).Schema()},
 			MinItems: 1,
 			MaxItems: 1,
 		},
@@ -57,6 +67,7 @@ func (me *ContextRoot) MarshalHCL(properties hcl.Properties) error {
 		"contribution_type": me.ContributionType,
 		"segment_count":     me.SegmentCount,
 		"transformations":   me.Transformations,
+		"value_override":    me.ValueOverride,
 	})
 }
 
@@ -65,5 +76,6 @@ func (me *ContextRoot) UnmarshalHCL(decoder hcl.Decoder) error {
 		"contribution_type": &me.ContributionType,
 		"segment_count":     &me.SegmentCount,
 		"transformations":   &me.Transformations,
+		"value_override":    &me.ValueOverride,
 	})
 }

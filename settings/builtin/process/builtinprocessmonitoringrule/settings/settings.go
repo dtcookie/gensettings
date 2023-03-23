@@ -99,327 +99,327 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 			Optional:    true,
 			Default:     "environment",
 		},
-		"-10": {
+		"_10": {
 			Type:        schema.TypeBool,
 			Description: "Rule id: 10",
 			Required:    true,
 		},
-		"-11": {
+		"_11": {
 			Type:        schema.TypeBool,
 			Description: "Rule id: 11",
 			Required:    true,
 		},
-		"-12": {
+		"_12": {
 			Type:        schema.TypeBool,
 			Description: "Rule id: 12",
 			Required:    true,
 		},
-		"-13": {
+		"_13": {
 			Type:        schema.TypeBool,
 			Description: "Rule id: 13",
 			Required:    true,
 		},
-		"-14": {
+		"_14": {
 			Type:        schema.TypeBool,
 			Description: "Rule id: 14",
 			Required:    true,
 		},
-		"-16": {
+		"_16": {
 			Type:        schema.TypeBool,
 			Description: "Rule id: 16",
 			Required:    true,
 		},
-		"-17": {
+		"_17": {
 			Type:        schema.TypeBool,
 			Description: "Rule id: 17",
 			Required:    true,
 		},
-		"-18": {
+		"_18": {
 			Type:        schema.TypeBool,
 			Description: "Rule id: 18",
 			Required:    true,
 		},
-		"-19": {
+		"_19": {
 			Type:        schema.TypeBool,
 			Description: "Rule id: 19",
 			Required:    true,
 		},
-		"-2": {
+		"_2": {
 			Type:        schema.TypeBool,
 			Description: "Rule id: 2",
 			Required:    true,
 		},
-		"-20": {
+		"_20": {
 			Type:        schema.TypeBool,
 			Description: "Rule id: 20",
 			Required:    true,
 		},
-		"-21": {
+		"_21": {
 			Type:        schema.TypeBool,
 			Description: "Rule id: 21",
 			Required:    true,
 		},
-		"-22": {
+		"_22": {
 			Type:        schema.TypeBool,
 			Description: "Rule id: 22",
 			Required:    true,
 		},
-		"-23": {
+		"_23": {
 			Type:        schema.TypeBool,
 			Description: "Rule id: 23",
 			Required:    true,
 		},
-		"-24": {
+		"_24": {
 			Type:        schema.TypeBool,
 			Description: "Rule id: 24",
 			Required:    true,
 		},
-		"-25": {
+		"_25": {
 			Type:        schema.TypeBool,
 			Description: "Rule id: 25",
 			Required:    true,
 		},
-		"-26": {
+		"_26": {
 			Type:        schema.TypeBool,
 			Description: "Rule id: 26",
 			Required:    true,
 		},
-		"-27": {
+		"_27": {
 			Type:        schema.TypeBool,
 			Description: "Rule id: 27",
 			Required:    true,
 		},
-		"-28": {
+		"_28": {
 			Type:        schema.TypeBool,
 			Description: "Rule id: 28",
 			Required:    true,
 		},
-		"-29": {
+		"_29": {
 			Type:        schema.TypeBool,
 			Description: "Rule id: 29",
 			Required:    true,
 		},
-		"-3": {
+		"_3": {
 			Type:        schema.TypeBool,
 			Description: "Rule id: 3",
 			Required:    true,
 		},
-		"-32": {
+		"_32": {
 			Type:        schema.TypeBool,
 			Description: "Rule id: 32",
 			Required:    true,
 		},
-		"-33": {
+		"_33": {
 			Type:        schema.TypeBool,
 			Description: "Rule id: 33",
 			Required:    true,
 		},
-		"-34": {
+		"_34": {
 			Type:        schema.TypeBool,
 			Description: "Rule id: 34",
 			Required:    true,
 		},
-		"-35": {
+		"_35": {
 			Type:        schema.TypeBool,
 			Description: "Rule id: 35",
 			Required:    true,
 		},
-		"-36": {
+		"_36": {
 			Type:        schema.TypeBool,
 			Description: "Rule id: 36",
 			Required:    true,
 		},
-		"-37": {
+		"_37": {
 			Type:        schema.TypeBool,
 			Description: "Rule id: 37",
 			Required:    true,
 		},
-		"-38": {
+		"_38": {
 			Type:        schema.TypeBool,
 			Description: "Rule id: 38",
 			Required:    true,
 		},
-		"-39": {
+		"_39": {
 			Type:        schema.TypeBool,
 			Description: "Rule id: 39",
 			Required:    true,
 		},
-		"-4": {
+		"_4": {
 			Type:        schema.TypeBool,
 			Description: "Rule id: 4",
 			Required:    true,
 		},
-		"-40": {
+		"_40": {
 			Type:        schema.TypeBool,
 			Description: "Rule id: 40",
 			Required:    true,
 		},
-		"-41": {
+		"_41": {
 			Type:        schema.TypeBool,
 			Description: "Rule id: 41",
 			Required:    true,
 		},
-		"-43": {
+		"_43": {
 			Type:        schema.TypeBool,
 			Description: "Rule id: 43",
 			Required:    true,
 		},
-		"-44": {
+		"_44": {
 			Type:        schema.TypeBool,
 			Description: "Rule id: 44",
 			Required:    true,
 		},
-		"-45": {
+		"_45": {
 			Type:        schema.TypeBool,
 			Description: "Rule id: 45",
 			Required:    true,
 		},
-		"-46": {
+		"_46": {
 			Type:        schema.TypeBool,
 			Description: "Rule id: 46",
 			Required:    true,
 		},
-		"-47": {
+		"_47": {
 			Type:        schema.TypeBool,
 			Description: "Rule id: 47",
 			Required:    true,
 		},
-		"-48": {
+		"_48": {
 			Type:        schema.TypeBool,
 			Description: "Rule id: 48",
 			Required:    true,
 		},
-		"-49": {
+		"_49": {
 			Type:        schema.TypeBool,
 			Description: "Rule id: 49",
 			Required:    true,
 		},
-		"-5": {
+		"_5": {
 			Type:        schema.TypeBool,
 			Description: "Rule id: 5",
 			Required:    true,
 		},
-		"-50": {
+		"_50": {
 			Type:        schema.TypeBool,
 			Description: "Rule id: 50",
 			Required:    true,
 		},
-		"-51": {
+		"_51": {
 			Type:        schema.TypeBool,
 			Description: "Rule id: 51",
 			Required:    true,
 		},
-		"-52": {
+		"_52": {
 			Type:        schema.TypeBool,
 			Description: "Rule id: 52",
 			Required:    true,
 		},
-		"-53": {
+		"_53": {
 			Type:        schema.TypeBool,
 			Description: "Rule id: 53",
 			Required:    true,
 		},
-		"-54": {
+		"_54": {
 			Type:        schema.TypeBool,
 			Description: "Rule id: 54",
 			Required:    true,
 		},
-		"-55": {
+		"_55": {
 			Type:        schema.TypeBool,
 			Description: "Rule id: 55",
 			Required:    true,
 		},
-		"-56": {
+		"_56": {
 			Type:        schema.TypeBool,
 			Description: "Rule id: 56",
 			Required:    true,
 		},
-		"-57": {
+		"_57": {
 			Type:        schema.TypeBool,
 			Description: "Rule id: 57",
 			Required:    true,
 		},
-		"-58": {
+		"_58": {
 			Type:        schema.TypeBool,
 			Description: "Rule id: 58",
 			Required:    true,
 		},
-		"-59": {
+		"_59": {
 			Type:        schema.TypeBool,
 			Description: "Rule id: 59",
 			Required:    true,
 		},
-		"-6": {
+		"_6": {
 			Type:        schema.TypeBool,
 			Description: "Rule id: 6",
 			Required:    true,
 		},
-		"-60": {
+		"_60": {
 			Type:        schema.TypeBool,
 			Description: "Rule id: 60",
 			Required:    true,
 		},
-		"-61": {
+		"_61": {
 			Type:        schema.TypeBool,
 			Description: "Rule id: 61",
 			Required:    true,
 		},
-		"-62": {
+		"_62": {
 			Type:        schema.TypeBool,
 			Description: "Rule id: 62",
 			Required:    true,
 		},
-		"-63": {
+		"_63": {
 			Type:        schema.TypeBool,
 			Description: "Rule id: 63",
 			Required:    true,
 		},
-		"-64": {
+		"_64": {
 			Type:        schema.TypeBool,
 			Description: "Rule id: 64",
 			Required:    true,
 		},
-		"-65": {
+		"_65": {
 			Type:        schema.TypeBool,
 			Description: "Rule id: 65",
 			Required:    true,
 		},
-		"-66": {
+		"_66": {
 			Type:        schema.TypeBool,
 			Description: "Rule id: 66",
 			Required:    true,
 		},
-		"-67": {
+		"_67": {
 			Type:        schema.TypeBool,
 			Description: "Rule id: 67",
 			Required:    true,
 		},
-		"-68": {
+		"_68": {
 			Type:        schema.TypeBool,
 			Description: "Rule id: 68",
 			Required:    true,
 		},
-		"-69": {
+		"_69": {
 			Type:        schema.TypeBool,
 			Description: "Rule id: 69",
 			Required:    true,
 		},
-		"-7": {
+		"_7": {
 			Type:        schema.TypeBool,
 			Description: "Rule id: 7",
 			Required:    true,
 		},
-		"-70": {
+		"_70": {
 			Type:        schema.TypeBool,
 			Description: "Rule id: 70",
 			Required:    true,
 		},
-		"-8": {
+		"_8": {
 			Type:        schema.TypeBool,
 			Description: "Rule id: 8",
 			Required:    true,
 		},
-		"-9": {
+		"_9": {
 			Type:        schema.TypeBool,
 			Description: "Rule id: 9",
 			Required:    true,
@@ -430,141 +430,141 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 func (me *Settings) MarshalHCL(properties hcl.Properties) error {
 	return properties.EncodeAll(map[string]any{
 		"host_group_id": me.HostGroupID,
-		"-10":           me._10,
-		"-11":           me._11,
-		"-12":           me._12,
-		"-13":           me._13,
-		"-14":           me._14,
-		"-16":           me._16,
-		"-17":           me._17,
-		"-18":           me._18,
-		"-19":           me._19,
-		"-2":            me._2,
-		"-20":           me._20,
-		"-21":           me._21,
-		"-22":           me._22,
-		"-23":           me._23,
-		"-24":           me._24,
-		"-25":           me._25,
-		"-26":           me._26,
-		"-27":           me._27,
-		"-28":           me._28,
-		"-29":           me._29,
-		"-3":            me._3,
-		"-32":           me._32,
-		"-33":           me._33,
-		"-34":           me._34,
-		"-35":           me._35,
-		"-36":           me._36,
-		"-37":           me._37,
-		"-38":           me._38,
-		"-39":           me._39,
-		"-4":            me._4,
-		"-40":           me._40,
-		"-41":           me._41,
-		"-43":           me._43,
-		"-44":           me._44,
-		"-45":           me._45,
-		"-46":           me._46,
-		"-47":           me._47,
-		"-48":           me._48,
-		"-49":           me._49,
-		"-5":            me._5,
-		"-50":           me._50,
-		"-51":           me._51,
-		"-52":           me._52,
-		"-53":           me._53,
-		"-54":           me._54,
-		"-55":           me._55,
-		"-56":           me._56,
-		"-57":           me._57,
-		"-58":           me._58,
-		"-59":           me._59,
-		"-6":            me._6,
-		"-60":           me._60,
-		"-61":           me._61,
-		"-62":           me._62,
-		"-63":           me._63,
-		"-64":           me._64,
-		"-65":           me._65,
-		"-66":           me._66,
-		"-67":           me._67,
-		"-68":           me._68,
-		"-69":           me._69,
-		"-7":            me._7,
-		"-70":           me._70,
-		"-8":            me._8,
-		"-9":            me._9,
+		"_10":           me._10,
+		"_11":           me._11,
+		"_12":           me._12,
+		"_13":           me._13,
+		"_14":           me._14,
+		"_16":           me._16,
+		"_17":           me._17,
+		"_18":           me._18,
+		"_19":           me._19,
+		"_2":            me._2,
+		"_20":           me._20,
+		"_21":           me._21,
+		"_22":           me._22,
+		"_23":           me._23,
+		"_24":           me._24,
+		"_25":           me._25,
+		"_26":           me._26,
+		"_27":           me._27,
+		"_28":           me._28,
+		"_29":           me._29,
+		"_3":            me._3,
+		"_32":           me._32,
+		"_33":           me._33,
+		"_34":           me._34,
+		"_35":           me._35,
+		"_36":           me._36,
+		"_37":           me._37,
+		"_38":           me._38,
+		"_39":           me._39,
+		"_4":            me._4,
+		"_40":           me._40,
+		"_41":           me._41,
+		"_43":           me._43,
+		"_44":           me._44,
+		"_45":           me._45,
+		"_46":           me._46,
+		"_47":           me._47,
+		"_48":           me._48,
+		"_49":           me._49,
+		"_5":            me._5,
+		"_50":           me._50,
+		"_51":           me._51,
+		"_52":           me._52,
+		"_53":           me._53,
+		"_54":           me._54,
+		"_55":           me._55,
+		"_56":           me._56,
+		"_57":           me._57,
+		"_58":           me._58,
+		"_59":           me._59,
+		"_6":            me._6,
+		"_60":           me._60,
+		"_61":           me._61,
+		"_62":           me._62,
+		"_63":           me._63,
+		"_64":           me._64,
+		"_65":           me._65,
+		"_66":           me._66,
+		"_67":           me._67,
+		"_68":           me._68,
+		"_69":           me._69,
+		"_7":            me._7,
+		"_70":           me._70,
+		"_8":            me._8,
+		"_9":            me._9,
 	})
 }
 
 func (me *Settings) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"host_group_id": &me.HostGroupID,
-		"-10":           &me._10,
-		"-11":           &me._11,
-		"-12":           &me._12,
-		"-13":           &me._13,
-		"-14":           &me._14,
-		"-16":           &me._16,
-		"-17":           &me._17,
-		"-18":           &me._18,
-		"-19":           &me._19,
-		"-2":            &me._2,
-		"-20":           &me._20,
-		"-21":           &me._21,
-		"-22":           &me._22,
-		"-23":           &me._23,
-		"-24":           &me._24,
-		"-25":           &me._25,
-		"-26":           &me._26,
-		"-27":           &me._27,
-		"-28":           &me._28,
-		"-29":           &me._29,
-		"-3":            &me._3,
-		"-32":           &me._32,
-		"-33":           &me._33,
-		"-34":           &me._34,
-		"-35":           &me._35,
-		"-36":           &me._36,
-		"-37":           &me._37,
-		"-38":           &me._38,
-		"-39":           &me._39,
-		"-4":            &me._4,
-		"-40":           &me._40,
-		"-41":           &me._41,
-		"-43":           &me._43,
-		"-44":           &me._44,
-		"-45":           &me._45,
-		"-46":           &me._46,
-		"-47":           &me._47,
-		"-48":           &me._48,
-		"-49":           &me._49,
-		"-5":            &me._5,
-		"-50":           &me._50,
-		"-51":           &me._51,
-		"-52":           &me._52,
-		"-53":           &me._53,
-		"-54":           &me._54,
-		"-55":           &me._55,
-		"-56":           &me._56,
-		"-57":           &me._57,
-		"-58":           &me._58,
-		"-59":           &me._59,
-		"-6":            &me._6,
-		"-60":           &me._60,
-		"-61":           &me._61,
-		"-62":           &me._62,
-		"-63":           &me._63,
-		"-64":           &me._64,
-		"-65":           &me._65,
-		"-66":           &me._66,
-		"-67":           &me._67,
-		"-68":           &me._68,
-		"-69":           &me._69,
-		"-7":            &me._7,
-		"-70":           &me._70,
-		"-8":            &me._8,
-		"-9":            &me._9,
+		"_10":           &me._10,
+		"_11":           &me._11,
+		"_12":           &me._12,
+		"_13":           &me._13,
+		"_14":           &me._14,
+		"_16":           &me._16,
+		"_17":           &me._17,
+		"_18":           &me._18,
+		"_19":           &me._19,
+		"_2":            &me._2,
+		"_20":           &me._20,
+		"_21":           &me._21,
+		"_22":           &me._22,
+		"_23":           &me._23,
+		"_24":           &me._24,
+		"_25":           &me._25,
+		"_26":           &me._26,
+		"_27":           &me._27,
+		"_28":           &me._28,
+		"_29":           &me._29,
+		"_3":            &me._3,
+		"_32":           &me._32,
+		"_33":           &me._33,
+		"_34":           &me._34,
+		"_35":           &me._35,
+		"_36":           &me._36,
+		"_37":           &me._37,
+		"_38":           &me._38,
+		"_39":           &me._39,
+		"_4":            &me._4,
+		"_40":           &me._40,
+		"_41":           &me._41,
+		"_43":           &me._43,
+		"_44":           &me._44,
+		"_45":           &me._45,
+		"_46":           &me._46,
+		"_47":           &me._47,
+		"_48":           &me._48,
+		"_49":           &me._49,
+		"_5":            &me._5,
+		"_50":           &me._50,
+		"_51":           &me._51,
+		"_52":           &me._52,
+		"_53":           &me._53,
+		"_54":           &me._54,
+		"_55":           &me._55,
+		"_56":           &me._56,
+		"_57":           &me._57,
+		"_58":           &me._58,
+		"_59":           &me._59,
+		"_6":            &me._6,
+		"_60":           &me._60,
+		"_61":           &me._61,
+		"_62":           &me._62,
+		"_63":           &me._63,
+		"_64":           &me._64,
+		"_65":           &me._65,
+		"_66":           &me._66,
+		"_67":           &me._67,
+		"_68":           &me._68,
+		"_69":           &me._69,
+		"_7":            &me._7,
+		"_70":           &me._70,
+		"_8":            &me._8,
+		"_9":            &me._9,
 	})
 }

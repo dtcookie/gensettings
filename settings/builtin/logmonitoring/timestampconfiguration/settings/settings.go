@@ -33,12 +33,12 @@ type Settings struct {
 
 func (me *Settings) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
-		"config_-_item_-_title": {
+		"config_item_title": {
 			Type:        schema.TypeString,
 			Description: "Name",
 			Required:    true,
 		},
-		"date_-_time_-_pattern": {
+		"date_time_pattern": {
 			Type:        schema.TypeString,
 			Description: "Date-time pattern",
 			Required:    true,
@@ -73,22 +73,22 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 
 func (me *Settings) MarshalHCL(properties hcl.Properties) error {
 	return properties.EncodeAll(map[string]any{
-		"config_-_item_-_title": me.Config_item_title,
-		"date_-_time_-_pattern": me.Date_time_pattern,
-		"enabled":               me.Enabled,
-		"matchers":              me.Matchers,
-		"scope":                 me.Scope,
-		"timezone":              me.Timezone,
+		"config_item_title": me.Config_item_title,
+		"date_time_pattern": me.Date_time_pattern,
+		"enabled":           me.Enabled,
+		"matchers":          me.Matchers,
+		"scope":             me.Scope,
+		"timezone":          me.Timezone,
 	})
 }
 
 func (me *Settings) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
-		"config_-_item_-_title": &me.Config_item_title,
-		"date_-_time_-_pattern": &me.Date_time_pattern,
-		"enabled":               &me.Enabled,
-		"matchers":              &me.Matchers,
-		"scope":                 &me.Scope,
-		"timezone":              &me.Timezone,
+		"config_item_title": &me.Config_item_title,
+		"date_time_pattern": &me.Date_time_pattern,
+		"enabled":           &me.Enabled,
+		"matchers":          &me.Matchers,
+		"scope":             &me.Scope,
+		"timezone":          &me.Timezone,
 	})
 }

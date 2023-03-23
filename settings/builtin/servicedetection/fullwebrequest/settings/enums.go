@@ -39,10 +39,12 @@ type ContributionType string
 
 var ContributionTypes = struct {
 	Originalvalue  ContributionType
+	Overridevalue  ContributionType
 	Transformurl   ContributionType
 	Transformvalue ContributionType
 }{
 	"OriginalValue",
+	"OverrideValue",
 	"TransformURL",
 	"TransformValue",
 }

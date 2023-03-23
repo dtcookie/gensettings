@@ -23,9 +23,9 @@ import (
 )
 
 type TransformationSet struct {
-	ContributionType ContributionTypeWithOverride `json:"contributionType"` // Possible Values: `OriginalValue`, `OverrideValue`, `TransformValue`
-	Transformations  Transformations              `json:"transformations,omitempty"`
-	ValueOverride    *ValueOverride               `json:"valueOverride,omitempty"` // The value to be used instead of the detected value.
+	ContributionType ContributionTypeWithOverride `json:"contributionType"`          // Possible Values: `OriginalValue`, `OverrideValue`, `TransformValue`
+	Transformations  Transformations              `json:"transformations,omitempty"` // Choose how the value will be transformed before contributing to the Service Id. All of the Transformations are always applied. Transformations are applied in the order they are specified, and the output of the previous transformation is the input for the next one. The resulting value contributes to the Service Id and can be found on the Service screen under **Properties and tags**.
+	ValueOverride    *ValueOverride               `json:"valueOverride,omitempty"`   // The value to be used instead of the detected value.
 }
 
 func (me *TransformationSet) Schema() map[string]*schema.Schema {
@@ -37,7 +37,7 @@ func (me *TransformationSet) Schema() map[string]*schema.Schema {
 		},
 		"transformations": {
 			Type:        schema.TypeList,
-			Description: "no documentation available",
+			Description: "Choose how the value will be transformed before contributing to the Service Id. All of the Transformations are always applied. Transformations are applied in the order they are specified, and the output of the previous transformation is the input for the next one. The resulting value contributes to the Service Id and can be found on the Service screen under **Properties and tags**.",
 			Optional:    true,
 
 			Elem:     &schema.Resource{Schema: new(Transformations).Schema()},

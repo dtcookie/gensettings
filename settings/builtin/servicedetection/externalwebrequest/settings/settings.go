@@ -23,10 +23,10 @@ import (
 )
 
 type Settings struct {
-	Conditions      Conditions          `json:"conditions"`            // A list of conditions for the rule.\nIf multiple conditions are specified, they *all* must match for the rule to apply.
+	Conditions      Conditions          `json:"conditions"`            // A list of conditions necessary for the rule to take effect. If multiple conditions are specified, they **all** must match a Request for the rule to apply. Conditions evaluate against attributes, but do not modify them.
 	Description     *string             `json:"description,omitempty"` // Description
 	Enabled         bool                `json:"enabled"`               // This setting is enabled (`true`) or disabled (`false`)
-	IdContributors  *IdContributorsType `json:"idContributors"`        // All contributors of the service identifier calculation.
+	IdContributors  *IdContributorsType `json:"idContributors"`        // Contributors to the Service Identifier calculation. All of the Contributors except for Port always get applied. It is possible to exclude Port from contributing by toggling the switch off.
 	ManagementZones []string            `json:"managementZones"`       // Define a management zone filter for this service detection rule.
 	Name            string              `json:"name"`                  // Rule name
 }
@@ -35,7 +35,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"conditions": {
 			Type:        schema.TypeList,
-			Description: "A list of conditions for the rule.\nIf multiple conditions are specified, they *all* must match for the rule to apply.",
+			Description: "A list of conditions necessary for the rule to take effect. If multiple conditions are specified, they **all** must match a Request for the rule to apply. Conditions evaluate against attributes, but do not modify them.",
 			Required:    true,
 
 			Elem:     &schema.Resource{Schema: new(Conditions).Schema()},
@@ -54,7 +54,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		},
 		"id_contributors": {
 			Type:        schema.TypeList,
-			Description: "All contributors of the service identifier calculation.",
+			Description: "Contributors to the Service Identifier calculation. All of the Contributors except for Port always get applied. It is possible to exclude Port from contributing by toggling the switch off.",
 			Required:    true,
 
 			Elem:     &schema.Resource{Schema: new(IdContributorsType).Schema()},

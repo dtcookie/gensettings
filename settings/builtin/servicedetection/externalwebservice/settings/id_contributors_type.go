@@ -24,8 +24,8 @@ import (
 
 type IdContributorsType struct {
 	DetectAsWebRequestService bool                  `json:"detectAsWebRequestService"`  // Detect the matching requests as web request services instead of web services.\n\nThis prevents detecting of matching requests as opaque web services. An opaque web request service is created instead. If you need to further modify the resulting web request service, you need to create a separate [Opaque/external web request rule](builtin:service-detection.full-web-request).
-	PortForServiceID          *bool                 `json:"portForServiceId,omitempty"` // Let the port contribute to the service identifier calculation.
-	UrlPath                   *ServiceIdContributor `json:"urlPath,omitempty"`          // Let the request's URL contribute to the service identifier calculation.
+	PortForServiceID          *bool                 `json:"portForServiceId,omitempty"` // Let the Port contribute to the Service Id
+	UrlPath                   *ServiceIdContributor `json:"urlPath,omitempty"`          // URL path
 }
 
 func (me *IdContributorsType) Schema() map[string]*schema.Schema {
@@ -37,12 +37,12 @@ func (me *IdContributorsType) Schema() map[string]*schema.Schema {
 		},
 		"port_for_service_id": {
 			Type:        schema.TypeBool,
-			Description: "Let the port contribute to the service identifier calculation.",
+			Description: "Let the Port contribute to the Service Id",
 			Optional:    true,
 		},
 		"url_path": {
 			Type:        schema.TypeList,
-			Description: "Let the request's URL contribute to the service identifier calculation.",
+			Description: "URL path",
 			Optional:    true,
 
 			Elem:     &schema.Resource{Schema: new(ServiceIdContributor).Schema()},

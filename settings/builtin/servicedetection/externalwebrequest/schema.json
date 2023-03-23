@@ -2,8 +2,8 @@
 	"allowedScopes": [
 		"environment"
 	],
-	"description": "These rules are evaluated from top to bottom; the first matching rule applies.",
-	"displayName": "Service detection rules for external web requests",
+	"description": "Rules are evaluated from top to bottom, and the first matching rule applies. Rule conditions are evaluated before Service Id Contributors are applied. Conditions do not modify attributes of requests. If conditions match, then Service Id Contributors are applied. **All of the Contributors except for Port always get applied.** It is possible to exclude Port from contributing by toggling the switch off. It is possible to influence the creation of Services by choosing how other Service Id Contributor values get transformed.\\\nMore extensive information on Service detection rules can be found [here](https://dt-url.net/9i03b79).",
+	"displayName": "Service detection rules for External Web Requests",
 	"documentation": "",
 	"dynatrace": "1",
 	"enums": {
@@ -48,6 +48,11 @@
 					"description": "Use the value as it is.",
 					"displayName": "Use the original value",
 					"value": "OriginalValue"
+				},
+				{
+					"description": "Use a fixed value.",
+					"displayName": "Override to constant value",
+					"value": "OverrideValue"
 				},
 				{
 					"description": "Apply transformations to the original value.",
@@ -207,7 +212,7 @@
 	"ordered": true,
 	"properties": {
 		"conditions": {
-			"description": "A list of conditions for the rule.\nIf multiple conditions are specified, they *all* must match for the rule to apply.",
+			"description": "A list of conditions necessary for the rule to take effect. If multiple conditions are specified, they **all** must match a Request for the rule to apply. Conditions evaluate against attributes, but do not modify them.",
 			"displayName": "Conditions",
 			"documentation": "",
 			"items": {
@@ -252,7 +257,7 @@
 			"type": "boolean"
 		},
 		"idContributors": {
-			"description": "All contributors of the service identifier calculation.",
+			"description": "Contributors to the Service Identifier calculation. All of the Contributors except for Port always get applied. It is possible to exclude Port from contributing by toggling the switch off.",
 			"displayName": "Service identifier contributors",
 			"documentation": "",
 			"maxObjects": 1,
@@ -616,7 +621,7 @@
 				"enableIdContributor": {
 					"default": false,
 					"description": "",
-					"displayName": "Enable service identifier contributor",
+					"displayName": "Transform this value before letting it contribute to the Service Id",
 					"documentation": "",
 					"maxObjects": 1,
 					"modificationPolicy": "DEFAULT",
@@ -625,7 +630,7 @@
 				},
 				"serviceIdContributor": {
 					"description": "",
-					"displayName": "Service identifier contributor",
+					"displayName": "",
 					"documentation": "",
 					"maxObjects": 1,
 					"modificationPolicy": "DEFAULT",
@@ -676,7 +681,7 @@
 						}
 					],
 					"default": 0,
-					"description": "The number of segments of the URL to be kept.\nThe URL is divided by slashes (/), the indexing starts with 1 at context root.\nFor example, if you specify 2 for the www.dynatrace.com/support/help/dynatrace-api/ URL, the value of support/help is used.",
+					"description": "The number of segments of the URL to be kept. The URL is divided by slashes (/), the indexing starts with 1 at context root. For example, if you specify 2 for the `www.dynatrace.com/support/help/dynatrace-api/` URL, the value of `support/help` is used.",
 					"displayName": "Segments to copy from URL path",
 					"documentation": "",
 					"maxObjects": 1,
@@ -690,7 +695,7 @@
 					"type": "integer"
 				},
 				"transformations": {
-					"description": "",
+					"description": "Choose how the value will be transformed before contributing to the Service Id. All of the Transformations are always applied. Transformations are applied in the order they are specified, and the output of the previous transformation is the input for the next one. The resulting value contributes to the Service Id and can be found on the Service screen under **Properties and tags**.",
 					"displayName": "Transformations",
 					"documentation": "",
 					"items": {
@@ -714,6 +719,22 @@
 						"type": "IN"
 					},
 					"type": "list"
+				},
+				"valueOverride": {
+					"description": "The value to be used instead of the detected value.",
+					"displayName": "Value override",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"precondition": {
+						"expectedValue": "OverrideValue",
+						"property": "contributionType",
+						"type": "EQUALS"
+					},
+					"type": {
+						"$ref": "#/types/valueOverride"
+					}
 				}
 			},
 			"summaryPattern": "",
@@ -724,7 +745,7 @@
 		"idContributorsType": {
 			"constraints": [
 				{
-					"customMessage": "At least one service identifier contributor (application identifier, URL context root, port or public domain name) must exist.",
+					"customMessage": "At least one service identifier contributor (application identifier, URL context root, Port or public domain name) must exist.",
 					"customValidatorId": "at-least-one-service-id-contributor",
 					"type": "CUSTOM_VALIDATOR_REF"
 				}
@@ -734,7 +755,7 @@
 			"documentation": "",
 			"properties": {
 				"applicationId": {
-					"description": "Let the detected application identifier contribute to the service identifier calculation.",
+					"description": "",
 					"displayName": "Application identifier",
 					"documentation": "",
 					"maxObjects": 1,
@@ -745,7 +766,7 @@
 					}
 				},
 				"contextRoot": {
-					"description": "Let the detected context root contribute to the service identifier calculation.\nThe context root is the first segment of the request URL after the server name. For example, in the www.dynatrace.com/support/help/dynatrace-api/ URL the context root is `support`.",
+					"description": "",
 					"displayName": "URL context root",
 					"documentation": "",
 					"maxObjects": 1,
@@ -757,7 +778,7 @@
 				},
 				"portForServiceId": {
 					"default": true,
-					"description": "Let the port contribute to the service identifier calculation.",
+					"description": "Let the Port contribute to the Service Id",
 					"displayName": "Port",
 					"documentation": "",
 					"maxObjects": 1,
@@ -766,7 +787,7 @@
 					"type": "boolean"
 				},
 				"publicDomainName": {
-					"description": "Let the web request's domain name contribute to the service identifier calculation.",
+					"description": "",
 					"displayName": "Public domain name",
 					"documentation": "",
 					"maxObjects": 1,
@@ -790,7 +811,7 @@
 				"enableIdContributor": {
 					"default": false,
 					"description": "",
-					"displayName": "Enable service identifier contributor",
+					"displayName": "Transform this value before letting it contribute to the Service Id",
 					"documentation": "",
 					"maxObjects": 1,
 					"modificationPolicy": "DEFAULT",
@@ -799,7 +820,7 @@
 				},
 				"serviceIdContributor": {
 					"description": "",
-					"displayName": "Service identifier contributor",
+					"displayName": "",
 					"documentation": "",
 					"maxObjects": 1,
 					"modificationPolicy": "DEFAULT",
@@ -855,7 +876,7 @@
 					"type": "boolean"
 				},
 				"transformations": {
-					"description": "",
+					"description": "Choose how the value will be transformed before contributing to the Service Id. All of the Transformations are always applied. Transformations are applied in the order they are specified, and the output of the previous transformation is the input for the next one. The resulting value contributes to the Service Id and can be found on the Service screen under **Properties and tags**.",
 					"displayName": "Transformations",
 					"documentation": "",
 					"items": {
@@ -1034,7 +1055,7 @@
 				"enableIdContributor": {
 					"default": false,
 					"description": "",
-					"displayName": "Enable service identifier contributor",
+					"displayName": "Transform this value before letting it contribute to the Service Id",
 					"documentation": "",
 					"maxObjects": 1,
 					"modificationPolicy": "DEFAULT",
@@ -1043,7 +1064,7 @@
 				},
 				"serviceIdContributor": {
 					"description": "",
-					"displayName": "Service identifier contributor",
+					"displayName": "",
 					"documentation": "",
 					"maxObjects": 1,
 					"modificationPolicy": "DEFAULT",
@@ -1292,7 +1313,7 @@
 					}
 				},
 				"transformations": {
-					"description": "",
+					"description": "Choose how the value will be transformed before contributing to the Service Id. All of the Transformations are always applied. Transformations are applied in the order they are specified, and the output of the previous transformation is the input for the next one. The resulting value contributes to the Service Id and can be found on the Service screen under **Properties and tags**.",
 					"displayName": "Transformations",
 					"documentation": "",
 					"items": {
@@ -1385,5 +1406,5 @@
 			]
 		}
 	},
-	"version": "2.1.7"
+	"version": "2.1.10"
 }

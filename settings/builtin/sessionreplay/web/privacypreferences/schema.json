@@ -367,7 +367,7 @@
 					"type": "set"
 				},
 				"playbackMaskingPreset": {
-					"default": "MASK_ALL",
+					"default": "MASK_USER_INPUT",
 					"description": "Playback masking settings are applied during playback of recorded sessions, including playback of sessions that were recorded before these settings were applied.",
 					"displayName": "Playback masking settings",
 					"documentation": "",
@@ -432,7 +432,7 @@
 					"type": "set"
 				},
 				"recordingMaskingPreset": {
-					"default": "MASK_ALL",
+					"default": "MASK_USER_INPUT",
 					"description": "Recording masking settings are applied at record time. When you set these settings to a more restrictive option, the same option is also enabled for the playback masking settings.",
 					"displayName": "Recording masking settings",
 					"documentation": "",

@@ -15,43 +15,47 @@
 * limitations under the License.
  */
 
-package userappfwpreferences
+package pvc
 
 import (
 	"github.com/dynatrace-oss/terraform-provider-dynatrace/terraform/hcl"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
-type Settings struct {
-	Scope          string `json:"-" scope:"scope"` // The scope of this setting (user, userdefaults)
-	StayOnLatestUi bool   `json:"stayOnLatestUi"`  // Stay on the latest Dynatrace
+type LowDiskSpaceCritical struct {
+	Configuration *LowDiskSpaceCriticalConfig `json:"configuration,omitempty"` // Alert if
+	Enabled       bool                        `json:"enabled"`                 // This setting is enabled (`true`) or disabled (`false`)
 }
 
-func (me *Settings) Schema() map[string]*schema.Schema {
+func (me *LowDiskSpaceCritical) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
-		"scope": {
-			Type:        schema.TypeString,
-			Description: "The scope of this setting (user, userdefaults)",
-			Required:    true,
+		"configuration": {
+			Type:        schema.TypeList,
+			Description: "Alert if",
+			Optional:    true,
+
+			Elem:     &schema.Resource{Schema: new(LowDiskSpaceCriticalConfig).Schema()},
+			MinItems: 1,
+			MaxItems: 1,
 		},
-		"stay_on_latest_ui": {
+		"enabled": {
 			Type:        schema.TypeBool,
-			Description: "Stay on the latest Dynatrace",
+			Description: "This setting is enabled (`true`) or disabled (`false`)",
 			Required:    true,
 		},
 	}
 }
 
-func (me *Settings) MarshalHCL(properties hcl.Properties) error {
+func (me *LowDiskSpaceCritical) MarshalHCL(properties hcl.Properties) error {
 	return properties.EncodeAll(map[string]any{
-		"scope":             me.Scope,
-		"stay_on_latest_ui": me.StayOnLatestUi,
+		"configuration": me.Configuration,
+		"enabled":       me.Enabled,
 	})
 }
 
-func (me *Settings) UnmarshalHCL(decoder hcl.Decoder) error {
+func (me *LowDiskSpaceCritical) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
-		"scope":             &me.Scope,
-		"stay_on_latest_ui": &me.StayOnLatestUi,
+		"configuration": &me.Configuration,
+		"enabled":       &me.Enabled,
 	})
 }

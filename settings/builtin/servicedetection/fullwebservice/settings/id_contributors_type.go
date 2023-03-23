@@ -23,19 +23,19 @@ import (
 )
 
 type IdContributorsType struct {
-	ApplicationID             *ServiceIdContributor `json:"applicationId,omitempty"`       // Let the detected application identifier contribute to the service identifier calculation
-	ContextRoot               *ContextIdContributor `json:"contextRoot,omitempty"`         // Let the detected context root contribute to the service identifier calculation.\nThe context root is the first segment of the request URL after the server name. For example, in the www.dynatrace.com/support/help/dynatrace-api/ URL the context root is `support`.
+	ApplicationID             *ServiceIdContributor `json:"applicationId,omitempty"`       // Application identifier
+	ContextRoot               *ContextIdContributor `json:"contextRoot,omitempty"`         // The context root is the first segment of the request URL after the Server name. For example, in the `www.dynatrace.com/support/help/dynatrace-api/` URL the context root is `/support`. The context root value can be found on the Service screen under **Properties and tags**.
 	DetectAsWebRequestService bool                  `json:"detectAsWebRequestService"`     // Detect the matching requests as full web services (false) or web request services (true).\n\nSetting this field to true prevents detecting of matching requests as full web services. A web request service is created instead. If you need to further modify the resulting web request service, you need to create a separate [Full web request rule](builtin:service-detection.full-web-request).
-	ServerName                *ServiceIdContributor `json:"serverName,omitempty"`          // Let the detected server name contribute to the service identifier calculation
-	WebServiceName            *ServiceIdContributor `json:"webServiceName,omitempty"`      // Let the detected web service name contribute to the service identifier calculation
-	WebServiceNamespace       *ServiceIdContributor `json:"webServiceNamespace,omitempty"` // Let the detected web service namespace contribute to the service identifier calculation
+	ServerName                *ServiceIdContributor `json:"serverName,omitempty"`          // Server name
+	WebServiceName            *ServiceIdContributor `json:"webServiceName,omitempty"`      // Web service name
+	WebServiceNamespace       *ServiceIdContributor `json:"webServiceNamespace,omitempty"` // Web service namespace
 }
 
 func (me *IdContributorsType) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"application_id": {
 			Type:        schema.TypeList,
-			Description: "Let the detected application identifier contribute to the service identifier calculation",
+			Description: "Application identifier",
 			Optional:    true,
 
 			Elem:     &schema.Resource{Schema: new(ServiceIdContributor).Schema()},
@@ -44,7 +44,7 @@ func (me *IdContributorsType) Schema() map[string]*schema.Schema {
 		},
 		"context_root": {
 			Type:        schema.TypeList,
-			Description: "Let the detected context root contribute to the service identifier calculation.\nThe context root is the first segment of the request URL after the server name. For example, in the www.dynatrace.com/support/help/dynatrace-api/ URL the context root is `support`.",
+			Description: "The context root is the first segment of the request URL after the Server name. For example, in the `www.dynatrace.com/support/help/dynatrace-api/` URL the context root is `/support`. The context root value can be found on the Service screen under **Properties and tags**.",
 			Optional:    true,
 
 			Elem:     &schema.Resource{Schema: new(ContextIdContributor).Schema()},
@@ -58,7 +58,7 @@ func (me *IdContributorsType) Schema() map[string]*schema.Schema {
 		},
 		"server_name": {
 			Type:        schema.TypeList,
-			Description: "Let the detected server name contribute to the service identifier calculation",
+			Description: "Server name",
 			Optional:    true,
 
 			Elem:     &schema.Resource{Schema: new(ServiceIdContributor).Schema()},
@@ -67,7 +67,7 @@ func (me *IdContributorsType) Schema() map[string]*schema.Schema {
 		},
 		"web_service_name": {
 			Type:        schema.TypeList,
-			Description: "Let the detected web service name contribute to the service identifier calculation",
+			Description: "Web service name",
 			Optional:    true,
 
 			Elem:     &schema.Resource{Schema: new(ServiceIdContributor).Schema()},
@@ -76,7 +76,7 @@ func (me *IdContributorsType) Schema() map[string]*schema.Schema {
 		},
 		"web_service_namespace": {
 			Type:        schema.TypeList,
-			Description: "Let the detected web service namespace contribute to the service identifier calculation",
+			Description: "Web service namespace",
 			Optional:    true,
 
 			Elem:     &schema.Resource{Schema: new(ServiceIdContributor).Schema()},

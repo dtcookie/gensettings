@@ -23,21 +23,21 @@ import (
 )
 
 type Settings struct {
-	LAConfigContainerTimezoneHeuristicEnabled bool    `json:"LAConfigContainerTimezoneHeuristicEnabled"` // Enables automatic detection of timezone in container's logs if it is not explicitly defined in content or configured
-	LAConfigContainersLogsDetectionEnabled    bool    `json:"LAConfigContainersLogsDetectionEnabled"`    // If set to FALSE - logs from containers won't be detected
+	LAConfigContainerTimezoneHeuristicEnabled bool    `json:"LAConfigContainerTimezoneHeuristicEnabled"` // Detect container time zones
+	LAConfigContainersLogsDetectionEnabled    bool    `json:"LAConfigContainersLogsDetectionEnabled"`    // Detect logs inside containers
 	LAConfigDateSearchLimit_Bytes             int     `json:"LAConfigDateSearchLimit_Bytes"`             // Defines the number of characters in every log line (starting from the first character in the line) where the timestamp is searched.
 	LAConfigDefaultTimezone                   string  `json:"LAConfigDefaultTimezone"`                   // Default timezone for agent if more specific configurations is not defined.
 	LAConfigEventLogQueryTimeout_Sec          int     `json:"LAConfigEventLogQueryTimeout_Sec"`          // Defines the maximum timeout value, in seconds, for the query extracting Windows Event Logs
-	LAConfigIISDetectionEnabled               bool    `json:"LAConfigIISDetectionEnabled"`               // If set to FALSE - IIS log detection mechanism will be disabled
-	LAConfigLogScannerLinuxNfsEnabled         bool    `json:"LAConfigLogScannerLinuxNfsEnabled"`         // If set to FALSE - logs on NFS won't be detected
+	LAConfigIISDetectionEnabled               bool    `json:"LAConfigIISDetectionEnabled"`               // Detect IIS logs
+	LAConfigLogScannerLinuxNfsEnabled         bool    `json:"LAConfigLogScannerLinuxNfsEnabled"`         // Detect logs on Network File Systems (NFS)
 	LAConfigMaxLgisPerEntityCount             int     `json:"LAConfigMaxLgisPerEntityCount"`             // Defines the maximum number of log group instances per entity after which, the new automatic ones wouldn't be added.
 	LAConfigMinBinaryDetectionLimit_Bytes     int     `json:"LAConfigMinBinaryDetectionLimit_Bytes"`     // Defines the minimum number of bytes in log file required for binary detection.
-	LAConfigMonitorOwnLogsEnabled             bool    `json:"LAConfigMonitorOwnLogsEnabled"`             // If set to FALSE - logs produced by OneAgent won't be monitored. Enabling this option may affect your DDU consumption.
-	LAConfigOpenLogFilesDetectionEnabled      bool    `json:"LAConfigOpenLogFilesDetectionEnabled"`      // Enables auto-detection of log files on hosts. If set to false, logs won't be auto-detected.
+	LAConfigMonitorOwnLogsEnabled             bool    `json:"LAConfigMonitorOwnLogsEnabled"`             // Enabling this option may affect your DDU consumption. For more details, see [documentation](https://dt-url.net/hp43ef8).
+	LAConfigOpenLogFilesDetectionEnabled      bool    `json:"LAConfigOpenLogFilesDetectionEnabled"`      // Detect open log files
 	LAConfigSeverityDetectionLimit_Bytes      int     `json:"LAConfigSeverityDetectionLimit_Bytes"`      // Defines the number of characters in every log line (starting from the first character in the line) where severity is searched.
 	LAConfigSeverityDetectionLinesLimit       int     `json:"LAConfigSeverityDetectionLinesLimit"`       // Defines the number of the first lines of every log entry where severity is searched.
-	LAConfigSystemLogsDetectionEnabled        bool    `json:"LAConfigSystemLogsDetectionEnabled"`        // If set to FALSE - system logs detection mechanism will be disabled (Linux: syslog, message log) (Windows: System, Application, Security event logs)
-	LAConfigUTCAsDefaultContainerTimezone     bool    `json:"LAConfigUTCAsDefaultContainerTimezone"`     // Defines if UTC is used as a default timezone in containers. This option is deprecated for agents in version 1.247 or newer.
+	LAConfigSystemLogsDetectionEnabled        bool    `json:"LAConfigSystemLogsDetectionEnabled"`        // (Linux: syslog, message log) (Windows: system, application, security event logs)
+	LAConfigUTCAsDefaultContainerTimezone     bool    `json:"LAConfigUTCAsDefaultContainerTimezone"`     // Deprecated for OneAgent 1.247+
 	Scope                                     *string `json:"-" scope:"scope"`                           // The scope of this setting (HOST, HOST_GROUP). Omit this property if you want to cover the whole environment.
 }
 
@@ -45,12 +45,12 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"laconfig_container_timezone_heuristic_enabled": {
 			Type:        schema.TypeBool,
-			Description: "Enables automatic detection of timezone in container's logs if it is not explicitly defined in content or configured",
+			Description: "Detect container time zones",
 			Required:    true,
 		},
 		"laconfig_containers_logs_detection_enabled": {
 			Type:        schema.TypeBool,
-			Description: "If set to FALSE - logs from containers won't be detected",
+			Description: "Detect logs inside containers",
 			Required:    true,
 		},
 		"laconfig_date_search_limit_bytes": {
@@ -70,12 +70,12 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		},
 		"laconfig_iisdetection_enabled": {
 			Type:        schema.TypeBool,
-			Description: "If set to FALSE - IIS log detection mechanism will be disabled",
+			Description: "Detect IIS logs",
 			Required:    true,
 		},
 		"laconfig_log_scanner_linux_nfs_enabled": {
 			Type:        schema.TypeBool,
-			Description: "If set to FALSE - logs on NFS won't be detected",
+			Description: "Detect logs on Network File Systems (NFS)",
 			Required:    true,
 		},
 		"laconfig_max_lgis_per_entity_count": {
@@ -90,12 +90,12 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		},
 		"laconfig_monitor_own_logs_enabled": {
 			Type:        schema.TypeBool,
-			Description: "If set to FALSE - logs produced by OneAgent won't be monitored. Enabling this option may affect your DDU consumption.",
+			Description: "Enabling this option may affect your DDU consumption. For more details, see [documentation](https://dt-url.net/hp43ef8).",
 			Required:    true,
 		},
 		"laconfig_open_log_files_detection_enabled": {
 			Type:        schema.TypeBool,
-			Description: "Enables auto-detection of log files on hosts. If set to false, logs won't be auto-detected.",
+			Description: "Detect open log files",
 			Required:    true,
 		},
 		"laconfig_severity_detection_limit_bytes": {
@@ -110,12 +110,12 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		},
 		"laconfig_system_logs_detection_enabled": {
 			Type:        schema.TypeBool,
-			Description: "If set to FALSE - system logs detection mechanism will be disabled (Linux: syslog, message log) (Windows: System, Application, Security event logs)",
+			Description: "(Linux: syslog, message log) (Windows: system, application, security event logs)",
 			Required:    true,
 		},
 		"laconfig_utcas_default_container_timezone": {
 			Type:        schema.TypeBool,
-			Description: "Defines if UTC is used as a default timezone in containers. This option is deprecated for agents in version 1.247 or newer.",
+			Description: "Deprecated for OneAgent 1.247+",
 			Required:    true,
 		},
 		"scope": {

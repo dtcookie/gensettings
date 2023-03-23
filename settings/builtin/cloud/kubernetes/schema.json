@@ -318,6 +318,19 @@
 			"nullable": false,
 			"type": "text"
 		},
+		"openMetricsBuiltinEnabled": {
+			"default": false,
+			"description": "",
+			"displayName": "Monitor workload resource metrics",
+			"documentation": "The workload resource metrics are based on a subset of cAdvisor metrics. Depending on your Kubernetes cluster size, this may increase the CPU/memory resource consumption of your ActiveGate.",
+			"maxObjects": 1,
+			"metadata": {
+				"minActiveGateVersion": "1.261"
+			},
+			"modificationPolicy": "DEFAULT",
+			"nullable": false,
+			"type": "boolean"
+		},
 		"openMetricsPipelineEnabled": {
 			"default": false,
 			"description": "For annotation guidance, see the [documentation](https://dt-url.net/g42i0ppw).",
@@ -444,5 +457,5 @@
 			"versionInfo": ""
 		}
 	},
-	"version": "2.4"
+	"version": "2.5"
 }

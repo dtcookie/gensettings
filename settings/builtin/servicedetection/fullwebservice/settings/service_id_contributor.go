@@ -23,20 +23,20 @@ import (
 )
 
 type ServiceIdContributor struct {
-	EnableIdContributor  bool               `json:"enableIdContributor"`            // Enable service identifier contributor
-	ServiceIdContributor *TransformationSet `json:"serviceIdContributor,omitempty"` // Service identifier contributor
+	EnableIdContributor  bool               `json:"enableIdContributor"` // Transform this value before letting it contribute to the Service Id
+	ServiceIdContributor *TransformationSet `json:"serviceIdContributor,omitempty"`
 }
 
 func (me *ServiceIdContributor) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"enable_id_contributor": {
 			Type:        schema.TypeBool,
-			Description: "Enable service identifier contributor",
+			Description: "Transform this value before letting it contribute to the Service Id",
 			Required:    true,
 		},
 		"service_id_contributor": {
 			Type:        schema.TypeList,
-			Description: "Service identifier contributor",
+			Description: "no documentation available",
 			Optional:    true,
 
 			Elem:     &schema.Resource{Schema: new(TransformationSet).Schema()},

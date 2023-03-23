@@ -37,6 +37,7 @@ type Settings struct {
 	HostnameVerificationEnabled     *bool             `json:"hostnameVerificationEnabled,omitempty"` // Verify hostname in certificate against Kubernetes API URL
 	IncludeAllFdiEvents             *bool             `json:"includeAllFdiEvents,omitempty"`         // For a list of included events, see the [documentation](https://dt-url.net/l61d02no).
 	Label                           string            `json:"label"`                                 // Renaming the cluster breaks configurations that are based on its name (e.g., management zones, and alerting).
+	OpenMetricsBuiltinEnabled       bool              `json:"openMetricsBuiltinEnabled"`             // The workload resource metrics are based on a subset of cAdvisor metrics. Depending on your Kubernetes cluster size, this may increase the CPU/memory resource consumption of your ActiveGate.
 	OpenMetricsPipelineEnabled      bool              `json:"openMetricsPipelineEnabled"`            // For annotation guidance, see the [documentation](https://dt-url.net/g42i0ppw).
 	PvcMonitoringEnabled            bool              `json:"pvcMonitoringEnabled"`                  // To enable dashboards and alerts, add the [Kubernetes persistent volume claims](ui/hub/ext/com.dynatrace.extension.kubernetes-pvc) extension to your environment.
 	Scope                           string            `json:"-" scope:"scope"`                       // The scope of this setting (KUBERNETES_CLUSTER)
@@ -118,6 +119,11 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 			Description: "Renaming the cluster breaks configurations that are based on its name (e.g., management zones, and alerting).",
 			Required:    true,
 		},
+		"open_metrics_builtin_enabled": {
+			Type:        schema.TypeBool,
+			Description: "The workload resource metrics are based on a subset of cAdvisor metrics. Depending on your Kubernetes cluster size, this may increase the CPU/memory resource consumption of your ActiveGate.",
+			Required:    true,
+		},
 		"open_metrics_pipeline_enabled": {
 			Type:        schema.TypeBool,
 			Description: "For annotation guidance, see the [documentation](https://dt-url.net/g42i0ppw).",
@@ -152,6 +158,7 @@ func (me *Settings) MarshalHCL(properties hcl.Properties) error {
 		"hostname_verification_enabled":      me.HostnameVerificationEnabled,
 		"include_all_fdi_events":             me.IncludeAllFdiEvents,
 		"label":                              me.Label,
+		"open_metrics_builtin_enabled":       me.OpenMetricsBuiltinEnabled,
 		"open_metrics_pipeline_enabled":      me.OpenMetricsPipelineEnabled,
 		"pvc_monitoring_enabled":             me.PvcMonitoringEnabled,
 		"scope":                              me.Scope,
@@ -174,6 +181,7 @@ func (me *Settings) UnmarshalHCL(decoder hcl.Decoder) error {
 		"hostname_verification_enabled":      &me.HostnameVerificationEnabled,
 		"include_all_fdi_events":             &me.IncludeAllFdiEvents,
 		"label":                              &me.Label,
+		"open_metrics_builtin_enabled":       &me.OpenMetricsBuiltinEnabled,
 		"open_metrics_pipeline_enabled":      &me.OpenMetricsPipelineEnabled,
 		"pvc_monitoring_enabled":             &me.PvcMonitoringEnabled,
 		"scope":                              &me.Scope,

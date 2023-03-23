@@ -10,11 +10,6 @@
 				"targetSuccess"
 			],
 			"type": "GREATER_THAN"
-		},
-		{
-			"customMessage": "Entity selector and metric expression cannot contain mismatching entity types.",
-			"customValidatorId": "slo-filtered-metric-expression-validator",
-			"type": "CUSTOM_VALIDATOR_REF"
 		}
 	],
 	"description": "Define custom [Service-level objectives](https://dt-url.net/slos) (SLOs) to assist in fulfilling your organization’s service-level agreements. Create up to 10000 custom SLOs for this Dynatrace environment.",
@@ -141,7 +136,7 @@
 			"constraints": [
 				{
 					"customMessage": "Metric selector is invalid.",
-					"customValidatorId": "slo-metric-expression-selector-validator",
+					"customValidatorId": "slo-metric-selector-validator",
 					"type": "CUSTOM_VALIDATOR_REF"
 				},
 				{
@@ -150,12 +145,8 @@
 					"type": "LENGTH"
 				},
 				{
-					"customMessage": "Leading and trailing whitespaces are not allowed in this metric.",
+					"customMessage": "Leading and trailing whitespaces are not allowed.",
 					"type": "TRIMMED"
-				},
-				{
-					"customValidatorId": "metric-selector-validator",
-					"type": "CUSTOM_VALIDATOR_REF"
 				}
 			],
 			"default": "",
@@ -165,7 +156,7 @@
 			"maxObjects": 1,
 			"modificationPolicy": "DEFAULT",
 			"nullable": false,
-			"subType": "metric",
+			"subType": "metric-no-validator",
 			"type": "text"
 		},
 		"metricName": {
@@ -313,5 +304,5 @@
 			"versionInfo": ""
 		}
 	},
-	"version": "6.0.8"
+	"version": "6.0.9"
 }
