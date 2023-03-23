@@ -43,7 +43,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"alert_activation_duration": {
 			Type:        schema.TypeInt,
 			Description: "The number of **10-second measurement cycles** before alerting is triggered",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 		"alerting": {
 			Type:        schema.TypeBool,
@@ -53,20 +53,18 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"detection_conditions_linux": {
 			Type:        schema.TypeList,
 			Description: "Detection rules",
-			Optional:    true,
-
-			Elem:     &schema.Resource{Schema: new(LinuxDetectionConditions).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Optional:    true, // precondition & minobjects == 0
+			Elem:        &schema.Resource{Schema: new(LinuxDetectionConditions).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 		"detection_conditions_windows": {
 			Type:        schema.TypeList,
 			Description: "Detection rules",
-			Optional:    true,
-
-			Elem:     &schema.Resource{Schema: new(WindowsDetectionConditions).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Optional:    true, // precondition & minobjects == 0
+			Elem:        &schema.Resource{Schema: new(WindowsDetectionConditions).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 		"enabled": {
 			Type:        schema.TypeBool,
@@ -76,11 +74,10 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"metadata": {
 			Type:        schema.TypeList,
 			Description: "Set of additional key-value properties to be attached to the triggered event.",
-			Optional:    true,
-
-			Elem:     &schema.Resource{Schema: new(MetadataItems).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Optional:    true, // precondition & minobjects == 0
+			Elem:        &schema.Resource{Schema: new(MetadataItems).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 		"monitoring": {
 			Type:        schema.TypeBool,
@@ -95,7 +92,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"not_installed_alerting": {
 			Type:        schema.TypeBool,
 			Description: "By default, Dynatrace does not alert if the service is not installed. Toggle the switch to enable or disable this feature",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 		"scope": {
 			Type:        schema.TypeString,
@@ -106,12 +103,12 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"status_condition_linux": {
 			Type:        schema.TypeString,
 			Description: "This string has to match a required format. See [OS services monitoring](https://dt-url.net/vl03xzk).\n\n- `$eq(failed)` – Matches services that are in failed state.\n\nAvailable logic operations:\n- `$not($eq(active))` – Matches services with state different from active.\n- `$or($eq(inactive),$eq(failed))` – Matches services that are either in inactive or failed state.\n\nUse one of the following values as a parameter for this condition:\n\n- `reloading`\n- `activating`\n- `deactivating`\n- `failed`\n- `inactive`\n- `active`",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 		"status_condition_windows": {
 			Type:        schema.TypeString,
 			Description: "This string has to match a required format. See [OS services monitoring](https://dt-url.net/vl03xzk).\n\n- `$eq(paused)` – Matches services that are in paused state.\n\nAvailable logic operations:\n- `$not($eq(paused))` – Matches services that are in state different from paused.\n- `$or($eq(paused),$eq(running))` – Matches services that are either in paused or running state.\n\nUse one of the following values as a parameter for this condition:\n\n- `running`\n- `stopped`\n- `start_pending`\n- `stop_pending`\n- `continue_pending`\n- `pause_pending`\n- `paused`",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 		"system": {
 			Type:        schema.TypeString,

@@ -23,10 +23,10 @@ import (
 )
 
 type Settings struct {
-	ApplicationID           *string              `json:"-" scope:"applicationId"` // The scope of this settings. If the settings should cover the whole environment, just don't specify any scope.
-	EnableOptInMode         bool                 `json:"enableOptInMode"`         // When [Session Replay opt-in mode](https://dt-url.net/sr-opt-in-mode) is turned on, Session Replay is deactivated until explicitly activated via an API call.
-	MaskingPresets          *MaskingPresetConfig `json:"maskingPresets"`          // To protect your end users' privacy, select or customize [predefined masking options](https://dt-url.net/sr-masking-preset-options) that suit your content recording and playback requirements.
-	UrlExclusionPatternList []string             `json:"urlExclusionPatternList"` // Exclude webpages or views from Session Replay recording by adding [URL exclusion rules](https://dt-url.net/sr-url-exclusion)
+	ApplicationID           *string              `json:"-" scope:"applicationId"`           // The scope of this settings. If the settings should cover the whole environment, just don't specify any scope.
+	EnableOptInMode         bool                 `json:"enableOptInMode"`                   // When [Session Replay opt-in mode](https://dt-url.net/sr-opt-in-mode) is turned on, Session Replay is deactivated until explicitly activated via an API call.
+	MaskingPresets          *MaskingPresetConfig `json:"maskingPresets"`                    // To protect your end users' privacy, select or customize [predefined masking options](https://dt-url.net/sr-masking-preset-options) that suit your content recording and playback requirements.
+	UrlExclusionPatternList []string             `json:"urlExclusionPatternList,omitempty"` // Exclude webpages or views from Session Replay recording by adding [URL exclusion rules](https://dt-url.net/sr-url-exclusion)
 }
 
 func (me *Settings) Schema() map[string]*schema.Schema {
@@ -46,17 +46,15 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "To protect your end users' privacy, select or customize [predefined masking options](https://dt-url.net/sr-masking-preset-options) that suit your content recording and playback requirements.",
 			Required:    true,
-
-			Elem:     &schema.Resource{Schema: new(MaskingPresetConfig).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Elem:        &schema.Resource{Schema: new(MaskingPresetConfig).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 		"url_exclusion_pattern_list": {
 			Type:        schema.TypeSet,
 			Description: "Exclude webpages or views from Session Replay recording by adding [URL exclusion rules](https://dt-url.net/sr-url-exclusion)",
-			Required:    true,
-
-			Elem: &schema.Schema{Type: schema.TypeString},
+			Optional:    true, // minobjects == 0
+			Elem:        &schema.Schema{Type: schema.TypeString},
 		},
 	}
 }

@@ -43,7 +43,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"secondary_resource_type": {
 			Type:        schema.TypeString,
 			Description: "The secondary type of the resource.",
-			Optional:    true,
+			Optional:    true, // nullable
 		},
 	}
 }

@@ -43,7 +43,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"url": {
 			Type:        schema.TypeString,
 			Description: "This must be a valid beacon endpoint URL.",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 	}
 }

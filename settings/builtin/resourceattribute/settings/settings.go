@@ -23,7 +23,7 @@ import (
 )
 
 type Settings struct {
-	AttributeKeys RuleItems `json:"attributeKeys"` // Attribute key allow-list
+	AttributeKeys RuleItems `json:"attributeKeys,omitempty"` // Attribute key allow-list
 }
 
 func (me *Settings) Schema() map[string]*schema.Schema {
@@ -31,11 +31,10 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"attribute_keys": {
 			Type:        schema.TypeList,
 			Description: "Attribute key allow-list",
-			Required:    true,
-
-			Elem:     &schema.Resource{Schema: new(RuleItems).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Optional:    true, // minobjects == 0
+			Elem:        &schema.Resource{Schema: new(RuleItems).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 	}
 }

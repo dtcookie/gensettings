@@ -55,12 +55,12 @@ func (me *AllowListRule) Schema() map[string]*schema.Schema {
 		"attribute_expression": {
 			Type:        schema.TypeString,
 			Description: "Attribute masking can be applied to web applications that store data within attributes, typically data-NAME attributes in HTML5. When you define attributes, their values are masked while recording but not removed.",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 		"css_expression": {
 			Type:        schema.TypeString,
 			Description: "Content masking can be applied to webpages where personal data is displayed. When content masking is applied to parent elements, all child elements are masked by default.",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 		"target": {
 			Type:        schema.TypeString,

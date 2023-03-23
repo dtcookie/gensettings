@@ -23,8 +23,8 @@ import (
 )
 
 type Settings struct {
-	Name          string        `json:"name"`          // IMS bridge name
-	QueueManagers QueueManagers `json:"queueManagers"` // Queue managers
+	Name          string        `json:"name"`                    // IMS bridge name
+	QueueManagers QueueManagers `json:"queueManagers,omitempty"` // Queue managers
 }
 
 func (me *Settings) Schema() map[string]*schema.Schema {
@@ -37,11 +37,10 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"queue_managers": {
 			Type:        schema.TypeList,
 			Description: "Queue managers",
-			Required:    true,
-
-			Elem:     &schema.Resource{Schema: new(QueueManagers).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Optional:    true, // minobjects == 0
+			Elem:        &schema.Resource{Schema: new(QueueManagers).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 	}
 }

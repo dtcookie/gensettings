@@ -31,7 +31,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"custom_java_script_version": {
 			Type:        schema.TypeString,
 			Description: "Choose custom version",
-			Optional:    true,
+			Optional:    true, // nullable
 		},
 	}
 }

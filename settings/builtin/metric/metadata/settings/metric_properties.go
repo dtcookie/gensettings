@@ -36,27 +36,27 @@ func (me *MetricProperties) Schema() map[string]*schema.Schema {
 		"impact_relevant": {
 			Type:        schema.TypeBool,
 			Description: "Whether (true or false) the metric is relevant to a problem's impact.\n\nAn impact-relevant metric is highly dependent on other metrics and changes because an underlying root-cause metric has changed.",
-			Optional:    true,
+			Optional:    true, // nullable
 		},
 		"latency": {
 			Type:        schema.TypeInt,
 			Description: "The latency of the metric, in minutes. \n\n The latency is the expected reporting delay (for example, caused by constraints of cloud vendors or other third-party data sources) between the observation of a metric data point and its availability in Dynatrace. \n\nThe allowed value range is from 1 to 60 minutes.",
-			Optional:    true,
+			Optional:    true, // nullable
 		},
 		"max_value": {
 			Type:        schema.TypeFloat,
 			Description: "The maximum allowed value of the metric.",
-			Optional:    true,
+			Optional:    true, // nullable
 		},
 		"min_value": {
 			Type:        schema.TypeFloat,
 			Description: "The minimum allowed value of the metric.",
-			Optional:    true,
+			Optional:    true, // nullable
 		},
 		"root_cause_relevant": {
 			Type:        schema.TypeBool,
 			Description: "Whether (true or false) the metric is related to a root cause of a problem.\n\nA root-cause relevant metric represents a strong indicator for a faulty component.",
-			Optional:    true,
+			Optional:    true, // nullable
 		},
 		"value_type": {
 			Type:        schema.TypeString,

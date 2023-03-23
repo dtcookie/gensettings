@@ -23,11 +23,11 @@ import (
 )
 
 type Settings struct {
-	Dimensions []string     `json:"dimensions"` // Defines the fields that are used as dimensions. A dimension is a collection of reference information about a metric data point that is of interest to your business. Dimensions are parameters like \"application\", \"type\", \"name\". For example, using \"type\" as a dimension allows you to split chart data based on the user action type.
-	Enabled    bool         `json:"enabled"`    // This setting is enabled (`true`) or disabled (`false`)
-	Filters    Filters      `json:"filters"`    // Defines the filters for the user action. Filters apply at the moment of extracting the data and only sessions that satisfy the filtering criteria will be used to extract the custom metrics. You will not be able to modify these filters in the metric data explorer. For example, using \"type equals Xhr\" will give you only data from xhr actions, while forcing the rest of user actions of different types to be ignored.
-	MetricKey  string       `json:"metricKey"`  // Metric key
-	Value      *MetricValue `json:"value"`      // Defines the type of value to be extracted from the user action. When using **user action counter**, the number of user actions is counted (similar to count(*) when using USQL). When using **user action field value**, the value of a user action field is extracted.
+	Dimensions []string     `json:"dimensions,omitempty"` // Defines the fields that are used as dimensions. A dimension is a collection of reference information about a metric data point that is of interest to your business. Dimensions are parameters like \"application\", \"type\", \"name\". For example, using \"type\" as a dimension allows you to split chart data based on the user action type.
+	Enabled    bool         `json:"enabled"`              // This setting is enabled (`true`) or disabled (`false`)
+	Filters    Filters      `json:"filters,omitempty"`    // Defines the filters for the user action. Filters apply at the moment of extracting the data and only sessions that satisfy the filtering criteria will be used to extract the custom metrics. You will not be able to modify these filters in the metric data explorer. For example, using \"type equals Xhr\" will give you only data from xhr actions, while forcing the rest of user actions of different types to be ignored.
+	MetricKey  string       `json:"metricKey"`            // Metric key
+	Value      *MetricValue `json:"value"`                // Defines the type of value to be extracted from the user action. When using **user action counter**, the number of user actions is counted (similar to count(*) when using USQL). When using **user action field value**, the value of a user action field is extracted.
 }
 
 func (me *Settings) Schema() map[string]*schema.Schema {
@@ -35,9 +35,8 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"dimensions": {
 			Type:        schema.TypeList,
 			Description: "Defines the fields that are used as dimensions. A dimension is a collection of reference information about a metric data point that is of interest to your business. Dimensions are parameters like \"application\", \"type\", \"name\". For example, using \"type\" as a dimension allows you to split chart data based on the user action type.",
-			Required:    true,
-
-			Elem: &schema.Schema{Type: schema.TypeString},
+			Optional:    true, // minobjects == 0
+			Elem:        &schema.Schema{Type: schema.TypeString},
 		},
 		"enabled": {
 			Type:        schema.TypeBool,
@@ -47,11 +46,10 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"filters": {
 			Type:        schema.TypeList,
 			Description: "Defines the filters for the user action. Filters apply at the moment of extracting the data and only sessions that satisfy the filtering criteria will be used to extract the custom metrics. You will not be able to modify these filters in the metric data explorer. For example, using \"type equals Xhr\" will give you only data from xhr actions, while forcing the rest of user actions of different types to be ignored.",
-			Required:    true,
-
-			Elem:     &schema.Resource{Schema: new(Filters).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Optional:    true, // minobjects == 0
+			Elem:        &schema.Resource{Schema: new(Filters).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 		"metric_key": {
 			Type:        schema.TypeString,
@@ -62,10 +60,9 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "Defines the type of value to be extracted from the user action. When using **user action counter**, the number of user actions is counted (similar to count(*) when using USQL). When using **user action field value**, the value of a user action field is extracted.",
 			Required:    true,
-
-			Elem:     &schema.Resource{Schema: new(MetricValue).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Elem:        &schema.Resource{Schema: new(MetricValue).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 	}
 }

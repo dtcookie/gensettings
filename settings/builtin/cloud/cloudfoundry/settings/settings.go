@@ -37,7 +37,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"active_gate_group": {
 			Type:        schema.TypeString,
 			Description: "ActiveGate group",
-			Optional:    true,
+			Optional:    true, // nullable
 		},
 		"api_url": {
 			Type:        schema.TypeString,

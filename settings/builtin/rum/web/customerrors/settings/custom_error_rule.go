@@ -58,10 +58,9 @@ func (me *CustomErrorRule) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "Capture settings",
 			Required:    true,
-
-			Elem:     &schema.Resource{Schema: new(CaptureSettings).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Elem:        &schema.Resource{Schema: new(CaptureSettings).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 		"key_matcher": {
 			Type:        schema.TypeString,
@@ -71,7 +70,7 @@ func (me *CustomErrorRule) Schema() map[string]*schema.Schema {
 		"key_pattern": {
 			Type:        schema.TypeString,
 			Description: "A case-insensitive key pattern",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 		"value_matcher": {
 			Type:        schema.TypeString,
@@ -81,7 +80,7 @@ func (me *CustomErrorRule) Schema() map[string]*schema.Schema {
 		"value_pattern": {
 			Type:        schema.TypeString,
 			Description: "A case-insensitive value pattern",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 	}
 }

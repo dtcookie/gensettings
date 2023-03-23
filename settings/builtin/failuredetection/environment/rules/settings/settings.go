@@ -36,15 +36,14 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "Conditions",
 			Required:    true,
-
-			Elem:     &schema.Resource{Schema: new(Conditions).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Elem:        &schema.Resource{Schema: new(Conditions).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 		"description": {
 			Type:        schema.TypeString,
 			Description: "Rule description",
-			Optional:    true,
+			Optional:    true, // nullable
 		},
 		"enabled": {
 			Type:        schema.TypeBool,

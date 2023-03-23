@@ -23,11 +23,11 @@ import (
 )
 
 type Settings struct {
-	AliasQueues   AliasQueues   `json:"aliasQueues"`   // Alias queues
-	ClusterQueues ClusterQueues `json:"clusterQueues"` // Cluster queues
-	Clusters      []string      `json:"clusters"`      // Name of the cluster(s) this queue manager is part of
-	Name          string        `json:"name"`          // Queue manager name
-	RemoteQueues  RemoteQueues  `json:"remoteQueues"`  // Remote queues
+	AliasQueues   AliasQueues   `json:"aliasQueues,omitempty"`   // Alias queues
+	ClusterQueues ClusterQueues `json:"clusterQueues,omitempty"` // Cluster queues
+	Clusters      []string      `json:"clusters,omitempty"`      // Name of the cluster(s) this queue manager is part of
+	Name          string        `json:"name"`                    // Queue manager name
+	RemoteQueues  RemoteQueues  `json:"remoteQueues,omitempty"`  // Remote queues
 }
 
 func (me *Settings) Schema() map[string]*schema.Schema {
@@ -35,27 +35,24 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"alias_queues": {
 			Type:        schema.TypeList,
 			Description: "Alias queues",
-			Required:    true,
-
-			Elem:     &schema.Resource{Schema: new(AliasQueues).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Optional:    true, // minobjects == 0
+			Elem:        &schema.Resource{Schema: new(AliasQueues).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 		"cluster_queues": {
 			Type:        schema.TypeList,
 			Description: "Cluster queues",
-			Required:    true,
-
-			Elem:     &schema.Resource{Schema: new(ClusterQueues).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Optional:    true, // minobjects == 0
+			Elem:        &schema.Resource{Schema: new(ClusterQueues).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 		"clusters": {
 			Type:        schema.TypeSet,
 			Description: "Name of the cluster(s) this queue manager is part of",
-			Required:    true,
-
-			Elem: &schema.Schema{Type: schema.TypeString},
+			Optional:    true, // minobjects == 0
+			Elem:        &schema.Schema{Type: schema.TypeString},
 		},
 		"name": {
 			Type:        schema.TypeString,
@@ -65,11 +62,10 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"remote_queues": {
 			Type:        schema.TypeList,
 			Description: "Remote queues",
-			Required:    true,
-
-			Elem:     &schema.Resource{Schema: new(RemoteQueues).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Optional:    true, // minobjects == 0
+			Elem:        &schema.Resource{Schema: new(RemoteQueues).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 	}
 }

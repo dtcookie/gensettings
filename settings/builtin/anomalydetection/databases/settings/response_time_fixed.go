@@ -35,28 +35,25 @@ func (me *ResponseTimeFixed) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "Avoid over-alerting",
 			Required:    true,
-
-			Elem:     &schema.Resource{Schema: new(OverAlertingProtection).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Elem:        &schema.Resource{Schema: new(OverAlertingProtection).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 		"response_time_all": {
 			Type:        schema.TypeList,
 			Description: "Alert if the median response time of all requests degrades beyond this threshold within an observation period of 5 minutes:",
 			Required:    true,
-
-			Elem:     &schema.Resource{Schema: new(ResponseTimeFixedAll).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Elem:        &schema.Resource{Schema: new(ResponseTimeFixedAll).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 		"response_time_slowest": {
 			Type:        schema.TypeList,
 			Description: "Alert if the response time of the slowest 10% of requests degrades beyond this threshold within an observation period of 5 minutes:",
 			Required:    true,
-
-			Elem:     &schema.Resource{Schema: new(ResponseTimeFixedSlowest).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Elem:        &schema.Resource{Schema: new(ResponseTimeFixedSlowest).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 		"sensitivity": {
 			Type:        schema.TypeString,

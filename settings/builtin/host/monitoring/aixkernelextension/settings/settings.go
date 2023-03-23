@@ -33,7 +33,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"enabled": {
 			Type:        schema.TypeBool,
 			Description: "This setting is enabled (`true`) or disabled (`false`)",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 		"host_id": {
 			Type:        schema.TypeString,

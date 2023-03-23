@@ -59,7 +59,7 @@ func (me *IpAddressExclusionRule) Schema() map[string]*schema.Schema {
 		"ip_to": {
 			Type:        schema.TypeString,
 			Description: "IP range end",
-			Optional:    true,
+			Optional:    true, // nullable
 		},
 	}
 }

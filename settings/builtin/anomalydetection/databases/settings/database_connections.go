@@ -38,12 +38,12 @@ func (me *DatabaseConnections) Schema() map[string]*schema.Schema {
 		"max_failed_connects": {
 			Type:        schema.TypeInt,
 			Description: "Threshold",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 		"time_period": {
 			Type:        schema.TypeInt,
 			Description: "Time span",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 	}
 }

@@ -23,9 +23,9 @@ import (
 )
 
 type Settings struct {
-	ApplicationID           string                      `json:"-" scope:"applicationId"` // The scope of this settings. If the settings should cover the whole environment, just don't specify any scope.
-	BrowserExclusionInclude bool                        `json:"browserExclusionInclude"` // These are the only browsers that should be monitored
-	BrowserExclusionList    BrowserExclusionListObjects `json:"browserExclusionList"`    // Browser exclusion list
+	ApplicationID           string                      `json:"-" scope:"applicationId"`        // The scope of this settings. If the settings should cover the whole environment, just don't specify any scope.
+	BrowserExclusionInclude bool                        `json:"browserExclusionInclude"`        // These are the only browsers that should be monitored
+	BrowserExclusionList    BrowserExclusionListObjects `json:"browserExclusionList,omitempty"` // Browser exclusion list
 }
 
 func (me *Settings) Schema() map[string]*schema.Schema {
@@ -43,11 +43,10 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"browser_exclusion_list": {
 			Type:        schema.TypeList,
 			Description: "Browser exclusion list",
-			Required:    true,
-
-			Elem:     &schema.Resource{Schema: new(BrowserExclusionListObjects).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Optional:    true, // minobjects == 0
+			Elem:        &schema.Resource{Schema: new(BrowserExclusionListObjects).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 	}
 }

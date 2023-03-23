@@ -58,11 +58,10 @@ func (me *Rule) Schema() map[string]*schema.Schema {
 		"attribute_rule": {
 			Type:        schema.TypeList,
 			Description: "no documentation available",
-			Optional:    true,
-
-			Elem:     &schema.Resource{Schema: new(AutoTagAttributeRule).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Optional:    true, // precondition
+			Elem:        &schema.Resource{Schema: new(AutoTagAttributeRule).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 		"enabled": {
 			Type:        schema.TypeBool,
@@ -72,7 +71,7 @@ func (me *Rule) Schema() map[string]*schema.Schema {
 		"entity_selector": {
 			Type:        schema.TypeString,
 			Description: "The documentation of the entity selector can be found [here](https://dt-url.net/apientityselector).",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 		"type": {
 			Type:        schema.TypeString,
@@ -82,7 +81,7 @@ func (me *Rule) Schema() map[string]*schema.Schema {
 		"value_format": {
 			Type:        schema.TypeString,
 			Description: "Type '{' for placeholder suggestions",
-			Optional:    true,
+			Optional:    true, // nullable
 		},
 		"value_normalization": {
 			Type:        schema.TypeString,

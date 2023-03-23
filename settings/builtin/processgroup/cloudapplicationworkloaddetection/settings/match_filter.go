@@ -37,7 +37,7 @@ func (me *MatchFilter) Schema() map[string]*schema.Schema {
 		"namespace": {
 			Type:        schema.TypeString,
 			Description: "Namespace name",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 	}
 }

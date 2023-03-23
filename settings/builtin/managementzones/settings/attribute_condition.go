@@ -62,32 +62,32 @@ func (me *AttributeCondition) Schema() map[string]*schema.Schema {
 		"case_sensitive": {
 			Type:        schema.TypeBool,
 			Description: "Case sensitive",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 		"dynamic_key": {
 			Type:        schema.TypeString,
 			Description: "Dynamic key",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 		"dynamic_key_source": {
 			Type:        schema.TypeString,
 			Description: "Key source",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 		"entity_id": {
 			Type:        schema.TypeString,
 			Description: "Value",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 		"enum_value": {
 			Type:        schema.TypeString,
 			Description: "Value",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 		"integer_value": {
 			Type:        schema.TypeInt,
 			Description: "Value",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 		"key": {
 			Type:        schema.TypeString,
@@ -102,12 +102,12 @@ func (me *AttributeCondition) Schema() map[string]*schema.Schema {
 		"string_value": {
 			Type:        schema.TypeString,
 			Description: "Value",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 		"tag": {
 			Type:        schema.TypeString,
 			Description: "Format: `[CONTEXT]tagKey:tagValue`",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 	}
 }

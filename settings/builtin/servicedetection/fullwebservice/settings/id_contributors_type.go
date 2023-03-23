@@ -36,20 +36,18 @@ func (me *IdContributorsType) Schema() map[string]*schema.Schema {
 		"application_id": {
 			Type:        schema.TypeList,
 			Description: "Application identifier",
-			Optional:    true,
-
-			Elem:     &schema.Resource{Schema: new(ServiceIdContributor).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Optional:    true, // precondition
+			Elem:        &schema.Resource{Schema: new(ServiceIdContributor).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 		"context_root": {
 			Type:        schema.TypeList,
 			Description: "The context root is the first segment of the request URL after the Server name. For example, in the `www.dynatrace.com/support/help/dynatrace-api/` URL the context root is `/support`. The context root value can be found on the Service screen under **Properties and tags**.",
-			Optional:    true,
-
-			Elem:     &schema.Resource{Schema: new(ContextIdContributor).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Optional:    true, // precondition
+			Elem:        &schema.Resource{Schema: new(ContextIdContributor).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 		"detect_as_web_request_service": {
 			Type:        schema.TypeBool,
@@ -59,29 +57,26 @@ func (me *IdContributorsType) Schema() map[string]*schema.Schema {
 		"server_name": {
 			Type:        schema.TypeList,
 			Description: "Server name",
-			Optional:    true,
-
-			Elem:     &schema.Resource{Schema: new(ServiceIdContributor).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Optional:    true, // precondition
+			Elem:        &schema.Resource{Schema: new(ServiceIdContributor).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 		"web_service_name": {
 			Type:        schema.TypeList,
 			Description: "Web service name",
-			Optional:    true,
-
-			Elem:     &schema.Resource{Schema: new(ServiceIdContributor).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Optional:    true, // precondition
+			Elem:        &schema.Resource{Schema: new(ServiceIdContributor).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 		"web_service_namespace": {
 			Type:        schema.TypeList,
 			Description: "Web service namespace",
-			Optional:    true,
-
-			Elem:     &schema.Resource{Schema: new(ServiceIdContributor).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Optional:    true, // precondition
+			Elem:        &schema.Resource{Schema: new(ServiceIdContributor).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 	}
 }

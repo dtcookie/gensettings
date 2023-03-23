@@ -41,7 +41,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"custom_description": {
 			Type:        schema.TypeString,
 			Description: "The description of the SLO",
-			Optional:    true,
+			Optional:    true, // nullable
 		},
 		"enabled": {
 			Type:        schema.TypeBool,
@@ -52,10 +52,9 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "### Error budget burn rate",
 			Required:    true,
-
-			Elem:     &schema.Resource{Schema: new(ErrorBudgetBurnRate).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Elem:        &schema.Resource{Schema: new(ErrorBudgetBurnRate).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 		"evaluation_type": {
 			Type:        schema.TypeString,

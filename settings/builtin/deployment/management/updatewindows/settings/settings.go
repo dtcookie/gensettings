@@ -37,11 +37,10 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"daily_recurrence": {
 			Type:        schema.TypeList,
 			Description: "no documentation available",
-			Optional:    true,
-
-			Elem:     &schema.Resource{Schema: new(DailyRecurrence).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Optional:    true, // precondition
+			Elem:        &schema.Resource{Schema: new(DailyRecurrence).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 		"enabled": {
 			Type:        schema.TypeBool,
@@ -51,11 +50,10 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"monthly_recurrence": {
 			Type:        schema.TypeList,
 			Description: "no documentation available",
-			Optional:    true,
-
-			Elem:     &schema.Resource{Schema: new(MonthlyRecurrence).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Optional:    true, // precondition
+			Elem:        &schema.Resource{Schema: new(MonthlyRecurrence).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 		"name": {
 			Type:        schema.TypeString,
@@ -65,11 +63,10 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"once_recurrence": {
 			Type:        schema.TypeList,
 			Description: "no documentation available",
-			Optional:    true,
-
-			Elem:     &schema.Resource{Schema: new(OnceRecurrence).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Optional:    true, // precondition
+			Elem:        &schema.Resource{Schema: new(OnceRecurrence).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 		"recurrence": {
 			Type:        schema.TypeString,
@@ -79,11 +76,10 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"weekly_recurrence": {
 			Type:        schema.TypeList,
 			Description: "no documentation available",
-			Optional:    true,
-
-			Elem:     &schema.Resource{Schema: new(WeeklyRecurrence).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Optional:    true, // precondition
+			Elem:        &schema.Resource{Schema: new(WeeklyRecurrence).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 	}
 }

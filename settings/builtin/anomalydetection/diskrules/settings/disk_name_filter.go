@@ -37,7 +37,7 @@ func (me *DiskNameFilter) Schema() map[string]*schema.Schema {
 		"value": {
 			Type:        schema.TypeString,
 			Description: "Matching text",
-			Optional:    true,
+			Optional:    true, // nullable
 		},
 	}
 }

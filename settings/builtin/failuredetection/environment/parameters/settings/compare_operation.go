@@ -35,7 +35,7 @@ func (me *CompareOperation) Schema() map[string]*schema.Schema {
 		"case_sensitive": {
 			Type:        schema.TypeBool,
 			Description: "Case sensitive",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 		"compare_operation_type": {
 			Type:        schema.TypeString,
@@ -45,17 +45,17 @@ func (me *CompareOperation) Schema() map[string]*schema.Schema {
 		"double_value": {
 			Type:        schema.TypeFloat,
 			Description: "Value",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 		"int_value": {
 			Type:        schema.TypeInt,
 			Description: "Value",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 		"text_value": {
 			Type:        schema.TypeString,
 			Description: "Value",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 	}
 }

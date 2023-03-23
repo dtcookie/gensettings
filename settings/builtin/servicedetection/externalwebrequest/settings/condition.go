@@ -72,50 +72,46 @@ func (me *Condition) Schema() map[string]*schema.Schema {
 		"framework": {
 			Type:        schema.TypeSet,
 			Description: "Technology",
-			Optional:    true,
-
-			Elem: &schema.Schema{Type: schema.TypeString},
+			Optional:    true, // precondition
+			Elem:        &schema.Schema{Type: schema.TypeString},
 		},
 		"ignore_case": {
 			Type:        schema.TypeBool,
 			Description: "Ignore case sensitivity for texts.",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 		"int_value": {
 			Type:        schema.TypeInt,
 			Description: "Value",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 		"int_values": {
 			Type:        schema.TypeSet,
 			Description: "Values",
-			Optional:    true,
-
-			Elem: &schema.Schema{Type: schema.TypeInt},
+			Optional:    true, // precondition
+			Elem:        &schema.Schema{Type: schema.TypeInt},
 		},
 		"ip_range_from": {
 			Type:        schema.TypeString,
 			Description: "From",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 		"ip_range_to": {
 			Type:        schema.TypeString,
 			Description: "To",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 		"tag_values": {
 			Type:        schema.TypeSet,
 			Description: "If multiple values are specified, at least one of them must match for the condition to match",
-			Optional:    true,
-
-			Elem: &schema.Schema{Type: schema.TypeString},
+			Optional:    true, // precondition
+			Elem:        &schema.Schema{Type: schema.TypeString},
 		},
 		"text_values": {
 			Type:        schema.TypeSet,
 			Description: "If multiple values are specified, at least one of them must match for the condition to match",
-			Optional:    true,
-
-			Elem: &schema.Schema{Type: schema.TypeString},
+			Optional:    true, // precondition
+			Elem:        &schema.Schema{Type: schema.TypeString},
 		},
 	}
 }

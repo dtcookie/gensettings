@@ -36,10 +36,9 @@ func (me *HighMemoryDetectionThresholds) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "no documentation available",
 			Required:    true,
-
-			Elem:     &schema.Resource{Schema: new(EventThresholds).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Elem:        &schema.Resource{Schema: new(EventThresholds).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 		"page_faults_per_second_non_windows": {
 			Type:        schema.TypeInt,

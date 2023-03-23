@@ -39,25 +39,23 @@ func (me *ErrorRate) Schema() map[string]*schema.Schema {
 		"error_rate_auto": {
 			Type:        schema.TypeList,
 			Description: "Alert if the percentage of failing user actions increases by **both** the absolute and relative thresholds:",
-			Optional:    true,
-
-			Elem:     &schema.Resource{Schema: new(ErrorRateAuto).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Optional:    true, // precondition
+			Elem:        &schema.Resource{Schema: new(ErrorRateAuto).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 		"error_rate_detection_mode": {
 			Type:        schema.TypeString,
 			Description: "Possible Values: `Auto`, `Fixed`",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 		"error_rate_fixed": {
 			Type:        schema.TypeList,
 			Description: "no documentation available",
-			Optional:    true,
-
-			Elem:     &schema.Resource{Schema: new(ErrorRateFixed).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Optional:    true, // precondition
+			Elem:        &schema.Resource{Schema: new(ErrorRateFixed).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 	}
 }

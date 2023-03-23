@@ -45,8 +45,8 @@ func (me *QueueManagers) UnmarshalHCL(decoder hcl.Decoder) error {
 }
 
 type QueueManager struct {
-	Name              string   `json:"name"`              // Queue manager name
-	QueueManagerQueue []string `json:"queueManagerQueue"` // Queues
+	Name              string   `json:"name"`                        // Queue manager name
+	QueueManagerQueue []string `json:"queueManagerQueue,omitempty"` // Queues
 }
 
 func (me *QueueManager) Schema() map[string]*schema.Schema {
@@ -59,9 +59,8 @@ func (me *QueueManager) Schema() map[string]*schema.Schema {
 		"queue_manager_queue": {
 			Type:        schema.TypeSet,
 			Description: "Queues",
-			Required:    true,
-
-			Elem: &schema.Schema{Type: schema.TypeString},
+			Optional:    true, // minobjects == 0
+			Elem:        &schema.Schema{Type: schema.TypeString},
 		},
 	}
 }

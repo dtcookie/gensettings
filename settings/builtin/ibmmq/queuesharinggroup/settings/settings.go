@@ -23,9 +23,9 @@ import (
 )
 
 type Settings struct {
-	Name          string   `json:"name"`          // Queue sharing group name
-	QueueManagers []string `json:"queueManagers"` // Queue managers
-	SharedQueues  []string `json:"sharedQueues"`  // Shared queues
+	Name          string   `json:"name"`                    // Queue sharing group name
+	QueueManagers []string `json:"queueManagers,omitempty"` // Queue managers
+	SharedQueues  []string `json:"sharedQueues,omitempty"`  // Shared queues
 }
 
 func (me *Settings) Schema() map[string]*schema.Schema {
@@ -38,16 +38,14 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"queue_managers": {
 			Type:        schema.TypeSet,
 			Description: "Queue managers",
-			Required:    true,
-
-			Elem: &schema.Schema{Type: schema.TypeString},
+			Optional:    true, // minobjects == 0
+			Elem:        &schema.Schema{Type: schema.TypeString},
 		},
 		"shared_queues": {
 			Type:        schema.TypeSet,
 			Description: "Shared queues",
-			Required:    true,
-
-			Elem: &schema.Schema{Type: schema.TypeString},
+			Optional:    true, // minobjects == 0
+			Elem:        &schema.Schema{Type: schema.TypeString},
 		},
 	}
 }

@@ -66,7 +66,7 @@ func (me *CookieEntry) Schema() map[string]*schema.Schema {
 		"path": {
 			Type:        schema.TypeString,
 			Description: "Enclose placeholder values in brackets, for example \\{email\\}",
-			Optional:    true,
+			Optional:    true, // nullable
 		},
 		"value": {
 			Type:        schema.TypeString,

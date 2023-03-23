@@ -48,17 +48,17 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"active_gate_group": {
 			Type:        schema.TypeString,
 			Description: "ActiveGate Group",
-			Optional:    true,
+			Optional:    true, // nullable & precondition
 		},
 		"auth_token": {
 			Type:        schema.TypeString,
 			Description: "Create a bearer token for [Kubernetes](https://dt-url.net/og43szq \"Kubernetes\") or [OpenShift](https://dt-url.net/7l43xtp \"OpenShift\").",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 		"certificate_check_enabled": {
 			Type:        schema.TypeBool,
 			Description: "Require valid certificates for communication with API server (recommended)",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 		"cloud_application_pipeline_enabled": {
 			Type:        schema.TypeBool,
@@ -68,7 +68,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"cluster_id": {
 			Type:        schema.TypeString,
 			Description: "Unique ID of the cluster, the containerized ActiveGate is deployed to. Defaults to the UUID of the kube-system namespace. The cluster ID of containerized ActiveGates is shown on the Deployment status screen.",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 		"cluster_id_enabled": {
 			Type:        schema.TypeBool,
@@ -83,16 +83,15 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"endpoint_url": {
 			Type:        schema.TypeString,
 			Description: "Get the API URL for [Kubernetes](https://dt-url.net/kz23snj \"Kubernetes\") or [OpenShift](https://dt-url.net/d623xgw \"OpenShift\").",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 		"event_patterns": {
 			Type:        schema.TypeList,
 			Description: "Define Kubernetes event filters to ingest events into your environment. For more details, see the [documentation](https://dt-url.net/2201p0u).",
-			Optional:    true,
-
-			Elem:     &schema.Resource{Schema: new(EventComplexTypes).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Optional:    true, // precondition & minobjects == 0
+			Elem:        &schema.Resource{Schema: new(EventComplexTypes).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 		"event_processing_active": {
 			Type:        schema.TypeBool,
@@ -102,17 +101,17 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"filter_events": {
 			Type:        schema.TypeBool,
 			Description: "Include only events specified by Events Field Selectors",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 		"hostname_verification_enabled": {
 			Type:        schema.TypeBool,
 			Description: "Verify hostname in certificate against Kubernetes API URL",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 		"include_all_fdi_events": {
 			Type:        schema.TypeBool,
 			Description: "For a list of included events, see the [documentation](https://dt-url.net/l61d02no).",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 		"label": {
 			Type:        schema.TypeString,

@@ -37,7 +37,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"revision": {
 			Type:        schema.TypeString,
 			Description: "Revision",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 	}
 }

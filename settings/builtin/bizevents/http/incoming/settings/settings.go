@@ -41,10 +41,9 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "Event meta data",
 			Required:    true,
-
-			Elem:     &schema.Resource{Schema: new(EventComplex).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Elem:        &schema.Resource{Schema: new(EventComplex).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 		"rule_name": {
 			Type:        schema.TypeString,
@@ -61,10 +60,9 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "Define conditions to trigger business events from incoming web requests. Whenever one condition applies the event gets captured.",
 			Required:    true,
-
-			Elem:     &schema.Resource{Schema: new(MatcherComplexes).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Elem:        &schema.Resource{Schema: new(MatcherComplexes).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 	}
 }

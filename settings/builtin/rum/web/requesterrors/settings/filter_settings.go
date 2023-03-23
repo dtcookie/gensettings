@@ -32,12 +32,12 @@ func (me *FilterSettings) Schema() map[string]*schema.Schema {
 		"filter": {
 			Type:        schema.TypeString,
 			Description: "Possible Values: `BEGINS_WITH`, `CONTAINS`, `ENDS_WITH`, `EQUALS`",
-			Optional:    true,
+			Optional:    true, // nullable
 		},
 		"url": {
 			Type:        schema.TypeString,
 			Description: "no documentation available",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 	}
 }

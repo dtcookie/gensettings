@@ -32,10 +32,9 @@ func (me *MetadataFilter) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "Define filters for event properties. A maximum of 20 properties is allowed.",
 			Required:    true,
-
-			Elem:     &schema.Resource{Schema: new(MetadataFilterItems).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Elem:        &schema.Resource{Schema: new(MetadataFilterItems).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 	}
 }

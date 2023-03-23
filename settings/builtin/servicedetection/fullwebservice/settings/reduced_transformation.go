@@ -58,27 +58,27 @@ func (me *ReducedTransformation) Schema() map[string]*schema.Schema {
 		"include_hex_numbers": {
 			Type:        schema.TypeBool,
 			Description: "include hexadecimal numbers",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 		"min_digit_count": {
 			Type:        schema.TypeInt,
 			Description: "min digit count",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 		"prefix": {
 			Type:        schema.TypeString,
 			Description: "no documentation available",
-			Optional:    true,
+			Optional:    true, // nullable & precondition
 		},
 		"replacement_value": {
 			Type:        schema.TypeString,
 			Description: "replacement",
-			Optional:    true,
+			Optional:    true, // nullable & precondition
 		},
 		"suffix": {
 			Type:        schema.TypeString,
 			Description: "no documentation available",
-			Optional:    true,
+			Optional:    true, // nullable & precondition
 		},
 		"transformation_type": {
 			Type:        schema.TypeString,

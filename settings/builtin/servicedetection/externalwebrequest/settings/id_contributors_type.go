@@ -35,19 +35,17 @@ func (me *IdContributorsType) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "Application identifier",
 			Required:    true,
-
-			Elem:     &schema.Resource{Schema: new(ServiceIdContributor).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Elem:        &schema.Resource{Schema: new(ServiceIdContributor).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 		"context_root": {
 			Type:        schema.TypeList,
 			Description: "URL context root",
 			Required:    true,
-
-			Elem:     &schema.Resource{Schema: new(ContextIdContributor).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Elem:        &schema.Resource{Schema: new(ContextIdContributor).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 		"port_for_service_id": {
 			Type:        schema.TypeBool,
@@ -58,10 +56,9 @@ func (me *IdContributorsType) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "Public domain name",
 			Required:    true,
-
-			Elem:     &schema.Resource{Schema: new(PublicDomainIdContributor).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Elem:        &schema.Resource{Schema: new(PublicDomainIdContributor).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 	}
 }

@@ -62,47 +62,47 @@ func (me *Transformation) Schema() map[string]*schema.Schema {
 		"include_hex_numbers": {
 			Type:        schema.TypeBool,
 			Description: "include hexadecimal numbers",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 		"min_digit_count": {
 			Type:        schema.TypeInt,
 			Description: "min digit count",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 		"prefix": {
 			Type:        schema.TypeString,
 			Description: "no documentation available",
-			Optional:    true,
+			Optional:    true, // nullable & precondition
 		},
 		"replacement_value": {
 			Type:        schema.TypeString,
 			Description: "replacement",
-			Optional:    true,
+			Optional:    true, // nullable & precondition
 		},
 		"segment_count": {
 			Type:        schema.TypeInt,
 			Description: "How many segments should be taken.",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 		"select_index": {
 			Type:        schema.TypeInt,
 			Description: "select index",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 		"split_delimiter": {
 			Type:        schema.TypeString,
 			Description: "split by",
-			Optional:    true,
+			Optional:    true, // nullable & precondition
 		},
 		"suffix": {
 			Type:        schema.TypeString,
 			Description: "no documentation available",
-			Optional:    true,
+			Optional:    true, // nullable & precondition
 		},
 		"take_from_end": {
 			Type:        schema.TypeBool,
 			Description: "take from end",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 		"transformation_type": {
 			Type:        schema.TypeString,

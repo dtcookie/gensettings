@@ -36,46 +36,41 @@ func (me *Network) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "no documentation available",
 			Required:    true,
-
-			Elem:     &schema.Resource{Schema: new(HighNetworkDetection).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Elem:        &schema.Resource{Schema: new(HighNetworkDetection).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 		"network_dropped_packets_detection": {
 			Type:        schema.TypeList,
 			Description: "no documentation available",
 			Required:    true,
-
-			Elem:     &schema.Resource{Schema: new(NetworkDroppedPacketsDetection).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Elem:        &schema.Resource{Schema: new(NetworkDroppedPacketsDetection).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 		"network_errors_detection": {
 			Type:        schema.TypeList,
 			Description: "no documentation available",
 			Required:    true,
-
-			Elem:     &schema.Resource{Schema: new(NetworkErrorsDetection).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Elem:        &schema.Resource{Schema: new(NetworkErrorsDetection).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 		"network_high_retransmission_detection": {
 			Type:        schema.TypeList,
 			Description: "no documentation available",
 			Required:    true,
-
-			Elem:     &schema.Resource{Schema: new(NetworkHighRetransmissionDetection).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Elem:        &schema.Resource{Schema: new(NetworkHighRetransmissionDetection).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 		"network_tcp_problems_detection": {
 			Type:        schema.TypeList,
 			Description: "no documentation available",
 			Required:    true,
-
-			Elem:     &schema.Resource{Schema: new(NetworkTcpProblemsDetection).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Elem:        &schema.Resource{Schema: new(NetworkTcpProblemsDetection).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 	}
 }

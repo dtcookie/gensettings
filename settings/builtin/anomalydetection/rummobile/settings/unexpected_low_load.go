@@ -37,7 +37,7 @@ func (me *UnexpectedLowLoad) Schema() map[string]*schema.Schema {
 		"threshold_percentage": {
 			Type:        schema.TypeFloat,
 			Description: "Dynatrace learns your typical application traffic over an observation period of one week. Depending on this expected value Dynatrace detects abnormal traffic drops within your application.",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 	}
 }

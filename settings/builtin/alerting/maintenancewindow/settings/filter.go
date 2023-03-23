@@ -46,10 +46,10 @@ func (me *Filters) UnmarshalHCL(decoder hcl.Decoder) error {
 
 // Filter. Configured values of one filter are evaluated together (**AND**).. The maintenance window is applied onto an entity if it matches all of the values of at least one filter.
 type Filter struct {
-	EntityID        *string  `json:"entityId,omitempty"`   // A specific entity that should match this maintenance window.. **Note**: If an entity type filter value is set, it must be equal to the type of the selected entity. Otherwise this maintenance window will not match.
-	EntityTags      []string `json:"entityTags"`           // Entities which contain all of the configured tags will match this maintenance window.
-	EntityType      *string  `json:"entityType,omitempty"` // Type of entities this maintenance window should match.. If no entity type is selected all entities regardless of the type will match.
-	ManagementZones []string `json:"managementZones"`      // Entities which are part of all the configured management zones will match this maintenance window.
+	EntityID        *string  `json:"entityId,omitempty"`        // A specific entity that should match this maintenance window.. **Note**: If an entity type filter value is set, it must be equal to the type of the selected entity. Otherwise this maintenance window will not match.
+	EntityTags      []string `json:"entityTags,omitempty"`      // Entities which contain all of the configured tags will match this maintenance window.
+	EntityType      *string  `json:"entityType,omitempty"`      // Type of entities this maintenance window should match.. If no entity type is selected all entities regardless of the type will match.
+	ManagementZones []string `json:"managementZones,omitempty"` // Entities which are part of all the configured management zones will match this maintenance window.
 }
 
 func (me *Filter) Schema() map[string]*schema.Schema {
@@ -57,26 +57,24 @@ func (me *Filter) Schema() map[string]*schema.Schema {
 		"entity_id": {
 			Type:        schema.TypeString,
 			Description: "A specific entity that should match this maintenance window.. **Note**: If an entity type filter value is set, it must be equal to the type of the selected entity. Otherwise this maintenance window will not match.",
-			Optional:    true,
+			Optional:    true, // nullable
 		},
 		"entity_tags": {
 			Type:        schema.TypeSet,
 			Description: "Entities which contain all of the configured tags will match this maintenance window.",
-			Required:    true,
-
-			Elem: &schema.Schema{Type: schema.TypeString},
+			Optional:    true, // minobjects == 0
+			Elem:        &schema.Schema{Type: schema.TypeString},
 		},
 		"entity_type": {
 			Type:        schema.TypeString,
 			Description: "Type of entities this maintenance window should match.. If no entity type is selected all entities regardless of the type will match.",
-			Optional:    true,
+			Optional:    true, // nullable
 		},
 		"management_zones": {
 			Type:        schema.TypeSet,
 			Description: "Entities which are part of all the configured management zones will match this maintenance window.",
-			Required:    true,
-
-			Elem: &schema.Schema{Type: schema.TypeString},
+			Optional:    true, // minobjects == 0
+			Elem:        &schema.Schema{Type: schema.TypeString},
 		},
 	}
 }

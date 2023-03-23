@@ -88,14 +88,29 @@ func (me *TypeResolver) ResolveType(name string) *reflection.Type {
 		}
 		comment = strings.TrimSpace(strings.TrimPrefix(strings.ReplaceAll(strings.TrimSpace(comment), "Type '{' for placeholder hints.", ""), "."))
 		property := &reflection.Property{
-			Name:     propertyName,
-			Type:     me.resolvePropertyType(propertyName, propertyDefinition),
-			Comment:  comment,
-			Optional: propertyDefinition.Nullable || propertyDefinition.Precondition != nil,
+			Name:            propertyName,
+			Type:            me.resolvePropertyType(propertyName, propertyDefinition),
+			Comment:         comment,
+			Optional:        propertyDefinition.Nullable || propertyDefinition.Precondition != nil || (propertyDefinition.MinObjects != nil && *propertyDefinition.MinObjects == 0),
+			OptionalComment: OptionalComment(propertyDefinition),
 		}
 		structType.Properties[propertyName] = property
 	}
 	return structType
+}
+
+func OptionalComment(propertyDefinition property.Definition) string {
+	s := ""
+	if propertyDefinition.Nullable {
+		s = s + " & nullable"
+	}
+	if propertyDefinition.Precondition != nil {
+		s = s + " & precondition"
+	}
+	if propertyDefinition.MinObjects != nil && *propertyDefinition.MinObjects == 0 {
+		s = s + " & minobjects == 0"
+	}
+	return strings.TrimPrefix(s, " & ")
 }
 
 func (me *TypeResolver) resolvePropertyType(propertyName string, propertyDefinition property.Definition) *reflection.Type {

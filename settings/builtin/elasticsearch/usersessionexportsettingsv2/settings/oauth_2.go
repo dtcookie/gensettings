@@ -56,7 +56,7 @@ func (me *OAuth2) Schema() map[string]*schema.Schema {
 		"scope": {
 			Type:        schema.TypeString,
 			Description: "The scope of access you are requesting",
-			Optional:    true,
+			Optional:    true, // nullable
 		},
 		"send_credentials": {
 			Type:        schema.TypeString,

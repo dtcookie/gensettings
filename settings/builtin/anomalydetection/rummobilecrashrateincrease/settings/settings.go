@@ -39,10 +39,9 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "Crash rate increase",
 			Required:    true,
-
-			Elem:     &schema.Resource{Schema: new(CrashRateIncrease).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Elem:        &schema.Resource{Schema: new(CrashRateIncrease).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 	}
 }

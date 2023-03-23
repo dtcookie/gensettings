@@ -25,7 +25,7 @@ import (
 type Settings struct {
 	Description *string `json:"description,omitempty"` // Description
 	Name        string  `json:"name"`                  // **Be careful when renaming** - if there are policies that are referencing this Management zone, they will need to be adapted to the new name!
-	Rules       Rules   `json:"rules"`                 // Rules
+	Rules       Rules   `json:"rules,omitempty"`       // Rules
 }
 
 func (me *Settings) Schema() map[string]*schema.Schema {
@@ -33,7 +33,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"description": {
 			Type:        schema.TypeString,
 			Description: "Description",
-			Optional:    true,
+			Optional:    true, // nullable
 		},
 		"name": {
 			Type:        schema.TypeString,
@@ -43,11 +43,10 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"rules": {
 			Type:        schema.TypeList,
 			Description: "Rules",
-			Required:    true,
-
-			Elem:     &schema.Resource{Schema: new(Rules).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Optional:    true, // minobjects == 0
+			Elem:        &schema.Resource{Schema: new(Rules).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 	}
 }

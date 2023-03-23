@@ -7,13 +7,14 @@ import (
 )
 
 type Property struct {
-	Name          string `json:"name"`
-	RawName       string
-	Type          *Type                        `json:"type,omitempty"`
-	Comment       string                       `json:"comment,omitempty"`
-	Optional      bool                         `json:"optional"`
-	Preconditions []*precondition.Precondition `json:"preconditions"`
-	Scope         string                       `json:"scope"`
+	Name            string `json:"name"`
+	RawName         string
+	Type            *Type  `json:"type,omitempty"`
+	Comment         string `json:"comment,omitempty"`
+	Optional        bool   `json:"optional"`
+	OptionalComment string
+	Preconditions   []*precondition.Precondition `json:"preconditions"`
+	Scope           string                       `json:"scope"`
 }
 
 func (me *Property) Rewire(original *Type, replacement *Type) {

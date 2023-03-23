@@ -23,9 +23,9 @@ import (
 )
 
 type Settings struct {
-	ApplicationID                          *string  `json:"-" scope:"applicationId"`                // The scope of this settings. If the settings should cover the whole environment, just don't specify any scope.
-	EnableResourceCapturing                bool     `json:"enableResourceCapturing"`                // When turned on, all CSS resources from all sessions are captured. For details, see [Resource capture](https://dt-url.net/sr-resource-capturing).
-	ResourceCaptureUrlExclusionPatternList []string `json:"resourceCaptureUrlExclusionPatternList"` // Add exclusion rules to avoid the capture of resources from certain pages.
+	ApplicationID                          *string  `json:"-" scope:"applicationId"`                          // The scope of this settings. If the settings should cover the whole environment, just don't specify any scope.
+	EnableResourceCapturing                bool     `json:"enableResourceCapturing"`                          // When turned on, all CSS resources from all sessions are captured. For details, see [Resource capture](https://dt-url.net/sr-resource-capturing).
+	ResourceCaptureUrlExclusionPatternList []string `json:"resourceCaptureUrlExclusionPatternList,omitempty"` // Add exclusion rules to avoid the capture of resources from certain pages.
 }
 
 func (me *Settings) Schema() map[string]*schema.Schema {
@@ -44,9 +44,8 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"resource_capture_url_exclusion_pattern_list": {
 			Type:        schema.TypeSet,
 			Description: "Add exclusion rules to avoid the capture of resources from certain pages.",
-			Required:    true,
-
-			Elem: &schema.Schema{Type: schema.TypeString},
+			Optional:    true, // minobjects == 0
+			Elem:        &schema.Schema{Type: schema.TypeString},
 		},
 	}
 }

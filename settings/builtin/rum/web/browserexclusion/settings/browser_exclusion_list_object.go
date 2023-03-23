@@ -61,17 +61,17 @@ func (me *BrowserExclusionListObject) Schema() map[string]*schema.Schema {
 		"platform": {
 			Type:        schema.TypeString,
 			Description: "Possible Values: `ALL`, `DESKTOP`, `MOBILE`",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 		"version": {
 			Type:        schema.TypeInt,
 			Description: "no documentation available",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 		"version_comparator": {
 			Type:        schema.TypeString,
 			Description: "Possible Values: `EQUALS`, `GREATER_OR_EQUAL`, `LESS_OR_EQUAL`",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 	}
 }

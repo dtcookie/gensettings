@@ -61,7 +61,7 @@ func (me *DimensionCondition) Schema() map[string]*schema.Schema {
 		"key": {
 			Type:        schema.TypeString,
 			Description: "no documentation available",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 		"rule_matcher": {
 			Type:        schema.TypeString,

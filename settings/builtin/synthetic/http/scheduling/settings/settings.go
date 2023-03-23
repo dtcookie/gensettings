@@ -23,9 +23,9 @@ import (
 )
 
 type Settings struct {
-	Frequency int       `json:"frequency"`       // How often the monitor is executed. Supported values are 1, 2, 5, 10, 15, 30 and 60 minutes
-	Locations Locations `json:"locations"`       // Locations
-	Scope     string    `json:"-" scope:"scope"` // The scope of this setting (HTTP_CHECK)
+	Frequency int       `json:"frequency"`           // How often the monitor is executed. Supported values are 1, 2, 5, 10, 15, 30 and 60 minutes
+	Locations Locations `json:"locations,omitempty"` // Locations
+	Scope     string    `json:"-" scope:"scope"`     // The scope of this setting (HTTP_CHECK)
 }
 
 func (me *Settings) Schema() map[string]*schema.Schema {
@@ -38,11 +38,10 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"locations": {
 			Type:        schema.TypeList,
 			Description: "Locations",
-			Required:    true,
-
-			Elem:     &schema.Resource{Schema: new(Locations).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Optional:    true, // minobjects == 0
+			Elem:        &schema.Resource{Schema: new(Locations).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 		"scope": {
 			Type:        schema.TypeString,

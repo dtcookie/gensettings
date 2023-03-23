@@ -37,7 +37,7 @@ func (me *DoNotTrack) Schema() map[string]*schema.Schema {
 		"do_not_track": {
 			Type:        schema.TypeString,
 			Description: "Possible Values: `Anonymous`, `Disable_rum`",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 	}
 }

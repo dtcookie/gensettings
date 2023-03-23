@@ -39,25 +39,23 @@ func (me *PublicDomainTransformationSet) Schema() map[string]*schema.Schema {
 		"copy_from_host_name": {
 			Type:        schema.TypeBool,
 			Description: "Use the detected host name instead of the request's domain name.",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 		"transformations": {
 			Type:        schema.TypeList,
 			Description: "Choose how the value will be transformed before contributing to the Service Id. All of the Transformations are always applied. Transformations are applied in the order they are specified, and the output of the previous transformation is the input for the next one. The resulting value contributes to the Service Id and can be found on the Service screen under **Properties and tags**.",
-			Optional:    true,
-
-			Elem:     &schema.Resource{Schema: new(Transformations).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Optional:    true, // precondition
+			Elem:        &schema.Resource{Schema: new(Transformations).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 		"value_override": {
 			Type:        schema.TypeList,
 			Description: "The value to be used instead of the detected value.",
-			Optional:    true,
-
-			Elem:     &schema.Resource{Schema: new(ValueOverride).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Optional:    true, // precondition
+			Elem:        &schema.Resource{Schema: new(ValueOverride).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 	}
 }

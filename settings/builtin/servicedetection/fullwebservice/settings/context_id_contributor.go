@@ -37,11 +37,10 @@ func (me *ContextIdContributor) Schema() map[string]*schema.Schema {
 		"service_id_contributor": {
 			Type:        schema.TypeList,
 			Description: "no documentation available",
-			Optional:    true,
-
-			Elem:     &schema.Resource{Schema: new(ContextRoot).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Optional:    true, // precondition
+			Elem:        &schema.Resource{Schema: new(ContextRoot).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 	}
 }

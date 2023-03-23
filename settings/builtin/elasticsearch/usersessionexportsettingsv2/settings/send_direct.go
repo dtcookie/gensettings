@@ -38,12 +38,12 @@ func (me *SendDirect) Schema() map[string]*schema.Schema {
 		"doc_type": {
 			Type:        schema.TypeString,
 			Description: "Type of documents in the Elasticsearch index",
-			Optional:    true,
+			Optional:    true, // nullable & precondition
 		},
 		"index_name": {
 			Type:        schema.TypeString,
 			Description: "Name of the index where data is sent",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 	}
 }

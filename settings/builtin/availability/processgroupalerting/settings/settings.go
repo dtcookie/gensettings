@@ -34,7 +34,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"alerting_mode": {
 			Type:        schema.TypeString,
 			Description: "Possible Values: `ON_INSTANCE_COUNT_VIOLATION`, `ON_PGI_UNAVAILABILITY`",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 		"enabled": {
 			Type:        schema.TypeBool,
@@ -44,7 +44,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"minimum_instance_threshold": {
 			Type:        schema.TypeInt,
 			Description: "Open a new problem if the number of active process instances in the group is fewer than:",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 		"process_group_id": {
 			Type:        schema.TypeString,

@@ -50,7 +50,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"process_type": {
 			Type:        schema.TypeString,
 			Description: "Note: Not all types can be detected at startup.",
-			Optional:    true,
+			Optional:    true, // nullable
 		},
 		"rule_type": {
 			Type:        schema.TypeString,

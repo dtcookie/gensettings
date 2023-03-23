@@ -34,19 +34,17 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "Hosts",
 			Required:    true,
-
-			Elem:     &schema.Resource{Schema: new(Host).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Elem:        &schema.Resource{Schema: new(Host).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 		"network": {
 			Type:        schema.TypeList,
 			Description: "Network",
 			Required:    true,
-
-			Elem:     &schema.Resource{Schema: new(Network).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Elem:        &schema.Resource{Schema: new(Network).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 		"scope": {
 			Type:        schema.TypeString,

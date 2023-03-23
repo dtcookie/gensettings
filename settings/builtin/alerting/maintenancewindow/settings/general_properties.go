@@ -35,7 +35,7 @@ func (me *GeneralProperties) Schema() map[string]*schema.Schema {
 		"description": {
 			Type:        schema.TypeString,
 			Description: "A short description of the maintenance purpose.",
-			Optional:    true,
+			Optional:    true, // nullable
 		},
 		"disable_synthetic_monitor_execution": {
 			Type:        schema.TypeBool,

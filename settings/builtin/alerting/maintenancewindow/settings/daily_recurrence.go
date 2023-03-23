@@ -33,19 +33,17 @@ func (me *DailyRecurrence) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "Recurrence range",
 			Required:    true,
-
-			Elem:     &schema.Resource{Schema: new(RecurrenceRange).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Elem:        &schema.Resource{Schema: new(RecurrenceRange).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 		"time_window": {
 			Type:        schema.TypeList,
 			Description: "Time window",
 			Required:    true,
-
-			Elem:     &schema.Resource{Schema: new(TimeWindow).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Elem:        &schema.Resource{Schema: new(TimeWindow).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 	}
 }

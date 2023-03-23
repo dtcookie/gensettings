@@ -34,25 +34,23 @@ func (me *CrashRateIncrease) Schema() map[string]*schema.Schema {
 		"crash_rate_increase_auto": {
 			Type:        schema.TypeList,
 			Description: "Alert to crash rate increases when the auto-detected baseline is exceeded and the application has a minimum number of active, non-distinctive users.",
-			Optional:    true,
-
-			Elem:     &schema.Resource{Schema: new(CrashRateIncreaseAuto).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Optional:    true, // precondition
+			Elem:        &schema.Resource{Schema: new(CrashRateIncreaseAuto).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 		"crash_rate_increase_fixed": {
 			Type:        schema.TypeList,
 			Description: "Alert to crash rate increases when the defined threshold is exceeded and the application has a minimum number of active, non-distinctive users.",
-			Optional:    true,
-
-			Elem:     &schema.Resource{Schema: new(CrashRateIncreaseFixed).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Optional:    true, // precondition
+			Elem:        &schema.Resource{Schema: new(CrashRateIncreaseFixed).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 		"detection_mode": {
 			Type:        schema.TypeString,
 			Description: "Possible Values: `Auto`, `Fixed`",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 		"enabled": {
 			Type:        schema.TypeBool,

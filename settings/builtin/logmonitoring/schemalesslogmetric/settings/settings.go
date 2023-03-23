@@ -23,7 +23,7 @@ import (
 )
 
 type Settings struct {
-	Dimensions       []string `json:"dimensions"`
+	Dimensions       []string `json:"dimensions,omitempty"`
 	Enabled          bool     `json:"enabled"`                    // This setting is enabled (`true`) or disabled (`false`)
 	Key              string   `json:"key"`                        // Metric key
 	Measure          Measure  `json:"measure"`                    // Possible Values: `ATTRIBUTE`, `OCCURRENCE`
@@ -36,9 +36,8 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"dimensions": {
 			Type:        schema.TypeSet,
 			Description: "no documentation available",
-			Required:    true,
-
-			Elem: &schema.Schema{Type: schema.TypeString},
+			Optional:    true, // minobjects == 0
+			Elem:        &schema.Schema{Type: schema.TypeString},
 		},
 		"enabled": {
 			Type:        schema.TypeBool,
@@ -58,7 +57,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"measure_attribute": {
 			Type:        schema.TypeString,
 			Description: "Attribute",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 		"query": {
 			Type:        schema.TypeString,

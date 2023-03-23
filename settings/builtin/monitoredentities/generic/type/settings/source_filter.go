@@ -55,7 +55,7 @@ func (me *SourceFilter) Schema() map[string]*schema.Schema {
 		"condition": {
 			Type:        schema.TypeString,
 			Description: "Specify a filter that needs to match in order for the extraction to happen.. Three different filters are supported: `$eq(value)` will ensure that the source matches exactly 'value', `$prefix(value)` will ensure that the source begins with exactly 'value', '$exists()' will ensure that any source with matching dimension filter exists.\nIf your value contains the characters '(', ')' or '\\~', you need to escape them by adding a '\\~' in front of them.",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 		"source_type": {
 			Type:        schema.TypeString,

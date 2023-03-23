@@ -24,7 +24,7 @@ import (
 
 type WebHookNotification struct {
 	AcceptAnyCertificate     bool                       `json:"acceptAnyCertificate"`        // Accept any SSL certificate (including self-signed and invalid certificates)
-	Headers                  WebHookNotificationHeaders `json:"headers"`                     // A list of the additional HTTP headers.
+	Headers                  WebHookNotificationHeaders `json:"headers,omitempty"`           // A list of the additional HTTP headers.
 	NotifyClosedProblems     bool                       `json:"notifyClosedProblems"`        // Call webhook if problem is closed
 	NotifyEventMergesEnabled bool                       `json:"notifyEventMergesEnabled"`    // Call webhook if new events merge into existing problems
 	OAuth2Credentials        *OAuth2Credentials         `json:"oAuth2Credentials,omitempty"` // To authenticate your integration, the OAuth 2.0 *Client Credentials* Flow (Grant Type) is used. For details see [Client Credentials Flow](https://dt-url.net/ym22wsm)).\n\nThe obtained Access Token is subsequently provided in the *Authorization* header of the request carrying the notification payload.
@@ -43,11 +43,10 @@ func (me *WebHookNotification) Schema() map[string]*schema.Schema {
 		"headers": {
 			Type:        schema.TypeList,
 			Description: "A list of the additional HTTP headers.",
-			Required:    true,
-
-			Elem:     &schema.Resource{Schema: new(WebHookNotificationHeaders).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Optional:    true, // minobjects == 0
+			Elem:        &schema.Resource{Schema: new(WebHookNotificationHeaders).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 		"notify_closed_problems": {
 			Type:        schema.TypeBool,
@@ -62,11 +61,10 @@ func (me *WebHookNotification) Schema() map[string]*schema.Schema {
 		"o_auth_2_credentials": {
 			Type:        schema.TypeList,
 			Description: "To authenticate your integration, the OAuth 2.0 *Client Credentials* Flow (Grant Type) is used. For details see [Client Credentials Flow](https://dt-url.net/ym22wsm)).\n\nThe obtained Access Token is subsequently provided in the *Authorization* header of the request carrying the notification payload.",
-			Optional:    true,
-
-			Elem:     &schema.Resource{Schema: new(OAuth2Credentials).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Optional:    true, // precondition
+			Elem:        &schema.Resource{Schema: new(OAuth2Credentials).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 		"payload": {
 			Type:        schema.TypeString,
@@ -81,7 +79,7 @@ func (me *WebHookNotification) Schema() map[string]*schema.Schema {
 		"use_oauth_2": {
 			Type:        schema.TypeBool,
 			Description: "Use OAuth 2.0 for authentication",
-			Optional:    true,
+			Optional:    true, // nullable
 		},
 	}
 }

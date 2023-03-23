@@ -41,10 +41,9 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "## Processor definition\nAdd a rule definition using our syntax. [In our documentation](https://dt-url.net/8k03xm2) you will find instructions and application [examples](https://dt-url.net/m24305t).",
 			Required:    true,
-
-			Elem:     &schema.Resource{Schema: new(ProcessorDefinition).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Elem:        &schema.Resource{Schema: new(ProcessorDefinition).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 		"query": {
 			Type:        schema.TypeString,
@@ -60,10 +59,9 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "## Rule testing\n### 1. Paste a log / JSON sample",
 			Required:    true,
-
-			Elem:     &schema.Resource{Schema: new(RuleTesting).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Elem:        &schema.Resource{Schema: new(RuleTesting).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 	}
 }

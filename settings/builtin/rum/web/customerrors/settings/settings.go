@@ -23,7 +23,7 @@ import (
 )
 
 type Settings struct {
-	ErrorRules                           CustomErrorRules `json:"errorRules"`
+	ErrorRules                           CustomErrorRules `json:"errorRules,omitempty"`
 	IgnoreCustomErrorsInApdexCalculation bool             `json:"ignoreCustomErrorsInApdexCalculation"` // This setting overrides Apdex settings for individual rules listed below
 	Scope                                string           `json:"-" scope:"scope"`                      // The scope of this setting (APPLICATION, environment-default)
 }
@@ -33,11 +33,10 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"error_rules": {
 			Type:        schema.TypeList,
 			Description: "no documentation available",
-			Required:    true,
-
-			Elem:     &schema.Resource{Schema: new(CustomErrorRules).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Optional:    true, // minobjects == 0
+			Elem:        &schema.Resource{Schema: new(CustomErrorRules).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 		"ignore_custom_errors_in_apdex_calculation": {
 			Type:        schema.TypeBool,

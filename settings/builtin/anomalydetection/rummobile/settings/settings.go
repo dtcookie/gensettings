@@ -36,10 +36,9 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "Error rate increase",
 			Required:    true,
-
-			Elem:     &schema.Resource{Schema: new(ErrorRateIncrease).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Elem:        &schema.Resource{Schema: new(ErrorRateIncrease).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 		"scope": {
 			Type:        schema.TypeString,
@@ -51,28 +50,25 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "Slow user actions",
 			Required:    true,
-
-			Elem:     &schema.Resource{Schema: new(SlowUserActions).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Elem:        &schema.Resource{Schema: new(SlowUserActions).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 		"unexpected_high_load": {
 			Type:        schema.TypeList,
 			Description: "Unexpected high load",
 			Required:    true,
-
-			Elem:     &schema.Resource{Schema: new(UnexpectedHighLoad).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Elem:        &schema.Resource{Schema: new(UnexpectedHighLoad).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 		"unexpected_low_load": {
 			Type:        schema.TypeList,
 			Description: "Unexpected low load",
 			Required:    true,
-
-			Elem:     &schema.Resource{Schema: new(UnexpectedLowLoad).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Elem:        &schema.Resource{Schema: new(UnexpectedLowLoad).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 	}
 }

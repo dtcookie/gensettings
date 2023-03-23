@@ -55,12 +55,12 @@ func (me *DiskComplex) Schema() map[string]*schema.Schema {
 		"filesystem": {
 			Type:        schema.TypeString,
 			Description: "**File system type field:** the type of the file system to be excluded from monitoring. Examples:\n\n* ext4\n* ext3\n* btrfs\n* ext*\n\n⚠️ File system types are case sensitive! \n\nThe wildcard in the last example means to exclude matching file systems such as types ext4 and ext3",
-			Optional:    true,
+			Optional:    true, // nullable
 		},
 		"mountpoint": {
 			Type:        schema.TypeString,
 			Description: "**Disk or mount point path field:** the path to where the disk to be excluded from monitoring is mounted. Examples:\n\n* /mnt/my_disk\n* /staff/emp1\n* C:\\\n* /staff/*\n* /disk*\n\n ⚠️ Mount point paths are case sensitive! \n\nThe wildcard in **/staff/*** means to exclude every child folder of /staff.\n\nThe wildcard in **/disk*** means to exclude every mount point starting with /disk, for example /disk1, /disk99,  /diskabc",
-			Optional:    true,
+			Optional:    true, // nullable
 		},
 		"os": {
 			Type:        schema.TypeString,

@@ -32,16 +32,15 @@ func (me *ProcessInstanceExtraction) Schema() map[string]*schema.Schema {
 		"delimiter": {
 			Type:        schema.TypeList,
 			Description: "Optionally delimit this property between *From* and *To*.",
-			Optional:    true,
-
-			Elem:     &schema.Resource{Schema: new(Delimiter).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Optional:    true, // precondition
+			Elem:        &schema.Resource{Schema: new(Delimiter).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 		"property": {
 			Type:        schema.TypeString,
 			Description: "no documentation available",
-			Optional:    true,
+			Optional:    true, // nullable
 		},
 	}
 }

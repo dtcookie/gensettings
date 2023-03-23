@@ -46,9 +46,9 @@ func (me *AliasQueues) UnmarshalHCL(decoder hcl.Decoder) error {
 
 // AliasQueue. Alias queue
 type AliasQueue struct {
-	AliasQueue        string   `json:"aliasQueue"`        // Alias queue name
-	BaseQueue         string   `json:"baseQueue"`         // Base queue name
-	ClusterVisibility []string `json:"clusterVisibility"` // Name of the cluster(s) this alias should be visible in
+	AliasQueue        string   `json:"aliasQueue"`                  // Alias queue name
+	BaseQueue         string   `json:"baseQueue"`                   // Base queue name
+	ClusterVisibility []string `json:"clusterVisibility,omitempty"` // Name of the cluster(s) this alias should be visible in
 }
 
 func (me *AliasQueue) Schema() map[string]*schema.Schema {
@@ -66,9 +66,8 @@ func (me *AliasQueue) Schema() map[string]*schema.Schema {
 		"cluster_visibility": {
 			Type:        schema.TypeSet,
 			Description: "Name of the cluster(s) this alias should be visible in",
-			Required:    true,
-
-			Elem: &schema.Schema{Type: schema.TypeString},
+			Optional:    true, // minobjects == 0
+			Elem:        &schema.Schema{Type: schema.TypeString},
 		},
 	}
 }

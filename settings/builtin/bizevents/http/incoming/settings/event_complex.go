@@ -23,10 +23,10 @@ import (
 )
 
 type EventComplex struct {
-	Category *EventCategoryAttributeComplex `json:"category"` // Event category
-	Data     EventDataFieldComplexes        `json:"data"`     // Additional attributes for the business event.
-	Provider *EventAttributeComplex         `json:"provider"` // Event provider
-	Type     *EventAttributeComplex         `json:"type"`     // Event type
+	Category *EventCategoryAttributeComplex `json:"category"`       // Event category
+	Data     EventDataFieldComplexes        `json:"data,omitempty"` // Additional attributes for the business event.
+	Provider *EventAttributeComplex         `json:"provider"`       // Event provider
+	Type     *EventAttributeComplex         `json:"type"`           // Event type
 }
 
 func (me *EventComplex) Schema() map[string]*schema.Schema {
@@ -35,37 +35,33 @@ func (me *EventComplex) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "Event category",
 			Required:    true,
-
-			Elem:     &schema.Resource{Schema: new(EventCategoryAttributeComplex).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Elem:        &schema.Resource{Schema: new(EventCategoryAttributeComplex).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 		"data": {
 			Type:        schema.TypeList,
 			Description: "Additional attributes for the business event.",
-			Required:    true,
-
-			Elem:     &schema.Resource{Schema: new(EventDataFieldComplexes).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Optional:    true, // minobjects == 0
+			Elem:        &schema.Resource{Schema: new(EventDataFieldComplexes).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 		"provider": {
 			Type:        schema.TypeList,
 			Description: "Event provider",
 			Required:    true,
-
-			Elem:     &schema.Resource{Schema: new(EventAttributeComplex).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Elem:        &schema.Resource{Schema: new(EventAttributeComplex).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 		"type": {
 			Type:        schema.TypeList,
 			Description: "Event type",
 			Required:    true,
-
-			Elem:     &schema.Resource{Schema: new(EventAttributeComplex).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Elem:        &schema.Resource{Schema: new(EventAttributeComplex).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 	}
 }

@@ -66,14 +66,13 @@ func (me *Filter) Schema() map[string]*schema.Schema {
 		"value": {
 			Type:        schema.TypeString,
 			Description: "no documentation available",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 		"value_in": {
 			Type:        schema.TypeList,
 			Description: "Values",
-			Optional:    true,
-
-			Elem: &schema.Schema{Type: schema.TypeString},
+			Optional:    true, // precondition
+			Elem:        &schema.Schema{Type: schema.TypeString},
 		},
 	}
 }

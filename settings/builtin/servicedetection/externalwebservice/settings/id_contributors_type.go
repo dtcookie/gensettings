@@ -38,16 +38,15 @@ func (me *IdContributorsType) Schema() map[string]*schema.Schema {
 		"port_for_service_id": {
 			Type:        schema.TypeBool,
 			Description: "Let the Port contribute to the Service Id",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 		"url_path": {
 			Type:        schema.TypeList,
 			Description: "URL path",
-			Optional:    true,
-
-			Elem:     &schema.Resource{Schema: new(ServiceIdContributor).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Optional:    true, // precondition
+			Elem:        &schema.Resource{Schema: new(ServiceIdContributor).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 	}
 }

@@ -26,7 +26,7 @@ type Settings struct {
 	Config_item_title string   `json:"config-item-title"` // Name
 	Date_time_pattern string   `json:"date-time-pattern"` // Date-time pattern
 	Enabled           bool     `json:"enabled"`           // This setting is enabled (`true`) or disabled (`false`)
-	Matchers          Matchers `json:"matchers"`
+	Matchers          Matchers `json:"matchers,omitempty"`
 	Scope             *string  `json:"-" scope:"scope"` // The scope of this setting (HOST, HOST_GROUP). Omit this property if you want to cover the whole environment.
 	Timezone          string   `json:"timezone"`        // Timezone
 }
@@ -51,11 +51,10 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"matchers": {
 			Type:        schema.TypeList,
 			Description: "no documentation available",
-			Required:    true,
-
-			Elem:     &schema.Resource{Schema: new(Matchers).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Optional:    true, // minobjects == 0
+			Elem:        &schema.Resource{Schema: new(Matchers).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 		"scope": {
 			Type:        schema.TypeString,

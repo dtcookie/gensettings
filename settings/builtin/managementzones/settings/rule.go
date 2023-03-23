@@ -57,20 +57,18 @@ func (me *Rule) Schema() map[string]*schema.Schema {
 		"attribute_rule": {
 			Type:        schema.TypeList,
 			Description: "no documentation available",
-			Optional:    true,
-
-			Elem:     &schema.Resource{Schema: new(ManagementZoneAttributeRule).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Optional:    true, // precondition
+			Elem:        &schema.Resource{Schema: new(ManagementZoneAttributeRule).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 		"dimension_rule": {
 			Type:        schema.TypeList,
 			Description: "no documentation available",
-			Optional:    true,
-
-			Elem:     &schema.Resource{Schema: new(DimensionRule).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Optional:    true, // precondition
+			Elem:        &schema.Resource{Schema: new(DimensionRule).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 		"enabled": {
 			Type:        schema.TypeBool,
@@ -80,7 +78,7 @@ func (me *Rule) Schema() map[string]*schema.Schema {
 		"entity_selector": {
 			Type:        schema.TypeString,
 			Description: "The documentation of the entity selector can be found [here](https://dt-url.net/apientityselector).",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 		"type": {
 			Type:        schema.TypeString,

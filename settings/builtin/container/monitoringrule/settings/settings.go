@@ -55,7 +55,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"value": {
 			Type:        schema.TypeString,
 			Description: "Condition value",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 	}
 }

@@ -23,11 +23,11 @@ import (
 )
 
 type Settings struct {
-	Enabled              bool           `json:"enabled"`                  // This setting is enabled (`true`) or disabled (`false`)
-	EnabledRiskLevels    []RiskLevel    `json:"enabledRiskLevels"`        // Risk Levels
-	EnabledTriggerEvents []TriggerEvent `json:"enabledTriggerEvents"`     // Alert for the following events:
-	ManagementZone       *string        `json:"managementZone,omitempty"` // Only if the following management zone is affected (optional)
-	Name                 string         `json:"name"`                     // Name
+	Enabled              bool           `json:"enabled"`                        // This setting is enabled (`true`) or disabled (`false`)
+	EnabledRiskLevels    []RiskLevel    `json:"enabledRiskLevels,omitempty"`    // Risk Levels
+	EnabledTriggerEvents []TriggerEvent `json:"enabledTriggerEvents,omitempty"` // Alert for the following events:
+	ManagementZone       *string        `json:"managementZone,omitempty"`       // Only if the following management zone is affected (optional)
+	Name                 string         `json:"name"`                           // Name
 }
 
 func (me *Settings) Schema() map[string]*schema.Schema {
@@ -40,21 +40,19 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"enabled_risk_levels": {
 			Type:        schema.TypeSet,
 			Description: "Risk Levels",
-			Required:    true,
-
-			Elem: &schema.Schema{Type: schema.TypeString},
+			Optional:    true, // minobjects == 0
+			Elem:        &schema.Schema{Type: schema.TypeString},
 		},
 		"enabled_trigger_events": {
 			Type:        schema.TypeSet,
 			Description: "Alert for the following events:",
-			Required:    true,
-
-			Elem: &schema.Schema{Type: schema.TypeString},
+			Optional:    true, // minobjects == 0
+			Elem:        &schema.Schema{Type: schema.TypeString},
 		},
 		"management_zone": {
 			Type:        schema.TypeString,
 			Description: "Only if the following management zone is affected (optional)",
-			Optional:    true,
+			Optional:    true, // nullable
 		},
 		"name": {
 			Type:        schema.TypeString,

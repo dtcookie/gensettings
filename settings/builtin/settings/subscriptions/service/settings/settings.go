@@ -23,8 +23,8 @@ import (
 )
 
 type Settings struct {
-	KeyRequestNames []string `json:"keyRequestNames"`     // Key request names
-	ServiceID       string   `json:"-" scope:"serviceId"` // The scope of this settings. If the settings should cover the whole environment, just don't specify any scope.
+	KeyRequestNames []string `json:"keyRequestNames,omitempty"` // Key request names
+	ServiceID       string   `json:"-" scope:"serviceId"`       // The scope of this settings. If the settings should cover the whole environment, just don't specify any scope.
 }
 
 func (me *Settings) Schema() map[string]*schema.Schema {
@@ -32,9 +32,8 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"key_request_names": {
 			Type:        schema.TypeSet,
 			Description: "Key request names",
-			Required:    true,
-
-			Elem: &schema.Schema{Type: schema.TypeString},
+			Optional:    true, // minobjects == 0
+			Elem:        &schema.Schema{Type: schema.TypeString},
 		},
 		"service_id": {
 			Type:        schema.TypeString,

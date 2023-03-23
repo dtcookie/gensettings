@@ -50,11 +50,10 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"ansible_tower_notification": {
 			Type:        schema.TypeList,
 			Description: "no documentation available",
-			Optional:    true,
-
-			Elem:     &schema.Resource{Schema: new(AnsibleTowerNotification).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Optional:    true, // precondition
+			Elem:        &schema.Resource{Schema: new(AnsibleTowerNotification).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 		"display_name": {
 			Type:        schema.TypeString,
@@ -64,11 +63,10 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"email_notification": {
 			Type:        schema.TypeList,
 			Description: "no documentation available",
-			Optional:    true,
-
-			Elem:     &schema.Resource{Schema: new(EmailNotification).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Optional:    true, // precondition
+			Elem:        &schema.Resource{Schema: new(EmailNotification).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 		"enabled": {
 			Type:        schema.TypeBool,
@@ -78,56 +76,50 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"jira_notification": {
 			Type:        schema.TypeList,
 			Description: "no documentation available",
-			Optional:    true,
-
-			Elem:     &schema.Resource{Schema: new(JiraNotification).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Optional:    true, // precondition
+			Elem:        &schema.Resource{Schema: new(JiraNotification).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 		"ops_genie_notification": {
 			Type:        schema.TypeList,
 			Description: "no documentation available",
-			Optional:    true,
-
-			Elem:     &schema.Resource{Schema: new(OpsGenieNotification).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Optional:    true, // precondition
+			Elem:        &schema.Resource{Schema: new(OpsGenieNotification).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 		"pager_duty_notification": {
 			Type:        schema.TypeList,
 			Description: "no documentation available",
-			Optional:    true,
-
-			Elem:     &schema.Resource{Schema: new(PagerDutyNotification).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Optional:    true, // precondition
+			Elem:        &schema.Resource{Schema: new(PagerDutyNotification).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 		"service_now_notification": {
 			Type:        schema.TypeList,
 			Description: "no documentation available",
-			Optional:    true,
-
-			Elem:     &schema.Resource{Schema: new(ServiceNowNotification).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Optional:    true, // precondition
+			Elem:        &schema.Resource{Schema: new(ServiceNowNotification).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 		"slack_notification": {
 			Type:        schema.TypeList,
 			Description: "no documentation available",
-			Optional:    true,
-
-			Elem:     &schema.Resource{Schema: new(SlackNotification).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Optional:    true, // precondition
+			Elem:        &schema.Resource{Schema: new(SlackNotification).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 		"trello_notification": {
 			Type:        schema.TypeList,
 			Description: "no documentation available",
-			Optional:    true,
-
-			Elem:     &schema.Resource{Schema: new(TrelloNotification).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Optional:    true, // precondition
+			Elem:        &schema.Resource{Schema: new(TrelloNotification).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 		"type": {
 			Type:        schema.TypeString,
@@ -137,29 +129,26 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"victor_ops_notification": {
 			Type:        schema.TypeList,
 			Description: "no documentation available",
-			Optional:    true,
-
-			Elem:     &schema.Resource{Schema: new(VictorOpsNotification).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Optional:    true, // precondition
+			Elem:        &schema.Resource{Schema: new(VictorOpsNotification).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 		"web_hook_notification": {
 			Type:        schema.TypeList,
 			Description: "no documentation available",
-			Optional:    true,
-
-			Elem:     &schema.Resource{Schema: new(WebHookNotification).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Optional:    true, // precondition
+			Elem:        &schema.Resource{Schema: new(WebHookNotification).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 		"x_matters_notification": {
 			Type:        schema.TypeList,
 			Description: "no documentation available",
-			Optional:    true,
-
-			Elem:     &schema.Resource{Schema: new(XMattersNotification).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Optional:    true, // precondition
+			Elem:        &schema.Resource{Schema: new(XMattersNotification).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 	}
 }

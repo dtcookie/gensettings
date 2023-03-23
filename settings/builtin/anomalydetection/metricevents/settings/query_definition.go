@@ -38,45 +38,43 @@ func (me *QueryDefinition) Schema() map[string]*schema.Schema {
 		"aggregation": {
 			Type:        schema.TypeString,
 			Description: "Possible Values: `AVG`, `COUNT`, `MAX`, `MEDIAN`, `MIN`, `PERCENTILE90`, `SUM`, `VALUE`",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 		"dimension_filter": {
 			Type:        schema.TypeList,
 			Description: "Dimension filter",
-			Optional:    true,
-
-			Elem:     &schema.Resource{Schema: new(DimensionFilters).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Optional:    true, // precondition & minobjects == 0
+			Elem:        &schema.Resource{Schema: new(DimensionFilters).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 		"entity_filter": {
 			Type:        schema.TypeList,
 			Description: "Use rule-based filters to define the scope this event monitors.",
-			Optional:    true,
-
-			Elem:     &schema.Resource{Schema: new(EntityFilter).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Optional:    true, // precondition
+			Elem:        &schema.Resource{Schema: new(EntityFilter).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 		"management_zone": {
 			Type:        schema.TypeString,
 			Description: "Management zone",
-			Optional:    true,
+			Optional:    true, // nullable & precondition
 		},
 		"metric_key": {
 			Type:        schema.TypeString,
 			Description: "Metric key",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 		"metric_selector": {
 			Type:        schema.TypeString,
 			Description: "To learn more, visit [Metric Selector](https://dt-url.net/metselad)",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 		"query_offset": {
 			Type:        schema.TypeInt,
 			Description: "Minute offset of sliding evaluation window for metrics with latency",
-			Optional:    true,
+			Optional:    true, // nullable
 		},
 		"type": {
 			Type:        schema.TypeString,

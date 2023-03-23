@@ -37,7 +37,7 @@ func (me *ConnectionLostDetection) Schema() map[string]*schema.Schema {
 		"on_graceful_shutdowns": {
 			Type:        schema.TypeString,
 			Description: "Possible Values: `ALERT_ON_GRACEFUL_SHUTDOWN`, `DONT_ALERT_ON_GRACEFUL_SHUTDOWN`",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 	}
 }

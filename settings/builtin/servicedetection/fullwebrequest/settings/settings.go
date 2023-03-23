@@ -23,12 +23,12 @@ import (
 )
 
 type Settings struct {
-	Conditions      Conditions          `json:"conditions"`            // A list of conditions necessary for the rule to take effect. If multiple conditions are specified, they **all** must match a Request for the rule to apply. Conditions evaluate against attributes, but do not modify them.
-	Description     *string             `json:"description,omitempty"` // Description
-	Enabled         bool                `json:"enabled"`               // This setting is enabled (`true`) or disabled (`false`)
-	IdContributors  *IdContributorsType `json:"idContributors"`        // Contributors to the Service Identifier calculation. All of the Contributors always get applied.
-	ManagementZones []string            `json:"managementZones"`       // Define a management zone filter for this service detection rule.
-	Name            string              `json:"name"`                  // Rule name
+	Conditions      Conditions          `json:"conditions,omitempty"`      // A list of conditions necessary for the rule to take effect. If multiple conditions are specified, they **all** must match a Request for the rule to apply. Conditions evaluate against attributes, but do not modify them.
+	Description     *string             `json:"description,omitempty"`     // Description
+	Enabled         bool                `json:"enabled"`                   // This setting is enabled (`true`) or disabled (`false`)
+	IdContributors  *IdContributorsType `json:"idContributors"`            // Contributors to the Service Identifier calculation. All of the Contributors always get applied.
+	ManagementZones []string            `json:"managementZones,omitempty"` // Define a management zone filter for this service detection rule.
+	Name            string              `json:"name"`                      // Rule name
 }
 
 func (me *Settings) Schema() map[string]*schema.Schema {
@@ -36,16 +36,15 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"conditions": {
 			Type:        schema.TypeList,
 			Description: "A list of conditions necessary for the rule to take effect. If multiple conditions are specified, they **all** must match a Request for the rule to apply. Conditions evaluate against attributes, but do not modify them.",
-			Required:    true,
-
-			Elem:     &schema.Resource{Schema: new(Conditions).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Optional:    true, // minobjects == 0
+			Elem:        &schema.Resource{Schema: new(Conditions).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 		"description": {
 			Type:        schema.TypeString,
 			Description: "Description",
-			Optional:    true,
+			Optional:    true, // nullable
 		},
 		"enabled": {
 			Type:        schema.TypeBool,
@@ -56,17 +55,15 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "Contributors to the Service Identifier calculation. All of the Contributors always get applied.",
 			Required:    true,
-
-			Elem:     &schema.Resource{Schema: new(IdContributorsType).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Elem:        &schema.Resource{Schema: new(IdContributorsType).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 		"management_zones": {
 			Type:        schema.TypeSet,
 			Description: "Define a management zone filter for this service detection rule.",
-			Required:    true,
-
-			Elem: &schema.Schema{Type: schema.TypeString},
+			Optional:    true, // minobjects == 0
+			Elem:        &schema.Schema{Type: schema.TypeString},
 		},
 		"name": {
 			Type:        schema.TypeString,

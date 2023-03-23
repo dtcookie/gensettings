@@ -60,10 +60,9 @@ func (me *Condition) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "Condition to check the attribute against",
 			Required:    true,
-
-			Elem:     &schema.Resource{Schema: new(Predicate).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Elem:        &schema.Resource{Schema: new(Predicate).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 	}
 }

@@ -35,16 +35,15 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"maintenance_windows": {
 			Type:        schema.TypeList,
 			Description: "Maintenance windows",
-			Optional:    true,
-
-			Elem:     &schema.Resource{Schema: new(MaintenanceWindows).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Optional:    true, // precondition
+			Elem:        &schema.Resource{Schema: new(MaintenanceWindows).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 		"revision": {
 			Type:        schema.TypeString,
 			Description: "Revision",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 		"scope": {
 			Type:        schema.TypeString,
@@ -55,7 +54,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"target_version": {
 			Type:        schema.TypeString,
 			Description: "Target version",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 		"update_mode": {
 			Type:        schema.TypeString,

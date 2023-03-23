@@ -54,12 +54,12 @@ func (me *Exception) Schema() map[string]*schema.Schema {
 		"class_pattern": {
 			Type:        schema.TypeString,
 			Description: "The pattern will match if it is contained within the actual class name.",
-			Optional:    true,
+			Optional:    true, // nullable
 		},
 		"message_pattern": {
 			Type:        schema.TypeString,
 			Description: "Optionally, define an exception message pattern. The pattern will match if the actual exception message contains the pattern.",
-			Optional:    true,
+			Optional:    true, // nullable
 		},
 	}
 }

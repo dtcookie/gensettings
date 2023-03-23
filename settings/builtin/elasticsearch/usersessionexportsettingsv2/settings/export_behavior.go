@@ -33,7 +33,7 @@ func (me *ExportBehavior) Schema() map[string]*schema.Schema {
 		"custom_configuration": {
 			Type:        schema.TypeString,
 			Description: "Here you can set additional properties for this export configuration. Changing these values might only be necessary in some rare cases. Please contact support before changing this field.",
-			Optional:    true,
+			Optional:    true, // nullable
 		},
 		"disable_notification": {
 			Type:        schema.TypeBool,
@@ -43,7 +43,7 @@ func (me *ExportBehavior) Schema() map[string]*schema.Schema {
 		"management_zone": {
 			Type:        schema.TypeString,
 			Description: "Restrict exported sessions to management zone",
-			Optional:    true,
+			Optional:    true, // nullable
 		},
 	}
 }

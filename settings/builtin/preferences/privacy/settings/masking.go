@@ -34,7 +34,7 @@ func (me *Masking) Schema() map[string]*schema.Schema {
 		"ip_address_masking": {
 			Type:        schema.TypeString,
 			Description: "Possible Values: `All`, `Public`",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 		"ip_address_masking_enabled": {
 			Type:        schema.TypeBool,

@@ -40,12 +40,12 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"ingest_active": {
 			Type:        schema.TypeBool,
 			Description: "Enable local PIPE/HTTP metric and Log Ingest API",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 		"performance_profile": {
 			Type:        schema.TypeString,
 			Description: "Possible Values: `DEFAULT`, `HIGH`",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 		"scope": {
 			Type:        schema.TypeString,
@@ -56,7 +56,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"statsd_active": {
 			Type:        schema.TypeBool,
 			Description: "Enable Dynatrace StatsD",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 	}
 }

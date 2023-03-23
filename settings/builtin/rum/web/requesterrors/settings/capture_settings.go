@@ -38,12 +38,12 @@ func (me *CaptureSettings) Schema() map[string]*schema.Schema {
 		"consider_for_ai": {
 			Type:        schema.TypeBool,
 			Description: "[View more details](https://dt-url.net/hd580p2k)",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 		"impact_apdex": {
 			Type:        schema.TypeBool,
 			Description: "Include error in Apdex calculations",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 	}
 }

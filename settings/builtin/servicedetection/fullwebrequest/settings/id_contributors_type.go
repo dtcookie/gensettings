@@ -34,28 +34,25 @@ func (me *IdContributorsType) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "Application identifier",
 			Required:    true,
-
-			Elem:     &schema.Resource{Schema: new(ServiceIdContributor).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Elem:        &schema.Resource{Schema: new(ServiceIdContributor).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 		"context_root": {
 			Type:        schema.TypeList,
 			Description: "The context root is the first segment of the request URL after the Server name. For example, in the `www.dynatrace.com/support/help/dynatrace-api/` URL the context root is `/support`. The context root value can be found on the Service screen under **Properties and tags**.",
 			Required:    true,
-
-			Elem:     &schema.Resource{Schema: new(ContextIdContributor).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Elem:        &schema.Resource{Schema: new(ContextIdContributor).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 		"server_name": {
 			Type:        schema.TypeList,
 			Description: "Server Name",
 			Required:    true,
-
-			Elem:     &schema.Resource{Schema: new(ServiceIdContributor).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Elem:        &schema.Resource{Schema: new(ServiceIdContributor).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 	}
 }

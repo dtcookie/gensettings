@@ -38,7 +38,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"enabled_go_static_monitoring": {
 			Type:        schema.TypeBool,
 			Description: "Learn more about the [known limitations for Go static monitoring](https://www.dynatrace.com/support/help/technology-support/application-software/go/support/go-known-limitations#limitations)",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 		"host_id": {
 			Type:        schema.TypeString,

@@ -59,17 +59,17 @@ func (me *ModelProperties) Schema() map[string]*schema.Schema {
 		"signal_fluctuation": {
 			Type:        schema.TypeFloat,
 			Description: "Controls how many times the signal fluctuation is added to the baseline to produce the actual threshold for alerting",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 		"threshold": {
 			Type:        schema.TypeFloat,
 			Description: "Raise an event if this value is violated",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 		"tolerance": {
 			Type:        schema.TypeFloat,
 			Description: "Controls the width of the confidence band and larger values lead to a less sensitive model",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 		"type": {
 			Type:        schema.TypeString,

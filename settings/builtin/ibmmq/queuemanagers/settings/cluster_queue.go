@@ -45,8 +45,8 @@ func (me *ClusterQueues) UnmarshalHCL(decoder hcl.Decoder) error {
 }
 
 type ClusterQueue struct {
-	ClusterVisibility []string `json:"clusterVisibility"` // Name of the cluster(s) this local queue should be visible in
-	LocalQueue        string   `json:"localQueue"`        // Local queue name
+	ClusterVisibility []string `json:"clusterVisibility,omitempty"` // Name of the cluster(s) this local queue should be visible in
+	LocalQueue        string   `json:"localQueue"`                  // Local queue name
 }
 
 func (me *ClusterQueue) Schema() map[string]*schema.Schema {
@@ -54,9 +54,8 @@ func (me *ClusterQueue) Schema() map[string]*schema.Schema {
 		"cluster_visibility": {
 			Type:        schema.TypeSet,
 			Description: "Name of the cluster(s) this local queue should be visible in",
-			Required:    true,
-
-			Elem: &schema.Schema{Type: schema.TypeString},
+			Optional:    true, // minobjects == 0
+			Elem:        &schema.Schema{Type: schema.TypeString},
 		},
 		"local_queue": {
 			Type:        schema.TypeString,

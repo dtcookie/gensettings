@@ -23,7 +23,7 @@ import (
 )
 
 type Settings struct {
-	Dimensions       []string `json:"dimensions"`
+	Dimensions       []string `json:"dimensions,omitempty"`
 	Enabled          bool     `json:"enabled"`                    // This setting is enabled (`true`) or disabled (`false`)
 	Key              string   `json:"key"`                        // Key
 	Matcher          string   `json:"matcher"`                    // [See our documentation](https://dt-url.net/bp234rv)
@@ -36,9 +36,8 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"dimensions": {
 			Type:        schema.TypeSet,
 			Description: "no documentation available",
-			Required:    true,
-
-			Elem: &schema.Schema{Type: schema.TypeString},
+			Optional:    true, // minobjects == 0
+			Elem:        &schema.Schema{Type: schema.TypeString},
 		},
 		"enabled": {
 			Type:        schema.TypeBool,
@@ -63,7 +62,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"measure_attribute": {
 			Type:        schema.TypeString,
 			Description: "Attribute",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 	}
 }

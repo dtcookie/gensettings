@@ -37,7 +37,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"global_consecutive_outage_count_threshold": {
 			Type:        schema.TypeInt,
 			Description: "Alert if all locations are unable to access my web application",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 		"global_outages": {
 			Type:        schema.TypeBool,
@@ -47,12 +47,12 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"local_consecutive_outage_count_threshold": {
 			Type:        schema.TypeInt,
 			Description: "are unable to access my web application",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 		"local_location_outage_count_threshold": {
 			Type:        schema.TypeInt,
 			Description: "Alert if at least",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 		"local_outages": {
 			Type:        schema.TypeBool,

@@ -23,12 +23,12 @@ import (
 )
 
 type Settings struct {
-	Enabled              bool                 `json:"enabled"`              // This setting is enabled (`true`) or disabled (`false`)
-	Matcher              string               `json:"matcher"`              // [See our documentation](https://dt-url.net/bp234rv)
-	RuleName             string               `json:"ruleName"`             // Rule name
-	RuleTesting          *RuleTesting         `json:"RuleTesting"`          // ## Rule testing\n### 1. Paste an event sample
-	Script               string               `json:"script"`               // [See our documentation](https://dt-url.net/pz030w5)
-	TransformationFields TransformationFields `json:"transformationFields"` // Transformation fields
+	Enabled              bool                 `json:"enabled"`                        // This setting is enabled (`true`) or disabled (`false`)
+	Matcher              string               `json:"matcher"`                        // [See our documentation](https://dt-url.net/bp234rv)
+	RuleName             string               `json:"ruleName"`                       // Rule name
+	RuleTesting          *RuleTesting         `json:"RuleTesting"`                    // ## Rule testing\n### 1. Paste an event sample
+	Script               string               `json:"script"`                         // [See our documentation](https://dt-url.net/pz030w5)
+	TransformationFields TransformationFields `json:"transformationFields,omitempty"` // Transformation fields
 }
 
 func (me *Settings) Schema() map[string]*schema.Schema {
@@ -52,10 +52,9 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "## Rule testing\n### 1. Paste an event sample",
 			Required:    true,
-
-			Elem:     &schema.Resource{Schema: new(RuleTesting).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Elem:        &schema.Resource{Schema: new(RuleTesting).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 		"script": {
 			Type:        schema.TypeString,
@@ -65,11 +64,10 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"transformation_fields": {
 			Type:        schema.TypeList,
 			Description: "Transformation fields",
-			Required:    true,
-
-			Elem:     &schema.Resource{Schema: new(TransformationFields).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Optional:    true, // minobjects == 0
+			Elem:        &schema.Resource{Schema: new(TransformationFields).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 	}
 }

@@ -38,7 +38,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"enabled_dot_net_core": {
 			Type:        schema.TypeBool,
 			Description: "Requires Dynatrace OneAgent version 1.117 or later on Windows and version 1.127 or later on Linux and .NET monitoring enabled",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 		"host_id": {
 			Type:        schema.TypeString,

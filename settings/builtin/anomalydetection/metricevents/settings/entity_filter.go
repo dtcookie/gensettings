@@ -23,7 +23,7 @@ import (
 )
 
 type EntityFilter struct {
-	Conditions   EntityFilterConditions `json:"conditions"`
+	Conditions   EntityFilterConditions `json:"conditions,omitempty"`
 	DimensionKey *string                `json:"dimensionKey,omitempty"` // Dimension key of entity type to filter
 }
 
@@ -32,16 +32,15 @@ func (me *EntityFilter) Schema() map[string]*schema.Schema {
 		"conditions": {
 			Type:        schema.TypeList,
 			Description: "no documentation available",
-			Required:    true,
-
-			Elem:     &schema.Resource{Schema: new(EntityFilterConditions).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Optional:    true, // minobjects == 0
+			Elem:        &schema.Resource{Schema: new(EntityFilterConditions).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 		"dimension_key": {
 			Type:        schema.TypeString,
 			Description: "Dimension key of entity type to filter",
-			Optional:    true,
+			Optional:    true, // nullable
 		},
 	}
 }

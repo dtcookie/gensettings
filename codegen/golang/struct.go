@@ -12,17 +12,18 @@ import (
 )
 
 type Property struct {
-	Name     string
-	Type     string
-	Comment  string
-	HCLTag   string
-	JSONTag  string
-	Optional bool
-	MinItems int
-	MaxItems int
-	HCLType  string
-	Elem     string
-	Default  string
+	Name            string
+	Type            string
+	Comment         string
+	HCLTag          string
+	JSONTag         string
+	Optional        bool
+	OptionalComment string
+	MinItems        int
+	MaxItems        int
+	HCLType         string
+	Elem            string
+	Default         string
 }
 
 func (me *Property) Prettify() {
@@ -127,13 +128,14 @@ func NewStruct(t *reflection.Type) *Struct {
 			comment = "This setting is enabled (`true`) or disabled (`false`)"
 		}
 		structDef.Properties = append(structDef.Properties, HCLKind(propType, &Property{
-			Name:     PropertyName(propertyName),
-			Comment:  comment,
-			HCLTag:   camel.Strip(propertyName),
-			JSONTag:  jsonTag,
-			Type:     TypeName(PointerIfOptional(propType, property.Optional)),
-			Optional: property.Optional,
-			Default:  defVal,
+			Name:            PropertyName(propertyName),
+			Comment:         comment,
+			HCLTag:          camel.Strip(propertyName),
+			JSONTag:         jsonTag,
+			Type:            TypeName(PointerIfOptional(propType, property.Optional)),
+			Optional:        property.Optional,
+			OptionalComment: property.OptionalComment,
+			Default:         defVal,
 		}))
 	}
 	sort.Slice(structDef.Properties, func(i, j int) bool {

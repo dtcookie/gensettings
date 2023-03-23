@@ -32,7 +32,7 @@ func (me *MetricValue) Schema() map[string]*schema.Schema {
 		"field_name": {
 			Type:        schema.TypeString,
 			Description: "Field name",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 		"type": {
 			Type:        schema.TypeString,

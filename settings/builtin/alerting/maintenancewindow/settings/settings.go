@@ -24,7 +24,7 @@ import (
 
 type Settings struct {
 	Enabled           bool               `json:"enabled"`           // This setting is enabled (`true`) or disabled (`false`)
-	Filters           Filters            `json:"filters"`           // ## Filters\nAdd filters to limit the scope of maintenance to only select matching entities. If no filter is defined, the maintenance window is valid for the whole environment. Each filter is evaluated separately (**OR**).
+	Filters           Filters            `json:"filters,omitempty"` // ## Filters\nAdd filters to limit the scope of maintenance to only select matching entities. If no filter is defined, the maintenance window is valid for the whole environment. Each filter is evaluated separately (**OR**).
 	GeneralProperties *GeneralProperties `json:"generalProperties"` // ## Properties
 	Schedule          *Schedule          `json:"schedule"`          // ## Schedule
 }
@@ -39,29 +39,26 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"filters": {
 			Type:        schema.TypeList,
 			Description: "## Filters\nAdd filters to limit the scope of maintenance to only select matching entities. If no filter is defined, the maintenance window is valid for the whole environment. Each filter is evaluated separately (**OR**).",
-			Required:    true,
-
-			Elem:     &schema.Resource{Schema: new(Filters).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Optional:    true, // minobjects == 0
+			Elem:        &schema.Resource{Schema: new(Filters).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 		"general_properties": {
 			Type:        schema.TypeList,
 			Description: "## Properties",
 			Required:    true,
-
-			Elem:     &schema.Resource{Schema: new(GeneralProperties).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Elem:        &schema.Resource{Schema: new(GeneralProperties).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 		"schedule": {
 			Type:        schema.TypeList,
 			Description: "## Schedule",
 			Required:    true,
-
-			Elem:     &schema.Resource{Schema: new(Schedule).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Elem:        &schema.Resource{Schema: new(Schedule).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 	}
 }

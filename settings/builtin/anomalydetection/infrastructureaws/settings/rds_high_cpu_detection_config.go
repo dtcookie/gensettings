@@ -33,16 +33,15 @@ func (me *RdsHighCpuDetectionConfig) Schema() map[string]*schema.Schema {
 		"custom_thresholds": {
 			Type:        schema.TypeList,
 			Description: "Alert if the condition is met in 3 out of 5 samples",
-			Optional:    true,
-
-			Elem:     &schema.Resource{Schema: new(RdsHighCpuDetectionThresholds).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Optional:    true, // precondition
+			Elem:        &schema.Resource{Schema: new(RdsHighCpuDetectionThresholds).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 		"detection_mode": {
 			Type:        schema.TypeString,
 			Description: "Possible Values: `Auto`, `Custom`",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 		"enabled": {
 			Type:        schema.TypeBool,

@@ -23,9 +23,9 @@ import (
 )
 
 type Settings struct {
-	ExcludeIp  IpAddressForms `json:"excludeIp"`        // Providing a host IP address, you will exclude network traffic only in calculating connectivity (other metrics will still be calculated).
-	ExcludeNic NicForms       `json:"excludeNic"`       // Selecting a network interface, you will exclude all network traffic on that interface from being monitored. You can select from the list below what to not monitor, or input it manually using the \"other one\" option.
-	HostID     string         `json:"-" scope:"hostId"` // The scope of this settings. If the settings should cover the whole environment, just don't specify any scope.
+	ExcludeIp  IpAddressForms `json:"excludeIp,omitempty"`  // Providing a host IP address, you will exclude network traffic only in calculating connectivity (other metrics will still be calculated).
+	ExcludeNic NicForms       `json:"excludeNic,omitempty"` // Selecting a network interface, you will exclude all network traffic on that interface from being monitored. You can select from the list below what to not monitor, or input it manually using the \"other one\" option.
+	HostID     string         `json:"-" scope:"hostId"`     // The scope of this settings. If the settings should cover the whole environment, just don't specify any scope.
 }
 
 func (me *Settings) Schema() map[string]*schema.Schema {
@@ -33,20 +33,18 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"exclude_ip": {
 			Type:        schema.TypeList,
 			Description: "Providing a host IP address, you will exclude network traffic only in calculating connectivity (other metrics will still be calculated).",
-			Required:    true,
-
-			Elem:     &schema.Resource{Schema: new(IpAddressForms).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Optional:    true, // minobjects == 0
+			Elem:        &schema.Resource{Schema: new(IpAddressForms).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 		"exclude_nic": {
 			Type:        schema.TypeList,
 			Description: "Selecting a network interface, you will exclude all network traffic on that interface from being monitored. You can select from the list below what to not monitor, or input it manually using the \"other one\" option.",
-			Required:    true,
-
-			Elem:     &schema.Resource{Schema: new(NicForms).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Optional:    true, // minobjects == 0
+			Elem:        &schema.Resource{Schema: new(NicForms).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 		"host_id": {
 			Type:        schema.TypeString,

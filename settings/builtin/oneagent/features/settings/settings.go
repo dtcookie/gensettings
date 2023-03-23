@@ -40,12 +40,12 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"forcible": {
 			Type:        schema.TypeBool,
 			Description: "Activate this feature also in OneAgents only fulfilling the minimum Opt-In version",
-			Optional:    true,
+			Optional:    true, // nullable & precondition
 		},
 		"instrumentation": {
 			Type:        schema.TypeBool,
 			Description: "Instrumentation enabled (change needs a process restart)",
-			Optional:    true,
+			Optional:    true, // nullable & precondition
 		},
 		"key": {
 			Type:        schema.TypeString,

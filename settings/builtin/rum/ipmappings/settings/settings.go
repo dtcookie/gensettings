@@ -37,7 +37,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"city": {
 			Type:        schema.TypeString,
 			Description: "The city name of the location.",
-			Optional:    true,
+			Optional:    true, // nullable
 		},
 		"country_code": {
 			Type:        schema.TypeString,
@@ -52,22 +52,22 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"ip_to": {
 			Type:        schema.TypeString,
 			Description: "IP range end",
-			Optional:    true,
+			Optional:    true, // nullable
 		},
 		"latitude": {
 			Type:        schema.TypeFloat,
 			Description: "Latitude",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 		"longitude": {
 			Type:        schema.TypeFloat,
 			Description: "Longitude",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 		"region_code": {
 			Type:        schema.TypeString,
 			Description: "The region code of the location. \n\n For the [USA](https://dt-url.net/iso3166us) or [Canada](https://dt-url.net/iso3166ca) use ISO 3166-2 state codes without `US-` or `CA-` prefix. \n\n For the rest of the world use [FIPS 10-4 codes](https://dt-url.net/fipscodes) without country prefix.",
-			Optional:    true,
+			Optional:    true, // nullable
 		},
 	}
 }

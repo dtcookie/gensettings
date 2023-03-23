@@ -58,7 +58,7 @@ func (me *SpanMatcher) Schema() map[string]*schema.Schema {
 		"case_sensitive": {
 			Type:        schema.TypeBool,
 			Description: "affects value and key",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 		"source": {
 			Type:        schema.TypeString,
@@ -68,12 +68,12 @@ func (me *SpanMatcher) Schema() map[string]*schema.Schema {
 		"source_key": {
 			Type:        schema.TypeString,
 			Description: "Key",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 		"span_kind_value": {
 			Type:        schema.TypeString,
 			Description: "Possible Values: `CLIENT`, `CONSUMER`, `INTERNAL`, `PRODUCER`, `SERVER`",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 		"type": {
 			Type:        schema.TypeString,
@@ -83,7 +83,7 @@ func (me *SpanMatcher) Schema() map[string]*schema.Schema {
 		"value": {
 			Type:        schema.TypeString,
 			Description: "evaluated at span start",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 	}
 }

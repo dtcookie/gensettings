@@ -39,25 +39,23 @@ func (me *ContextRoot) Schema() map[string]*schema.Schema {
 		"segment_count": {
 			Type:        schema.TypeInt,
 			Description: "The number of segments of the URL to be kept. The URL is divided by slashes (/), the indexing starts with 1 at context root. For example, if you specify 2 for the `www.dynatrace.com/support/help/dynatrace-api/` URL, the value of `support/help` is used.",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 		"transformations": {
 			Type:        schema.TypeList,
 			Description: "Choose how the value will be transformed before contributing to the Service Id. All of the Transformations are always applied. Transformations are applied in the order they are specified, and the output of the previous transformation is the input for the next one. The resulting value contributes to the Service Id and can be found on the Service screen under **Properties and tags**.",
-			Optional:    true,
-
-			Elem:     &schema.Resource{Schema: new(ReducedTransformations).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Optional:    true, // precondition & minobjects == 0
+			Elem:        &schema.Resource{Schema: new(ReducedTransformations).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 		"value_override": {
 			Type:        schema.TypeList,
 			Description: "The value to be used instead of the detected value.",
-			Optional:    true,
-
-			Elem:     &schema.Resource{Schema: new(ValueOverride).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Optional:    true, // precondition
+			Elem:        &schema.Resource{Schema: new(ValueOverride).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 	}
 }

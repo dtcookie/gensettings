@@ -56,16 +56,15 @@ func (me *SourceFilter) Schema() map[string]*schema.Schema {
 		"condition": {
 			Type:        schema.TypeString,
 			Description: "Specify a filter that needs to match in order for the extraction to happen.. Two different filters are supported: `$eq(value)` will ensure that the source matches exactly 'value', while `$prefix(value)` will ensure that the source begins with exactly 'value'.\nIf your value contains the characters '(', ')' or '\\~', you need to escape them by adding a '\\~' in front of them.",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 		"mapping_rules": {
 			Type:        schema.TypeList,
 			Description: "Specify all properties which should be compared. If all mapping rules match a relationship between entities will be created.",
-			Optional:    true,
-
-			Elem:     &schema.Resource{Schema: new(MappingRules).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Optional:    true, // precondition
+			Elem:        &schema.Resource{Schema: new(MappingRules).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 		"source_type": {
 			Type:        schema.TypeString,

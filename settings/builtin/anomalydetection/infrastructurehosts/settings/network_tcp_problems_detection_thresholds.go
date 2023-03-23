@@ -34,10 +34,9 @@ func (me *NetworkTcpProblemsDetectionThresholds) Schema() map[string]*schema.Sch
 			Type:        schema.TypeList,
 			Description: "no documentation available",
 			Required:    true,
-
-			Elem:     &schema.Resource{Schema: new(EventThresholds).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Elem:        &schema.Resource{Schema: new(EventThresholds).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 		"failed_connections_number_per_minute": {
 			Type:        schema.TypeInt,

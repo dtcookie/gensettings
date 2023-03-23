@@ -37,7 +37,7 @@ func (me *DataSourceComplex) Schema() map[string]*schema.Schema {
 		"path": {
 			Type:        schema.TypeString,
 			Description: "[See our documentation](https://dt-url.net/ei034bx)",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 	}
 }

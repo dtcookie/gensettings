@@ -38,12 +38,12 @@ func (me *Limit) Schema() map[string]*schema.Schema {
 		"limit_type": {
 			Type:        schema.TypeString,
 			Description: "Possible Values: `ANNUAL`, `MONTHLY`",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 		"limit_value": {
 			Type:        schema.TypeInt,
 			Description: "The upper limit for the defined time frame",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 	}
 }

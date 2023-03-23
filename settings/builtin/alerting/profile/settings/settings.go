@@ -23,10 +23,10 @@ import (
 )
 
 type Settings struct {
-	EventFilters   AlertingProfileEventFilters  `json:"eventFilters"`             // Define event filters for profile. A maximum of 100 event filters is allowed.
+	EventFilters   AlertingProfileEventFilters  `json:"eventFilters,omitempty"`   // Define event filters for profile. A maximum of 100 event filters is allowed.
 	ManagementZone *string                      `json:"managementZone,omitempty"` // Define management zone filter for profile
 	Name           string                       `json:"name"`                     // Name
-	SeverityRules  AlertingProfileSeverityRules `json:"severityRules"`            // Define severity rules for profile. A maximum of 100 severity rules is allowed.
+	SeverityRules  AlertingProfileSeverityRules `json:"severityRules,omitempty"`  // Define severity rules for profile. A maximum of 100 severity rules is allowed.
 }
 
 func (me *Settings) Schema() map[string]*schema.Schema {
@@ -34,16 +34,15 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"event_filters": {
 			Type:        schema.TypeList,
 			Description: "Define event filters for profile. A maximum of 100 event filters is allowed.",
-			Required:    true,
-
-			Elem:     &schema.Resource{Schema: new(AlertingProfileEventFilters).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Optional:    true, // minobjects == 0
+			Elem:        &schema.Resource{Schema: new(AlertingProfileEventFilters).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 		"management_zone": {
 			Type:        schema.TypeString,
 			Description: "Define management zone filter for profile",
-			Optional:    true,
+			Optional:    true, // nullable
 		},
 		"name": {
 			Type:        schema.TypeString,
@@ -53,11 +52,10 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"severity_rules": {
 			Type:        schema.TypeList,
 			Description: "Define severity rules for profile. A maximum of 100 severity rules is allowed.",
-			Required:    true,
-
-			Elem:     &schema.Resource{Schema: new(AlertingProfileSeverityRules).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Optional:    true, // minobjects == 0
+			Elem:        &schema.Resource{Schema: new(AlertingProfileSeverityRules).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 	}
 }

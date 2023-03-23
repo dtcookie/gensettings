@@ -66,12 +66,12 @@ func (me *WebHookNotificationHeader) Schema() map[string]*schema.Schema {
 		"secret_value": {
 			Type:        schema.TypeString,
 			Description: "The secret value of the HTTP header. May contain an empty value.",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 		"value": {
 			Type:        schema.TypeString,
 			Description: "The value of the HTTP header. May contain an empty value.",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 	}
 }

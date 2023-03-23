@@ -33,16 +33,15 @@ func (me *HighGcActivityDetection) Schema() map[string]*schema.Schema {
 		"custom_thresholds": {
 			Type:        schema.TypeList,
 			Description: "Alert if the GC time **or** the GC suspension is exceeded",
-			Optional:    true,
-
-			Elem:     &schema.Resource{Schema: new(HighGcActivityDetectionThresholds).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Optional:    true, // precondition
+			Elem:        &schema.Resource{Schema: new(HighGcActivityDetectionThresholds).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 		"detection_mode": {
 			Type:        schema.TypeString,
 			Description: "Possible Values: `Auto`, `Custom`",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 		"enabled": {
 			Type:        schema.TypeBool,

@@ -34,16 +34,15 @@ func (me *FailureRate) Schema() map[string]*schema.Schema {
 		"auto_detection": {
 			Type:        schema.TypeList,
 			Description: "Alert if the percentage of failing service calls increases by **both** the absolute and relative thresholds:",
-			Optional:    true,
-
-			Elem:     &schema.Resource{Schema: new(FailureRateAuto).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Optional:    true, // precondition
+			Elem:        &schema.Resource{Schema: new(FailureRateAuto).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 		"detection_mode": {
 			Type:        schema.TypeString,
 			Description: "Possible Values: `Auto`, `Fixed`",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 		"enabled": {
 			Type:        schema.TypeBool,
@@ -53,11 +52,10 @@ func (me *FailureRate) Schema() map[string]*schema.Schema {
 		"fixed_detection": {
 			Type:        schema.TypeList,
 			Description: "Alert if a given failure rate is exceeded during any 5-minute-period",
-			Optional:    true,
-
-			Elem:     &schema.Resource{Schema: new(FailureRateFixed).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Optional:    true, // precondition
+			Elem:        &schema.Resource{Schema: new(FailureRateFixed).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 	}
 }

@@ -37,14 +37,13 @@ func (me *Predicate) Schema() map[string]*schema.Schema {
 		"case_sensitive": {
 			Type:        schema.TypeBool,
 			Description: "Case sensitive",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 		"management_zones": {
 			Type:        schema.TypeSet,
 			Description: "Management zones",
-			Optional:    true,
-
-			Elem: &schema.Schema{Type: schema.TypeString},
+			Optional:    true, // precondition
+			Elem:        &schema.Schema{Type: schema.TypeString},
 		},
 		"predicate_type": {
 			Type:        schema.TypeString,
@@ -54,30 +53,26 @@ func (me *Predicate) Schema() map[string]*schema.Schema {
 		"service_type": {
 			Type:        schema.TypeSet,
 			Description: "Service types",
-			Optional:    true,
-
-			Elem: &schema.Schema{Type: schema.TypeString},
+			Optional:    true, // precondition & minobjects == 0
+			Elem:        &schema.Schema{Type: schema.TypeString},
 		},
 		"tag_keys": {
 			Type:        schema.TypeSet,
 			Description: "Tag keys",
-			Optional:    true,
-
-			Elem: &schema.Schema{Type: schema.TypeString},
+			Optional:    true, // precondition
+			Elem:        &schema.Schema{Type: schema.TypeString},
 		},
 		"tags": {
 			Type:        schema.TypeSet,
 			Description: "Tags (exact match)",
-			Optional:    true,
-
-			Elem: &schema.Schema{Type: schema.TypeString},
+			Optional:    true, // precondition
+			Elem:        &schema.Schema{Type: schema.TypeString},
 		},
 		"text_values": {
 			Type:        schema.TypeSet,
 			Description: "Names",
-			Optional:    true,
-
-			Elem: &schema.Schema{Type: schema.TypeString},
+			Optional:    true, // precondition
+			Elem:        &schema.Schema{Type: schema.TypeString},
 		},
 	}
 }

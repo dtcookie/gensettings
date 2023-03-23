@@ -55,20 +55,18 @@ func (me *AlertingProfileEventFilter) Schema() map[string]*schema.Schema {
 		"custom_filter": {
 			Type:        schema.TypeList,
 			Description: "no documentation available",
-			Optional:    true,
-
-			Elem:     &schema.Resource{Schema: new(CustomEventFilter).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Optional:    true, // precondition
+			Elem:        &schema.Resource{Schema: new(CustomEventFilter).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 		"predefined_filter": {
 			Type:        schema.TypeList,
 			Description: "no documentation available",
-			Optional:    true,
-
-			Elem:     &schema.Resource{Schema: new(PredefinedEventFilter).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Optional:    true, // precondition
+			Elem:        &schema.Resource{Schema: new(PredefinedEventFilter).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 		"type": {
 			Type:        schema.TypeString,

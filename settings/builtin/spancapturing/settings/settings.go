@@ -32,10 +32,9 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "Span Capture Rule",
 			Required:    true,
-
-			Elem:     &schema.Resource{Schema: new(SpanCaptureRule).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Elem:        &schema.Resource{Schema: new(SpanCaptureRule).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 	}
 }

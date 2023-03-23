@@ -40,26 +40,25 @@ func (me *ManagementZoneAttributeRule) Schema() map[string]*schema.Schema {
 		"azure_to_pgpropagation": {
 			Type:        schema.TypeBool,
 			Description: "Apply to process groups connected to matching Azure entities",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 		"azure_to_service_propagation": {
 			Type:        schema.TypeBool,
 			Description: "Apply to services provided by matching Azure entities",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 		"conditions": {
 			Type:        schema.TypeList,
 			Description: "no documentation available",
 			Required:    true,
-
-			Elem:     &schema.Resource{Schema: new(AttributeConditions).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Elem:        &schema.Resource{Schema: new(AttributeConditions).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 		"custom_device_group_to_custom_device_propagation": {
 			Type:        schema.TypeBool,
 			Description: "Apply to custom devices in a custom device group",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 		"entity_type": {
 			Type:        schema.TypeString,
@@ -69,27 +68,27 @@ func (me *ManagementZoneAttributeRule) Schema() map[string]*schema.Schema {
 		"host_to_pgpropagation": {
 			Type:        schema.TypeBool,
 			Description: "Apply to processes running on matching hosts",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 		"pg_to_host_propagation": {
 			Type:        schema.TypeBool,
 			Description: "Apply to underlying hosts of matching process groups",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 		"pg_to_service_propagation": {
 			Type:        schema.TypeBool,
 			Description: "Apply to all services provided by the process groups",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 		"service_to_host_propagation": {
 			Type:        schema.TypeBool,
 			Description: "Apply to underlying hosts of matching services",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 		"service_to_pgpropagation": {
 			Type:        schema.TypeBool,
 			Description: "Apply to underlying process groups of matching services",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 	}
 }

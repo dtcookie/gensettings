@@ -40,28 +40,25 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "You can define the properties that should be used to identify your process groups.",
 			Required:    true,
-
-			Elem:     &schema.Resource{Schema: new(ProcessGroupExtraction).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Elem:        &schema.Resource{Schema: new(ProcessGroupExtraction).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 		"instance_extraction": {
 			Type:        schema.TypeList,
 			Description: "You can define the properties that should be used to identify your process instances.",
 			Required:    true,
-
-			Elem:     &schema.Resource{Schema: new(ProcessInstanceExtraction).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Elem:        &schema.Resource{Schema: new(ProcessInstanceExtraction).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 		"process_detection": {
 			Type:        schema.TypeList,
 			Description: "Apply this rule to processes where the selected property contains the specified string.",
 			Required:    true,
-
-			Elem:     &schema.Resource{Schema: new(ProcessGroupDetection).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Elem:        &schema.Resource{Schema: new(ProcessGroupDetection).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 	}
 }

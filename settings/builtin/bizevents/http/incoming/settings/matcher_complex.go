@@ -57,16 +57,15 @@ func (me *MatcherComplex) Schema() map[string]*schema.Schema {
 		"case_sensitive": {
 			Type:        schema.TypeBool,
 			Description: "Case sensitive",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 		"source": {
 			Type:        schema.TypeList,
 			Description: "no documentation available",
 			Required:    true,
-
-			Elem:     &schema.Resource{Schema: new(DataSourceComplex).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Elem:        &schema.Resource{Schema: new(DataSourceComplex).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 		"type": {
 			Type:        schema.TypeString,
@@ -76,7 +75,7 @@ func (me *MatcherComplex) Schema() map[string]*schema.Schema {
 		"value": {
 			Type:        schema.TypeString,
 			Description: "no documentation available",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 	}
 }

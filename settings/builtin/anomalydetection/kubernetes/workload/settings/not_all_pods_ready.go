@@ -32,11 +32,10 @@ func (me *NotAllPodsReady) Schema() map[string]*schema.Schema {
 		"configuration": {
 			Type:        schema.TypeList,
 			Description: "Alert if",
-			Optional:    true,
-
-			Elem:     &schema.Resource{Schema: new(NotAllPodsReadyConfig).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Optional:    true, // precondition
+			Elem:        &schema.Resource{Schema: new(NotAllPodsReadyConfig).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 		"enabled": {
 			Type:        schema.TypeBool,

@@ -38,7 +38,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"enabled_fast_cgi": {
 			Type:        schema.TypeBool,
 			Description: "Requires PHP monitoring enabled and from Dynatrace OneAgent version 1.191 it's ignored and permanently enabled",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 		"host_id": {
 			Type:        schema.TypeString,

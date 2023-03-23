@@ -24,12 +24,12 @@ import (
 
 type Settings struct {
 	Description       *string            `json:"description,omitempty"`       // Description
-	Dimensions        Dimensions         `json:"dimensions"`                  // Define metadata per metric dimension.
+	Dimensions        Dimensions         `json:"dimensions,omitempty"`        // Define metadata per metric dimension.
 	DisplayName       *string            `json:"displayName,omitempty"`       // Display name
 	MetricProperties  *MetricProperties  `json:"metricProperties,omitempty"`  // Metric properties
 	Scope             string             `json:"-" scope:"scope"`             // The scope of this setting (metric)
 	SourceEntityType  *string            `json:"sourceEntityType,omitempty"`  // Specifies which entity dimension should be used as the primary dimension. The property can only be configured for metrics ingested with the Metrics API.
-	Tags              []string           `json:"tags"`                        // Tags
+	Tags              []string           `json:"tags,omitempty"`              // Tags
 	Unit              string             `json:"unit"`                        // Unit
 	UnitDisplayFormat *UnitDisplayFormat `json:"unitDisplayFormat,omitempty"` // The raw value is stored in bits or bytes. The user interface can display it in these numeral systems:\n\nBinary: 1 MiB = 1024 KiB = 1,048,576 bytes\n\nDecimal: 1 MB = 1000 kB = 1,000,000 bytes\n\nIf not set, the decimal system is used.
 }
@@ -39,30 +39,28 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"description": {
 			Type:        schema.TypeString,
 			Description: "Description",
-			Optional:    true,
+			Optional:    true, // nullable
 		},
 		"dimensions": {
 			Type:        schema.TypeList,
 			Description: "Define metadata per metric dimension.",
-			Required:    true,
-
-			Elem:     &schema.Resource{Schema: new(Dimensions).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Optional:    true, // minobjects == 0
+			Elem:        &schema.Resource{Schema: new(Dimensions).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 		"display_name": {
 			Type:        schema.TypeString,
 			Description: "Display name",
-			Optional:    true,
+			Optional:    true, // nullable
 		},
 		"metric_properties": {
 			Type:        schema.TypeList,
 			Description: "Metric properties",
-			Optional:    true,
-
-			Elem:     &schema.Resource{Schema: new(MetricProperties).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Optional:    true, // nullable
+			Elem:        &schema.Resource{Schema: new(MetricProperties).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 		"scope": {
 			Type:        schema.TypeString,
@@ -72,14 +70,13 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"source_entity_type": {
 			Type:        schema.TypeString,
 			Description: "Specifies which entity dimension should be used as the primary dimension. The property can only be configured for metrics ingested with the Metrics API.",
-			Optional:    true,
+			Optional:    true, // nullable
 		},
 		"tags": {
 			Type:        schema.TypeSet,
 			Description: "Tags",
-			Required:    true,
-
-			Elem: &schema.Schema{Type: schema.TypeString},
+			Optional:    true, // minobjects == 0
+			Elem:        &schema.Schema{Type: schema.TypeString},
 		},
 		"unit": {
 			Type:        schema.TypeString,
@@ -89,7 +86,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"unit_display_format": {
 			Type:        schema.TypeString,
 			Description: "The raw value is stored in bits or bytes. The user interface can display it in these numeral systems:\n\nBinary: 1 MiB = 1024 KiB = 1,048,576 bytes\n\nDecimal: 1 MB = 1000 kB = 1,000,000 bytes\n\nIf not set, the decimal system is used.",
-			Optional:    true,
+			Optional:    true, // nullable & precondition
 		},
 	}
 }

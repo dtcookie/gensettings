@@ -23,8 +23,8 @@ import (
 )
 
 type Settings struct {
-	DefaultDashboardList UserGroupss `json:"defaultDashboardList"` // Configure home dashboard for selected user group. The selected preset dashboard will be loaded as default landing page for this environment.
-	EnablePublicSharing  bool        `json:"enablePublicSharing"`  // Allow users to grant anonymous access to dashboards. No sign-in will be required to view those dashboards read-only.
+	DefaultDashboardList UserGroupss `json:"defaultDashboardList,omitempty"` // Configure home dashboard for selected user group. The selected preset dashboard will be loaded as default landing page for this environment.
+	EnablePublicSharing  bool        `json:"enablePublicSharing"`            // Allow users to grant anonymous access to dashboards. No sign-in will be required to view those dashboards read-only.
 }
 
 func (me *Settings) Schema() map[string]*schema.Schema {
@@ -32,11 +32,10 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"default_dashboard_list": {
 			Type:        schema.TypeList,
 			Description: "Configure home dashboard for selected user group. The selected preset dashboard will be loaded as default landing page for this environment.",
-			Required:    true,
-
-			Elem:     &schema.Resource{Schema: new(UserGroupss).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Optional:    true, // minobjects == 0
+			Elem:        &schema.Resource{Schema: new(UserGroupss).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 		"enable_public_sharing": {
 			Type:        schema.TypeBool,

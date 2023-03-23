@@ -23,7 +23,7 @@ import (
 )
 
 type Settings struct {
-	Allowlist URLPatterns `json:"allowlist"` // List of URL pattern matchers
+	Allowlist URLPatterns `json:"allowlist,omitempty"` // List of URL pattern matchers
 }
 
 func (me *Settings) Schema() map[string]*schema.Schema {
@@ -31,11 +31,10 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"allowlist": {
 			Type:        schema.TypeList,
 			Description: "List of URL pattern matchers",
-			Required:    true,
-
-			Elem:     &schema.Resource{Schema: new(URLPatterns).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Optional:    true, // minobjects == 0
+			Elem:        &schema.Resource{Schema: new(URLPatterns).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 	}
 }

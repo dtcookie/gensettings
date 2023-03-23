@@ -34,19 +34,17 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "Alerts on low disk space in megabytes for a persistent volume claim.",
 			Required:    true,
-
-			Elem:     &schema.Resource{Schema: new(LowDiskSpaceCritical).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Elem:        &schema.Resource{Schema: new(LowDiskSpaceCritical).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 		"low_disk_space_critical_percentage": {
 			Type:        schema.TypeList,
 			Description: "Alerts on low disk space in % for a persistent volume claim.",
 			Required:    true,
-
-			Elem:     &schema.Resource{Schema: new(LowDiskSpaceCriticalPercentage).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Elem:        &schema.Resource{Schema: new(LowDiskSpaceCriticalPercentage).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 		"scope": {
 			Type:        schema.TypeString,

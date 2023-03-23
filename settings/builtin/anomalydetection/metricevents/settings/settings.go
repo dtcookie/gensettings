@@ -42,39 +42,36 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"event_entity_dimension_key": {
 			Type:        schema.TypeString,
 			Description: "Controls the preferred entity type used for triggered events.",
-			Optional:    true,
+			Optional:    true, // nullable
 		},
 		"event_template": {
 			Type:        schema.TypeList,
 			Description: "Event template",
 			Required:    true,
-
-			Elem:     &schema.Resource{Schema: new(EventTemplate).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Elem:        &schema.Resource{Schema: new(EventTemplate).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 		"legacy_id": {
 			Type:        schema.TypeString,
 			Description: "Config id",
-			Optional:    true,
+			Optional:    true, // nullable
 		},
 		"model_properties": {
 			Type:        schema.TypeList,
 			Description: "Monitoring strategy",
 			Required:    true,
-
-			Elem:     &schema.Resource{Schema: new(ModelProperties).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Elem:        &schema.Resource{Schema: new(ModelProperties).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 		"query_definition": {
 			Type:        schema.TypeList,
 			Description: "Query definition",
 			Required:    true,
-
-			Elem:     &schema.Resource{Schema: new(QueryDefinition).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Elem:        &schema.Resource{Schema: new(QueryDefinition).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 		"summary": {
 			Type:        schema.TypeString,

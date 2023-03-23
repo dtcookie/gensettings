@@ -38,12 +38,12 @@ func (me *LoadDrops) Schema() map[string]*schema.Schema {
 		"load_drop_percent": {
 			Type:        schema.TypeFloat,
 			Description: "Threshold",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 		"minutes_abnormal_state": {
 			Type:        schema.TypeInt,
 			Description: "Time span",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 	}
 }

@@ -25,7 +25,7 @@ import (
 type Settings struct {
 	ApiColor      string      `json:"apiColor"`             // This color will be used to highlight APIs when viewing code level data, such as distributed traces or method hotspots.
 	ApiName       string      `json:"apiName"`              // API name
-	Conditions    ApiRules    `json:"conditions"`           // List of conditions
+	Conditions    ApiRules    `json:"conditions,omitempty"` // List of conditions
 	Technology    *Technology `json:"technology,omitempty"` // Restrict this rule to a specific technology.
 	ThirdPartyApi bool        `json:"thirdPartyApi"`        // This API defines a third party library
 }
@@ -45,16 +45,15 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"conditions": {
 			Type:        schema.TypeList,
 			Description: "List of conditions",
-			Required:    true,
-
-			Elem:     &schema.Resource{Schema: new(ApiRules).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Optional:    true, // minobjects == 0
+			Elem:        &schema.Resource{Schema: new(ApiRules).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 		"technology": {
 			Type:        schema.TypeString,
 			Description: "Restrict this rule to a specific technology.",
-			Optional:    true,
+			Optional:    true, // nullable
 		},
 		"third_party_api": {
 			Type:        schema.TypeBool,

@@ -34,7 +34,7 @@ func (me *SlowUserActions) Schema() map[string]*schema.Schema {
 		"detection_mode": {
 			Type:        schema.TypeString,
 			Description: "Possible Values: `Auto`, `Fixed`",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 		"enabled": {
 			Type:        schema.TypeBool,
@@ -44,20 +44,18 @@ func (me *SlowUserActions) Schema() map[string]*schema.Schema {
 		"slow_user_actions_auto": {
 			Type:        schema.TypeList,
 			Description: "no documentation available",
-			Optional:    true,
-
-			Elem:     &schema.Resource{Schema: new(SlowUserActionsAuto).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Optional:    true, // precondition
+			Elem:        &schema.Resource{Schema: new(SlowUserActionsAuto).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 		"slow_user_actions_fixed": {
 			Type:        schema.TypeList,
 			Description: "no documentation available",
-			Optional:    true,
-
-			Elem:     &schema.Resource{Schema: new(SlowUserActionsFixed).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Optional:    true, // precondition
+			Elem:        &schema.Resource{Schema: new(SlowUserActionsFixed).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 	}
 }

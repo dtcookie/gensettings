@@ -53,7 +53,7 @@ func (me *Location) Schema() map[string]*schema.Schema {
 		"location": {
 			Type:        schema.TypeString,
 			Description: "no documentation available",
-			Optional:    true,
+			Optional:    true, // nullable
 		},
 	}
 }

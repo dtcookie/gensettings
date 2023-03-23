@@ -23,8 +23,8 @@ import (
 )
 
 type Settings struct {
-	Applications Applications `json:"applications"`    // Assigned applications
-	Scope        string       `json:"-" scope:"scope"` // The scope of this setting (SYNTHETIC_TEST)
+	Applications Applications `json:"applications,omitempty"` // Assigned applications
+	Scope        string       `json:"-" scope:"scope"`        // The scope of this setting (SYNTHETIC_TEST)
 }
 
 func (me *Settings) Schema() map[string]*schema.Schema {
@@ -32,11 +32,10 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"applications": {
 			Type:        schema.TypeList,
 			Description: "Assigned applications",
-			Required:    true,
-
-			Elem:     &schema.Resource{Schema: new(Applications).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Optional:    true, // minobjects == 0
+			Elem:        &schema.Resource{Schema: new(Applications).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 		"scope": {
 			Type:        schema.TypeString,

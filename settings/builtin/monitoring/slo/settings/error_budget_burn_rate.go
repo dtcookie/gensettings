@@ -37,7 +37,7 @@ func (me *ErrorBudgetBurnRate) Schema() map[string]*schema.Schema {
 		"fast_burn_threshold": {
 			Type:        schema.TypeFloat,
 			Description: "The threshold defines when a burn rate is marked as fast-burning (high-emergency). Burn rates lower than this threshold (and greater than 1) are highlighted as slow-burn (low-emergency).",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 	}
 }

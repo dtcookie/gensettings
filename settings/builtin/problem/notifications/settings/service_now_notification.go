@@ -37,7 +37,7 @@ func (me *ServiceNowNotification) Schema() map[string]*schema.Schema {
 		"instance_name": {
 			Type:        schema.TypeString,
 			Description: "The ServiceNow instance identifier. It refers to the first part of your own ServiceNow URL. \n\n This field is mutually exclusive with the **url** field. You can only use one of them.",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 		"message": {
 			Type:        schema.TypeString,
@@ -62,7 +62,7 @@ func (me *ServiceNowNotification) Schema() map[string]*schema.Schema {
 		"url": {
 			Type:        schema.TypeString,
 			Description: "The URL of the on-premise ServiceNow installation. \n\n This field is mutually exclusive with the **instanceName** field. You can only use one of them.",
-			Optional:    true,
+			Optional:    true, // nullable
 		},
 		"username": {
 			Type:        schema.TypeString,

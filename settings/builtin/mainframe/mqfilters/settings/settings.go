@@ -23,12 +23,12 @@ import (
 )
 
 type Settings struct {
-	CicsMqQueueIdExcludes []string `json:"cicsMqQueueIdExcludes"` // CICS: Excluded MQ queues
-	CicsMqQueueIdIncludes []string `json:"cicsMqQueueIdIncludes"` // CICS: Included MQ queues
-	ImsCrTrnIdExcludes    []string `json:"imsCrTrnIdExcludes"`    // When you add a transaction ID to the exclude list remaining transactions are still monitored.
-	ImsCrTrnIdIncludes    []string `json:"imsCrTrnIdIncludes"`    // When you add a transaction ID to the include list, all the remaining transactions are ignored.
-	ImsMqQueueIdExcludes  []string `json:"imsMqQueueIdExcludes"`  // IMS: Excluded MQ queues
-	ImsMqQueueIdIncludes  []string `json:"imsMqQueueIdIncludes"`  // IMS: Included MQ queues
+	CicsMqQueueIdExcludes []string `json:"cicsMqQueueIdExcludes,omitempty"` // CICS: Excluded MQ queues
+	CicsMqQueueIdIncludes []string `json:"cicsMqQueueIdIncludes,omitempty"` // CICS: Included MQ queues
+	ImsCrTrnIdExcludes    []string `json:"imsCrTrnIdExcludes,omitempty"`    // When you add a transaction ID to the exclude list remaining transactions are still monitored.
+	ImsCrTrnIdIncludes    []string `json:"imsCrTrnIdIncludes,omitempty"`    // When you add a transaction ID to the include list, all the remaining transactions are ignored.
+	ImsMqQueueIdExcludes  []string `json:"imsMqQueueIdExcludes,omitempty"`  // IMS: Excluded MQ queues
+	ImsMqQueueIdIncludes  []string `json:"imsMqQueueIdIncludes,omitempty"`  // IMS: Included MQ queues
 }
 
 func (me *Settings) Schema() map[string]*schema.Schema {
@@ -36,44 +36,38 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		"cics_mq_queue_id_excludes": {
 			Type:        schema.TypeSet,
 			Description: "CICS: Excluded MQ queues",
-			Required:    true,
-
-			Elem: &schema.Schema{Type: schema.TypeString},
+			Optional:    true, // minobjects == 0
+			Elem:        &schema.Schema{Type: schema.TypeString},
 		},
 		"cics_mq_queue_id_includes": {
 			Type:        schema.TypeSet,
 			Description: "CICS: Included MQ queues",
-			Required:    true,
-
-			Elem: &schema.Schema{Type: schema.TypeString},
+			Optional:    true, // minobjects == 0
+			Elem:        &schema.Schema{Type: schema.TypeString},
 		},
 		"ims_cr_trn_id_excludes": {
 			Type:        schema.TypeSet,
 			Description: "When you add a transaction ID to the exclude list remaining transactions are still monitored.",
-			Required:    true,
-
-			Elem: &schema.Schema{Type: schema.TypeString},
+			Optional:    true, // minobjects == 0
+			Elem:        &schema.Schema{Type: schema.TypeString},
 		},
 		"ims_cr_trn_id_includes": {
 			Type:        schema.TypeSet,
 			Description: "When you add a transaction ID to the include list, all the remaining transactions are ignored.",
-			Required:    true,
-
-			Elem: &schema.Schema{Type: schema.TypeString},
+			Optional:    true, // minobjects == 0
+			Elem:        &schema.Schema{Type: schema.TypeString},
 		},
 		"ims_mq_queue_id_excludes": {
 			Type:        schema.TypeSet,
 			Description: "IMS: Excluded MQ queues",
-			Required:    true,
-
-			Elem: &schema.Schema{Type: schema.TypeString},
+			Optional:    true, // minobjects == 0
+			Elem:        &schema.Schema{Type: schema.TypeString},
 		},
 		"ims_mq_queue_id_includes": {
 			Type:        schema.TypeSet,
 			Description: "IMS: Included MQ queues",
-			Required:    true,
-
-			Elem: &schema.Schema{Type: schema.TypeString},
+			Optional:    true, // minobjects == 0
+			Elem:        &schema.Schema{Type: schema.TypeString},
 		},
 	}
 }

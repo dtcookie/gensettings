@@ -34,7 +34,7 @@ func (me *Condition) Schema() map[string]*schema.Schema {
 		"env_var": {
 			Type:        schema.TypeString,
 			Description: "supported only with OneAgent 1.167+",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 		"item": {
 			Type:        schema.TypeString,
@@ -49,7 +49,7 @@ func (me *Condition) Schema() map[string]*schema.Schema {
 		"value": {
 			Type:        schema.TypeString,
 			Description: "Condition value",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 	}
 }

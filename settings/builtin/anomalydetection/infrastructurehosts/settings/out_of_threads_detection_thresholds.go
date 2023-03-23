@@ -33,10 +33,9 @@ func (me *OutOfThreadsDetectionThresholds) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "no documentation available",
 			Required:    true,
-
-			Elem:     &schema.Resource{Schema: new(StrictEventThresholds).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Elem:        &schema.Resource{Schema: new(StrictEventThresholds).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 		"out_of_threads_exceptions_number": {
 			Type:        schema.TypeInt,

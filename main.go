@@ -213,10 +213,11 @@ func main() {
 				comment = propertyDefinition.DisplayName
 			}
 			property := &reflection.Property{
-				Name:     propertyName,
-				Type:     resolver.resolvePropertyType(propertyName, propertyDefinition),
-				Comment:  comment,
-				Optional: propertyDefinition.Nullable || propertyDefinition.Precondition != nil,
+				Name:            propertyName,
+				Type:            resolver.resolvePropertyType(propertyName, propertyDefinition),
+				Comment:         comment,
+				Optional:        propertyDefinition.Nullable || propertyDefinition.Precondition != nil || (propertyDefinition.MinObjects != nil && *propertyDefinition.MinObjects == 0),
+				OptionalComment: OptionalComment(propertyDefinition),
 			}
 			if propertyDefinition.Nullable {
 				property.Type = property.Type.Pointer()

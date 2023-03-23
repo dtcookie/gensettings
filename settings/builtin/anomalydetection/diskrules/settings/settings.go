@@ -29,7 +29,7 @@ type Settings struct {
 	Metric                DiskMetric      `json:"metric"`                          // Possible Values: `LOW_DISK_SPACE`, `LOW_INODES`, `READ_TIME_EXCEEDING`, `WRITE_TIME_EXCEEDING`
 	Name                  string          `json:"name"`                            // Name
 	SampleLimit           *SampleLimit    `json:"sampleLimit"`                     // Only alert if the threshold was violated in at least *n* of the last *m* samples
-	TagFilters            []string        `json:"tagFilters"`                      // Only apply to hosts that have the following tags
+	TagFilters            []string        `json:"tagFilters,omitempty"`            // Only apply to hosts that have the following tags
 	ThresholdMilliseconds *float64        `json:"thresholdMilliseconds,omitempty"` // Alert if higher than
 	ThresholdPercent      *float64        `json:"thresholdPercent,omitempty"`      // Alert if lower than
 }
@@ -40,10 +40,9 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "Only apply to disks whose name matches",
 			Required:    true,
-
-			Elem:     &schema.Resource{Schema: new(DiskNameFilter).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Elem:        &schema.Resource{Schema: new(DiskNameFilter).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 		"enabled": {
 			Type:        schema.TypeBool,
@@ -70,27 +69,25 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeList,
 			Description: "Only alert if the threshold was violated in at least *n* of the last *m* samples",
 			Required:    true,
-
-			Elem:     &schema.Resource{Schema: new(SampleLimit).Schema()},
-			MinItems: 1,
-			MaxItems: 1,
+			Elem:        &schema.Resource{Schema: new(SampleLimit).Schema()},
+			MinItems:    1,
+			MaxItems:    1,
 		},
 		"tag_filters": {
 			Type:        schema.TypeSet,
 			Description: "Only apply to hosts that have the following tags",
-			Required:    true,
-
-			Elem: &schema.Schema{Type: schema.TypeString},
+			Optional:    true, // minobjects == 0
+			Elem:        &schema.Schema{Type: schema.TypeString},
 		},
 		"threshold_milliseconds": {
 			Type:        schema.TypeFloat,
 			Description: "Alert if higher than",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 		"threshold_percent": {
 			Type:        schema.TypeFloat,
 			Description: "Alert if lower than",
-			Optional:    true,
+			Optional:    true, // precondition
 		},
 	}
 }
