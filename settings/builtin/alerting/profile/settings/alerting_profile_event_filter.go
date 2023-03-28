@@ -85,8 +85,8 @@ func (me *AlertingProfileEventFilter) MarshalHCL(properties hcl.Properties) erro
 }
 
 func (me *AlertingProfileEventFilter) HandlePreconditions() {
-	// ---- CustomFilter *CustomEventFilter
-	// ---- PredefinedFilter *PredefinedEventFilter
+	// ---- CustomFilter *CustomEventFilter -> {"expectedValue":"CUSTOM","property":"type","type":"EQUALS"}
+	// ---- PredefinedFilter *PredefinedEventFilter -> {"expectedValue":"PREDEFINED","property":"type","type":"EQUALS"}
 }
 
 func (me *AlertingProfileEventFilter) UnmarshalHCL(decoder hcl.Decoder) error {

@@ -79,7 +79,7 @@ func (me *Settings) HandlePreconditions() {
 	if me.StatsdActive == nil && me.Enabled {
 		me.StatsdActive = opt.NewBool(false)
 	}
-	// ---- PerformanceProfile *PerformanceProfile
+	// ---- PerformanceProfile *PerformanceProfile -> {"expectedValue":true,"property":"enabled","type":"EQUALS"}
 }
 
 func (me *Settings) UnmarshalHCL(decoder hcl.Decoder) error {

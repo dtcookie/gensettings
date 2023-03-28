@@ -18,8 +18,10 @@
 package generictype
 
 import (
+	"github.com/dynatrace-oss/terraform-provider-dynatrace/dynatrace/opt"
 	"github.com/dynatrace-oss/terraform-provider-dynatrace/terraform/hcl"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"golang.org/x/exp/slices"
 )
 
 type SourceFilters []*SourceFilter
@@ -73,7 +75,9 @@ func (me *SourceFilter) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *SourceFilter) HandlePreconditions() {
-	// ---- Condition *string
+	if me.Condition == nil && !slices.Contains([]string{"Logs", "Spans", "Topology"}, string(me.SourceType)) {
+		me.Condition = opt.NewString("")
+	}
 }
 
 func (me *SourceFilter) UnmarshalHCL(decoder hcl.Decoder) error {

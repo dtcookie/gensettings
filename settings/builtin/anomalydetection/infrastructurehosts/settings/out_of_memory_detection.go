@@ -60,8 +60,8 @@ func (me *OutOfMemoryDetection) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *OutOfMemoryDetection) HandlePreconditions() {
-	// ---- CustomThresholds *OutOfMemoryDetectionThresholds
-	// ---- DetectionMode *DetectionMode
+	// ---- CustomThresholds *OutOfMemoryDetectionThresholds -> {"preconditions":[{"expectedValue":true,"property":"enabled","type":"EQUALS"},{"expectedValue":"custom","property":"detectionMode","type":"EQUALS"}],"type":"AND"}
+	// ---- DetectionMode *DetectionMode -> {"expectedValue":true,"property":"enabled","type":"EQUALS"}
 }
 
 func (me *OutOfMemoryDetection) UnmarshalHCL(decoder hcl.Decoder) error {

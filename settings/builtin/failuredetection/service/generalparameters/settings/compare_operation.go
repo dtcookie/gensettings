@@ -82,7 +82,7 @@ func (me *CompareOperation) HandlePreconditions() {
 	if me.TextValue == nil && slices.Contains([]string{"STRING_EQUALS", "NOT_STRING_EQUALS", "STARTS_WITH", "NOT_STARTS_WITH", "CONTAINS", "NOT_CONTAINS", "ENDS_WITH", "NOT_ENDS_WITH"}, string(me.CompareOperationType)) {
 		me.TextValue = opt.NewString("")
 	}
-	// ---- DoubleValue *float64
+	// ---- DoubleValue *float64 -> {"expectedValues":["DOUBLE_EQUALS","NOT_DOUBLE_EQUALS","DOUBLE_GREATER_THAN","DOUBLE_GREATER_THAN_OR_EQUALS","DOUBLE_LESS_THAN","DOUBLE_LESS_THAN_OR_EQUALS"],"property":"compareOperationType","type":"IN"}
 }
 
 func (me *CompareOperation) UnmarshalHCL(decoder hcl.Decoder) error {

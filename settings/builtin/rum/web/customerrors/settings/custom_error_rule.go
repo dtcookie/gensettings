@@ -18,6 +18,7 @@
 package customerrors
 
 import (
+	"github.com/dynatrace-oss/terraform-provider-dynatrace/dynatrace/opt"
 	"github.com/dynatrace-oss/terraform-provider-dynatrace/terraform/hcl"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
@@ -96,8 +97,12 @@ func (me *CustomErrorRule) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *CustomErrorRule) HandlePreconditions() {
-	// ---- KeyPattern *string
-	// ---- ValuePattern *string
+	if me.KeyPattern == nil && string(me.KeyMatcher) != "ALL" {
+		me.KeyPattern = opt.NewString("")
+	}
+	if me.ValuePattern == nil && string(me.ValueMatcher) != "ALL" {
+		me.ValuePattern = opt.NewString("")
+	}
 }
 
 func (me *CustomErrorRule) UnmarshalHCL(decoder hcl.Decoder) error {

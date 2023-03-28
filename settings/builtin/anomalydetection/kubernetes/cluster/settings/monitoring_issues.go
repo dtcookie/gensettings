@@ -53,7 +53,7 @@ func (me *MonitoringIssues) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *MonitoringIssues) HandlePreconditions() {
-	// ---- Configuration *MonitoringIssuesConfig
+	// ---- Configuration *MonitoringIssuesConfig -> {"expectedValue":true,"property":"enabled","type":"EQUALS"}
 }
 
 func (me *MonitoringIssues) UnmarshalHCL(decoder hcl.Decoder) error {

@@ -60,8 +60,8 @@ func (me *HighSystemLoadDetection) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *HighSystemLoadDetection) HandlePreconditions() {
-	// ---- CustomThresholds *HighSystemLoadDetectionThresholds
-	// ---- DetectionMode *DetectionMode
+	// ---- CustomThresholds *HighSystemLoadDetectionThresholds -> {"preconditions":[{"expectedValue":true,"property":"enabled","type":"EQUALS"},{"expectedValue":"custom","property":"detectionMode","type":"EQUALS"}],"type":"AND"}
+	// ---- DetectionMode *DetectionMode -> {"expectedValue":true,"property":"enabled","type":"EQUALS"}
 }
 
 func (me *HighSystemLoadDetection) UnmarshalHCL(decoder hcl.Decoder) error {

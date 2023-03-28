@@ -60,8 +60,8 @@ func (me *NetworkHighRetransmissionDetection) MarshalHCL(properties hcl.Properti
 }
 
 func (me *NetworkHighRetransmissionDetection) HandlePreconditions() {
-	// ---- CustomThresholds *NetworkHighRetransmissionDetectionThresholds
-	// ---- DetectionMode *DetectionMode
+	// ---- CustomThresholds *NetworkHighRetransmissionDetectionThresholds -> {"preconditions":[{"expectedValue":true,"property":"enabled","type":"EQUALS"},{"expectedValue":"custom","property":"detectionMode","type":"EQUALS"}],"type":"AND"}
+	// ---- DetectionMode *DetectionMode -> {"expectedValue":true,"property":"enabled","type":"EQUALS"}
 }
 
 func (me *NetworkHighRetransmissionDetection) UnmarshalHCL(decoder hcl.Decoder) error {

@@ -18,8 +18,10 @@
 package incoming
 
 import (
+	"github.com/dynatrace-oss/terraform-provider-dynatrace/dynatrace/opt"
 	"github.com/dynatrace-oss/terraform-provider-dynatrace/terraform/hcl"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"golang.org/x/exp/slices"
 )
 
 type MatcherComplexes []*MatcherComplex
@@ -90,8 +92,12 @@ func (me *MatcherComplex) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *MatcherComplex) HandlePreconditions() {
-	// ---- CaseSensitive *bool
-	// ---- Value *string
+	if me.CaseSensitive == nil && !slices.Contains([]string{"EXISTS", "N_EXISTS"}, string(me.Type)) {
+		me.CaseSensitive = opt.NewBool(false)
+	}
+	if me.Value == nil && !slices.Contains([]string{"EXISTS", "N_EXISTS"}, string(me.Type)) {
+		me.Value = opt.NewString("")
+	}
 }
 
 func (me *MatcherComplex) UnmarshalHCL(decoder hcl.Decoder) error {

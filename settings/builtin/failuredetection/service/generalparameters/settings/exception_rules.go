@@ -90,9 +90,9 @@ func (me *ExceptionRules) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *ExceptionRules) HandlePreconditions() {
-	// ---- CustomHandledExceptions Exceptions
-	// ---- IgnoredExceptions Exceptions
-	// ---- SuccessForcingExceptions Exceptions
+	// ---- CustomHandledExceptions Exceptions -> {"expectedValue":false,"property":"ignoreAllExceptions","type":"EQUALS"}
+	// ---- IgnoredExceptions Exceptions -> {"expectedValue":false,"property":"ignoreAllExceptions","type":"EQUALS"}
+	// ---- SuccessForcingExceptions Exceptions -> {"expectedValue":false,"property":"ignoreAllExceptions","type":"EQUALS"}
 }
 
 func (me *ExceptionRules) UnmarshalHCL(decoder hcl.Decoder) error {

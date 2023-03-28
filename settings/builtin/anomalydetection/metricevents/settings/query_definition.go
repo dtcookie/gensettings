@@ -105,10 +105,10 @@ func (me *QueryDefinition) HandlePreconditions() {
 	if me.MetricSelector == nil && string(me.Type) == "METRIC_SELECTOR" {
 		me.MetricSelector = opt.NewString("")
 	}
-	// ---- Aggregation *Aggregation
-	// ---- DimensionFilter DimensionFilters
-	// ---- EntityFilter *EntityFilter
-	// ---- ManagementZone *string
+	// ---- Aggregation *Aggregation -> {"expectedValue":"METRIC_KEY","property":"type","type":"EQUALS"}
+	// ---- DimensionFilter DimensionFilters -> {"preconditions":[{"expectedValue":"METRIC_KEY","property":"type","type":"EQUALS"},{"precondition":{"property":"metricKey","type":"NULL"},"type":"NOT"}],"type":"AND"}
+	// ---- EntityFilter *EntityFilter -> {"preconditions":[{"expectedValue":"METRIC_KEY","property":"type","type":"EQUALS"},{"precondition":{"property":"metricKey","type":"NULL"},"type":"NOT"}],"type":"AND"}
+	// ---- ManagementZone *string -> {"preconditions":[{"expectedValue":"METRIC_KEY","property":"type","type":"EQUALS"},{"expectedValue":"METRIC_SELECTOR","property":"type","type":"EQUALS"}],"type":"OR"}
 }
 
 func (me *QueryDefinition) UnmarshalHCL(decoder hcl.Decoder) error {

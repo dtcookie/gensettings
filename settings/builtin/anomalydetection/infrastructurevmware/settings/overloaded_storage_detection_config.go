@@ -60,8 +60,8 @@ func (me *OverloadedStorageDetectionConfig) MarshalHCL(properties hcl.Properties
 }
 
 func (me *OverloadedStorageDetectionConfig) HandlePreconditions() {
-	// ---- CustomThresholds *OverloadedStorageDetectionThresholds
-	// ---- DetectionMode *DetectionMode
+	// ---- CustomThresholds *OverloadedStorageDetectionThresholds -> {"expectedValue":"custom","property":"detectionMode","type":"EQUALS"}
+	// ---- DetectionMode *DetectionMode -> {"expectedValue":true,"property":"enabled","type":"EQUALS"}
 }
 
 func (me *OverloadedStorageDetectionConfig) UnmarshalHCL(decoder hcl.Decoder) error {

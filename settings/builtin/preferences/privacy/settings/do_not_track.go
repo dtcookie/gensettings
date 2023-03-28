@@ -50,7 +50,7 @@ func (me *DoNotTrack) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *DoNotTrack) HandlePreconditions() {
-	// ---- DoNotTrack *DoNotTrackOption
+	// ---- DoNotTrack *DoNotTrackOption -> {"expectedValue":true,"property":"complyWithDoNotTrack","type":"EQUALS"}
 }
 
 func (me *DoNotTrack) UnmarshalHCL(decoder hcl.Decoder) error {

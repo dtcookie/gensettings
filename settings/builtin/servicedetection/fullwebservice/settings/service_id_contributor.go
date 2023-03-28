@@ -53,7 +53,7 @@ func (me *ServiceIdContributor) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *ServiceIdContributor) HandlePreconditions() {
-	// ---- ServiceIdContributor *TransformationSet
+	// ---- ServiceIdContributor *TransformationSet -> {"expectedValue":true,"property":"enableIdContributor","type":"EQUALS"}
 }
 
 func (me *ServiceIdContributor) UnmarshalHCL(decoder hcl.Decoder) error {

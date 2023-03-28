@@ -93,11 +93,11 @@ func (me *IdContributorsType) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *IdContributorsType) HandlePreconditions() {
-	// ---- ApplicationID *ServiceIdContributor
-	// ---- ContextRoot *ContextIdContributor
-	// ---- ServerName *ServiceIdContributor
-	// ---- WebServiceName *ServiceIdContributor
-	// ---- WebServiceNamespace *ServiceIdContributor
+	// ---- ApplicationID *ServiceIdContributor -> {"expectedValue":false,"property":"detectAsWebRequestService","type":"EQUALS"}
+	// ---- ContextRoot *ContextIdContributor -> {"expectedValue":false,"property":"detectAsWebRequestService","type":"EQUALS"}
+	// ---- ServerName *ServiceIdContributor -> {"expectedValue":false,"property":"detectAsWebRequestService","type":"EQUALS"}
+	// ---- WebServiceName *ServiceIdContributor -> {"expectedValue":false,"property":"detectAsWebRequestService","type":"EQUALS"}
+	// ---- WebServiceNamespace *ServiceIdContributor -> {"expectedValue":false,"property":"detectAsWebRequestService","type":"EQUALS"}
 }
 
 func (me *IdContributorsType) UnmarshalHCL(decoder hcl.Decoder) error {

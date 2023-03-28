@@ -60,8 +60,8 @@ func (me *HighCpuSaturationDetection) MarshalHCL(properties hcl.Properties) erro
 }
 
 func (me *HighCpuSaturationDetection) HandlePreconditions() {
-	// ---- CustomThresholds *HighCpuSaturationDetectionThresholds
-	// ---- DetectionMode *DetectionMode
+	// ---- CustomThresholds *HighCpuSaturationDetectionThresholds -> {"preconditions":[{"expectedValue":true,"property":"enabled","type":"EQUALS"},{"expectedValue":"custom","property":"detectionMode","type":"EQUALS"}],"type":"AND"}
+	// ---- DetectionMode *DetectionMode -> {"expectedValue":true,"property":"enabled","type":"EQUALS"}
 }
 
 func (me *HighCpuSaturationDetection) UnmarshalHCL(decoder hcl.Decoder) error {

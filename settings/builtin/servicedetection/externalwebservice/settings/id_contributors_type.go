@@ -64,7 +64,7 @@ func (me *IdContributorsType) HandlePreconditions() {
 	if me.PortForServiceID == nil && !me.DetectAsWebRequestService {
 		me.PortForServiceID = opt.NewBool(false)
 	}
-	// ---- UrlPath *ServiceIdContributor
+	// ---- UrlPath *ServiceIdContributor -> {"expectedValue":false,"property":"detectAsWebRequestService","type":"EQUALS"}
 }
 
 func (me *IdContributorsType) UnmarshalHCL(decoder hcl.Decoder) error {

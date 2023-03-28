@@ -70,9 +70,9 @@ func (me *SlowUserActions) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *SlowUserActions) HandlePreconditions() {
-	// ---- DetectionMode *DetectionMode
-	// ---- SlowUserActionsAuto *SlowUserActionsAuto
-	// ---- SlowUserActionsFixed *SlowUserActionsFixed
+	// ---- DetectionMode *DetectionMode -> {"expectedValue":true,"property":"enabled","type":"EQUALS"}
+	// ---- SlowUserActionsAuto *SlowUserActionsAuto -> {"preconditions":[{"expectedValue":true,"property":"enabled","type":"EQUALS"},{"expectedValue":"auto","property":"detectionMode","type":"EQUALS"}],"type":"AND"}
+	// ---- SlowUserActionsFixed *SlowUserActionsFixed -> {"preconditions":[{"expectedValue":true,"property":"enabled","type":"EQUALS"},{"expectedValue":"fixed","property":"detectionMode","type":"EQUALS"}],"type":"AND"}
 }
 
 func (me *SlowUserActions) UnmarshalHCL(decoder hcl.Decoder) error {

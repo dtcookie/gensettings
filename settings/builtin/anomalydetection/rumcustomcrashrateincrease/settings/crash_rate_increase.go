@@ -70,9 +70,9 @@ func (me *CrashRateIncrease) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *CrashRateIncrease) HandlePreconditions() {
-	// ---- CrashRateIncreaseAuto *CrashRateIncreaseAuto
-	// ---- CrashRateIncreaseFixed *CrashRateIncreaseFixed
-	// ---- DetectionMode *DetectionMode
+	// ---- CrashRateIncreaseAuto *CrashRateIncreaseAuto -> {"preconditions":[{"expectedValue":true,"property":"enabled","type":"EQUALS"},{"expectedValue":"auto","property":"detectionMode","type":"EQUALS"}],"type":"AND"}
+	// ---- CrashRateIncreaseFixed *CrashRateIncreaseFixed -> {"preconditions":[{"expectedValue":true,"property":"enabled","type":"EQUALS"},{"expectedValue":"fixed","property":"detectionMode","type":"EQUALS"}],"type":"AND"}
+	// ---- DetectionMode *DetectionMode -> {"expectedValue":true,"property":"enabled","type":"EQUALS"}
 }
 
 func (me *CrashRateIncrease) UnmarshalHCL(decoder hcl.Decoder) error {

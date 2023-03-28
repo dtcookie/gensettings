@@ -53,7 +53,7 @@ func (me *PodStuckInTerminating) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *PodStuckInTerminating) HandlePreconditions() {
-	// ---- Configuration *PodStuckInTerminatingConfig
+	// ---- Configuration *PodStuckInTerminatingConfig -> {"expectedValue":true,"property":"enabled","type":"EQUALS"}
 }
 
 func (me *PodStuckInTerminating) UnmarshalHCL(decoder hcl.Decoder) error {

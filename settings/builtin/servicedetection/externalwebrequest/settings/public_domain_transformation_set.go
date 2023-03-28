@@ -75,8 +75,8 @@ func (me *PublicDomainTransformationSet) HandlePreconditions() {
 	if me.CopyFromHostName == nil && slices.Contains([]string{"OriginalValue", "TransformValue"}, string(me.ContributionType)) {
 		me.CopyFromHostName = opt.NewBool(false)
 	}
-	// ---- Transformations Transformations
-	// ---- ValueOverride *ValueOverride
+	// ---- Transformations Transformations -> {"expectedValue":"TransformValue","property":"contributionType","type":"EQUALS"}
+	// ---- ValueOverride *ValueOverride -> {"expectedValue":"OverrideValue","property":"contributionType","type":"EQUALS"}
 }
 
 func (me *PublicDomainTransformationSet) UnmarshalHCL(decoder hcl.Decoder) error {

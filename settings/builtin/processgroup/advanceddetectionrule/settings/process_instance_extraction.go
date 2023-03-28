@@ -53,7 +53,7 @@ func (me *ProcessInstanceExtraction) MarshalHCL(properties hcl.Properties) error
 }
 
 func (me *ProcessInstanceExtraction) HandlePreconditions() {
-	// ---- Delimiter *Delimiter
+	// ---- Delimiter *Delimiter -> {"property":"property","type":"NULL"}
 }
 
 func (me *ProcessInstanceExtraction) UnmarshalHCL(decoder hcl.Decoder) error {

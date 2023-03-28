@@ -61,7 +61,7 @@ func (me *LoadSpikes) HandlePreconditions() {
 	if me.MinutesAbnormalState == nil && me.Enabled {
 		me.MinutesAbnormalState = opt.NewInt(0)
 	}
-	// ---- LoadSpikePercent *float64
+	// ---- LoadSpikePercent *float64 -> {"expectedValue":true,"property":"enabled","type":"EQUALS"}
 }
 
 func (me *LoadSpikes) UnmarshalHCL(decoder hcl.Decoder) error {

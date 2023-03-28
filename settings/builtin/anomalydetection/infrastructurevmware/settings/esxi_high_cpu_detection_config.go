@@ -60,8 +60,8 @@ func (me *EsxiHighCpuDetectionConfig) MarshalHCL(properties hcl.Properties) erro
 }
 
 func (me *EsxiHighCpuDetectionConfig) HandlePreconditions() {
-	// ---- CustomThresholds *EsxiHighCpuDetectionThresholds
-	// ---- DetectionMode *DetectionMode
+	// ---- CustomThresholds *EsxiHighCpuDetectionThresholds -> {"expectedValue":"custom","property":"detectionMode","type":"EQUALS"}
+	// ---- DetectionMode *DetectionMode -> {"expectedValue":true,"property":"enabled","type":"EQUALS"}
 }
 
 func (me *EsxiHighCpuDetectionConfig) UnmarshalHCL(decoder hcl.Decoder) error {

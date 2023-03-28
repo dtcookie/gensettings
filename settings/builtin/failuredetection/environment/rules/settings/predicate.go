@@ -95,11 +95,11 @@ func (me *Predicate) HandlePreconditions() {
 	if me.CaseSensitive == nil && slices.Contains([]string{"STRING_EQUALS", "STARTS_WITH", "ENDS_WITH", "CONTAINS"}, string(me.PredicateType)) {
 		me.CaseSensitive = opt.NewBool(false)
 	}
-	// ---- ManagementZones []string
-	// ---- ServiceType []ServiceTypes
-	// ---- TagKeys []string
-	// ---- Tags []string
-	// ---- TextValues []string
+	// ---- ManagementZones []string -> {"expectedValues":["MANAGEMENT_ZONES_CONTAINS_ALL"],"property":"predicateType","type":"IN"}
+	// ---- ServiceType []ServiceTypes -> {"expectedValues":["SERVICE_TYPE_EQUALS"],"property":"predicateType","type":"IN"}
+	// ---- TagKeys []string -> {"expectedValues":["TAG_KEY_EQUALS"],"property":"predicateType","type":"IN"}
+	// ---- Tags []string -> {"expectedValues":["TAG_EQUALS"],"property":"predicateType","type":"IN"}
+	// ---- TextValues []string -> {"expectedValues":["STRING_EQUALS","STARTS_WITH","ENDS_WITH","CONTAINS"],"property":"predicateType","type":"IN"}
 }
 
 func (me *Predicate) UnmarshalHCL(decoder hcl.Decoder) error {

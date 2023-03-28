@@ -103,8 +103,8 @@ func (me *Rule) HandlePreconditions() {
 	if me.EntitySelector == nil && string(me.Type) == "SELECTOR" {
 		me.EntitySelector = opt.NewString("")
 	}
-	// ---- AttributeRule *ManagementZoneAttributeRule
-	// ---- DimensionRule *DimensionRule
+	// ---- AttributeRule *ManagementZoneAttributeRule -> {"expectedValue":"ME","property":"type","type":"EQUALS"}
+	// ---- DimensionRule *DimensionRule -> {"expectedValue":"DIMENSION","property":"type","type":"EQUALS"}
 }
 
 func (me *Rule) UnmarshalHCL(decoder hcl.Decoder) error {

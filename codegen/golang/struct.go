@@ -90,6 +90,16 @@ func getPrecType(m map[string]any) string {
 	return untyped.(string)
 }
 
+func (me *Struct) findProperty(origName string) *Property {
+	name := PropertyName(origName)
+	for _, property := range me.Properties {
+		if property.Name == name {
+			return property
+		}
+	}
+	return nil
+}
+
 func (me *Struct) Preconditions() string {
 	result := ""
 	if len(me.Properties) == 0 {
@@ -103,26 +113,69 @@ func (me *Struct) Preconditions() string {
 		m := property.Precondition
 		precExpectedValues := getPrecExpectedValues(m)
 		precExpectedValue := getPrecExpectedValue(m)
-		precPropertyName := getPrecProperty(m)
+		precPropName := getPrecProperty(m)
 		precType := getPrecType(m)
+
+		negate := false
+		if precType == "NOT" {
+			m = m["precondition"].(map[string]any)
+			negate = true
+			precExpectedValues = getPrecExpectedValues(m)
+			precExpectedValue = getPrecExpectedValue(m)
+			precPropName = getPrecProperty(m)
+			precType = getPrecType(m)
+		}
+		var checkProperty *Property
+		if len(precPropName) > 0 {
+			checkProperty = me.findProperty(precPropName)
+		}
+
 		line := ""
-		if precExpectedValues != nil && len(precPropertyName) > 0 && precType == "IN" {
-			precPropertyName = PropertyName(precPropertyName)
-			line = fmt.Sprintf(`if me.%s == nil && slices.Contains([]string{"%s"}, string(me.%s)) {
-				me.%s = `, property.Name, strings.Join(precExpectedValues, `", "`), precPropertyName, property.Name)
-		} else if precExpectedValue != nil && len(precPropertyName) > 0 && precType == "EQUALS" {
-			precPropertyName = PropertyName(precPropertyName)
+		if precExpectedValues != nil && checkProperty != nil && precType == "IN" {
+			negStr := ""
+			if negate {
+				negStr = "!"
+			}
+			nilCheck := ""
+			deref := ""
+			if strings.HasPrefix(checkProperty.Type, "*") {
+				nilCheck = fmt.Sprintf(" && me.%s != nil", checkProperty.Name)
+				deref = "*"
+			}
+			line = fmt.Sprintf(`if me.%s == nil%s && %sslices.Contains([]string{"%s"}, string(%sme.%s)) {
+				me.%s = `, property.Name, nilCheck, negStr, strings.Join(precExpectedValues, `", "`), deref, checkProperty.Name, property.Name)
+		} else if precExpectedValue != nil && checkProperty != nil && precType == "EQUALS" {
 			switch ev := precExpectedValue.(type) {
 			case string:
-				line = fmt.Sprintf(`if me.%s == nil && string(me.%s) == "%s" {
-					me.%s = `, property.Name, precPropertyName, precExpectedValue, property.Name)
+				eqStr := "=="
+				if negate {
+					eqStr = "!="
+				}
+				nilCheck := ""
+				deref := ""
+				if strings.HasPrefix(checkProperty.Type, "*") {
+					nilCheck = fmt.Sprintf(" && me.%s != nil", checkProperty.Name)
+					deref = "*"
+				}
+				line = fmt.Sprintf(`if me.%s == nil%s && string(%sme.%s) %s "%s" {
+					me.%s = `, property.Name, nilCheck, deref, checkProperty.Name, eqStr, precExpectedValue, property.Name)
 			case bool:
+				if negate {
+					ev = !ev
+				}
+				nilCheck := ""
+				deref := ""
+				if strings.HasPrefix(checkProperty.Type, "*") {
+					nilCheck = fmt.Sprintf(" && me.%s != nil", checkProperty.Name)
+					deref = "*"
+				}
+
 				if ev {
-					line = fmt.Sprintf(`if me.%s == nil && me.%s {
-							me.%s = `, property.Name, precPropertyName, property.Name)
+					line = fmt.Sprintf(`if me.%s == nil%s && %sme.%s {
+							me.%s = `, property.Name, nilCheck, deref, checkProperty.Name, property.Name)
 				} else {
-					line = fmt.Sprintf(`if me.%s == nil && !me.%s {
-							me.%s = `, property.Name, precPropertyName, property.Name)
+					line = fmt.Sprintf(`if me.%s == nil%s && %s!me.%s {
+							me.%s = `, property.Name, nilCheck, deref, checkProperty.Name, property.Name)
 				}
 			}
 		}
@@ -133,7 +186,8 @@ func (me *Struct) Preconditions() string {
 		} else if len(line) > 0 && property.Type == "*string" {
 			result = result + "\n" + fmt.Sprintf("%s%s }", line, "opt.NewString(\"\")")
 		} else {
-			unhandledLines = append(unhandledLines, "// ---- "+property.Name+" "+property.Type)
+			data, _ := json.Marshal(m)
+			unhandledLines = append(unhandledLines, "// ---- "+property.Name+" "+property.Type+" -> "+string(data))
 		}
 	}
 	for _, line := range unhandledLines {

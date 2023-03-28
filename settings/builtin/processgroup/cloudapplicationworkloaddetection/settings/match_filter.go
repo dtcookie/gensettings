@@ -18,6 +18,7 @@
 package cloudapplicationworkloaddetection
 
 import (
+	"github.com/dynatrace-oss/terraform-provider-dynatrace/dynatrace/opt"
 	"github.com/dynatrace-oss/terraform-provider-dynatrace/terraform/hcl"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
@@ -50,7 +51,9 @@ func (me *MatchFilter) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *MatchFilter) HandlePreconditions() {
-	// ---- Namespace *string
+	if me.Namespace == nil && string(me.MatchOperator) != "EXISTS" {
+		me.Namespace = opt.NewString("")
+	}
 }
 
 func (me *MatchFilter) UnmarshalHCL(decoder hcl.Decoder) error {

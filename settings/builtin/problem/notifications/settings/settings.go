@@ -174,17 +174,17 @@ func (me *Settings) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *Settings) HandlePreconditions() {
-	// ---- AnsibleTowerNotification *AnsibleTowerNotification
-	// ---- EmailNotification *EmailNotification
-	// ---- JiraNotification *JiraNotification
-	// ---- OpsGenieNotification *OpsGenieNotification
-	// ---- PagerDutyNotification *PagerDutyNotification
-	// ---- ServiceNowNotification *ServiceNowNotification
-	// ---- SlackNotification *SlackNotification
-	// ---- TrelloNotification *TrelloNotification
-	// ---- VictorOpsNotification *VictorOpsNotification
-	// ---- WebHookNotification *WebHookNotification
-	// ---- XMattersNotification *XMattersNotification
+	// ---- AnsibleTowerNotification *AnsibleTowerNotification -> {"expectedValue":"ANSIBLETOWER","property":"type","type":"EQUALS"}
+	// ---- EmailNotification *EmailNotification -> {"expectedValue":"EMAIL","property":"type","type":"EQUALS"}
+	// ---- JiraNotification *JiraNotification -> {"expectedValue":"JIRA","property":"type","type":"EQUALS"}
+	// ---- OpsGenieNotification *OpsGenieNotification -> {"expectedValue":"OPS_GENIE","property":"type","type":"EQUALS"}
+	// ---- PagerDutyNotification *PagerDutyNotification -> {"expectedValue":"PAGER_DUTY","property":"type","type":"EQUALS"}
+	// ---- ServiceNowNotification *ServiceNowNotification -> {"expectedValue":"SERVICE_NOW","property":"type","type":"EQUALS"}
+	// ---- SlackNotification *SlackNotification -> {"expectedValue":"SLACK","property":"type","type":"EQUALS"}
+	// ---- TrelloNotification *TrelloNotification -> {"expectedValue":"TRELLO","property":"type","type":"EQUALS"}
+	// ---- VictorOpsNotification *VictorOpsNotification -> {"expectedValue":"VICTOROPS","property":"type","type":"EQUALS"}
+	// ---- WebHookNotification *WebHookNotification -> {"expectedValue":"WEBHOOK","property":"type","type":"EQUALS"}
+	// ---- XMattersNotification *XMattersNotification -> {"expectedValue":"XMATTERS","property":"type","type":"EQUALS"}
 }
 
 func (me *Settings) UnmarshalHCL(decoder hcl.Decoder) error {

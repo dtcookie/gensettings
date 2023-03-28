@@ -53,7 +53,7 @@ func (me *NotAllPodsReady) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *NotAllPodsReady) HandlePreconditions() {
-	// ---- Configuration *NotAllPodsReadyConfig
+	// ---- Configuration *NotAllPodsReadyConfig -> {"expectedValue":true,"property":"enabled","type":"EQUALS"}
 }
 
 func (me *NotAllPodsReady) UnmarshalHCL(decoder hcl.Decoder) error {

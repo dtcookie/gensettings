@@ -60,8 +60,8 @@ func (me *DiskLowSpaceDetection) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *DiskLowSpaceDetection) HandlePreconditions() {
-	// ---- CustomThresholds *DiskLowSpaceDetectionThresholds
-	// ---- DetectionMode *DetectionMode
+	// ---- CustomThresholds *DiskLowSpaceDetectionThresholds -> {"preconditions":[{"expectedValue":true,"property":"enabled","type":"EQUALS"},{"expectedValue":"custom","property":"detectionMode","type":"EQUALS"}],"type":"AND"}
+	// ---- DetectionMode *DetectionMode -> {"expectedValue":true,"property":"enabled","type":"EQUALS"}
 }
 
 func (me *DiskLowSpaceDetection) UnmarshalHCL(decoder hcl.Decoder) error {

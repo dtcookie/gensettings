@@ -60,8 +60,8 @@ func (me *LowDatastoreSpaceDetectionConfig) MarshalHCL(properties hcl.Properties
 }
 
 func (me *LowDatastoreSpaceDetectionConfig) HandlePreconditions() {
-	// ---- CustomThresholds *LowDatastoreSpaceDetectionThresholds
-	// ---- DetectionMode *DetectionMode
+	// ---- CustomThresholds *LowDatastoreSpaceDetectionThresholds -> {"expectedValue":"custom","property":"detectionMode","type":"EQUALS"}
+	// ---- DetectionMode *DetectionMode -> {"expectedValue":true,"property":"enabled","type":"EQUALS"}
 }
 
 func (me *LowDatastoreSpaceDetectionConfig) UnmarshalHCL(decoder hcl.Decoder) error {

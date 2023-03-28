@@ -21,6 +21,7 @@ import (
 	"github.com/dynatrace-oss/terraform-provider-dynatrace/dynatrace/opt"
 	"github.com/dynatrace-oss/terraform-provider-dynatrace/terraform/hcl"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"golang.org/x/exp/slices"
 )
 
 type Condition struct {
@@ -68,7 +69,9 @@ func (me *Condition) HandlePreconditions() {
 	if me.EnvVar == nil && string(me.Item) == "UNKNOWN" {
 		me.EnvVar = opt.NewString("")
 	}
-	// ---- Value *string
+	if me.Value == nil && !slices.Contains([]string{"EXISTS", "NOT_EXISTS"}, string(me.Operator)) {
+		me.Value = opt.NewString("")
+	}
 }
 
 func (me *Condition) UnmarshalHCL(decoder hcl.Decoder) error {

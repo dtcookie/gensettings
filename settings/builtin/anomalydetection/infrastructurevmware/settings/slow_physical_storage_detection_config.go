@@ -60,8 +60,8 @@ func (me *SlowPhysicalStorageDetectionConfig) MarshalHCL(properties hcl.Properti
 }
 
 func (me *SlowPhysicalStorageDetectionConfig) HandlePreconditions() {
-	// ---- CustomThresholds *SlowPhysicalStorageDetectionThresholds
-	// ---- DetectionMode *DetectionMode
+	// ---- CustomThresholds *SlowPhysicalStorageDetectionThresholds -> {"expectedValue":"custom","property":"detectionMode","type":"EQUALS"}
+	// ---- DetectionMode *DetectionMode -> {"expectedValue":true,"property":"enabled","type":"EQUALS"}
 }
 
 func (me *SlowPhysicalStorageDetectionConfig) UnmarshalHCL(decoder hcl.Decoder) error {

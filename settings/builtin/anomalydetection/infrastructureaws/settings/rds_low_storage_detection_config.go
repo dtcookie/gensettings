@@ -60,8 +60,8 @@ func (me *RdsLowStorageDetectionConfig) MarshalHCL(properties hcl.Properties) er
 }
 
 func (me *RdsLowStorageDetectionConfig) HandlePreconditions() {
-	// ---- CustomThresholds *RdsLowStorageDetectionThresholds
-	// ---- DetectionMode *DetectionMode
+	// ---- CustomThresholds *RdsLowStorageDetectionThresholds -> {"expectedValue":"custom","property":"detectionMode","type":"EQUALS"}
+	// ---- DetectionMode *DetectionMode -> {"expectedValue":true,"property":"enabled","type":"EQUALS"}
 }
 
 func (me *RdsLowStorageDetectionConfig) UnmarshalHCL(decoder hcl.Decoder) error {

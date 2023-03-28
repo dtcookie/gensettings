@@ -70,9 +70,9 @@ func (me *Authentication) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *Authentication) HandlePreconditions() {
-	// ---- AuthType *AuthType
-	// ---- BasicAuth *BasicAuth
-	// ---- OAuth2 *OAuth2
+	// ---- AuthType *AuthType -> {"expectedValue":true,"property":"active","type":"EQUALS"}
+	// ---- BasicAuth *BasicAuth -> {"expectedValue":"basic","property":"authType","type":"EQUALS"}
+	// ---- OAuth2 *OAuth2 -> {"expectedValue":"oauth2","property":"authType","type":"EQUALS"}
 }
 
 func (me *Authentication) UnmarshalHCL(decoder hcl.Decoder) error {

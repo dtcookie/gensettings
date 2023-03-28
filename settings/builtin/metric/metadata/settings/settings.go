@@ -106,7 +106,7 @@ func (me *Settings) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *Settings) HandlePreconditions() {
-	// ---- UnitDisplayFormat *UnitDisplayFormat
+	// ---- UnitDisplayFormat *UnitDisplayFormat -> {"pattern":"^[bB][iI][tT]$|^[bB][iI][tT][pP][eE][rR][sS][eE][cC][oO][nN][dD]$|^[bB][iI][tT][pP][eE][rR][mM][iI][nN][uU][tT][eE]$|^[bB][iI][tT][pP][eE][rR][hH][oO][uU][rR]$|^[bB][yY][tT][eE]$|^[bB][yY][tT][eE][pP][eE][rR][sS][eE][cC][oO][nN][dD]$|^[bB][yY][tT][eE][pP][eE][rR][mM][iI][nN][uU][tT][eE]$|^[bB][yY][tT][eE][pP][eE][rR][hH][oO][uU][rR]$","property":"unit","type":"REGEX_MATCH"}
 }
 
 func (me *Settings) UnmarshalHCL(decoder hcl.Decoder) error {

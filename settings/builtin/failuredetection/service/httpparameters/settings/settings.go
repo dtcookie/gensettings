@@ -70,8 +70,8 @@ func (me *Settings) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *Settings) HandlePreconditions() {
-	// ---- BrokenLinks *BrokenLinks
-	// ---- HttpResponseCodes *HttpResponseCodes
+	// ---- BrokenLinks *BrokenLinks -> {"expectedValue":true,"property":"enabled","type":"EQUALS"}
+	// ---- HttpResponseCodes *HttpResponseCodes -> {"expectedValue":true,"property":"enabled","type":"EQUALS"}
 }
 
 func (me *Settings) UnmarshalHCL(decoder hcl.Decoder) error {

@@ -70,9 +70,9 @@ func (me *ResponseTime) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *ResponseTime) HandlePreconditions() {
-	// ---- AutoDetection *ResponseTimeAuto
-	// ---- DetectionMode *DetectionMode
-	// ---- FixedDetection *ResponseTimeFixed
+	// ---- AutoDetection *ResponseTimeAuto -> {"preconditions":[{"expectedValue":true,"property":"enabled","type":"EQUALS"},{"expectedValue":"auto","property":"detectionMode","type":"EQUALS"}],"type":"AND"}
+	// ---- DetectionMode *DetectionMode -> {"expectedValue":true,"property":"enabled","type":"EQUALS"}
+	// ---- FixedDetection *ResponseTimeFixed -> {"preconditions":[{"expectedValue":true,"property":"enabled","type":"EQUALS"},{"expectedValue":"fixed","property":"detectionMode","type":"EQUALS"}],"type":"AND"}
 }
 
 func (me *ResponseTime) UnmarshalHCL(decoder hcl.Decoder) error {

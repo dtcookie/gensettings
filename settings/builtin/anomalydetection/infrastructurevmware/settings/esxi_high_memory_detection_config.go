@@ -60,8 +60,8 @@ func (me *EsxiHighMemoryDetectionConfig) MarshalHCL(properties hcl.Properties) e
 }
 
 func (me *EsxiHighMemoryDetectionConfig) HandlePreconditions() {
-	// ---- CustomThresholds *EsxiHighMemoryDetectionThresholds
-	// ---- DetectionMode *DetectionMode
+	// ---- CustomThresholds *EsxiHighMemoryDetectionThresholds -> {"expectedValue":"custom","property":"detectionMode","type":"EQUALS"}
+	// ---- DetectionMode *DetectionMode -> {"expectedValue":true,"property":"enabled","type":"EQUALS"}
 }
 
 func (me *EsxiHighMemoryDetectionConfig) UnmarshalHCL(decoder hcl.Decoder) error {

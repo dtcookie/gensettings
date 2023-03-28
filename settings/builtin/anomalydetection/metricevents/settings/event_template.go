@@ -18,6 +18,7 @@
 package metricevents
 
 import (
+	"github.com/dynatrace-oss/terraform-provider-dynatrace/dynatrace/opt"
 	"github.com/dynatrace-oss/terraform-provider-dynatrace/terraform/hcl"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
@@ -74,7 +75,9 @@ func (me *EventTemplate) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *EventTemplate) HandlePreconditions() {
-	// ---- DavisMerge *bool
+	if me.DavisMerge == nil && string(me.EventType) != "INFO" {
+		me.DavisMerge = opt.NewBool(false)
+	}
 }
 
 func (me *EventTemplate) UnmarshalHCL(decoder hcl.Decoder) error {

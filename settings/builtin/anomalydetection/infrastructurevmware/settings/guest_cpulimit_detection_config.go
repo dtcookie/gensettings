@@ -60,8 +60,8 @@ func (me *GuestCPULimitDetectionConfig) MarshalHCL(properties hcl.Properties) er
 }
 
 func (me *GuestCPULimitDetectionConfig) HandlePreconditions() {
-	// ---- CustomThresholds *GuestCPULimitDetectionThresholds
-	// ---- DetectionMode *DetectionMode
+	// ---- CustomThresholds *GuestCPULimitDetectionThresholds -> {"expectedValue":"custom","property":"detectionMode","type":"EQUALS"}
+	// ---- DetectionMode *DetectionMode -> {"expectedValue":true,"property":"enabled","type":"EQUALS"}
 }
 
 func (me *GuestCPULimitDetectionConfig) UnmarshalHCL(decoder hcl.Decoder) error {

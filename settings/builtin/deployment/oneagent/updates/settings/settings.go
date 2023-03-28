@@ -80,8 +80,8 @@ func (me *Settings) HandlePreconditions() {
 	if me.TargetVersion == nil && slices.Contains([]string{"AUTOMATIC", "AUTOMATIC_DURING_MW"}, string(me.UpdateMode)) {
 		me.TargetVersion = opt.NewString("")
 	}
-	// ---- MaintenanceWindows MaintenanceWindows
-	// ---- Revision *string
+	// ---- MaintenanceWindows MaintenanceWindows -> {"expectedValue":"AUTOMATIC_DURING_MW","property":"updateMode","type":"EQUALS"}
+	// ---- Revision *string -> {"preconditions":[{"precondition":{"expectedValues":["latest","previous","older"],"property":"targetVersion","type":"IN"},"type":"NOT"},{"expectedValues":["AUTOMATIC","AUTOMATIC_DURING_MW"],"property":"updateMode","type":"IN"}],"type":"AND"}
 }
 
 func (me *Settings) UnmarshalHCL(decoder hcl.Decoder) error {

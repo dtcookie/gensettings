@@ -60,7 +60,7 @@ func (me *Settings) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *Settings) HandlePreconditions() {
-	// ---- ExceptionRules *ExceptionRules
+	// ---- ExceptionRules *ExceptionRules -> {"expectedValue":true,"property":"enabled","type":"EQUALS"}
 }
 
 func (me *Settings) UnmarshalHCL(decoder hcl.Decoder) error {

@@ -50,7 +50,7 @@ func (me *ErrorBudgetBurnRate) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *ErrorBudgetBurnRate) HandlePreconditions() {
-	// ---- FastBurnThreshold *float64
+	// ---- FastBurnThreshold *float64 -> {"expectedValue":true,"property":"burnRateVisualizationEnabled","type":"EQUALS"}
 }
 
 func (me *ErrorBudgetBurnRate) UnmarshalHCL(decoder hcl.Decoder) error {

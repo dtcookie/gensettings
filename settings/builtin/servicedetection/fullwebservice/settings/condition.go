@@ -146,10 +146,10 @@ func (me *Condition) HandlePreconditions() {
 	if me.IpRangeTo == nil && slices.Contains([]string{"IpInRange", "NotIpInRange"}, string(me.CompareOperationType)) {
 		me.IpRangeTo = opt.NewString("")
 	}
-	// ---- Framework []FrameworkType
-	// ---- IntValues []int
-	// ---- TagValues []string
-	// ---- TextValues []string
+	// ---- Framework []FrameworkType -> {"expectedValues":["FrameworkEquals","NotFrameworkEquals"],"property":"compareOperationType","type":"IN"}
+	// ---- IntValues []int -> {"expectedValues":["IntEquals","NotIntEquals"],"property":"compareOperationType","type":"IN"}
+	// ---- TagValues []string -> {"expectedValue":"TagEquals","property":"compareOperationType","type":"EQUALS"}
+	// ---- TextValues []string -> {"expectedValues":["TagKeyEquals","StringEndsWith","NotStringEndsWith","StringStartsWith","NotStringStartsWith","StringContains","NotStringContains","StringEquals","NotStringEquals"],"property":"compareOperationType","type":"IN"}
 }
 
 func (me *Condition) UnmarshalHCL(decoder hcl.Decoder) error {

@@ -18,6 +18,7 @@
 package browserexclusion
 
 import (
+	"github.com/dynatrace-oss/terraform-provider-dynatrace/dynatrace/opt"
 	"github.com/dynatrace-oss/terraform-provider-dynatrace/terraform/hcl"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
@@ -86,9 +87,11 @@ func (me *BrowserExclusionListObject) MarshalHCL(properties hcl.Properties) erro
 }
 
 func (me *BrowserExclusionListObject) HandlePreconditions() {
-	// ---- Platform *Platform
-	// ---- Version *int
-	// ---- VersionComparator *VersionComparator
+	if me.Version == nil && string(me.BrowserName) != "BOTS_AND_SPIDERS" {
+		me.Version = opt.NewInt(0)
+	}
+	// ---- Platform *Platform -> {"expectedValue":"BOTS_AND_SPIDERS","property":"browserName","type":"EQUALS"}
+	// ---- VersionComparator *VersionComparator -> {"expectedValue":"BOTS_AND_SPIDERS","property":"browserName","type":"EQUALS"}
 }
 
 func (me *BrowserExclusionListObject) UnmarshalHCL(decoder hcl.Decoder) error {

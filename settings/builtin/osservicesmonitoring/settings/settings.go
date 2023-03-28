@@ -144,11 +144,11 @@ func (me *Settings) HandlePreconditions() {
 	if me.NotInstalledAlerting == nil && me.Alerting {
 		me.NotInstalledAlerting = opt.NewBool(false)
 	}
-	// ---- DetectionConditionsLinux LinuxDetectionConditions
-	// ---- DetectionConditionsWindows WindowsDetectionConditions
-	// ---- Metadata MetadataItems
-	// ---- StatusConditionLinux *string
-	// ---- StatusConditionWindows *string
+	// ---- DetectionConditionsLinux LinuxDetectionConditions -> {"expectedValues":["LINUX"],"property":"system","type":"IN"}
+	// ---- DetectionConditionsWindows WindowsDetectionConditions -> {"expectedValues":["WINDOWS"],"property":"system","type":"IN"}
+	// ---- Metadata MetadataItems -> {"expectedValue":true,"property":"alerting","type":"EQUALS"}
+	// ---- StatusConditionLinux *string -> {"preconditions":[{"expectedValue":"LINUX","property":"system","type":"EQUALS"},{"expectedValue":true,"property":"alerting","type":"EQUALS"}],"type":"AND"}
+	// ---- StatusConditionWindows *string -> {"preconditions":[{"expectedValue":"WINDOWS","property":"system","type":"EQUALS"},{"expectedValue":true,"property":"alerting","type":"EQUALS"}],"type":"AND"}
 }
 
 func (me *Settings) UnmarshalHCL(decoder hcl.Decoder) error {

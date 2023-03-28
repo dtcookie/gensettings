@@ -92,7 +92,7 @@ func (me *Filter) HandlePreconditions() {
 	if me.Value == nil && slices.Contains([]string{"EQUALS", "NOT_EQUAL", "LIKE", "LESS_THAN", "LESS_THAN_OR_EQUAL_TO", "GREATER_THAN", "GREATER_THAN_OR_EQUAL_TO", "NOT_LIKE", "STARTS_WITH"}, string(me.Operator)) {
 		me.Value = opt.NewString("")
 	}
-	// ---- ValueIn []string
+	// ---- ValueIn []string -> {"expectedValue":"IN","property":"operator","type":"EQUALS"}
 }
 
 func (me *Filter) UnmarshalHCL(decoder hcl.Decoder) error {

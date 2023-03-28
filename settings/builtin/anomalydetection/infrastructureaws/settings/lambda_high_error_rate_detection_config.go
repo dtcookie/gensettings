@@ -60,8 +60,8 @@ func (me *LambdaHighErrorRateDetectionConfig) MarshalHCL(properties hcl.Properti
 }
 
 func (me *LambdaHighErrorRateDetectionConfig) HandlePreconditions() {
-	// ---- CustomThresholds *LambdaHighErrorRateDetectionThresholds
-	// ---- DetectionMode *DetectionMode
+	// ---- CustomThresholds *LambdaHighErrorRateDetectionThresholds -> {"expectedValue":"custom","property":"detectionMode","type":"EQUALS"}
+	// ---- DetectionMode *DetectionMode -> {"expectedValue":true,"property":"enabled","type":"EQUALS"}
 }
 
 func (me *LambdaHighErrorRateDetectionConfig) UnmarshalHCL(decoder hcl.Decoder) error {

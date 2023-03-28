@@ -60,8 +60,8 @@ func (me *DroppedPacketsDetectionConfig) MarshalHCL(properties hcl.Properties) e
 }
 
 func (me *DroppedPacketsDetectionConfig) HandlePreconditions() {
-	// ---- CustomThresholds *DroppedPacketsDetectionThresholds
-	// ---- DetectionMode *DetectionMode
+	// ---- CustomThresholds *DroppedPacketsDetectionThresholds -> {"expectedValue":"custom","property":"detectionMode","type":"EQUALS"}
+	// ---- DetectionMode *DetectionMode -> {"expectedValue":true,"property":"enabled","type":"EQUALS"}
 }
 
 func (me *DroppedPacketsDetectionConfig) UnmarshalHCL(decoder hcl.Decoder) error {

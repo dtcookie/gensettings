@@ -53,7 +53,7 @@ func (me *PendingPods) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *PendingPods) HandlePreconditions() {
-	// ---- Configuration *PendingPodsConfig
+	// ---- Configuration *PendingPodsConfig -> {"expectedValue":true,"property":"enabled","type":"EQUALS"}
 }
 
 func (me *PendingPods) UnmarshalHCL(decoder hcl.Decoder) error {

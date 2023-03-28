@@ -60,8 +60,8 @@ func (me *RdsHighWriteReadLatencyDetectionConfig) MarshalHCL(properties hcl.Prop
 }
 
 func (me *RdsHighWriteReadLatencyDetectionConfig) HandlePreconditions() {
-	// ---- CustomThresholds *RdsHighWriteReadLatencyDetectionThresholds
-	// ---- DetectionMode *DetectionMode
+	// ---- CustomThresholds *RdsHighWriteReadLatencyDetectionThresholds -> {"expectedValue":"custom","property":"detectionMode","type":"EQUALS"}
+	// ---- DetectionMode *DetectionMode -> {"expectedValue":true,"property":"enabled","type":"EQUALS"}
 }
 
 func (me *RdsHighWriteReadLatencyDetectionConfig) UnmarshalHCL(decoder hcl.Decoder) error {

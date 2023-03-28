@@ -61,7 +61,7 @@ func (me *LoadDrops) HandlePreconditions() {
 	if me.MinutesAbnormalState == nil && me.Enabled {
 		me.MinutesAbnormalState = opt.NewInt(0)
 	}
-	// ---- LoadDropPercent *float64
+	// ---- LoadDropPercent *float64 -> {"expectedValue":true,"property":"enabled","type":"EQUALS"}
 }
 
 func (me *LoadDrops) UnmarshalHCL(decoder hcl.Decoder) error {

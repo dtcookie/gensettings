@@ -74,8 +74,8 @@ func (me *ContextRoot) HandlePreconditions() {
 	if me.SegmentCount == nil && string(me.ContributionType) == "TransformURL" {
 		me.SegmentCount = opt.NewInt(0)
 	}
-	// ---- Transformations ReducedTransformations
-	// ---- ValueOverride *ValueOverride
+	// ---- Transformations ReducedTransformations -> {"expectedValues":["TransformValue","TransformURL"],"property":"contributionType","type":"IN"}
+	// ---- ValueOverride *ValueOverride -> {"expectedValue":"OverrideValue","property":"contributionType","type":"EQUALS"}
 }
 
 func (me *ContextRoot) UnmarshalHCL(decoder hcl.Decoder) error {

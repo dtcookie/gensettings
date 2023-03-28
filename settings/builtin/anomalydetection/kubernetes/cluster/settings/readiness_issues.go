@@ -53,7 +53,7 @@ func (me *ReadinessIssues) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *ReadinessIssues) HandlePreconditions() {
-	// ---- Configuration *ReadinessIssuesConfig
+	// ---- Configuration *ReadinessIssuesConfig -> {"expectedValue":true,"property":"enabled","type":"EQUALS"}
 }
 
 func (me *ReadinessIssues) UnmarshalHCL(decoder hcl.Decoder) error {

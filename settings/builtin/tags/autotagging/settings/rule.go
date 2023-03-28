@@ -107,7 +107,7 @@ func (me *Rule) HandlePreconditions() {
 	if me.EntitySelector == nil && string(me.Type) == "SELECTOR" {
 		me.EntitySelector = opt.NewString("")
 	}
-	// ---- AttributeRule *AutoTagAttributeRule
+	// ---- AttributeRule *AutoTagAttributeRule -> {"expectedValue":"ME","property":"type","type":"EQUALS"}
 }
 
 func (me *Rule) UnmarshalHCL(decoder hcl.Decoder) error {

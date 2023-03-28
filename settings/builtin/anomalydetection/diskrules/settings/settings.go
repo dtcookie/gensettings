@@ -107,8 +107,8 @@ func (me *Settings) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *Settings) HandlePreconditions() {
-	// ---- ThresholdMilliseconds *float64
-	// ---- ThresholdPercent *float64
+	// ---- ThresholdMilliseconds *float64 -> {"expectedValues":["READ_TIME_EXCEEDING","WRITE_TIME_EXCEEDING"],"property":"metric","type":"IN"}
+	// ---- ThresholdPercent *float64 -> {"expectedValues":["LOW_DISK_SPACE","LOW_INODES"],"property":"metric","type":"IN"}
 }
 
 func (me *Settings) UnmarshalHCL(decoder hcl.Decoder) error {

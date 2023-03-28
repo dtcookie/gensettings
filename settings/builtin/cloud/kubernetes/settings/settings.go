@@ -187,10 +187,10 @@ func (me *Settings) HandlePreconditions() {
 	if me.HostnameVerificationEnabled == nil && !me.ClusterIdEnabled {
 		me.HostnameVerificationEnabled = opt.NewBool(false)
 	}
-	if me.IncludeAllFdiEvents == nil && me.FilterEvents {
+	if me.IncludeAllFdiEvents == nil && me.FilterEvents != nil && *me.FilterEvents {
 		me.IncludeAllFdiEvents = opt.NewBool(false)
 	}
-	// ---- EventPatterns EventComplexTypes
+	// ---- EventPatterns EventComplexTypes -> {"expectedValue":true,"property":"filterEvents","type":"EQUALS"}
 }
 
 func (me *Settings) UnmarshalHCL(decoder hcl.Decoder) error {

@@ -101,12 +101,16 @@ func (me *SpanMatcher) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *SpanMatcher) HandlePreconditions() {
+	if me.CaseSensitive == nil && string(me.Source) != "SPAN_KIND" {
+		me.CaseSensitive = opt.NewBool(false)
+	}
 	if me.SourceKey == nil && string(me.Source) == "ATTRIBUTE" {
 		me.SourceKey = opt.NewString("")
 	}
-	// ---- CaseSensitive *bool
-	// ---- SpanKindValue *SpanKind
-	// ---- Value *string
+	if me.Value == nil && string(me.Source) != "SPAN_KIND" {
+		me.Value = opt.NewString("")
+	}
+	// ---- SpanKindValue *SpanKind -> {"expectedValue":"SPAN_KIND","property":"source","type":"EQUALS"}
 }
 
 func (me *SpanMatcher) UnmarshalHCL(decoder hcl.Decoder) error {

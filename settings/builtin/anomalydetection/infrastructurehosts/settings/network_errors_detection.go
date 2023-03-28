@@ -60,8 +60,8 @@ func (me *NetworkErrorsDetection) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *NetworkErrorsDetection) HandlePreconditions() {
-	// ---- CustomThresholds *NetworkErrorsDetectionThresholds
-	// ---- DetectionMode *DetectionMode
+	// ---- CustomThresholds *NetworkErrorsDetectionThresholds -> {"preconditions":[{"expectedValue":true,"property":"enabled","type":"EQUALS"},{"expectedValue":"custom","property":"detectionMode","type":"EQUALS"}],"type":"AND"}
+	// ---- DetectionMode *DetectionMode -> {"expectedValue":true,"property":"enabled","type":"EQUALS"}
 }
 
 func (me *NetworkErrorsDetection) UnmarshalHCL(decoder hcl.Decoder) error {

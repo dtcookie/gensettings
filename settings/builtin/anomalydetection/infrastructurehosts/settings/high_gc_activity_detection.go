@@ -60,8 +60,8 @@ func (me *HighGcActivityDetection) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *HighGcActivityDetection) HandlePreconditions() {
-	// ---- CustomThresholds *HighGcActivityDetectionThresholds
-	// ---- DetectionMode *DetectionMode
+	// ---- CustomThresholds *HighGcActivityDetectionThresholds -> {"preconditions":[{"expectedValue":true,"property":"enabled","type":"EQUALS"},{"expectedValue":"custom","property":"detectionMode","type":"EQUALS"}],"type":"AND"}
+	// ---- DetectionMode *DetectionMode -> {"expectedValue":true,"property":"enabled","type":"EQUALS"}
 }
 
 func (me *HighGcActivityDetection) UnmarshalHCL(decoder hcl.Decoder) error {

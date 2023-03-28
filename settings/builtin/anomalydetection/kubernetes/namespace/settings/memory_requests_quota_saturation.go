@@ -53,7 +53,7 @@ func (me *MemoryRequestsQuotaSaturation) MarshalHCL(properties hcl.Properties) e
 }
 
 func (me *MemoryRequestsQuotaSaturation) HandlePreconditions() {
-	// ---- Configuration *MemoryRequestsQuotaSaturationConfig
+	// ---- Configuration *MemoryRequestsQuotaSaturationConfig -> {"expectedValue":true,"property":"enabled","type":"EQUALS"}
 }
 
 func (me *MemoryRequestsQuotaSaturation) UnmarshalHCL(decoder hcl.Decoder) error {

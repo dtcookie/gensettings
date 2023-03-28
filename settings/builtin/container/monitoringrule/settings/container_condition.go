@@ -18,8 +18,10 @@
 package monitoringrule
 
 import (
+	"github.com/dynatrace-oss/terraform-provider-dynatrace/dynatrace/opt"
 	"github.com/dynatrace-oss/terraform-provider-dynatrace/terraform/hcl"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"golang.org/x/exp/slices"
 )
 
 type ContainerCondition struct {
@@ -57,7 +59,9 @@ func (me *ContainerCondition) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *ContainerCondition) HandlePreconditions() {
-	// ---- Value *string
+	if me.Value == nil && !slices.Contains([]string{"EXISTS", "NOT_EXISTS"}, string(me.Operator)) {
+		me.Value = opt.NewString("")
+	}
 }
 
 func (me *ContainerCondition) UnmarshalHCL(decoder hcl.Decoder) error {

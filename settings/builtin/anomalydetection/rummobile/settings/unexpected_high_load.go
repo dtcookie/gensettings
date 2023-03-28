@@ -50,7 +50,7 @@ func (me *UnexpectedHighLoad) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *UnexpectedHighLoad) HandlePreconditions() {
-	// ---- ThresholdPercentage *float64
+	// ---- ThresholdPercentage *float64 -> {"expectedValue":true,"property":"enabled","type":"EQUALS"}
 }
 
 func (me *UnexpectedHighLoad) UnmarshalHCL(decoder hcl.Decoder) error {

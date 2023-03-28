@@ -64,7 +64,7 @@ func (me *Masking) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *Masking) HandlePreconditions() {
-	// ---- IpAddressMasking *IpAddressMaskingOption
+	// ---- IpAddressMasking *IpAddressMaskingOption -> {"expectedValue":true,"property":"ipAddressMaskingEnabled","type":"EQUALS"}
 }
 
 func (me *Masking) UnmarshalHCL(decoder hcl.Decoder) error {

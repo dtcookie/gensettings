@@ -70,9 +70,9 @@ func (me *FailureRate) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *FailureRate) HandlePreconditions() {
-	// ---- AutoDetection *FailureRateAuto
-	// ---- DetectionMode *DetectionMode
-	// ---- FixedDetection *FailureRateFixed
+	// ---- AutoDetection *FailureRateAuto -> {"preconditions":[{"expectedValue":true,"property":"enabled","type":"EQUALS"},{"expectedValue":"auto","property":"detectionMode","type":"EQUALS"}],"type":"AND"}
+	// ---- DetectionMode *DetectionMode -> {"expectedValue":true,"property":"enabled","type":"EQUALS"}
+	// ---- FixedDetection *FailureRateFixed -> {"preconditions":[{"expectedValue":true,"property":"enabled","type":"EQUALS"},{"expectedValue":"fixed","property":"detectionMode","type":"EQUALS"}],"type":"AND"}
 }
 
 func (me *FailureRate) UnmarshalHCL(decoder hcl.Decoder) error {

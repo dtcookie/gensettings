@@ -60,8 +60,8 @@ func (me *DiskSlowWritesAndReadsDetection) MarshalHCL(properties hcl.Properties)
 }
 
 func (me *DiskSlowWritesAndReadsDetection) HandlePreconditions() {
-	// ---- CustomThresholds *DiskSlowWritesAndReadsDetectionThresholds
-	// ---- DetectionMode *DetectionMode
+	// ---- CustomThresholds *DiskSlowWritesAndReadsDetectionThresholds -> {"preconditions":[{"expectedValue":true,"property":"enabled","type":"EQUALS"},{"expectedValue":"custom","property":"detectionMode","type":"EQUALS"}],"type":"AND"}
+	// ---- DetectionMode *DetectionMode -> {"expectedValue":true,"property":"enabled","type":"EQUALS"}
 }
 
 func (me *DiskSlowWritesAndReadsDetection) UnmarshalHCL(decoder hcl.Decoder) error {

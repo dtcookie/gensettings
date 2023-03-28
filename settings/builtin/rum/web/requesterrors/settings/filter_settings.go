@@ -50,7 +50,7 @@ func (me *FilterSettings) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *FilterSettings) HandlePreconditions() {
-	// ---- Url *string
+	// ---- Url *string -> {"property":"filter","type":"NULL"}
 }
 
 func (me *FilterSettings) UnmarshalHCL(decoder hcl.Decoder) error {

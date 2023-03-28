@@ -65,10 +65,10 @@ func (me *Settings) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *Settings) HandlePreconditions() {
-	if me.MinimumInstanceThreshold == nil && string(me.AlertingMode) == "ON_INSTANCE_COUNT_VIOLATION" {
+	if me.MinimumInstanceThreshold == nil && me.AlertingMode != nil && string(*me.AlertingMode) == "ON_INSTANCE_COUNT_VIOLATION" {
 		me.MinimumInstanceThreshold = opt.NewInt(0)
 	}
-	// ---- AlertingMode *AlertingMode
+	// ---- AlertingMode *AlertingMode -> {"expectedValue":true,"property":"enabled","type":"EQUALS"}
 }
 
 func (me *Settings) UnmarshalHCL(decoder hcl.Decoder) error {

@@ -60,8 +60,8 @@ func (me *NetworkDroppedPacketsDetection) MarshalHCL(properties hcl.Properties) 
 }
 
 func (me *NetworkDroppedPacketsDetection) HandlePreconditions() {
-	// ---- CustomThresholds *NetworkDroppedPacketsDetectionThresholds
-	// ---- DetectionMode *DetectionMode
+	// ---- CustomThresholds *NetworkDroppedPacketsDetectionThresholds -> {"preconditions":[{"expectedValue":true,"property":"enabled","type":"EQUALS"},{"expectedValue":"custom","property":"detectionMode","type":"EQUALS"}],"type":"AND"}
+	// ---- DetectionMode *DetectionMode -> {"expectedValue":true,"property":"enabled","type":"EQUALS"}
 }
 
 func (me *NetworkDroppedPacketsDetection) UnmarshalHCL(decoder hcl.Decoder) error {

@@ -98,7 +98,7 @@ func (me *WebHookNotification) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *WebHookNotification) HandlePreconditions() {
-	// ---- OAuth2Credentials *OAuth2Credentials
+	// ---- OAuth2Credentials *OAuth2Credentials -> {"expectedValue":true,"property":"useOAuth2","type":"EQUALS"}
 }
 
 func (me *WebHookNotification) UnmarshalHCL(decoder hcl.Decoder) error {

@@ -50,7 +50,7 @@ func (me *ConnectionLostDetection) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *ConnectionLostDetection) HandlePreconditions() {
-	// ---- OnGracefulShutdowns *ConnectionLostDetectionSensitivity
+	// ---- OnGracefulShutdowns *ConnectionLostDetectionSensitivity -> {"expectedValue":true,"property":"enabled","type":"EQUALS"}
 }
 
 func (me *ConnectionLostDetection) UnmarshalHCL(decoder hcl.Decoder) error {

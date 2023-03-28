@@ -53,7 +53,7 @@ func (me *AppTrafficSpikes) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *AppTrafficSpikes) HandlePreconditions() {
-	// ---- TrafficSpikes *TrafficSpikes
+	// ---- TrafficSpikes *TrafficSpikes -> {"expectedValue":true,"property":"enabled","type":"EQUALS"}
 }
 
 func (me *AppTrafficSpikes) UnmarshalHCL(decoder hcl.Decoder) error {

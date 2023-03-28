@@ -60,8 +60,8 @@ func (me *DiskLowInodesDetection) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *DiskLowInodesDetection) HandlePreconditions() {
-	// ---- CustomThresholds *DiskLowInodesDetectionThresholds
-	// ---- DetectionMode *DetectionMode
+	// ---- CustomThresholds *DiskLowInodesDetectionThresholds -> {"preconditions":[{"expectedValue":true,"property":"enabled","type":"EQUALS"},{"expectedValue":"custom","property":"detectionMode","type":"EQUALS"}],"type":"AND"}
+	// ---- DetectionMode *DetectionMode -> {"expectedValue":true,"property":"enabled","type":"EQUALS"}
 }
 
 func (me *DiskLowInodesDetection) UnmarshalHCL(decoder hcl.Decoder) error {

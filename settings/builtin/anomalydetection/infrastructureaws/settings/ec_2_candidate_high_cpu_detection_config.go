@@ -60,8 +60,8 @@ func (me *Ec2CandidateHighCpuDetectionConfig) MarshalHCL(properties hcl.Properti
 }
 
 func (me *Ec2CandidateHighCpuDetectionConfig) HandlePreconditions() {
-	// ---- CustomThresholds *Ec2CandidateHighCpuDetectionThresholds
-	// ---- DetectionMode *DetectionMode
+	// ---- CustomThresholds *Ec2CandidateHighCpuDetectionThresholds -> {"expectedValue":"custom","property":"detectionMode","type":"EQUALS"}
+	// ---- DetectionMode *DetectionMode -> {"expectedValue":true,"property":"enabled","type":"EQUALS"}
 }
 
 func (me *Ec2CandidateHighCpuDetectionConfig) UnmarshalHCL(decoder hcl.Decoder) error {

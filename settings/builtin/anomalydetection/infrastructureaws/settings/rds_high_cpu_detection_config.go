@@ -60,8 +60,8 @@ func (me *RdsHighCpuDetectionConfig) MarshalHCL(properties hcl.Properties) error
 }
 
 func (me *RdsHighCpuDetectionConfig) HandlePreconditions() {
-	// ---- CustomThresholds *RdsHighCpuDetectionThresholds
-	// ---- DetectionMode *DetectionMode
+	// ---- CustomThresholds *RdsHighCpuDetectionThresholds -> {"expectedValue":"custom","property":"detectionMode","type":"EQUALS"}
+	// ---- DetectionMode *DetectionMode -> {"expectedValue":true,"property":"enabled","type":"EQUALS"}
 }
 
 func (me *RdsHighCpuDetectionConfig) UnmarshalHCL(decoder hcl.Decoder) error {

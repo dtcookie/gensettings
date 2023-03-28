@@ -61,7 +61,7 @@ func (me *Limit) HandlePreconditions() {
 	if me.LimitValue == nil && me.LimitEnabled {
 		me.LimitValue = opt.NewInt(0)
 	}
-	// ---- LimitType *LimitType
+	// ---- LimitType *LimitType -> {"expectedValue":true,"property":"limitEnabled","type":"EQUALS"}
 }
 
 func (me *Limit) UnmarshalHCL(decoder hcl.Decoder) error {

@@ -60,8 +60,8 @@ func (me *UndersizedStorageDetectionConfig) MarshalHCL(properties hcl.Properties
 }
 
 func (me *UndersizedStorageDetectionConfig) HandlePreconditions() {
-	// ---- CustomThresholds *UndersizedStorageDetectionThresholds
-	// ---- DetectionMode *DetectionMode
+	// ---- CustomThresholds *UndersizedStorageDetectionThresholds -> {"expectedValue":"custom","property":"detectionMode","type":"EQUALS"}
+	// ---- DetectionMode *DetectionMode -> {"expectedValue":true,"property":"enabled","type":"EQUALS"}
 }
 
 func (me *UndersizedStorageDetectionConfig) UnmarshalHCL(decoder hcl.Decoder) error {

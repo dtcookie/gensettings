@@ -99,9 +99,9 @@ func (me *ModelProperties) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *ModelProperties) HandlePreconditions() {
-	// ---- SignalFluctuation *float64
-	// ---- Threshold *float64
-	// ---- Tolerance *float64
+	// ---- SignalFluctuation *float64 -> {"expectedValue":"AUTO_ADAPTIVE_THRESHOLD","property":"type","type":"EQUALS"}
+	// ---- Threshold *float64 -> {"expectedValue":"STATIC_THRESHOLD","property":"type","type":"EQUALS"}
+	// ---- Tolerance *float64 -> {"expectedValue":"SEASONAL_BASELINE","property":"type","type":"EQUALS"}
 }
 
 func (me *ModelProperties) UnmarshalHCL(decoder hcl.Decoder) error {

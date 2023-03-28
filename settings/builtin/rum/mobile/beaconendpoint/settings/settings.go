@@ -18,6 +18,7 @@
 package beaconendpoint
 
 import (
+	"github.com/dynatrace-oss/terraform-provider-dynatrace/dynatrace/opt"
 	"github.com/dynatrace-oss/terraform-provider-dynatrace/terraform/hcl"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
@@ -57,7 +58,9 @@ func (me *Settings) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *Settings) HandlePreconditions() {
-	// ---- Url *string
+	if me.Url == nil && string(me.Type) != "CLUSTER_ACTIVEGATE" {
+		me.Url = opt.NewString("")
+	}
 }
 
 func (me *Settings) UnmarshalHCL(decoder hcl.Decoder) error {
