@@ -72,7 +72,7 @@ func (me *{{.Name}}) MarshalHCL(properties hcl.Properties) error {
 		"{{.HCLTag}}":  me.{{.Name}},{{end}}{{end}}
 	})
 }
-{{if .Preconditions}}
+{{if .HasPreconditions}}
 func (me *{{.Name}}) HandlePreconditions() { 
 {{.Preconditions}} 
 }

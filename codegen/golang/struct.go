@@ -100,6 +100,18 @@ func (me *Struct) findProperty(origName string) *Property {
 	return nil
 }
 
+func (me *Struct) HasPreconditions() bool {
+	if len(me.Properties) == 0 {
+		return false
+	}
+	for _, property := range me.Properties {
+		if len(property.Precondition) > 0 {
+			return true
+		}
+	}
+	return false
+}
+
 func (me *Struct) Preconditions() string {
 	result := ""
 	if len(me.Properties) == 0 {
