@@ -49,9 +49,6 @@ func (me *ResponseTimeAutoAll) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *ResponseTimeAutoAll) HandlePreconditions() {
-}
-
 func (me *ResponseTimeAutoAll) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"degradation_milliseconds": &me.DegradationMilliseconds,

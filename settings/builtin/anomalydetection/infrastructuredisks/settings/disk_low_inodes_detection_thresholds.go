@@ -42,9 +42,6 @@ func (me *DiskLowInodesDetectionThresholds) MarshalHCL(properties hcl.Properties
 	})
 }
 
-func (me *DiskLowInodesDetectionThresholds) HandlePreconditions() {
-}
-
 func (me *DiskLowInodesDetectionThresholds) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"free_inodes_percentage": &me.FreeInodesPercentage,

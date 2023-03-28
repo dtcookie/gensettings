@@ -64,9 +64,6 @@ func (me *MaintenanceWindow) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *MaintenanceWindow) HandlePreconditions() {
-}
-
 func (me *MaintenanceWindow) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"maintenance_window": &me.MaintenanceWindow,

@@ -59,9 +59,6 @@ func (me *NetworkDroppedPacketsDetectionThresholds) MarshalHCL(properties hcl.Pr
 	})
 }
 
-func (me *NetworkDroppedPacketsDetectionThresholds) HandlePreconditions() {
-}
-
 func (me *NetworkDroppedPacketsDetectionThresholds) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"dropped_packets_percentage": &me.DroppedPacketsPercentage,

@@ -49,9 +49,6 @@ func (me *CrashRateIncreaseFixed) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *CrashRateIncreaseFixed) HandlePreconditions() {
-}
-
 func (me *CrashRateIncreaseFixed) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"absolute_crash_rate": &me.AbsoluteCrashRate,

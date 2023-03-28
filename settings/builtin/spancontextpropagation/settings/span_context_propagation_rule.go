@@ -59,9 +59,6 @@ func (me *SpanContextPropagationRule) MarshalHCL(properties hcl.Properties) erro
 	})
 }
 
-func (me *SpanContextPropagationRule) HandlePreconditions() {
-}
-
 func (me *SpanContextPropagationRule) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"matchers":    &me.Matchers,

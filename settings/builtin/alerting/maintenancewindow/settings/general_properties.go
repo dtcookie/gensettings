@@ -70,9 +70,6 @@ func (me *GeneralProperties) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *GeneralProperties) HandlePreconditions() {
-}
-
 func (me *GeneralProperties) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"description":                         &me.Description,

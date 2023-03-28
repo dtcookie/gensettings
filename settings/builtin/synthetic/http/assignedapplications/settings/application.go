@@ -64,9 +64,6 @@ func (me *Application) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *Application) HandlePreconditions() {
-}
-
 func (me *Application) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"application": &me.Application,

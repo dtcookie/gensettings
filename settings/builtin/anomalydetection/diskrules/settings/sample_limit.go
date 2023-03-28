@@ -49,9 +49,6 @@ func (me *SampleLimit) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *SampleLimit) HandlePreconditions() {
-}
-
 func (me *SampleLimit) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"samples":           &me.Samples,

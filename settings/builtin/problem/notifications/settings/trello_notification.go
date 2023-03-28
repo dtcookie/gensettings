@@ -84,9 +84,6 @@ func (me *TrelloNotification) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *TrelloNotification) HandlePreconditions() {
-}
-
 func (me *TrelloNotification) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"application_key":     &me.ApplicationKey,

@@ -71,9 +71,6 @@ func (me *DashboardPresets) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *DashboardPresets) HandlePreconditions() {
-}
-
 func (me *DashboardPresets) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"dashboard_preset": &me.DashboardPreset,

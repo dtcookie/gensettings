@@ -50,9 +50,6 @@ func (me *UndersizedStorageDetectionThresholds) MarshalHCL(properties hcl.Proper
 	})
 }
 
-func (me *UndersizedStorageDetectionThresholds) HandlePreconditions() {
-}
-
 func (me *UndersizedStorageDetectionThresholds) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"average_queue_command_latency": &me.AverageQueueCommandLatency,

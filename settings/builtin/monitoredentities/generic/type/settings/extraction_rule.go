@@ -116,9 +116,6 @@ func (me *ExtractionRule) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *ExtractionRule) HandlePreconditions() {
-}
-
 func (me *ExtractionRule) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"attributes":            &me.Attributes,

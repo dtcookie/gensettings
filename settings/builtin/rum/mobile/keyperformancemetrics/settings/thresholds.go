@@ -49,9 +49,6 @@ func (me *Thresholds) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *Thresholds) HandlePreconditions() {
-}
-
 func (me *Thresholds) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"frustrating_threshold_seconds": &me.FrustratingThresholdSeconds,

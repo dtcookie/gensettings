@@ -42,9 +42,6 @@ func (me *UserTracking) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *UserTracking) HandlePreconditions() {
-}
-
 func (me *UserTracking) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"persistent_cookie_enabled": &me.PersistentCookieEnabled,

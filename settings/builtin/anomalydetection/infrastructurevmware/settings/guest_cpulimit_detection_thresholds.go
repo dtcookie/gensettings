@@ -57,9 +57,6 @@ func (me *GuestCPULimitDetectionThresholds) MarshalHCL(properties hcl.Properties
 	})
 }
 
-func (me *GuestCPULimitDetectionThresholds) HandlePreconditions() {
-}
-
 func (me *GuestCPULimitDetectionThresholds) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"host_cpu_usage_percentage": &me.HostCpuUsagePercentage,

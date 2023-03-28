@@ -80,9 +80,6 @@ func (me *AliasQueue) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *AliasQueue) HandlePreconditions() {
-}
-
 func (me *AliasQueue) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"alias_queue":        &me.AliasQueue,

@@ -43,9 +43,6 @@ func (me *OverloadedStorageDetectionThresholds) MarshalHCL(properties hcl.Proper
 	})
 }
 
-func (me *OverloadedStorageDetectionThresholds) HandlePreconditions() {
-}
-
 func (me *OverloadedStorageDetectionThresholds) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"command_aborts_number": &me.CommandAbortsNumber,

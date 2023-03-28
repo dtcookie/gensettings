@@ -49,9 +49,6 @@ func (me *OnceWindow) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *OnceWindow) HandlePreconditions() {
-}
-
 func (me *OnceWindow) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"end":   &me.End,

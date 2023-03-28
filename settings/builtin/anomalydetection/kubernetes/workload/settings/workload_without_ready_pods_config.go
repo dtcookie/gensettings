@@ -49,9 +49,6 @@ func (me *WorkloadWithoutReadyPodsConfig) MarshalHCL(properties hcl.Properties) 
 	})
 }
 
-func (me *WorkloadWithoutReadyPodsConfig) HandlePreconditions() {
-}
-
 func (me *WorkloadWithoutReadyPodsConfig) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"observation_period_in_minutes": &me.ObservationPeriodInMinutes,

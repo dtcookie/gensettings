@@ -52,9 +52,6 @@ func (me *HighCpuSaturationDetectionThresholds) MarshalHCL(properties hcl.Proper
 	})
 }
 
-func (me *HighCpuSaturationDetectionThresholds) HandlePreconditions() {
-}
-
 func (me *HighCpuSaturationDetectionThresholds) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"cpu_saturation":   &me.CpuSaturation,

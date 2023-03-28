@@ -71,9 +71,6 @@ func (me *UserGroups) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *UserGroups) HandlePreconditions() {
-}
-
 func (me *UserGroups) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"dashboard":  &me.Dashboard,

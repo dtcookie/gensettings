@@ -49,9 +49,6 @@ func (me *Rum) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *Rum) HandlePreconditions() {
-}
-
 func (me *Rum) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"cost_and_traffic_control": &me.CostAndTrafficControl,

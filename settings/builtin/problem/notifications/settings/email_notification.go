@@ -80,9 +80,6 @@ func (me *EmailNotification) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *EmailNotification) HandlePreconditions() {
-}
-
 func (me *EmailNotification) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"bcc_recipients":         &me.BccRecipients,

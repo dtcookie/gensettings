@@ -56,9 +56,6 @@ func (me *UpdateTime) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *UpdateTime) HandlePreconditions() {
-}
-
 func (me *UpdateTime) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"duration":   &me.Duration,

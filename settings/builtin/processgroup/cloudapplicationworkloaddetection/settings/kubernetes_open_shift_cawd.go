@@ -52,9 +52,6 @@ func (me *KubernetesOpenShiftCAWD) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *KubernetesOpenShiftCAWD) HandlePreconditions() {
-}
-
 func (me *KubernetesOpenShiftCAWD) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"enabled": &me.Enabled,

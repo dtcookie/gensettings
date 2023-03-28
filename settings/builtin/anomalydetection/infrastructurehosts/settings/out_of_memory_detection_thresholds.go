@@ -52,9 +52,6 @@ func (me *OutOfMemoryDetectionThresholds) MarshalHCL(properties hcl.Properties) 
 	})
 }
 
-func (me *OutOfMemoryDetectionThresholds) HandlePreconditions() {
-}
-
 func (me *OutOfMemoryDetectionThresholds) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"event_thresholds":                &me.EventThresholds,

@@ -70,9 +70,6 @@ func (me *TextFilter) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *TextFilter) HandlePreconditions() {
-}
-
 func (me *TextFilter) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"case_sensitive": &me.CaseSensitive,

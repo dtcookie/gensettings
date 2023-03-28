@@ -85,9 +85,6 @@ func (me *CookieEntry) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *CookieEntry) HandlePreconditions() {
-}
-
 func (me *CookieEntry) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"domain": &me.Domain,

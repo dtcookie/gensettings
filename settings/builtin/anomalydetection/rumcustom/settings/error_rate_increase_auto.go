@@ -49,9 +49,6 @@ func (me *ErrorRateIncreaseAuto) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *ErrorRateIncreaseAuto) HandlePreconditions() {
-}
-
 func (me *ErrorRateIncreaseAuto) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"threshold_absolute": &me.ThresholdAbsolute,

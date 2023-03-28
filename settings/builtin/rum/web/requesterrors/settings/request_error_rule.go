@@ -98,9 +98,6 @@ func (me *RequestErrorRule) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *RequestErrorRule) HandlePreconditions() {
-}
-
 func (me *RequestErrorRule) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"capture_settings":        &me.CaptureSettings,

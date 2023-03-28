@@ -79,9 +79,6 @@ func (me *AttributeEntry) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *AttributeEntry) HandlePreconditions() {
-}
-
 func (me *AttributeEntry) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"display_name": &me.DisplayName,

@@ -56,9 +56,6 @@ func (me *LowDiskSpaceCriticalConfig) MarshalHCL(properties hcl.Properties) erro
 	})
 }
 
-func (me *LowDiskSpaceCriticalConfig) HandlePreconditions() {
-}
-
 func (me *LowDiskSpaceCriticalConfig) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"observation_period_in_minutes": &me.ObservationPeriodInMinutes,

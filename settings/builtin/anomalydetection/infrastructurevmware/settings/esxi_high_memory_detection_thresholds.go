@@ -43,9 +43,6 @@ func (me *EsxiHighMemoryDetectionThresholds) MarshalHCL(properties hcl.Propertie
 	})
 }
 
-func (me *EsxiHighMemoryDetectionThresholds) HandlePreconditions() {
-}
-
 func (me *EsxiHighMemoryDetectionThresholds) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"compression_decompression_rate": &me.CompressionDecompressionRate,

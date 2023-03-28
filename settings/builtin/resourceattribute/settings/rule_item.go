@@ -78,9 +78,6 @@ func (me *RuleItem) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *RuleItem) HandlePreconditions() {
-}
-
 func (me *RuleItem) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"attribute_key": &me.AttributeKey,

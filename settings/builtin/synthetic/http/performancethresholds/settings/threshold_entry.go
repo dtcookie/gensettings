@@ -71,9 +71,6 @@ func (me *ThresholdEntry) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *ThresholdEntry) HandlePreconditions() {
-}
-
 func (me *ThresholdEntry) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"event":     &me.Event,

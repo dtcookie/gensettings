@@ -72,9 +72,6 @@ func (me *SlowUserActionsFixed) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *SlowUserActionsFixed) HandlePreconditions() {
-}
-
 func (me *SlowUserActionsFixed) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"duration_avoid_overalerting":  &me.DurationAvoidOveralerting,

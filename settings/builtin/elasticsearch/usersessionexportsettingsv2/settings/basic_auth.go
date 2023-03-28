@@ -49,9 +49,6 @@ func (me *BasicAuth) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *BasicAuth) HandlePreconditions() {
-}
-
 func (me *BasicAuth) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"password": &me.Password,

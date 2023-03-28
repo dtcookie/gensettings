@@ -70,9 +70,6 @@ func (me *InclusionToggles) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *InclusionToggles) HandlePreconditions() {
-}
-
 func (me *InclusionToggles) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"inc_basepod":   &me.IncBasepod,

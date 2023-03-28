@@ -71,9 +71,6 @@ func (me *IpAddressExclusionRule) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *IpAddressExclusionRule) HandlePreconditions() {
-}
-
 func (me *IpAddressExclusionRule) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"ip":    &me.Ip,

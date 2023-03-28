@@ -57,9 +57,6 @@ func (me *EsxiHighCpuDetectionThresholds) MarshalHCL(properties hcl.Properties) 
 	})
 }
 
-func (me *EsxiHighCpuDetectionThresholds) HandlePreconditions() {
-}
-
 func (me *EsxiHighCpuDetectionThresholds) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"cpu_peak_percentage":     &me.CpuPeakPercentage,

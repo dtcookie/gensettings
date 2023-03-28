@@ -65,9 +65,6 @@ func (me *CustomEventFilter) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *CustomEventFilter) HandlePreconditions() {
-}
-
 func (me *CustomEventFilter) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"description_filter": &me.DescriptionFilter,

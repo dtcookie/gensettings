@@ -49,9 +49,6 @@ func (me *PredefinedEventFilter) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *PredefinedEventFilter) HandlePreconditions() {
-}
-
 func (me *PredefinedEventFilter) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"event_type": &me.EventType,

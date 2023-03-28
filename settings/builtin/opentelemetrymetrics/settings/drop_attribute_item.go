@@ -71,9 +71,6 @@ func (me *DropAttributeItem) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *DropAttributeItem) HandlePreconditions() {
-}
-
 func (me *DropAttributeItem) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"attribute_key": &me.AttributeKey,

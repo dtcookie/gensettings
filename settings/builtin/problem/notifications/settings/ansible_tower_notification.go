@@ -70,9 +70,6 @@ func (me *AnsibleTowerNotification) MarshalHCL(properties hcl.Properties) error 
 	})
 }
 
-func (me *AnsibleTowerNotification) HandlePreconditions() {
-}
-
 func (me *AnsibleTowerNotification) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"accept_any_certificate": &me.AcceptAnyCertificate,

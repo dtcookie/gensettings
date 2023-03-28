@@ -65,9 +65,6 @@ func (me *SlowUserActionsAuto) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *SlowUserActionsAuto) HandlePreconditions() {
-}
-
 func (me *SlowUserActionsAuto) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"duration_avoid_overalerting": &me.DurationAvoidOveralerting,

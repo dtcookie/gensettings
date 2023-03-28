@@ -71,9 +71,6 @@ func (me *NicForm) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *NicForm) HandlePreconditions() {
-}
-
 func (me *NicForm) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"interface": &me.Interface,

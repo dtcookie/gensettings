@@ -72,10 +72,11 @@ func (me *{{.Name}}) MarshalHCL(properties hcl.Properties) error {
 		"{{.HCLTag}}":  me.{{.Name}},{{end}}{{end}}
 	})
 }
-
-func (me *{{.Name}}) HandlePreconditions() { {{if .Preconditions}}
-{{.Preconditions}} {{end}}
+{{if .Preconditions}}
+func (me *{{.Name}}) HandlePreconditions() { 
+{{.Preconditions}} 
 }
+{{end}}
 
 func (me *{{.Name}}) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{ {{with .Properties}}{{ range .}}

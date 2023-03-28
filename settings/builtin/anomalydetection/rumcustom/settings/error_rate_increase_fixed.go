@@ -49,9 +49,6 @@ func (me *ErrorRateIncreaseFixed) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *ErrorRateIncreaseFixed) HandlePreconditions() {
-}
-
 func (me *ErrorRateIncreaseFixed) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"sensitivity":        &me.Sensitivity,

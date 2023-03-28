@@ -84,9 +84,6 @@ func (me *JiraNotification) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *JiraNotification) HandlePreconditions() {
-}
-
 func (me *JiraNotification) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"api_token":   &me.ApiToken,

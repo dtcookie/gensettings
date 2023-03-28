@@ -85,9 +85,6 @@ func (me *MappingRule) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *MappingRule) HandlePreconditions() {
-}
-
 func (me *MappingRule) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"destination_property":       &me.DestinationProperty,

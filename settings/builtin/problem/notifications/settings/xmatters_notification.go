@@ -66,9 +66,6 @@ func (me *XMattersNotification) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *XMattersNotification) HandlePreconditions() {
-}
-
 func (me *XMattersNotification) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"accept_any_certificate": &me.AcceptAnyCertificate,

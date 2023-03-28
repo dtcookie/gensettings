@@ -52,9 +52,6 @@ func (me *HighSystemLoadDetectionThresholds) MarshalHCL(properties hcl.Propertie
 	})
 }
 
-func (me *HighSystemLoadDetectionThresholds) HandlePreconditions() {
-}
-
 func (me *HighSystemLoadDetectionThresholds) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"event_thresholds": &me.EventThresholds,

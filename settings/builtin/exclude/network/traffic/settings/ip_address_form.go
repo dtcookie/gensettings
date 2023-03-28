@@ -64,9 +64,6 @@ func (me *IpAddressForm) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *IpAddressForm) HandlePreconditions() {
-}
-
 func (me *IpAddressForm) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"ip_address": &me.IpAddress,

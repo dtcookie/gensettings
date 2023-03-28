@@ -49,9 +49,6 @@ func (me *DiskNameFilter) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *DiskNameFilter) HandlePreconditions() {
-}
-
 func (me *DiskNameFilter) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"operator": &me.Operator,

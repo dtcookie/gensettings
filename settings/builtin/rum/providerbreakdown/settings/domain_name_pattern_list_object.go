@@ -64,9 +64,6 @@ func (me *DomainNamePatternListObject) MarshalHCL(properties hcl.Properties) err
 	})
 }
 
-func (me *DomainNamePatternListObject) HandlePreconditions() {
-}
-
 func (me *DomainNamePatternListObject) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"domain_name_pattern": &me.DomainNamePattern,

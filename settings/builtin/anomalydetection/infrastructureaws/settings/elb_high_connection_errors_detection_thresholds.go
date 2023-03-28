@@ -43,9 +43,6 @@ func (me *ElbHighConnectionErrorsDetectionThresholds) MarshalHCL(properties hcl.
 	})
 }
 
-func (me *ElbHighConnectionErrorsDetectionThresholds) HandlePreconditions() {
-}
-
 func (me *ElbHighConnectionErrorsDetectionThresholds) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"connection_errors_per_minute": &me.ConnectionErrorsPerMinute,

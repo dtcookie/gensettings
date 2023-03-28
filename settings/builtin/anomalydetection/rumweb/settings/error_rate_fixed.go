@@ -63,9 +63,6 @@ func (me *ErrorRateFixed) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *ErrorRateFixed) HandlePreconditions() {
-}
-
 func (me *ErrorRateFixed) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"error_rate_req_per_min":    &me.ErrorRateReqPerMin,

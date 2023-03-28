@@ -56,9 +56,6 @@ func (me *ProcessGroupDetection) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *ProcessGroupDetection) HandlePreconditions() {
-}
-
 func (me *ProcessGroupDetection) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"contained_string":         &me.ContainedString,

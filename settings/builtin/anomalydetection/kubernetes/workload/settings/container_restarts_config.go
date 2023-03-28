@@ -56,9 +56,6 @@ func (me *ContainerRestartsConfig) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *ContainerRestartsConfig) HandlePreconditions() {
-}
-
 func (me *ContainerRestartsConfig) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"observation_period_in_minutes": &me.ObservationPeriodInMinutes,

@@ -42,9 +42,6 @@ func (me *DataCollection) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *DataCollection) HandlePreconditions() {
-}
-
 func (me *DataCollection) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"opt_in_mode_enabled": &me.OptInModeEnabled,

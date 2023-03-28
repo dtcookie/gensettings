@@ -74,9 +74,6 @@ func (me *EventDataFieldComplex) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *EventDataFieldComplex) HandlePreconditions() {
-}
-
 func (me *EventDataFieldComplex) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"name":   &me.Name,

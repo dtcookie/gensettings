@@ -49,9 +49,6 @@ func (me *OverAlertingProtection) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *OverAlertingProtection) HandlePreconditions() {
-}
-
 func (me *OverAlertingProtection) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"minutes_abnormal_state": &me.MinutesAbnormalState,

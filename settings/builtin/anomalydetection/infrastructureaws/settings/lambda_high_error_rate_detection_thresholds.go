@@ -43,9 +43,6 @@ func (me *LambdaHighErrorRateDetectionThresholds) MarshalHCL(properties hcl.Prop
 	})
 }
 
-func (me *LambdaHighErrorRateDetectionThresholds) HandlePreconditions() {
-}
-
 func (me *LambdaHighErrorRateDetectionThresholds) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"failed_invocations_rate": &me.FailedInvocationsRate,

@@ -71,9 +71,6 @@ func (me *URLPattern) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *URLPattern) HandlePreconditions() {
-}
-
 func (me *URLPattern) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"rule":     &me.Rule,

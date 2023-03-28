@@ -56,9 +56,6 @@ func (me *PodsSaturationConfig) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *PodsSaturationConfig) HandlePreconditions() {
-}
-
 func (me *PodsSaturationConfig) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"observation_period_in_minutes": &me.ObservationPeriodInMinutes,

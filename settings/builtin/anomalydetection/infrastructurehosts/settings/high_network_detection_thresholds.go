@@ -52,9 +52,6 @@ func (me *HighNetworkDetectionThresholds) MarshalHCL(properties hcl.Properties) 
 	})
 }
 
-func (me *HighNetworkDetectionThresholds) HandlePreconditions() {
-}
-
 func (me *HighNetworkDetectionThresholds) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"errors_percentage": &me.ErrorsPercentage,

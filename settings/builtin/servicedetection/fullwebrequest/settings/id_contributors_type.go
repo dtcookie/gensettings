@@ -65,9 +65,6 @@ func (me *IdContributorsType) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *IdContributorsType) HandlePreconditions() {
-}
-
 func (me *IdContributorsType) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"application_id": &me.ApplicationID,

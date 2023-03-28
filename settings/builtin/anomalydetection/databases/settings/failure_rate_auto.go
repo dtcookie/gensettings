@@ -59,9 +59,6 @@ func (me *FailureRateAuto) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *FailureRateAuto) HandlePreconditions() {
-}
-
 func (me *FailureRateAuto) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"absolute_increase":        &me.AbsoluteIncrease,

@@ -42,9 +42,6 @@ func (me *LocalQueue) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *LocalQueue) HandlePreconditions() {
-}
-
 func (me *LocalQueue) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"local_queue": &me.LocalQueue,

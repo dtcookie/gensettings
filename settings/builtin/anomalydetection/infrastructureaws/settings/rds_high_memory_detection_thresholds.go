@@ -50,9 +50,6 @@ func (me *RdsHighMemoryDetectionThresholds) MarshalHCL(properties hcl.Properties
 	})
 }
 
-func (me *RdsHighMemoryDetectionThresholds) HandlePreconditions() {
-}
-
 func (me *RdsHighMemoryDetectionThresholds) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"free_memory": &me.FreeMemory,

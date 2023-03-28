@@ -50,9 +50,6 @@ func (me *RecurrenceRange) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *RecurrenceRange) HandlePreconditions() {
-}
-
 func (me *RecurrenceRange) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"schedule_end_date":   &me.ScheduleEndDate,
