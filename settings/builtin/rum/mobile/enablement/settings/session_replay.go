@@ -42,6 +42,9 @@ func (me *SessionReplay) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
+func (me *SessionReplay) HandlePreconditions() {
+}
+
 func (me *SessionReplay) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"enabled": &me.Enabled,

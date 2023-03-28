@@ -18,6 +18,7 @@
 package rule
 
 import (
+	"github.com/dynatrace-oss/terraform-provider-dynatrace/dynatrace/opt"
 	"github.com/dynatrace-oss/terraform-provider-dynatrace/terraform/hcl"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
@@ -76,6 +77,12 @@ func (me *Settings) MarshalHCL(properties hcl.Properties) error {
 		"measure":           me.Measure,
 		"measure_attribute": me.MeasureAttribute,
 	})
+}
+
+func (me *Settings) HandlePreconditions() {
+	if me.MeasureAttribute == nil && string(me.Measure) == "ATTRIBUTE" {
+		me.MeasureAttribute = opt.NewString("")
+	}
 }
 
 func (me *Settings) UnmarshalHCL(decoder hcl.Decoder) error {

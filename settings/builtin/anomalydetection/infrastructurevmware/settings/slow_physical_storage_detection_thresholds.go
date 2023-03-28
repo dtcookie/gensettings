@@ -50,6 +50,9 @@ func (me *SlowPhysicalStorageDetectionThresholds) MarshalHCL(properties hcl.Prop
 	})
 }
 
+func (me *SlowPhysicalStorageDetectionThresholds) HandlePreconditions() {
+}
+
 func (me *SlowPhysicalStorageDetectionThresholds) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"avg_read_write_latency":  &me.AvgReadWriteLatency,

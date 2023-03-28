@@ -59,6 +59,11 @@ func (me *RdsHighMemoryDetectionConfig) MarshalHCL(properties hcl.Properties) er
 	})
 }
 
+func (me *RdsHighMemoryDetectionConfig) HandlePreconditions() {
+	// ---- CustomThresholds *RdsHighMemoryDetectionThresholds
+	// ---- DetectionMode *DetectionMode
+}
+
 func (me *RdsHighMemoryDetectionConfig) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"custom_thresholds": &me.CustomThresholds,

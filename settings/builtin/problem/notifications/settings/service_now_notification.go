@@ -84,6 +84,10 @@ func (me *ServiceNowNotification) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
+func (me *ServiceNowNotification) HandlePreconditions() {
+	// ---- InstanceName *string
+}
+
 func (me *ServiceNowNotification) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"instance_name":  &me.InstanceName,

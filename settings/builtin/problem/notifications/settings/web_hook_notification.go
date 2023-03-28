@@ -97,6 +97,10 @@ func (me *WebHookNotification) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
+func (me *WebHookNotification) HandlePreconditions() {
+	// ---- OAuth2Credentials *OAuth2Credentials
+}
+
 func (me *WebHookNotification) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"accept_any_certificate":      &me.AcceptAnyCertificate,

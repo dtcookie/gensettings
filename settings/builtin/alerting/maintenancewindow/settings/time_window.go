@@ -57,6 +57,9 @@ func (me *TimeWindow) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
+func (me *TimeWindow) HandlePreconditions() {
+}
+
 func (me *TimeWindow) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"end_time":   &me.EndTime,

@@ -62,6 +62,9 @@ func (me *MonthlyRecurrence) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
+func (me *MonthlyRecurrence) HandlePreconditions() {
+}
+
 func (me *MonthlyRecurrence) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"day_of_month":     &me.DayOfMonth,

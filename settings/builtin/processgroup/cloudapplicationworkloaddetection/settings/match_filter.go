@@ -49,6 +49,10 @@ func (me *MatchFilter) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
+func (me *MatchFilter) HandlePreconditions() {
+	// ---- Namespace *string
+}
+
 func (me *MatchFilter) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"match_operator": &me.MatchOperator,

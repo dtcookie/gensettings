@@ -84,6 +84,9 @@ func (me *FilterComplex) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
+func (me *FilterComplex) HandlePreconditions() {
+}
+
 func (me *FilterComplex) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"enabled":           &me.Enabled,

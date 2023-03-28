@@ -77,6 +77,9 @@ func (me *MetricProperties) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
+func (me *MetricProperties) HandlePreconditions() {
+}
+
 func (me *MetricProperties) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"impact_relevant":     &me.ImpactRelevant,

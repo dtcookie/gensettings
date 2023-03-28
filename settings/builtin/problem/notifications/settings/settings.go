@@ -173,6 +173,20 @@ func (me *Settings) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
+func (me *Settings) HandlePreconditions() {
+	// ---- AnsibleTowerNotification *AnsibleTowerNotification
+	// ---- EmailNotification *EmailNotification
+	// ---- JiraNotification *JiraNotification
+	// ---- OpsGenieNotification *OpsGenieNotification
+	// ---- PagerDutyNotification *PagerDutyNotification
+	// ---- ServiceNowNotification *ServiceNowNotification
+	// ---- SlackNotification *SlackNotification
+	// ---- TrelloNotification *TrelloNotification
+	// ---- VictorOpsNotification *VictorOpsNotification
+	// ---- WebHookNotification *WebHookNotification
+	// ---- XMattersNotification *XMattersNotification
+}
+
 func (me *Settings) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"alerting_profile":           &me.AlertingProfile,

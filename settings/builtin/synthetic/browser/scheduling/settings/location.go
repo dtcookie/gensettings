@@ -64,6 +64,9 @@ func (me *Location) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
+func (me *Location) HandlePreconditions() {
+}
+
 func (me *Location) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"location": &me.Location,

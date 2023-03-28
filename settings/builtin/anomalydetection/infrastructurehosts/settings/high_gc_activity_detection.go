@@ -59,6 +59,11 @@ func (me *HighGcActivityDetection) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
+func (me *HighGcActivityDetection) HandlePreconditions() {
+	// ---- CustomThresholds *HighGcActivityDetectionThresholds
+	// ---- DetectionMode *DetectionMode
+}
+
 func (me *HighGcActivityDetection) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"custom_thresholds": &me.CustomThresholds,

@@ -45,6 +45,9 @@ func (me *OnceRecurrence) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
+func (me *OnceRecurrence) HandlePreconditions() {
+}
+
 func (me *OnceRecurrence) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"recurrence_range": &me.RecurrenceRange,

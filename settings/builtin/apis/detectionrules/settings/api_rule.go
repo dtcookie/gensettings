@@ -78,6 +78,9 @@ func (me *ApiRule) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
+func (me *ApiRule) HandlePreconditions() {
+}
+
 func (me *ApiRule) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"base":    &me.Base,

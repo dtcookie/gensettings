@@ -49,6 +49,9 @@ func (me *OverAlertingProtectionAuto) MarshalHCL(properties hcl.Properties) erro
 	})
 }
 
+func (me *OverAlertingProtectionAuto) HandlePreconditions() {
+}
+
 func (me *OverAlertingProtectionAuto) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"actions_per_minute":     &me.ActionsPerMinute,

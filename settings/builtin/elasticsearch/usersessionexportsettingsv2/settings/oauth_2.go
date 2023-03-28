@@ -77,6 +77,9 @@ func (me *OAuth2) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
+func (me *OAuth2) HandlePreconditions() {
+}
+
 func (me *OAuth2) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"access_token_url": &me.AccessTokenUrl,

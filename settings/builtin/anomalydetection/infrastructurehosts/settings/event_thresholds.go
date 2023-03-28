@@ -63,6 +63,9 @@ func (me *EventThresholds) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
+func (me *EventThresholds) HandlePreconditions() {
+}
+
 func (me *EventThresholds) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"dealerting_evaluation_window": &me.DealertingEvaluationWindow,

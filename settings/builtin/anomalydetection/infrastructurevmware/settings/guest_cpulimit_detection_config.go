@@ -59,6 +59,11 @@ func (me *GuestCPULimitDetectionConfig) MarshalHCL(properties hcl.Properties) er
 	})
 }
 
+func (me *GuestCPULimitDetectionConfig) HandlePreconditions() {
+	// ---- CustomThresholds *GuestCPULimitDetectionThresholds
+	// ---- DetectionMode *DetectionMode
+}
+
 func (me *GuestCPULimitDetectionConfig) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"custom_thresholds": &me.CustomThresholds,

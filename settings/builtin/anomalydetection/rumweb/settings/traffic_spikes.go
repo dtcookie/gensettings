@@ -49,6 +49,9 @@ func (me *TrafficSpikes) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
+func (me *TrafficSpikes) HandlePreconditions() {
+}
+
 func (me *TrafficSpikes) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"minutes_abnormal_state":   &me.MinutesAbnormalState,

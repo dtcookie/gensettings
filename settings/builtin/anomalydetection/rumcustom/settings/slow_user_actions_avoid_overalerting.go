@@ -42,6 +42,9 @@ func (me *SlowUserActionsAvoidOveralerting) MarshalHCL(properties hcl.Properties
 	})
 }
 
+func (me *SlowUserActionsAvoidOveralerting) HandlePreconditions() {
+}
+
 func (me *SlowUserActionsAvoidOveralerting) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"min_action_rate": &me.MinActionRate,

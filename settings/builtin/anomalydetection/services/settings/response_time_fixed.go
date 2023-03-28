@@ -72,6 +72,9 @@ func (me *ResponseTimeFixed) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
+func (me *ResponseTimeFixed) HandlePreconditions() {
+}
+
 func (me *ResponseTimeFixed) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"over_alerting_protection": &me.OverAlertingProtection,

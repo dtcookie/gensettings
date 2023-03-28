@@ -18,8 +18,10 @@
 package custommetrics
 
 import (
+	"github.com/dynatrace-oss/terraform-provider-dynatrace/dynatrace/opt"
 	"github.com/dynatrace-oss/terraform-provider-dynatrace/terraform/hcl"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"golang.org/x/exp/slices"
 )
 
 type Filters []*Filter
@@ -84,6 +86,13 @@ func (me *Filter) MarshalHCL(properties hcl.Properties) error {
 		"value":      me.Value,
 		"value_in":   me.ValueIn,
 	})
+}
+
+func (me *Filter) HandlePreconditions() {
+	if me.Value == nil && slices.Contains([]string{"EQUALS", "NOT_EQUAL", "LIKE", "LESS_THAN", "LESS_THAN_OR_EQUAL_TO", "GREATER_THAN", "GREATER_THAN_OR_EQUAL_TO", "NOT_LIKE", "STARTS_WITH"}, string(me.Operator)) {
+		me.Value = opt.NewString("")
+	}
+	// ---- ValueIn []string
 }
 
 func (me *Filter) UnmarshalHCL(decoder hcl.Decoder) error {

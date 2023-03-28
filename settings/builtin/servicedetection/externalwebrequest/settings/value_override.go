@@ -42,6 +42,9 @@ func (me *ValueOverride) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
+func (me *ValueOverride) HandlePreconditions() {
+}
+
 func (me *ValueOverride) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"value": &me.Value,

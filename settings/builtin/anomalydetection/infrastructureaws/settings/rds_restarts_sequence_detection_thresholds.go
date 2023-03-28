@@ -43,6 +43,9 @@ func (me *RdsRestartsSequenceDetectionThresholds) MarshalHCL(properties hcl.Prop
 	})
 }
 
+func (me *RdsRestartsSequenceDetectionThresholds) HandlePreconditions() {
+}
+
 func (me *RdsRestartsSequenceDetectionThresholds) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"restarts_per_minute": &me.RestartsPerMinute,

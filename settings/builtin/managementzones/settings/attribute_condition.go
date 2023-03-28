@@ -18,8 +18,10 @@
 package managementzones
 
 import (
+	"github.com/dynatrace-oss/terraform-provider-dynatrace/dynatrace/opt"
 	"github.com/dynatrace-oss/terraform-provider-dynatrace/terraform/hcl"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"golang.org/x/exp/slices"
 )
 
 type AttributeConditions []*AttributeCondition
@@ -125,6 +127,23 @@ func (me *AttributeCondition) MarshalHCL(properties hcl.Properties) error {
 		"string_value":       me.StringValue,
 		"tag":                me.Tag,
 	})
+}
+
+func (me *AttributeCondition) HandlePreconditions() {
+	if me.DynamicKey == nil && slices.Contains([]string{"CLOUD_APPLICATION_LABELS", "CLOUD_APPLICATION_NAMESPACE_LABELS", "HOST_KUBERNETES_LABELS", "PROCESS_GROUP_PREDEFINED_METADATA", "CUSTOM_DEVICE_METADATA", "ENTERPRISE_APPLICATION_METADATA", "DATA_CENTER_SERVICE_METADATA", "HOST_CUSTOM_METADATA", "PROCESS_GROUP_CUSTOM_METADATA"}, string(me.Key)) {
+		me.DynamicKey = opt.NewString("")
+	}
+	if me.DynamicKeySource == nil && slices.Contains([]string{"HOST_CUSTOM_METADATA", "PROCESS_GROUP_CUSTOM_METADATA"}, string(me.Key)) {
+		me.DynamicKeySource = opt.NewString("")
+	}
+	if me.EntityID == nil && slices.Contains([]string{"PROCESS_GROUP_ID", "HOST_GROUP_ID"}, string(me.Key)) {
+		me.EntityID = opt.NewString("")
+	}
+	// ---- CaseSensitive *bool
+	// ---- EnumValue *string
+	// ---- IntegerValue *int
+	// ---- StringValue *string
+	// ---- Tag *string
 }
 
 func (me *AttributeCondition) UnmarshalHCL(decoder hcl.Decoder) error {

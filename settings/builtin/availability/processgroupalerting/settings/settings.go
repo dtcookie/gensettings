@@ -18,6 +18,7 @@
 package processgroupalerting
 
 import (
+	"github.com/dynatrace-oss/terraform-provider-dynatrace/dynatrace/opt"
 	"github.com/dynatrace-oss/terraform-provider-dynatrace/terraform/hcl"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
@@ -61,6 +62,13 @@ func (me *Settings) MarshalHCL(properties hcl.Properties) error {
 		"minimum_instance_threshold": me.MinimumInstanceThreshold,
 		"process_group_id":           me.ProcessGroupID,
 	})
+}
+
+func (me *Settings) HandlePreconditions() {
+	if me.MinimumInstanceThreshold == nil && string(me.AlertingMode) == "ON_INSTANCE_COUNT_VIOLATION" {
+		me.MinimumInstanceThreshold = opt.NewInt(0)
+	}
+	// ---- AlertingMode *AlertingMode
 }
 
 func (me *Settings) UnmarshalHCL(decoder hcl.Decoder) error {

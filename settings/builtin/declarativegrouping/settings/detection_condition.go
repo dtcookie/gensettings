@@ -71,6 +71,9 @@ func (me *DetectionCondition) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
+func (me *DetectionCondition) HandlePreconditions() {
+}
+
 func (me *DetectionCondition) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"condition": &me.Condition,

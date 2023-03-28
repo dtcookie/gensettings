@@ -69,6 +69,12 @@ func (me *Authentication) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
+func (me *Authentication) HandlePreconditions() {
+	// ---- AuthType *AuthType
+	// ---- BasicAuth *BasicAuth
+	// ---- OAuth2 *OAuth2
+}
+
 func (me *Authentication) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"active":     &me.Active,

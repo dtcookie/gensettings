@@ -18,6 +18,7 @@
 package spanentrypoints
 
 import (
+	"github.com/dynatrace-oss/terraform-provider-dynatrace/dynatrace/opt"
 	"github.com/dynatrace-oss/terraform-provider-dynatrace/terraform/hcl"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
@@ -97,6 +98,15 @@ func (me *SpanMatcher) MarshalHCL(properties hcl.Properties) error {
 		"type":            me.Type,
 		"value":           me.Value,
 	})
+}
+
+func (me *SpanMatcher) HandlePreconditions() {
+	if me.SourceKey == nil && string(me.Source) == "ATTRIBUTE" {
+		me.SourceKey = opt.NewString("")
+	}
+	// ---- CaseSensitive *bool
+	// ---- SpanKindValue *SpanKind
+	// ---- Value *string
 }
 
 func (me *SpanMatcher) UnmarshalHCL(decoder hcl.Decoder) error {

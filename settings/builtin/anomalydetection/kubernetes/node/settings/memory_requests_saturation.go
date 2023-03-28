@@ -52,6 +52,10 @@ func (me *MemoryRequestsSaturation) MarshalHCL(properties hcl.Properties) error 
 	})
 }
 
+func (me *MemoryRequestsSaturation) HandlePreconditions() {
+	// ---- Configuration *MemoryRequestsSaturationConfig
+}
+
 func (me *MemoryRequestsSaturation) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"configuration": &me.Configuration,

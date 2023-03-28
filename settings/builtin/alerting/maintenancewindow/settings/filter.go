@@ -88,6 +88,9 @@ func (me *Filter) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
+func (me *Filter) HandlePreconditions() {
+}
+
 func (me *Filter) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"entity_id":        &me.EntityID,

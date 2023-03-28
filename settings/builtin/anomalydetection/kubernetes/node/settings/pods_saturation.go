@@ -52,6 +52,10 @@ func (me *PodsSaturation) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
+func (me *PodsSaturation) HandlePreconditions() {
+	// ---- Configuration *PodsSaturationConfig
+}
+
 func (me *PodsSaturation) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"configuration": &me.Configuration,

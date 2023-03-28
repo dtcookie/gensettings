@@ -98,6 +98,12 @@ func (me *ModelProperties) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
+func (me *ModelProperties) HandlePreconditions() {
+	// ---- SignalFluctuation *float64
+	// ---- Threshold *float64
+	// ---- Tolerance *float64
+}
+
 func (me *ModelProperties) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"alert_condition":    &me.AlertCondition,

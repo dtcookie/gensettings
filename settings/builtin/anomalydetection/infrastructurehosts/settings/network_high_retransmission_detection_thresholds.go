@@ -59,6 +59,9 @@ func (me *NetworkHighRetransmissionDetectionThresholds) MarshalHCL(properties hc
 	})
 }
 
+func (me *NetworkHighRetransmissionDetectionThresholds) HandlePreconditions() {
+}
+
 func (me *NetworkHighRetransmissionDetectionThresholds) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"event_thresholds":                        &me.EventThresholds,

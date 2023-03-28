@@ -18,8 +18,10 @@
 package externalwebrequest
 
 import (
+	"github.com/dynatrace-oss/terraform-provider-dynatrace/dynatrace/opt"
 	"github.com/dynatrace-oss/terraform-provider-dynatrace/terraform/hcl"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"golang.org/x/exp/slices"
 )
 
 type Conditions []*Condition
@@ -129,6 +131,25 @@ func (me *Condition) MarshalHCL(properties hcl.Properties) error {
 		"tag_values":             me.TagValues,
 		"text_values":            me.TextValues,
 	})
+}
+
+func (me *Condition) HandlePreconditions() {
+	if me.IgnoreCase == nil && slices.Contains([]string{"TagEquals", "TagKeyEquals", "StringEndsWith", "NotStringEndsWith", "StringStartsWith", "NotStringStartsWith", "StringContains", "NotStringContains", "StringEquals", "NotStringEquals"}, string(me.CompareOperationType)) {
+		me.IgnoreCase = opt.NewBool(false)
+	}
+	if me.IntValue == nil && slices.Contains([]string{"IntGreaterThan", "IntLessThan"}, string(me.CompareOperationType)) {
+		me.IntValue = opt.NewInt(0)
+	}
+	if me.IpRangeFrom == nil && slices.Contains([]string{"IpInRange", "NotIpInRange"}, string(me.CompareOperationType)) {
+		me.IpRangeFrom = opt.NewString("")
+	}
+	if me.IpRangeTo == nil && slices.Contains([]string{"IpInRange", "NotIpInRange"}, string(me.CompareOperationType)) {
+		me.IpRangeTo = opt.NewString("")
+	}
+	// ---- Framework []FrameworkType
+	// ---- IntValues []int
+	// ---- TagValues []string
+	// ---- TextValues []string
 }
 
 func (me *Condition) UnmarshalHCL(decoder hcl.Decoder) error {

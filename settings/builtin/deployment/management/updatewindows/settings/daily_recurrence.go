@@ -62,6 +62,9 @@ func (me *DailyRecurrence) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
+func (me *DailyRecurrence) HandlePreconditions() {
+}
+
 func (me *DailyRecurrence) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"every":            &me.Every,

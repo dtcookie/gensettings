@@ -69,6 +69,12 @@ func (me *FailureRate) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
+func (me *FailureRate) HandlePreconditions() {
+	// ---- AutoDetection *FailureRateAuto
+	// ---- DetectionMode *DetectionMode
+	// ---- FixedDetection *FailureRateFixed
+}
+
 func (me *FailureRate) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"auto_detection":  &me.AutoDetection,

@@ -52,6 +52,10 @@ func (me *ReadinessIssues) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
+func (me *ReadinessIssues) HandlePreconditions() {
+	// ---- Configuration *ReadinessIssuesConfig
+}
+
 func (me *ReadinessIssues) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"configuration": &me.Configuration,

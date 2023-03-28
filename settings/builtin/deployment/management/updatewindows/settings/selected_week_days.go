@@ -84,6 +84,9 @@ func (me *SelectedWeekDays) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
+func (me *SelectedWeekDays) HandlePreconditions() {
+}
+
 func (me *SelectedWeekDays) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"friday":    &me.Friday,

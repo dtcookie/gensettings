@@ -59,6 +59,11 @@ func (me *RdsRestartsSequenceDetectionConfig) MarshalHCL(properties hcl.Properti
 	})
 }
 
+func (me *RdsRestartsSequenceDetectionConfig) HandlePreconditions() {
+	// ---- CustomThresholds *RdsRestartsSequenceDetectionThresholds
+	// ---- DetectionMode *DetectionMode
+}
+
 func (me *RdsRestartsSequenceDetectionConfig) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"custom_thresholds": &me.CustomThresholds,

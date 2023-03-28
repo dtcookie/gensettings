@@ -42,6 +42,9 @@ func (me *ProcessorDefinition) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
+func (me *ProcessorDefinition) HandlePreconditions() {
+}
+
 func (me *ProcessorDefinition) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"rule": &me.Rule,

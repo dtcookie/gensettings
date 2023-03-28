@@ -49,6 +49,9 @@ func (me *MonitoringIssuesConfig) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
+func (me *MonitoringIssuesConfig) HandlePreconditions() {
+}
+
 func (me *MonitoringIssuesConfig) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"observation_period_in_minutes": &me.ObservationPeriodInMinutes,

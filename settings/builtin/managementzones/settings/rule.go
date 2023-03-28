@@ -18,6 +18,7 @@
 package managementzones
 
 import (
+	"github.com/dynatrace-oss/terraform-provider-dynatrace/dynatrace/opt"
 	"github.com/dynatrace-oss/terraform-provider-dynatrace/terraform/hcl"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
@@ -96,6 +97,14 @@ func (me *Rule) MarshalHCL(properties hcl.Properties) error {
 		"entity_selector": me.EntitySelector,
 		"type":            me.Type,
 	})
+}
+
+func (me *Rule) HandlePreconditions() {
+	if me.EntitySelector == nil && string(me.Type) == "SELECTOR" {
+		me.EntitySelector = opt.NewString("")
+	}
+	// ---- AttributeRule *ManagementZoneAttributeRule
+	// ---- DimensionRule *DimensionRule
 }
 
 func (me *Rule) UnmarshalHCL(decoder hcl.Decoder) error {

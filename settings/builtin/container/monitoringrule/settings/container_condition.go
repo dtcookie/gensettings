@@ -56,6 +56,10 @@ func (me *ContainerCondition) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
+func (me *ContainerCondition) HandlePreconditions() {
+	// ---- Value *string
+}
+
 func (me *ContainerCondition) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"operator": &me.Operator,

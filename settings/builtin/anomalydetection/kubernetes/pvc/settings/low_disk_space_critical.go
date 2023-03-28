@@ -52,6 +52,10 @@ func (me *LowDiskSpaceCritical) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
+func (me *LowDiskSpaceCritical) HandlePreconditions() {
+	// ---- Configuration *LowDiskSpaceCriticalConfig
+}
+
 func (me *LowDiskSpaceCritical) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"configuration": &me.Configuration,

@@ -18,6 +18,7 @@
 package metricevents
 
 import (
+	"github.com/dynatrace-oss/terraform-provider-dynatrace/dynatrace/opt"
 	"github.com/dynatrace-oss/terraform-provider-dynatrace/terraform/hcl"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
@@ -95,6 +96,19 @@ func (me *QueryDefinition) MarshalHCL(properties hcl.Properties) error {
 		"query_offset":     me.QueryOffset,
 		"type":             me.Type,
 	})
+}
+
+func (me *QueryDefinition) HandlePreconditions() {
+	if me.MetricKey == nil && string(me.Type) == "METRIC_KEY" {
+		me.MetricKey = opt.NewString("")
+	}
+	if me.MetricSelector == nil && string(me.Type) == "METRIC_SELECTOR" {
+		me.MetricSelector = opt.NewString("")
+	}
+	// ---- Aggregation *Aggregation
+	// ---- DimensionFilter DimensionFilters
+	// ---- EntityFilter *EntityFilter
+	// ---- ManagementZone *string
 }
 
 func (me *QueryDefinition) UnmarshalHCL(decoder hcl.Decoder) error {

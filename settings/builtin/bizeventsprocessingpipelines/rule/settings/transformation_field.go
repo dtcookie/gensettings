@@ -92,6 +92,9 @@ func (me *TransformationField) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
+func (me *TransformationField) HandlePreconditions() {
+}
+
 func (me *TransformationField) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"array":    &me.Array,

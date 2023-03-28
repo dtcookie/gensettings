@@ -18,6 +18,7 @@
 package privacypreferences
 
 import (
+	"github.com/dynatrace-oss/terraform-provider-dynatrace/dynatrace/opt"
 	"github.com/dynatrace-oss/terraform-provider-dynatrace/terraform/hcl"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
@@ -76,6 +77,15 @@ func (me *AllowListRule) MarshalHCL(properties hcl.Properties) error {
 		"css_expression":       me.CssExpression,
 		"target":               me.Target,
 	})
+}
+
+func (me *AllowListRule) HandlePreconditions() {
+	if me.AttributeExpression == nil && string(me.Target) == "ATTRIBUTE" {
+		me.AttributeExpression = opt.NewString("")
+	}
+	if me.CssExpression == nil && string(me.Target) == "ELEMENT" {
+		me.CssExpression = opt.NewString("")
+	}
 }
 
 func (me *AllowListRule) UnmarshalHCL(decoder hcl.Decoder) error {

@@ -71,6 +71,9 @@ func (me *MetadataItem) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
+func (me *MetadataItem) HandlePreconditions() {
+}
+
 func (me *MetadataItem) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"metadata_key":   &me.MetadataKey,

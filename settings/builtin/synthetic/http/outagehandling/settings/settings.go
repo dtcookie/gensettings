@@ -18,6 +18,7 @@
 package outagehandling
 
 import (
+	"github.com/dynatrace-oss/terraform-provider-dynatrace/dynatrace/opt"
 	"github.com/dynatrace-oss/terraform-provider-dynatrace/terraform/hcl"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
@@ -76,6 +77,18 @@ func (me *Settings) MarshalHCL(properties hcl.Properties) error {
 		"local_outages":                            me.LocalOutages,
 		"scope":                                    me.Scope,
 	})
+}
+
+func (me *Settings) HandlePreconditions() {
+	if me.GlobalConsecutiveOutageCountThreshold == nil && me.GlobalOutages {
+		me.GlobalConsecutiveOutageCountThreshold = opt.NewInt(0)
+	}
+	if me.LocalConsecutiveOutageCountThreshold == nil && me.LocalOutages {
+		me.LocalConsecutiveOutageCountThreshold = opt.NewInt(0)
+	}
+	if me.LocalLocationOutageCountThreshold == nil && me.LocalOutages {
+		me.LocalLocationOutageCountThreshold = opt.NewInt(0)
+	}
 }
 
 func (me *Settings) UnmarshalHCL(decoder hcl.Decoder) error {

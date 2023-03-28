@@ -69,6 +69,12 @@ func (me *ErrorRateIncrease) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
+func (me *ErrorRateIncrease) HandlePreconditions() {
+	// ---- DetectionMode *DetectionMode
+	// ---- ErrorRateIncreaseAuto *ErrorRateIncreaseAuto
+	// ---- ErrorRateIncreaseFixed *ErrorRateIncreaseFixed
+}
+
 func (me *ErrorRateIncrease) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"detection_mode":            &me.DetectionMode,

@@ -2,8 +2,6 @@ package reflection
 
 import (
 	"fmt"
-
-	"github.com/dtcookie/dynatrace/gensettings/reflection/precondition"
 )
 
 type Property struct {
@@ -13,8 +11,8 @@ type Property struct {
 	Comment         string `json:"comment,omitempty"`
 	Optional        bool   `json:"optional"`
 	OptionalComment string
-	Preconditions   []*precondition.Precondition `json:"preconditions"`
-	Scope           string                       `json:"scope"`
+	Precondition    map[string]any
+	Scope           string `json:"scope"`
 }
 
 func (me *Property) Rewire(original *Type, replacement *Type) {

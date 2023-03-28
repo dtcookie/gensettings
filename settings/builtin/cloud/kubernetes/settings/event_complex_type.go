@@ -78,6 +78,9 @@ func (me *EventComplexType) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
+func (me *EventComplexType) HandlePreconditions() {
+}
+
 func (me *EventComplexType) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"active":  &me.Active,

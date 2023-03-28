@@ -42,6 +42,9 @@ func (me *DiskSlowWritesAndReadsDetectionThresholds) MarshalHCL(properties hcl.P
 	})
 }
 
+func (me *DiskSlowWritesAndReadsDetectionThresholds) HandlePreconditions() {
+}
+
 func (me *DiskSlowWritesAndReadsDetectionThresholds) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"write_and_read_time": &me.WriteAndReadTime,

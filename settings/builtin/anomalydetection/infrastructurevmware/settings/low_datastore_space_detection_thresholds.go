@@ -43,6 +43,9 @@ func (me *LowDatastoreSpaceDetectionThresholds) MarshalHCL(properties hcl.Proper
 	})
 }
 
+func (me *LowDatastoreSpaceDetectionThresholds) HandlePreconditions() {
+}
+
 func (me *LowDatastoreSpaceDetectionThresholds) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"free_space_percentage": &me.FreeSpacePercentage,

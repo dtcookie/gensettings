@@ -49,6 +49,10 @@ func (me *UnexpectedLowLoad) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
+func (me *UnexpectedLowLoad) HandlePreconditions() {
+	// ---- ThresholdPercentage *float64
+}
+
 func (me *UnexpectedLowLoad) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"enabled":              &me.Enabled,

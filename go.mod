@@ -7,6 +7,7 @@ require (
 	github.com/dynatrace-oss/terraform-provider-dynatrace v1.20.0
 	github.com/google/uuid v1.3.0
 	github.com/hashicorp/terraform-plugin-sdk/v2 v2.25.0
+	golang.org/x/exp v0.0.0-20230321023759-10a507213a29
 	golang.org/x/tools v0.6.0
 )
 

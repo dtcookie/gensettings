@@ -59,6 +59,11 @@ func (me *ElbHighConnectionErrorsDetectionConfig) MarshalHCL(properties hcl.Prop
 	})
 }
 
+func (me *ElbHighConnectionErrorsDetectionConfig) HandlePreconditions() {
+	// ---- CustomThresholds *ElbHighConnectionErrorsDetectionThresholds
+	// ---- DetectionMode *DetectionMode
+}
+
 func (me *ElbHighConnectionErrorsDetectionConfig) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"custom_thresholds": &me.CustomThresholds,

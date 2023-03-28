@@ -90,6 +90,13 @@ func (me *MaskingPresetConfig) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
+func (me *MaskingPresetConfig) HandlePreconditions() {
+	// ---- PlaybackMaskingAllowListRules AllowListRules
+	// ---- PlaybackMaskingBlockListRules BlockListRules
+	// ---- RecordingMaskingAllowListRules AllowListRules
+	// ---- RecordingMaskingBlockListRules BlockListRules
+}
+
 func (me *MaskingPresetConfig) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"playback_masking_allow_list_rules":  &me.PlaybackMaskingAllowListRules,

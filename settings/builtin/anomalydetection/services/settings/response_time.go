@@ -69,6 +69,12 @@ func (me *ResponseTime) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
+func (me *ResponseTime) HandlePreconditions() {
+	// ---- AutoDetection *ResponseTimeAuto
+	// ---- DetectionMode *DetectionMode
+	// ---- FixedDetection *ResponseTimeFixed
+}
+
 func (me *ResponseTime) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"auto_detection":  &me.AutoDetection,

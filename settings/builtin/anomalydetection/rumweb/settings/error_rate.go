@@ -69,6 +69,12 @@ func (me *ErrorRate) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
+func (me *ErrorRate) HandlePreconditions() {
+	// ---- ErrorRateAuto *ErrorRateAuto
+	// ---- ErrorRateDetectionMode *DetectionMode
+	// ---- ErrorRateFixed *ErrorRateFixed
+}
+
 func (me *ErrorRate) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"enabled":                   &me.Enabled,

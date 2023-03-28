@@ -71,6 +71,9 @@ func (me *Exception) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
+func (me *Exception) HandlePreconditions() {
+}
+
 func (me *Exception) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"class_pattern":   &me.ClassPattern,

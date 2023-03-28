@@ -43,6 +43,9 @@ func (me *RdsLowStorageDetectionThresholds) MarshalHCL(properties hcl.Properties
 	})
 }
 
+func (me *RdsLowStorageDetectionThresholds) HandlePreconditions() {
+}
+
 func (me *RdsLowStorageDetectionThresholds) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"free_storage_percentage": &me.FreeStoragePercentage,

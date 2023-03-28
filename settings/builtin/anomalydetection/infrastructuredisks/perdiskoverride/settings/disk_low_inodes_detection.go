@@ -59,6 +59,11 @@ func (me *DiskLowInodesDetection) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
+func (me *DiskLowInodesDetection) HandlePreconditions() {
+	// ---- CustomThresholds *DiskLowInodesDetectionThresholds
+	// ---- DetectionMode *DetectionMode
+}
+
 func (me *DiskLowInodesDetection) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"custom_thresholds": &me.CustomThresholds,

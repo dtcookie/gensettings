@@ -72,6 +72,9 @@ func (me *QueueManager) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
+func (me *QueueManager) HandlePreconditions() {
+}
+
 func (me *QueueManager) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"name":                &me.Name,

@@ -49,6 +49,9 @@ func (me *PodStuckInTerminatingConfig) MarshalHCL(properties hcl.Properties) err
 	})
 }
 
+func (me *PodStuckInTerminatingConfig) HandlePreconditions() {
+}
+
 func (me *PodStuckInTerminatingConfig) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"observation_period_in_minutes": &me.ObservationPeriodInMinutes,

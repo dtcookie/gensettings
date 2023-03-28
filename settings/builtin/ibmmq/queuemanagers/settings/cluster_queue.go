@@ -72,6 +72,9 @@ func (me *ClusterQueue) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
+func (me *ClusterQueue) HandlePreconditions() {
+}
+
 func (me *ClusterQueue) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"cluster_visibility": &me.ClusterVisibility,

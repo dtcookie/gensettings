@@ -63,6 +63,10 @@ func (me *Masking) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
+func (me *Masking) HandlePreconditions() {
+	// ---- IpAddressMasking *IpAddressMaskingOption
+}
+
 func (me *Masking) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"ip_address_masking":                &me.IpAddressMasking,

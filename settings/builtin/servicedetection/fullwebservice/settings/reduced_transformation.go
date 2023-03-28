@@ -18,8 +18,10 @@
 package fullwebservice
 
 import (
+	"github.com/dynatrace-oss/terraform-provider-dynatrace/dynatrace/opt"
 	"github.com/dynatrace-oss/terraform-provider-dynatrace/terraform/hcl"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"golang.org/x/exp/slices"
 )
 
 type ReducedTransformations []*ReducedTransformation
@@ -97,6 +99,24 @@ func (me *ReducedTransformation) MarshalHCL(properties hcl.Properties) error {
 		"suffix":              me.Suffix,
 		"transformation_type": me.TransformationType,
 	})
+}
+
+func (me *ReducedTransformation) HandlePreconditions() {
+	if me.IncludeHexNumbers == nil && string(me.TransformationType) == "REMOVE_NUMBERS" {
+		me.IncludeHexNumbers = opt.NewBool(false)
+	}
+	if me.MinDigitCount == nil && string(me.TransformationType) == "REMOVE_NUMBERS" {
+		me.MinDigitCount = opt.NewInt(0)
+	}
+	if me.Prefix == nil && slices.Contains([]string{"REPLACE_BETWEEN"}, string(me.TransformationType)) {
+		me.Prefix = opt.NewString("")
+	}
+	if me.ReplacementValue == nil && string(me.TransformationType) == "REPLACE_BETWEEN" {
+		me.ReplacementValue = opt.NewString("")
+	}
+	if me.Suffix == nil && slices.Contains([]string{"BEFORE", "REPLACE_BETWEEN"}, string(me.TransformationType)) {
+		me.Suffix = opt.NewString("")
+	}
 }
 
 func (me *ReducedTransformation) UnmarshalHCL(decoder hcl.Decoder) error {

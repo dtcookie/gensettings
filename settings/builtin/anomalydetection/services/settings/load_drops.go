@@ -18,6 +18,7 @@
 package services
 
 import (
+	"github.com/dynatrace-oss/terraform-provider-dynatrace/dynatrace/opt"
 	"github.com/dynatrace-oss/terraform-provider-dynatrace/terraform/hcl"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
@@ -54,6 +55,13 @@ func (me *LoadDrops) MarshalHCL(properties hcl.Properties) error {
 		"load_drop_percent":      me.LoadDropPercent,
 		"minutes_abnormal_state": me.MinutesAbnormalState,
 	})
+}
+
+func (me *LoadDrops) HandlePreconditions() {
+	if me.MinutesAbnormalState == nil && me.Enabled {
+		me.MinutesAbnormalState = opt.NewInt(0)
+	}
+	// ---- LoadDropPercent *float64
 }
 
 func (me *LoadDrops) UnmarshalHCL(decoder hcl.Decoder) error {

@@ -62,6 +62,9 @@ func (me *WeeklyRecurrence) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
+func (me *WeeklyRecurrence) HandlePreconditions() {
+}
+
 func (me *WeeklyRecurrence) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"day_of_week":      &me.DayOfWeek,

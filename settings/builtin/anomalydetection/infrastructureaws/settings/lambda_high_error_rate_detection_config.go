@@ -59,6 +59,11 @@ func (me *LambdaHighErrorRateDetectionConfig) MarshalHCL(properties hcl.Properti
 	})
 }
 
+func (me *LambdaHighErrorRateDetectionConfig) HandlePreconditions() {
+	// ---- CustomThresholds *LambdaHighErrorRateDetectionThresholds
+	// ---- DetectionMode *DetectionMode
+}
+
 func (me *LambdaHighErrorRateDetectionConfig) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"custom_thresholds": &me.CustomThresholds,

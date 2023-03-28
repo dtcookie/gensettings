@@ -52,6 +52,10 @@ func (me *DeploymentStuck) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
+func (me *DeploymentStuck) HandlePreconditions() {
+	// ---- Configuration *DeploymentStuckConfig
+}
+
 func (me *DeploymentStuck) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"configuration": &me.Configuration,

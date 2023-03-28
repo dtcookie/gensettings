@@ -63,6 +63,9 @@ func (me *EndpointDefinition) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
+func (me *EndpointDefinition) HandlePreconditions() {
+}
+
 func (me *EndpointDefinition) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"content_type":               &me.ContentType,

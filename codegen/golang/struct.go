@@ -2,6 +2,8 @@ package golang
 
 import (
 	"bytes"
+	"encoding/json"
+	"fmt"
 	"sort"
 	"strings"
 	"text/template"
@@ -24,6 +26,7 @@ type Property struct {
 	HCLType         string
 	Elem            string
 	Default         string
+	Precondition    map[string]any
 }
 
 func (me *Property) Prettify() {
@@ -35,6 +38,108 @@ type Struct struct {
 	Plural     string
 	Comments   []string
 	Properties []*Property
+}
+
+/*
+	if me.IgnoreCase == nil && slices.Contains([]string{"TagEquals", "TagKeyEquals", "StringEndsWith", "NotStringEndsWith", "StringStartsWith", "NotStringStartsWith", "StringContains", "NotStringContains", "StringEquals", "NotStringEquals"}, string(me.CompareOperationType)) {
+		me.IgnoreCase = opt.NewBool(false)
+	}
+
+	// IgnoreCase *bool -> {"expectedValues":["TagEquals","TagKeyEquals","StringEndsWith","NotStringEndsWith","StringStartsWith","NotStringStartsWith","StringContains","NotStringContains","StringEquals","NotStringEquals"],"property":"compareOperationType","type":"IN"}
+*/
+
+func getPrecExpectedValues(m map[string]any) []string {
+	untyped, ok := m["expectedValues"]
+	if !ok {
+		return nil
+	}
+	switch typed := untyped.(type) {
+	case []any:
+		strs := []string{}
+		for _, uts := range typed {
+			strs = append(strs, uts.(string))
+		}
+		return strs
+	case []string:
+		return typed
+	}
+	return nil
+}
+
+func getPrecExpectedValue(m map[string]any) any {
+	untyped, ok := m["expectedValue"]
+	if !ok {
+		return nil
+	}
+	return untyped
+}
+
+func getPrecProperty(m map[string]any) string {
+	untyped, ok := m["property"]
+	if !ok {
+		return ""
+	}
+	return untyped.(string)
+}
+
+func getPrecType(m map[string]any) string {
+	untyped, ok := m["type"]
+	if !ok {
+		return ""
+	}
+	return untyped.(string)
+}
+
+func (me *Struct) Preconditions() string {
+	result := ""
+	if len(me.Properties) == 0 {
+		return result
+	}
+	unhandledLines := []string{}
+	for _, property := range me.Properties {
+		if len(property.Precondition) == 0 {
+			continue
+		}
+		m := property.Precondition
+		precExpectedValues := getPrecExpectedValues(m)
+		precExpectedValue := getPrecExpectedValue(m)
+		precPropertyName := getPrecProperty(m)
+		precType := getPrecType(m)
+		line := ""
+		if precExpectedValues != nil && len(precPropertyName) > 0 && precType == "IN" {
+			precPropertyName = PropertyName(precPropertyName)
+			line = fmt.Sprintf(`if me.%s == nil && slices.Contains([]string{"%s"}, string(me.%s)) {
+				me.%s = `, property.Name, strings.Join(precExpectedValues, `", "`), precPropertyName, property.Name)
+		} else if precExpectedValue != nil && len(precPropertyName) > 0 && precType == "EQUALS" {
+			precPropertyName = PropertyName(precPropertyName)
+			switch ev := precExpectedValue.(type) {
+			case string:
+				line = fmt.Sprintf(`if me.%s == nil && string(me.%s) == "%s" {
+					me.%s = `, property.Name, precPropertyName, precExpectedValue, property.Name)
+			case bool:
+				if ev {
+					line = fmt.Sprintf(`if me.%s == nil && me.%s {
+							me.%s = `, property.Name, precPropertyName, property.Name)
+				} else {
+					line = fmt.Sprintf(`if me.%s == nil && !me.%s {
+							me.%s = `, property.Name, precPropertyName, property.Name)
+				}
+			}
+		}
+		if len(line) > 0 && property.Type == "*bool" {
+			result = result + "\n" + fmt.Sprintf("%s%s }", line, "opt.NewBool(false)")
+		} else if len(line) > 0 && property.Type == "*int" {
+			result = result + "\n" + fmt.Sprintf("%s%s }", line, "opt.NewInt(0)")
+		} else if len(line) > 0 && property.Type == "*string" {
+			result = result + "\n" + fmt.Sprintf("%s%s }", line, "opt.NewString(\"\")")
+		} else {
+			unhandledLines = append(unhandledLines, "// ---- "+property.Name+" "+property.Type)
+		}
+	}
+	for _, line := range unhandledLines {
+		result = result + "\n" + line
+	}
+	return strings.TrimSpace(result)
 }
 
 func (me *Struct) Bytes() ([]byte, error) {
@@ -136,12 +241,21 @@ func NewStruct(t *reflection.Type) *Struct {
 			Optional:        property.Optional,
 			OptionalComment: property.OptionalComment,
 			Default:         defVal,
+			Precondition:    property.Precondition,
 		}))
 	}
 	sort.Slice(structDef.Properties, func(i, j int) bool {
 		return strings.Compare(structDef.Properties[i].Name, structDef.Properties[j].Name) == -1
 	})
 	return &structDef
+}
+
+func toString(m map[string]any) string {
+	if m == nil {
+		return ""
+	}
+	data, _ := json.Marshal(m)
+	return string(data)
 }
 
 func StructTypeName(name string) string {

@@ -106,6 +106,11 @@ func (me *Settings) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
+func (me *Settings) HandlePreconditions() {
+	// ---- ThresholdMilliseconds *float64
+	// ---- ThresholdPercent *float64
+}
+
 func (me *Settings) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"disk_name_filter":       &me.DiskNameFilter,

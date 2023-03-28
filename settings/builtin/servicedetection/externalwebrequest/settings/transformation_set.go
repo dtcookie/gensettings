@@ -62,6 +62,11 @@ func (me *TransformationSet) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
+func (me *TransformationSet) HandlePreconditions() {
+	// ---- Transformations Transformations
+	// ---- ValueOverride *ValueOverride
+}
+
 func (me *TransformationSet) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"contribution_type": &me.ContributionType,

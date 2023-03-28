@@ -89,6 +89,11 @@ func (me *MatcherComplex) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
+func (me *MatcherComplex) HandlePreconditions() {
+	// ---- CaseSensitive *bool
+	// ---- Value *string
+}
+
 func (me *MatcherComplex) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"case_sensitive": &me.CaseSensitive,

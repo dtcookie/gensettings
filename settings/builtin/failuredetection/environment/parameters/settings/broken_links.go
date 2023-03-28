@@ -50,6 +50,10 @@ func (me *BrokenLinks) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
+func (me *BrokenLinks) HandlePreconditions() {
+	// ---- BrokenLinkDomains []string
+}
+
 func (me *BrokenLinks) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"broken_link_domains":         &me.BrokenLinkDomains,

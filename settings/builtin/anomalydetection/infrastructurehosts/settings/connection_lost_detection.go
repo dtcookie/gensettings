@@ -49,6 +49,10 @@ func (me *ConnectionLostDetection) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
+func (me *ConnectionLostDetection) HandlePreconditions() {
+	// ---- OnGracefulShutdowns *ConnectionLostDetectionSensitivity
+}
+
 func (me *ConnectionLostDetection) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"enabled":               &me.Enabled,

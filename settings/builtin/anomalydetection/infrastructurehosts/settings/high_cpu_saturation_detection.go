@@ -59,6 +59,11 @@ func (me *HighCpuSaturationDetection) MarshalHCL(properties hcl.Properties) erro
 	})
 }
 
+func (me *HighCpuSaturationDetection) HandlePreconditions() {
+	// ---- CustomThresholds *HighCpuSaturationDetectionThresholds
+	// ---- DetectionMode *DetectionMode
+}
+
 func (me *HighCpuSaturationDetection) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"custom_thresholds": &me.CustomThresholds,

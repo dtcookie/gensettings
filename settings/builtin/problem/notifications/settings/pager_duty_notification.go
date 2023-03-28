@@ -56,6 +56,9 @@ func (me *PagerDutyNotification) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
+func (me *PagerDutyNotification) HandlePreconditions() {
+}
+
 func (me *PagerDutyNotification) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"account":         &me.Account,

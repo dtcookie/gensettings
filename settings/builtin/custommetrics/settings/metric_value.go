@@ -18,6 +18,7 @@
 package custommetrics
 
 import (
+	"github.com/dynatrace-oss/terraform-provider-dynatrace/dynatrace/opt"
 	"github.com/dynatrace-oss/terraform-provider-dynatrace/terraform/hcl"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
@@ -47,6 +48,12 @@ func (me *MetricValue) MarshalHCL(properties hcl.Properties) error {
 		"field_name": me.FieldName,
 		"type":       me.Type,
 	})
+}
+
+func (me *MetricValue) HandlePreconditions() {
+	if me.FieldName == nil && string(me.Type) == "FIELD" {
+		me.FieldName = opt.NewString("")
+	}
 }
 
 func (me *MetricValue) UnmarshalHCL(decoder hcl.Decoder) error {

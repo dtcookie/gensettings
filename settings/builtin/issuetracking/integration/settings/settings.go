@@ -18,8 +18,10 @@
 package integration
 
 import (
+	"github.com/dynatrace-oss/terraform-provider-dynatrace/dynatrace/opt"
 	"github.com/dynatrace-oss/terraform-provider-dynatrace/terraform/hcl"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"golang.org/x/exp/slices"
 )
 
 type Settings struct {
@@ -96,6 +98,15 @@ func (me *Settings) MarshalHCL(properties hcl.Properties) error {
 		"url":                me.Url,
 		"username":           me.Username,
 	})
+}
+
+func (me *Settings) HandlePreconditions() {
+	if me.Password == nil && slices.Contains([]string{"JIRA", "JIRA_ON_PREMISE", "SERVICENOW"}, string(me.Issuetrackersystem)) {
+		me.Password = opt.NewString("")
+	}
+	if me.Token == nil && slices.Contains([]string{"JIRA", "GITHUB", "GITLAB", "JIRA_CLOUD"}, string(me.Issuetrackersystem)) {
+		me.Token = opt.NewString("")
+	}
 }
 
 func (me *Settings) UnmarshalHCL(decoder hcl.Decoder) error {

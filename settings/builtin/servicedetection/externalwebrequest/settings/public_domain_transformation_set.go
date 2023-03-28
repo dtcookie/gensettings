@@ -18,8 +18,10 @@
 package externalwebrequest
 
 import (
+	"github.com/dynatrace-oss/terraform-provider-dynatrace/dynatrace/opt"
 	"github.com/dynatrace-oss/terraform-provider-dynatrace/terraform/hcl"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"golang.org/x/exp/slices"
 )
 
 type PublicDomainTransformationSet struct {
@@ -67,6 +69,14 @@ func (me *PublicDomainTransformationSet) MarshalHCL(properties hcl.Properties) e
 		"transformations":     me.Transformations,
 		"value_override":      me.ValueOverride,
 	})
+}
+
+func (me *PublicDomainTransformationSet) HandlePreconditions() {
+	if me.CopyFromHostName == nil && slices.Contains([]string{"OriginalValue", "TransformValue"}, string(me.ContributionType)) {
+		me.CopyFromHostName = opt.NewBool(false)
+	}
+	// ---- Transformations Transformations
+	// ---- ValueOverride *ValueOverride
 }
 
 func (me *PublicDomainTransformationSet) UnmarshalHCL(decoder hcl.Decoder) error {

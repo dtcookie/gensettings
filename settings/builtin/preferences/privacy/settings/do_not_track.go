@@ -49,6 +49,10 @@ func (me *DoNotTrack) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
+func (me *DoNotTrack) HandlePreconditions() {
+	// ---- DoNotTrack *DoNotTrackOption
+}
+
 func (me *DoNotTrack) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"comply_with_do_not_track": &me.ComplyWithDoNotTrack,

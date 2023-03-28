@@ -93,6 +93,12 @@ func (me *Settings) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
+func (me *Settings) HandlePreconditions() {
+	// ---- DiskLowInodesDetection *DiskLowInodesDetection
+	// ---- DiskLowSpaceDetection *DiskLowSpaceDetection
+	// ---- DiskSlowWritesAndReadsDetection *DiskSlowWritesAndReadsDetection
+}
+
 func (me *Settings) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"disk_id":                                  &me.DiskID,

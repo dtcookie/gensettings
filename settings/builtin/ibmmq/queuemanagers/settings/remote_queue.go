@@ -86,6 +86,9 @@ func (me *RemoteQueue) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
+func (me *RemoteQueue) HandlePreconditions() {
+}
+
 func (me *RemoteQueue) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"cluster_visibility":   &me.ClusterVisibility,

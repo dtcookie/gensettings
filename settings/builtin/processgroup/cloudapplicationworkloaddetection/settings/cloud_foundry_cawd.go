@@ -42,6 +42,9 @@ func (me *CloudFoundryCAWD) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
+func (me *CloudFoundryCAWD) HandlePreconditions() {
+}
+
 func (me *CloudFoundryCAWD) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"enabled": &me.Enabled,

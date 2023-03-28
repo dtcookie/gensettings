@@ -92,6 +92,14 @@ func (me *IdContributorsType) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
+func (me *IdContributorsType) HandlePreconditions() {
+	// ---- ApplicationID *ServiceIdContributor
+	// ---- ContextRoot *ContextIdContributor
+	// ---- ServerName *ServiceIdContributor
+	// ---- WebServiceName *ServiceIdContributor
+	// ---- WebServiceNamespace *ServiceIdContributor
+}
+
 func (me *IdContributorsType) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"application_id":                &me.ApplicationID,

@@ -89,6 +89,12 @@ func (me *ExceptionRules) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
+func (me *ExceptionRules) HandlePreconditions() {
+	// ---- CustomHandledExceptions Exceptions
+	// ---- IgnoredExceptions Exceptions
+	// ---- SuccessForcingExceptions Exceptions
+}
+
 func (me *ExceptionRules) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"custom_error_rules":            &me.CustomErrorRules,

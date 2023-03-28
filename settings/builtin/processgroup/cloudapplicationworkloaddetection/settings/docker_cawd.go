@@ -42,6 +42,9 @@ func (me *DockerCAWD) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
+func (me *DockerCAWD) HandlePreconditions() {
+}
+
 func (me *DockerCAWD) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"enabled": &me.Enabled,

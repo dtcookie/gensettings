@@ -88,6 +88,9 @@ func (me *ProcessDefinition) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
+func (me *ProcessDefinition) HandlePreconditions() {
+}
+
 func (me *ProcessDefinition) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"id":                 &me.ID,

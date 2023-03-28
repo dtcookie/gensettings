@@ -18,6 +18,7 @@
 package usersessionexportsettingsv2
 
 import (
+	"github.com/dynatrace-oss/terraform-provider-dynatrace/dynatrace/opt"
 	"github.com/dynatrace-oss/terraform-provider-dynatrace/terraform/hcl"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
@@ -54,6 +55,15 @@ func (me *SendDirect) MarshalHCL(properties hcl.Properties) error {
 		"doc_type":   me.DocType,
 		"index_name": me.IndexName,
 	})
+}
+
+func (me *SendDirect) HandlePreconditions() {
+	if me.DocType == nil && me.Active {
+		me.DocType = opt.NewString("")
+	}
+	if me.IndexName == nil && me.Active {
+		me.IndexName = opt.NewString("")
+	}
 }
 
 func (me *SendDirect) UnmarshalHCL(decoder hcl.Decoder) error {

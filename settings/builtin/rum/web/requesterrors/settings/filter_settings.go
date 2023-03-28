@@ -49,6 +49,10 @@ func (me *FilterSettings) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
+func (me *FilterSettings) HandlePreconditions() {
+	// ---- Url *string
+}
+
 func (me *FilterSettings) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"filter": &me.Filter,

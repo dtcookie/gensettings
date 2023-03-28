@@ -49,6 +49,9 @@ func (me *SlowUserActionsAutoSlowest) MarshalHCL(properties hcl.Properties) erro
 	})
 }
 
+func (me *SlowUserActionsAutoSlowest) HandlePreconditions() {
+}
+
 func (me *SlowUserActionsAutoSlowest) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"duration_threshold":  &me.DurationThreshold,

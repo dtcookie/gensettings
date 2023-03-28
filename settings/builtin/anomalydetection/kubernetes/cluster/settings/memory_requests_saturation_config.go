@@ -56,6 +56,9 @@ func (me *MemoryRequestsSaturationConfig) MarshalHCL(properties hcl.Properties) 
 	})
 }
 
+func (me *MemoryRequestsSaturationConfig) HandlePreconditions() {
+}
+
 func (me *MemoryRequestsSaturationConfig) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"observation_period_in_minutes": &me.ObservationPeriodInMinutes,

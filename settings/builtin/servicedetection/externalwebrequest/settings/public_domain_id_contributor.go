@@ -52,6 +52,10 @@ func (me *PublicDomainIdContributor) MarshalHCL(properties hcl.Properties) error
 	})
 }
 
+func (me *PublicDomainIdContributor) HandlePreconditions() {
+	// ---- ServiceIdContributor *PublicDomainTransformationSet
+}
+
 func (me *PublicDomainIdContributor) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"enable_id_contributor":  &me.EnableIdContributor,

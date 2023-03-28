@@ -18,6 +18,7 @@
 package dotnet
 
 import (
+	"github.com/dynatrace-oss/terraform-provider-dynatrace/dynatrace/opt"
 	"github.com/dynatrace-oss/terraform-provider-dynatrace/terraform/hcl"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
@@ -55,6 +56,12 @@ func (me *Settings) MarshalHCL(properties hcl.Properties) error {
 		"enabled_dot_net_core": me.EnabledDotNetCore,
 		"host_id":              me.HostID,
 	})
+}
+
+func (me *Settings) HandlePreconditions() {
+	if me.EnabledDotNetCore == nil && me.Enabled {
+		me.EnabledDotNetCore = opt.NewBool(false)
+	}
 }
 
 func (me *Settings) UnmarshalHCL(decoder hcl.Decoder) error {

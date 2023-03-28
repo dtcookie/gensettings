@@ -52,6 +52,10 @@ func (me *PendingPods) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
+func (me *PendingPods) HandlePreconditions() {
+	// ---- Configuration *PendingPodsConfig
+}
+
 func (me *PendingPods) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"configuration": &me.Configuration,

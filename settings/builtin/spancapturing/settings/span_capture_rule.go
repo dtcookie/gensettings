@@ -59,6 +59,9 @@ func (me *SpanCaptureRule) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
+func (me *SpanCaptureRule) HandlePreconditions() {
+}
+
 func (me *SpanCaptureRule) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"matchers":    &me.Matchers,

@@ -82,6 +82,13 @@ func (me *Schedule) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
+func (me *Schedule) HandlePreconditions() {
+	// ---- DailyRecurrence *DailyRecurrence
+	// ---- MonthlyRecurrence *MonthlyRecurrence
+	// ---- OnceRecurrence *OnceRecurrence
+	// ---- WeeklyRecurrence *WeeklyRecurrence
+}
+
 func (me *Schedule) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"daily_recurrence":   &me.DailyRecurrence,

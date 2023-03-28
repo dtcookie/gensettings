@@ -18,8 +18,10 @@
 package fullwebservice
 
 import (
+	"github.com/dynatrace-oss/terraform-provider-dynatrace/dynatrace/opt"
 	"github.com/dynatrace-oss/terraform-provider-dynatrace/terraform/hcl"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"golang.org/x/exp/slices"
 )
 
 type Transformations []*Transformation
@@ -125,6 +127,36 @@ func (me *Transformation) MarshalHCL(properties hcl.Properties) error {
 		"take_from_end":       me.TakeFromEnd,
 		"transformation_type": me.TransformationType,
 	})
+}
+
+func (me *Transformation) HandlePreconditions() {
+	if me.IncludeHexNumbers == nil && string(me.TransformationType) == "REMOVE_NUMBERS" {
+		me.IncludeHexNumbers = opt.NewBool(false)
+	}
+	if me.MinDigitCount == nil && string(me.TransformationType) == "REMOVE_NUMBERS" {
+		me.MinDigitCount = opt.NewInt(0)
+	}
+	if me.Prefix == nil && slices.Contains([]string{"AFTER", "BETWEEN", "REPLACE_BETWEEN"}, string(me.TransformationType)) {
+		me.Prefix = opt.NewString("")
+	}
+	if me.ReplacementValue == nil && string(me.TransformationType) == "REPLACE_BETWEEN" {
+		me.ReplacementValue = opt.NewString("")
+	}
+	if me.SegmentCount == nil && string(me.TransformationType) == "TAKE_SEGMENTS" {
+		me.SegmentCount = opt.NewInt(0)
+	}
+	if me.SelectIndex == nil && string(me.TransformationType) == "SPLIT_SELECT" {
+		me.SelectIndex = opt.NewInt(0)
+	}
+	if me.SplitDelimiter == nil && slices.Contains([]string{"SPLIT_SELECT", "TAKE_SEGMENTS"}, string(me.TransformationType)) {
+		me.SplitDelimiter = opt.NewString("")
+	}
+	if me.Suffix == nil && slices.Contains([]string{"BEFORE", "BETWEEN", "REPLACE_BETWEEN"}, string(me.TransformationType)) {
+		me.Suffix = opt.NewString("")
+	}
+	if me.TakeFromEnd == nil && string(me.TransformationType) == "TAKE_SEGMENTS" {
+		me.TakeFromEnd = opt.NewBool(false)
+	}
 }
 
 func (me *Transformation) UnmarshalHCL(decoder hcl.Decoder) error {

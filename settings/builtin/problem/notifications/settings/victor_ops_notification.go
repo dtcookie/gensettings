@@ -56,6 +56,9 @@ func (me *VictorOpsNotification) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
+func (me *VictorOpsNotification) HandlePreconditions() {
+}
+
 func (me *VictorOpsNotification) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"api_key":     &me.ApiKey,

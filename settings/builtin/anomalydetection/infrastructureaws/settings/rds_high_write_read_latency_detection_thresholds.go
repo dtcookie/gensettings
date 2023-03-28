@@ -43,6 +43,9 @@ func (me *RdsHighWriteReadLatencyDetectionThresholds) MarshalHCL(properties hcl.
 	})
 }
 
+func (me *RdsHighWriteReadLatencyDetectionThresholds) HandlePreconditions() {
+}
+
 func (me *RdsHighWriteReadLatencyDetectionThresholds) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"read_write_latency": &me.ReadWriteLatency,

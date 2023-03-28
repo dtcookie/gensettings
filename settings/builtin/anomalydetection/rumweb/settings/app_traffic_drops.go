@@ -52,6 +52,10 @@ func (me *AppTrafficDrops) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
+func (me *AppTrafficDrops) HandlePreconditions() {
+	// ---- TrafficDrops *TrafficDrops
+}
+
 func (me *AppTrafficDrops) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"enabled":       &me.Enabled,

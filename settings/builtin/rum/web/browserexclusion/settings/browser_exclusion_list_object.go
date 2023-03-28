@@ -85,6 +85,12 @@ func (me *BrowserExclusionListObject) MarshalHCL(properties hcl.Properties) erro
 	})
 }
 
+func (me *BrowserExclusionListObject) HandlePreconditions() {
+	// ---- Platform *Platform
+	// ---- Version *int
+	// ---- VersionComparator *VersionComparator
+}
+
 func (me *BrowserExclusionListObject) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"browser_name":       &me.BrowserName,

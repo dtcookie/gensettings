@@ -95,6 +95,11 @@ func (me *CustomErrorRule) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
+func (me *CustomErrorRule) HandlePreconditions() {
+	// ---- KeyPattern *string
+	// ---- ValuePattern *string
+}
+
 func (me *CustomErrorRule) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"capture_settings": &me.CaptureSettings,

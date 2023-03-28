@@ -18,6 +18,7 @@
 package php
 
 import (
+	"github.com/dynatrace-oss/terraform-provider-dynatrace/dynatrace/opt"
 	"github.com/dynatrace-oss/terraform-provider-dynatrace/terraform/hcl"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
@@ -55,6 +56,12 @@ func (me *Settings) MarshalHCL(properties hcl.Properties) error {
 		"enabled_fast_cgi": me.EnabledFastCGI,
 		"host_id":          me.HostID,
 	})
+}
+
+func (me *Settings) HandlePreconditions() {
+	if me.EnabledFastCGI == nil && me.Enabled {
+		me.EnabledFastCGI = opt.NewBool(false)
+	}
 }
 
 func (me *Settings) UnmarshalHCL(decoder hcl.Decoder) error {

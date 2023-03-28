@@ -52,6 +52,9 @@ func (me *DimensionRule) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
+func (me *DimensionRule) HandlePreconditions() {
+}
+
 func (me *DimensionRule) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"applies_to": &me.AppliesTo,

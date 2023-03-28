@@ -86,6 +86,10 @@ func (me *AlertingProfileSeverityRule) MarshalHCL(properties hcl.Properties) err
 	})
 }
 
+func (me *AlertingProfileSeverityRule) HandlePreconditions() {
+	// ---- TagFilter []string
+}
+
 func (me *AlertingProfileSeverityRule) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"delay_in_minutes":        &me.DelayInMinutes,

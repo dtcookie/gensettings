@@ -49,6 +49,9 @@ func (me *DeploymentStuckConfig) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
+func (me *DeploymentStuckConfig) HandlePreconditions() {
+}
+
 func (me *DeploymentStuckConfig) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"observation_period_in_minutes": &me.ObservationPeriodInMinutes,

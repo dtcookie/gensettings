@@ -56,6 +56,9 @@ func (me *ExportBehavior) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
+func (me *ExportBehavior) HandlePreconditions() {
+}
+
 func (me *ExportBehavior) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"custom_configuration": &me.CustomConfiguration,

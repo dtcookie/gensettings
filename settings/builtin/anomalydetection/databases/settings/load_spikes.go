@@ -18,6 +18,7 @@
 package databases
 
 import (
+	"github.com/dynatrace-oss/terraform-provider-dynatrace/dynatrace/opt"
 	"github.com/dynatrace-oss/terraform-provider-dynatrace/terraform/hcl"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
@@ -54,6 +55,13 @@ func (me *LoadSpikes) MarshalHCL(properties hcl.Properties) error {
 		"load_spike_percent":     me.LoadSpikePercent,
 		"minutes_abnormal_state": me.MinutesAbnormalState,
 	})
+}
+
+func (me *LoadSpikes) HandlePreconditions() {
+	if me.MinutesAbnormalState == nil && me.Enabled {
+		me.MinutesAbnormalState = opt.NewInt(0)
+	}
+	// ---- LoadSpikePercent *float64
 }
 
 func (me *LoadSpikes) UnmarshalHCL(decoder hcl.Decoder) error {

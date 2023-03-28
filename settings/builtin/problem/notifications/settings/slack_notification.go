@@ -56,6 +56,9 @@ func (me *SlackNotification) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
+func (me *SlackNotification) HandlePreconditions() {
+}
+
 func (me *SlackNotification) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"channel": &me.Channel,

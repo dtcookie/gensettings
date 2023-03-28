@@ -59,6 +59,11 @@ func (me *DiskLowSpaceDetection) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
+func (me *DiskLowSpaceDetection) HandlePreconditions() {
+	// ---- CustomThresholds *DiskLowSpaceDetectionThresholds
+	// ---- DetectionMode *DetectionMode
+}
+
 func (me *DiskLowSpaceDetection) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"custom_thresholds": &me.CustomThresholds,

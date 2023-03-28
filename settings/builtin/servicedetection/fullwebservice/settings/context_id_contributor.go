@@ -52,6 +52,10 @@ func (me *ContextIdContributor) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
+func (me *ContextIdContributor) HandlePreconditions() {
+	// ---- ServiceIdContributor *ContextRoot
+}
+
 func (me *ContextIdContributor) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"enable_id_contributor":  &me.EnableIdContributor,

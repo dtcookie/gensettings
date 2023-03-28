@@ -59,6 +59,11 @@ func (me *OverloadedStorageDetectionConfig) MarshalHCL(properties hcl.Properties
 	})
 }
 
+func (me *OverloadedStorageDetectionConfig) HandlePreconditions() {
+	// ---- CustomThresholds *OverloadedStorageDetectionThresholds
+	// ---- DetectionMode *DetectionMode
+}
+
 func (me *OverloadedStorageDetectionConfig) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"custom_thresholds": &me.CustomThresholds,

@@ -43,6 +43,9 @@ func (me *DroppedPacketsDetectionThresholds) MarshalHCL(properties hcl.Propertie
 	})
 }
 
+func (me *DroppedPacketsDetectionThresholds) HandlePreconditions() {
+}
+
 func (me *DroppedPacketsDetectionThresholds) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"dropped_packets_per_second": &me.DroppedPacketsPerSecond,

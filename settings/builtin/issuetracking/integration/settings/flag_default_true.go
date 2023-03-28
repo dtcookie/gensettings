@@ -42,6 +42,9 @@ func (me *FlagDefaultTrue) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
+func (me *FlagDefaultTrue) HandlePreconditions() {
+}
+
 func (me *FlagDefaultTrue) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"enabled": &me.Enabled,

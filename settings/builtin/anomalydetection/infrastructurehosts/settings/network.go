@@ -85,6 +85,9 @@ func (me *Network) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
+func (me *Network) HandlePreconditions() {
+}
+
 func (me *Network) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"high_network_detection":                &me.HighNetworkDetection,

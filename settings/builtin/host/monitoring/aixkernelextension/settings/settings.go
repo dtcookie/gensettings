@@ -18,6 +18,7 @@
 package aixkernelextension
 
 import (
+	"github.com/dynatrace-oss/terraform-provider-dynatrace/dynatrace/opt"
 	"github.com/dynatrace-oss/terraform-provider-dynatrace/terraform/hcl"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
@@ -54,6 +55,12 @@ func (me *Settings) MarshalHCL(properties hcl.Properties) error {
 		"host_id":             me.HostID,
 		"use_global_settings": me.UseGlobalSettings,
 	})
+}
+
+func (me *Settings) HandlePreconditions() {
+	if me.Enabled == nil && !me.UseGlobalSettings {
+		me.Enabled = opt.NewBool(false)
+	}
 }
 
 func (me *Settings) UnmarshalHCL(decoder hcl.Decoder) error {

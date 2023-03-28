@@ -218,6 +218,7 @@ func main() {
 				Comment:         comment,
 				Optional:        propertyDefinition.Nullable || propertyDefinition.Precondition != nil || (propertyDefinition.MinObjects != nil && *propertyDefinition.MinObjects == 0),
 				OptionalComment: OptionalComment(propertyDefinition),
+				Precondition:    translatePrecondition(propertyDefinition),
 			}
 			if propertyDefinition.Nullable {
 				property.Type = property.Type.Pointer()

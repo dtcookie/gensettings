@@ -69,6 +69,12 @@ func (me *CrashRateIncrease) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
+func (me *CrashRateIncrease) HandlePreconditions() {
+	// ---- CrashRateIncreaseAuto *CrashRateIncreaseAuto
+	// ---- CrashRateIncreaseFixed *CrashRateIncreaseFixed
+	// ---- DetectionMode *DetectionMode
+}
+
 func (me *CrashRateIncrease) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"crash_rate_increase_auto":  &me.CrashRateIncreaseAuto,

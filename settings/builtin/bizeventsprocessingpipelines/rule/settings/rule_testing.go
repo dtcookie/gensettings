@@ -42,6 +42,9 @@ func (me *RuleTesting) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
+func (me *RuleTesting) HandlePreconditions() {
+}
+
 func (me *RuleTesting) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"sample_event": &me.SampleEvent,

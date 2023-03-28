@@ -45,6 +45,9 @@ func (me *MetadataFilter) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
+func (me *MetadataFilter) HandlePreconditions() {
+}
+
 func (me *MetadataFilter) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"metadata_filter_items": &me.MetadataFilterItems,

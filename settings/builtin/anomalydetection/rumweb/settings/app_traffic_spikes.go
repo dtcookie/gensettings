@@ -52,6 +52,10 @@ func (me *AppTrafficSpikes) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
+func (me *AppTrafficSpikes) HandlePreconditions() {
+	// ---- TrafficSpikes *TrafficSpikes
+}
+
 func (me *AppTrafficSpikes) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"enabled":        &me.Enabled,

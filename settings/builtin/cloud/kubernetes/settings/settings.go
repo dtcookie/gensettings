@@ -18,6 +18,7 @@
 package kubernetes
 
 import (
+	"github.com/dynatrace-oss/terraform-provider-dynatrace/dynatrace/opt"
 	"github.com/dynatrace-oss/terraform-provider-dynatrace/terraform/hcl"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
@@ -162,6 +163,34 @@ func (me *Settings) MarshalHCL(properties hcl.Properties) error {
 		"pvc_monitoring_enabled":             me.PvcMonitoringEnabled,
 		"scope":                              me.Scope,
 	})
+}
+
+func (me *Settings) HandlePreconditions() {
+	if me.ActiveGateGroup == nil && !me.ClusterIdEnabled {
+		me.ActiveGateGroup = opt.NewString("")
+	}
+	if me.AuthToken == nil && !me.ClusterIdEnabled {
+		me.AuthToken = opt.NewString("")
+	}
+	if me.CertificateCheckEnabled == nil && !me.ClusterIdEnabled {
+		me.CertificateCheckEnabled = opt.NewBool(false)
+	}
+	if me.ClusterID == nil && me.ClusterIdEnabled {
+		me.ClusterID = opt.NewString("")
+	}
+	if me.EndpointUrl == nil && !me.ClusterIdEnabled {
+		me.EndpointUrl = opt.NewString("")
+	}
+	if me.FilterEvents == nil && me.EventProcessingActive {
+		me.FilterEvents = opt.NewBool(false)
+	}
+	if me.HostnameVerificationEnabled == nil && !me.ClusterIdEnabled {
+		me.HostnameVerificationEnabled = opt.NewBool(false)
+	}
+	if me.IncludeAllFdiEvents == nil && me.FilterEvents {
+		me.IncludeAllFdiEvents = opt.NewBool(false)
+	}
+	// ---- EventPatterns EventComplexTypes
 }
 
 func (me *Settings) UnmarshalHCL(decoder hcl.Decoder) error {

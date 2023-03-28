@@ -18,6 +18,7 @@
 package osservicesmonitoring
 
 import (
+	"github.com/dynatrace-oss/terraform-provider-dynatrace/dynatrace/opt"
 	"github.com/dynatrace-oss/terraform-provider-dynatrace/terraform/hcl"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
@@ -134,6 +135,20 @@ func (me *Settings) MarshalHCL(properties hcl.Properties) error {
 		"status_condition_windows":     me.StatusConditionWindows,
 		"system":                       me.System,
 	})
+}
+
+func (me *Settings) HandlePreconditions() {
+	if me.AlertActivationDuration == nil && me.Alerting {
+		me.AlertActivationDuration = opt.NewInt(0)
+	}
+	if me.NotInstalledAlerting == nil && me.Alerting {
+		me.NotInstalledAlerting = opt.NewBool(false)
+	}
+	// ---- DetectionConditionsLinux LinuxDetectionConditions
+	// ---- DetectionConditionsWindows WindowsDetectionConditions
+	// ---- Metadata MetadataItems
+	// ---- StatusConditionLinux *string
+	// ---- StatusConditionWindows *string
 }
 
 func (me *Settings) UnmarshalHCL(decoder hcl.Decoder) error {

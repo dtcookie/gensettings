@@ -78,6 +78,9 @@ func (me *DiskComplex) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
+func (me *DiskComplex) HandlePreconditions() {
+}
+
 func (me *DiskComplex) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"filesystem": &me.Filesystem,

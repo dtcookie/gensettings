@@ -56,6 +56,9 @@ func (me *CrashRateIncreaseAuto) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
+func (me *CrashRateIncreaseAuto) HandlePreconditions() {
+}
+
 func (me *CrashRateIncreaseAuto) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"baseline_violation_percentage": &me.BaselineViolationPercentage,

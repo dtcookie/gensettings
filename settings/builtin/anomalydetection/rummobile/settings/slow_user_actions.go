@@ -69,6 +69,12 @@ func (me *SlowUserActions) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
+func (me *SlowUserActions) HandlePreconditions() {
+	// ---- DetectionMode *DetectionMode
+	// ---- SlowUserActionsAuto *SlowUserActionsAuto
+	// ---- SlowUserActionsFixed *SlowUserActionsFixed
+}
+
 func (me *SlowUserActions) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"detection_mode":          &me.DetectionMode,

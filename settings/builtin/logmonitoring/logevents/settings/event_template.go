@@ -73,6 +73,10 @@ func (me *EventTemplate) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
+func (me *EventTemplate) HandlePreconditions() {
+	// ---- DavisMerge *bool
+}
+
 func (me *EventTemplate) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"davis_merge": &me.DavisMerge,

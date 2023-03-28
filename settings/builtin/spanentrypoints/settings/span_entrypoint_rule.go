@@ -59,6 +59,9 @@ func (me *SpanEntrypointRule) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
+func (me *SpanEntrypointRule) HandlePreconditions() {
+}
+
 func (me *SpanEntrypointRule) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"matchers":    &me.Matchers,

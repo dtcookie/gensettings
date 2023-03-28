@@ -59,6 +59,11 @@ func (me *NetworkTcpProblemsDetection) MarshalHCL(properties hcl.Properties) err
 	})
 }
 
+func (me *NetworkTcpProblemsDetection) HandlePreconditions() {
+	// ---- CustomThresholds *NetworkTcpProblemsDetectionThresholds
+	// ---- DetectionMode *DetectionMode
+}
+
 func (me *NetworkTcpProblemsDetection) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"custom_thresholds": &me.CustomThresholds,

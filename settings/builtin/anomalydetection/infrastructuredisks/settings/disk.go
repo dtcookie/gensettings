@@ -65,6 +65,9 @@ func (me *Disk) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
+func (me *Disk) HandlePreconditions() {
+}
+
 func (me *Disk) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"disk_low_inodes_detection":            &me.DiskLowInodesDetection,

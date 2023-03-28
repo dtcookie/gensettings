@@ -74,6 +74,9 @@ func (me *Condition) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
+func (me *Condition) HandlePreconditions() {
+}
+
 func (me *Condition) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"attribute": &me.Attribute,

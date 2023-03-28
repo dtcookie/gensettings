@@ -18,6 +18,7 @@
 package autotagging
 
 import (
+	"github.com/dynatrace-oss/terraform-provider-dynatrace/dynatrace/opt"
 	"github.com/dynatrace-oss/terraform-provider-dynatrace/terraform/hcl"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
@@ -100,6 +101,13 @@ func (me *Rule) MarshalHCL(properties hcl.Properties) error {
 		"value_format":        me.ValueFormat,
 		"value_normalization": me.ValueNormalization,
 	})
+}
+
+func (me *Rule) HandlePreconditions() {
+	if me.EntitySelector == nil && string(me.Type) == "SELECTOR" {
+		me.EntitySelector = opt.NewString("")
+	}
+	// ---- AttributeRule *AutoTagAttributeRule
 }
 
 func (me *Rule) UnmarshalHCL(decoder hcl.Decoder) error {

@@ -43,6 +43,9 @@ func (me *Ec2CandidateHighCpuDetectionThresholds) MarshalHCL(properties hcl.Prop
 	})
 }
 
+func (me *Ec2CandidateHighCpuDetectionThresholds) HandlePreconditions() {
+}
+
 func (me *Ec2CandidateHighCpuDetectionThresholds) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"cpu_usage": &me.CpuUsage,

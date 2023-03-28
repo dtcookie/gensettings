@@ -71,6 +71,9 @@ func (me *Dimension) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
+func (me *Dimension) HandlePreconditions() {
+}
+
 func (me *Dimension) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"display_name": &me.DisplayName,

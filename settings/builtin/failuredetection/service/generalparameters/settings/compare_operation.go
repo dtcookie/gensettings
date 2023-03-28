@@ -18,8 +18,10 @@
 package generalparameters
 
 import (
+	"github.com/dynatrace-oss/terraform-provider-dynatrace/dynatrace/opt"
 	"github.com/dynatrace-oss/terraform-provider-dynatrace/terraform/hcl"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"golang.org/x/exp/slices"
 )
 
 type CompareOperation struct {
@@ -68,6 +70,19 @@ func (me *CompareOperation) MarshalHCL(properties hcl.Properties) error {
 		"int_value":              me.IntValue,
 		"text_value":             me.TextValue,
 	})
+}
+
+func (me *CompareOperation) HandlePreconditions() {
+	if me.CaseSensitive == nil && slices.Contains([]string{"STRING_EQUALS", "NOT_STRING_EQUALS", "STARTS_WITH", "NOT_STARTS_WITH", "CONTAINS", "NOT_CONTAINS", "ENDS_WITH", "NOT_ENDS_WITH"}, string(me.CompareOperationType)) {
+		me.CaseSensitive = opt.NewBool(false)
+	}
+	if me.IntValue == nil && slices.Contains([]string{"INTEGER_EQUALS", "NOT_INTEGER_EQUALS", "INTEGER_GREATER_THAN", "INTEGER_GREATER_THAN_OR_EQUALS", "INTEGER_LESS_THAN", "INTEGER_LESS_THAN_OR_EQUALS"}, string(me.CompareOperationType)) {
+		me.IntValue = opt.NewInt(0)
+	}
+	if me.TextValue == nil && slices.Contains([]string{"STRING_EQUALS", "NOT_STRING_EQUALS", "STARTS_WITH", "NOT_STARTS_WITH", "CONTAINS", "NOT_CONTAINS", "ENDS_WITH", "NOT_ENDS_WITH"}, string(me.CompareOperationType)) {
+		me.TextValue = opt.NewString("")
+	}
+	// ---- DoubleValue *float64
 }
 
 func (me *CompareOperation) UnmarshalHCL(decoder hcl.Decoder) error {

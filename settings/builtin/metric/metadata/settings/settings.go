@@ -105,6 +105,10 @@ func (me *Settings) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
+func (me *Settings) HandlePreconditions() {
+	// ---- UnitDisplayFormat *UnitDisplayFormat
+}
+
 func (me *Settings) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"description":         &me.Description,

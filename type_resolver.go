@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"strings"
 
@@ -93,10 +94,21 @@ func (me *TypeResolver) ResolveType(name string) *reflection.Type {
 			Comment:         comment,
 			Optional:        propertyDefinition.Nullable || propertyDefinition.Precondition != nil || (propertyDefinition.MinObjects != nil && *propertyDefinition.MinObjects == 0),
 			OptionalComment: OptionalComment(propertyDefinition),
+			Precondition:    translatePrecondition(propertyDefinition),
 		}
 		structType.Properties[propertyName] = property
 	}
 	return structType
+}
+
+func translatePrecondition(propertyDefinition property.Definition) map[string]any {
+	if propertyDefinition.Precondition == nil {
+		return nil
+	}
+	data, _ := json.Marshal(propertyDefinition.Precondition)
+	m := map[string]any{}
+	json.Unmarshal(data, &m)
+	return m
 }
 
 func OptionalComment(propertyDefinition property.Definition) string {

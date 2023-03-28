@@ -63,6 +63,9 @@ func (me *HttpResponseCodes) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
+func (me *HttpResponseCodes) HandlePreconditions() {
+}
+
 func (me *HttpResponseCodes) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"client_side_errors":                        &me.ClientSideErrors,

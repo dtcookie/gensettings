@@ -18,6 +18,7 @@
 package fullwebrequest
 
 import (
+	"github.com/dynatrace-oss/terraform-provider-dynatrace/dynatrace/opt"
 	"github.com/dynatrace-oss/terraform-provider-dynatrace/terraform/hcl"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
@@ -67,6 +68,14 @@ func (me *ContextRoot) MarshalHCL(properties hcl.Properties) error {
 		"transformations":   me.Transformations,
 		"value_override":    me.ValueOverride,
 	})
+}
+
+func (me *ContextRoot) HandlePreconditions() {
+	if me.SegmentCount == nil && string(me.ContributionType) == "TransformURL" {
+		me.SegmentCount = opt.NewInt(0)
+	}
+	// ---- Transformations ReducedTransformations
+	// ---- ValueOverride *ValueOverride
 }
 
 func (me *ContextRoot) UnmarshalHCL(decoder hcl.Decoder) error {

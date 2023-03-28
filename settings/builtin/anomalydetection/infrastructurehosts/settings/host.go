@@ -105,6 +105,9 @@ func (me *Host) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
+func (me *Host) HandlePreconditions() {
+}
+
 func (me *Host) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"connection_lost_detection":     &me.ConnectionLostDetection,

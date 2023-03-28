@@ -74,6 +74,9 @@ func (me *CustomErrorRule) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
+func (me *CustomErrorRule) HandlePreconditions() {
+}
+
 func (me *CustomErrorRule) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"condition":         &me.Condition,

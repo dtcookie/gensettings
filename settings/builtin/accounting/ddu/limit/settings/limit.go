@@ -18,6 +18,7 @@
 package limit
 
 import (
+	"github.com/dynatrace-oss/terraform-provider-dynatrace/dynatrace/opt"
 	"github.com/dynatrace-oss/terraform-provider-dynatrace/terraform/hcl"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
@@ -54,6 +55,13 @@ func (me *Limit) MarshalHCL(properties hcl.Properties) error {
 		"limit_type":    me.LimitType,
 		"limit_value":   me.LimitValue,
 	})
+}
+
+func (me *Limit) HandlePreconditions() {
+	if me.LimitValue == nil && me.LimitEnabled {
+		me.LimitValue = opt.NewInt(0)
+	}
+	// ---- LimitType *LimitType
 }
 
 func (me *Limit) UnmarshalHCL(decoder hcl.Decoder) error {

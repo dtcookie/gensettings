@@ -59,6 +59,9 @@ func (me *FailureRateFixed) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
+func (me *FailureRateFixed) HandlePreconditions() {
+}
+
 func (me *FailureRateFixed) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"over_alerting_protection": &me.OverAlertingProtection,

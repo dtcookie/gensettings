@@ -18,8 +18,10 @@
 package incoming
 
 import (
+	"github.com/dynatrace-oss/terraform-provider-dynatrace/dynatrace/opt"
 	"github.com/dynatrace-oss/terraform-provider-dynatrace/terraform/hcl"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"golang.org/x/exp/slices"
 )
 
 type EventAttributeComplex struct {
@@ -54,6 +56,15 @@ func (me *EventAttributeComplex) MarshalHCL(properties hcl.Properties) error {
 		"source":      me.Source,
 		"source_type": me.SourceType,
 	})
+}
+
+func (me *EventAttributeComplex) HandlePreconditions() {
+	if me.Path == nil && slices.Contains([]string{"request.body", "request.headers", "request.parameters", "response.body", "response.headers"}, string(me.SourceType)) {
+		me.Path = opt.NewString("")
+	}
+	if me.Source == nil && slices.Contains([]string{"constant.string"}, string(me.SourceType)) {
+		me.Source = opt.NewString("")
+	}
 }
 
 func (me *EventAttributeComplex) UnmarshalHCL(decoder hcl.Decoder) error {

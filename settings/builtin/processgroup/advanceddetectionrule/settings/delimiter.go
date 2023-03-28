@@ -56,6 +56,9 @@ func (me *Delimiter) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
+func (me *Delimiter) HandlePreconditions() {
+}
+
 func (me *Delimiter) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"from":       &me.From,

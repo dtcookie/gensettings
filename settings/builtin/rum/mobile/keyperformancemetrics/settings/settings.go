@@ -59,6 +59,9 @@ func (me *Settings) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
+func (me *Settings) HandlePreconditions() {
+}
+
 func (me *Settings) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"frustrating_if_reported_or_web_request_error": &me.FrustratingIfReportedOrWebRequestError,

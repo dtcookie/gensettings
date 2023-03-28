@@ -52,6 +52,10 @@ func (me *CpuLimitsQuotaSaturation) MarshalHCL(properties hcl.Properties) error 
 	})
 }
 
+func (me *CpuLimitsQuotaSaturation) HandlePreconditions() {
+	// ---- Configuration *CpuLimitsQuotaSaturationConfig
+}
+
 func (me *CpuLimitsQuotaSaturation) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"configuration": &me.Configuration,

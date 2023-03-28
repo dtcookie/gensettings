@@ -18,6 +18,7 @@
 package customerrors
 
 import (
+	"github.com/dynatrace-oss/terraform-provider-dynatrace/dynatrace/opt"
 	"github.com/dynatrace-oss/terraform-provider-dynatrace/terraform/hcl"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
@@ -54,6 +55,15 @@ func (me *CaptureSettings) MarshalHCL(properties hcl.Properties) error {
 		"consider_for_ai": me.ConsiderForAI,
 		"impact_apdex":    me.ImpactApdex,
 	})
+}
+
+func (me *CaptureSettings) HandlePreconditions() {
+	if me.ConsiderForAI == nil && me.Capture {
+		me.ConsiderForAI = opt.NewBool(false)
+	}
+	if me.ImpactApdex == nil && me.Capture {
+		me.ImpactApdex = opt.NewBool(false)
+	}
 }
 
 func (me *CaptureSettings) UnmarshalHCL(decoder hcl.Decoder) error {

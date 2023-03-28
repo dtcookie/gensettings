@@ -82,6 +82,11 @@ func (me *SourceFilter) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
+func (me *SourceFilter) HandlePreconditions() {
+	// ---- Condition *string
+	// ---- MappingRules MappingRules
+}
+
 func (me *SourceFilter) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"condition":     &me.Condition,

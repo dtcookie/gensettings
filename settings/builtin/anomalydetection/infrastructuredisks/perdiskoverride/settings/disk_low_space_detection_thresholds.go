@@ -42,6 +42,9 @@ func (me *DiskLowSpaceDetectionThresholds) MarshalHCL(properties hcl.Properties)
 	})
 }
 
+func (me *DiskLowSpaceDetectionThresholds) HandlePreconditions() {
+}
+
 func (me *DiskLowSpaceDetectionThresholds) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"free_space_percentage": &me.FreeSpacePercentage,

@@ -59,6 +59,11 @@ func (me *OutOfThreadsDetection) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
+func (me *OutOfThreadsDetection) HandlePreconditions() {
+	// ---- CustomThresholds *OutOfThreadsDetectionThresholds
+	// ---- DetectionMode *DetectionMode
+}
+
 func (me *OutOfThreadsDetection) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"custom_thresholds": &me.CustomThresholds,
