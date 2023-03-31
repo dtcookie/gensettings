@@ -47,6 +47,7 @@ func (me *OAuth2) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeString,
 			Description: "Client secret",
 			Required:    true,
+			Sensitive:   true,
 		},
 		"grant_type": {
 			Type:        schema.TypeString,

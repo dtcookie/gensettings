@@ -62,7 +62,8 @@ func (me *{{.Name}}) Schema() map[string]*schema.Schema {
 			Default: "{{.Default}}",{{end}}{{if .Elem}}
 			Elem: {{.Elem}},{{end}}{{if .MinItems}}
 			MinItems: {{.MinItems}},{{end}}{{if .MaxItems}}
-			MaxItems: {{.MaxItems}},{{end}}
+			MaxItems: {{.MaxItems}},{{end}}{{if .Sensitive}}
+			Sensitive: true,{{end}}
 		},{{end}}{{end}}
 	}
 }

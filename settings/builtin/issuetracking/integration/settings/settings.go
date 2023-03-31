@@ -68,11 +68,13 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeString,
 			Description: "Password",
 			Optional:    true, // nullable & precondition
+			Sensitive:   true,
 		},
 		"token": {
 			Type:        schema.TypeString,
 			Description: "Token",
 			Optional:    true, // nullable & precondition
+			Sensitive:   true,
 		},
 		"url": {
 			Type:        schema.TypeString,

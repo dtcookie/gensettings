@@ -14,6 +14,7 @@ type Property struct {
 	Precondition    map[string]any
 	Constraints     []map[string]any
 	Scope           string `json:"scope"`
+	Sensitive       bool
 }
 
 func (me *Property) Rewire(original *Type, replacement *Type) {

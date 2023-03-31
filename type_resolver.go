@@ -96,6 +96,7 @@ func (me *TypeResolver) ResolveType(name string) *reflection.Type {
 			OptionalComment: OptionalComment(propertyDefinition),
 			Precondition:    translatePrecondition(propertyDefinition),
 			Constraints:     translateConstraints(propertyDefinition),
+			Sensitive:       propertyDefinition.Type == "secret",
 		}
 		structType.Properties[propertyName] = property
 	}

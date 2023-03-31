@@ -34,6 +34,7 @@ func (me *OpsGenieNotification) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeString,
 			Description: "The API key to access OpsGenie.\n\nGo to OpsGenie-Integrations and create a new Dynatrace integration. Copy the newly created API key.",
 			Required:    true,
+			Sensitive:   true,
 		},
 		"domain": {
 			Type:        schema.TypeString,

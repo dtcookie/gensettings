@@ -57,6 +57,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeString,
 			Description: "Create a bearer token for [Kubernetes](https://dt-url.net/og43szq \"Kubernetes\") or [OpenShift](https://dt-url.net/7l43xtp \"OpenShift\").",
 			Optional:    true, // precondition
+			Sensitive:   true,
 		},
 		"certificate_check_enabled": {
 			Type:        schema.TypeBool,

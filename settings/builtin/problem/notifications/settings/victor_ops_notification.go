@@ -34,6 +34,7 @@ func (me *VictorOpsNotification) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeString,
 			Description: "The API key for the target VictorOps account.\n\nReceive your VictorOps API key by navigating to: Settings -> Integrations -> Rest Endpoint -> Dynatrace within your VictorOps account.",
 			Required:    true,
+			Sensitive:   true,
 		},
 		"message": {
 			Type:        schema.TypeString,

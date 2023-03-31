@@ -48,6 +48,7 @@ func (me *ServiceNowNotification) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeString,
 			Description: "The password to the ServiceNow account.",
 			Required:    true,
+			Sensitive:   true,
 		},
 		"send_events": {
 			Type:        schema.TypeBool,

@@ -44,6 +44,7 @@ func (me *SlackNotification) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeString,
 			Description: "Set up an incoming WebHook integration within your Slack account. Copy and paste the generated WebHook URL into the field above.",
 			Required:    true,
+			Sensitive:   true,
 		},
 	}
 }

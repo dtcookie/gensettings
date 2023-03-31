@@ -33,6 +33,7 @@ func (me *BasicAuth) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeString,
 			Description: "no documentation available",
 			Required:    true,
+			Sensitive:   true,
 		},
 		"username": {
 			Type:        schema.TypeString,

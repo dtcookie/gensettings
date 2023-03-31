@@ -29,6 +29,7 @@ type Property struct {
 	Default         string
 	Precondition    map[string]any
 	Constraints     []map[string]any
+	Sensitive       bool
 }
 
 func (me *Property) Prettify() {
@@ -395,6 +396,7 @@ func NewStruct(t *reflection.Type) *Struct {
 			Default:         defVal,
 			Precondition:    property.Precondition,
 			Constraints:     property.Constraints,
+			Sensitive:       property.Sensitive,
 		}))
 	}
 	sort.Slice(structDef.Properties, func(i, j int) bool {

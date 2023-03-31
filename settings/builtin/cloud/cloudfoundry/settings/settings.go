@@ -63,6 +63,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeString,
 			Description: "Cloud Foundry Password",
 			Required:    true,
+			Sensitive:   true,
 		},
 		"username": {
 			Type:        schema.TypeString,

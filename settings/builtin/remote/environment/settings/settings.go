@@ -45,6 +45,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeString,
 			Description: "Provide a valid token created on the remote environment.",
 			Required:    true,
+			Sensitive:   true,
 		},
 		"uri": {
 			Type:        schema.TypeString,

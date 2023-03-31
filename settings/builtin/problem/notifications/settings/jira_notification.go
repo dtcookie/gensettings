@@ -38,6 +38,7 @@ func (me *JiraNotification) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeString,
 			Description: "The API token for the Jira profile. Using password authentication [was deprecated by Jira](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-basic-auth-and-cookie-based-auth/)",
 			Required:    true,
+			Sensitive:   true,
 		},
 		"description": {
 			Type:        schema.TypeString,

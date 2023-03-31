@@ -43,6 +43,7 @@ func (me *TrelloNotification) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeString,
 			Description: "The authorization token for the Trello account.",
 			Required:    true,
+			Sensitive:   true,
 		},
 		"board_id": {
 			Type:        schema.TypeString,

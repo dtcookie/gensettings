@@ -45,6 +45,7 @@ func (me *OAuth2Credentials) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeString,
 			Description: "Client secret",
 			Required:    true,
+			Sensitive:   true,
 		},
 		"scope": {
 			Type:        schema.TypeString,

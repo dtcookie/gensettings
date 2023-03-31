@@ -39,6 +39,7 @@ func (me *PagerDutyNotification) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeString,
 			Description: "The API key to access PagerDuty.",
 			Required:    true,
+			Sensitive:   true,
 		},
 		"service_name": {
 			Type:        schema.TypeString,

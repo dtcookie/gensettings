@@ -51,6 +51,7 @@ func (me *AnsibleTowerNotification) Schema() map[string]*schema.Schema {
 			Type:        schema.TypeString,
 			Description: "Account password.",
 			Required:    true,
+			Sensitive:   true,
 		},
 		"username": {
 			Type:        schema.TypeString,

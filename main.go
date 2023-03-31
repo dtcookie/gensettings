@@ -131,7 +131,7 @@ func main() {
 	}
 	schemata := map[string]*Schema{}
 	for _, schemaStub := range schemaList.Items {
-		// if schemaStub.SchemaID != "builtin:anomaly-detection.infrastructure-hosts" {
+		// if schemaStub.SchemaID != "builtin:cloud.cloudfoundry" {
 		// 	continue
 		// }
 		// if !strings.HasPrefix(schemaStub.SchemaID, "builtin:") {
@@ -220,6 +220,7 @@ func main() {
 				OptionalComment: OptionalComment(propertyDefinition),
 				Precondition:    translatePrecondition(propertyDefinition),
 				Constraints:     translateConstraints(propertyDefinition),
+				Sensitive:       propertyDefinition.Type == "secret",
 			}
 			if propertyDefinition.Nullable {
 				property.Type = property.Type.Pointer()
