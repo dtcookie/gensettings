@@ -50,8 +50,9 @@ func (me *BrokenLinks) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *BrokenLinks) HandlePreconditions() {
+func (me *BrokenLinks) HandlePreconditions() error {
 	// ---- BrokenLinkDomains []string -> {"expectedValue":true,"property":"http404NotFoundFailures","type":"EQUALS"}
+	return nil
 }
 
 func (me *BrokenLinks) UnmarshalHCL(decoder hcl.Decoder) error {

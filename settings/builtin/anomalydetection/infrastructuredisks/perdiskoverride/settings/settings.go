@@ -93,10 +93,11 @@ func (me *Settings) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *Settings) HandlePreconditions() {
+func (me *Settings) HandlePreconditions() error {
 	// ---- DiskLowInodesDetection *DiskLowInodesDetection -> {"expectedValue":true,"property":"overrideLowInodesDetection","type":"EQUALS"}
 	// ---- DiskLowSpaceDetection *DiskLowSpaceDetection -> {"expectedValue":true,"property":"overrideDiskLowSpaceDetection","type":"EQUALS"}
 	// ---- DiskSlowWritesAndReadsDetection *DiskSlowWritesAndReadsDetection -> {"expectedValue":true,"property":"overrideSlowWritesAndReadsDetection","type":"EQUALS"}
+	return nil
 }
 
 func (me *Settings) UnmarshalHCL(decoder hcl.Decoder) error {

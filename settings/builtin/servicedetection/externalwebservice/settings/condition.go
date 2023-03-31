@@ -18,6 +18,8 @@
 package externalwebservice
 
 import (
+	"fmt"
+
 	"github.com/dynatrace-oss/terraform-provider-dynatrace/dynatrace/opt"
 	"github.com/dynatrace-oss/terraform-provider-dynatrace/terraform/hcl"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
@@ -133,7 +135,7 @@ func (me *Condition) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *Condition) HandlePreconditions() {
+func (me *Condition) HandlePreconditions() error {
 	if me.IgnoreCase == nil && slices.Contains([]string{"TagEquals", "TagKeyEquals", "StringEndsWith", "NotStringEndsWith", "StringStartsWith", "NotStringStartsWith", "StringContains", "NotStringContains", "StringEquals", "NotStringEquals"}, string(me.CompareOperationType)) {
 		me.IgnoreCase = opt.NewBool(false)
 	}
@@ -141,15 +143,16 @@ func (me *Condition) HandlePreconditions() {
 		me.IntValue = opt.NewInt(0)
 	}
 	if me.IpRangeFrom == nil && slices.Contains([]string{"IpInRange", "NotIpInRange"}, string(me.CompareOperationType)) {
-		me.IpRangeFrom = opt.NewString("")
+		return fmt.Errorf("'ip_range_from' must be specified if 'compare_operation_type' is set to '%v'", me.CompareOperationType)
 	}
 	if me.IpRangeTo == nil && slices.Contains([]string{"IpInRange", "NotIpInRange"}, string(me.CompareOperationType)) {
-		me.IpRangeTo = opt.NewString("")
+		return fmt.Errorf("'ip_range_to' must be specified if 'compare_operation_type' is set to '%v'", me.CompareOperationType)
 	}
 	// ---- Framework []FrameworkType -> {"expectedValues":["FrameworkEquals","NotFrameworkEquals"],"property":"compareOperationType","type":"IN"}
 	// ---- IntValues []int -> {"expectedValues":["IntEquals","NotIntEquals"],"property":"compareOperationType","type":"IN"}
 	// ---- TagValues []string -> {"expectedValue":"TagEquals","property":"compareOperationType","type":"EQUALS"}
 	// ---- TextValues []string -> {"expectedValues":["TagKeyEquals","StringEndsWith","NotStringEndsWith","StringStartsWith","NotStringStartsWith","StringContains","NotStringContains","StringEquals","NotStringEquals"],"property":"compareOperationType","type":"IN"}
+	return nil
 }
 
 func (me *Condition) UnmarshalHCL(decoder hcl.Decoder) error {

@@ -18,6 +18,8 @@
 package rummobilecrashrateincrease
 
 import (
+	"fmt"
+
 	"github.com/dynatrace-oss/terraform-provider-dynatrace/terraform/hcl"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
@@ -69,10 +71,13 @@ func (me *CrashRateIncrease) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *CrashRateIncrease) HandlePreconditions() {
+func (me *CrashRateIncrease) HandlePreconditions() error {
+	if me.DetectionMode == nil && me.Enabled {
+		return fmt.Errorf("'detection_mode' must be specified if 'enabled' is set to '%v'", me.Enabled)
+	}
 	// ---- CrashRateIncreaseAuto *CrashRateIncreaseAuto -> {"preconditions":[{"expectedValue":true,"property":"enabled","type":"EQUALS"},{"expectedValue":"auto","property":"detectionMode","type":"EQUALS"}],"type":"AND"}
 	// ---- CrashRateIncreaseFixed *CrashRateIncreaseFixed -> {"preconditions":[{"expectedValue":true,"property":"enabled","type":"EQUALS"},{"expectedValue":"fixed","property":"detectionMode","type":"EQUALS"}],"type":"AND"}
-	// ---- DetectionMode *DetectionMode -> {"expectedValue":true,"property":"enabled","type":"EQUALS"}
+	return nil
 }
 
 func (me *CrashRateIncrease) UnmarshalHCL(decoder hcl.Decoder) error {

@@ -141,7 +141,7 @@
 		},
 		"clusterIdEnabled": {
 			"default": false,
-			"description": "This is required for monitoring persistent volume claims. For more information on local Kubernetes API monitoring, see the [documentation](https://dt-url.net/6q62uep).",
+			"description": "For more information on local Kubernetes API monitoring, see the [documentation](https://dt-url.net/6q62uep).",
 			"displayName": "Connect containerized ActiveGate to local Kubernetes API endpoint",
 			"documentation": "Enable this toggle when the ActiveGate is deployed to the same Kubernetes clusters you want to monitor. Disable it if you want to monitor a different Kubernetes cluster.",
 			"maxObjects": 1,

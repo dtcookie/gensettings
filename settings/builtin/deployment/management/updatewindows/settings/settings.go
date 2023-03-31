@@ -96,11 +96,12 @@ func (me *Settings) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *Settings) HandlePreconditions() {
+func (me *Settings) HandlePreconditions() error {
 	// ---- DailyRecurrence *DailyRecurrence -> {"expectedValue":"DAILY","property":"recurrence","type":"EQUALS"}
 	// ---- MonthlyRecurrence *MonthlyRecurrence -> {"expectedValue":"MONTHLY","property":"recurrence","type":"EQUALS"}
 	// ---- OnceRecurrence *OnceRecurrence -> {"expectedValue":"ONCE","property":"recurrence","type":"EQUALS"}
 	// ---- WeeklyRecurrence *WeeklyRecurrence -> {"expectedValue":"WEEKLY","property":"recurrence","type":"EQUALS"}
+	return nil
 }
 
 func (me *Settings) UnmarshalHCL(decoder hcl.Decoder) error {

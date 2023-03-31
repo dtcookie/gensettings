@@ -52,8 +52,9 @@ func (me *CpuRequestsSaturation) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *CpuRequestsSaturation) HandlePreconditions() {
+func (me *CpuRequestsSaturation) HandlePreconditions() error {
 	// ---- Configuration *CpuRequestsSaturationConfig -> {"expectedValue":true,"property":"enabled","type":"EQUALS"}
+	return nil
 }
 
 func (me *CpuRequestsSaturation) UnmarshalHCL(decoder hcl.Decoder) error {

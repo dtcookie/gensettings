@@ -18,7 +18,8 @@
 package osservicesmonitoring
 
 import (
-	"github.com/dynatrace-oss/terraform-provider-dynatrace/dynatrace/opt"
+	"fmt"
+
 	"github.com/dynatrace-oss/terraform-provider-dynatrace/terraform/hcl"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 	"golang.org/x/exp/slices"
@@ -80,13 +81,14 @@ func (me *WindowsDetectionCondition) MarshalHCL(properties hcl.Properties) error
 	})
 }
 
-func (me *WindowsDetectionCondition) HandlePreconditions() {
+func (me *WindowsDetectionCondition) HandlePreconditions() error {
 	if me.Condition == nil && slices.Contains([]string{"Manufacturer", "ServiceName", "DisplayName", "Path"}, string(me.Property)) {
-		me.Condition = opt.NewString("")
+		return fmt.Errorf("'condition' must be specified if 'property' is set to '%v'", me.Property)
 	}
 	if me.StartupCondition == nil && slices.Contains([]string{"StartupType"}, string(me.Property)) {
-		me.StartupCondition = opt.NewString("")
+		return fmt.Errorf("'startup_condition' must be specified if 'property' is set to '%v'", me.Property)
 	}
+	return nil
 }
 
 func (me *WindowsDetectionCondition) UnmarshalHCL(decoder hcl.Decoder) error {

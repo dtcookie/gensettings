@@ -18,7 +18,8 @@
 package defaultversion
 
 import (
-	"github.com/dynatrace-oss/terraform-provider-dynatrace/dynatrace/opt"
+	"fmt"
+
 	"github.com/dynatrace-oss/terraform-provider-dynatrace/terraform/hcl"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 	"golang.org/x/exp/slices"
@@ -51,10 +52,11 @@ func (me *Settings) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *Settings) HandlePreconditions() {
+func (me *Settings) HandlePreconditions() error {
 	if me.Revision == nil && !slices.Contains([]string{"latest"}, string(me.DefaultVersion)) {
-		me.Revision = opt.NewString("")
+		return fmt.Errorf("'revision' must be specified if 'default_version' is set to '%v'", me.DefaultVersion)
 	}
+	return nil
 }
 
 func (me *Settings) UnmarshalHCL(decoder hcl.Decoder) error {

@@ -8,6 +8,11 @@
 			"type": "CUSTOM_VALIDATOR_REF"
 		}
 	],
+	"deletionConstraints": [
+		{
+			"customValidatorId": "span-attribute-config-delete-validator"
+		}
+	],
 	"description": "While Dynatrace automatically captures all OpenTracing and OpenTelemetry span attributes, it only stores span attribute values when the related keys are specified in the allow-list below. By omitting personal data you can meet your organization's privacy requirements and control the amount of stored monitoring data.",
 	"displayName": "Span attributes",
 	"documentation": "",
@@ -80,5 +85,5 @@
 	],
 	"schemaId": "builtin:span-attribute",
 	"types": {},
-	"version": "0.0.28"
+	"version": "0.0.29"
 }

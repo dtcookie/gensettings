@@ -18,7 +18,8 @@
 package databases
 
 import (
-	"github.com/dynatrace-oss/terraform-provider-dynatrace/dynatrace/opt"
+	"fmt"
+
 	"github.com/dynatrace-oss/terraform-provider-dynatrace/terraform/hcl"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
@@ -57,13 +58,14 @@ func (me *DatabaseConnections) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *DatabaseConnections) HandlePreconditions() {
+func (me *DatabaseConnections) HandlePreconditions() error {
 	if me.MaxFailedConnects == nil && me.Enabled {
-		me.MaxFailedConnects = opt.NewInt(0)
+		return fmt.Errorf("'max_failed_connects' must be specified if 'enabled' is set to '%v'", me.Enabled)
 	}
 	if me.TimePeriod == nil && me.Enabled {
-		me.TimePeriod = opt.NewInt(0)
+		return fmt.Errorf("'time_period' must be specified if 'enabled' is set to '%v'", me.Enabled)
 	}
+	return nil
 }
 
 func (me *DatabaseConnections) UnmarshalHCL(decoder hcl.Decoder) error {

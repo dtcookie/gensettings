@@ -18,7 +18,8 @@
 package integration
 
 import (
-	"github.com/dynatrace-oss/terraform-provider-dynatrace/dynatrace/opt"
+	"fmt"
+
 	"github.com/dynatrace-oss/terraform-provider-dynatrace/terraform/hcl"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 	"golang.org/x/exp/slices"
@@ -100,13 +101,14 @@ func (me *Settings) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *Settings) HandlePreconditions() {
+func (me *Settings) HandlePreconditions() error {
 	if me.Password == nil && slices.Contains([]string{"JIRA", "JIRA_ON_PREMISE", "SERVICENOW"}, string(me.Issuetrackersystem)) {
-		me.Password = opt.NewString("")
+		return fmt.Errorf("'password' must be specified if 'issuetrackersystem' is set to '%v'", me.Issuetrackersystem)
 	}
 	if me.Token == nil && slices.Contains([]string{"JIRA", "GITHUB", "GITLAB", "JIRA_CLOUD"}, string(me.Issuetrackersystem)) {
-		me.Token = opt.NewString("")
+		return fmt.Errorf("'token' must be specified if 'issuetrackersystem' is set to '%v'", me.Issuetrackersystem)
 	}
+	return nil
 }
 
 func (me *Settings) UnmarshalHCL(decoder hcl.Decoder) error {

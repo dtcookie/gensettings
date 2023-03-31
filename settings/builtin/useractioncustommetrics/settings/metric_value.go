@@ -18,7 +18,8 @@
 package useractioncustommetrics
 
 import (
-	"github.com/dynatrace-oss/terraform-provider-dynatrace/dynatrace/opt"
+	"fmt"
+
 	"github.com/dynatrace-oss/terraform-provider-dynatrace/terraform/hcl"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
@@ -50,10 +51,11 @@ func (me *MetricValue) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *MetricValue) HandlePreconditions() {
+func (me *MetricValue) HandlePreconditions() error {
 	if me.FieldName == nil && string(me.Type) == "FIELD" {
-		me.FieldName = opt.NewString("")
+		return fmt.Errorf("'field_name' must be specified if 'type' is set to '%v'", me.Type)
 	}
+	return nil
 }
 
 func (me *MetricValue) UnmarshalHCL(decoder hcl.Decoder) error {

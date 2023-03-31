@@ -59,8 +59,9 @@ func (me *Settings) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *Settings) HandlePreconditions() {
+func (me *Settings) HandlePreconditions() error {
 	// ---- Cookies CookieEntries -> {"expectedValue":true,"property":"enabled","type":"EQUALS"}
+	return nil
 }
 
 func (me *Settings) UnmarshalHCL(decoder hcl.Decoder) error {

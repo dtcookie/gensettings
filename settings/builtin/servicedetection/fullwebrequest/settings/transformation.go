@@ -18,6 +18,8 @@
 package fullwebrequest
 
 import (
+	"fmt"
+
 	"github.com/dynatrace-oss/terraform-provider-dynatrace/dynatrace/opt"
 	"github.com/dynatrace-oss/terraform-provider-dynatrace/terraform/hcl"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
@@ -129,34 +131,35 @@ func (me *Transformation) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *Transformation) HandlePreconditions() {
+func (me *Transformation) HandlePreconditions() error {
 	if me.IncludeHexNumbers == nil && string(me.TransformationType) == "REMOVE_NUMBERS" {
 		me.IncludeHexNumbers = opt.NewBool(false)
-	}
-	if me.MinDigitCount == nil && string(me.TransformationType) == "REMOVE_NUMBERS" {
-		me.MinDigitCount = opt.NewInt(0)
-	}
-	if me.Prefix == nil && slices.Contains([]string{"AFTER", "BETWEEN", "REPLACE_BETWEEN"}, string(me.TransformationType)) {
-		me.Prefix = opt.NewString("")
-	}
-	if me.ReplacementValue == nil && string(me.TransformationType) == "REPLACE_BETWEEN" {
-		me.ReplacementValue = opt.NewString("")
-	}
-	if me.SegmentCount == nil && string(me.TransformationType) == "TAKE_SEGMENTS" {
-		me.SegmentCount = opt.NewInt(0)
-	}
-	if me.SelectIndex == nil && string(me.TransformationType) == "SPLIT_SELECT" {
-		me.SelectIndex = opt.NewInt(0)
-	}
-	if me.SplitDelimiter == nil && slices.Contains([]string{"SPLIT_SELECT", "TAKE_SEGMENTS"}, string(me.TransformationType)) {
-		me.SplitDelimiter = opt.NewString("")
-	}
-	if me.Suffix == nil && slices.Contains([]string{"BEFORE", "BETWEEN", "REPLACE_BETWEEN"}, string(me.TransformationType)) {
-		me.Suffix = opt.NewString("")
 	}
 	if me.TakeFromEnd == nil && string(me.TransformationType) == "TAKE_SEGMENTS" {
 		me.TakeFromEnd = opt.NewBool(false)
 	}
+	if me.MinDigitCount == nil && string(me.TransformationType) == "REMOVE_NUMBERS" {
+		return fmt.Errorf("'min_digit_count' must be specified if 'transformation_type' is set to '%v'", me.TransformationType)
+	}
+	if me.Prefix == nil && slices.Contains([]string{"AFTER", "BETWEEN", "REPLACE_BETWEEN"}, string(me.TransformationType)) {
+		return fmt.Errorf("'prefix' must be specified if 'transformation_type' is set to '%v'", me.TransformationType)
+	}
+	if me.ReplacementValue == nil && string(me.TransformationType) == "REPLACE_BETWEEN" {
+		return fmt.Errorf("'replacement_value' must be specified if 'transformation_type' is set to '%v'", me.TransformationType)
+	}
+	if me.SegmentCount == nil && string(me.TransformationType) == "TAKE_SEGMENTS" {
+		return fmt.Errorf("'segment_count' must be specified if 'transformation_type' is set to '%v'", me.TransformationType)
+	}
+	if me.SelectIndex == nil && string(me.TransformationType) == "SPLIT_SELECT" {
+		return fmt.Errorf("'select_index' must be specified if 'transformation_type' is set to '%v'", me.TransformationType)
+	}
+	if me.SplitDelimiter == nil && slices.Contains([]string{"SPLIT_SELECT", "TAKE_SEGMENTS"}, string(me.TransformationType)) {
+		return fmt.Errorf("'split_delimiter' must be specified if 'transformation_type' is set to '%v'", me.TransformationType)
+	}
+	if me.Suffix == nil && slices.Contains([]string{"BEFORE", "BETWEEN", "REPLACE_BETWEEN"}, string(me.TransformationType)) {
+		return fmt.Errorf("'suffix' must be specified if 'transformation_type' is set to '%v'", me.TransformationType)
+	}
+	return nil
 }
 
 func (me *Transformation) UnmarshalHCL(decoder hcl.Decoder) error {

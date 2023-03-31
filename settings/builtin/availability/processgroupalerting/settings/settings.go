@@ -18,7 +18,8 @@
 package processgroupalerting
 
 import (
-	"github.com/dynatrace-oss/terraform-provider-dynatrace/dynatrace/opt"
+	"fmt"
+
 	"github.com/dynatrace-oss/terraform-provider-dynatrace/terraform/hcl"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
@@ -64,11 +65,14 @@ func (me *Settings) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *Settings) HandlePreconditions() {
-	if me.MinimumInstanceThreshold == nil && me.AlertingMode != nil && string(*me.AlertingMode) == "ON_INSTANCE_COUNT_VIOLATION" {
-		me.MinimumInstanceThreshold = opt.NewInt(0)
+func (me *Settings) HandlePreconditions() error {
+	if me.AlertingMode == nil && me.Enabled {
+		return fmt.Errorf("'alerting_mode' must be specified if 'enabled' is set to '%v'", me.Enabled)
 	}
-	// ---- AlertingMode *AlertingMode -> {"expectedValue":true,"property":"enabled","type":"EQUALS"}
+	if me.MinimumInstanceThreshold == nil && me.AlertingMode != nil && string(*me.AlertingMode) == "ON_INSTANCE_COUNT_VIOLATION" {
+		return fmt.Errorf("'minimum_instance_threshold' must be specified if 'alerting_mode' is set to '%v'", me.AlertingMode)
+	}
+	return nil
 }
 
 func (me *Settings) UnmarshalHCL(decoder hcl.Decoder) error {

@@ -91,7 +91,7 @@ func (me *Predicate) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *Predicate) HandlePreconditions() {
+func (me *Predicate) HandlePreconditions() error {
 	if me.CaseSensitive == nil && slices.Contains([]string{"STRING_EQUALS", "STARTS_WITH", "ENDS_WITH", "CONTAINS"}, string(me.PredicateType)) {
 		me.CaseSensitive = opt.NewBool(false)
 	}
@@ -100,6 +100,7 @@ func (me *Predicate) HandlePreconditions() {
 	// ---- TagKeys []string -> {"expectedValues":["TAG_KEY_EQUALS"],"property":"predicateType","type":"IN"}
 	// ---- Tags []string -> {"expectedValues":["TAG_EQUALS"],"property":"predicateType","type":"IN"}
 	// ---- TextValues []string -> {"expectedValues":["STRING_EQUALS","STARTS_WITH","ENDS_WITH","CONTAINS"],"property":"predicateType","type":"IN"}
+	return nil
 }
 
 func (me *Predicate) UnmarshalHCL(decoder hcl.Decoder) error {

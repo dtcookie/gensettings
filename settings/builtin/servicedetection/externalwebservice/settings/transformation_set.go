@@ -62,9 +62,10 @@ func (me *TransformationSet) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *TransformationSet) HandlePreconditions() {
+func (me *TransformationSet) HandlePreconditions() error {
 	// ---- Transformations Transformations -> {"expectedValue":"TransformValue","property":"contributionType","type":"EQUALS"}
 	// ---- ValueOverride *ValueOverride -> {"expectedValue":"OverrideValue","property":"contributionType","type":"EQUALS"}
+	return nil
 }
 
 func (me *TransformationSet) UnmarshalHCL(decoder hcl.Decoder) error {

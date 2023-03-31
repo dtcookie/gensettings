@@ -18,6 +18,8 @@
 package infrastructurevmware
 
 import (
+	"fmt"
+
 	"github.com/dynatrace-oss/terraform-provider-dynatrace/terraform/hcl"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
@@ -59,9 +61,12 @@ func (me *SlowPhysicalStorageDetectionConfig) MarshalHCL(properties hcl.Properti
 	})
 }
 
-func (me *SlowPhysicalStorageDetectionConfig) HandlePreconditions() {
+func (me *SlowPhysicalStorageDetectionConfig) HandlePreconditions() error {
+	if me.DetectionMode == nil && me.Enabled {
+		return fmt.Errorf("'detection_mode' must be specified if 'enabled' is set to '%v'", me.Enabled)
+	}
 	// ---- CustomThresholds *SlowPhysicalStorageDetectionThresholds -> {"expectedValue":"custom","property":"detectionMode","type":"EQUALS"}
-	// ---- DetectionMode *DetectionMode -> {"expectedValue":true,"property":"enabled","type":"EQUALS"}
+	return nil
 }
 
 func (me *SlowPhysicalStorageDetectionConfig) UnmarshalHCL(decoder hcl.Decoder) error {

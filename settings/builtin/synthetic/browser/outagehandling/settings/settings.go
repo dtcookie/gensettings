@@ -86,7 +86,7 @@ func (me *Settings) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *Settings) HandlePreconditions() {
+func (me *Settings) HandlePreconditions() error {
 	if me.GlobalConsecutiveOutageCountThreshold == nil && me.GlobalOutages {
 		me.GlobalConsecutiveOutageCountThreshold = opt.NewInt(0)
 	}
@@ -96,6 +96,7 @@ func (me *Settings) HandlePreconditions() {
 	if me.LocalLocationOutageCountThreshold == nil && me.LocalOutages {
 		me.LocalLocationOutageCountThreshold = opt.NewInt(0)
 	}
+	return nil
 }
 
 func (me *Settings) UnmarshalHCL(decoder hcl.Decoder) error {

@@ -71,12 +71,13 @@ func (me *PublicDomainTransformationSet) MarshalHCL(properties hcl.Properties) e
 	})
 }
 
-func (me *PublicDomainTransformationSet) HandlePreconditions() {
+func (me *PublicDomainTransformationSet) HandlePreconditions() error {
 	if me.CopyFromHostName == nil && slices.Contains([]string{"OriginalValue", "TransformValue"}, string(me.ContributionType)) {
 		me.CopyFromHostName = opt.NewBool(false)
 	}
 	// ---- Transformations Transformations -> {"expectedValue":"TransformValue","property":"contributionType","type":"EQUALS"}
 	// ---- ValueOverride *ValueOverride -> {"expectedValue":"OverrideValue","property":"contributionType","type":"EQUALS"}
+	return nil
 }
 
 func (me *PublicDomainTransformationSet) UnmarshalHCL(decoder hcl.Decoder) error {

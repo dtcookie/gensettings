@@ -73,8 +73,9 @@ func (me *{{.Name}}) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 {{if .HasPreconditions}}
-func (me *{{.Name}}) HandlePreconditions() { 
-{{.Preconditions}} 
+func (me *{{.Name}}) HandlePreconditions() error { 
+{{.Preconditions}}
+return nil
 }
 {{end}}
 

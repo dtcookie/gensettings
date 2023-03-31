@@ -70,12 +70,13 @@ func (me *ContextRoot) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *ContextRoot) HandlePreconditions() {
+func (me *ContextRoot) HandlePreconditions() error {
 	if me.SegmentCount == nil && string(me.ContributionType) == "TransformURL" {
 		me.SegmentCount = opt.NewInt(0)
 	}
 	// ---- Transformations ReducedTransformations -> {"expectedValues":["TransformValue","TransformURL"],"property":"contributionType","type":"IN"}
 	// ---- ValueOverride *ValueOverride -> {"expectedValue":"OverrideValue","property":"contributionType","type":"EQUALS"}
+	return nil
 }
 
 func (me *ContextRoot) UnmarshalHCL(decoder hcl.Decoder) error {

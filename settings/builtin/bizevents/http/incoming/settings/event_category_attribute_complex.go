@@ -18,6 +18,8 @@
 package incoming
 
 import (
+	"fmt"
+
 	"github.com/dynatrace-oss/terraform-provider-dynatrace/dynatrace/opt"
 	"github.com/dynatrace-oss/terraform-provider-dynatrace/terraform/hcl"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
@@ -58,13 +60,14 @@ func (me *EventCategoryAttributeComplex) MarshalHCL(properties hcl.Properties) e
 	})
 }
 
-func (me *EventCategoryAttributeComplex) HandlePreconditions() {
-	if me.Path == nil && slices.Contains([]string{"request.body", "request.headers", "request.parameters", "response.body", "response.headers"}, string(me.SourceType)) {
-		me.Path = opt.NewString("")
-	}
+func (me *EventCategoryAttributeComplex) HandlePreconditions() error {
 	if me.Source == nil && slices.Contains([]string{"constant.string"}, string(me.SourceType)) {
 		me.Source = opt.NewString("")
 	}
+	if me.Path == nil && slices.Contains([]string{"request.body", "request.headers", "request.parameters", "response.body", "response.headers"}, string(me.SourceType)) {
+		return fmt.Errorf("'path' must be specified if 'source_type' is set to '%v'", me.SourceType)
+	}
+	return nil
 }
 
 func (me *EventCategoryAttributeComplex) UnmarshalHCL(decoder hcl.Decoder) error {

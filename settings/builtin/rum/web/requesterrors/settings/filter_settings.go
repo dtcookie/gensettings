@@ -49,8 +49,9 @@ func (me *FilterSettings) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *FilterSettings) HandlePreconditions() {
+func (me *FilterSettings) HandlePreconditions() error {
 	// ---- Url *string -> {"property":"filter","type":"NULL"}
+	return nil
 }
 
 func (me *FilterSettings) UnmarshalHCL(decoder hcl.Decoder) error {

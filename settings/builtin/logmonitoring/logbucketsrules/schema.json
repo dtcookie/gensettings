@@ -30,7 +30,7 @@
 				"useApiSearch": false,
 				"validate": true
 			},
-			"default": "",
+			"default": "default_logs_drop",
 			"description": "A 'bucket' is the length of time your logs will be stored. Select the bucket that's best for you.",
 			"displayName": "Bucket",
 			"documentation": "",
@@ -106,5 +106,5 @@
 	],
 	"schemaId": "builtin:logmonitoring.log-buckets-rules",
 	"types": {},
-	"version": "1.0.2"
+	"version": "1.0.3"
 }

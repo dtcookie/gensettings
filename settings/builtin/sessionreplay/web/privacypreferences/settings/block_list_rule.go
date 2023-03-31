@@ -18,6 +18,8 @@
 package privacypreferences
 
 import (
+	"fmt"
+
 	"github.com/dynatrace-oss/terraform-provider-dynatrace/dynatrace/opt"
 	"github.com/dynatrace-oss/terraform-provider-dynatrace/terraform/hcl"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
@@ -86,16 +88,17 @@ func (me *BlockListRule) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *BlockListRule) HandlePreconditions() {
-	if me.AttributeExpression == nil && string(me.Target) == "ATTRIBUTE" {
-		me.AttributeExpression = opt.NewString("")
-	}
-	if me.CssExpression == nil && string(me.Target) == "ELEMENT" {
-		me.CssExpression = opt.NewString("")
-	}
+func (me *BlockListRule) HandlePreconditions() error {
 	if me.HideUserInteraction == nil && string(me.Target) == "ELEMENT" {
 		me.HideUserInteraction = opt.NewBool(false)
 	}
+	if me.AttributeExpression == nil && string(me.Target) == "ATTRIBUTE" {
+		return fmt.Errorf("'attribute_expression' must be specified if 'target' is set to '%v'", me.Target)
+	}
+	if me.CssExpression == nil && string(me.Target) == "ELEMENT" {
+		return fmt.Errorf("'css_expression' must be specified if 'target' is set to '%v'", me.Target)
+	}
+	return nil
 }
 
 func (me *BlockListRule) UnmarshalHCL(decoder hcl.Decoder) error {

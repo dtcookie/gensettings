@@ -109,7 +109,7 @@ func (me *ManagementZoneAttributeRule) MarshalHCL(properties hcl.Properties) err
 	})
 }
 
-func (me *ManagementZoneAttributeRule) HandlePreconditions() {
+func (me *ManagementZoneAttributeRule) HandlePreconditions() error {
 	if me.AzureToPGPropagation == nil && string(me.EntityType) == "AZURE" {
 		me.AzureToPGPropagation = opt.NewBool(false)
 	}
@@ -134,6 +134,7 @@ func (me *ManagementZoneAttributeRule) HandlePreconditions() {
 	if me.ServiceToPGPropagation == nil && string(me.EntityType) == "SERVICE" {
 		me.ServiceToPGPropagation = opt.NewBool(false)
 	}
+	return nil
 }
 
 func (me *ManagementZoneAttributeRule) UnmarshalHCL(decoder hcl.Decoder) error {

@@ -102,7 +102,7 @@ func (me *AutoTagAttributeRule) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *AutoTagAttributeRule) HandlePreconditions() {
+func (me *AutoTagAttributeRule) HandlePreconditions() error {
 	if me.AzureToPGPropagation == nil && string(me.EntityType) == "AZURE" {
 		me.AzureToPGPropagation = opt.NewBool(false)
 	}
@@ -124,6 +124,7 @@ func (me *AutoTagAttributeRule) HandlePreconditions() {
 	if me.ServiceToPGPropagation == nil && string(me.EntityType) == "SERVICE" {
 		me.ServiceToPGPropagation = opt.NewBool(false)
 	}
+	return nil
 }
 
 func (me *AutoTagAttributeRule) UnmarshalHCL(decoder hcl.Decoder) error {

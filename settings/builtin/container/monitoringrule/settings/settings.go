@@ -18,7 +18,8 @@
 package monitoringrule
 
 import (
-	"github.com/dynatrace-oss/terraform-provider-dynatrace/dynatrace/opt"
+	"fmt"
+
 	"github.com/dynatrace-oss/terraform-provider-dynatrace/terraform/hcl"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 	"golang.org/x/exp/slices"
@@ -72,10 +73,11 @@ func (me *Settings) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *Settings) HandlePreconditions() {
+func (me *Settings) HandlePreconditions() error {
 	if me.Value == nil && !slices.Contains([]string{"EXISTS", "NOT_EXISTS"}, string(me.Operator)) {
-		me.Value = opt.NewString("")
+		return fmt.Errorf("'value' must be specified if 'operator' is set to '%v'", me.Operator)
 	}
+	return nil
 }
 
 func (me *Settings) UnmarshalHCL(decoder hcl.Decoder) error {

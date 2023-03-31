@@ -18,7 +18,8 @@
 package usersessionexportsettingsv2
 
 import (
-	"github.com/dynatrace-oss/terraform-provider-dynatrace/dynatrace/opt"
+	"fmt"
+
 	"github.com/dynatrace-oss/terraform-provider-dynatrace/terraform/hcl"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
@@ -57,13 +58,14 @@ func (me *SendDirect) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *SendDirect) HandlePreconditions() {
+func (me *SendDirect) HandlePreconditions() error {
 	if me.DocType == nil && me.Active {
-		me.DocType = opt.NewString("")
+		return fmt.Errorf("'doc_type' must be specified if 'active' is set to '%v'", me.Active)
 	}
 	if me.IndexName == nil && me.Active {
-		me.IndexName = opt.NewString("")
+		return fmt.Errorf("'index_name' must be specified if 'active' is set to '%v'", me.Active)
 	}
+	return nil
 }
 
 func (me *SendDirect) UnmarshalHCL(decoder hcl.Decoder) error {

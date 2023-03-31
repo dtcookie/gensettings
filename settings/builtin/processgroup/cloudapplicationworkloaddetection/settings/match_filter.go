@@ -18,7 +18,8 @@
 package cloudapplicationworkloaddetection
 
 import (
-	"github.com/dynatrace-oss/terraform-provider-dynatrace/dynatrace/opt"
+	"fmt"
+
 	"github.com/dynatrace-oss/terraform-provider-dynatrace/terraform/hcl"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
@@ -50,10 +51,11 @@ func (me *MatchFilter) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *MatchFilter) HandlePreconditions() {
+func (me *MatchFilter) HandlePreconditions() error {
 	if me.Namespace == nil && string(me.MatchOperator) != "EXISTS" {
-		me.Namespace = opt.NewString("")
+		return fmt.Errorf("'namespace' must be specified if 'match_operator' is set to '%v'", me.MatchOperator)
 	}
+	return nil
 }
 
 func (me *MatchFilter) UnmarshalHCL(decoder hcl.Decoder) error {

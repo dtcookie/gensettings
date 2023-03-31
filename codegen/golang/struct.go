@@ -16,6 +16,7 @@ import (
 type Property struct {
 	Name            string
 	Type            string
+	IsEnumType      bool
 	Comment         string
 	HCLTag          string
 	JSONTag         string
@@ -27,6 +28,7 @@ type Property struct {
 	Elem            string
 	Default         string
 	Precondition    map[string]any
+	Constraints     []map[string]any
 }
 
 func (me *Property) Prettify() {
@@ -39,14 +41,6 @@ type Struct struct {
 	Comments   []string
 	Properties []*Property
 }
-
-/*
-	if me.IgnoreCase == nil && slices.Contains([]string{"TagEquals", "TagKeyEquals", "StringEndsWith", "NotStringEndsWith", "StringStartsWith", "NotStringStartsWith", "StringContains", "NotStringContains", "StringEquals", "NotStringEquals"}, string(me.CompareOperationType)) {
-		me.IgnoreCase = opt.NewBool(false)
-	}
-
-	// IgnoreCase *bool -> {"expectedValues":["TagEquals","TagKeyEquals","StringEndsWith","NotStringEndsWith","StringStartsWith","NotStringStartsWith","StringContains","NotStringContains","StringEquals","NotStringEquals"],"property":"compareOperationType","type":"IN"}
-*/
 
 func getPrecExpectedValues(m map[string]any) []string {
 	untyped, ok := m["expectedValues"]
@@ -118,6 +112,8 @@ func (me *Struct) Preconditions() string {
 		return result
 	}
 	unhandledLines := []string{}
+	handledLines := []string{}
+	throwingLines := []string{}
 	for _, property := range me.Properties {
 		if len(property.Precondition) == 0 {
 			continue
@@ -155,7 +151,7 @@ func (me *Struct) Preconditions() string {
 				deref = "*"
 			}
 			line = fmt.Sprintf(`if me.%s == nil%s && %sslices.Contains([]string{"%s"}, string(%sme.%s)) {
-				me.%s = `, property.Name, nilCheck, negStr, strings.Join(precExpectedValues, `", "`), deref, checkProperty.Name, property.Name)
+				`, property.Name, nilCheck, negStr, strings.Join(precExpectedValues, `", "`), deref, checkProperty.Name)
 		} else if precExpectedValue != nil && checkProperty != nil && precType == "EQUALS" {
 			switch ev := precExpectedValue.(type) {
 			case string:
@@ -170,7 +166,7 @@ func (me *Struct) Preconditions() string {
 					deref = "*"
 				}
 				line = fmt.Sprintf(`if me.%s == nil%s && string(%sme.%s) %s "%s" {
-					me.%s = `, property.Name, nilCheck, deref, checkProperty.Name, eqStr, precExpectedValue, property.Name)
+					`, property.Name, nilCheck, deref, checkProperty.Name, eqStr, precExpectedValue)
 			case bool:
 				if negate {
 					ev = !ev
@@ -184,28 +180,117 @@ func (me *Struct) Preconditions() string {
 
 				if ev {
 					line = fmt.Sprintf(`if me.%s == nil%s && %sme.%s {
-							me.%s = `, property.Name, nilCheck, deref, checkProperty.Name, property.Name)
+							`, property.Name, nilCheck, deref, checkProperty.Name)
 				} else {
 					line = fmt.Sprintf(`if me.%s == nil%s && %s!me.%s {
-							me.%s = `, property.Name, nilCheck, deref, checkProperty.Name, property.Name)
+							`, property.Name, nilCheck, deref, checkProperty.Name)
 				}
 			}
 		}
 		if len(line) > 0 && property.Type == "*bool" {
-			result = result + "\n" + fmt.Sprintf("%s%s }", line, "opt.NewBool(false)")
+			if HasConstraints(property) {
+				pat := fmt.Sprintf("'%s' must be specified if '%s' is set to '%%v'", property.HCLTag, checkProperty.HCLTag)
+				throwingLines = append(throwingLines, fmt.Sprintf("%s return fmt.Errorf(\"%s\", me.%s)}", line, pat, checkProperty.Name))
+			} else {
+				handledLines = append(handledLines, fmt.Sprintf("%sme.%s = %s}", line, property.Name, "opt.NewBool(false)"))
+			}
 		} else if len(line) > 0 && property.Type == "*int" {
-			result = result + "\n" + fmt.Sprintf("%s%s }", line, "opt.NewInt(0)")
+			if HasConstraints(property) {
+				pat := fmt.Sprintf("'%s' must be specified if '%s' is set to '%%v'", property.HCLTag, checkProperty.HCLTag)
+				throwingLines = append(throwingLines, fmt.Sprintf("%s return fmt.Errorf(\"%s\", me.%s)}", line, pat, checkProperty.Name))
+			} else {
+				handledLines = append(handledLines, fmt.Sprintf("%sme.%s = %s}", line, property.Name, "opt.NewInt(0)"))
+			}
 		} else if len(line) > 0 && property.Type == "*string" {
-			result = result + "\n" + fmt.Sprintf("%s%s }", line, "opt.NewString(\"\")")
+			if HasConstraints(property) {
+				pat := fmt.Sprintf("'%s' must be specified if '%s' is set to '%%v'", property.HCLTag, checkProperty.HCLTag)
+				throwingLines = append(throwingLines, fmt.Sprintf("%s return fmt.Errorf(\"%s\", me.%s)}", line, pat, checkProperty.Name))
+			} else {
+				handledLines = append(handledLines, fmt.Sprintf("%sme.%s = %s}", line, property.Name, "opt.NewString(\"\")"))
+			}
+		} else if len(line) > 0 && property.Type == "*float64" {
+			if HasConstraints(property) {
+				pat := fmt.Sprintf("'%s' must be specified if '%s' is set to '%%v'", property.HCLTag, checkProperty.HCLTag)
+				throwingLines = append(throwingLines, fmt.Sprintf("%s return fmt.Errorf(\"%s\", me.%s)}", line, pat, checkProperty.Name))
+			} else {
+				handledLines = append(handledLines, fmt.Sprintf("%sme.%s = %s}", line, property.Name, "opt.NewFloat64(0.0)"))
+			}
+
+		} else if len(line) > 0 && property.IsEnumType {
+			pat := fmt.Sprintf("'%s' must be specified if '%s' is set to '%%v'", property.HCLTag, checkProperty.HCLTag)
+			throwingLines = append(throwingLines, fmt.Sprintf("%s return fmt.Errorf(\"%s\", me.%s)}", line, pat, checkProperty.Name))
 		} else {
 			data, _ := json.Marshal(m)
 			unhandledLines = append(unhandledLines, "// ---- "+property.Name+" "+property.Type+" -> "+string(data))
 		}
 	}
+	for _, line := range handledLines {
+		result = result + "\n" + line
+	}
+	for _, line := range throwingLines {
+		result = result + "\n" + line
+	}
 	for _, line := range unhandledLines {
 		result = result + "\n" + line
 	}
 	return strings.TrimSpace(result)
+}
+
+func HasConstraints(property *Property) bool {
+	if property == nil {
+		return false
+	}
+	if len(property.Constraints) == 0 {
+		return false
+	}
+	for _, constraint := range property.Constraints {
+		if isRoadBlockConstraint(constraint) {
+			return true
+		}
+	}
+	return false
+}
+
+func isRoadBlockConstraint(constraint map[string]any) bool {
+	if constraint == nil {
+		return false
+	}
+	minimum := 0
+	if v, ok := constraint["minimum"]; ok {
+		switch tv := v.(type) {
+		case int:
+			minimum = tv
+		case float64:
+			minimum = int(tv)
+		default:
+			panic(fmt.Sprintf("%T", v))
+		}
+	}
+	minLength := 0
+	if v, ok := constraint["minLength"]; ok {
+		switch tv := v.(type) {
+		case int:
+			minLength = tv
+		case float64:
+			minLength = int(tv)
+		default:
+			panic(fmt.Sprintf("%T", v))
+		}
+	}
+
+	if constraintType, ok := constraint["type"]; ok {
+		switch constraintType {
+		case "RANGE":
+			if minimum > 0 {
+				return true
+			}
+		case "LENGTH":
+			if minLength > 0 {
+				return true
+			}
+		}
+	}
+	return false
 }
 
 func (me *Struct) Bytes() ([]byte, error) {
@@ -304,10 +389,12 @@ func NewStruct(t *reflection.Type) *Struct {
 			HCLTag:          camel.Strip(propertyName),
 			JSONTag:         jsonTag,
 			Type:            TypeName(PointerIfOptional(propType, property.Optional)),
+			IsEnumType:      property.Type.UnrefPtr().Kind == reflection.EnumKind,
 			Optional:        property.Optional,
 			OptionalComment: property.OptionalComment,
 			Default:         defVal,
 			Precondition:    property.Precondition,
+			Constraints:     property.Constraints,
 		}))
 	}
 	sort.Slice(structDef.Properties, func(i, j int) bool {

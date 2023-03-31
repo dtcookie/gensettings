@@ -25,6 +25,7 @@ import (
 type Settings struct {
 	IncludedCicsTerminalTransactionIds []string `json:"includedCicsTerminalTransactionIds,omitempty"` // You can use * as wildcard. For example use A* to trace all transaction IDs that start with A.
 	IncludedCicsTransactionIds         []string `json:"includedCicsTransactionIds,omitempty"`         // You can use * as wildcard. For example use A* to trace all transaction IDs that start with A.
+	IncludedImsTerminalTransactionIds  []string `json:"includedImsTerminalTransactionIds,omitempty"`  // You can use * as wildcard. For example use A* to trace all transaction IDs that start with A.
 	IncludedImsTransactionIds          []string `json:"includedImsTransactionIds,omitempty"`          // You can use * as wildcard. For example use A* to trace all transaction IDs that start with A.
 }
 
@@ -37,6 +38,12 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 			Elem:        &schema.Schema{Type: schema.TypeString},
 		},
 		"included_cics_transaction_ids": {
+			Type:        schema.TypeSet,
+			Description: "You can use * as wildcard. For example use A* to trace all transaction IDs that start with A.",
+			Optional:    true, // minobjects == 0
+			Elem:        &schema.Schema{Type: schema.TypeString},
+		},
+		"included_ims_terminal_transaction_ids": {
 			Type:        schema.TypeSet,
 			Description: "You can use * as wildcard. For example use A* to trace all transaction IDs that start with A.",
 			Optional:    true, // minobjects == 0
@@ -55,6 +62,7 @@ func (me *Settings) MarshalHCL(properties hcl.Properties) error {
 	return properties.EncodeAll(map[string]any{
 		"included_cics_terminal_transaction_ids": me.IncludedCicsTerminalTransactionIds,
 		"included_cics_transaction_ids":          me.IncludedCicsTransactionIds,
+		"included_ims_terminal_transaction_ids":  me.IncludedImsTerminalTransactionIds,
 		"included_ims_transaction_ids":           me.IncludedImsTransactionIds,
 	})
 }
@@ -63,6 +71,7 @@ func (me *Settings) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"included_cics_terminal_transaction_ids": &me.IncludedCicsTerminalTransactionIds,
 		"included_cics_transaction_ids":          &me.IncludedCicsTransactionIds,
+		"included_ims_terminal_transaction_ids":  &me.IncludedImsTerminalTransactionIds,
 		"included_ims_transaction_ids":           &me.IncludedImsTransactionIds,
 	})
 }

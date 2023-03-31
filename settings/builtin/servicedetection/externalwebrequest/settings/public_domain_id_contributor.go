@@ -52,8 +52,9 @@ func (me *PublicDomainIdContributor) MarshalHCL(properties hcl.Properties) error
 	})
 }
 
-func (me *PublicDomainIdContributor) HandlePreconditions() {
+func (me *PublicDomainIdContributor) HandlePreconditions() error {
 	// ---- ServiceIdContributor *PublicDomainTransformationSet -> {"expectedValue":true,"property":"enableIdContributor","type":"EQUALS"}
+	return nil
 }
 
 func (me *PublicDomainIdContributor) UnmarshalHCL(decoder hcl.Decoder) error {

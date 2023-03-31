@@ -131,7 +131,7 @@ func main() {
 	}
 	schemata := map[string]*Schema{}
 	for _, schemaStub := range schemaList.Items {
-		// if schemaStub.SchemaID != "builtin:synthetic.browser.outage-handling" {
+		// if schemaStub.SchemaID != "builtin:anomaly-detection.infrastructure-hosts" {
 		// 	continue
 		// }
 		// if !strings.HasPrefix(schemaStub.SchemaID, "builtin:") {
@@ -219,6 +219,7 @@ func main() {
 				Optional:        propertyDefinition.Nullable || propertyDefinition.Precondition != nil || (propertyDefinition.MinObjects != nil && *propertyDefinition.MinObjects == 0),
 				OptionalComment: OptionalComment(propertyDefinition),
 				Precondition:    translatePrecondition(propertyDefinition),
+				Constraints:     translateConstraints(propertyDefinition),
 			}
 			if propertyDefinition.Nullable {
 				property.Type = property.Type.Pointer()

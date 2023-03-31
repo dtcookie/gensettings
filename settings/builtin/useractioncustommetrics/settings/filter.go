@@ -18,7 +18,8 @@
 package useractioncustommetrics
 
 import (
-	"github.com/dynatrace-oss/terraform-provider-dynatrace/dynatrace/opt"
+	"fmt"
+
 	"github.com/dynatrace-oss/terraform-provider-dynatrace/terraform/hcl"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 	"golang.org/x/exp/slices"
@@ -88,11 +89,12 @@ func (me *Filter) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *Filter) HandlePreconditions() {
+func (me *Filter) HandlePreconditions() error {
 	if me.Value == nil && slices.Contains([]string{"EQUALS", "NOT_EQUAL", "LIKE", "LESS_THAN", "LESS_THAN_OR_EQUAL_TO", "GREATER_THAN", "GREATER_THAN_OR_EQUAL_TO", "NOT_LIKE", "STARTS_WITH"}, string(me.Operator)) {
-		me.Value = opt.NewString("")
+		return fmt.Errorf("'value' must be specified if 'operator' is set to '%v'", me.Operator)
 	}
 	// ---- ValueIn []string -> {"expectedValue":"IN","property":"operator","type":"EQUALS"}
+	return nil
 }
 
 func (me *Filter) UnmarshalHCL(decoder hcl.Decoder) error {

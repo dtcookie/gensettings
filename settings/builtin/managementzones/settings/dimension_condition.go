@@ -18,7 +18,8 @@
 package managementzones
 
 import (
-	"github.com/dynatrace-oss/terraform-provider-dynatrace/dynatrace/opt"
+	"fmt"
+
 	"github.com/dynatrace-oss/terraform-provider-dynatrace/terraform/hcl"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
@@ -86,10 +87,11 @@ func (me *DimensionCondition) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *DimensionCondition) HandlePreconditions() {
+func (me *DimensionCondition) HandlePreconditions() error {
 	if me.Key == nil && string(me.ConditionType) == "DIMENSION" {
-		me.Key = opt.NewString("")
+		return fmt.Errorf("'key' must be specified if 'condition_type' is set to '%v'", me.ConditionType)
 	}
+	return nil
 }
 
 func (me *DimensionCondition) UnmarshalHCL(decoder hcl.Decoder) error {

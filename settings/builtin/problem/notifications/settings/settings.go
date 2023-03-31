@@ -173,7 +173,7 @@ func (me *Settings) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *Settings) HandlePreconditions() {
+func (me *Settings) HandlePreconditions() error {
 	// ---- AnsibleTowerNotification *AnsibleTowerNotification -> {"expectedValue":"ANSIBLETOWER","property":"type","type":"EQUALS"}
 	// ---- EmailNotification *EmailNotification -> {"expectedValue":"EMAIL","property":"type","type":"EQUALS"}
 	// ---- JiraNotification *JiraNotification -> {"expectedValue":"JIRA","property":"type","type":"EQUALS"}
@@ -185,6 +185,7 @@ func (me *Settings) HandlePreconditions() {
 	// ---- VictorOpsNotification *VictorOpsNotification -> {"expectedValue":"VICTOROPS","property":"type","type":"EQUALS"}
 	// ---- WebHookNotification *WebHookNotification -> {"expectedValue":"WEBHOOK","property":"type","type":"EQUALS"}
 	// ---- XMattersNotification *XMattersNotification -> {"expectedValue":"XMATTERS","property":"type","type":"EQUALS"}
+	return nil
 }
 
 func (me *Settings) UnmarshalHCL(decoder hcl.Decoder) error {

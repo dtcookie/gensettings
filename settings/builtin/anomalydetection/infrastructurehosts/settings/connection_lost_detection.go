@@ -18,6 +18,8 @@
 package infrastructurehosts
 
 import (
+	"fmt"
+
 	"github.com/dynatrace-oss/terraform-provider-dynatrace/terraform/hcl"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
@@ -49,8 +51,11 @@ func (me *ConnectionLostDetection) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *ConnectionLostDetection) HandlePreconditions() {
-	// ---- OnGracefulShutdowns *ConnectionLostDetectionSensitivity -> {"expectedValue":true,"property":"enabled","type":"EQUALS"}
+func (me *ConnectionLostDetection) HandlePreconditions() error {
+	if me.OnGracefulShutdowns == nil && me.Enabled {
+		return fmt.Errorf("'on_graceful_shutdowns' must be specified if 'enabled' is set to '%v'", me.Enabled)
+	}
+	return nil
 }
 
 func (me *ConnectionLostDetection) UnmarshalHCL(decoder hcl.Decoder) error {

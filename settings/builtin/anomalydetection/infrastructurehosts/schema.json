@@ -904,7 +904,7 @@
 					],
 					"default": 5,
 					"description": "",
-					"displayName": "Alert if the System Load / Logical cpu core is higher than this threshold for the defined amount of samples",
+					"displayName": "Alert if the System Load divided by the number of logical CPU cores is higher than this threshold for the defined amount of samples.",
 					"documentation": "",
 					"maxObjects": 1,
 					"modificationPolicy": "DEFAULT",

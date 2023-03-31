@@ -52,8 +52,9 @@ func (me *ContainerRestarts) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *ContainerRestarts) HandlePreconditions() {
+func (me *ContainerRestarts) HandlePreconditions() error {
 	// ---- Configuration *ContainerRestartsConfig -> {"expectedValue":true,"property":"enabled","type":"EQUALS"}
+	return nil
 }
 
 func (me *ContainerRestarts) UnmarshalHCL(decoder hcl.Decoder) error {

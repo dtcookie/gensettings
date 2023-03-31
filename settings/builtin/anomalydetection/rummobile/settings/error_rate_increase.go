@@ -18,6 +18,8 @@
 package rummobile
 
 import (
+	"fmt"
+
 	"github.com/dynatrace-oss/terraform-provider-dynatrace/terraform/hcl"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
@@ -69,10 +71,13 @@ func (me *ErrorRateIncrease) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *ErrorRateIncrease) HandlePreconditions() {
-	// ---- DetectionMode *DetectionMode -> {"expectedValue":true,"property":"enabled","type":"EQUALS"}
+func (me *ErrorRateIncrease) HandlePreconditions() error {
+	if me.DetectionMode == nil && me.Enabled {
+		return fmt.Errorf("'detection_mode' must be specified if 'enabled' is set to '%v'", me.Enabled)
+	}
 	// ---- ErrorRateIncreaseAuto *ErrorRateIncreaseAuto -> {"preconditions":[{"expectedValue":true,"property":"enabled","type":"EQUALS"},{"expectedValue":"auto","property":"detectionMode","type":"EQUALS"}],"type":"AND"}
 	// ---- ErrorRateIncreaseFixed *ErrorRateIncreaseFixed -> {"preconditions":[{"expectedValue":true,"property":"enabled","type":"EQUALS"},{"expectedValue":"fixed","property":"detectionMode","type":"EQUALS"}],"type":"AND"}
+	return nil
 }
 
 func (me *ErrorRateIncrease) UnmarshalHCL(decoder hcl.Decoder) error {

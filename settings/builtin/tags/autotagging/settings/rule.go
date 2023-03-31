@@ -18,7 +18,8 @@
 package autotagging
 
 import (
-	"github.com/dynatrace-oss/terraform-provider-dynatrace/dynatrace/opt"
+	"fmt"
+
 	"github.com/dynatrace-oss/terraform-provider-dynatrace/terraform/hcl"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
@@ -103,11 +104,12 @@ func (me *Rule) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *Rule) HandlePreconditions() {
+func (me *Rule) HandlePreconditions() error {
 	if me.EntitySelector == nil && string(me.Type) == "SELECTOR" {
-		me.EntitySelector = opt.NewString("")
+		return fmt.Errorf("'entity_selector' must be specified if 'type' is set to '%v'", me.Type)
 	}
 	// ---- AttributeRule *AutoTagAttributeRule -> {"expectedValue":"ME","property":"type","type":"EQUALS"}
+	return nil
 }
 
 func (me *Rule) UnmarshalHCL(decoder hcl.Decoder) error {

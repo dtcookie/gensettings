@@ -18,7 +18,8 @@
 package metricevents
 
 import (
-	"github.com/dynatrace-oss/terraform-provider-dynatrace/dynatrace/opt"
+	"fmt"
+
 	"github.com/dynatrace-oss/terraform-provider-dynatrace/terraform/hcl"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
@@ -98,17 +99,20 @@ func (me *QueryDefinition) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *QueryDefinition) HandlePreconditions() {
+func (me *QueryDefinition) HandlePreconditions() error {
+	if me.Aggregation == nil && string(me.Type) == "METRIC_KEY" {
+		return fmt.Errorf("'aggregation' must be specified if 'type' is set to '%v'", me.Type)
+	}
 	if me.MetricKey == nil && string(me.Type) == "METRIC_KEY" {
-		me.MetricKey = opt.NewString("")
+		return fmt.Errorf("'metric_key' must be specified if 'type' is set to '%v'", me.Type)
 	}
 	if me.MetricSelector == nil && string(me.Type) == "METRIC_SELECTOR" {
-		me.MetricSelector = opt.NewString("")
+		return fmt.Errorf("'metric_selector' must be specified if 'type' is set to '%v'", me.Type)
 	}
-	// ---- Aggregation *Aggregation -> {"expectedValue":"METRIC_KEY","property":"type","type":"EQUALS"}
 	// ---- DimensionFilter DimensionFilters -> {"preconditions":[{"expectedValue":"METRIC_KEY","property":"type","type":"EQUALS"},{"precondition":{"property":"metricKey","type":"NULL"},"type":"NOT"}],"type":"AND"}
 	// ---- EntityFilter *EntityFilter -> {"preconditions":[{"expectedValue":"METRIC_KEY","property":"type","type":"EQUALS"},{"precondition":{"property":"metricKey","type":"NULL"},"type":"NOT"}],"type":"AND"}
 	// ---- ManagementZone *string -> {"preconditions":[{"expectedValue":"METRIC_KEY","property":"type","type":"EQUALS"},{"expectedValue":"METRIC_SELECTOR","property":"type","type":"EQUALS"}],"type":"OR"}
+	return nil
 }
 
 func (me *QueryDefinition) UnmarshalHCL(decoder hcl.Decoder) error {

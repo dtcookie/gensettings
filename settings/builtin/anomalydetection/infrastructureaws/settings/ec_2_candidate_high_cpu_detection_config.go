@@ -18,6 +18,8 @@
 package infrastructureaws
 
 import (
+	"fmt"
+
 	"github.com/dynatrace-oss/terraform-provider-dynatrace/terraform/hcl"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
@@ -59,9 +61,12 @@ func (me *Ec2CandidateHighCpuDetectionConfig) MarshalHCL(properties hcl.Properti
 	})
 }
 
-func (me *Ec2CandidateHighCpuDetectionConfig) HandlePreconditions() {
+func (me *Ec2CandidateHighCpuDetectionConfig) HandlePreconditions() error {
+	if me.DetectionMode == nil && me.Enabled {
+		return fmt.Errorf("'detection_mode' must be specified if 'enabled' is set to '%v'", me.Enabled)
+	}
 	// ---- CustomThresholds *Ec2CandidateHighCpuDetectionThresholds -> {"expectedValue":"custom","property":"detectionMode","type":"EQUALS"}
-	// ---- DetectionMode *DetectionMode -> {"expectedValue":true,"property":"enabled","type":"EQUALS"}
+	return nil
 }
 
 func (me *Ec2CandidateHighCpuDetectionConfig) UnmarshalHCL(decoder hcl.Decoder) error {

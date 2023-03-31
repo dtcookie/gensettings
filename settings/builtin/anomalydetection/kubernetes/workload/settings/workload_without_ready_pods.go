@@ -52,8 +52,9 @@ func (me *WorkloadWithoutReadyPods) MarshalHCL(properties hcl.Properties) error 
 	})
 }
 
-func (me *WorkloadWithoutReadyPods) HandlePreconditions() {
+func (me *WorkloadWithoutReadyPods) HandlePreconditions() error {
 	// ---- Configuration *WorkloadWithoutReadyPodsConfig -> {"expectedValue":true,"property":"enabled","type":"EQUALS"}
+	return nil
 }
 
 func (me *WorkloadWithoutReadyPods) UnmarshalHCL(decoder hcl.Decoder) error {

@@ -18,6 +18,7 @@
 package metricevents
 
 import (
+	"github.com/dynatrace-oss/terraform-provider-dynatrace/dynatrace/opt"
 	"github.com/dynatrace-oss/terraform-provider-dynatrace/terraform/hcl"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
@@ -98,10 +99,17 @@ func (me *ModelProperties) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *ModelProperties) HandlePreconditions() {
-	// ---- SignalFluctuation *float64 -> {"expectedValue":"AUTO_ADAPTIVE_THRESHOLD","property":"type","type":"EQUALS"}
-	// ---- Threshold *float64 -> {"expectedValue":"STATIC_THRESHOLD","property":"type","type":"EQUALS"}
-	// ---- Tolerance *float64 -> {"expectedValue":"SEASONAL_BASELINE","property":"type","type":"EQUALS"}
+func (me *ModelProperties) HandlePreconditions() error {
+	if me.SignalFluctuation == nil && string(me.Type) == "AUTO_ADAPTIVE_THRESHOLD" {
+		me.SignalFluctuation = opt.NewFloat64(0.0)
+	}
+	if me.Threshold == nil && string(me.Type) == "STATIC_THRESHOLD" {
+		me.Threshold = opt.NewFloat64(0.0)
+	}
+	if me.Tolerance == nil && string(me.Type) == "SEASONAL_BASELINE" {
+		me.Tolerance = opt.NewFloat64(0.0)
+	}
+	return nil
 }
 
 func (me *ModelProperties) UnmarshalHCL(decoder hcl.Decoder) error {

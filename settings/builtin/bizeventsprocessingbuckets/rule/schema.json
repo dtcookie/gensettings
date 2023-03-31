@@ -30,7 +30,7 @@
 				"useApiSearch": false,
 				"validate": true
 			},
-			"default": "",
+			"default": "default_events_drop",
 			"description": "Events will be stored in the selected bucket. Analyze bucket contents in the [log \u0026 event viewer.](/ui/logs-events?advancedQueryMode=true\u0026query=fetch+bizevents)",
 			"displayName": "Bucket",
 			"documentation": "",
@@ -106,5 +106,5 @@
 	],
 	"schemaId": "builtin:bizevents-processing-buckets.rule",
 	"types": {},
-	"version": "1.0.2"
+	"version": "1.0.3"
 }

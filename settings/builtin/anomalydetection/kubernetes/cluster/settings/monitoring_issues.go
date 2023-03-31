@@ -52,8 +52,9 @@ func (me *MonitoringIssues) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *MonitoringIssues) HandlePreconditions() {
+func (me *MonitoringIssues) HandlePreconditions() error {
 	// ---- Configuration *MonitoringIssuesConfig -> {"expectedValue":true,"property":"enabled","type":"EQUALS"}
+	return nil
 }
 
 func (me *MonitoringIssues) UnmarshalHCL(decoder hcl.Decoder) error {

@@ -52,8 +52,9 @@ func (me *CpuRequestsQuotaSaturation) MarshalHCL(properties hcl.Properties) erro
 	})
 }
 
-func (me *CpuRequestsQuotaSaturation) HandlePreconditions() {
+func (me *CpuRequestsQuotaSaturation) HandlePreconditions() error {
 	// ---- Configuration *CpuRequestsQuotaSaturationConfig -> {"expectedValue":true,"property":"enabled","type":"EQUALS"}
+	return nil
 }
 
 func (me *CpuRequestsQuotaSaturation) UnmarshalHCL(decoder hcl.Decoder) error {

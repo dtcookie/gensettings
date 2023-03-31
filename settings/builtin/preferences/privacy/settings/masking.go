@@ -18,6 +18,8 @@
 package privacy
 
 import (
+	"fmt"
+
 	"github.com/dynatrace-oss/terraform-provider-dynatrace/terraform/hcl"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
@@ -63,8 +65,11 @@ func (me *Masking) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *Masking) HandlePreconditions() {
-	// ---- IpAddressMasking *IpAddressMaskingOption -> {"expectedValue":true,"property":"ipAddressMaskingEnabled","type":"EQUALS"}
+func (me *Masking) HandlePreconditions() error {
+	if me.IpAddressMasking == nil && me.IpAddressMaskingEnabled {
+		return fmt.Errorf("'ip_address_masking' must be specified if 'ip_address_masking_enabled' is set to '%v'", me.IpAddressMaskingEnabled)
+	}
+	return nil
 }
 
 func (me *Masking) UnmarshalHCL(decoder hcl.Decoder) error {

@@ -57,13 +57,14 @@ func (me *CaptureSettings) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *CaptureSettings) HandlePreconditions() {
+func (me *CaptureSettings) HandlePreconditions() error {
 	if me.ConsiderForAI == nil && me.Capture {
 		me.ConsiderForAI = opt.NewBool(false)
 	}
 	if me.ImpactApdex == nil && me.Capture {
 		me.ImpactApdex = opt.NewBool(false)
 	}
+	return nil
 }
 
 func (me *CaptureSettings) UnmarshalHCL(decoder hcl.Decoder) error {

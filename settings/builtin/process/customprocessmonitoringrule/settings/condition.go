@@ -18,7 +18,8 @@
 package customprocessmonitoringrule
 
 import (
-	"github.com/dynatrace-oss/terraform-provider-dynatrace/dynatrace/opt"
+	"fmt"
+
 	"github.com/dynatrace-oss/terraform-provider-dynatrace/terraform/hcl"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 	"golang.org/x/exp/slices"
@@ -65,13 +66,14 @@ func (me *Condition) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *Condition) HandlePreconditions() {
+func (me *Condition) HandlePreconditions() error {
 	if me.EnvVar == nil && string(me.Item) == "UNKNOWN" {
-		me.EnvVar = opt.NewString("")
+		return fmt.Errorf("'env_var' must be specified if 'item' is set to '%v'", me.Item)
 	}
 	if me.Value == nil && !slices.Contains([]string{"EXISTS", "NOT_EXISTS"}, string(me.Operator)) {
-		me.Value = opt.NewString("")
+		return fmt.Errorf("'value' must be specified if 'operator' is set to '%v'", me.Operator)
 	}
+	return nil
 }
 
 func (me *Condition) UnmarshalHCL(decoder hcl.Decoder) error {

@@ -18,6 +18,8 @@
 package spancontextpropagation
 
 import (
+	"fmt"
+
 	"github.com/dynatrace-oss/terraform-provider-dynatrace/dynatrace/opt"
 	"github.com/dynatrace-oss/terraform-provider-dynatrace/terraform/hcl"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
@@ -100,17 +102,20 @@ func (me *SpanMatcher) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *SpanMatcher) HandlePreconditions() {
+func (me *SpanMatcher) HandlePreconditions() error {
 	if me.CaseSensitive == nil && string(me.Source) != "SPAN_KIND" {
 		me.CaseSensitive = opt.NewBool(false)
-	}
-	if me.SourceKey == nil && string(me.Source) == "ATTRIBUTE" {
-		me.SourceKey = opt.NewString("")
 	}
 	if me.Value == nil && string(me.Source) != "SPAN_KIND" {
 		me.Value = opt.NewString("")
 	}
-	// ---- SpanKindValue *SpanKind -> {"expectedValue":"SPAN_KIND","property":"source","type":"EQUALS"}
+	if me.SourceKey == nil && string(me.Source) == "ATTRIBUTE" {
+		return fmt.Errorf("'source_key' must be specified if 'source' is set to '%v'", me.Source)
+	}
+	if me.SpanKindValue == nil && string(me.Source) == "SPAN_KIND" {
+		return fmt.Errorf("'span_kind_value' must be specified if 'source' is set to '%v'", me.Source)
+	}
+	return nil
 }
 
 func (me *SpanMatcher) UnmarshalHCL(decoder hcl.Decoder) error {

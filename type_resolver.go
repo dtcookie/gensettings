@@ -95,10 +95,25 @@ func (me *TypeResolver) ResolveType(name string) *reflection.Type {
 			Optional:        propertyDefinition.Nullable || propertyDefinition.Precondition != nil || (propertyDefinition.MinObjects != nil && *propertyDefinition.MinObjects == 0),
 			OptionalComment: OptionalComment(propertyDefinition),
 			Precondition:    translatePrecondition(propertyDefinition),
+			Constraints:     translateConstraints(propertyDefinition),
 		}
 		structType.Properties[propertyName] = property
 	}
 	return structType
+}
+
+func translateConstraints(propertyDefinition property.Definition) []map[string]any {
+	if len(propertyDefinition.Constraints) == 0 {
+		return nil
+	}
+	constraints := []map[string]any{}
+	for _, constraint := range propertyDefinition.Constraints {
+		data, _ := json.Marshal(constraint)
+		m := map[string]any{}
+		json.Unmarshal(data, &m)
+		constraints = append(constraints, m)
+	}
+	return constraints
 }
 
 func translatePrecondition(propertyDefinition property.Definition) map[string]any {

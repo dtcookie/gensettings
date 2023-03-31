@@ -52,8 +52,9 @@ func (me *PodsQuotaSaturation) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *PodsQuotaSaturation) HandlePreconditions() {
+func (me *PodsQuotaSaturation) HandlePreconditions() error {
 	// ---- Configuration *PodsQuotaSaturationConfig -> {"expectedValue":true,"property":"enabled","type":"EQUALS"}
+	return nil
 }
 
 func (me *PodsQuotaSaturation) UnmarshalHCL(decoder hcl.Decoder) error {

@@ -18,7 +18,8 @@
 package updates
 
 import (
-	"github.com/dynatrace-oss/terraform-provider-dynatrace/dynatrace/opt"
+	"fmt"
+
 	"github.com/dynatrace-oss/terraform-provider-dynatrace/terraform/hcl"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 	"golang.org/x/exp/slices"
@@ -76,12 +77,13 @@ func (me *Settings) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *Settings) HandlePreconditions() {
+func (me *Settings) HandlePreconditions() error {
 	if me.TargetVersion == nil && slices.Contains([]string{"AUTOMATIC", "AUTOMATIC_DURING_MW"}, string(me.UpdateMode)) {
-		me.TargetVersion = opt.NewString("")
+		return fmt.Errorf("'target_version' must be specified if 'update_mode' is set to '%v'", me.UpdateMode)
 	}
 	// ---- MaintenanceWindows MaintenanceWindows -> {"expectedValue":"AUTOMATIC_DURING_MW","property":"updateMode","type":"EQUALS"}
 	// ---- Revision *string -> {"preconditions":[{"precondition":{"expectedValues":["latest","previous","older"],"property":"targetVersion","type":"IN"},"type":"NOT"},{"expectedValues":["AUTOMATIC","AUTOMATIC_DURING_MW"],"property":"updateMode","type":"IN"}],"type":"AND"}
+	return nil
 }
 
 func (me *Settings) UnmarshalHCL(decoder hcl.Decoder) error {

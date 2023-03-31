@@ -18,6 +18,8 @@
 package databases
 
 import (
+	"fmt"
+
 	"github.com/dynatrace-oss/terraform-provider-dynatrace/dynatrace/opt"
 	"github.com/dynatrace-oss/terraform-provider-dynatrace/terraform/hcl"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
@@ -57,11 +59,14 @@ func (me *LoadDrops) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *LoadDrops) HandlePreconditions() {
-	if me.MinutesAbnormalState == nil && me.Enabled {
-		me.MinutesAbnormalState = opt.NewInt(0)
+func (me *LoadDrops) HandlePreconditions() error {
+	if me.LoadDropPercent == nil && me.Enabled {
+		me.LoadDropPercent = opt.NewFloat64(0.0)
 	}
-	// ---- LoadDropPercent *float64 -> {"expectedValue":true,"property":"enabled","type":"EQUALS"}
+	if me.MinutesAbnormalState == nil && me.Enabled {
+		return fmt.Errorf("'minutes_abnormal_state' must be specified if 'enabled' is set to '%v'", me.Enabled)
+	}
+	return nil
 }
 
 func (me *LoadDrops) UnmarshalHCL(decoder hcl.Decoder) error {

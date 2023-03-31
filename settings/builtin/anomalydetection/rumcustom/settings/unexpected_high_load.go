@@ -18,6 +18,8 @@
 package rumcustom
 
 import (
+	"fmt"
+
 	"github.com/dynatrace-oss/terraform-provider-dynatrace/terraform/hcl"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
@@ -49,8 +51,11 @@ func (me *UnexpectedHighLoad) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *UnexpectedHighLoad) HandlePreconditions() {
-	// ---- ThresholdPercentage *float64 -> {"expectedValue":true,"property":"enabled","type":"EQUALS"}
+func (me *UnexpectedHighLoad) HandlePreconditions() error {
+	if me.ThresholdPercentage == nil && me.Enabled {
+		return fmt.Errorf("'threshold_percentage' must be specified if 'enabled' is set to '%v'", me.Enabled)
+	}
+	return nil
 }
 
 func (me *UnexpectedHighLoad) UnmarshalHCL(decoder hcl.Decoder) error {

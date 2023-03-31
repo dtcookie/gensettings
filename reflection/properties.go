@@ -12,6 +12,7 @@ type Property struct {
 	Optional        bool   `json:"optional"`
 	OptionalComment string
 	Precondition    map[string]any
+	Constraints     []map[string]any
 	Scope           string `json:"scope"`
 }
 

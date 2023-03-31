@@ -52,8 +52,9 @@ func (me *DeploymentStuck) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *DeploymentStuck) HandlePreconditions() {
+func (me *DeploymentStuck) HandlePreconditions() error {
 	// ---- Configuration *DeploymentStuckConfig -> {"expectedValue":true,"property":"enabled","type":"EQUALS"}
+	return nil
 }
 
 func (me *DeploymentStuck) UnmarshalHCL(decoder hcl.Decoder) error {

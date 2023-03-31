@@ -18,6 +18,8 @@
 package services
 
 import (
+	"fmt"
+
 	"github.com/dynatrace-oss/terraform-provider-dynatrace/terraform/hcl"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
@@ -69,10 +71,13 @@ func (me *FailureRate) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *FailureRate) HandlePreconditions() {
+func (me *FailureRate) HandlePreconditions() error {
+	if me.DetectionMode == nil && me.Enabled {
+		return fmt.Errorf("'detection_mode' must be specified if 'enabled' is set to '%v'", me.Enabled)
+	}
 	// ---- AutoDetection *FailureRateAuto -> {"preconditions":[{"expectedValue":true,"property":"enabled","type":"EQUALS"},{"expectedValue":"auto","property":"detectionMode","type":"EQUALS"}],"type":"AND"}
-	// ---- DetectionMode *DetectionMode -> {"expectedValue":true,"property":"enabled","type":"EQUALS"}
 	// ---- FixedDetection *FailureRateFixed -> {"preconditions":[{"expectedValue":true,"property":"enabled","type":"EQUALS"},{"expectedValue":"fixed","property":"detectionMode","type":"EQUALS"}],"type":"AND"}
+	return nil
 }
 
 func (me *FailureRate) UnmarshalHCL(decoder hcl.Decoder) error {

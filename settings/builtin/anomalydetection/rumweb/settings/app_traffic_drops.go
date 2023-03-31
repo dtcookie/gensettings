@@ -52,8 +52,9 @@ func (me *AppTrafficDrops) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *AppTrafficDrops) HandlePreconditions() {
+func (me *AppTrafficDrops) HandlePreconditions() error {
 	// ---- TrafficDrops *TrafficDrops -> {"expectedValue":true,"property":"enabled","type":"EQUALS"}
+	return nil
 }
 
 func (me *AppTrafficDrops) UnmarshalHCL(decoder hcl.Decoder) error {

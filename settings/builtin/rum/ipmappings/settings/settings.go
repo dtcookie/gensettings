@@ -84,9 +84,10 @@ func (me *Settings) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *Settings) HandlePreconditions() {
+func (me *Settings) HandlePreconditions() error {
 	// ---- Latitude *float64 -> {"property":"city","type":"NULL"}
 	// ---- Longitude *float64 -> {"property":"city","type":"NULL"}
+	return nil
 }
 
 func (me *Settings) UnmarshalHCL(decoder hcl.Decoder) error {

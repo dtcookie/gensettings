@@ -52,8 +52,9 @@ func (me *LowDiskSpaceCritical) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *LowDiskSpaceCritical) HandlePreconditions() {
+func (me *LowDiskSpaceCritical) HandlePreconditions() error {
 	// ---- Configuration *LowDiskSpaceCriticalConfig -> {"expectedValue":true,"property":"enabled","type":"EQUALS"}
+	return nil
 }
 
 func (me *LowDiskSpaceCritical) UnmarshalHCL(decoder hcl.Decoder) error {

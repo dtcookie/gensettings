@@ -71,9 +71,10 @@ func (me *Settings) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *Settings) HandlePreconditions() {
+func (me *Settings) HandlePreconditions() error {
 	// ---- Forcible *bool -> {"pattern":"^.+_FORCIBLE$","property":"key","type":"REGEX_MATCH"}
 	// ---- Instrumentation *bool -> {"pattern":"^SENSOR_.+$","property":"key","type":"REGEX_MATCH"}
+	return nil
 }
 
 func (me *Settings) UnmarshalHCL(decoder hcl.Decoder) error {

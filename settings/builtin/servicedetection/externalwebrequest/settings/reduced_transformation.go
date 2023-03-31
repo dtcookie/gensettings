@@ -18,6 +18,8 @@
 package externalwebrequest
 
 import (
+	"fmt"
+
 	"github.com/dynatrace-oss/terraform-provider-dynatrace/dynatrace/opt"
 	"github.com/dynatrace-oss/terraform-provider-dynatrace/terraform/hcl"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
@@ -101,22 +103,23 @@ func (me *ReducedTransformation) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *ReducedTransformation) HandlePreconditions() {
+func (me *ReducedTransformation) HandlePreconditions() error {
 	if me.IncludeHexNumbers == nil && string(me.TransformationType) == "REMOVE_NUMBERS" {
 		me.IncludeHexNumbers = opt.NewBool(false)
 	}
 	if me.MinDigitCount == nil && string(me.TransformationType) == "REMOVE_NUMBERS" {
-		me.MinDigitCount = opt.NewInt(0)
+		return fmt.Errorf("'min_digit_count' must be specified if 'transformation_type' is set to '%v'", me.TransformationType)
 	}
 	if me.Prefix == nil && slices.Contains([]string{"REPLACE_BETWEEN"}, string(me.TransformationType)) {
-		me.Prefix = opt.NewString("")
+		return fmt.Errorf("'prefix' must be specified if 'transformation_type' is set to '%v'", me.TransformationType)
 	}
 	if me.ReplacementValue == nil && string(me.TransformationType) == "REPLACE_BETWEEN" {
-		me.ReplacementValue = opt.NewString("")
+		return fmt.Errorf("'replacement_value' must be specified if 'transformation_type' is set to '%v'", me.TransformationType)
 	}
 	if me.Suffix == nil && slices.Contains([]string{"BEFORE", "REPLACE_BETWEEN"}, string(me.TransformationType)) {
-		me.Suffix = opt.NewString("")
+		return fmt.Errorf("'suffix' must be specified if 'transformation_type' is set to '%v'", me.TransformationType)
 	}
+	return nil
 }
 
 func (me *ReducedTransformation) UnmarshalHCL(decoder hcl.Decoder) error {

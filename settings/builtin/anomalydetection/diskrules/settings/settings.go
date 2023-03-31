@@ -18,8 +18,10 @@
 package diskrules
 
 import (
+	"github.com/dynatrace-oss/terraform-provider-dynatrace/dynatrace/opt"
 	"github.com/dynatrace-oss/terraform-provider-dynatrace/terraform/hcl"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"golang.org/x/exp/slices"
 )
 
 type Settings struct {
@@ -106,9 +108,14 @@ func (me *Settings) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *Settings) HandlePreconditions() {
-	// ---- ThresholdMilliseconds *float64 -> {"expectedValues":["READ_TIME_EXCEEDING","WRITE_TIME_EXCEEDING"],"property":"metric","type":"IN"}
-	// ---- ThresholdPercent *float64 -> {"expectedValues":["LOW_DISK_SPACE","LOW_INODES"],"property":"metric","type":"IN"}
+func (me *Settings) HandlePreconditions() error {
+	if me.ThresholdMilliseconds == nil && slices.Contains([]string{"READ_TIME_EXCEEDING", "WRITE_TIME_EXCEEDING"}, string(me.Metric)) {
+		me.ThresholdMilliseconds = opt.NewFloat64(0.0)
+	}
+	if me.ThresholdPercent == nil && slices.Contains([]string{"LOW_DISK_SPACE", "LOW_INODES"}, string(me.Metric)) {
+		me.ThresholdPercent = opt.NewFloat64(0.0)
+	}
+	return nil
 }
 
 func (me *Settings) UnmarshalHCL(decoder hcl.Decoder) error {

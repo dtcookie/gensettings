@@ -18,6 +18,8 @@
 package osservicesmonitoring
 
 import (
+	"fmt"
+
 	"github.com/dynatrace-oss/terraform-provider-dynatrace/dynatrace/opt"
 	"github.com/dynatrace-oss/terraform-provider-dynatrace/terraform/hcl"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
@@ -137,18 +139,19 @@ func (me *Settings) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *Settings) HandlePreconditions() {
-	if me.AlertActivationDuration == nil && me.Alerting {
-		me.AlertActivationDuration = opt.NewInt(0)
-	}
+func (me *Settings) HandlePreconditions() error {
 	if me.NotInstalledAlerting == nil && me.Alerting {
 		me.NotInstalledAlerting = opt.NewBool(false)
+	}
+	if me.AlertActivationDuration == nil && me.Alerting {
+		return fmt.Errorf("'alert_activation_duration' must be specified if 'alerting' is set to '%v'", me.Alerting)
 	}
 	// ---- DetectionConditionsLinux LinuxDetectionConditions -> {"expectedValues":["LINUX"],"property":"system","type":"IN"}
 	// ---- DetectionConditionsWindows WindowsDetectionConditions -> {"expectedValues":["WINDOWS"],"property":"system","type":"IN"}
 	// ---- Metadata MetadataItems -> {"expectedValue":true,"property":"alerting","type":"EQUALS"}
 	// ---- StatusConditionLinux *string -> {"preconditions":[{"expectedValue":"LINUX","property":"system","type":"EQUALS"},{"expectedValue":true,"property":"alerting","type":"EQUALS"}],"type":"AND"}
 	// ---- StatusConditionWindows *string -> {"preconditions":[{"expectedValue":"WINDOWS","property":"system","type":"EQUALS"},{"expectedValue":true,"property":"alerting","type":"EQUALS"}],"type":"AND"}
+	return nil
 }
 
 func (me *Settings) UnmarshalHCL(decoder hcl.Decoder) error {

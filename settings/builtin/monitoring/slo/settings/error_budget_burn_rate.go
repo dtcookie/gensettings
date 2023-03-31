@@ -18,6 +18,8 @@
 package slo
 
 import (
+	"fmt"
+
 	"github.com/dynatrace-oss/terraform-provider-dynatrace/terraform/hcl"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
@@ -49,8 +51,11 @@ func (me *ErrorBudgetBurnRate) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *ErrorBudgetBurnRate) HandlePreconditions() {
-	// ---- FastBurnThreshold *float64 -> {"expectedValue":true,"property":"burnRateVisualizationEnabled","type":"EQUALS"}
+func (me *ErrorBudgetBurnRate) HandlePreconditions() error {
+	if me.FastBurnThreshold == nil && me.BurnRateVisualizationEnabled {
+		return fmt.Errorf("'fast_burn_threshold' must be specified if 'burn_rate_visualization_enabled' is set to '%v'", me.BurnRateVisualizationEnabled)
+	}
+	return nil
 }
 
 func (me *ErrorBudgetBurnRate) UnmarshalHCL(decoder hcl.Decoder) error {

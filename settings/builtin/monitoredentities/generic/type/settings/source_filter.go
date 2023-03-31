@@ -18,7 +18,8 @@
 package generictype
 
 import (
-	"github.com/dynatrace-oss/terraform-provider-dynatrace/dynatrace/opt"
+	"fmt"
+
 	"github.com/dynatrace-oss/terraform-provider-dynatrace/terraform/hcl"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 	"golang.org/x/exp/slices"
@@ -74,10 +75,11 @@ func (me *SourceFilter) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *SourceFilter) HandlePreconditions() {
+func (me *SourceFilter) HandlePreconditions() error {
 	if me.Condition == nil && !slices.Contains([]string{"Logs", "Spans", "Topology"}, string(me.SourceType)) {
-		me.Condition = opt.NewString("")
+		return fmt.Errorf("'condition' must be specified if 'source_type' is set to '%v'", me.SourceType)
 	}
+	return nil
 }
 
 func (me *SourceFilter) UnmarshalHCL(decoder hcl.Decoder) error {

@@ -18,7 +18,8 @@
 package incoming
 
 import (
-	"github.com/dynatrace-oss/terraform-provider-dynatrace/dynatrace/opt"
+	"fmt"
+
 	"github.com/dynatrace-oss/terraform-provider-dynatrace/terraform/hcl"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 	"golang.org/x/exp/slices"
@@ -51,10 +52,11 @@ func (me *DataSourceComplex) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *DataSourceComplex) HandlePreconditions() {
+func (me *DataSourceComplex) HandlePreconditions() error {
 	if me.Path == nil && slices.Contains([]string{"request.body", "request.headers", "request.parameters", "response.body", "response.headers"}, string(me.DataSource)) {
-		me.Path = opt.NewString("")
+		return fmt.Errorf("'path' must be specified if 'data_source' is set to '%v'", me.DataSource)
 	}
+	return nil
 }
 
 func (me *DataSourceComplex) UnmarshalHCL(decoder hcl.Decoder) error {

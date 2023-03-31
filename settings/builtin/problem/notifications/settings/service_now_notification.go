@@ -84,8 +84,9 @@ func (me *ServiceNowNotification) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *ServiceNowNotification) HandlePreconditions() {
+func (me *ServiceNowNotification) HandlePreconditions() error {
 	// ---- InstanceName *string -> {"preconditions":[{"property":"url","type":"NULL"},{"expectedValue":"","property":"url","type":"EQUALS"}],"type":"OR"}
+	return nil
 }
 
 func (me *ServiceNowNotification) UnmarshalHCL(decoder hcl.Decoder) error {

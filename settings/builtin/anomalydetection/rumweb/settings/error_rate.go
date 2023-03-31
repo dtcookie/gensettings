@@ -18,6 +18,8 @@
 package rumweb
 
 import (
+	"fmt"
+
 	"github.com/dynatrace-oss/terraform-provider-dynatrace/terraform/hcl"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
@@ -69,10 +71,13 @@ func (me *ErrorRate) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *ErrorRate) HandlePreconditions() {
+func (me *ErrorRate) HandlePreconditions() error {
+	if me.ErrorRateDetectionMode == nil && me.Enabled {
+		return fmt.Errorf("'error_rate_detection_mode' must be specified if 'enabled' is set to '%v'", me.Enabled)
+	}
 	// ---- ErrorRateAuto *ErrorRateAuto -> {"preconditions":[{"expectedValue":true,"property":"enabled","type":"EQUALS"},{"expectedValue":"auto","property":"errorRateDetectionMode","type":"EQUALS"}],"type":"AND"}
-	// ---- ErrorRateDetectionMode *DetectionMode -> {"expectedValue":true,"property":"enabled","type":"EQUALS"}
 	// ---- ErrorRateFixed *ErrorRateFixed -> {"preconditions":[{"expectedValue":true,"property":"enabled","type":"EQUALS"},{"expectedValue":"fixed","property":"errorRateDetectionMode","type":"EQUALS"}],"type":"AND"}
+	return nil
 }
 
 func (me *ErrorRate) UnmarshalHCL(decoder hcl.Decoder) error {

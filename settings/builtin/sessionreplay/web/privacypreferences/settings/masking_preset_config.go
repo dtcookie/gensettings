@@ -90,11 +90,12 @@ func (me *MaskingPresetConfig) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *MaskingPresetConfig) HandlePreconditions() {
+func (me *MaskingPresetConfig) HandlePreconditions() error {
 	// ---- PlaybackMaskingAllowListRules AllowListRules -> {"expectedValue":"ALLOW_LIST","property":"playbackMaskingPreset","type":"EQUALS"}
 	// ---- PlaybackMaskingBlockListRules BlockListRules -> {"expectedValue":"BLOCK_LIST","property":"playbackMaskingPreset","type":"EQUALS"}
 	// ---- RecordingMaskingAllowListRules AllowListRules -> {"expectedValue":"ALLOW_LIST","property":"recordingMaskingPreset","type":"EQUALS"}
 	// ---- RecordingMaskingBlockListRules BlockListRules -> {"expectedValue":"BLOCK_LIST","property":"recordingMaskingPreset","type":"EQUALS"}
+	return nil
 }
 
 func (me *MaskingPresetConfig) UnmarshalHCL(decoder hcl.Decoder) error {

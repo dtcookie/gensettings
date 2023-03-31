@@ -18,6 +18,8 @@
 package kubernetes
 
 import (
+	"fmt"
+
 	"github.com/dynatrace-oss/terraform-provider-dynatrace/dynatrace/opt"
 	"github.com/dynatrace-oss/terraform-provider-dynatrace/terraform/hcl"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
@@ -29,7 +31,7 @@ type Settings struct {
 	CertificateCheckEnabled         *bool             `json:"certificateCheckEnabled,omitempty"`     // Require valid certificates for communication with API server (recommended)
 	CloudApplicationPipelineEnabled bool              `json:"cloudApplicationPipelineEnabled"`       // Monitor Kubernetes namespaces, services, workloads, and pods
 	ClusterID                       *string           `json:"clusterId,omitempty"`                   // Unique ID of the cluster, the containerized ActiveGate is deployed to. Defaults to the UUID of the kube-system namespace. The cluster ID of containerized ActiveGates is shown on the Deployment status screen.
-	ClusterIdEnabled                bool              `json:"clusterIdEnabled"`                      // This is required for monitoring persistent volume claims. For more information on local Kubernetes API monitoring, see the [documentation](https://dt-url.net/6q62uep).
+	ClusterIdEnabled                bool              `json:"clusterIdEnabled"`                      // For more information on local Kubernetes API monitoring, see the [documentation](https://dt-url.net/6q62uep).
 	Enabled                         bool              `json:"enabled"`                               // This setting is enabled (`true`) or disabled (`false`)
 	EndpointUrl                     *string           `json:"endpointUrl,omitempty"`                 // Get the API URL for [Kubernetes](https://dt-url.net/kz23snj \"Kubernetes\") or [OpenShift](https://dt-url.net/d623xgw \"OpenShift\").
 	EventPatterns                   EventComplexTypes `json:"eventPatterns,omitempty"`               // Define Kubernetes event filters to ingest events into your environment. For more details, see the [documentation](https://dt-url.net/2201p0u).
@@ -73,7 +75,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		},
 		"cluster_id_enabled": {
 			Type:        schema.TypeBool,
-			Description: "This is required for monitoring persistent volume claims. For more information on local Kubernetes API monitoring, see the [documentation](https://dt-url.net/6q62uep).",
+			Description: "For more information on local Kubernetes API monitoring, see the [documentation](https://dt-url.net/6q62uep).",
 			Required:    true,
 		},
 		"enabled": {
@@ -165,21 +167,9 @@ func (me *Settings) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *Settings) HandlePreconditions() {
-	if me.ActiveGateGroup == nil && !me.ClusterIdEnabled {
-		me.ActiveGateGroup = opt.NewString("")
-	}
-	if me.AuthToken == nil && !me.ClusterIdEnabled {
-		me.AuthToken = opt.NewString("")
-	}
+func (me *Settings) HandlePreconditions() error {
 	if me.CertificateCheckEnabled == nil && !me.ClusterIdEnabled {
 		me.CertificateCheckEnabled = opt.NewBool(false)
-	}
-	if me.ClusterID == nil && me.ClusterIdEnabled {
-		me.ClusterID = opt.NewString("")
-	}
-	if me.EndpointUrl == nil && !me.ClusterIdEnabled {
-		me.EndpointUrl = opt.NewString("")
 	}
 	if me.FilterEvents == nil && me.EventProcessingActive {
 		me.FilterEvents = opt.NewBool(false)
@@ -190,7 +180,20 @@ func (me *Settings) HandlePreconditions() {
 	if me.IncludeAllFdiEvents == nil && me.FilterEvents != nil && *me.FilterEvents {
 		me.IncludeAllFdiEvents = opt.NewBool(false)
 	}
+	if me.ActiveGateGroup == nil && !me.ClusterIdEnabled {
+		return fmt.Errorf("'active_gate_group' must be specified if 'cluster_id_enabled' is set to '%v'", me.ClusterIdEnabled)
+	}
+	if me.AuthToken == nil && !me.ClusterIdEnabled {
+		return fmt.Errorf("'auth_token' must be specified if 'cluster_id_enabled' is set to '%v'", me.ClusterIdEnabled)
+	}
+	if me.ClusterID == nil && me.ClusterIdEnabled {
+		return fmt.Errorf("'cluster_id' must be specified if 'cluster_id_enabled' is set to '%v'", me.ClusterIdEnabled)
+	}
+	if me.EndpointUrl == nil && !me.ClusterIdEnabled {
+		return fmt.Errorf("'endpoint_url' must be specified if 'cluster_id_enabled' is set to '%v'", me.ClusterIdEnabled)
+	}
 	// ---- EventPatterns EventComplexTypes -> {"expectedValue":true,"property":"filterEvents","type":"EQUALS"}
+	return nil
 }
 
 func (me *Settings) UnmarshalHCL(decoder hcl.Decoder) error {

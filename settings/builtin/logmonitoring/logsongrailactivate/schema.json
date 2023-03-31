@@ -9,7 +9,7 @@
 			"type": "CUSTOM_VALIDATOR_REF"
 		}
 	],
-	"description": "Your tenant is eligible for Grail. For details, see [documentation](https://dt-url.net/n9032kl).\n\nAfter activation, you will:\n\n* Use Grail storage with custom retention times.\n  For details, see [Log buckets and retention](https://dt-url.net/ep234n2) and [Business event bucket assignment](https://dt-url.net/4c034xt)\n\n* Use DQL for data analysis, log metrics, event definition, and processing rules.\n  For details, see [Migration to DQL](https://dt-url.net/2s03459).\n\nYour existing log data will not be available after you activate Grail.\n\nBecause logs typically contain sensitive data, access to Grail is restricted to administrators. For details, see [account settings](https://dt-url.net/1t039fy).",
+	"description": "Your tenant is eligible for Grail. For details, see [documentation](https://dt-url.net/n9032kl).\n\nAfter activation, you will:\n\n* Use Grail storage with custom retention times.\n  For details, see [Log buckets and retention](https://dt-url.net/ep234n2) and [Business event bucket assignment](https://dt-url.net/4c034xt)\n\n* Use DQL for data analysis, log metrics, event definition, and processing rules.\n  For details, see [Migration to DQL](https://dt-url.net/2s03459).\n\nYour existing log data will not be available after you activate Grail.\n\nAfter activating Grail, users with access limited to specific management zones won't have access to logs. For details, see [account settings](https://dt-url.net/1t039fy).",
 	"displayName": "Activate Grail for logs and events",
 	"documentation": "",
 	"dynatrace": "1",

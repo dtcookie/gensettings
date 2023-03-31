@@ -18,6 +18,8 @@
 package perdiskoverride
 
 import (
+	"fmt"
+
 	"github.com/dynatrace-oss/terraform-provider-dynatrace/terraform/hcl"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
@@ -59,9 +61,12 @@ func (me *DiskLowInodesDetection) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *DiskLowInodesDetection) HandlePreconditions() {
+func (me *DiskLowInodesDetection) HandlePreconditions() error {
+	if me.DetectionMode == nil && me.Enabled {
+		return fmt.Errorf("'detection_mode' must be specified if 'enabled' is set to '%v'", me.Enabled)
+	}
 	// ---- CustomThresholds *DiskLowInodesDetectionThresholds -> {"preconditions":[{"expectedValue":true,"property":"enabled","type":"EQUALS"},{"expectedValue":"custom","property":"detectionMode","type":"EQUALS"}],"type":"AND"}
-	// ---- DetectionMode *DetectionMode -> {"expectedValue":true,"property":"enabled","type":"EQUALS"}
+	return nil
 }
 
 func (me *DiskLowInodesDetection) UnmarshalHCL(decoder hcl.Decoder) error {

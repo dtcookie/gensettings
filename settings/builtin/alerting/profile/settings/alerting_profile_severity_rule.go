@@ -86,8 +86,9 @@ func (me *AlertingProfileSeverityRule) MarshalHCL(properties hcl.Properties) err
 	})
 }
 
-func (me *AlertingProfileSeverityRule) HandlePreconditions() {
+func (me *AlertingProfileSeverityRule) HandlePreconditions() error {
 	// ---- TagFilter []string -> {"expectedValues":["INCLUDE_ANY","INCLUDE_ALL"],"property":"tagFilterIncludeMode","type":"IN"}
+	return nil
 }
 
 func (me *AlertingProfileSeverityRule) UnmarshalHCL(decoder hcl.Decoder) error {

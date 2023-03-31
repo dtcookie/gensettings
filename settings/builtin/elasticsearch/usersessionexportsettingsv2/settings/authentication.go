@@ -18,6 +18,8 @@
 package usersessionexportsettingsv2
 
 import (
+	"fmt"
+
 	"github.com/dynatrace-oss/terraform-provider-dynatrace/terraform/hcl"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
@@ -69,10 +71,13 @@ func (me *Authentication) MarshalHCL(properties hcl.Properties) error {
 	})
 }
 
-func (me *Authentication) HandlePreconditions() {
-	// ---- AuthType *AuthType -> {"expectedValue":true,"property":"active","type":"EQUALS"}
+func (me *Authentication) HandlePreconditions() error {
+	if me.AuthType == nil && me.Active {
+		return fmt.Errorf("'auth_type' must be specified if 'active' is set to '%v'", me.Active)
+	}
 	// ---- BasicAuth *BasicAuth -> {"expectedValue":"basic","property":"authType","type":"EQUALS"}
 	// ---- OAuth2 *OAuth2 -> {"expectedValue":"oauth2","property":"authType","type":"EQUALS"}
+	return nil
 }
 
 func (me *Authentication) UnmarshalHCL(decoder hcl.Decoder) error {

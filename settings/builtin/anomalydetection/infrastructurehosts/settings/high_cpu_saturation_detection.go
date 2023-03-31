@@ -18,6 +18,8 @@
 package infrastructurehosts
 
 import (
+	"fmt"
+
 	"github.com/dynatrace-oss/terraform-provider-dynatrace/terraform/hcl"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
@@ -59,9 +61,12 @@ func (me *HighCpuSaturationDetection) MarshalHCL(properties hcl.Properties) erro
 	})
 }
 
-func (me *HighCpuSaturationDetection) HandlePreconditions() {
+func (me *HighCpuSaturationDetection) HandlePreconditions() error {
+	if me.DetectionMode == nil && me.Enabled {
+		return fmt.Errorf("'detection_mode' must be specified if 'enabled' is set to '%v'", me.Enabled)
+	}
 	// ---- CustomThresholds *HighCpuSaturationDetectionThresholds -> {"preconditions":[{"expectedValue":true,"property":"enabled","type":"EQUALS"},{"expectedValue":"custom","property":"detectionMode","type":"EQUALS"}],"type":"AND"}
-	// ---- DetectionMode *DetectionMode -> {"expectedValue":true,"property":"enabled","type":"EQUALS"}
+	return nil
 }
 
 func (me *HighCpuSaturationDetection) UnmarshalHCL(decoder hcl.Decoder) error {
