@@ -18,6 +18,8 @@
 package fullwebservice
 
 import (
+	"fmt"
+
 	"github.com/dynatrace-oss/terraform-provider-dynatrace/terraform/hcl"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
@@ -93,11 +95,36 @@ func (me *IdContributorsType) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *IdContributorsType) HandlePreconditions() error {
-	// ---- ApplicationID *ServiceIdContributor -> {"expectedValue":false,"property":"detectAsWebRequestService","type":"EQUALS"}
-	// ---- ContextRoot *ContextIdContributor -> {"expectedValue":false,"property":"detectAsWebRequestService","type":"EQUALS"}
-	// ---- ServerName *ServiceIdContributor -> {"expectedValue":false,"property":"detectAsWebRequestService","type":"EQUALS"}
-	// ---- WebServiceName *ServiceIdContributor -> {"expectedValue":false,"property":"detectAsWebRequestService","type":"EQUALS"}
-	// ---- WebServiceNamespace *ServiceIdContributor -> {"expectedValue":false,"property":"detectAsWebRequestService","type":"EQUALS"}
+	if me.ApplicationID == nil && !me.DetectAsWebRequestService {
+		return fmt.Errorf("'application_id' must be specified if 'detect_as_web_request_service' is set to '%v'", me.DetectAsWebRequestService)
+	}
+	if me.ApplicationID != nil && me.DetectAsWebRequestService {
+		return fmt.Errorf("'application_id' must not be specified if 'detect_as_web_request_service' is set to '%v'", me.DetectAsWebRequestService)
+	}
+	if me.ContextRoot == nil && !me.DetectAsWebRequestService {
+		return fmt.Errorf("'context_root' must be specified if 'detect_as_web_request_service' is set to '%v'", me.DetectAsWebRequestService)
+	}
+	if me.ContextRoot != nil && me.DetectAsWebRequestService {
+		return fmt.Errorf("'context_root' must not be specified if 'detect_as_web_request_service' is set to '%v'", me.DetectAsWebRequestService)
+	}
+	if me.ServerName == nil && !me.DetectAsWebRequestService {
+		return fmt.Errorf("'server_name' must be specified if 'detect_as_web_request_service' is set to '%v'", me.DetectAsWebRequestService)
+	}
+	if me.ServerName != nil && me.DetectAsWebRequestService {
+		return fmt.Errorf("'server_name' must not be specified if 'detect_as_web_request_service' is set to '%v'", me.DetectAsWebRequestService)
+	}
+	if me.WebServiceName == nil && !me.DetectAsWebRequestService {
+		return fmt.Errorf("'web_service_name' must be specified if 'detect_as_web_request_service' is set to '%v'", me.DetectAsWebRequestService)
+	}
+	if me.WebServiceName != nil && me.DetectAsWebRequestService {
+		return fmt.Errorf("'web_service_name' must not be specified if 'detect_as_web_request_service' is set to '%v'", me.DetectAsWebRequestService)
+	}
+	if me.WebServiceNamespace == nil && !me.DetectAsWebRequestService {
+		return fmt.Errorf("'web_service_namespace' must be specified if 'detect_as_web_request_service' is set to '%v'", me.DetectAsWebRequestService)
+	}
+	if me.WebServiceNamespace != nil && me.DetectAsWebRequestService {
+		return fmt.Errorf("'web_service_namespace' must not be specified if 'detect_as_web_request_service' is set to '%v'", me.DetectAsWebRequestService)
+	}
 	return nil
 }
 

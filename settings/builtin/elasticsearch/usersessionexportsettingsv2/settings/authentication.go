@@ -75,8 +75,21 @@ func (me *Authentication) HandlePreconditions() error {
 	if me.AuthType == nil && me.Active {
 		return fmt.Errorf("'auth_type' must be specified if 'active' is set to '%v'", me.Active)
 	}
-	// ---- BasicAuth *BasicAuth -> {"expectedValue":"basic","property":"authType","type":"EQUALS"}
-	// ---- OAuth2 *OAuth2 -> {"expectedValue":"oauth2","property":"authType","type":"EQUALS"}
+	if me.AuthType != nil && !me.Active {
+		return fmt.Errorf("'auth_type' must not be specified if 'active' is set to '%v'", me.Active)
+	}
+	if me.BasicAuth == nil && me.AuthType != nil && string(*me.AuthType) == "basic" {
+		return fmt.Errorf("'basic_auth' must be specified if 'auth_type' is set to '%v'", me.AuthType)
+	}
+	if me.BasicAuth != nil && me.AuthType == nil || string(*me.AuthType) != "basic" {
+		return fmt.Errorf("'basic_auth' must not be specified if 'auth_type' is set to '%v'", me.AuthType)
+	}
+	if me.OAuth2 == nil && me.AuthType != nil && string(*me.AuthType) == "oauth2" {
+		return fmt.Errorf("'o_auth_2' must be specified if 'auth_type' is set to '%v'", me.AuthType)
+	}
+	if me.OAuth2 != nil && me.AuthType == nil || string(*me.AuthType) != "oauth2" {
+		return fmt.Errorf("'o_auth_2' must not be specified if 'auth_type' is set to '%v'", me.AuthType)
+	}
 	return nil
 }
 

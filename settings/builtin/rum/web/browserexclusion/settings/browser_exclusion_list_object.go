@@ -89,14 +89,20 @@ func (me *BrowserExclusionListObject) MarshalHCL(properties hcl.Properties) erro
 }
 
 func (me *BrowserExclusionListObject) HandlePreconditions() error {
-	if me.Version == nil && string(me.BrowserName) != "BOTS_AND_SPIDERS" {
+	if me.Version == nil && string(me.BrowserName) == "BOTS_AND_SPIDERS" {
 		me.Version = opt.NewInt(0)
 	}
-	if me.Platform == nil && string(me.BrowserName) != "BOTS_AND_SPIDERS" {
+	if me.Platform == nil && string(me.BrowserName) == "BOTS_AND_SPIDERS" {
 		return fmt.Errorf("'platform' must be specified if 'browser_name' is set to '%v'", me.BrowserName)
 	}
-	if me.VersionComparator == nil && string(me.BrowserName) != "BOTS_AND_SPIDERS" {
+	if me.Platform != nil && string(me.BrowserName) != "BOTS_AND_SPIDERS" {
+		return fmt.Errorf("'platform' must not be specified if 'browser_name' is set to '%v'", me.BrowserName)
+	}
+	if me.VersionComparator == nil && string(me.BrowserName) == "BOTS_AND_SPIDERS" {
 		return fmt.Errorf("'version_comparator' must be specified if 'browser_name' is set to '%v'", me.BrowserName)
+	}
+	if me.VersionComparator != nil && string(me.BrowserName) != "BOTS_AND_SPIDERS" {
+		return fmt.Errorf("'version_comparator' must not be specified if 'browser_name' is set to '%v'", me.BrowserName)
 	}
 	return nil
 }

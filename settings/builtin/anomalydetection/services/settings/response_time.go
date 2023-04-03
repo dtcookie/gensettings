@@ -72,11 +72,24 @@ func (me *ResponseTime) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *ResponseTime) HandlePreconditions() error {
+	if me.AutoDetection == nil && me.Enabled && me.DetectionMode != nil && string(*me.DetectionMode) == "auto" {
+		return fmt.Errorf("'auto_detection' must be specified if 'enabled' is set to '%v' and 'detection_mode' is set to '%v'", me.Enabled, me.DetectionMode)
+	}
+	if me.AutoDetection != nil && !me.Enabled || me.DetectionMode == nil || string(*me.DetectionMode) != "auto" {
+		return fmt.Errorf("'auto_detection' must not be specified if 'enabled' is set to '%v'", me.Enabled)
+	}
 	if me.DetectionMode == nil && me.Enabled {
 		return fmt.Errorf("'detection_mode' must be specified if 'enabled' is set to '%v'", me.Enabled)
 	}
-	// ---- AutoDetection *ResponseTimeAuto -> {"preconditions":[{"expectedValue":true,"property":"enabled","type":"EQUALS"},{"expectedValue":"auto","property":"detectionMode","type":"EQUALS"}],"type":"AND"}
-	// ---- FixedDetection *ResponseTimeFixed -> {"preconditions":[{"expectedValue":true,"property":"enabled","type":"EQUALS"},{"expectedValue":"fixed","property":"detectionMode","type":"EQUALS"}],"type":"AND"}
+	if me.DetectionMode != nil && !me.Enabled {
+		return fmt.Errorf("'detection_mode' must not be specified if 'enabled' is set to '%v'", me.Enabled)
+	}
+	if me.FixedDetection == nil && me.Enabled && me.DetectionMode != nil && string(*me.DetectionMode) == "fixed" {
+		return fmt.Errorf("'fixed_detection' must be specified if 'enabled' is set to '%v' and 'detection_mode' is set to '%v'", me.Enabled, me.DetectionMode)
+	}
+	if me.FixedDetection != nil && !me.Enabled || me.DetectionMode == nil || string(*me.DetectionMode) != "fixed" {
+		return fmt.Errorf("'fixed_detection' must not be specified if 'enabled' is set to '%v'", me.Enabled)
+	}
 	return nil
 }
 

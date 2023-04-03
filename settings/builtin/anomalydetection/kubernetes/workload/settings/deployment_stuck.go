@@ -18,6 +18,8 @@
 package workload
 
 import (
+	"fmt"
+
 	"github.com/dynatrace-oss/terraform-provider-dynatrace/terraform/hcl"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
@@ -53,7 +55,12 @@ func (me *DeploymentStuck) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *DeploymentStuck) HandlePreconditions() error {
-	// ---- Configuration *DeploymentStuckConfig -> {"expectedValue":true,"property":"enabled","type":"EQUALS"}
+	if me.Configuration == nil && me.Enabled {
+		return fmt.Errorf("'configuration' must be specified if 'enabled' is set to '%v'", me.Enabled)
+	}
+	if me.Configuration != nil && !me.Enabled {
+		return fmt.Errorf("'configuration' must not be specified if 'enabled' is set to '%v'", me.Enabled)
+	}
 	return nil
 }
 

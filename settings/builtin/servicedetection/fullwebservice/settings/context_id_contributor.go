@@ -18,6 +18,8 @@
 package fullwebservice
 
 import (
+	"fmt"
+
 	"github.com/dynatrace-oss/terraform-provider-dynatrace/terraform/hcl"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
@@ -53,7 +55,12 @@ func (me *ContextIdContributor) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *ContextIdContributor) HandlePreconditions() error {
-	// ---- ServiceIdContributor *ContextRoot -> {"expectedValue":true,"property":"enableIdContributor","type":"EQUALS"}
+	if me.ServiceIdContributor == nil && me.EnableIdContributor {
+		return fmt.Errorf("'service_id_contributor' must be specified if 'enable_id_contributor' is set to '%v'", me.EnableIdContributor)
+	}
+	if me.ServiceIdContributor != nil && !me.EnableIdContributor {
+		return fmt.Errorf("'service_id_contributor' must not be specified if 'enable_id_contributor' is set to '%v'", me.EnableIdContributor)
+	}
 	return nil
 }
 

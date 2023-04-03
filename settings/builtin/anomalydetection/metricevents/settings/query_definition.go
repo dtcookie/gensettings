@@ -103,6 +103,9 @@ func (me *QueryDefinition) HandlePreconditions() error {
 	if me.Aggregation == nil && string(me.Type) == "METRIC_KEY" {
 		return fmt.Errorf("'aggregation' must be specified if 'type' is set to '%v'", me.Type)
 	}
+	if me.Aggregation != nil && string(me.Type) != "METRIC_KEY" {
+		return fmt.Errorf("'aggregation' must not be specified if 'type' is set to '%v'", me.Type)
+	}
 	if me.MetricKey == nil && string(me.Type) == "METRIC_KEY" {
 		return fmt.Errorf("'metric_key' must be specified if 'type' is set to '%v'", me.Type)
 	}

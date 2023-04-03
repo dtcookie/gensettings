@@ -146,11 +146,15 @@ func (me *Settings) HandlePreconditions() error {
 	if me.AlertActivationDuration == nil && me.Alerting {
 		return fmt.Errorf("'alert_activation_duration' must be specified if 'alerting' is set to '%v'", me.Alerting)
 	}
+	if me.StatusConditionLinux == nil && string(me.System) == "LINUX" && me.Alerting {
+		return fmt.Errorf("'status_condition_linux' must be specified if 'system' is set to '%v'", me.System)
+	}
+	if me.StatusConditionWindows == nil && string(me.System) == "WINDOWS" && me.Alerting {
+		return fmt.Errorf("'status_condition_windows' must be specified if 'system' is set to '%v'", me.System)
+	}
 	// ---- DetectionConditionsLinux LinuxDetectionConditions -> {"expectedValues":["LINUX"],"property":"system","type":"IN"}
 	// ---- DetectionConditionsWindows WindowsDetectionConditions -> {"expectedValues":["WINDOWS"],"property":"system","type":"IN"}
 	// ---- Metadata MetadataItems -> {"expectedValue":true,"property":"alerting","type":"EQUALS"}
-	// ---- StatusConditionLinux *string -> {"preconditions":[{"expectedValue":"LINUX","property":"system","type":"EQUALS"},{"expectedValue":true,"property":"alerting","type":"EQUALS"}],"type":"AND"}
-	// ---- StatusConditionWindows *string -> {"preconditions":[{"expectedValue":"WINDOWS","property":"system","type":"EQUALS"},{"expectedValue":true,"property":"alerting","type":"EQUALS"}],"type":"AND"}
 	return nil
 }
 

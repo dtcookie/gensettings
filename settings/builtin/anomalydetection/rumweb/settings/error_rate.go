@@ -72,11 +72,24 @@ func (me *ErrorRate) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *ErrorRate) HandlePreconditions() error {
+	if me.ErrorRateAuto == nil && me.Enabled && me.ErrorRateDetectionMode != nil && string(*me.ErrorRateDetectionMode) == "auto" {
+		return fmt.Errorf("'error_rate_auto' must be specified if 'enabled' is set to '%v' and 'error_rate_detection_mode' is set to '%v'", me.Enabled, me.ErrorRateDetectionMode)
+	}
+	if me.ErrorRateAuto != nil && !me.Enabled || me.ErrorRateDetectionMode == nil || string(*me.ErrorRateDetectionMode) != "auto" {
+		return fmt.Errorf("'error_rate_auto' must not be specified if 'enabled' is set to '%v'", me.Enabled)
+	}
 	if me.ErrorRateDetectionMode == nil && me.Enabled {
 		return fmt.Errorf("'error_rate_detection_mode' must be specified if 'enabled' is set to '%v'", me.Enabled)
 	}
-	// ---- ErrorRateAuto *ErrorRateAuto -> {"preconditions":[{"expectedValue":true,"property":"enabled","type":"EQUALS"},{"expectedValue":"auto","property":"errorRateDetectionMode","type":"EQUALS"}],"type":"AND"}
-	// ---- ErrorRateFixed *ErrorRateFixed -> {"preconditions":[{"expectedValue":true,"property":"enabled","type":"EQUALS"},{"expectedValue":"fixed","property":"errorRateDetectionMode","type":"EQUALS"}],"type":"AND"}
+	if me.ErrorRateDetectionMode != nil && !me.Enabled {
+		return fmt.Errorf("'error_rate_detection_mode' must not be specified if 'enabled' is set to '%v'", me.Enabled)
+	}
+	if me.ErrorRateFixed == nil && me.Enabled && me.ErrorRateDetectionMode != nil && string(*me.ErrorRateDetectionMode) == "fixed" {
+		return fmt.Errorf("'error_rate_fixed' must be specified if 'enabled' is set to '%v' and 'error_rate_detection_mode' is set to '%v'", me.Enabled, me.ErrorRateDetectionMode)
+	}
+	if me.ErrorRateFixed != nil && !me.Enabled || me.ErrorRateDetectionMode == nil || string(*me.ErrorRateDetectionMode) != "fixed" {
+		return fmt.Errorf("'error_rate_fixed' must not be specified if 'enabled' is set to '%v'", me.Enabled)
+	}
 	return nil
 }
 

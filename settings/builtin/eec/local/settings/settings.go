@@ -84,6 +84,9 @@ func (me *Settings) HandlePreconditions() error {
 	if me.PerformanceProfile == nil && me.Enabled {
 		return fmt.Errorf("'performance_profile' must be specified if 'enabled' is set to '%v'", me.Enabled)
 	}
+	if me.PerformanceProfile != nil && !me.Enabled {
+		return fmt.Errorf("'performance_profile' must not be specified if 'enabled' is set to '%v'", me.Enabled)
+	}
 	return nil
 }
 

@@ -105,10 +105,15 @@ func (me *Rule) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *Rule) HandlePreconditions() error {
+	if me.AttributeRule == nil && string(me.Type) == "ME" {
+		return fmt.Errorf("'attribute_rule' must be specified if 'type' is set to '%v'", me.Type)
+	}
+	if me.AttributeRule != nil && string(me.Type) != "ME" {
+		return fmt.Errorf("'attribute_rule' must not be specified if 'type' is set to '%v'", me.Type)
+	}
 	if me.EntitySelector == nil && string(me.Type) == "SELECTOR" {
 		return fmt.Errorf("'entity_selector' must be specified if 'type' is set to '%v'", me.Type)
 	}
-	// ---- AttributeRule *AutoTagAttributeRule -> {"expectedValue":"ME","property":"type","type":"EQUALS"}
 	return nil
 }
 

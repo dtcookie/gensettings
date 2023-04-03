@@ -131,7 +131,7 @@ func main() {
 	}
 	schemata := map[string]*Schema{}
 	for _, schemaStub := range schemaList.Items {
-		// if schemaStub.SchemaID != "builtin:cloud.cloudfoundry" {
+		// if schemaStub.SchemaID != "builtin:tags.auto-tagging" {
 		// 	continue
 		// }
 		// if !strings.HasPrefix(schemaStub.SchemaID, "builtin:") {

@@ -55,6 +55,9 @@ func (me *ConnectionLostDetection) HandlePreconditions() error {
 	if me.OnGracefulShutdowns == nil && me.Enabled {
 		return fmt.Errorf("'on_graceful_shutdowns' must be specified if 'enabled' is set to '%v'", me.Enabled)
 	}
+	if me.OnGracefulShutdowns != nil && !me.Enabled {
+		return fmt.Errorf("'on_graceful_shutdowns' must not be specified if 'enabled' is set to '%v'", me.Enabled)
+	}
 	return nil
 }
 

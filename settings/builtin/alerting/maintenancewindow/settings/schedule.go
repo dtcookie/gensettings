@@ -18,6 +18,8 @@
 package maintenancewindow
 
 import (
+	"fmt"
+
 	"github.com/dynatrace-oss/terraform-provider-dynatrace/terraform/hcl"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
@@ -83,10 +85,30 @@ func (me *Schedule) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *Schedule) HandlePreconditions() error {
-	// ---- DailyRecurrence *DailyRecurrence -> {"expectedValue":"DAILY","property":"scheduleType","type":"EQUALS"}
-	// ---- MonthlyRecurrence *MonthlyRecurrence -> {"expectedValue":"MONTHLY","property":"scheduleType","type":"EQUALS"}
-	// ---- OnceRecurrence *OnceRecurrence -> {"expectedValue":"ONCE","property":"scheduleType","type":"EQUALS"}
-	// ---- WeeklyRecurrence *WeeklyRecurrence -> {"expectedValue":"WEEKLY","property":"scheduleType","type":"EQUALS"}
+	if me.DailyRecurrence == nil && string(me.ScheduleType) == "DAILY" {
+		return fmt.Errorf("'daily_recurrence' must be specified if 'schedule_type' is set to '%v'", me.ScheduleType)
+	}
+	if me.DailyRecurrence != nil && string(me.ScheduleType) != "DAILY" {
+		return fmt.Errorf("'daily_recurrence' must not be specified if 'schedule_type' is set to '%v'", me.ScheduleType)
+	}
+	if me.MonthlyRecurrence == nil && string(me.ScheduleType) == "MONTHLY" {
+		return fmt.Errorf("'monthly_recurrence' must be specified if 'schedule_type' is set to '%v'", me.ScheduleType)
+	}
+	if me.MonthlyRecurrence != nil && string(me.ScheduleType) != "MONTHLY" {
+		return fmt.Errorf("'monthly_recurrence' must not be specified if 'schedule_type' is set to '%v'", me.ScheduleType)
+	}
+	if me.OnceRecurrence == nil && string(me.ScheduleType) == "ONCE" {
+		return fmt.Errorf("'once_recurrence' must be specified if 'schedule_type' is set to '%v'", me.ScheduleType)
+	}
+	if me.OnceRecurrence != nil && string(me.ScheduleType) != "ONCE" {
+		return fmt.Errorf("'once_recurrence' must not be specified if 'schedule_type' is set to '%v'", me.ScheduleType)
+	}
+	if me.WeeklyRecurrence == nil && string(me.ScheduleType) == "WEEKLY" {
+		return fmt.Errorf("'weekly_recurrence' must be specified if 'schedule_type' is set to '%v'", me.ScheduleType)
+	}
+	if me.WeeklyRecurrence != nil && string(me.ScheduleType) != "WEEKLY" {
+		return fmt.Errorf("'weekly_recurrence' must not be specified if 'schedule_type' is set to '%v'", me.ScheduleType)
+	}
 	return nil
 }
 

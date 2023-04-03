@@ -18,6 +18,8 @@
 package notifications
 
 import (
+	"fmt"
+
 	"github.com/dynatrace-oss/terraform-provider-dynatrace/terraform/hcl"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
@@ -98,7 +100,12 @@ func (me *WebHookNotification) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *WebHookNotification) HandlePreconditions() error {
-	// ---- OAuth2Credentials *OAuth2Credentials -> {"expectedValue":true,"property":"useOAuth2","type":"EQUALS"}
+	if me.OAuth2Credentials == nil && me.UseOAuth2 != nil && *me.UseOAuth2 {
+		return fmt.Errorf("'o_auth_2_credentials' must be specified if 'use_oauth_2' is set to '%v'", me.UseOAuth2)
+	}
+	if me.OAuth2Credentials != nil && me.UseOAuth2 != nil && !*me.UseOAuth2 {
+		return fmt.Errorf("'o_auth_2_credentials' must not be specified if 'use_oauth_2' is set to '%v'", me.UseOAuth2)
+	}
 	return nil
 }
 

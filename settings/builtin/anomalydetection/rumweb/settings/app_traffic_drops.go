@@ -18,6 +18,8 @@
 package rumweb
 
 import (
+	"fmt"
+
 	"github.com/dynatrace-oss/terraform-provider-dynatrace/terraform/hcl"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
@@ -53,7 +55,12 @@ func (me *AppTrafficDrops) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *AppTrafficDrops) HandlePreconditions() error {
-	// ---- TrafficDrops *TrafficDrops -> {"expectedValue":true,"property":"enabled","type":"EQUALS"}
+	if me.TrafficDrops == nil && me.Enabled {
+		return fmt.Errorf("'traffic_drops' must be specified if 'enabled' is set to '%v'", me.Enabled)
+	}
+	if me.TrafficDrops != nil && !me.Enabled {
+		return fmt.Errorf("'traffic_drops' must not be specified if 'enabled' is set to '%v'", me.Enabled)
+	}
 	return nil
 }
 

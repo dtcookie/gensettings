@@ -18,6 +18,8 @@
 package generalparameters
 
 import (
+	"fmt"
+
 	"github.com/dynatrace-oss/terraform-provider-dynatrace/terraform/hcl"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
@@ -60,7 +62,12 @@ func (me *Settings) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *Settings) HandlePreconditions() error {
-	// ---- ExceptionRules *ExceptionRules -> {"expectedValue":true,"property":"enabled","type":"EQUALS"}
+	if me.ExceptionRules == nil && me.Enabled {
+		return fmt.Errorf("'exception_rules' must be specified if 'enabled' is set to '%v'", me.Enabled)
+	}
+	if me.ExceptionRules != nil && !me.Enabled {
+		return fmt.Errorf("'exception_rules' must not be specified if 'enabled' is set to '%v'", me.Enabled)
+	}
 	return nil
 }
 

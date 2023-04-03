@@ -18,6 +18,8 @@
 package profile
 
 import (
+	"fmt"
+
 	"github.com/dynatrace-oss/terraform-provider-dynatrace/terraform/hcl"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
@@ -85,8 +87,18 @@ func (me *AlertingProfileEventFilter) MarshalHCL(properties hcl.Properties) erro
 }
 
 func (me *AlertingProfileEventFilter) HandlePreconditions() error {
-	// ---- CustomFilter *CustomEventFilter -> {"expectedValue":"CUSTOM","property":"type","type":"EQUALS"}
-	// ---- PredefinedFilter *PredefinedEventFilter -> {"expectedValue":"PREDEFINED","property":"type","type":"EQUALS"}
+	if me.CustomFilter == nil && string(me.Type) == "CUSTOM" {
+		return fmt.Errorf("'custom_filter' must be specified if 'type' is set to '%v'", me.Type)
+	}
+	if me.CustomFilter != nil && string(me.Type) != "CUSTOM" {
+		return fmt.Errorf("'custom_filter' must not be specified if 'type' is set to '%v'", me.Type)
+	}
+	if me.PredefinedFilter == nil && string(me.Type) == "PREDEFINED" {
+		return fmt.Errorf("'predefined_filter' must be specified if 'type' is set to '%v'", me.Type)
+	}
+	if me.PredefinedFilter != nil && string(me.Type) != "PREDEFINED" {
+		return fmt.Errorf("'predefined_filter' must not be specified if 'type' is set to '%v'", me.Type)
+	}
 	return nil
 }
 

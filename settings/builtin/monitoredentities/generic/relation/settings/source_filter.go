@@ -86,7 +86,7 @@ func (me *SourceFilter) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *SourceFilter) HandlePreconditions() error {
-	if me.Condition == nil && !slices.Contains([]string{"Logs", "Spans", "Entities", "Topology"}, string(me.SourceType)) {
+	if me.Condition == nil && slices.Contains([]string{"Logs", "Spans", "Entities", "Topology"}, string(me.SourceType)) {
 		return fmt.Errorf("'condition' must be specified if 'source_type' is set to '%v'", me.SourceType)
 	}
 	// ---- MappingRules MappingRules -> {"expectedValues":["Entities"],"property":"sourceType","type":"IN"}

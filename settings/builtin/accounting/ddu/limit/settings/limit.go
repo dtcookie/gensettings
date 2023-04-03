@@ -66,6 +66,9 @@ func (me *Limit) HandlePreconditions() error {
 	if me.LimitType == nil && me.LimitEnabled {
 		return fmt.Errorf("'limit_type' must be specified if 'limit_enabled' is set to '%v'", me.LimitEnabled)
 	}
+	if me.LimitType != nil && !me.LimitEnabled {
+		return fmt.Errorf("'limit_type' must not be specified if 'limit_enabled' is set to '%v'", me.LimitEnabled)
+	}
 	return nil
 }
 

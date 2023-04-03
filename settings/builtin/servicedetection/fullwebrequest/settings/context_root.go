@@ -18,6 +18,8 @@
 package fullwebrequest
 
 import (
+	"fmt"
+
 	"github.com/dynatrace-oss/terraform-provider-dynatrace/dynatrace/opt"
 	"github.com/dynatrace-oss/terraform-provider-dynatrace/terraform/hcl"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
@@ -74,8 +76,13 @@ func (me *ContextRoot) HandlePreconditions() error {
 	if me.SegmentCount == nil && string(me.ContributionType) == "TransformURL" {
 		me.SegmentCount = opt.NewInt(0)
 	}
+	if me.ValueOverride == nil && string(me.ContributionType) == "OverrideValue" {
+		return fmt.Errorf("'value_override' must be specified if 'contribution_type' is set to '%v'", me.ContributionType)
+	}
+	if me.ValueOverride != nil && string(me.ContributionType) != "OverrideValue" {
+		return fmt.Errorf("'value_override' must not be specified if 'contribution_type' is set to '%v'", me.ContributionType)
+	}
 	// ---- Transformations ReducedTransformations -> {"expectedValues":["TransformValue","TransformURL"],"property":"contributionType","type":"IN"}
-	// ---- ValueOverride *ValueOverride -> {"expectedValue":"OverrideValue","property":"contributionType","type":"EQUALS"}
 	return nil
 }
 

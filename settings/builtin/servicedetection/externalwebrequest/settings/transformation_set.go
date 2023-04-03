@@ -18,6 +18,8 @@
 package externalwebrequest
 
 import (
+	"fmt"
+
 	"github.com/dynatrace-oss/terraform-provider-dynatrace/terraform/hcl"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
@@ -63,8 +65,13 @@ func (me *TransformationSet) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *TransformationSet) HandlePreconditions() error {
+	if me.ValueOverride == nil && string(me.ContributionType) == "OverrideValue" {
+		return fmt.Errorf("'value_override' must be specified if 'contribution_type' is set to '%v'", me.ContributionType)
+	}
+	if me.ValueOverride != nil && string(me.ContributionType) != "OverrideValue" {
+		return fmt.Errorf("'value_override' must not be specified if 'contribution_type' is set to '%v'", me.ContributionType)
+	}
 	// ---- Transformations Transformations -> {"expectedValue":"TransformValue","property":"contributionType","type":"EQUALS"}
-	// ---- ValueOverride *ValueOverride -> {"expectedValue":"OverrideValue","property":"contributionType","type":"EQUALS"}
 	return nil
 }
 
