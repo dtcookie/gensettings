@@ -207,6 +207,8 @@ func (me *Struct) PrecondChecks(property *Property, precondition map[string]any,
 		return fullLine, fullOpLine, allCheckProperties
 	case "OR":
 		return "", "", []*Property{}
+	default:
+		return "", "", []*Property{}
 	}
 
 	return line, oppLine, []*Property{checkProperty}
