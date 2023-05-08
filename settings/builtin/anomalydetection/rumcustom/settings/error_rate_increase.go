@@ -78,16 +78,16 @@ func (me *ErrorRateIncrease) HandlePreconditions() error {
 	if me.DetectionMode != nil && !me.Enabled {
 		return fmt.Errorf("'detection_mode' must not be specified if 'enabled' is set to '%v'", me.Enabled)
 	}
-	if me.ErrorRateIncreaseAuto == nil && me.Enabled && me.DetectionMode != nil && string(*me.DetectionMode) == "auto" {
+	if me.ErrorRateIncreaseAuto == nil && me.Enabled && (me.DetectionMode != nil && string(*me.DetectionMode) == "auto") {
 		return fmt.Errorf("'error_rate_increase_auto' must be specified if 'enabled' is set to '%v' and 'detection_mode' is set to '%v'", me.Enabled, me.DetectionMode)
 	}
-	if me.ErrorRateIncreaseAuto != nil && !me.Enabled || me.DetectionMode == nil || string(*me.DetectionMode) != "auto" {
+	if me.ErrorRateIncreaseAuto != nil && !me.Enabled || me.DetectionMode == nil || (me.DetectionMode != nil && string(*me.DetectionMode) != "auto") {
 		return fmt.Errorf("'error_rate_increase_auto' must not be specified if 'enabled' is set to '%v'", me.Enabled)
 	}
-	if me.ErrorRateIncreaseFixed == nil && me.Enabled && me.DetectionMode != nil && string(*me.DetectionMode) == "fixed" {
+	if me.ErrorRateIncreaseFixed == nil && me.Enabled && (me.DetectionMode != nil && string(*me.DetectionMode) == "fixed") {
 		return fmt.Errorf("'error_rate_increase_fixed' must be specified if 'enabled' is set to '%v' and 'detection_mode' is set to '%v'", me.Enabled, me.DetectionMode)
 	}
-	if me.ErrorRateIncreaseFixed != nil && !me.Enabled || me.DetectionMode == nil || string(*me.DetectionMode) != "fixed" {
+	if me.ErrorRateIncreaseFixed != nil && !me.Enabled || me.DetectionMode == nil || (me.DetectionMode != nil && string(*me.DetectionMode) != "fixed") {
 		return fmt.Errorf("'error_rate_increase_fixed' must not be specified if 'enabled' is set to '%v'", me.Enabled)
 	}
 	return nil

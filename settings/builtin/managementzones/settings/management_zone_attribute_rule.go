@@ -110,28 +110,28 @@ func (me *ManagementZoneAttributeRule) MarshalHCL(properties hcl.Properties) err
 }
 
 func (me *ManagementZoneAttributeRule) HandlePreconditions() error {
-	if me.AzureToPGPropagation == nil && string(me.EntityType) == "AZURE" {
+	if me.AzureToPGPropagation == nil && (string(me.EntityType) == "AZURE") {
 		me.AzureToPGPropagation = opt.NewBool(false)
 	}
-	if me.AzureToServicePropagation == nil && string(me.EntityType) == "AZURE" {
+	if me.AzureToServicePropagation == nil && (string(me.EntityType) == "AZURE") {
 		me.AzureToServicePropagation = opt.NewBool(false)
 	}
-	if me.CustomDeviceGroupToCustomDevicePropagation == nil && string(me.EntityType) == "CUSTOM_DEVICE_GROUP" {
+	if me.CustomDeviceGroupToCustomDevicePropagation == nil && (string(me.EntityType) == "CUSTOM_DEVICE_GROUP") {
 		me.CustomDeviceGroupToCustomDevicePropagation = opt.NewBool(false)
 	}
-	if me.HostToPGPropagation == nil && string(me.EntityType) == "HOST" {
+	if me.HostToPGPropagation == nil && (string(me.EntityType) == "HOST") {
 		me.HostToPGPropagation = opt.NewBool(false)
 	}
-	if me.PGToHostPropagation == nil && string(me.EntityType) == "PROCESS_GROUP" {
+	if me.PGToHostPropagation == nil && (string(me.EntityType) == "PROCESS_GROUP") {
 		me.PGToHostPropagation = opt.NewBool(false)
 	}
-	if me.PGToServicePropagation == nil && string(me.EntityType) == "PROCESS_GROUP" {
+	if me.PGToServicePropagation == nil && (string(me.EntityType) == "PROCESS_GROUP") {
 		me.PGToServicePropagation = opt.NewBool(false)
 	}
-	if me.ServiceToHostPropagation == nil && string(me.EntityType) == "SERVICE" {
+	if me.ServiceToHostPropagation == nil && (string(me.EntityType) == "SERVICE") {
 		me.ServiceToHostPropagation = opt.NewBool(false)
 	}
-	if me.ServiceToPGPropagation == nil && string(me.EntityType) == "SERVICE" {
+	if me.ServiceToPGPropagation == nil && (string(me.EntityType) == "SERVICE") {
 		me.ServiceToPGPropagation = opt.NewBool(false)
 	}
 	return nil

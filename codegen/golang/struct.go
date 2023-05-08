@@ -122,7 +122,7 @@ func (me *Struct) PrecondChecks(property *Property, precondition map[string]any,
 	oppLine := ""
 	switch getPrecType(precondition) {
 	case "NOT":
-		return me.PrecondChecks(property, precondition["precondition"].(map[string]any), neg)
+		return me.PrecondChecks(property, precondition["precondition"].(map[string]any), !neg)
 	case "EQUALS":
 		switch ev := getPrecExpectedValue(precondition).(type) {
 		case bool:
@@ -163,10 +163,16 @@ func (me *Struct) PrecondChecks(property *Property, precondition map[string]any,
 				opNilCheck = fmt.Sprintf("me.%s == nil ||", checkProperty.Name)
 				deref = "*"
 			}
-			line = fmt.Sprintf(`%sstring(%sme.%s) %s "%s" {
+
+			derefNilSanity := ""
+			if deref == "*" {
+				derefNilSanity = fmt.Sprintf("me.%s != nil && ", checkProperty.Name)
+			}
+			line = fmt.Sprintf(`(%sstring(%sme.%s) %s "%s") {
 					`, nilCheck, deref, checkProperty.Name, eqStr, precExpectedValue)
-			oppLine = fmt.Sprintf(`%sstring(%sme.%s) %s "%s" {
-						`, opNilCheck, deref, checkProperty.Name, neqStr, precExpectedValue)
+			oppLine = fmt.Sprintf(`%s (%s string(%sme.%s) %s "%s") {
+						`, opNilCheck, derefNilSanity, deref, checkProperty.Name, neqStr, precExpectedValue)
+
 		}
 	case "IN":
 		precExpectedValues := getPrecExpectedValues(precondition)

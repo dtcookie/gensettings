@@ -172,7 +172,7 @@
 				}
 			],
 			"default": "new_slo",
-			"description": "Once created, metric keys cannot be changed",
+			"description": "",
 			"displayName": "Metric name",
 			"documentation": "",
 			"maxObjects": 1,
@@ -304,5 +304,5 @@
 			"versionInfo": ""
 		}
 	},
-	"version": "6.0.9"
+	"version": "6.0.11"
 }

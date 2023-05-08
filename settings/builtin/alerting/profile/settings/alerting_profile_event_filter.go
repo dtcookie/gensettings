@@ -87,16 +87,16 @@ func (me *AlertingProfileEventFilter) MarshalHCL(properties hcl.Properties) erro
 }
 
 func (me *AlertingProfileEventFilter) HandlePreconditions() error {
-	if me.CustomFilter == nil && string(me.Type) == "CUSTOM" {
+	if me.CustomFilter == nil && (string(me.Type) == "CUSTOM") {
 		return fmt.Errorf("'custom_filter' must be specified if 'type' is set to '%v'", me.Type)
 	}
-	if me.CustomFilter != nil && string(me.Type) != "CUSTOM" {
+	if me.CustomFilter != nil && (string(me.Type) != "CUSTOM") {
 		return fmt.Errorf("'custom_filter' must not be specified if 'type' is set to '%v'", me.Type)
 	}
-	if me.PredefinedFilter == nil && string(me.Type) == "PREDEFINED" {
+	if me.PredefinedFilter == nil && (string(me.Type) == "PREDEFINED") {
 		return fmt.Errorf("'predefined_filter' must be specified if 'type' is set to '%v'", me.Type)
 	}
-	if me.PredefinedFilter != nil && string(me.Type) != "PREDEFINED" {
+	if me.PredefinedFilter != nil && (string(me.Type) != "PREDEFINED") {
 		return fmt.Errorf("'predefined_filter' must not be specified if 'type' is set to '%v'", me.Type)
 	}
 	return nil

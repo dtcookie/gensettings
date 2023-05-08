@@ -1,0 +1,53 @@
+package main
+
+import (
+	"fmt"
+	"reflect"
+
+	generalparameters_local "github.com/dtcookie/dynatrace/gensettings/settings/builtin/failuredetection/service/generalparameters/settings"
+	generalparameters_provider "github.com/dynatrace-oss/terraform-provider-dynatrace/dynatrace/api/builtin/failuredetection/service/generalparameters/settings"
+)
+
+type GeneratorLink struct {
+	Local    any
+	Provider any
+}
+
+var GeneratorLinks = []*GeneratorLink{
+	{
+		Local:    new(generalparameters_local.Settings),
+		Provider: new(generalparameters_provider.Settings),
+	},
+}
+
+func Validate() {
+	for _, link := range GeneratorLinks {
+		lv := reflect.ValueOf(link.Local).Elem()
+		pv := reflect.ValueOf(link.Provider).Elem()
+		if lv.NumField() == pv.NumField() {
+			result := ""
+			for idx := 0; idx < lv.NumField(); idx++ {
+				lf := lv.Type().Field(idx)
+				pf := pv.Type().Field(idx)
+
+				if result = compare(lf, pf, lv.Type().PkgPath()+"."+lv.Type().String()); len(result) != 0 {
+					break
+				}
+			}
+			if len(result) > 0 {
+				fmt.Println(result)
+			}
+		} else {
+			fmt.Println(lv.Type().PkgPath()+"."+lv.Type().Name(), "number of fields differ")
+		}
+	}
+}
+
+func compare(local reflect.StructField, provider reflect.StructField, path string) string {
+	localName := local.Name
+	providerName := provider.Name
+	if localName != providerName {
+		return fmt.Sprintf("%s: expected: %s, found %s", path, localName, providerName)
+	}
+	return ""
+}

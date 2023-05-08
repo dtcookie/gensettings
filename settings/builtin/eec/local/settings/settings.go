@@ -30,7 +30,7 @@ type Settings struct {
 	IngestActive       *bool               `json:"ingestActive,omitempty"`       // Enable local PIPE/HTTP metric and Log Ingest API
 	PerformanceProfile *PerformanceProfile `json:"performanceProfile,omitempty"` // Possible Values: `DEFAULT`, `HIGH`
 	Scope              *string             `json:"-" scope:"scope"`              // The scope of this setting (HOST, HOST_GROUP). Omit this property if you want to cover the whole environment.
-	StatsdActive       *bool               `json:"statsdActive,omitempty"`       // Enable Dynatrace StatsD
+	StatsdActive       *bool               `json:"statsdActive,omitempty"`       // This is applicable only to non-containerized Linux and Windows hosts
 }
 
 func (me *Settings) Schema() map[string]*schema.Schema {
@@ -58,7 +58,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		},
 		"statsd_active": {
 			Type:        schema.TypeBool,
-			Description: "Enable Dynatrace StatsD",
+			Description: "This is applicable only to non-containerized Linux and Windows hosts",
 			Optional:    true, // precondition
 		},
 	}

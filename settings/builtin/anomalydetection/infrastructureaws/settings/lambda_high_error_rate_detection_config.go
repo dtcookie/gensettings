@@ -62,10 +62,10 @@ func (me *LambdaHighErrorRateDetectionConfig) MarshalHCL(properties hcl.Properti
 }
 
 func (me *LambdaHighErrorRateDetectionConfig) HandlePreconditions() error {
-	if me.CustomThresholds == nil && me.DetectionMode != nil && string(*me.DetectionMode) == "custom" {
+	if me.CustomThresholds == nil && (me.DetectionMode != nil && string(*me.DetectionMode) == "custom") {
 		return fmt.Errorf("'custom_thresholds' must be specified if 'detection_mode' is set to '%v'", me.DetectionMode)
 	}
-	if me.CustomThresholds != nil && me.DetectionMode == nil || string(*me.DetectionMode) != "custom" {
+	if me.CustomThresholds != nil && me.DetectionMode == nil || (me.DetectionMode != nil && string(*me.DetectionMode) != "custom") {
 		return fmt.Errorf("'custom_thresholds' must not be specified if 'detection_mode' is set to '%v'", me.DetectionMode)
 	}
 	if me.DetectionMode == nil && me.Enabled {

@@ -132,25 +132,25 @@ func (me *Transformation) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *Transformation) HandlePreconditions() error {
-	if me.IncludeHexNumbers == nil && string(me.TransformationType) == "REMOVE_NUMBERS" {
+	if me.IncludeHexNumbers == nil && (string(me.TransformationType) == "REMOVE_NUMBERS") {
 		me.IncludeHexNumbers = opt.NewBool(false)
 	}
-	if me.TakeFromEnd == nil && string(me.TransformationType) == "TAKE_SEGMENTS" {
+	if me.TakeFromEnd == nil && (string(me.TransformationType) == "TAKE_SEGMENTS") {
 		me.TakeFromEnd = opt.NewBool(false)
 	}
-	if me.MinDigitCount == nil && string(me.TransformationType) == "REMOVE_NUMBERS" {
+	if me.MinDigitCount == nil && (string(me.TransformationType) == "REMOVE_NUMBERS") {
 		return fmt.Errorf("'min_digit_count' must be specified if 'transformation_type' is set to '%v'", me.TransformationType)
 	}
 	if me.Prefix == nil && slices.Contains([]string{"AFTER", "BETWEEN", "REPLACE_BETWEEN"}, string(me.TransformationType)) {
 		return fmt.Errorf("'prefix' must be specified if 'transformation_type' is set to '%v'", me.TransformationType)
 	}
-	if me.ReplacementValue == nil && string(me.TransformationType) == "REPLACE_BETWEEN" {
+	if me.ReplacementValue == nil && (string(me.TransformationType) == "REPLACE_BETWEEN") {
 		return fmt.Errorf("'replacement_value' must be specified if 'transformation_type' is set to '%v'", me.TransformationType)
 	}
-	if me.SegmentCount == nil && string(me.TransformationType) == "TAKE_SEGMENTS" {
+	if me.SegmentCount == nil && (string(me.TransformationType) == "TAKE_SEGMENTS") {
 		return fmt.Errorf("'segment_count' must be specified if 'transformation_type' is set to '%v'", me.TransformationType)
 	}
-	if me.SelectIndex == nil && string(me.TransformationType) == "SPLIT_SELECT" {
+	if me.SelectIndex == nil && (string(me.TransformationType) == "SPLIT_SELECT") {
 		return fmt.Errorf("'select_index' must be specified if 'transformation_type' is set to '%v'", me.TransformationType)
 	}
 	if me.SplitDelimiter == nil && slices.Contains([]string{"SPLIT_SELECT", "TAKE_SEGMENTS"}, string(me.TransformationType)) {

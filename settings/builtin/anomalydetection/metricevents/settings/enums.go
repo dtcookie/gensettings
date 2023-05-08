@@ -51,16 +51,44 @@ var AlertConditions = struct {
 	"OUTSIDE",
 }
 
+type DimensionFilterOperator string
+
+var DimensionFilterOperators = struct {
+	ContainsCaseSensitive       DimensionFilterOperator
+	DoesNotContainCaseSensitive DimensionFilterOperator
+	DoesNotEqual                DimensionFilterOperator
+	DoesNotStartWith            DimensionFilterOperator
+	Equals                      DimensionFilterOperator
+	StartsWith                  DimensionFilterOperator
+}{
+	"CONTAINS_CASE_SENSITIVE",
+	"DOES_NOT_CONTAIN_CASE_SENSITIVE",
+	"DOES_NOT_EQUAL",
+	"DOES_NOT_START_WITH",
+	"EQUALS",
+	"STARTS_WITH",
+}
+
 type EntityFilterOperator string
 
 var EntityFilterOperators = struct {
-	ContainsCaseInsensitive EntityFilterOperator
-	ContainsCaseSensitive   EntityFilterOperator
-	Equals                  EntityFilterOperator
+	ContainsCaseInsensitive       EntityFilterOperator
+	ContainsCaseSensitive         EntityFilterOperator
+	DoesNotContainCaseInsensitive EntityFilterOperator
+	DoesNotContainCaseSensitive   EntityFilterOperator
+	DoesNotEqual                  EntityFilterOperator
+	DoesNotStartWith              EntityFilterOperator
+	Equals                        EntityFilterOperator
+	StartsWith                    EntityFilterOperator
 }{
 	"CONTAINS_CASE_INSENSITIVE",
 	"CONTAINS_CASE_SENSITIVE",
+	"DOES_NOT_CONTAIN_CASE_INSENSITIVE",
+	"DOES_NOT_CONTAIN_CASE_SENSITIVE",
+	"DOES_NOT_EQUAL",
+	"DOES_NOT_START_WITH",
 	"EQUALS",
+	"STARTS_WITH",
 }
 
 type EntityFilterType string

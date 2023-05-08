@@ -103,25 +103,25 @@ func (me *AutoTagAttributeRule) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *AutoTagAttributeRule) HandlePreconditions() error {
-	if me.AzureToPGPropagation == nil && string(me.EntityType) == "AZURE" {
+	if me.AzureToPGPropagation == nil && (string(me.EntityType) == "AZURE") {
 		me.AzureToPGPropagation = opt.NewBool(false)
 	}
-	if me.AzureToServicePropagation == nil && string(me.EntityType) == "AZURE" {
+	if me.AzureToServicePropagation == nil && (string(me.EntityType) == "AZURE") {
 		me.AzureToServicePropagation = opt.NewBool(false)
 	}
-	if me.HostToPGPropagation == nil && string(me.EntityType) == "HOST" {
+	if me.HostToPGPropagation == nil && (string(me.EntityType) == "HOST") {
 		me.HostToPGPropagation = opt.NewBool(false)
 	}
-	if me.PGToHostPropagation == nil && string(me.EntityType) == "PROCESS_GROUP" {
+	if me.PGToHostPropagation == nil && (string(me.EntityType) == "PROCESS_GROUP") {
 		me.PGToHostPropagation = opt.NewBool(false)
 	}
-	if me.PGToServicePropagation == nil && string(me.EntityType) == "PROCESS_GROUP" {
+	if me.PGToServicePropagation == nil && (string(me.EntityType) == "PROCESS_GROUP") {
 		me.PGToServicePropagation = opt.NewBool(false)
 	}
-	if me.ServiceToHostPropagation == nil && string(me.EntityType) == "SERVICE" {
+	if me.ServiceToHostPropagation == nil && (string(me.EntityType) == "SERVICE") {
 		me.ServiceToHostPropagation = opt.NewBool(false)
 	}
-	if me.ServiceToPGPropagation == nil && string(me.EntityType) == "SERVICE" {
+	if me.ServiceToPGPropagation == nil && (string(me.EntityType) == "SERVICE") {
 		me.ServiceToPGPropagation = opt.NewBool(false)
 	}
 	return nil

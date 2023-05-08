@@ -79,7 +79,7 @@
 		},
 		"statsdActive": {
 			"default": true,
-			"description": "",
+			"description": "This is applicable only to non-containerized Linux and Windows hosts",
 			"displayName": "Enable Dynatrace StatsD",
 			"documentation": "",
 			"maxObjects": 1,

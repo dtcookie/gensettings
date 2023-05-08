@@ -67,7 +67,7 @@
 			"default": "",
 			"description": "This must be a valid beacon endpoint URL.",
 			"displayName": "URL",
-			"documentation": "The URL must start with 'http://' or 'https://'. Environment ActiveGate URLs must end with '/mbeacon/{{environment-id}}', Instrumented Web Server URLs must end with '/dtmb'.",
+			"documentation": "The URL must start with 'http://' or 'https://'. Environment ActiveGate URL must end with '/mbeacon/{{environment-id}}', Instrumented Web Server URL must end with '/dtmb'.",
 			"maxObjects": 1,
 			"modificationPolicy": "DEFAULT",
 			"nullable": false,

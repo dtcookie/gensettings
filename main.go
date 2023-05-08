@@ -124,6 +124,10 @@ var scopeIds = map[string]string{
 }
 
 func main() {
+	if len(os.Args) == 2 && os.Args[1] == "-recheck" {
+		// Validate()
+		return
+	}
 	LoadCredentials()
 	var schemaList schema.List
 	if err := GET(CREDENTIALS.EnvironmentURL+"/api/v2/settings/schemas", &schemaList); err != nil {
@@ -134,6 +138,10 @@ func main() {
 		// if schemaStub.SchemaID != "builtin:tags.auto-tagging" {
 		// 	continue
 		// }
+		// if schemaStub.SchemaID != "builtin:anomaly-detection.infrastructure-vmware" {
+		// 	continue
+		// }
+
 		// if !strings.HasPrefix(schemaStub.SchemaID, "builtin:") {
 		// 	fmt.Println(schemaStub.SchemaID)
 		// }

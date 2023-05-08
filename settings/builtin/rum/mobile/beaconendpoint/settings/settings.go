@@ -59,7 +59,7 @@ func (me *Settings) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *Settings) HandlePreconditions() error {
-	if me.Url == nil && string(me.Type) == "CLUSTER_ACTIVEGATE" {
+	if me.Url == nil && (string(me.Type) != "CLUSTER_ACTIVEGATE") {
 		return fmt.Errorf("'url' must be specified if 'type' is set to '%v'", me.Type)
 	}
 	return nil

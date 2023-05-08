@@ -75,7 +75,7 @@ func (me *EventTemplate) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *EventTemplate) HandlePreconditions() error {
-	if me.DavisMerge == nil && string(me.EventType) == "INFO" {
+	if me.DavisMerge == nil && (string(me.EventType) != "INFO") {
 		me.DavisMerge = opt.NewBool(false)
 	}
 	return nil

@@ -28,7 +28,7 @@ type AllowListRules []*AllowListRule
 
 func (me *AllowListRules) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
-		"recording_masking_allow_list_rule": {
+		"playback_masking_allow_list_rule": {
 			Type:        schema.TypeSet,
 			Required:    true,
 			MinItems:    1,
@@ -39,11 +39,11 @@ func (me *AllowListRules) Schema() map[string]*schema.Schema {
 }
 
 func (me AllowListRules) MarshalHCL(properties hcl.Properties) error {
-	return properties.EncodeSlice("recording_masking_allow_list_rule", me)
+	return properties.EncodeSlice("playback_masking_allow_list_rule", me)
 }
 
 func (me *AllowListRules) UnmarshalHCL(decoder hcl.Decoder) error {
-	return decoder.DecodeSlice("recording_masking_allow_list_rule", me)
+	return decoder.DecodeSlice("playback_masking_allow_list_rule", me)
 }
 
 type AllowListRule struct {
@@ -81,10 +81,10 @@ func (me *AllowListRule) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *AllowListRule) HandlePreconditions() error {
-	if me.AttributeExpression == nil && string(me.Target) == "ATTRIBUTE" {
+	if me.AttributeExpression == nil && (string(me.Target) == "ATTRIBUTE") {
 		return fmt.Errorf("'attribute_expression' must be specified if 'target' is set to '%v'", me.Target)
 	}
-	if me.CssExpression == nil && string(me.Target) == "ELEMENT" {
+	if me.CssExpression == nil && (string(me.Target) == "ELEMENT") {
 		return fmt.Errorf("'css_expression' must be specified if 'target' is set to '%v'", me.Target)
 	}
 	return nil

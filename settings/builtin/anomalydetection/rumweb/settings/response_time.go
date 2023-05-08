@@ -78,16 +78,16 @@ func (me *ResponseTime) HandlePreconditions() error {
 	if me.DetectionMode != nil && !me.Enabled {
 		return fmt.Errorf("'detection_mode' must not be specified if 'enabled' is set to '%v'", me.Enabled)
 	}
-	if me.ResponseTimeAuto == nil && me.Enabled && me.DetectionMode != nil && string(*me.DetectionMode) == "auto" {
+	if me.ResponseTimeAuto == nil && me.Enabled && (me.DetectionMode != nil && string(*me.DetectionMode) == "auto") {
 		return fmt.Errorf("'response_time_auto' must be specified if 'enabled' is set to '%v' and 'detection_mode' is set to '%v'", me.Enabled, me.DetectionMode)
 	}
-	if me.ResponseTimeAuto != nil && !me.Enabled || me.DetectionMode == nil || string(*me.DetectionMode) != "auto" {
+	if me.ResponseTimeAuto != nil && !me.Enabled || me.DetectionMode == nil || (me.DetectionMode != nil && string(*me.DetectionMode) != "auto") {
 		return fmt.Errorf("'response_time_auto' must not be specified if 'enabled' is set to '%v'", me.Enabled)
 	}
-	if me.ResponseTimeFixed == nil && me.Enabled && me.DetectionMode != nil && string(*me.DetectionMode) == "fixed" {
+	if me.ResponseTimeFixed == nil && me.Enabled && (me.DetectionMode != nil && string(*me.DetectionMode) == "fixed") {
 		return fmt.Errorf("'response_time_fixed' must be specified if 'enabled' is set to '%v' and 'detection_mode' is set to '%v'", me.Enabled, me.DetectionMode)
 	}
-	if me.ResponseTimeFixed != nil && !me.Enabled || me.DetectionMode == nil || string(*me.DetectionMode) != "fixed" {
+	if me.ResponseTimeFixed != nil && !me.Enabled || me.DetectionMode == nil || (me.DetectionMode != nil && string(*me.DetectionMode) != "fixed") {
 		return fmt.Errorf("'response_time_fixed' must not be specified if 'enabled' is set to '%v'", me.Enabled)
 	}
 	return nil

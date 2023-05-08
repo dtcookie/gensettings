@@ -151,7 +151,7 @@
 							"type": "RANGE"
 						}
 					],
-					"default": 30,
+					"default": 24,
 					"description": "The number of **10-second samples** within the evaluation window that must be lower the threshold to close an event",
 					"displayName": "Dealerting samples",
 					"documentation": "",
@@ -1950,7 +1950,7 @@
 							"type": "RANGE"
 						}
 					],
-					"default": 30,
+					"default": 24,
 					"description": "The number of **10-second samples** within the evaluation window that must be lower the threshold to close an event",
 					"displayName": "Dealerting samples",
 					"documentation": "",

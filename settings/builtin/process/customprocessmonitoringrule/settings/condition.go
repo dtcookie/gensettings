@@ -67,10 +67,10 @@ func (me *Condition) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *Condition) HandlePreconditions() error {
-	if me.EnvVar == nil && string(me.Item) == "UNKNOWN" {
+	if me.EnvVar == nil && (string(me.Item) == "UNKNOWN") {
 		return fmt.Errorf("'env_var' must be specified if 'item' is set to '%v'", me.Item)
 	}
-	if me.Value == nil && slices.Contains([]string{"EXISTS", "NOT_EXISTS"}, string(me.Operator)) {
+	if me.Value == nil && !slices.Contains([]string{"EXISTS", "NOT_EXISTS"}, string(me.Operator)) {
 		return fmt.Errorf("'value' must be specified if 'operator' is set to '%v'", me.Operator)
 	}
 	return nil

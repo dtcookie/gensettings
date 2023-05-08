@@ -52,7 +52,7 @@ func (me *MetricValue) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *MetricValue) HandlePreconditions() error {
-	if me.FieldName == nil && string(me.Type) == "FIELD" {
+	if me.FieldName == nil && (string(me.Type) == "FIELD") {
 		return fmt.Errorf("'field_name' must be specified if 'type' is set to '%v'", me.Type)
 	}
 	return nil

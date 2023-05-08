@@ -103,19 +103,19 @@ func (me *SpanMatcher) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *SpanMatcher) HandlePreconditions() error {
-	if me.CaseSensitive == nil && string(me.Source) == "SPAN_KIND" {
+	if me.CaseSensitive == nil && (string(me.Source) != "SPAN_KIND") {
 		me.CaseSensitive = opt.NewBool(false)
 	}
-	if me.Value == nil && string(me.Source) == "SPAN_KIND" {
+	if me.Value == nil && (string(me.Source) != "SPAN_KIND") {
 		me.Value = opt.NewString("")
 	}
-	if me.SourceKey == nil && string(me.Source) == "ATTRIBUTE" {
+	if me.SourceKey == nil && (string(me.Source) == "ATTRIBUTE") {
 		return fmt.Errorf("'source_key' must be specified if 'source' is set to '%v'", me.Source)
 	}
-	if me.SpanKindValue == nil && string(me.Source) == "SPAN_KIND" {
+	if me.SpanKindValue == nil && (string(me.Source) == "SPAN_KIND") {
 		return fmt.Errorf("'span_kind_value' must be specified if 'source' is set to '%v'", me.Source)
 	}
-	if me.SpanKindValue != nil && string(me.Source) != "SPAN_KIND" {
+	if me.SpanKindValue != nil && (string(me.Source) != "SPAN_KIND") {
 		return fmt.Errorf("'span_kind_value' must not be specified if 'source' is set to '%v'", me.Source)
 	}
 	return nil

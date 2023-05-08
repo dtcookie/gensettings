@@ -24,13 +24,19 @@ import (
 )
 
 type Settings struct {
-	Enabled        bool    `json:"enabled"`                  // This setting is enabled (`true`) or disabled (`false`)
-	EnabledFastCGI *bool   `json:"enabledFastCGI,omitempty"` // Requires PHP monitoring enabled and from Dynatrace OneAgent version 1.191 it's ignored and permanently enabled
-	HostID         *string `json:"-" scope:"hostId"`         // The scope of this settings. If the settings should cover the whole environment, just don't specify any scope.
+	EnablePhpCliServerInstrumentation *bool   `json:"enablePhpCliServerInstrumentation,omitempty"` // Requires enabled PHP monitoring and Dynatrace OneAgent version 1.261 or later
+	Enabled                           bool    `json:"enabled"`                                     // This setting is enabled (`true`) or disabled (`false`)
+	EnabledFastCGI                    *bool   `json:"enabledFastCGI,omitempty"`                    // Requires PHP monitoring enabled and from Dynatrace OneAgent version 1.191 it's ignored and permanently enabled
+	HostID                            *string `json:"-" scope:"hostId"`                            // The scope of this settings. If the settings should cover the whole environment, just don't specify any scope.
 }
 
 func (me *Settings) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
+		"enable_php_cli_server_instrumentation": {
+			Type:        schema.TypeBool,
+			Description: "Requires enabled PHP monitoring and Dynatrace OneAgent version 1.261 or later",
+			Optional:    true, // precondition
+		},
 		"enabled": {
 			Type:        schema.TypeBool,
 			Description: "This setting is enabled (`true`) or disabled (`false`)",
@@ -52,13 +58,17 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 
 func (me *Settings) MarshalHCL(properties hcl.Properties) error {
 	return properties.EncodeAll(map[string]any{
-		"enabled":          me.Enabled,
-		"enabled_fast_cgi": me.EnabledFastCGI,
-		"host_id":          me.HostID,
+		"enable_php_cli_server_instrumentation": me.EnablePhpCliServerInstrumentation,
+		"enabled":                               me.Enabled,
+		"enabled_fast_cgi":                      me.EnabledFastCGI,
+		"host_id":                               me.HostID,
 	})
 }
 
 func (me *Settings) HandlePreconditions() error {
+	if me.EnablePhpCliServerInstrumentation == nil && me.Enabled {
+		me.EnablePhpCliServerInstrumentation = opt.NewBool(false)
+	}
 	if me.EnabledFastCGI == nil && me.Enabled {
 		me.EnabledFastCGI = opt.NewBool(false)
 	}
@@ -67,8 +77,9 @@ func (me *Settings) HandlePreconditions() error {
 
 func (me *Settings) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
-		"enabled":          &me.Enabled,
-		"enabled_fast_cgi": &me.EnabledFastCGI,
-		"host_id":          &me.HostID,
+		"enable_php_cli_server_instrumentation": &me.EnablePhpCliServerInstrumentation,
+		"enabled":                               &me.Enabled,
+		"enabled_fast_cgi":                      &me.EnabledFastCGI,
+		"host_id":                               &me.HostID,
 	})
 }

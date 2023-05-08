@@ -85,22 +85,74 @@
 			],
 			"type": "enum"
 		},
-		"EntityFilterOperator": {
+		"DimensionFilterOperator": {
 			"description": "",
-			"displayName": "EntityFilterOperator",
+			"displayName": "DimensionFilterOperator",
 			"documentation": "",
 			"items": [
 				{
-					"displayName": "contains (case insensitive)",
-					"value": "CONTAINS_CASE_INSENSITIVE"
+					"displayName": "equals",
+					"value": "EQUALS"
+				},
+				{
+					"displayName": "does not equal",
+					"value": "DOES_NOT_EQUAL"
+				},
+				{
+					"displayName": "starts with",
+					"value": "STARTS_WITH"
+				},
+				{
+					"displayName": "does not start with",
+					"value": "DOES_NOT_START_WITH"
 				},
 				{
 					"displayName": "contains (case sensitive)",
 					"value": "CONTAINS_CASE_SENSITIVE"
 				},
 				{
+					"displayName": "does not contain (case sensitive)",
+					"value": "DOES_NOT_CONTAIN_CASE_SENSITIVE"
+				}
+			],
+			"type": "enum"
+		},
+		"EntityFilterOperator": {
+			"description": "",
+			"displayName": "EntityFilterOperator",
+			"documentation": "",
+			"items": [
+				{
 					"displayName": "equals",
 					"value": "EQUALS"
+				},
+				{
+					"displayName": "does not equal",
+					"value": "DOES_NOT_EQUAL"
+				},
+				{
+					"displayName": "starts with",
+					"value": "STARTS_WITH"
+				},
+				{
+					"displayName": "does not start with",
+					"value": "DOES_NOT_START_WITH"
+				},
+				{
+					"displayName": "contains (case sensitive)",
+					"value": "CONTAINS_CASE_SENSITIVE"
+				},
+				{
+					"displayName": "does not contain (case sensitive)",
+					"value": "DOES_NOT_CONTAIN_CASE_SENSITIVE"
+				},
+				{
+					"displayName": "contains (case insensitive)",
+					"value": "CONTAINS_CASE_INSENSITIVE"
+				},
+				{
+					"displayName": "does not contain (case insensitive)",
+					"value": "DOES_NOT_CONTAIN_CASE_INSENSITIVE"
 				}
 			],
 			"type": "enum"
@@ -465,7 +517,7 @@
 					"type": "text"
 				}
 			},
-			"summaryPattern": "{dimensionKey} = {dimensionValue|meDisplayName}",
+			"summaryPattern": "{dimensionKey} {operator} {dimensionValue|meDisplayName}",
 			"type": "object",
 			"version": "0",
 			"versionInfo": ""
@@ -1244,5 +1296,5 @@
 			"versionInfo": ""
 		}
 	},
-	"version": "1.0.7"
+	"version": "1.0.12"
 }

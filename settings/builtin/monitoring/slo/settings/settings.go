@@ -30,7 +30,7 @@ type Settings struct {
 	EvaluationWindow    string               `json:"evaluationWindow"`            // Define the timeframe during which the SLO is to be evaluated. For the timeframe you can enter expressions like -1h (last hour), -1w (last week) or complex expressions like -2d to now (last two days), -1d/d to now/d (beginning of yesterday to beginning of today).
 	Filter              string               `json:"filter"`                      // Set a filter parameter (entitySelector) on any GET call to evaluate this SLO against specific services only (for example, type(\"SERVICE\")).  For details, see the [Entity Selector documentation](https://dt-url.net/entityselector).
 	MetricExpression    string               `json:"metricExpression"`            // For details, see the [Metrics page](/ui/metrics \"Metrics page\").
-	MetricName          string               `json:"metricName"`                  // Once created, metric keys cannot be changed
+	MetricName          string               `json:"metricName"`                  // Metric name
 	Name                string               `json:"name"`                        // SLO name
 	TargetSuccess       float64              `json:"targetSuccess"`               // Set the target value of the SLO. A percentage below this value indicates a failure.
 	TargetWarning       float64              `json:"targetWarning"`               // Set the warning value of the SLO. At the warning state the SLO is fulfilled. However, it is getting close to a failure.
@@ -78,7 +78,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		},
 		"metric_name": {
 			Type:        schema.TypeString,
-			Description: "Once created, metric keys cannot be changed",
+			Description: "Metric name",
 			Required:    true,
 		},
 		"name": {

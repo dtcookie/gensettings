@@ -15,28 +15,18 @@
 * limitations under the License.
  */
 
-package notificationalertingprofilewithtriggerevent
+package keyperformancemetricxhractions
 
-type RiskLevel string
+type XhrKpm string
 
-var RiskLevels = struct {
-	Critical RiskLevel
-	High     RiskLevel
-	Low      RiskLevel
-	Medium   RiskLevel
+var XhrKpms = struct {
+	ResponseEnd        XhrKpm
+	ResponseStart      XhrKpm
+	UserActionDuration XhrKpm
+	VisuallyComplete   XhrKpm
 }{
-	"CRITICAL",
-	"HIGH",
-	"LOW",
-	"MEDIUM",
-}
-
-type TriggerEvent string
-
-var TriggerEvents = struct {
-	NewManagementZoneAffected TriggerEvent
-	SecurityProblemOpened     TriggerEvent
-}{
-	"NEW_MANAGEMENT_ZONE_AFFECTED",
-	"SECURITY_PROBLEM_OPENED",
+	"RESPONSE_END",
+	"RESPONSE_START",
+	"USER_ACTION_DURATION",
+	"VISUALLY_COMPLETE",
 }

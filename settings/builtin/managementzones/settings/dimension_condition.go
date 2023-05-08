@@ -88,7 +88,7 @@ func (me *DimensionCondition) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *DimensionCondition) HandlePreconditions() error {
-	if me.Key == nil && string(me.ConditionType) == "DIMENSION" {
+	if me.Key == nil && (string(me.ConditionType) == "DIMENSION") {
 		return fmt.Errorf("'key' must be specified if 'condition_type' is set to '%v'", me.ConditionType)
 	}
 	return nil

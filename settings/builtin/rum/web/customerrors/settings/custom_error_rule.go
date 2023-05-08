@@ -97,10 +97,10 @@ func (me *CustomErrorRule) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *CustomErrorRule) HandlePreconditions() error {
-	if me.KeyPattern == nil && string(me.KeyMatcher) == "ALL" {
+	if me.KeyPattern == nil && (string(me.KeyMatcher) != "ALL") {
 		me.KeyPattern = opt.NewString("")
 	}
-	if me.ValuePattern == nil && string(me.ValueMatcher) == "ALL" {
+	if me.ValuePattern == nil && (string(me.ValueMatcher) != "ALL") {
 		me.ValuePattern = opt.NewString("")
 	}
 	return nil
