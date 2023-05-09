@@ -1,0 +1,58 @@
+{
+	"allowedScopes": [
+		"SERVICE_METHOD",
+		"SERVICE",
+		"PROCESS_GROUP",
+		"HOST",
+		"HOST_GROUP",
+		"environment"
+	],
+	"description": "Example schema for demoing settings zone hierarchy resolution",
+	"displayName": "Settings Zone Example",
+	"documentation": "",
+	"dynatrace": "1",
+	"enums": {},
+	"keyProperty": "key",
+	"maxObjects": 100,
+	"multiObject": true,
+	"ordered": true,
+	"properties": {
+		"key": {
+			"constraints": [
+				{
+					"maxLength": 500,
+					"minLength": 1,
+					"type": "LENGTH"
+				}
+			],
+			"default": "",
+			"description": "",
+			"displayName": "key",
+			"documentation": "",
+			"maxObjects": 1,
+			"modificationPolicy": "NEVER",
+			"nullable": false,
+			"type": "text"
+		},
+		"value": {
+			"constraints": [
+				{
+					"maxLength": 500,
+					"minLength": 1,
+					"type": "LENGTH"
+				}
+			],
+			"default": "",
+			"description": "",
+			"displayName": "value",
+			"documentation": "",
+			"maxObjects": 1,
+			"modificationPolicy": "DEFAULT",
+			"nullable": false,
+			"type": "text"
+		}
+	},
+	"schemaId": "builtin:example.settings-zone",
+	"types": {},
+	"version": "0.1"
+}

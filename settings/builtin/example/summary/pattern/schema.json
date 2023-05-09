@@ -1,0 +1,289 @@
+{
+	"allowedScopes": [
+		"environment"
+	],
+	"description": "This schema shows some possibilities on how to customize the displaying of items using the summary pattern:\n\n - **Markdown** to apply formatting\n\n - **ICU** for general message formatting and simple logic [ICU documentation](https://unicode-org.github.io/icu/userguide/format_parse/messages/ \"Visit the External ICU Documentation\")\n\n - **Pipes** to transform values. Checkout [SummaryPatternPipes#CORE_PIPE_FACTORIES](https://bitbucket.lab.dynatrace.org/projects/RX/repos/configuration-core/browse/core-client-shared/src/main/java/com/dynatrace/configuration/core/client/shared/util/SummaryPatternPipes.java) (for general pipes) and [MonitoringSettingsFactory#createPipeRegistry](https://bitbucket.lab.dynatrace.org/projects/RX/repos/cluster/browse/shared/settings.monitoring.impl/src/main/java/com/dynatrace/settings/monitoring/impl/internalapi/MonitoringSettingsFactory.java) (for cluster-side and custom pipes) to see what pipes are registered and available for usage.",
+	"displayName": "Summary pattern examples",
+	"documentation": "",
+	"dynatrace": "1",
+	"enums": {},
+	"maxObjects": 1,
+	"multiObject": false,
+	"properties": {
+		"icu_number_formatting": {
+			"description": "This summary makes use of some of ICU's number formatting capabilities",
+			"displayName": "ICU number formatting",
+			"documentation": "",
+			"items": {
+				"description": "",
+				"displayName": "",
+				"documentation": "",
+				"type": {
+					"$ref": "#/types/IcuNumberFormattingItem"
+				}
+			},
+			"maxObjects": 100,
+			"minObjects": 0,
+			"modificationPolicy": "DEFAULT",
+			"nullable": false,
+			"type": "set"
+		},
+		"icu_plural": {
+			"description": "This summary makes use of ICU's `plural` to display some text depending on an integer value",
+			"displayName": "ICU plural",
+			"documentation": "",
+			"items": {
+				"description": "",
+				"displayName": "",
+				"documentation": "",
+				"type": {
+					"$ref": "#/types/IcuPluralItem"
+				}
+			},
+			"maxObjects": 100,
+			"minObjects": 0,
+			"modificationPolicy": "DEFAULT",
+			"nullable": false,
+			"type": "set"
+		},
+		"icu_select": {
+			"description": "This summary makes use of ICU's `select` to display some text depending on a boolean flag",
+			"displayName": "ICU select",
+			"documentation": "",
+			"items": {
+				"description": "",
+				"displayName": "",
+				"documentation": "",
+				"type": {
+					"$ref": "#/types/IcuSelectItem"
+				}
+			},
+			"maxObjects": 100,
+			"minObjects": 0,
+			"modificationPolicy": "DEFAULT",
+			"nullable": false,
+			"type": "set"
+		},
+		"non_empty_text": {
+			"description": "This summary shows how to use pipes, in particular the `valueSet` pipe to check if a value is set",
+			"displayName": "Non-empty text",
+			"documentation": "",
+			"items": {
+				"description": "",
+				"displayName": "",
+				"documentation": "",
+				"type": {
+					"$ref": "#/types/NonEmptyTextItem"
+				}
+			},
+			"maxObjects": 100,
+			"minObjects": 0,
+			"modificationPolicy": "DEFAULT",
+			"nullable": false,
+			"type": "set"
+		},
+		"truncated": {
+			"description": "This summary shows how to use pipes, in particular the `truncate` pipe to limit the length of the displayed text to 10 characters",
+			"displayName": "Truncated text",
+			"documentation": "",
+			"items": {
+				"description": "",
+				"displayName": "",
+				"documentation": "",
+				"type": {
+					"$ref": "#/types/TruncatedTextItem"
+				}
+			},
+			"maxObjects": 100,
+			"minObjects": 0,
+			"modificationPolicy": "DEFAULT",
+			"nullable": false,
+			"type": "set"
+		},
+		"truncatedCollection": {
+			"description": "This summary shows how to use pipes, in particular the `truncateCollection` pipe to limit the size of the collection to 3 elements and the length of each text item in it to 4 characters",
+			"displayName": "Truncated collection",
+			"documentation": "",
+			"items": {
+				"description": "",
+				"displayName": "",
+				"documentation": "",
+				"type": {
+					"$ref": "#/types/TruncatedCollection"
+				}
+			},
+			"maxObjects": 100,
+			"minObjects": 0,
+			"modificationPolicy": "DEFAULT",
+			"nullable": false,
+			"type": "set"
+		}
+	},
+	"schemaId": "builtin:example.summary.pattern",
+	"types": {
+		"IcuNumberFormattingItem": {
+			"description": "",
+			"displayName": "Item",
+			"documentation": "",
+			"properties": {
+				"integerProperty": {
+					"constraints": [
+						{
+							"minimum": 0,
+							"type": "RANGE"
+						}
+					],
+					"default": 0,
+					"description": "",
+					"displayName": "Integer",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"type": "integer"
+				}
+			},
+			"summaryPattern": "default: {integerProperty}, number: {integerProperty, number}, group-off: {integerProperty, number, :: group-off}, scientific: {integerProperty, number, :: scientific/*ee}",
+			"type": "object",
+			"version": "0",
+			"versionInfo": ""
+		},
+		"IcuPluralItem": {
+			"description": "",
+			"displayName": "Item",
+			"documentation": "",
+			"properties": {
+				"integerProperty": {
+					"constraints": [
+						{
+							"minimum": 0,
+							"type": "RANGE"
+						}
+					],
+					"default": 0,
+					"description": "",
+					"displayName": "Integer",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"type": "integer"
+				}
+			},
+			"summaryPattern": "You entered **{integerProperty, plural, =0 {none!} one {just one.} =2 {exactly two.} other {a lot!}}**",
+			"type": "object",
+			"version": "0",
+			"versionInfo": ""
+		},
+		"IcuSelectItem": {
+			"description": "",
+			"displayName": "Item",
+			"documentation": "",
+			"properties": {
+				"booleanProperty": {
+					"default": false,
+					"description": "",
+					"displayName": "Boolean",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"type": "boolean"
+				}
+			},
+			"summaryPattern": "Am I set? **{booleanProperty, select, true {Yes, I am!} other {No, I am not...}}**",
+			"type": "object",
+			"version": "0",
+			"versionInfo": ""
+		},
+		"NonEmptyTextItem": {
+			"description": "",
+			"displayName": "Item",
+			"documentation": "",
+			"properties": {
+				"textProperty": {
+					"constraints": [
+						{
+							"maxLength": 500,
+							"minLength": 1,
+							"type": "LENGTH"
+						}
+					],
+					"description": "",
+					"displayName": "Text",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": true,
+					"type": "text"
+				}
+			},
+			"summaryPattern": "You entered: **{textProperty | valueSet, select, true {{textProperty}} other {Nothing!}}**",
+			"type": "object",
+			"version": "0",
+			"versionInfo": ""
+		},
+		"TruncatedCollection": {
+			"description": "",
+			"displayName": "Set of text items",
+			"documentation": "",
+			"properties": {
+				"collProperty": {
+					"description": "",
+					"displayName": "",
+					"documentation": "",
+					"items": {
+						"constraints": [
+							{
+								"maxLength": 500,
+								"minLength": 1,
+								"type": "LENGTH"
+							}
+						],
+						"description": "",
+						"displayName": "",
+						"documentation": "",
+						"type": "text"
+					},
+					"maxObjects": 100,
+					"minObjects": 0,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"type": "set"
+				}
+			},
+			"summaryPattern": "Truncated to 3 elements with max 4 characters length: {collProperty | truncateCollection:'3' : '4'}",
+			"type": "object",
+			"version": "0",
+			"versionInfo": ""
+		},
+		"TruncatedTextItem": {
+			"description": "",
+			"displayName": "Item",
+			"documentation": "",
+			"properties": {
+				"textProperty": {
+					"constraints": [
+						{
+							"maxLength": 500,
+							"minLength": 1,
+							"type": "LENGTH"
+						}
+					],
+					"description": "",
+					"displayName": "Text",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": true,
+					"type": "text"
+				}
+			},
+			"summaryPattern": "Truncated to 10 characters: {textProperty | truncate:'10'}",
+			"type": "object",
+			"version": "0",
+			"versionInfo": ""
+		}
+	},
+	"version": "0.0.2"
+}

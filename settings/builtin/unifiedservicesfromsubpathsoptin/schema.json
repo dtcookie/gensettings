@@ -1,0 +1,48 @@
+{
+	"allowedScopes": [
+		"environment"
+	],
+	"description": "Unified services from subpaths opt-in",
+	"displayName": "Unified services from subpaths opt-in",
+	"documentation": "Unified services from subpaths opt-in",
+	"dynatrace": "1",
+	"enums": {},
+	"maxObjects": 1000,
+	"multiObject": true,
+	"ordered": false,
+	"properties": {
+		"optInEnabled": {
+			"default": true,
+			"description": "Unified service detection is enabled for the PG.",
+			"displayName": "Opt-in enabled",
+			"documentation": "",
+			"maxObjects": 1,
+			"modificationPolicy": "DEFAULT",
+			"nullable": false,
+			"type": "boolean"
+		},
+		"pgMeId": {
+			"constraints": [
+				{
+					"maxLength": 500,
+					"minLength": 1,
+					"type": "LENGTH"
+				}
+			],
+			"default": "PROCESS_GROUP-0442D9F8990AF9C4",
+			"description": "The ME identifier of the PG, something like PROCESS_GROUP-0442D9F8990AF9C4",
+			"displayName": "PG",
+			"documentation": "",
+			"maxObjects": 1,
+			"modificationPolicy": "DEFAULT",
+			"nullable": false,
+			"type": "text"
+		}
+	},
+	"schemaGroups": [
+		"group:service-monitoring"
+	],
+	"schemaId": "builtin:unified-services-from-subpaths-opt-in",
+	"types": {},
+	"version": "0.0.1"
+}

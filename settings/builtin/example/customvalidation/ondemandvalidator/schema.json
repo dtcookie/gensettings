@@ -1,0 +1,31 @@
+{
+	"allowedScopes": [
+		"environment",
+		"environment-default"
+	],
+	"description": "Showcase of a Custom On-Demand-Validator executed in the cluster.\n\nIt will check that the entered value is greater than the current server timestamp when the user initiates the on-demand validation.\n\nFor the Java implementation check out [ExampleOnDemandValidatorSchema.java](https://bitbucket.lab.dynatrace.org/projects/RX/repos/cluster/browse/shared/settings.monitoring.impl/src/main/java/com/dynatrace/settings/monitoring/impl/internalapi/schemas/customvalidation/ExampleOnDemandValidatorSchema.java)",
+	"displayName": "Custom OnDemand-Validator",
+	"documentation": "",
+	"dynatrace": "1",
+	"enums": {},
+	"maxObjects": 1,
+	"multiObject": false,
+	"properties": {
+		"start": {
+			"default": 0,
+			"description": "A timestamp. It has to be after the current server time when checking the on-demand validator.",
+			"displayName": "Start Timestamp",
+			"documentation": "",
+			"maxObjects": 1,
+			"modificationPolicy": "DEFAULT",
+			"nullable": false,
+			"type": "integer"
+		}
+	},
+	"schemaGroups": [
+		"group:example"
+	],
+	"schemaId": "builtin:example.custom-validation.on-demand-validator",
+	"types": {},
+	"version": "0.1"
+}

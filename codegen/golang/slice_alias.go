@@ -55,3 +55,11 @@ func NewSliceAlias(t *reflection.Type, item string) *SliceAlias {
 		Item: camel.Strip(item),
 	}
 }
+
+func NewSliceAlias2(t *reflection.Type, item string) *SliceAlias {
+	return &SliceAlias{
+		Name: TypeName(t.Elem.Unref()) + "List",
+		Elem: TypeName(t.Elem.Unref()),
+		Item: camel.Strip(item),
+	}
+}

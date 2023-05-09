@@ -1,0 +1,790 @@
+{
+	"allowedScopes": [
+		"environment"
+	],
+	"constraints": [
+		{
+			"customValidatorId": "credentials-validator",
+			"type": "CUSTOM_VALIDATOR_REF"
+		}
+	],
+	"description": "Showcase of property types supported in the UI.",
+	"displayName": "Kitchen sink",
+	"documentation": "This description is supporting **MARKDOWN** syntax.",
+	"dynatrace": "1",
+	"enums": {
+		"AnimalEnum": {
+			"description": "A few animals to pick from",
+			"displayName": "Animal",
+			"documentation": "A nice documentation about the good bois",
+			"items": [
+				{
+					"description": "A detailed description about dogs.",
+					"displayName": "Dog",
+					"value": "dog"
+				},
+				{
+					"displayName": "Cat",
+					"value": "cat"
+				},
+				{
+					"description": "Python is a type of snake!",
+					"displayName": "Snake",
+					"icon": "python",
+					"value": "snake"
+				},
+				{
+					"displayName": "Hamster",
+					"icon": "golang-signet",
+					"value": "hamster"
+				}
+			],
+			"type": "enum"
+		}
+	},
+	"maxObjects": 1,
+	"metadata": {
+		"minJsAgentVersion": "1.220"
+	},
+	"multiObject": false,
+	"properties": {
+		"MarkdownShowcase": {
+			"description": "It's very easy to make some words **bold** and other words *italic* with Markdown.\n\nSometimes you want numbered lists:\n\n1. One\n2. Two\n3. Three\n\nSometimes you want bullet points:\n\n* Start a line with a star\n* Profit!\n\nAlternatively,\n\n- Dashes work just as well\n- And if you have sub points, put two spaces before the dash or star:\n  - Like this\n  - And this\n\n## Structured documents\n\nSometimes it's useful to have different levels of headings to structure your documents. Start lines with a `#` to create headings. Multiple `##` in a row denote smaller heading sizes.\n\n### This is a third-tier heading\n\nYou can use one `#` all the way up to `######` six for different heading sizes.\n\nIf you'd like to quote someone, use the \u003e character before the line:\n\n\u003e Coffee. The finest organic suspension ever devised... I beat the Borg with it.\n\u003e - Captain Janeway",
+			"displayName": "Markdown",
+			"documentation": "",
+			"maxObjects": 1,
+			"modificationPolicy": "DEFAULT",
+			"nullable": false,
+			"type": {
+				"$ref": "#/types/MarkdownShowcase"
+			}
+		},
+		"collectionPropertyTypes": {
+			"description": "All supported collection property types",
+			"displayName": "Collection property types",
+			"documentation": "",
+			"maxObjects": 1,
+			"modificationPolicy": "DEFAULT",
+			"nullable": false,
+			"type": {
+				"$ref": "#/types/CollectionPropertyTypes"
+			}
+		},
+		"propertyTypes": {
+			"description": "All supported property types",
+			"displayName": "Property types",
+			"documentation": "",
+			"maxObjects": 1,
+			"modificationPolicy": "DEFAULT",
+			"nullable": false,
+			"type": {
+				"$ref": "#/types/PropertyTypes"
+			}
+		},
+		"subPropertyTypes": {
+			"description": "All supported sub property types",
+			"displayName": "Sub property types",
+			"documentation": "",
+			"maxObjects": 1,
+			"modificationPolicy": "DEFAULT",
+			"nullable": false,
+			"type": {
+				"$ref": "#/types/SubPropertyTypes"
+			}
+		}
+	},
+	"schemaGroups": [
+		"group:example2",
+		"group:example1"
+	],
+	"schemaId": "builtin:example.kitchen-sink",
+	"types": {
+		"AnimalComplex": {
+			"description": "All animals are good bois",
+			"displayName": "Animal",
+			"documentation": "",
+			"properties": {
+				"animal": {
+					"default": "dog",
+					"description": "",
+					"displayName": "Animal",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"subType": "radio",
+					"type": {
+						"$ref": "#/enums/AnimalEnum"
+					}
+				},
+				"goodBoi": {
+					"default": true,
+					"description": "",
+					"displayName": "Is a good boi?",
+					"documentation": "Of course he is",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"type": "boolean"
+				}
+			},
+			"searchPattern": "{animal} is good? -\u003e {goodBoi}",
+			"summaryPattern": "{animal}",
+			"type": "object",
+			"version": "0",
+			"versionInfo": ""
+		},
+		"CollectionPropertyTypes": {
+			"description": "",
+			"displayName": "Collection property types",
+			"documentation": "",
+			"properties": {
+				"list_complex": {
+					"description": "Collection property type: `list`\n\nJava class: `java.util.List`\n\nDefault constraints: -",
+					"displayName": "list collection property type with complex items",
+					"documentation": "",
+					"items": {
+						"description": "Item description",
+						"displayName": "Item",
+						"documentation": "",
+						"type": {
+							"$ref": "#/types/AnimalComplex"
+						}
+					},
+					"maxObjects": 100,
+					"minObjects": 0,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"type": "list"
+				},
+				"list_simple": {
+					"description": "Collection property type: `list`\n\nJava class: `java.util.List`\n\nDefault constraints: -",
+					"displayName": "list collection property type with simple items",
+					"documentation": "",
+					"items": {
+						"constraints": [
+							{
+								"maxLength": 500,
+								"minLength": 1,
+								"type": "LENGTH"
+							}
+						],
+						"description": "Item description",
+						"displayName": "Item",
+						"documentation": "",
+						"type": "text"
+					},
+					"maxObjects": 100,
+					"minObjects": 0,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"type": "list"
+				},
+				"set_complex": {
+					"description": "Collection property type: `set`\n\nJava class: `java.util.Set`\n\nDefault constraints: -",
+					"displayName": "set collection property type with complex items",
+					"documentation": "",
+					"items": {
+						"description": "Item description",
+						"displayName": "Item",
+						"documentation": "",
+						"type": {
+							"$ref": "#/types/AnimalComplex"
+						}
+					},
+					"maxObjects": 100,
+					"minObjects": 0,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"type": "set"
+				},
+				"set_simple": {
+					"description": "Collection property type: `set`\n\nJava class: `java.util.Set`\n\nDefault constraints: -",
+					"displayName": "set collection property type with simple items",
+					"documentation": "",
+					"items": {
+						"constraints": [
+							{
+								"maxLength": 500,
+								"minLength": 1,
+								"type": "LENGTH"
+							}
+						],
+						"description": "Item description",
+						"displayName": "Item",
+						"documentation": "",
+						"type": "text"
+					},
+					"maxObjects": 100,
+					"minObjects": 0,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"type": "set"
+				}
+			},
+			"summaryPattern": "",
+			"type": "object",
+			"version": "0",
+			"versionInfo": ""
+		},
+		"MarkdownShowcase": {
+			"description": "",
+			"displayName": "MarkdownShowcase",
+			"documentation": "",
+			"properties": {
+				"markdown_code_samples": {
+					"constraints": [
+						{
+							"maxLength": 500,
+							"minLength": 1,
+							"type": "LENGTH"
+						}
+					],
+					"default": "",
+					"description": "There are many different ways to style code with GitHub's markdown. If you have inline code blocks, wrap them in backticks: `var example = true`. If you've got a longer block of code, you can indent with four spaces:\n\n    if (isAwesome){\n      return true\n    }\n\nemoji time!\n😀😎📆🐫",
+					"displayName": "Markdown code samples",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"type": "text"
+				},
+				"markdown_emoji": {
+					"constraints": [
+						{
+							"maxLength": 500,
+							"minLength": 1,
+							"type": "LENGTH"
+						}
+					],
+					"default": "",
+					"description": "😀😎📆🐫",
+					"displayName": "emoji time!",
+					"documentation": "",
+					"maxObjects": 1,
+					"metadata": {
+						"placeholder": "Customized placeholder text"
+					},
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"type": "text"
+				},
+				"markdown_links_external": {
+					"constraints": [
+						{
+							"maxLength": 500,
+							"minLength": 1,
+							"type": "LENGTH"
+						}
+					],
+					"default": "",
+					"description": "Sometimes there is a need to link to [external documentation](https://www.dynatrace.com/ \"Visit Dynatrace Help\") or link to [Dynatrace.com!](https://dynatrace.com \"Visit dynatrace.com \")",
+					"displayName": "External links",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"type": "text"
+				},
+				"markdown_links_internal": {
+					"constraints": [
+						{
+							"maxLength": 500,
+							"minLength": 1,
+							"type": "LENGTH"
+						}
+					],
+					"default": "",
+					"description": "To link to other [Angular screen](/ui/docs \"Visit Angular docs page\") on same environment, please start your URL with `/`.\nIf you need to link to [GWT screen](/#reports \"Visit GWT Reports page\") on same environment, please start your URL with `/#`.\n\nWe also support [anchors](#top) on same pages, just start your url with `#`.\n\n**Important!** As you see - you don't need to worry about environment in your href!",
+					"displayName": "Internal links",
+					"documentation": "**Markdown** is supported inside info popover [Angular screen](/ui/docs \"Visit Angular docs page\")",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"type": "text"
+				}
+			},
+			"summaryPattern": "",
+			"type": "object",
+			"version": "0",
+			"versionInfo": ""
+		},
+		"PropertyTypes": {
+			"description": "",
+			"displayName": "Property types",
+			"documentation": "",
+			"properties": {
+				"AnimalEnum": {
+					"default": "dog",
+					"description": "Property type: `AnimalEnum`\n\nJava class: `java.lang.String`\n\nDefault constraints: -",
+					"displayName": "AnimalEnum property type",
+					"documentation": "Property type: `AnimalEnum`\n\nJava class: `java.lang.String`\n\nDefault constraints: -",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"type": {
+						"$ref": "#/enums/AnimalEnum"
+					}
+				},
+				"boolean": {
+					"default": false,
+					"description": "Property type: `boolean`\n\nJava class: `java.lang.Boolean`\n\nDefault constraints: -",
+					"displayName": "boolean property type",
+					"documentation": "Property type: `boolean`\n\nJava class: `java.lang.Boolean`\n\nDefault constraints: -",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"type": "boolean"
+				},
+				"float": {
+					"default": 0,
+					"description": "Property type: `float`\n\nJava class: `java.lang.Double`\n\nDefault constraints: -",
+					"displayName": "float property type",
+					"documentation": "Property type: `float`\n\nJava class: `java.lang.Double`\n\nDefault constraints: -",
+					"maxObjects": 1,
+					"metadata": {
+						"prefix": "€"
+					},
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"type": "float"
+				},
+				"integer": {
+					"default": 0,
+					"description": "Property type: `integer`\n\nJava class: `java.lang.Long`\n\nDefault constraints: -",
+					"displayName": "integer property type",
+					"documentation": "Property type: `integer`\n\nJava class: `java.lang.Long`\n\nDefault constraints: -",
+					"maxObjects": 1,
+					"metadata": {
+						"suffix": "ms"
+					},
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"type": "integer"
+				},
+				"local_date_time": {
+					"default": "2020-01-01T00:00:00",
+					"description": "Property type: `local_date_time`\n\nJava class: `java.time.LocalDateTime`\n\nDefault constraints: -",
+					"displayName": "local_date_time property type",
+					"documentation": "Property type: `local_date_time`\n\nJava class: `java.time.LocalDateTime`\n\nDefault constraints: -",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"type": "local_date_time"
+				},
+				"secret": {
+					"constraints": [
+						{
+							"maxLength": 500,
+							"minLength": 1,
+							"type": "LENGTH"
+						}
+					],
+					"default": "",
+					"description": "Property type: `secret`\n\nJava class: `java.lang.String`\n\nDefault constraints:\n* `LENGTH`: _Size must be between 1 and 500_",
+					"displayName": "secret property type",
+					"documentation": "Property type: `secret`\n\nJava class: `java.lang.String`\n\nDefault constraints:\n* `LENGTH`: _Size must be between 1 and 500_",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"type": "secret"
+				},
+				"text": {
+					"constraints": [
+						{
+							"maxLength": 500,
+							"minLength": 1,
+							"type": "LENGTH"
+						}
+					],
+					"default": "",
+					"description": "Property type: `text`\n\nJava class: `java.lang.String`\n\nDefault constraints:\n* `LENGTH`: _Size must be between 1 and 500_",
+					"displayName": "text property type",
+					"documentation": "Property type: `text`\n\nJava class: `java.lang.String`\n\nDefault constraints:\n* `LENGTH`: _Size must be between 1 and 500_",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"type": "text"
+				},
+				"zoned_date_time": {
+					"default": "2020-01-01T00:00:00+01:00",
+					"description": "Property type: `zoned_date_time`\n\nJava class: `java.time.ZonedDateTime`\n\nDefault constraints: -",
+					"displayName": "zoned_date_time property type",
+					"documentation": "Property type: `zoned_date_time`\n\nJava class: `java.time.ZonedDateTime`\n\nDefault constraints: -",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"type": "zoned_date_time"
+				}
+			},
+			"summaryPattern": "",
+			"type": "object",
+			"version": "0",
+			"versionInfo": ""
+		},
+		"SubPropertyTypes": {
+			"description": "",
+			"displayName": "Sub property types",
+			"documentation": "",
+			"properties": {
+				"credentials": {
+					"constraints": [
+						{
+							"pattern": "^CREDENTIALS_VAULT-.+$",
+							"type": "PATTERN"
+						},
+						{
+							"customMessage": "Please use a format of TYPE-ID",
+							"pattern": "^[A-Z][A-Z0-9_]*-[0-9A-F]{16}$",
+							"type": "PATTERN"
+						},
+						{
+							"maxLength": 500,
+							"minLength": 1,
+							"type": "LENGTH"
+						}
+					],
+					"default": "",
+					"description": "Sub property type: `credential`\n\nBase type: `text`\n\nJava class: `java.lang.String`\n\nDefault constraints:\n* `LENGTH`: _Size must be between 1 and 500_\n\nAdditional constraints:\n* `PATTERN`: _Must match pattern ^CREDENTIALS_VAULT-.+$_\n* `PATTERN`: _Please use a format of TYPE-ID_",
+					"displayName": "credentials sub property type",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"referencedType": "USERNAME_PASSWORD",
+					"subType": "credential",
+					"type": "text"
+				},
+				"cssSelector": {
+					"constraints": [
+						{
+							"maxLength": 500,
+							"minLength": 1,
+							"type": "LENGTH"
+						}
+					],
+					"default": "input.class",
+					"description": "Sub property type: `cssSelector`\n\nBase type: `text`\n\nJava class: `java.lang.String`\n\nDefault constraints:\n* `LENGTH`: _Size must be between 1 and 500_\n\nAdditional constraints: -",
+					"displayName": "cssSelector sub property type",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"subType": "cssSelector",
+					"type": "text"
+				},
+				"datasource_property": {
+					"constraints": [
+						{
+							"maxLength": 500,
+							"minLength": 1,
+							"type": "LENGTH"
+						}
+					],
+					"datasource": {
+						"filterProperties": [
+							"regex"
+						],
+						"fullContext": false,
+						"identifier": "exampleRandomUuidSource",
+						"resetValue": "ALWAYS",
+						"useApiSearch": true,
+						"validate": false
+					},
+					"default": "",
+					"description": "",
+					"displayName": "datasource_property sub property type",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"subType": "datasource",
+					"type": "text"
+				},
+				"email": {
+					"constraints": [
+						{
+							"customMessage": "Email address is not valid",
+							"pattern": "^[\\.a-zA-Z0-9!#$%\u0026'*+/=?^_`{|}~-]+?@[a-zA-Z0-9](?:[a-zA-Z0-9-]*?[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]*?[a-zA-Z0-9])?)*$",
+							"type": "PATTERN"
+						},
+						{
+							"maxLength": 500,
+							"minLength": 1,
+							"type": "LENGTH"
+						}
+					],
+					"default": "test@example.com",
+					"description": "Sub property type: `email`\n\nBase type: `text`\n\nJava class: `java.lang.String`\n\nDefault constraints:\n* `LENGTH`: _Size must be between 1 and 500_\n\nAdditional constraints:\n* `PATTERN`: _Email address is not valid_",
+					"displayName": "email sub property type",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"subType": "email",
+					"type": "text"
+				},
+				"float_percentage": {
+					"default": 0,
+					"description": "Sub property type: `percentage`\n\nBase type: `float`\n\nJava class: `java.lang.Double`\n\nDefault constraints: -\n\nAdditional constraints: -",
+					"displayName": "float_percentage sub property type",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"subType": "percentage",
+					"type": "float"
+				},
+				"host_entity": {
+					"constraints": [
+						{
+							"customMessage": "Please use a format of TYPE-ID",
+							"pattern": "^[A-Z][A-Z0-9_]*-[0-9A-F]{16}$",
+							"type": "PATTERN"
+						},
+						{
+							"pattern": "^HOST-.+$",
+							"type": "PATTERN"
+						},
+						{
+							"maxLength": 500,
+							"minLength": 1,
+							"type": "LENGTH"
+						}
+					],
+					"default": "HOST-1234123412341234",
+					"description": "Sub property type: `me`\n\nBase type: `text`\n\nJava class: `java.lang.String`\n\nDefault constraints:\n* `LENGTH`: _Size must be between 1 and 500_\n\nAdditional constraints:\n* `PATTERN`: _Please use a format of TYPE-ID_\n* `PATTERN`: _Must match pattern ^HOST-.+$_",
+					"displayName": "host_entity sub property type",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"referencedType": "HOST",
+					"subType": "me",
+					"type": "text"
+				},
+				"http_url": {
+					"constraints": [
+						{
+							"customMessage": "Not a valid URI",
+							"pattern": "^(([^\\s:/?#]+?):){1}((//)?([^\\s/?#]+?)){1}([^\\s?#]*?)(\\?([^\\s#]*?))?(#([^\\s]*?))?$",
+							"type": "PATTERN"
+						},
+						{
+							"customMessage": "Not a valid http(s) URL",
+							"pattern": "^https?://.*$",
+							"type": "PATTERN"
+						},
+						{
+							"maxLength": 500,
+							"minLength": 1,
+							"type": "LENGTH"
+						}
+					],
+					"default": "https://example.com",
+					"description": "Sub property type: `url`\n\nBase type: `text`\n\nJava class: `java.lang.String`\n\nDefault constraints:\n* `LENGTH`: _Size must be between 1 and 500_\n\nAdditional constraints:\n* `PATTERN`: _Not a valid URI_\n* `PATTERN`: _Not a valid http(s) URL_",
+					"displayName": "http_url sub property type",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"subType": "url",
+					"type": "text"
+				},
+				"integer_percentage": {
+					"default": 0,
+					"description": "Sub property type: `percentage`\n\nBase type: `integer`\n\nJava class: `java.lang.Long`\n\nDefault constraints: -\n\nAdditional constraints: -",
+					"displayName": "integer_percentage sub property type",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"subType": "percentage",
+					"type": "integer"
+				},
+				"jsonCode": {
+					"constraints": [
+						{
+							"customValidatorId": "json-syntax-validator",
+							"type": "CUSTOM_VALIDATOR_REF"
+						},
+						{
+							"maxLength": 500,
+							"minLength": 1,
+							"type": "LENGTH"
+						}
+					],
+					"default": "",
+					"description": "Sub property type: `code/json`\n\nBase type: `text`\n\nJava class: `java.lang.String`\n\nDefault constraints:\n* `LENGTH`: _Size must be between 1 and 500_\n\nAdditional constraints:\n* `CUSTOM_VALIDATOR_REF`: _Custom validation failed_",
+					"displayName": "jsonCode sub property type",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"subType": "code/json",
+					"type": "text"
+				},
+				"management_zone": {
+					"constraints": [
+						{
+							"maxLength": 500,
+							"minLength": 1,
+							"type": "LENGTH"
+						}
+					],
+					"datasource": {
+						"filterProperties": [],
+						"fullContext": false,
+						"identifier": "managementZoneDataSource",
+						"resetValue": "ALWAYS",
+						"useApiSearch": true,
+						"validate": true
+					},
+					"default": "",
+					"description": "",
+					"displayName": "management_zone sub property type",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"subType": "datasource",
+					"type": "text"
+				},
+				"metric": {
+					"constraints": [
+						{
+							"customValidatorId": "metric-selector-validator",
+							"type": "CUSTOM_VALIDATOR_REF"
+						},
+						{
+							"maxLength": 500,
+							"minLength": 1,
+							"type": "LENGTH"
+						}
+					],
+					"default": "",
+					"description": "Sub property type: `metric`\n\nBase type: `text`\n\nJava class: `java.lang.String`\n\nDefault constraints:\n* `LENGTH`: _Size must be between 1 and 500_\n\nAdditional constraints:\n* `CUSTOM_VALIDATOR_REF`: _Custom validation failed_",
+					"displayName": "metric sub property type",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"subType": "metric",
+					"type": "text"
+				},
+				"monitored_entity": {
+					"constraints": [
+						{
+							"customMessage": "Please use a format of TYPE-ID",
+							"pattern": "^[A-Z][A-Z0-9_]*-[0-9A-F]{16}$",
+							"type": "PATTERN"
+						},
+						{
+							"maxLength": 500,
+							"minLength": 1,
+							"type": "LENGTH"
+						}
+					],
+					"default": "MONITORED_ENTITY-1234123412341234",
+					"description": "Sub property type: `me`\n\nBase type: `text`\n\nJava class: `java.lang.String`\n\nDefault constraints:\n* `LENGTH`: _Size must be between 1 and 500_\n\nAdditional constraints:\n* `PATTERN`: _Please use a format of TYPE-ID_",
+					"displayName": "monitored_entity sub property type",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"subType": "me",
+					"type": "text"
+				},
+				"multiline_text": {
+					"constraints": [
+						{
+							"maxLength": 500,
+							"minLength": 1,
+							"type": "LENGTH"
+						}
+					],
+					"default": "",
+					"description": "Sub property type: `multiline`\n\nBase type: `text`\n\nJava class: `java.lang.String`\n\nDefault constraints:\n* `LENGTH`: _Size must be between 1 and 500_\n\nAdditional constraints: -",
+					"displayName": "multiline_text sub property type",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"subType": "multiline",
+					"type": "text"
+				},
+				"regex": {
+					"constraints": [
+						{
+							"type": "REGEX"
+						},
+						{
+							"maxLength": 500,
+							"minLength": 1,
+							"type": "LENGTH"
+						}
+					],
+					"default": "^[a-Z]$",
+					"description": "Sub property type: `regex`\n\nBase type: `text`\n\nJava class: `java.lang.String`\n\nDefault constraints:\n* `LENGTH`: _Size must be between 1 and 500_\n\nAdditional constraints:\n* `REGEX`: _Must be a valid regular expression_",
+					"displayName": "regex sub property type",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"subType": "regex",
+					"type": "text"
+				},
+				"tag": {
+					"constraints": [
+						{
+							"customValidatorId": "universal-tag-validator",
+							"type": "CUSTOM_VALIDATOR_REF"
+						},
+						{
+							"maxLength": 500,
+							"minLength": 1,
+							"type": "LENGTH"
+						}
+					],
+					"default": "",
+					"description": "Sub property type: `tag`\n\nBase type: `text`\n\nJava class: `java.lang.String`\n\nDefault constraints:\n* `LENGTH`: _Size must be between 1 and 500_\n\nAdditional constraints:\n* `CUSTOM_VALIDATOR_REF`: _Custom validation failed_",
+					"displayName": "tag sub property type",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"subType": "tag",
+					"type": "text"
+				},
+				"uri": {
+					"constraints": [
+						{
+							"customMessage": "Not a valid URI",
+							"pattern": "^(([^\\s:/?#]+?):){1}((//)?([^\\s/?#]+?)){1}([^\\s?#]*?)(\\?([^\\s#]*?))?(#([^\\s]*?))?$",
+							"type": "PATTERN"
+						},
+						{
+							"maxLength": 500,
+							"minLength": 1,
+							"type": "LENGTH"
+						}
+					],
+					"default": "example://example",
+					"description": "Sub property type: `uri`\n\nBase type: `text`\n\nJava class: `java.lang.String`\n\nDefault constraints:\n* `LENGTH`: _Size must be between 1 and 500_\n\nAdditional constraints:\n* `PATTERN`: _Not a valid URI_",
+					"displayName": "uri sub property type",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"subType": "uri",
+					"type": "text"
+				}
+			},
+			"summaryPattern": "",
+			"type": "object",
+			"version": "0",
+			"versionInfo": ""
+		}
+	},
+	"version": "2.0.35"
+}

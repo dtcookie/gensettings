@@ -1,0 +1,1758 @@
+{
+	"allowedScopes": [
+		"ua-screen"
+	],
+	"constraints": [
+		{
+			"customMessage": "The scope must be a ME type or a valid generic type.",
+			"customValidatorId": "ua-scope-validator",
+			"type": "CUSTOM_VALIDATOR_REF"
+		}
+	],
+	"description": "Define metric tables and reference them in screen layout.",
+	"displayName": "Metric table cards",
+	"documentation": "",
+	"dynatrace": "1",
+	"enums": {
+		"AggregationType": {
+			"description": "",
+			"displayName": "Aggregation type",
+			"documentation": "",
+			"items": [
+				{
+					"displayName": "avg",
+					"value": "AVG"
+				},
+				{
+					"displayName": "count",
+					"value": "COUNT"
+				},
+				{
+					"displayName": "max",
+					"value": "MAX"
+				},
+				{
+					"displayName": "median",
+					"value": "MEDIAN"
+				},
+				{
+					"displayName": "min",
+					"value": "MIN"
+				},
+				{
+					"displayName": "sum",
+					"value": "SUM"
+				},
+				{
+					"displayName": "value",
+					"value": "VALUE"
+				}
+			],
+			"type": "enum"
+		},
+		"ChartVisualizationType": {
+			"description": "",
+			"displayName": "ChartVisualizationType",
+			"documentation": "",
+			"items": [
+				{
+					"displayName": "Graph",
+					"value": "GRAPH_CHART"
+				},
+				{
+					"displayName": "Pie Chart",
+					"value": "PIE_CHART"
+				},
+				{
+					"displayName": "Single Value",
+					"value": "SINGLE_VALUE"
+				}
+			],
+			"type": "enum"
+		},
+		"FoldTransformation": {
+			"description": "",
+			"displayName": "Fold transformation",
+			"documentation": "",
+			"items": [
+				{
+					"displayName": "Auto",
+					"value": "AUTO"
+				},
+				{
+					"displayName": "Last value",
+					"value": "LAST_VALUE"
+				},
+				{
+					"displayName": "Maximum",
+					"value": "MAX"
+				},
+				{
+					"displayName": "Minimum",
+					"value": "MIN"
+				},
+				{
+					"displayName": "Sum",
+					"value": "SUM"
+				},
+				{
+					"displayName": "Median",
+					"value": "MEDIAN"
+				},
+				{
+					"displayName": "Value",
+					"value": "VALUE"
+				},
+				{
+					"displayName": "Percentile 10th",
+					"value": "PERCENTILE_10"
+				},
+				{
+					"displayName": "Percentile 75th",
+					"value": "PERCENTILE_75"
+				},
+				{
+					"displayName": "Percentile 90th",
+					"value": "PERCENTILE_90"
+				}
+			],
+			"type": "enum"
+		},
+		"ModifierType": {
+			"description": "",
+			"displayName": "ModifierType",
+			"documentation": "",
+			"items": [
+				{
+					"displayName": "startsWith",
+					"value": "startsWith"
+				},
+				{
+					"displayName": "equals",
+					"value": "equals"
+				},
+				{
+					"displayName": "contains",
+					"value": "contains"
+				}
+			],
+			"type": "enum"
+		},
+		"OrderType": {
+			"description": "",
+			"displayName": "Order type",
+			"documentation": "",
+			"items": [
+				{
+					"displayName": "Ascending",
+					"value": "ASCENDING"
+				},
+				{
+					"displayName": "Descending",
+					"value": "DESCENDING"
+				}
+			],
+			"type": "enum"
+		},
+		"Position": {
+			"description": "",
+			"displayName": "Position",
+			"documentation": "",
+			"items": [
+				{
+					"displayName": "left",
+					"value": "LEFT"
+				},
+				{
+					"displayName": "right",
+					"value": "RIGHT"
+				}
+			],
+			"type": "enum"
+		},
+		"SeriesType": {
+			"description": "",
+			"displayName": "Series type",
+			"documentation": "",
+			"items": [
+				{
+					"displayName": "Column",
+					"value": "COLUMN"
+				},
+				{
+					"displayName": "Line",
+					"value": "LINE"
+				},
+				{
+					"displayName": "Area",
+					"value": "AREA"
+				}
+			],
+			"type": "enum"
+		},
+		"ThemeColorEnum": {
+			"description": "",
+			"displayName": "Color theme",
+			"documentation": "",
+			"items": [
+				{
+					"displayName": "Default",
+					"value": "DEFAULT"
+				},
+				{
+					"displayName": "Blue",
+					"value": "BLUE"
+				},
+				{
+					"displayName": "Royalblue",
+					"value": "ROYALBLUE"
+				},
+				{
+					"displayName": "Purple",
+					"value": "PURPLE"
+				},
+				{
+					"displayName": "Yellow",
+					"value": "YELLOW"
+				},
+				{
+					"displayName": "Turquoise",
+					"value": "TURQUOISE"
+				},
+				{
+					"displayName": "Orange",
+					"value": "ORANGE"
+				},
+				{
+					"displayName": "Green",
+					"value": "GREEN"
+				},
+				{
+					"displayName": "Red",
+					"value": "RED"
+				},
+				{
+					"displayName": "Gray",
+					"value": "GRAY"
+				}
+			],
+			"type": "enum"
+		}
+	},
+	"maxObjects": 100,
+	"multiObject": true,
+	"ordered": false,
+	"properties": {
+		"charts": {
+			"description": "Define charts to display timeseries data in the table. Table columns are based on dimensions from metrics results of those charts. Make sure metrics of all charts have the same dimensions in result.",
+			"displayName": "Charts",
+			"documentation": "",
+			"items": {
+				"description": "",
+				"displayName": "",
+				"documentation": "",
+				"type": {
+					"$ref": "#/types/ChartDefinition"
+				}
+			},
+			"maxObjects": 500,
+			"minObjects": 0,
+			"modificationPolicy": "DEFAULT",
+			"nullable": false,
+			"type": "list"
+		},
+		"conditions": {
+			"description": "",
+			"displayName": "List of conditions",
+			"documentation": "All conditions from the list need to be fulfilled for the table to be visible",
+			"items": {
+				"constraints": [
+					{
+						"maxLength": 500,
+						"minLength": 1,
+						"type": "LENGTH"
+					}
+				],
+				"datasource": {
+					"filterProperties": [],
+					"fullContext": false,
+					"identifier": "conditionExpressionDatasource",
+					"resetValue": "NEVER",
+					"useApiSearch": true,
+					"validate": false
+				},
+				"description": "",
+				"displayName": "",
+				"documentation": "Single condition expression. The format is: conditionName|key=param|key2=param2",
+				"subType": "datasource",
+				"type": "text"
+			},
+			"maxObjects": 10,
+			"minObjects": 0,
+			"modificationPolicy": "DEFAULT",
+			"nullable": false,
+			"type": "set"
+		},
+		"description": {
+			"constraints": [
+				{
+					"minLength": 1,
+					"type": "LENGTH"
+				},
+				{
+					"customMessage": "In markdown brackets use only seaOtter links (https://dt-url.net/XXXXXXX) or action expression",
+					"customValidatorId": "ua-safe-markdown-link-validator",
+					"type": "CUSTOM_VALIDATOR_REF"
+				}
+			],
+			"description": "The description of the card",
+			"displayName": "Description",
+			"documentation": "Markdown syntax can be used to enrich description. To define a link, you can only use seaOtter links (https://dt-url.net/XXXXXXX) or action expression \n\n The format of a single action expression is: actionName|key=param|key2=param2",
+			"maxObjects": 1,
+			"modificationPolicy": "DEFAULT",
+			"nullable": true,
+			"subType": "multiline",
+			"type": "text"
+		},
+		"displayCharts": {
+			"default": true,
+			"description": "When true, the charts will be displayed above the list. Be aware of performance overhead with vast number of metrics and entities.",
+			"displayName": "Display charts",
+			"documentation": "",
+			"maxObjects": 1,
+			"modificationPolicy": "DEFAULT",
+			"nullable": false,
+			"type": "boolean"
+		},
+		"displayMicroCharts": {
+			"description": "When true, micro charts will be displayed for added metrics. Be aware of performance overhead with vast number of metrics and entities.",
+			"displayName": "Display micro charts",
+			"documentation": "",
+			"maxObjects": 1,
+			"modificationPolicy": "DEFAULT",
+			"nullable": true,
+			"type": "boolean"
+		},
+		"displayName": {
+			"constraints": [
+				{
+					"maxLength": 200,
+					"minLength": 1,
+					"type": "LENGTH"
+				}
+			],
+			"description": "The title of the card.",
+			"displayName": "Display name",
+			"documentation": "",
+			"maxObjects": 1,
+			"modificationPolicy": "DEFAULT",
+			"nullable": true,
+			"type": "text"
+		},
+		"emptyState": {
+			"description": "Specifies message shown when there are no entities found.",
+			"displayName": "Empty state definition",
+			"documentation": "",
+			"maxObjects": 1,
+			"modificationPolicy": "DEFAULT",
+			"nullable": true,
+			"type": {
+				"$ref": "#/types/EmptyStateType"
+			}
+		},
+		"enableDetailsExpandability": {
+			"default": true,
+			"description": "When true, detailed charts for each entity will be available.",
+			"displayName": "Enable details expandable section",
+			"documentation": "",
+			"maxObjects": 1,
+			"modificationPolicy": "DEFAULT",
+			"nullable": false,
+			"type": "boolean"
+		},
+		"entitySelectorTemplate": {
+			"constraints": [
+				{
+					"maxLength": 500,
+					"minLength": 1,
+					"type": "LENGTH"
+				}
+			],
+			"description": "An entity selector to narrow down dimensions.",
+			"displayName": "Entity selector template",
+			"documentation": "For example for a process group screen and metric with PGI dimension this might look like this:  \n`type(PROCESS_GROUP_INSTANCE), fromRelationships.isInstanceOf($(entityConditions))`\n\nPlease mind that the `$(entityConditions)` is a placeholder for the current ME selector.\n\nIf current ME is available as a dimension in metric you can directly use only `$(entityConditions)`.\n\nMay be left empty if specified in screen layout.",
+			"maxObjects": 1,
+			"modificationPolicy": "DEFAULT",
+			"nullable": true,
+			"type": "text"
+		},
+		"filtering": {
+			"description": "Specifies filtering configuration.",
+			"displayName": "Filtering",
+			"documentation": "",
+			"maxObjects": 1,
+			"modificationPolicy": "DEFAULT",
+			"nullable": true,
+			"type": {
+				"$ref": "#/types/FilteringType"
+			}
+		},
+		"hideEmptyCharts": {
+			"description": "If true, All empty charts will be hidden.",
+			"displayName": "Hide empty charts",
+			"documentation": "Decreases \"Number of charts to display\" to the number of available charts.",
+			"maxObjects": 1,
+			"modificationPolicy": "DEFAULT",
+			"nullable": true,
+			"type": "boolean"
+		},
+		"initialSorting": {
+			"description": "Specifies initial sorting configuration.",
+			"displayName": "Initial sorting definition",
+			"documentation": "",
+			"maxObjects": 1,
+			"modificationPolicy": "DEFAULT",
+			"nullable": true,
+			"type": {
+				"$ref": "#/types/InitialSortingType"
+			}
+		},
+		"key": {
+			"constraints": [
+				{
+					"type": "NOT_BLANK"
+				},
+				{
+					"maxLength": 200,
+					"minLength": 1,
+					"type": "LENGTH"
+				},
+				{
+					"customMessage": "Element identifier must only contain letters, numbers or '-', '_'.",
+					"pattern": "^[\\w-]*$",
+					"type": "PATTERN"
+				}
+			],
+			"default": "default",
+			"description": "Unique key, which is used to map to this entities list in the screen layout config.",
+			"displayName": "Key",
+			"documentation": "",
+			"maxObjects": 1,
+			"modificationPolicy": "DEFAULT",
+			"nullable": false,
+			"type": "text"
+		},
+		"numberOfVisibleCharts": {
+			"constraints": [
+				{
+					"maximum": 4,
+					"minimum": 0,
+					"type": "RANGE"
+				}
+			],
+			"default": 2,
+			"description": "The number of charts to display above the list and in details section.",
+			"displayName": "Number of charts to display",
+			"documentation": "",
+			"maxObjects": 1,
+			"modificationPolicy": "DEFAULT",
+			"nullable": false,
+			"type": "integer"
+		},
+		"pageSize": {
+			"constraints": [
+				{
+					"maximum": 25,
+					"minimum": 5,
+					"type": "RANGE"
+				}
+			],
+			"default": 5,
+			"description": "The number of entities displayed on one page.",
+			"displayName": "Page size",
+			"documentation": "",
+			"maxObjects": 1,
+			"modificationPolicy": "DEFAULT",
+			"nullable": false,
+			"type": "integer"
+		}
+	},
+	"schemaGroups": [
+		"group:unified-analysis"
+	],
+	"schemaId": "builtin:ua.metric-table",
+	"types": {
+		"ChartDefinition": {
+			"description": "",
+			"displayName": "Chart definition",
+			"documentation": "",
+			"properties": {
+				"conditions": {
+					"description": "",
+					"displayName": "List of conditions",
+					"documentation": "All conditions from the list need to be fulfilled for the chart to be visible",
+					"items": {
+						"constraints": [
+							{
+								"maxLength": 500,
+								"minLength": 1,
+								"type": "LENGTH"
+							}
+						],
+						"datasource": {
+							"filterProperties": [],
+							"fullContext": false,
+							"identifier": "conditionExpressionDatasource",
+							"resetValue": "NEVER",
+							"useApiSearch": true,
+							"validate": false
+						},
+						"description": "",
+						"displayName": "",
+						"documentation": "Single condition expression. The format is: conditionName|key=param|key2=param2",
+						"subType": "datasource",
+						"type": "text"
+					},
+					"maxObjects": 10,
+					"minObjects": 0,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"type": "set"
+				},
+				"displayName": {
+					"constraints": [
+						{
+							"maxLength": 200,
+							"minLength": 1,
+							"type": "LENGTH"
+						}
+					],
+					"default": "Chart",
+					"description": "",
+					"displayName": "Display name",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"type": "text"
+				},
+				"graphChartConfig": {
+					"description": "",
+					"displayName": "",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"precondition": {
+						"expectedValue": "GRAPH_CHART",
+						"property": "visualizationType",
+						"type": "EQUALS"
+					},
+					"type": {
+						"$ref": "#/types/GraphChartConfig"
+					}
+				},
+				"pieChartConfig": {
+					"description": "",
+					"displayName": "",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"precondition": {
+						"expectedValue": "PIE_CHART",
+						"property": "visualizationType",
+						"type": "EQUALS"
+					},
+					"type": {
+						"$ref": "#/types/PieChartConfig"
+					}
+				},
+				"singleValueConfig": {
+					"description": "",
+					"displayName": "",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"precondition": {
+						"expectedValue": "SINGLE_VALUE",
+						"property": "visualizationType",
+						"type": "EQUALS"
+					},
+					"type": {
+						"$ref": "#/types/SingleValueConfig"
+					}
+				},
+				"visualizationType": {
+					"default": "GRAPH_CHART",
+					"description": "",
+					"displayName": "Visualization Type",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"type": {
+						"$ref": "#/enums/ChartVisualizationType"
+					}
+				}
+			},
+			"summaryPattern": "{displayName}",
+			"type": "object",
+			"version": "2.2",
+			"versionInfo": ""
+		},
+		"ColorOverrides": {
+			"description": "",
+			"displayName": "ColorOverrides",
+			"documentation": "",
+			"properties": {
+				"color": {
+					"constraints": [
+						{
+							"customMessage": "Please provide a valid color via HEX notation. e.g. #FF0000.",
+							"pattern": "^#([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$",
+							"type": "PATTERN"
+						},
+						{
+							"maxLength": 500,
+							"minLength": 1,
+							"type": "LENGTH"
+						}
+					],
+					"default": "#0000ff",
+					"description": "RGB code of color",
+					"displayName": "Color",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"subType": "color",
+					"type": "text"
+				},
+				"seriesName": {
+					"constraints": [
+						{
+							"maxLength": 200,
+							"minLength": 1,
+							"type": "LENGTH"
+						}
+					],
+					"default": "series name",
+					"description": "",
+					"displayName": "Series Name",
+					"documentation": "Series name should point to whole metric or single dimension name",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"type": "text"
+				}
+			},
+			"summaryPattern": "{seriesName}",
+			"type": "object",
+			"version": "0",
+			"versionInfo": ""
+		},
+		"EmptyStateType": {
+			"description": "",
+			"displayName": "EmptyStateType",
+			"documentation": "",
+			"properties": {
+				"body": {
+					"constraints": [
+						{
+							"type": "NOT_BLANK"
+						},
+						{
+							"maxLength": 1500,
+							"minLength": 1,
+							"type": "LENGTH"
+						},
+						{
+							"customMessage": "In markdown brackets use only seaOtter links (https://dt-url.net/XXXXXXX) or action expression",
+							"customValidatorId": "ua-safe-markdown-link-validator",
+							"type": "CUSTOM_VALIDATOR_REF"
+						}
+					],
+					"default": "",
+					"description": "",
+					"displayName": "Message body",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"type": "text"
+				},
+				"header": {
+					"constraints": [
+						{
+							"type": "NOT_BLANK"
+						},
+						{
+							"maxLength": 200,
+							"minLength": 1,
+							"type": "LENGTH"
+						}
+					],
+					"default": "",
+					"description": "",
+					"displayName": "Message header",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"type": "text"
+				}
+			},
+			"summaryPattern": "",
+			"type": "object",
+			"version": "0",
+			"versionInfo": ""
+		},
+		"EntityFilterDefinition": {
+			"description": "",
+			"displayName": "EntityFilterDefinition",
+			"documentation": "",
+			"properties": {
+				"defaultSearch": {
+					"default": false,
+					"description": "When true, as user is typing it will suggest this key as default for searching. There can be only 1 default search filter in filtering.",
+					"displayName": "Is default search",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"precondition": {
+						"expectedValue": true,
+						"property": "freeText",
+						"type": "EQUALS"
+					},
+					"type": "boolean"
+				},
+				"displayName": {
+					"constraints": [
+						{
+							"maxLength": 100,
+							"minLength": 1,
+							"type": "LENGTH"
+						}
+					],
+					"default": "",
+					"description": "",
+					"displayName": "Display name",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"type": "text"
+				},
+				"distinct": {
+					"default": true,
+					"description": "When true, there can be only a single instance of this filter.",
+					"displayName": "Is distinct",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"type": "boolean"
+				},
+				"entityTypes": {
+					"description": "List of entity types that are filtered by this filter. All of them must have defined relationship to entity.",
+					"displayName": "Entity types list",
+					"documentation": "",
+					"items": {
+						"constraints": [
+							{
+								"maxLength": 500,
+								"minLength": 1,
+								"type": "LENGTH"
+							}
+						],
+						"description": "",
+						"displayName": "",
+						"documentation": "",
+						"type": "text"
+					},
+					"maxObjects": 50,
+					"minObjects": 0,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"type": "set"
+				},
+				"freeText": {
+					"default": false,
+					"description": "When true, user can type any text value. When false, user can only select one of the suggestions.",
+					"displayName": "Is free text filter",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"type": "boolean"
+				},
+				"hidden": {
+					"description": "When true, this filter will be hidden.",
+					"displayName": "Is hidden",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": true,
+					"type": "boolean"
+				},
+				"modifier": {
+					"default": "contains",
+					"description": "Specifies the behavior of free text filter's value",
+					"displayName": "Text filter modifier",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"precondition": {
+						"expectedValue": true,
+						"property": "freeText",
+						"type": "EQUALS"
+					},
+					"type": {
+						"$ref": "#/enums/ModifierType"
+					}
+				},
+				"splittingChart": {
+					"description": "Configure splitting chart for this filter.",
+					"displayName": "Splitting chart",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": true,
+					"type": {
+						"$ref": "#/types/SplittingChartConfig"
+					}
+				},
+				"type": {
+					"constraints": [
+						{
+							"maxLength": 100,
+							"minLength": 1,
+							"type": "LENGTH"
+						}
+					],
+					"default": "",
+					"description": "",
+					"displayName": "Type",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"type": "text"
+				}
+			},
+			"summaryPattern": "{displayName} ({type})",
+			"type": "object",
+			"version": "0",
+			"versionInfo": ""
+		},
+		"EntityFilterGroupDefinition": {
+			"description": "",
+			"displayName": "EntityFilterGroupDefinition",
+			"documentation": "",
+			"properties": {
+				"displayName": {
+					"constraints": [
+						{
+							"maxLength": 100,
+							"minLength": 1,
+							"type": "LENGTH"
+						}
+					],
+					"default": "",
+					"description": "",
+					"displayName": "Group display name",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"type": "text"
+				},
+				"filters": {
+					"description": "Define entity filters.",
+					"displayName": "Filters",
+					"documentation": "",
+					"items": {
+						"description": "",
+						"displayName": "",
+						"documentation": "",
+						"type": {
+							"$ref": "#/types/EntityFilterDefinition"
+						}
+					},
+					"maxObjects": 500,
+					"minObjects": 0,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"type": "list"
+				}
+			},
+			"summaryPattern": "{displayName}",
+			"type": "object",
+			"version": "0",
+			"versionInfo": ""
+		},
+		"FilteringType": {
+			"description": "",
+			"displayName": "FilteringType",
+			"documentation": "",
+			"properties": {
+				"entityFilters": {
+					"description": "",
+					"displayName": "Entity filters list",
+					"documentation": "",
+					"items": {
+						"description": "",
+						"displayName": "",
+						"documentation": "",
+						"type": {
+							"$ref": "#/types/EntityFilterGroupDefinition"
+						}
+					},
+					"maxObjects": 50,
+					"minObjects": 0,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"type": "list"
+				},
+				"relationships": {
+					"description": "",
+					"displayName": "Entity relationships list",
+					"documentation": "To filter related entities you need to define relationship between them. \nFor example to filter by process attributes on a host list you need to add entity selector with relationship like this: `type(PROCESS_GROUP_INSTANCE), fromRelationship.isProcessOf(type(HOST))`. \nInstead of `type(HOST)` you can use variable `$(entityConditions)`. \nRelationships should cover all possible pairs of entity types in filters.",
+					"items": {
+						"constraints": [
+							{
+								"maxLength": 500,
+								"minLength": 1,
+								"type": "LENGTH"
+							}
+						],
+						"description": "",
+						"displayName": "",
+						"documentation": "",
+						"type": "text"
+					},
+					"maxObjects": 50,
+					"minObjects": 0,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"type": "set"
+				}
+			},
+			"summaryPattern": "",
+			"type": "object",
+			"version": "0",
+			"versionInfo": ""
+		},
+		"GraphChartConfig": {
+			"description": "",
+			"displayName": "GraphChartConfig",
+			"documentation": "",
+			"properties": {
+				"connectGaps": {
+					"description": "When true, gaps in charts will be connected even if there is truly no data",
+					"displayName": "Connect gaps",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": true,
+					"type": "boolean"
+				},
+				"defaultAggregation": {
+					"description": "Defines default aggregation of the chart timeseries. If not defined or selected one is not supported, it is deduced from metrics metadata.",
+					"displayName": "Default aggregation",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": true,
+					"type": {
+						"$ref": "#/enums/AggregationType"
+					}
+				},
+				"metrics": {
+					"description": "Defines how to fetch data for a single line in the chart",
+					"displayName": "Metrics",
+					"documentation": "",
+					"items": {
+						"description": "",
+						"displayName": "",
+						"documentation": "",
+						"type": {
+							"$ref": "#/types/MetricDefinition"
+						}
+					},
+					"maxObjects": 50,
+					"minObjects": 0,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"type": "list"
+				},
+				"stacked": {
+					"description": "When true, series on chart are stacked.",
+					"displayName": "Stacked chart",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": true,
+					"type": "boolean"
+				},
+				"thresholds": {
+					"description": "",
+					"displayName": "List thresholds",
+					"documentation": "List of defined thresholds for the chart",
+					"items": {
+						"description": "",
+						"displayName": "",
+						"documentation": "",
+						"type": {
+							"$ref": "#/types/Threshold"
+						}
+					},
+					"maxObjects": 100,
+					"minObjects": 0,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"type": "set"
+				},
+				"visualization": {
+					"description": "",
+					"displayName": "Visualization",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": true,
+					"type": {
+						"$ref": "#/types/VisualizationOptions"
+					}
+				},
+				"xAxis": {
+					"description": "You can control how X axis of your graph are displayed",
+					"displayName": "X axis",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": true,
+					"type": {
+						"$ref": "#/types/XAxis"
+					}
+				},
+				"yAxes": {
+					"description": "You can control how each Y axis of your graph are displayed",
+					"displayName": "Y axes",
+					"documentation": "",
+					"items": {
+						"description": "",
+						"displayName": "",
+						"documentation": "",
+						"type": {
+							"$ref": "#/types/YAxis"
+						}
+					},
+					"maxObjects": 10,
+					"minObjects": 0,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"type": "list"
+				}
+			},
+			"summaryPattern": "",
+			"type": "object",
+			"version": "1.5.1",
+			"versionInfo": ""
+		},
+		"InitialSortingType": {
+			"description": "",
+			"displayName": "InitialSortingType",
+			"documentation": "",
+			"properties": {
+				"columnId": {
+					"constraints": [
+						{
+							"type": "NOT_BLANK"
+						},
+						{
+							"maxLength": 200,
+							"minLength": 1,
+							"type": "LENGTH"
+						}
+					],
+					"default": "name",
+					"description": "",
+					"displayName": "Column ID",
+					"documentation": "Column ID is a unique identifier of column. There are several ID types for different column types: \n - Entity column - 'name'\n\n - Metric with selectable aggregation - 'metric-{metricDisplayName}-{aggregation}'\n Example: 'metric-CPU Usage-Average'\n\n - metric without selectable aggregation - 'metric-{metricDisplayName}'            \n Example: 'metric-CPU Usage'\n\n - Attribute - 'attribute-{attributeKey}'                                               \n Example: 'attribute-osType'\n\n - Relation - 'attribute-{relationEntityType}-{relationDisplayName}'                     \n Example: 'attribute-CLOUD_APPLICATION-Workloads'\n\n - Metric dimension (Metric Table only) - 'metricDimension-{dimensionKey}'                     \n Example: 'metricDimension-dt.entity.host'",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"type": "text"
+				},
+				"order": {
+					"default": "DESCENDING",
+					"description": "",
+					"displayName": "Sorting order",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"type": {
+						"$ref": "#/enums/OrderType"
+					}
+				}
+			},
+			"summaryPattern": "",
+			"type": "object",
+			"version": "0",
+			"versionInfo": ""
+		},
+		"MetricDefinition": {
+			"description": "",
+			"displayName": "Metric",
+			"documentation": "",
+			"properties": {
+				"metricSelector": {
+					"constraints": [
+						{
+							"maxLength": 1000,
+							"minLength": 1,
+							"type": "LENGTH"
+						},
+						{
+							"customValidatorId": "metric-selector-validator",
+							"type": "CUSTOM_VALIDATOR_REF"
+						}
+					],
+					"default": "",
+					"description": "A metric selector expression for a dedicated metric line",
+					"displayName": "Metric selector expression",
+					"documentation": "For example, if you want to show the available disk space of a host, use  \n`builtin:host.disk.free`. \n\n It also supports the ability to split by dimension, aggregate the selected metric and a lot more, for example:  \n`builtin:host.disk.free:splitBy(dt.entity.disk):max`  \nThe filter for the ME id will be applied automatically.\n\nThe [Metric Browser](/ui/metrics \"Visit Metrics\") gives an overview of all the metrics an the available operations for every metric.",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"type": "text"
+				},
+				"metricSelectorDetailed": {
+					"constraints": [
+						{
+							"maxLength": 1000,
+							"minLength": 1,
+							"type": "LENGTH"
+						},
+						{
+							"customValidatorId": "details-metric-selector-validator",
+							"type": "CUSTOM_VALIDATOR_REF"
+						}
+					],
+					"description": "A metric selector expression for a dedicated metric line",
+					"displayName": "Metric selector expression - details",
+					"documentation": "This selector is used to gather data for details section in table row.\n\n By default, that selector is created based on main one. e.g.\n for `builtin:host.disk.free` selector, per-page one will be\n `builtin:host.disk.free$(entityFilter)$(userFilter):splitBy(\"dt.entity.disk\")$(aggregation)`\n\n For other examples, examine `detailsSelector` field of metric object from screen definition generated on the entity screen.\n\n When providing custom selector, following placeholders needs to be included:\n - *$(entityFilter)* - it is replaced with `filter` operator that adds context of currently visible rows. It is recommended to use directly after each metric key. e.g. for disk list it will be evaluated to `:filter(in(\"dt.entity.disk\",entitySelector(type(DISK) AND fromRelationship.isDiskOf(type(HOST),entityId(HOST-1)))))`,\n - *$(userFilter)* - it is replaced with `filter` operator that corresponds to filters from filter bar above the table. It is recommended to use before last splitBy operator.\n - *$(aggregation)* - it is replaced with aggregation operator based on selection above the chart. Should be as close to the end of expression as possible.",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": true,
+					"type": "text"
+				},
+				"metricSelectorSort": {
+					"constraints": [
+						{
+							"maxLength": 1000,
+							"minLength": 1,
+							"type": "LENGTH"
+						},
+						{
+							"customValidatorId": "sort-metric-selector-validator",
+							"type": "CUSTOM_VALIDATOR_REF"
+						}
+					],
+					"description": "A metric selector expression for a dedicated metric line",
+					"displayName": "Metric selector expression - sort",
+					"documentation": "This selector is used to gather data for currently sorted column. It should point to the single value. It queries data for whole table for given metric.\n\n By default, that selector is created based on main one. e.g.\n for `builtin:host.disk.free` selector, per-page one will be\n `builtin:host.disk.free$(entityFilter)$(userFilter):splitBy(\"dt.entity.disk\"):names$(aggregation):last:sort(value(avg,$(sortOrder))):limit(X)`\n\n For other examples, examine `sortSelector` field of metric object from screen definition generated on the entity screen.\n\n When providing custom selector, following placeholders needs to be included:\n - *$(entityFilter)* - it is replaced with `filter` operator that adds context of currently visible rows. It is recommended to use directly after each metric key. e.g. for disk list it will be evaluated to `:filter(in(\"dt.entity.disk\",entitySelector(type(DISK) AND fromRelationship.isDiskOf(type(HOST),entityId(HOST-1)))))`,\n - *$(userFilter)* - it is replaced with `filter` operator that corresponds to filters from filter bar above the table. It is recommended to use before last splitBy operator.\n - *$(aggregation)* - it is replaced with aggregation operator based on selection above the chart. Should be as close to the end of expression as possible.\n - *$(sortOrder)* - it is replaced with sort order constant from metric selector `descending` or `ascending`. \n\n Do not include limit operator. It will be appended automatically according to card configuration.",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": true,
+					"type": "text"
+				},
+				"visualization": {
+					"description": "",
+					"displayName": "Visualization",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": true,
+					"type": {
+						"$ref": "#/types/MetricVisualizationOptions"
+					}
+				},
+				"yAxisKey": {
+					"constraints": [
+						{
+							"maxLength": 50,
+							"minLength": 1,
+							"type": "LENGTH"
+						}
+					],
+					"description": "Select Y-axis to be matched with this metric by its key",
+					"displayName": "Y-Axis key",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": true,
+					"type": "text"
+				}
+			},
+			"summaryPattern": "{metricSelector}",
+			"type": "object",
+			"version": "1.1",
+			"versionInfo": ""
+		},
+		"MetricSelector": {
+			"description": "A metric selector expression for a dedicated metric line",
+			"displayName": "Metric selector expression",
+			"documentation": "For example, if you want to show the available disk space of a host, use  \n`builtin:host.disk.free`. \n\n It also supports the ability to split by dimension, aggregate the selected metric and a lot more, for example:  \n`builtin:host.disk.free:splitBy(dt.entity.disk):max`  \nThe filter for the ME id will be applied automatically.\n\nThe [Metric Browser](/ui/metrics \"Visit Metrics\") gives an overview of all the metrics an the available operations for every metric.",
+			"properties": {
+				"metricSelector": {
+					"constraints": [
+						{
+							"customValidatorId": "metric-selector-validator",
+							"type": "CUSTOM_VALIDATOR_REF"
+						},
+						{
+							"maxLength": 500,
+							"minLength": 1,
+							"type": "LENGTH"
+						}
+					],
+					"default": "",
+					"description": "",
+					"displayName": "Metric selector expression",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"type": "text"
+				},
+				"metricSelectorDetailed": {
+					"constraints": [
+						{
+							"maxLength": 1000,
+							"minLength": 1,
+							"type": "LENGTH"
+						},
+						{
+							"customValidatorId": "details-metric-selector-validator",
+							"type": "CUSTOM_VALIDATOR_REF"
+						}
+					],
+					"description": "A metric selector expression for a dedicated metric line",
+					"displayName": "Metric selector expression - details",
+					"documentation": "This selector is used to gather data for details section in table row.\n\n By default, that selector is created based on main one. e.g.\n for `builtin:host.disk.free` selector, per-page one will be\n `builtin:host.disk.free$(entityFilter)$(userFilter):splitBy(\"dt.entity.disk\")$(aggregation)`\n\n For other examples, examine `detailsSelector` field of metric object from screen definition generated on the entity screen.\n\n When providing custom selector, following placeholders needs to be included:\n - *$(entityFilter)* - it is replaced with `filter` operator that adds context of currently visible rows. It is recommended to use directly after each metric key. e.g. for disk list it will be evaluated to `:filter(in(\"dt.entity.disk\",entitySelector(type(DISK) AND fromRelationship.isDiskOf(type(HOST),entityId(HOST-1)))))`,\n - *$(userFilter)* - it is replaced with `filter` operator that corresponds to filters from filter bar above the table. It is recommended to use before last splitBy operator.\n - *$(aggregation)* - it is replaced with aggregation operator based on selection above the chart. Should be as close to the end of expression as possible.",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": true,
+					"type": "text"
+				},
+				"metricSelectorSort": {
+					"constraints": [
+						{
+							"maxLength": 1000,
+							"minLength": 1,
+							"type": "LENGTH"
+						},
+						{
+							"customValidatorId": "sort-metric-selector-validator",
+							"type": "CUSTOM_VALIDATOR_REF"
+						}
+					],
+					"description": "A metric selector expression for a dedicated metric line",
+					"displayName": "Metric selector expression - sort",
+					"documentation": "This selector is used to gather data for currently sorted column. It should point to the single value. It queries data for whole table for given metric.\n\n By default, that selector is created based on main one. e.g.\n for `builtin:host.disk.free` selector, per-page one will be\n `builtin:host.disk.free$(entityFilter)$(userFilter):splitBy(\"dt.entity.disk\"):names$(aggregation):last:sort(value(avg,$(sortOrder))):limit(X)`\n\n For other examples, examine `sortSelector` field of metric object from screen definition generated on the entity screen.\n\n When providing custom selector, following placeholders needs to be included:\n - *$(entityFilter)* - it is replaced with `filter` operator that adds context of currently visible rows. It is recommended to use directly after each metric key. e.g. for disk list it will be evaluated to `:filter(in(\"dt.entity.disk\",entitySelector(type(DISK) AND fromRelationship.isDiskOf(type(HOST),entityId(HOST-1)))))`,\n - *$(userFilter)* - it is replaced with `filter` operator that corresponds to filters from filter bar above the table. It is recommended to use before last splitBy operator.\n - *$(aggregation)* - it is replaced with aggregation operator based on selection above the chart. Should be as close to the end of expression as possible.\n - *$(sortOrder)* - it is replaced with sort order constant from metric selector `descending` or `ascending`. \n\n Do not include limit operator. It will be appended automatically according to card configuration.",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": true,
+					"type": "text"
+				}
+			},
+			"summaryPattern": "{metricSelector}",
+			"type": "object",
+			"version": "0",
+			"versionInfo": ""
+		},
+		"MetricVisualizationOptions": {
+			"description": "",
+			"displayName": "MetricVisualizationOptions",
+			"documentation": "Set visualization options for timeseries. You can set it globally for whole chart, or individually for each metric selector.\n\n Metric selector options override options for charts.",
+			"properties": {
+				"colorOverride": {
+					"description": "",
+					"displayName": "List of color overrides",
+					"documentation": "There is possibility to override color of single series, even single dimension of a metric",
+					"items": {
+						"description": "",
+						"displayName": "",
+						"documentation": "",
+						"type": {
+							"$ref": "#/types/ColorOverrides"
+						}
+					},
+					"maxObjects": 100,
+					"minObjects": 0,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"type": "set"
+				},
+				"displayName": {
+					"constraints": [
+						{
+							"maxLength": 200,
+							"minLength": 1,
+							"type": "LENGTH"
+						}
+					],
+					"description": "",
+					"displayName": "Display name",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": true,
+					"type": "text"
+				},
+				"seriesType": {
+					"description": "",
+					"displayName": "Series type",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": true,
+					"type": {
+						"$ref": "#/enums/SeriesType"
+					}
+				},
+				"themeColor": {
+					"description": "",
+					"displayName": "Color theme",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": true,
+					"type": {
+						"$ref": "#/enums/ThemeColorEnum"
+					}
+				}
+			},
+			"summaryPattern": "",
+			"type": "object",
+			"version": "0.1",
+			"versionInfo": ""
+		},
+		"PieChartConfig": {
+			"description": "",
+			"displayName": "PieChartConfig",
+			"documentation": "",
+			"properties": {
+				"colorOverride": {
+					"description": "",
+					"displayName": "List of color overrides",
+					"documentation": "There is possibility to override color of single series, even single dimension of a metric",
+					"items": {
+						"description": "",
+						"displayName": "",
+						"documentation": "",
+						"type": {
+							"$ref": "#/types/ColorOverrides"
+						}
+					},
+					"maxObjects": 100,
+					"minObjects": 0,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"type": "set"
+				},
+				"defaultAggregation": {
+					"description": "Defines default aggregation of the chart timeseries. If not defined or selected one is not supported, it is deduced from metrics metadata.",
+					"displayName": "Default aggregation",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": true,
+					"type": {
+						"$ref": "#/enums/AggregationType"
+					}
+				},
+				"metric": {
+					"description": "Defines how to fetch data for the pie chart, please note that various fold transformations needs to be explicitly defined here in the selector",
+					"displayName": "Metric",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"type": {
+						"$ref": "#/types/MetricSelector"
+					}
+				},
+				"showLegend": {
+					"description": "When true, axis legend on the whole chart is visible",
+					"displayName": "Show legend",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": true,
+					"type": "boolean"
+				},
+				"themeColor": {
+					"description": "",
+					"displayName": "Color theme",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": true,
+					"type": {
+						"$ref": "#/enums/ThemeColorEnum"
+					}
+				}
+			},
+			"summaryPattern": "",
+			"type": "object",
+			"version": "1.2",
+			"versionInfo": ""
+		},
+		"SingleValueConfig": {
+			"description": "",
+			"displayName": "SingleValueConfig",
+			"documentation": "",
+			"properties": {
+				"defaultAggregation": {
+					"description": "Defines default aggregation of the chart timeseries. If not defined or selected one is not supported, it is deduced from metrics metadata.",
+					"displayName": "Default aggregation",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": true,
+					"type": {
+						"$ref": "#/enums/AggregationType"
+					}
+				},
+				"displayName": {
+					"constraints": [
+						{
+							"maxLength": 500,
+							"minLength": 1,
+							"type": "LENGTH"
+						}
+					],
+					"description": "Display name for value",
+					"displayName": "Display name",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": true,
+					"type": "text"
+				},
+				"foldTransformation": {
+					"description": "Defines transformation method, which fold data into single value. If not defined, it is deduced automatically.",
+					"displayName": "Fold transformation",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": true,
+					"type": {
+						"$ref": "#/enums/FoldTransformation"
+					}
+				},
+				"metric": {
+					"description": "Defines how to fetch data for the single value visualization, please note that it shows only the first enabled metric from the query and also various fold transformations needs to be explicitly defined here in the selector",
+					"displayName": "Metric",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"type": {
+						"$ref": "#/types/MetricSelector"
+					}
+				},
+				"showSparkline": {
+					"description": "When true, the sparkline is visible",
+					"displayName": "Show sparkline",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": true,
+					"type": "boolean"
+				},
+				"showTrend": {
+					"description": "When true, the trend is visible",
+					"displayName": "Show trend",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": true,
+					"type": "boolean"
+				},
+				"thresholds": {
+					"description": "",
+					"displayName": "List thresholds",
+					"documentation": "List of defined thresholds for the chart",
+					"items": {
+						"description": "",
+						"displayName": "",
+						"documentation": "",
+						"type": {
+							"$ref": "#/types/Threshold"
+						}
+					},
+					"maxObjects": 100,
+					"minObjects": 0,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"type": "set"
+				}
+			},
+			"summaryPattern": "",
+			"type": "object",
+			"version": "1.3",
+			"versionInfo": ""
+		},
+		"SplittingChartConfig": {
+			"description": "",
+			"displayName": "SplittingChartConfig",
+			"documentation": "",
+			"properties": {
+				"displayChart": {
+					"default": true,
+					"description": "When true, splitting chart for this filter will be displayed",
+					"displayName": "Display splitting chart",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"type": "boolean"
+				}
+			},
+			"summaryPattern": "",
+			"type": "object",
+			"version": "0",
+			"versionInfo": ""
+		},
+		"Threshold": {
+			"description": "",
+			"displayName": "Threshold",
+			"documentation": "",
+			"properties": {
+				"color": {
+					"constraints": [
+						{
+							"customMessage": "Please provide a valid color via HEX notation. e.g. #FF0000.",
+							"pattern": "^#([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$",
+							"type": "PATTERN"
+						},
+						{
+							"maxLength": 500,
+							"minLength": 1,
+							"type": "LENGTH"
+						}
+					],
+					"default": "#0000ff",
+					"description": "RGB code of color",
+					"displayName": "Color",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"subType": "color",
+					"type": "text"
+				},
+				"value": {
+					"default": 0,
+					"description": "",
+					"displayName": "Threshold value",
+					"documentation": "Value of the threshold. Area above this threshold will be marked by selected color",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"type": "float"
+				}
+			},
+			"summaryPattern": "{value}",
+			"type": "object",
+			"version": "0",
+			"versionInfo": ""
+		},
+		"VisualizationOptions": {
+			"description": "",
+			"displayName": "VisualizationOptions",
+			"documentation": "Set visualization options for timeseries. You can set it globally for whole chart, or individually for each metric selector.\n\n Metric selector options override options for charts.",
+			"properties": {
+				"seriesType": {
+					"description": "",
+					"displayName": "Series type",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": true,
+					"type": {
+						"$ref": "#/enums/SeriesType"
+					}
+				},
+				"showLegend": {
+					"description": "When true, axis legend on the whole chart is visible",
+					"displayName": "Show legend",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": true,
+					"type": "boolean"
+				},
+				"themeColor": {
+					"description": "",
+					"displayName": "Color theme",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": true,
+					"type": {
+						"$ref": "#/enums/ThemeColorEnum"
+					}
+				}
+			},
+			"summaryPattern": "",
+			"type": "object",
+			"version": "0.2",
+			"versionInfo": ""
+		},
+		"XAxis": {
+			"description": "",
+			"displayName": "XAxis",
+			"documentation": "",
+			"properties": {
+				"name": {
+					"constraints": [
+						{
+							"maxLength": 500,
+							"minLength": 1,
+							"type": "LENGTH"
+						}
+					],
+					"description": "",
+					"displayName": "Name",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": true,
+					"type": "text"
+				},
+				"visible": {
+					"default": true,
+					"description": "When true, axis legend is visible",
+					"displayName": "Is visible",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"type": "boolean"
+				}
+			},
+			"summaryPattern": "",
+			"type": "object",
+			"version": "0",
+			"versionInfo": ""
+		},
+		"YAxis": {
+			"description": "",
+			"displayName": "YAxis",
+			"documentation": "",
+			"properties": {
+				"key": {
+					"constraints": [
+						{
+							"maxLength": 50,
+							"minLength": 1,
+							"type": "LENGTH"
+						}
+					],
+					"default": "",
+					"description": "Y-axis key to be matched with metric's reference",
+					"displayName": "Y-Axis key",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"type": "text"
+				},
+				"max": {
+					"constraints": [
+						{
+							"maxLength": 20,
+							"minLength": 1,
+							"type": "LENGTH"
+						}
+					],
+					"description": "Maximal axis value",
+					"displayName": "Max",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": true,
+					"type": "text"
+				},
+				"min": {
+					"constraints": [
+						{
+							"maxLength": 20,
+							"minLength": 1,
+							"type": "LENGTH"
+						}
+					],
+					"description": "Minimal axis value",
+					"displayName": "Min",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": true,
+					"type": "text"
+				},
+				"name": {
+					"constraints": [
+						{
+							"maxLength": 50,
+							"minLength": 1,
+							"type": "LENGTH"
+						}
+					],
+					"description": "Axis title",
+					"displayName": "Axis title",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": true,
+					"type": "text"
+				},
+				"position": {
+					"default": "LEFT",
+					"description": "Pick a side for the axis",
+					"displayName": "Position",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"type": {
+						"$ref": "#/enums/Position"
+					}
+				},
+				"visible": {
+					"default": true,
+					"description": "When true, axis is visible",
+					"displayName": "Is visible",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"type": "boolean"
+				}
+			},
+			"summaryPattern": "{key} {name}",
+			"type": "object",
+			"version": "0",
+			"versionInfo": ""
+		}
+	},
+	"version": "2.0.6"
+}

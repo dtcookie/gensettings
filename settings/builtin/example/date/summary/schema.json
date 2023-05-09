@@ -1,0 +1,54 @@
+{
+	"allowedScopes": [
+		"environment"
+	],
+	"description": "Schema showing possibility to format dateTime values in the summary Pattern",
+	"displayName": "Date summary example",
+	"documentation": "",
+	"dynatrace": "1",
+	"enums": {},
+	"maxObjects": 100,
+	"multiObject": true,
+	"ordered": false,
+	"properties": {
+		"local_date": {
+			"description": "local_date",
+			"displayName": "Local Date",
+			"documentation": "",
+			"maxObjects": 1,
+			"modificationPolicy": "DEFAULT",
+			"nullable": true,
+			"type": "local_date"
+		},
+		"local_date_time": {
+			"description": "local_date_time",
+			"displayName": "Local DateTime",
+			"documentation": "",
+			"maxObjects": 1,
+			"modificationPolicy": "DEFAULT",
+			"nullable": true,
+			"type": "local_date_time"
+		},
+		"local_time": {
+			"description": "local_time",
+			"displayName": "Local Time",
+			"documentation": "",
+			"maxObjects": 1,
+			"modificationPolicy": "DEFAULT",
+			"nullable": true,
+			"type": "local_time"
+		},
+		"zoned_date": {
+			"description": "zoned_date_time",
+			"displayName": "Zoned DateTime",
+			"documentation": "",
+			"maxObjects": 1,
+			"modificationPolicy": "DEFAULT",
+			"nullable": true,
+			"type": "zoned_date_time"
+		}
+	},
+	"schemaId": "builtin:example.date.summary",
+	"types": {},
+	"version": "0.0.1"
+}

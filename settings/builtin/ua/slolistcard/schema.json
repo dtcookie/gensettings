@@ -1,0 +1,90 @@
+{
+	"allowedScopes": [
+		"ua-screen"
+	],
+	"constraints": [
+		{
+			"customMessage": "The scope must be a ME type or a valid generic type.",
+			"customValidatorId": "ua-scope-validator",
+			"type": "CUSTOM_VALIDATOR_REF"
+		}
+	],
+	"description": "Specifies the behavior of a SLO list card.",
+	"displayName": "SLO list cards",
+	"documentation": "",
+	"dynatrace": "1",
+	"enums": {},
+	"maxObjects": 100,
+	"multiObject": true,
+	"ordered": false,
+	"properties": {
+		"description": {
+			"constraints": [
+				{
+					"minLength": 1,
+					"type": "LENGTH"
+				},
+				{
+					"customMessage": "In markdown brackets use only seaOtter links (https://dt-url.net/XXXXXXX) or action expression",
+					"customValidatorId": "ua-safe-markdown-link-validator",
+					"type": "CUSTOM_VALIDATOR_REF"
+				}
+			],
+			"description": "The description of the card",
+			"displayName": "Description",
+			"documentation": "Markdown syntax can be used to enrich description. To define a link, you can only use seaOtter links (https://dt-url.net/XXXXXXX) or action expression \n\n The format of a single action expression is: actionName|key=param|key2=param2",
+			"maxObjects": 1,
+			"modificationPolicy": "DEFAULT",
+			"nullable": true,
+			"subType": "multiline",
+			"type": "text"
+		},
+		"displayName": {
+			"constraints": [
+				{
+					"maxLength": 200,
+					"minLength": 1,
+					"type": "LENGTH"
+				}
+			],
+			"description": "The title of the card.",
+			"displayName": "Display name",
+			"documentation": "",
+			"maxObjects": 1,
+			"modificationPolicy": "DEFAULT",
+			"nullable": true,
+			"type": "text"
+		},
+		"key": {
+			"constraints": [
+				{
+					"type": "NOT_BLANK"
+				},
+				{
+					"maxLength": 200,
+					"minLength": 1,
+					"type": "LENGTH"
+				},
+				{
+					"customMessage": "Element identifier must only contain letters, numbers or '-', '_'.",
+					"pattern": "^[\\w-]*$",
+					"type": "PATTERN"
+				}
+			],
+			"default": "default",
+			"description": "Unique key, which is used to map to this SLO list card in the screen layout config",
+			"displayName": "Key",
+			"documentation": "",
+			"maxObjects": 1,
+			"modificationPolicy": "DEFAULT",
+			"nullable": false,
+			"type": "text"
+		}
+	},
+	"schemaGroups": [
+		"group:unified-analysis"
+	],
+	"schemaId": "builtin:ua.slo-list-card",
+	"types": {},
+	"version": "1.0.2"
+}

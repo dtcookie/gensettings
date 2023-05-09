@@ -1,0 +1,186 @@
+{
+	"allowedScopes": [
+		"environment",
+		"environment-default"
+	],
+	"description": "Showcase of datasource properties.\n\nFor the Java implementation check out [ExampleDatasourceSummaryPatternSchema.java](https://bitbucket.lab.dynatrace.org/projects/RX/repos/cluster/browse/shared/settings.monitoring.impl/src/main/java/com/dynatrace/settings/monitoring/impl/internalapi/schemas/datasource/ExampleDatasourceSummaryPatternSchema.java)",
+	"displayName": "Datasource with Summary Pattern Example",
+	"documentation": "",
+	"dynatrace": "1",
+	"enums": {
+		"DatasourceEnum": {
+			"description": "",
+			"displayName": "Enum backed with datasource",
+			"documentation": "",
+			"items": [
+				{
+					"displayName": "Selection A1",
+					"value": "A1"
+				},
+				{
+					"displayName": "Selection A2",
+					"value": "A2"
+				},
+				{
+					"displayName": "Selection B1",
+					"value": "B1"
+				},
+				{
+					"displayName": "Selection B2",
+					"value": "B2"
+				}
+			],
+			"type": "enum"
+		},
+		"Type": {
+			"description": "",
+			"displayName": "Type",
+			"documentation": "",
+			"items": [
+				{
+					"displayName": "Type A",
+					"value": "A"
+				},
+				{
+					"displayName": "Type B",
+					"value": "B"
+				}
+			],
+			"type": "enum"
+		}
+	},
+	"maxObjects": 5,
+	"multiObject": true,
+	"ordered": false,
+	"properties": {
+		"advanced": {
+			"constraints": [
+				{
+					"maxLength": 500,
+					"minLength": 1,
+					"type": "LENGTH"
+				}
+			],
+			"datasource": {
+				"filterProperties": [
+					"limit",
+					"type"
+				],
+				"fullContext": false,
+				"identifier": "exampleTypeLimitDatasource",
+				"resetValue": "NEVER",
+				"useApiSearch": true,
+				"validate": true
+			},
+			"default": "",
+			"description": "Will return possible values based on type and limit, only allows datasource values (with validation). Some of the values are visible only with devops access.",
+			"displayName": "Advanced Datasource",
+			"documentation": "",
+			"maxObjects": 1,
+			"modificationPolicy": "DEFAULT",
+			"nullable": false,
+			"subType": "datasource",
+			"type": "text"
+		},
+		"datasourceEnumProp": {
+			"datasource": {
+				"filterProperties": [
+					"limit",
+					"type"
+				],
+				"fullContext": true,
+				"identifier": "exampleEnumDatasource",
+				"resetValue": "ALWAYS",
+				"useApiSearch": false,
+				"validate": true
+			},
+			"default": "A1",
+			"description": "Will return possible values based on type which are intersected with the enum",
+			"displayName": "Enum Datasource",
+			"documentation": "",
+			"maxObjects": 1,
+			"modificationPolicy": "DEFAULT",
+			"nullable": false,
+			"subType": "datasource",
+			"type": {
+				"$ref": "#/enums/DatasourceEnum"
+			}
+		},
+		"limit": {
+			"constraints": [
+				{
+					"maximum": 11,
+					"minimum": 1,
+					"type": "RANGE"
+				}
+			],
+			"default": 10,
+			"description": "Controls the max number (inclusive) returned by the advanced datasource",
+			"displayName": "Limit",
+			"documentation": "",
+			"maxObjects": 1,
+			"modificationPolicy": "DEFAULT",
+			"nullable": false,
+			"type": "integer"
+		},
+		"name": {
+			"constraints": [
+				{
+					"maxLength": 100,
+					"minLength": 1,
+					"type": "LENGTH"
+				}
+			],
+			"default": "",
+			"description": "",
+			"displayName": "Name",
+			"documentation": "",
+			"maxObjects": 1,
+			"modificationPolicy": "DEFAULT",
+			"nullable": false,
+			"type": "text"
+		},
+		"simple": {
+			"constraints": [
+				{
+					"maxLength": 500,
+					"minLength": 1,
+					"type": "LENGTH"
+				}
+			],
+			"datasource": {
+				"filterProperties": [
+					"type"
+				],
+				"fullContext": false,
+				"identifier": "exampleTypeDatasource",
+				"resetValue": "NEVER",
+				"useApiSearch": false,
+				"validate": false
+			},
+			"default": "",
+			"description": "Will return possible values based on type, but also allows custom defined values (no validation). Some of the values are visible only with devops access.",
+			"displayName": "Simple Datasource",
+			"documentation": "",
+			"maxObjects": 1,
+			"modificationPolicy": "DEFAULT",
+			"nullable": false,
+			"subType": "datasource",
+			"type": "text"
+		},
+		"type": {
+			"description": "Controls the type of values the datasources will deliver",
+			"displayName": "Type",
+			"documentation": "",
+			"maxObjects": 1,
+			"modificationPolicy": "DEFAULT",
+			"nullable": true,
+			"type": {
+				"$ref": "#/enums/Type"
+			}
+		}
+	},
+	"schemaId": "builtin:example.datasource-summarypattern",
+	"types": {},
+	"version": "0.4.5"
+}

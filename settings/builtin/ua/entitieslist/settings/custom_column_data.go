@@ -1,0 +1,80 @@
+/**
+* @license
+* Copyright 2020 Dynatrace LLC
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*     http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+ */
+
+package entitieslist
+
+import (
+	"github.com/dynatrace-oss/terraform-provider-dynatrace/terraform/hcl"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+)
+
+type CustomColumnDatas []*CustomColumnData
+
+func (me *CustomColumnDatas) Schema() map[string]*schema.Schema {
+	return map[string]*schema.Schema{
+		"custom_column_data": {
+			Type:        schema.TypeSet,
+			Required:    true,
+			MinItems:    1,
+			Description: "",
+			Elem:        &schema.Resource{Schema: new(CustomColumnData).Schema()},
+		},
+	}
+}
+
+func (me CustomColumnDatas) MarshalHCL(properties hcl.Properties) error {
+	return properties.EncodeSlice("custom_column_data", me)
+}
+
+func (me *CustomColumnDatas) UnmarshalHCL(decoder hcl.Decoder) error {
+	return decoder.DecodeSlice("custom_column_data", me)
+}
+
+// CustomColumnData. Allows to specify key-value option
+type CustomColumnData struct {
+	Key   string `json:"key"`   // Use to reference desired attribute option key
+	Value string `json:"value"` // Provide option value
+}
+
+func (me *CustomColumnData) Schema() map[string]*schema.Schema {
+	return map[string]*schema.Schema{
+		"key": {
+			Type:        schema.TypeString,
+			Description: "Use to reference desired attribute option key",
+			Required:    true,
+		},
+		"value": {
+			Type:        schema.TypeString,
+			Description: "Provide option value",
+			Required:    true,
+		},
+	}
+}
+
+func (me *CustomColumnData) MarshalHCL(properties hcl.Properties) error {
+	return properties.EncodeAll(map[string]any{
+		"key":   me.Key,
+		"value": me.Value,
+	})
+}
+
+func (me *CustomColumnData) UnmarshalHCL(decoder hcl.Decoder) error {
+	return decoder.DecodeAll(map[string]any{
+		"key":   &me.Key,
+		"value": &me.Value,
+	})
+}

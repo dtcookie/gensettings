@@ -1,0 +1,398 @@
+{
+	"allowedScopes": [
+		"ua-screen"
+	],
+	"constraints": [
+		{
+			"customMessage": "The scope must be a ME type or a valid generic type.",
+			"customValidatorId": "ua-scope-validator",
+			"type": "CUSTOM_VALIDATOR_REF"
+		},
+		{
+			"customMessage": "The selection 'Show in each table row' is only valid for card type table cards and 'Events'.",
+			"customValidatorId": "ua-action-validator-table",
+			"type": "CUSTOM_VALIDATOR_REF"
+		},
+		{
+			"customMessage": "The selection 'Show in each chart' is only valid for card type 'Chart group' and 'Entities list'.",
+			"customValidatorId": "ua-action-validator-chart",
+			"type": "CUSTOM_VALIDATOR_REF"
+		}
+	],
+	"description": "You can define here actions for multiple screen elements.",
+	"displayName": "Actions",
+	"documentation": "",
+	"dynatrace": "1",
+	"enums": {
+		"ActionLocation": {
+			"description": "",
+			"displayName": "ActionLocation",
+			"documentation": "",
+			"items": [
+				{
+					"displayName": "Show in card header",
+					"value": "HEADER"
+				},
+				{
+					"displayName": "Show in each chart",
+					"value": "CHART"
+				},
+				{
+					"displayName": "Show in each table row",
+					"value": "TABLE_ENTRY"
+				}
+			],
+			"type": "enum"
+		},
+		"ActionScope": {
+			"description": "",
+			"displayName": "Card type",
+			"documentation": "",
+			"items": [
+				{
+					"displayName": "Global - Details screen",
+					"value": "GLOBAL_DETAILS"
+				},
+				{
+					"displayName": "Global - List screen",
+					"value": "GLOBAL_LIST"
+				},
+				{
+					"displayName": "Properties card",
+					"value": "PROPERTIES"
+				},
+				{
+					"displayName": "Problems card",
+					"value": "PROBLEMS"
+				},
+				{
+					"displayName": "Chart group card",
+					"value": "CHART_GROUP"
+				},
+				{
+					"displayName": "Entities list card",
+					"value": "ENTITIES_LIST"
+				},
+				{
+					"displayName": "Metric table card",
+					"value": "METRIC_TABLE"
+				},
+				{
+					"displayName": "Attribute table card",
+					"value": "ATTRIBUTE_TABLE"
+				},
+				{
+					"displayName": "Events card",
+					"value": "EVENTS"
+				},
+				{
+					"displayName": "Logs card",
+					"value": "LOGS"
+				},
+				{
+					"displayName": "SLO list card",
+					"value": "SLO_LIST"
+				}
+			],
+			"type": "enum"
+		},
+		"ButtonColorType": {
+			"description": "",
+			"displayName": "ButtonColorType",
+			"documentation": "",
+			"items": [
+				{
+					"displayName": "Primary",
+					"value": "PRIMARY"
+				},
+				{
+					"displayName": "Secondary",
+					"value": "SECONDARY"
+				}
+			],
+			"type": "enum"
+		}
+	},
+	"maxObjects": 100,
+	"multiObject": true,
+	"ordered": false,
+	"properties": {
+		"actionLocation": {
+			"default": "HEADER",
+			"description": "Defines where on the card the action is displayed.",
+			"displayName": "Action location",
+			"documentation": "* **Show in card header:** The action will be shown in the drilldown in the top right corner of the card. \n* **Show in each chart:** The action will be shown in the drilldown above each chart. This selection is only possible for chart group and entity list.\n* **Show in each table row:** The action will be shown in the drilldown of every table row. This selection is only possible for entity list and event.\n",
+			"maxObjects": 1,
+			"metadata": {
+				"sortItems": "disabled"
+			},
+			"modificationPolicy": "DEFAULT",
+			"nullable": false,
+			"precondition": {
+				"expectedValues": [
+					"CHART_GROUP",
+					"ENTITIES_LIST",
+					"METRIC_TABLE",
+					"ATTRIBUTE_TABLE",
+					"EVENTS",
+					"LOGS"
+				],
+				"property": "actionScope",
+				"type": "IN"
+			},
+			"type": {
+				"$ref": "#/enums/ActionLocation"
+			}
+		},
+		"actionScope": {
+			"default": "GLOBAL_DETAILS",
+			"description": "Defines in which card type this action is shown. If you select a dynamic card (such as chart group or entity list), specific cards can be referred via the card key as well.",
+			"displayName": "Scope",
+			"documentation": "",
+			"maxObjects": 1,
+			"metadata": {
+				"sortItems": "disabled"
+			},
+			"modificationPolicy": "DEFAULT",
+			"nullable": false,
+			"type": {
+				"$ref": "#/enums/ActionScope"
+			}
+		},
+		"actions": {
+			"description": "Define all actions and their parameters you want to show on this element.",
+			"displayName": "List of actions",
+			"documentation": "",
+			"items": {
+				"description": "",
+				"displayName": "",
+				"documentation": "",
+				"type": {
+					"$ref": "#/types/Action"
+				}
+			},
+			"maxObjects": 15,
+			"minObjects": 1,
+			"modificationPolicy": "DEFAULT",
+			"nullable": false,
+			"type": "list"
+		},
+		"key": {
+			"constraints": [
+				{
+					"maxLength": 200,
+					"minLength": 1,
+					"type": "LENGTH"
+				},
+				{
+					"customMessage": "Card key must only contain letters, numbers or '-', '_'.",
+					"pattern": "^[\\w-]*$",
+					"type": "PATTERN"
+				}
+			],
+			"datasource": {
+				"filterProperties": [],
+				"fullContext": true,
+				"identifier": "cardKeyDataSource",
+				"resetValue": "NEVER",
+				"useApiSearch": true,
+				"validate": false
+			},
+			"description": "Unique key of the card, which is used to reference desired card configuration. To add this actions in every card of this type, leave it empty.",
+			"displayName": "Card key",
+			"documentation": "",
+			"maxObjects": 1,
+			"modificationPolicy": "DEFAULT",
+			"nullable": true,
+			"precondition": {
+				"expectedValues": [
+					"CHART_GROUP",
+					"ENTITIES_LIST",
+					"METRIC_TABLE",
+					"ATTRIBUTE_TABLE",
+					"EVENTS",
+					"LOGS",
+					"SLO_LIST"
+				],
+				"property": "actionScope",
+				"type": "IN"
+			},
+			"subType": "datasource",
+			"type": "text"
+		},
+		"mainAction": {
+			"description": "If true, buttons will be displayed outside of actions menu",
+			"displayName": "Main actions",
+			"documentation": "",
+			"maxObjects": 1,
+			"modificationPolicy": "DEFAULT",
+			"nullable": true,
+			"type": "boolean"
+		}
+	},
+	"schemaGroups": [
+		"group:unified-analysis"
+	],
+	"schemaId": "builtin:ua.screen-actions",
+	"types": {
+		"Action": {
+			"description": "",
+			"displayName": "Action",
+			"documentation": "",
+			"properties": {
+				"actionExpression": {
+					"constraints": [
+						{
+							"customMessage": "Provide correct action syntax.",
+							"customValidatorId": "ua-action-syntax-validator",
+							"type": "CUSTOM_VALIDATOR_REF"
+						},
+						{
+							"maxLength": 1500,
+							"minLength": 1,
+							"type": "LENGTH"
+						}
+					],
+					"datasource": {
+						"filterProperties": [],
+						"fullContext": false,
+						"identifier": "actionExpressionDatasource",
+						"resetValue": "NEVER",
+						"useApiSearch": true,
+						"validate": false
+					},
+					"default": "",
+					"description": "The definition of an action",
+					"displayName": "Action expression",
+					"documentation": "Single action expression. The format is: actionName|key=param|key2=param2",
+					"maxObjects": 1,
+					"metadata": {
+						"uiDefaultValue": ""
+					},
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"subType": "datasource",
+					"type": "text"
+				},
+				"conditions": {
+					"description": "",
+					"displayName": "List of conditions",
+					"documentation": "All conditions from the list need to be fulfilled for the action to be visible",
+					"items": {
+						"constraints": [
+							{
+								"maxLength": 500,
+								"minLength": 1,
+								"type": "LENGTH"
+							}
+						],
+						"datasource": {
+							"filterProperties": [],
+							"fullContext": false,
+							"identifier": "conditionExpressionDatasource",
+							"resetValue": "NEVER",
+							"useApiSearch": true,
+							"validate": false
+						},
+						"description": "",
+						"displayName": "",
+						"documentation": "Single condition expression. The format is: conditionName|key=param|key2=param2",
+						"subType": "datasource",
+						"type": "text"
+					},
+					"maxObjects": 10,
+					"minObjects": 0,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"type": "set"
+				},
+				"visualization": {
+					"description": "",
+					"displayName": "Button visualization",
+					"documentation": "If applicable, you can define visualization properties of action button",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": true,
+					"type": {
+						"$ref": "#/types/Visualization"
+					}
+				}
+			},
+			"summaryPattern": "{actionExpression}",
+			"type": "object",
+			"version": "0.2",
+			"versionInfo": ""
+		},
+		"Visualization": {
+			"description": "",
+			"displayName": "Visualization",
+			"documentation": "",
+			"properties": {
+				"color": {
+					"description": "",
+					"displayName": "Color",
+					"documentation": "Override/set action button theme color.",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": true,
+					"type": {
+						"$ref": "#/enums/ButtonColorType"
+					}
+				},
+				"displayName": {
+					"constraints": [
+						{
+							"maxLength": 50,
+							"minLength": 1,
+							"type": "LENGTH"
+						}
+					],
+					"description": "",
+					"displayName": "Display name",
+					"documentation": "Override/set action button display name. It will be deduced from action definition if not set.",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": true,
+					"type": "text"
+				},
+				"icon": {
+					"constraints": [
+						{
+							"maxLength": 50,
+							"minLength": 1,
+							"type": "LENGTH"
+						}
+					],
+					"description": "",
+					"displayName": "Icon",
+					"documentation": "Include the [barista icon](https://barista.dynatrace.com/components/icon#all-icons) action button.",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": true,
+					"type": "text"
+				},
+				"iconOnly": {
+					"description": "",
+					"displayName": "Show only icon",
+					"documentation": "If selected, only icon will be rendered in the action button. Display name will be moved to the tooltip on hover.",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": true,
+					"precondition": {
+						"precondition": {
+							"property": "icon",
+							"type": "NULL"
+						},
+						"type": "NOT"
+					},
+					"type": "boolean"
+				}
+			},
+			"summaryPattern": "",
+			"type": "object",
+			"version": "0",
+			"versionInfo": ""
+		}
+	},
+	"version": "2.4"
+}

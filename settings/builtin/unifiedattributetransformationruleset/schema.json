@@ -1,0 +1,40 @@
+{
+	"allowedScopes": [
+		"environment"
+	],
+	"constraints": [
+		{
+			"customValidatorId": "unified-attribute-transformation-ruleset-compileable",
+			"type": "CUSTOM_VALIDATOR_REF"
+		}
+	],
+	"description": "Configure rules to transform attribute for subsequent steps in unified service detection (e.g. entry point detection, service naming, request naming).",
+	"displayName": "Unified attribute transformation ruleset",
+	"documentation": "",
+	"dynatrace": "1",
+	"enums": {},
+	"maxObjects": 1,
+	"multiObject": false,
+	"properties": {
+		"ruleset": {
+			"constraints": [
+				{
+					"maxLength": 100000,
+					"type": "LENGTH"
+				}
+			],
+			"default": "{\n    \"rules\": []\n}",
+			"description": "",
+			"displayName": "Ruleset",
+			"documentation": "",
+			"maxObjects": 1,
+			"modificationPolicy": "DEFAULT",
+			"nullable": false,
+			"subType": "multiline",
+			"type": "text"
+		}
+	},
+	"schemaId": "builtin:unified-attribute-transformation-ruleset",
+	"types": {},
+	"version": "0.0.3"
+}

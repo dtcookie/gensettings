@@ -32,13 +32,21 @@ func (me *Library) CollectTypes(m map[string]*Type) error {
 	return nil
 }
 
+func (me *Library) Contains(t *Type) bool {
+	if len(t.ID) == 0 {
+		panic("tried to define a type without ID")
+	}
+	_, found := me.Types[t.ID]
+	return found
+}
+
 func (me *Library) Define(t *Type, panicIfDuplicate bool) *Type {
 	if len(t.ID) == 0 {
 		panic("tried to define a type without ID")
 	}
 	if stored, found := me.Types[t.ID]; found {
 		if panicIfDuplicate {
-			panic(fmt.Sprintf("type %s already defined", t.ID))
+			panic(fmt.Sprintf("type %s already defined (%v)", t.ID, panicIfDuplicate))
 		}
 		return stored
 	}

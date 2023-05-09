@@ -1,0 +1,57 @@
+{
+	"allowedScopes": [
+		"environment",
+		"environment-default"
+	],
+	"description": "Showcase of Custom Property-Validators working on a set property and executed in the cluster.\n\nIt will check that no duplicate email addresses (case insensitive) wil be added to the set.\n\nFor the Java implementation check out [ExamplePropertyValidatorForSetSchema.java](https://bitbucket.lab.dynatrace.org/projects/RX/repos/cluster/browse/shared/settings.monitoring.impl/src/main/java/com/dynatrace/settings/monitoring/impl/internalapi/schemas/customvalidation/ExamplePropertyValidatorForSetSchema.java)",
+	"displayName": "Custom Property-Validator on a set",
+	"documentation": "",
+	"dynatrace": "1",
+	"enums": {},
+	"maxObjects": 1,
+	"multiObject": false,
+	"properties": {
+		"emailSet": {
+			"constraints": [
+				{
+					"customMessage": "The set of emails may not contain duplicates (case insensitive)",
+					"customValidatorId": "email-set-unique",
+					"type": "CUSTOM_VALIDATOR_REF"
+				}
+			],
+			"description": "A set of email addresses. This list may not contain duplicate entries (case insensitive).",
+			"displayName": "Emails",
+			"documentation": "",
+			"items": {
+				"constraints": [
+					{
+						"customMessage": "Email address is not valid",
+						"pattern": "^[\\.a-zA-Z0-9!#$%\u0026'*+/=?^_`{|}~-]+?@[a-zA-Z0-9](?:[a-zA-Z0-9-]*?[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]*?[a-zA-Z0-9])?)*$",
+						"type": "PATTERN"
+					},
+					{
+						"maxLength": 500,
+						"minLength": 1,
+						"type": "LENGTH"
+					}
+				],
+				"description": "",
+				"displayName": "",
+				"documentation": "",
+				"subType": "email",
+				"type": "text"
+			},
+			"maxObjects": 100,
+			"minObjects": 0,
+			"modificationPolicy": "DEFAULT",
+			"nullable": false,
+			"type": "set"
+		}
+	},
+	"schemaGroups": [
+		"group:example"
+	],
+	"schemaId": "builtin:example.custom-validation.property-validator-for-set",
+	"types": {},
+	"version": "0.1"
+}

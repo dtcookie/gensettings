@@ -55,3 +55,11 @@ func NewSetAlias(t *reflection.Type, item string) *SetAlias {
 		Item: camel.Strip(item),
 	}
 }
+
+func NewSetAlias2(t *reflection.Type, item string) *SetAlias {
+	return &SetAlias{
+		Name: TypeName(t.Elem.Unref()) + "Set",
+		Elem: TypeName(t.Elem.Unref()),
+		Item: camel.Strip(item),
+	}
+}

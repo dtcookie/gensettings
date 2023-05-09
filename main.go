@@ -135,7 +135,10 @@ func main() {
 	}
 	schemata := map[string]*Schema{}
 	for _, schemaStub := range schemaList.Items {
-		// if schemaStub.SchemaID != "builtin:tags.auto-tagging" {
+		// if schemaStub.SchemaID != "builtin:dt-javascript-runtime.edge-http-targets" {
+		// 	continue
+		// }
+		// if schemaStub.SchemaID != "builtin:example.kitchen-sink" {
 		// 	continue
 		// }
 		// if schemaStub.SchemaID != "builtin:anomaly-detection.infrastructure-vmware" {

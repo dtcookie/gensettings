@@ -1,0 +1,432 @@
+{
+	"allowedScopes": [
+		"ua-screen"
+	],
+	"constraints": [
+		{
+			"customMessage": "The scope must be a ME type or a valid generic type.",
+			"customValidatorId": "ua-scope-validator",
+			"type": "CUSTOM_VALIDATOR_REF"
+		}
+	],
+	"description": "Define card to display complex attribute as a table. Each attribute item in the list would be a row, each item field would be a column.",
+	"displayName": "Attribute table cards",
+	"documentation": "",
+	"dynatrace": "1",
+	"enums": {
+		"OrderType": {
+			"description": "",
+			"displayName": "Order type",
+			"documentation": "",
+			"items": [
+				{
+					"displayName": "Ascending",
+					"value": "ASCENDING"
+				},
+				{
+					"displayName": "Descending",
+					"value": "DESCENDING"
+				}
+			],
+			"type": "enum"
+		}
+	},
+	"maxObjects": 100,
+	"multiObject": true,
+	"ordered": false,
+	"properties": {
+		"attribute": {
+			"constraints": [
+				{
+					"maxLength": 200,
+					"minLength": 1,
+					"type": "LENGTH"
+				}
+			],
+			"default": "",
+			"description": "Complex attribute which should be displayed as table.",
+			"displayName": "Attribute",
+			"documentation": "",
+			"maxObjects": 1,
+			"modificationPolicy": "DEFAULT",
+			"nullable": false,
+			"type": "text"
+		},
+		"columns": {
+			"description": "Define columns for this complex attribute.",
+			"displayName": "Columns",
+			"documentation": "",
+			"items": {
+				"description": "",
+				"displayName": "",
+				"documentation": "",
+				"type": {
+					"$ref": "#/types/ColumnDefinition"
+				}
+			},
+			"maxObjects": 500,
+			"minObjects": 1,
+			"modificationPolicy": "DEFAULT",
+			"nullable": false,
+			"type": "list"
+		},
+		"conditions": {
+			"description": "",
+			"displayName": "List of conditions",
+			"documentation": "All conditions from the list need to be fulfilled for the table to be visible",
+			"items": {
+				"constraints": [
+					{
+						"maxLength": 500,
+						"minLength": 1,
+						"type": "LENGTH"
+					}
+				],
+				"datasource": {
+					"filterProperties": [],
+					"fullContext": false,
+					"identifier": "conditionExpressionDatasource",
+					"resetValue": "NEVER",
+					"useApiSearch": true,
+					"validate": false
+				},
+				"description": "",
+				"displayName": "",
+				"documentation": "Single condition expression. The format is: conditionName|key=param|key2=param2",
+				"subType": "datasource",
+				"type": "text"
+			},
+			"maxObjects": 10,
+			"minObjects": 0,
+			"modificationPolicy": "DEFAULT",
+			"nullable": false,
+			"type": "set"
+		},
+		"description": {
+			"constraints": [
+				{
+					"minLength": 1,
+					"type": "LENGTH"
+				},
+				{
+					"customMessage": "In markdown brackets use only seaOtter links (https://dt-url.net/XXXXXXX) or action expression",
+					"customValidatorId": "ua-safe-markdown-link-validator",
+					"type": "CUSTOM_VALIDATOR_REF"
+				}
+			],
+			"description": "The description of the card.",
+			"displayName": "Description",
+			"documentation": "Markdown syntax can be used to enrich description. To define a link, you can only use seaOtter links (https://dt-url.net/XXXXXXX) or action expression \n\n The format of a single action expression is: actionName|key=param|key2=param2",
+			"maxObjects": 1,
+			"modificationPolicy": "DEFAULT",
+			"nullable": true,
+			"subType": "multiline",
+			"type": "text"
+		},
+		"displayName": {
+			"constraints": [
+				{
+					"maxLength": 200,
+					"minLength": 1,
+					"type": "LENGTH"
+				}
+			],
+			"description": "The title of the card.",
+			"displayName": "Display name",
+			"documentation": "",
+			"maxObjects": 1,
+			"modificationPolicy": "DEFAULT",
+			"nullable": true,
+			"type": "text"
+		},
+		"emptyState": {
+			"description": "Specifies message shown when there are no entities found.",
+			"displayName": "Empty state definition",
+			"documentation": "",
+			"maxObjects": 1,
+			"modificationPolicy": "DEFAULT",
+			"nullable": true,
+			"type": {
+				"$ref": "#/types/EmptyStateType"
+			}
+		},
+		"entitySelectorTemplate": {
+			"constraints": [
+				{
+					"maxLength": 500,
+					"minLength": 1,
+					"type": "LENGTH"
+				},
+				{
+					"customMessage": "Invalid entity selector",
+					"customValidatorId": "entity-selector-validator",
+					"type": "CUSTOM_VALIDATOR_REF"
+				}
+			],
+			"description": "An entity selector that is used to fetch data for related entities. For attribute table it should resolve to single entity.",
+			"displayName": "Entity selector template",
+			"documentation": "For example for a host screen where you want to show the processes charts this might look like this:  \n`type(PROCESS_GROUP_INSTANCE), fromRelationships.isProcessOf($(entityConditions))`\n\nPlease mind that the `$(entityConditions)` is a placeholder for the relation condition.\n\nLeave empty to gather data for current entity.",
+			"maxObjects": 1,
+			"modificationPolicy": "DEFAULT",
+			"nullable": true,
+			"type": "text"
+		},
+		"initialSorting": {
+			"description": "Specifies initial sorting configuration.",
+			"displayName": "Initial sorting definition",
+			"documentation": "",
+			"maxObjects": 1,
+			"modificationPolicy": "DEFAULT",
+			"nullable": true,
+			"type": {
+				"$ref": "#/types/InitialSortingType"
+			}
+		},
+		"key": {
+			"constraints": [
+				{
+					"type": "NOT_BLANK"
+				},
+				{
+					"maxLength": 200,
+					"minLength": 1,
+					"type": "LENGTH"
+				},
+				{
+					"customMessage": "Element identifier must only contain letters, numbers or '-', '_'.",
+					"pattern": "^[\\w-]*$",
+					"type": "PATTERN"
+				}
+			],
+			"default": "default",
+			"description": "Unique key, which is used to map to this entities list in the screen layout config.",
+			"displayName": "Key",
+			"documentation": "",
+			"maxObjects": 1,
+			"modificationPolicy": "DEFAULT",
+			"nullable": false,
+			"type": "text"
+		},
+		"pageSize": {
+			"constraints": [
+				{
+					"maximum": 25,
+					"minimum": 5,
+					"type": "RANGE"
+				}
+			],
+			"default": 5,
+			"description": "The number of items displayed on one page.",
+			"displayName": "Page size",
+			"documentation": "",
+			"maxObjects": 1,
+			"modificationPolicy": "DEFAULT",
+			"nullable": false,
+			"type": "integer"
+		}
+	},
+	"schemaGroups": [
+		"group:unified-analysis"
+	],
+	"schemaId": "builtin:ua.attribute-table",
+	"types": {
+		"AttributeType": {
+			"description": "Allows to specify attribute column.",
+			"displayName": "AttributeType",
+			"documentation": "",
+			"properties": {
+				"displayName": {
+					"constraints": [
+						{
+							"maxLength": 200,
+							"minLength": 1,
+							"type": "LENGTH"
+						}
+					],
+					"description": "Leave empty to resolve automatically",
+					"displayName": "Display name",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": true,
+					"type": "text"
+				},
+				"key": {
+					"constraints": [
+						{
+							"maxLength": 500,
+							"minLength": 1,
+							"type": "LENGTH"
+						}
+					],
+					"default": "attribute",
+					"description": "Use to reference desired attribute.",
+					"displayName": "Attribute key",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"type": "text"
+				}
+			},
+			"summaryPattern": "",
+			"type": "object",
+			"version": "0",
+			"versionInfo": ""
+		},
+		"ColumnDefinition": {
+			"description": "",
+			"displayName": "Column definition",
+			"documentation": "",
+			"properties": {
+				"attribute": {
+					"description": "",
+					"displayName": "Attribute options",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"type": {
+						"$ref": "#/types/AttributeType"
+					}
+				},
+				"conditions": {
+					"description": "",
+					"displayName": "List of conditions",
+					"documentation": "All conditions from the list need to be fulfilled for the column to be visible",
+					"items": {
+						"constraints": [
+							{
+								"maxLength": 500,
+								"minLength": 1,
+								"type": "LENGTH"
+							}
+						],
+						"datasource": {
+							"filterProperties": [],
+							"fullContext": false,
+							"identifier": "conditionExpressionDatasource",
+							"resetValue": "NEVER",
+							"useApiSearch": true,
+							"validate": false
+						},
+						"description": "",
+						"displayName": "",
+						"documentation": "Single condition expression. The format is: conditionName|key=param|key2=param2",
+						"subType": "datasource",
+						"type": "text"
+					},
+					"maxObjects": 10,
+					"minObjects": 0,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"type": "set"
+				}
+			},
+			"summaryPattern": "{attribute.key}",
+			"type": "object",
+			"version": "0",
+			"versionInfo": ""
+		},
+		"EmptyStateType": {
+			"description": "",
+			"displayName": "EmptyStateType",
+			"documentation": "",
+			"properties": {
+				"body": {
+					"constraints": [
+						{
+							"type": "NOT_BLANK"
+						},
+						{
+							"maxLength": 1500,
+							"minLength": 1,
+							"type": "LENGTH"
+						},
+						{
+							"customMessage": "In markdown brackets use only seaOtter links (https://dt-url.net/XXXXXXX) or action expression",
+							"customValidatorId": "ua-safe-markdown-link-validator",
+							"type": "CUSTOM_VALIDATOR_REF"
+						}
+					],
+					"default": "",
+					"description": "",
+					"displayName": "Message body",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"type": "text"
+				},
+				"header": {
+					"constraints": [
+						{
+							"type": "NOT_BLANK"
+						},
+						{
+							"maxLength": 200,
+							"minLength": 1,
+							"type": "LENGTH"
+						}
+					],
+					"default": "",
+					"description": "",
+					"displayName": "Message header",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"type": "text"
+				}
+			},
+			"summaryPattern": "",
+			"type": "object",
+			"version": "0",
+			"versionInfo": ""
+		},
+		"InitialSortingType": {
+			"description": "",
+			"displayName": "InitialSortingType",
+			"documentation": "",
+			"properties": {
+				"columnId": {
+					"constraints": [
+						{
+							"type": "NOT_BLANK"
+						},
+						{
+							"maxLength": 200,
+							"minLength": 1,
+							"type": "LENGTH"
+						}
+					],
+					"default": "name",
+					"description": "",
+					"displayName": "Column ID",
+					"documentation": "Column ID is a unique identifier of column. There are several ID types for different column types: \n - Entity column - 'name'\n\n - Metric with selectable aggregation - 'metric-{metricDisplayName}-{aggregation}'\n Example: 'metric-CPU Usage-Average'\n\n - metric without selectable aggregation - 'metric-{metricDisplayName}'            \n Example: 'metric-CPU Usage'\n\n - Attribute - 'attribute-{attributeKey}'                                               \n Example: 'attribute-osType'\n\n - Relation - 'attribute-{relationEntityType}-{relationDisplayName}'                     \n Example: 'attribute-CLOUD_APPLICATION-Workloads'\n\n - Metric dimension (Metric Table only) - 'metricDimension-{dimensionKey}'                     \n Example: 'metricDimension-dt.entity.host'",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"type": "text"
+				},
+				"order": {
+					"default": "DESCENDING",
+					"description": "",
+					"displayName": "Sorting order",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"type": {
+						"$ref": "#/enums/OrderType"
+					}
+				}
+			},
+			"summaryPattern": "",
+			"type": "object",
+			"version": "0",
+			"versionInfo": ""
+		}
+	},
+	"version": "0.8"
+}

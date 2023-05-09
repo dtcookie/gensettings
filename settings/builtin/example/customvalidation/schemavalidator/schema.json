@@ -1,0 +1,39 @@
+{
+	"allowedScopes": [
+		"environment",
+		"environment-default"
+	],
+	"description": "Showcase of a Custom Schema-Validator executed in the cluster.\n\nIt will check that the entered names are unique (case insensitive) across all entries in this multi-object schema.\n\nFor the Java implementation check out [ExampleSchemaValidatorSchema.java](https://bitbucket.lab.dynatrace.org/projects/RX/repos/cluster/browse/shared/settings.monitoring.impl/src/main/java/com/dynatrace/settings/monitoring/impl/internalapi/schemas/customvalidation/ExampleSchemaValidatorSchema.java)",
+	"displayName": "Custom Schema-Validator",
+	"documentation": "",
+	"dynatrace": "1",
+	"enums": {},
+	"maxObjects": 5,
+	"multiObject": true,
+	"ordered": false,
+	"properties": {
+		"uniqueCaseInsensitiveName": {
+			"constraints": [
+				{
+					"maxLength": 500,
+					"minLength": 1,
+					"type": "LENGTH"
+				}
+			],
+			"default": "",
+			"description": "A unique (case-insensitive) name.",
+			"displayName": "Name",
+			"documentation": "",
+			"maxObjects": 1,
+			"modificationPolicy": "DEFAULT",
+			"nullable": false,
+			"type": "text"
+		}
+	},
+	"schemaGroups": [
+		"group:example"
+	],
+	"schemaId": "builtin:example.custom-validation.schema-validator",
+	"types": {},
+	"version": "0.1"
+}

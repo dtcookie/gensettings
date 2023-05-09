@@ -1,0 +1,72 @@
+{
+	"allowedScopes": [
+		"environment"
+	],
+	"constraints": [
+		{
+			"customValidatorId": "analyzer-name-consistency-validator",
+			"type": "CUSTOM_VALIDATOR_REF"
+		}
+	],
+	"description": "Analyzers are used for various analytical and statistical tasks. Some examples might be: correlating different metrics, checking metrics for changepoints, forecasting a metric etc..  \nAnalyzers can be combined by being declaratively defined, calling or extending each other.",
+	"displayName": "Analyzers",
+	"documentation": "",
+	"dynatrace": "1",
+	"enums": {},
+	"maxObjects": 100,
+	"multiObject": true,
+	"ordered": false,
+	"properties": {
+		"definition": {
+			"constraints": [
+				{
+					"type": "NOT_BLANK"
+				},
+				{
+					"maxLength": 10000,
+					"type": "LENGTH"
+				},
+				{
+					"customValidatorId": "analyzer-data-validator",
+					"type": "CUSTOM_VALIDATOR_REF"
+				}
+			],
+			"default": "",
+			"description": "The analyzer in its plain serialized form. Only edit if you know what you are doing!",
+			"displayName": "Analyzer definition",
+			"documentation": "",
+			"maxObjects": 1,
+			"modificationPolicy": "DEFAULT",
+			"nullable": false,
+			"subType": "multiline",
+			"type": "text"
+		},
+		"name": {
+			"constraints": [
+				{
+					"type": "NOT_BLANK"
+				},
+				{
+					"customValidatorId": "analyzer-name-validator",
+					"type": "CUSTOM_VALIDATOR_REF"
+				},
+				{
+					"maxLength": 500,
+					"minLength": 1,
+					"type": "LENGTH"
+				}
+			],
+			"default": "",
+			"description": "",
+			"displayName": "Analyzer name",
+			"documentation": "",
+			"maxObjects": 1,
+			"modificationPolicy": "DEFAULT",
+			"nullable": false,
+			"type": "text"
+		}
+	},
+	"schemaId": "builtin:fdi.analyzer",
+	"types": {},
+	"version": "0.0.5"
+}

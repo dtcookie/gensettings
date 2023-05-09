@@ -1,0 +1,548 @@
+{
+	"allowedScopes": [
+		"environment"
+	],
+	"description": "Timeseries event configurations are used to automatically detect anomalies in timeseries by using thresholds or baselines.",
+	"displayName": "Timeseries events",
+	"documentation": "",
+	"dynatrace": "1",
+	"enums": {
+		"AlertCondition": {
+			"description": "",
+			"displayName": "AlertCondition",
+			"documentation": "",
+			"items": [
+				{
+					"displayName": "Alert if metric is above",
+					"value": "ABOVE"
+				},
+				{
+					"displayName": "Alert if metric is below",
+					"value": "BELOW"
+				},
+				{
+					"displayName": "Alert if metric is outside",
+					"value": "OUTSIDE"
+				}
+			],
+			"type": "enum"
+		},
+		"EventTypeEnum": {
+			"description": "",
+			"displayName": "Event type",
+			"documentation": "",
+			"items": [
+				{
+					"displayName": "Info",
+					"value": "INFO"
+				},
+				{
+					"displayName": "Error",
+					"value": "ERROR"
+				},
+				{
+					"displayName": "Availability",
+					"value": "AVAILABILITY"
+				},
+				{
+					"displayName": "Slowdown",
+					"value": "SLOWDOWN"
+				},
+				{
+					"displayName": "Resource",
+					"value": "RESOURCE"
+				},
+				{
+					"displayName": "Custom alert",
+					"value": "CUSTOM_ALERT"
+				},
+				{
+					"displayName": "Custom annotation",
+					"value": "CUSTOM_ANNOTATION"
+				},
+				{
+					"displayName": "Custom configuration",
+					"value": "CUSTOM_CONFIGURATION"
+				},
+				{
+					"displayName": "Custom deployment",
+					"value": "CUSTOM_DEPLOYMENT"
+				},
+				{
+					"displayName": "Marked for termination",
+					"value": "MARKED_FOR_TERMINATION"
+				}
+			],
+			"type": "enum"
+		},
+		"ModelType": {
+			"description": "",
+			"displayName": "ModelType",
+			"documentation": "",
+			"items": [
+				{
+					"displayName": "Static threshold",
+					"value": "STATIC_THRESHOLD"
+				},
+				{
+					"displayName": "Auto-adaptive threshold",
+					"value": "AUTO_ADAPTIVE_THRESHOLD"
+				},
+				{
+					"displayName": "Seasonal baseline",
+					"value": "SEASONAL_BASELINE"
+				}
+			],
+			"type": "enum"
+		}
+	},
+	"maxObjects": 1000,
+	"metadata": {
+		"addItemButton": "Add timeseries event"
+	},
+	"multiObject": true,
+	"ordered": false,
+	"properties": {
+		"enabled": {
+			"default": true,
+			"description": "",
+			"displayName": "Enabled",
+			"documentation": "",
+			"maxObjects": 1,
+			"modificationPolicy": "DEFAULT",
+			"nullable": false,
+			"type": "boolean"
+		},
+		"eventEntityDimensionKey": {
+			"constraints": [
+				{
+					"maxLength": 500,
+					"minLength": 1,
+					"type": "LENGTH"
+				}
+			],
+			"description": "Controls the preferred entity type used for triggered events.",
+			"displayName": "Dimension key of entity for events",
+			"documentation": "",
+			"maxObjects": 1,
+			"metadata": {
+				"placeholder": "Automatic"
+			},
+			"modificationPolicy": "DEFAULT",
+			"nullable": true,
+			"type": "text"
+		},
+		"eventTemplate": {
+			"description": "",
+			"displayName": "Event template",
+			"documentation": "",
+			"maxObjects": 1,
+			"modificationPolicy": "DEFAULT",
+			"nullable": false,
+			"type": {
+				"$ref": "#/types/EventTemplate"
+			}
+		},
+		"modelProperties": {
+			"description": "",
+			"displayName": "Monitoring strategy",
+			"documentation": "",
+			"maxObjects": 1,
+			"modificationPolicy": "DEFAULT",
+			"nullable": false,
+			"type": {
+				"$ref": "#/types/ModelProperties"
+			},
+			"uiCustomization": {
+				"expandable": {
+					"sections": [
+						{
+							"displayName": "Advanced model properties",
+							"properties": [
+								"violatingSamples",
+								"samples",
+								"dealertingSamples"
+							]
+						}
+					]
+				}
+			}
+		},
+		"query": {
+			"constraints": [
+				{
+					"maxLength": 500,
+					"minLength": 2,
+					"type": "LENGTH"
+				}
+			],
+			"default": "",
+			"description": "[DQL](https://dt-url.net/bv03yk8?dt=s\u0026u=e) query resulting in a timeseries",
+			"displayName": "Query",
+			"documentation": "",
+			"maxObjects": 1,
+			"metadata": {
+				"placeholder": "Required"
+			},
+			"modificationPolicy": "DEFAULT",
+			"nullable": false,
+			"subType": "multiline",
+			"type": "text"
+		},
+		"summary": {
+			"constraints": [
+				{
+					"maxLength": 500,
+					"minLength": 2,
+					"type": "LENGTH"
+				}
+			],
+			"default": "",
+			"description": "The textual summary of the metric event entry",
+			"displayName": "Summary",
+			"documentation": "",
+			"maxObjects": 1,
+			"metadata": {
+				"placeholder": "Required"
+			},
+			"modificationPolicy": "DEFAULT",
+			"nullable": false,
+			"type": "text"
+		}
+	},
+	"schemaGroups": [
+		"group:anomaly-detection"
+	],
+	"schemaId": "builtin:anomaly-detection.timeseries-events",
+	"types": {
+		"EventTemplate": {
+			"description": "",
+			"displayName": "Event template",
+			"documentation": "",
+			"properties": {
+				"davisMerge": {
+					"default": true,
+					"description": "Davis® AI will try to merge this event into existing problems, otherwise a new problem will always be created.",
+					"displayName": "Allow merge",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"precondition": {
+						"precondition": {
+							"expectedValue": "INFO",
+							"property": "eventType",
+							"type": "EQUALS"
+						},
+						"type": "NOT"
+					},
+					"type": "boolean"
+				},
+				"description": {
+					"constraints": [
+						{
+							"maxLength": 5000,
+							"type": "LENGTH"
+						}
+					],
+					"default": "The {metricname} value was {alert_condition} normal behavior.",
+					"description": "The description of the event to trigger. Type '{' for placeholder hints.",
+					"displayName": "Description",
+					"documentation": "",
+					"maxObjects": 1,
+					"metadata": {
+						"lineCount": "4"
+					},
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"subType": "event_template_variable_placeholder",
+					"type": "text"
+				},
+				"eventType": {
+					"default": "CUSTOM_ALERT",
+					"description": "The event type to trigger.",
+					"displayName": "Event type",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"type": {
+						"$ref": "#/enums/EventTypeEnum"
+					}
+				},
+				"metadata": {
+					"description": "Set of additional key-value properties to be attached to the triggered event.",
+					"displayName": "Properties",
+					"documentation": "",
+					"items": {
+						"description": "",
+						"displayName": "",
+						"documentation": "",
+						"type": {
+							"$ref": "#/types/MetadataItem"
+						}
+					},
+					"maxObjects": 30,
+					"metadata": {
+						"addItemButton": "Add Property",
+						"itemDisplayName": "New property"
+					},
+					"minObjects": 0,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"type": "set"
+				},
+				"title": {
+					"constraints": [
+						{
+							"maxLength": 500,
+							"minLength": 2,
+							"type": "LENGTH"
+						}
+					],
+					"default": "",
+					"description": "The title of the event to trigger. Type '{' for placeholder hints.",
+					"displayName": "Title",
+					"documentation": "",
+					"maxObjects": 1,
+					"metadata": {
+						"placeholder": "Required"
+					},
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"subType": "event_template_variable_placeholder",
+					"type": "text"
+				}
+			},
+			"summaryPattern": "{title}",
+			"type": "object",
+			"version": "0",
+			"versionInfo": ""
+		},
+		"MetadataItem": {
+			"description": "",
+			"displayName": "",
+			"documentation": "",
+			"properties": {
+				"metadataKey": {
+					"constraints": [
+						{
+							"type": "NOT_BLANK"
+						},
+						{
+							"customMessage": "Unknown predefined property key.",
+							"customValidatorId": "event-property-key-validator",
+							"type": "CUSTOM_VALIDATOR_REF"
+						},
+						{
+							"customMessage": "Key property must not contain '{' or '}'.",
+							"pattern": "^[^{}]*$",
+							"type": "PATTERN"
+						},
+						{
+							"maxLength": 500,
+							"minLength": 1,
+							"type": "LENGTH"
+						}
+					],
+					"default": "",
+					"description": "Type 'dt.' for key hints.",
+					"displayName": "Key",
+					"documentation": "",
+					"maxObjects": 1,
+					"metadata": {
+						"placeholder": "Required"
+					},
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"subType": "event_template_property_key",
+					"type": "text"
+				},
+				"metadataValue": {
+					"constraints": [
+						{
+							"type": "NOT_BLANK"
+						},
+						{
+							"maxLength": 500,
+							"minLength": 1,
+							"type": "LENGTH"
+						}
+					],
+					"default": "",
+					"description": "Type '{' for placeholder hints.",
+					"displayName": "Value",
+					"documentation": "",
+					"maxObjects": 1,
+					"metadata": {
+						"placeholder": "Required"
+					},
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"subType": "event_template_variable_placeholder",
+					"type": "text"
+				}
+			},
+			"summaryPattern": "{metadataKey}: {metadataValue}",
+			"type": "object",
+			"version": "0",
+			"versionInfo": ""
+		},
+		"ModelProperties": {
+			"description": "",
+			"displayName": "ModelProperties",
+			"documentation": "",
+			"properties": {
+				"alertCondition": {
+					"default": "ABOVE",
+					"description": "",
+					"displayName": "Alert condition",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"type": {
+						"$ref": "#/enums/AlertCondition"
+					}
+				},
+				"alertOnNoData": {
+					"default": false,
+					"description": "The ability to set an alert on missing data in a metric. When enabled, missing data samples will contribute as violating samples defined in advanced model properties. We recommend to not alert on missing data for sparse timeseries as this leads to alert spam.",
+					"displayName": "Alert on missing data",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"type": "boolean"
+				},
+				"dealertingSamples": {
+					"constraints": [
+						{
+							"maximum": 60,
+							"minimum": 3,
+							"type": "RANGE"
+						}
+					],
+					"default": 5,
+					"description": "The number of one-minute samples within the evaluation window that must go back to normal to close the event.",
+					"displayName": "Dealerting samples",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"type": "integer"
+				},
+				"samples": {
+					"constraints": [
+						{
+							"maximum": 60,
+							"minimum": 3,
+							"type": "RANGE"
+						}
+					],
+					"default": 5,
+					"description": "The number of one-minute samples that form the sliding evaluation window.",
+					"displayName": "Sliding window",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"type": "integer"
+				},
+				"signalFluctuation": {
+					"constraints": [
+						{
+							"maximum": 10,
+							"minimum": 0,
+							"type": "RANGE"
+						}
+					],
+					"default": 1,
+					"description": "Controls how many times the signal fluctuation is added to the baseline to produce the actual threshold for alerting",
+					"displayName": "Number of signal fluctuations",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"precondition": {
+						"expectedValue": "AUTO_ADAPTIVE_THRESHOLD",
+						"property": "type",
+						"type": "EQUALS"
+					},
+					"type": "float"
+				},
+				"threshold": {
+					"default": 1,
+					"description": "Raise an event if this value is violated",
+					"displayName": "Threshold",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"precondition": {
+						"expectedValue": "STATIC_THRESHOLD",
+						"property": "type",
+						"type": "EQUALS"
+					},
+					"type": "float"
+				},
+				"tolerance": {
+					"constraints": [
+						{
+							"maximum": 10,
+							"minimum": 0.1,
+							"type": "RANGE"
+						}
+					],
+					"default": 4,
+					"description": "Controls the width of the confidence band and larger values lead to a less sensitive model",
+					"displayName": "Tolerance",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"precondition": {
+						"expectedValue": "SEASONAL_BASELINE",
+						"property": "type",
+						"type": "EQUALS"
+					},
+					"type": "float"
+				},
+				"type": {
+					"default": "STATIC_THRESHOLD",
+					"description": "Metric-key-based query definitions only support static thresholds.",
+					"displayName": "Model type",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"type": {
+						"$ref": "#/enums/ModelType"
+					}
+				},
+				"violatingSamples": {
+					"constraints": [
+						{
+							"maximum": 60,
+							"minimum": 1,
+							"type": "RANGE"
+						}
+					],
+					"default": 3,
+					"description": "The number of one-minute samples within the evaluation window that must violate to trigger an event.",
+					"displayName": "Violating samples",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"type": "integer"
+				}
+			},
+			"summaryPattern": "",
+			"type": "object",
+			"version": "0",
+			"versionInfo": ""
+		}
+	},
+	"version": "0.0.1"
+}

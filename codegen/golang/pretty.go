@@ -53,6 +53,9 @@ func Singular(s string) (string, error) {
 	if strings.HasSuffix(s, "List") {
 		return strings.TrimSuffix(s, "List"), nil
 	}
+	if strings.HasSuffix(s, "Set") {
+		return strings.TrimSuffix(s, "Set"), nil
+	}
 	// if s == "metadata" {
 	// 	return s, nil
 	// }

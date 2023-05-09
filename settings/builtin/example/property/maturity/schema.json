@@ -1,0 +1,82 @@
+{
+	"allowedScopes": [
+		"environment"
+	],
+	"description": "This schema shows how properties can be assigned maturities and be shown/hidden via feature flags.\n\nFeature flags are assigned per property in the meta data (in this example `propertyMaturityExample`).",
+	"displayName": "Property maturity examples",
+	"documentation": "",
+	"dynatrace": "1",
+	"enums": {},
+	"maxObjects": 1,
+	"multiObject": false,
+	"properties": {
+		"outer1": {
+			"constraints": [
+				{
+					"maxLength": 500,
+					"minLength": 1,
+					"type": "LENGTH"
+				}
+			],
+			"description": "",
+			"displayName": "Property 1",
+			"documentation": "",
+			"maxObjects": 1,
+			"metadata": {
+				"maturity": "IN_DEVELOPMENT"
+			},
+			"modificationPolicy": "DEFAULT",
+			"nullable": true,
+			"type": "text"
+		},
+		"outer3": {
+			"description": "",
+			"displayName": "Some List",
+			"documentation": "",
+			"items": {
+				"description": "",
+				"displayName": "",
+				"documentation": "",
+				"type": {
+					"$ref": "#/types/InnerType"
+				}
+			},
+			"maxObjects": 100,
+			"minObjects": 0,
+			"modificationPolicy": "DEFAULT",
+			"nullable": false,
+			"type": "list"
+		}
+	},
+	"schemaId": "builtin:example.property.maturity",
+	"types": {
+		"InnerType": {
+			"description": "Inner type containing a property depending on a feature flag",
+			"displayName": "Inner type",
+			"documentation": "",
+			"properties": {
+				"inner1": {
+					"constraints": [
+						{
+							"maxLength": 500,
+							"minLength": 1,
+							"type": "LENGTH"
+						}
+					],
+					"description": "",
+					"displayName": "Property 1",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": true,
+					"type": "text"
+				}
+			},
+			"summaryPattern": "Property: {inner1}",
+			"type": "object",
+			"version": "0",
+			"versionInfo": ""
+		}
+	},
+	"version": "0.0.2"
+}

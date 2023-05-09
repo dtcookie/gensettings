@@ -1,0 +1,280 @@
+{
+	"allowedScopes": [
+		"environment"
+	],
+	"description": "Showcase of complex property defaults.",
+	"displayName": "Complex property defaults",
+	"documentation": "",
+	"dynatrace": "1",
+	"enums": {
+		"AnimalEnum": {
+			"description": "A few animals to pick from",
+			"displayName": "Animal",
+			"documentation": "A nice documentation about the good bois",
+			"items": [
+				{
+					"description": "A detailed description about dogs.",
+					"displayName": "Dog",
+					"value": "dog"
+				},
+				{
+					"displayName": "Cat",
+					"value": "cat"
+				},
+				{
+					"description": "Python is a type of snake!",
+					"displayName": "Snake",
+					"icon": "python",
+					"value": "snake"
+				},
+				{
+					"displayName": "Hamster",
+					"icon": "golang-signet",
+					"value": "hamster"
+				}
+			],
+			"type": "enum"
+		}
+	},
+	"maxObjects": 1,
+	"multiObject": false,
+	"properties": {
+		"propertyTypes": {
+			"description": "All supported property types with their default value",
+			"displayName": "Property types",
+			"documentation": "",
+			"maxObjects": 1,
+			"modificationPolicy": "DEFAULT",
+			"nullable": false,
+			"type": {
+				"$ref": "#/types/PropertyTypes"
+			}
+		},
+		"propertyTypesDefault": {
+			"default": {
+				"AnimalComplex": {
+					"animal": "hamster",
+					"goodBoi": false
+				},
+				"AnimalEnum": "cat",
+				"boolean": true,
+				"float": 0.1,
+				"integer": 2,
+				"local_date_time": "2020-01-01T01:01:01",
+				"secret": "test",
+				"text": "asdf",
+				"zoned_date_time": "2020-01-01T01:01:01Z"
+			},
+			"description": "All supported property types with overridden default",
+			"displayName": "Property types (different default)",
+			"documentation": "",
+			"maxObjects": 1,
+			"modificationPolicy": "DEFAULT",
+			"nullable": false,
+			"type": {
+				"$ref": "#/types/PropertyTypes"
+			}
+		},
+		"propertyTypesDefaultList": {
+			"default": [
+				{
+					"AnimalComplex": {
+						"animal": "hamster",
+						"goodBoi": false
+					},
+					"AnimalEnum": "cat",
+					"boolean": true,
+					"float": 0.1,
+					"integer": 2,
+					"local_date_time": "2020-01-01T01:01:01",
+					"secret": "test",
+					"text": "asdf",
+					"zoned_date_time": "2020-01-01T01:01:01Z"
+				}
+			],
+			"description": "List of complex type with overridden default",
+			"displayName": "List of property types (with defined default entry)",
+			"documentation": "",
+			"items": {
+				"description": "",
+				"displayName": "",
+				"documentation": "",
+				"type": {
+					"$ref": "#/types/PropertyTypes"
+				}
+			},
+			"maxObjects": 100,
+			"minObjects": 0,
+			"modificationPolicy": "DEFAULT",
+			"nullable": false,
+			"type": "list"
+		}
+	},
+	"schemaId": "builtin:example.complex-defaults",
+	"types": {
+		"AnimalComplex": {
+			"description": "All animals are good bois",
+			"displayName": "Animal",
+			"documentation": "",
+			"properties": {
+				"animal": {
+					"default": "dog",
+					"description": "",
+					"displayName": "Animal",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"subType": "radio",
+					"type": {
+						"$ref": "#/enums/AnimalEnum"
+					}
+				},
+				"goodBoi": {
+					"default": true,
+					"description": "",
+					"displayName": "Is a good boi?",
+					"documentation": "Of course he is",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"type": "boolean"
+				}
+			},
+			"searchPattern": "{animal} is good? -\u003e {goodBoi}",
+			"summaryPattern": "{animal}",
+			"type": "object",
+			"version": "0",
+			"versionInfo": ""
+		},
+		"PropertyTypes": {
+			"description": "",
+			"displayName": "Property types",
+			"documentation": "",
+			"properties": {
+				"AnimalComplex": {
+					"default": {
+						"animal": "snake",
+						"goodBoi": false
+					},
+					"description": "Property type: `AnimalComplex`\n\nJava class: `java.lang.String`\n\nDefault constraints: -",
+					"displayName": "AnimalComplex property type",
+					"documentation": "Property type: `AnimalComplex`\n\nJava class: `java.lang.String`\n\nDefault constraints: -",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"type": {
+						"$ref": "#/types/AnimalComplex"
+					}
+				},
+				"AnimalEnum": {
+					"default": "dog",
+					"description": "Property type: `AnimalEnum`\n\nJava class: `java.lang.String`\n\nDefault constraints: -",
+					"displayName": "AnimalEnum property type",
+					"documentation": "Property type: `AnimalEnum`\n\nJava class: `java.lang.String`\n\nDefault constraints: -",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"type": {
+						"$ref": "#/enums/AnimalEnum"
+					}
+				},
+				"boolean": {
+					"default": false,
+					"description": "Property type: `boolean`\n\nJava class: `java.lang.Boolean`\n\nDefault constraints: -",
+					"displayName": "boolean property type",
+					"documentation": "Property type: `boolean`\n\nJava class: `java.lang.Boolean`\n\nDefault constraints: -",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"type": "boolean"
+				},
+				"float": {
+					"default": 0,
+					"description": "Property type: `float`\n\nJava class: `java.lang.Double`\n\nDefault constraints: -",
+					"displayName": "float property type",
+					"documentation": "Property type: `float`\n\nJava class: `java.lang.Double`\n\nDefault constraints: -",
+					"maxObjects": 1,
+					"metadata": {
+						"prefix": "€"
+					},
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"type": "float"
+				},
+				"integer": {
+					"default": 0,
+					"description": "Property type: `integer`\n\nJava class: `java.lang.Long`\n\nDefault constraints: -",
+					"displayName": "integer property type",
+					"documentation": "Property type: `integer`\n\nJava class: `java.lang.Long`\n\nDefault constraints: -",
+					"maxObjects": 1,
+					"metadata": {
+						"suffix": "ms"
+					},
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"type": "integer"
+				},
+				"local_date_time": {
+					"default": "2020-01-01T00:00:00",
+					"description": "Property type: `local_date_time`\n\nJava class: `java.time.LocalDateTime`\n\nDefault constraints: -",
+					"displayName": "local_date_time property type",
+					"documentation": "Property type: `local_date_time`\n\nJava class: `java.time.LocalDateTime`\n\nDefault constraints: -",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"type": "local_date_time"
+				},
+				"secret": {
+					"constraints": [
+						{
+							"maxLength": 500,
+							"minLength": 1,
+							"type": "LENGTH"
+						}
+					],
+					"default": "",
+					"description": "Property type: `secret`\n\nJava class: `java.lang.String`\n\nDefault constraints:\n* `LENGTH`: _Size must be between 1 and 500_",
+					"displayName": "secret property type",
+					"documentation": "Property type: `secret`\n\nJava class: `java.lang.String`\n\nDefault constraints:\n* `LENGTH`: _Size must be between 1 and 500_",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"type": "secret"
+				},
+				"text": {
+					"constraints": [
+						{
+							"maxLength": 500,
+							"minLength": 1,
+							"type": "LENGTH"
+						}
+					],
+					"default": "",
+					"description": "Property type: `text`\n\nJava class: `java.lang.String`\n\nDefault constraints:\n* `LENGTH`: _Size must be between 1 and 500_",
+					"displayName": "text property type",
+					"documentation": "Property type: `text`\n\nJava class: `java.lang.String`\n\nDefault constraints:\n* `LENGTH`: _Size must be between 1 and 500_",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"type": "text"
+				},
+				"zoned_date_time": {
+					"default": "2020-01-01T00:00:00+01:00",
+					"description": "Property type: `zoned_date_time`\n\nJava class: `java.time.ZonedDateTime`\n\nDefault constraints: -",
+					"displayName": "zoned_date_time property type",
+					"documentation": "Property type: `zoned_date_time`\n\nJava class: `java.time.ZonedDateTime`\n\nDefault constraints: -",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"type": "zoned_date_time"
+				}
+			},
+			"summaryPattern": "{text}",
+			"type": "object",
+			"version": "0",
+			"versionInfo": ""
+		}
+	},
+	"version": "1.1"
+}

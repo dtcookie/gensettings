@@ -1,0 +1,107 @@
+{
+	"allowedScopes": [
+		"APPLICATION"
+	],
+	"description": "Define where OneAgent is to send your web application monitoring data.\nLearn more about how to [configure the beacon endpoint](https://dt-url.net/yp036lb).",
+	"displayName": "Beacon endpoint settings",
+	"documentation": "",
+	"dynatrace": "1",
+	"enums": {
+		"WebBeaconEndpointType": {
+			"description": "",
+			"displayName": "Type",
+			"documentation": "",
+			"items": [
+				{
+					"displayName": "Cluster ActiveGate",
+					"value": "ACTIVEGATE"
+				},
+				{
+					"displayName": "OneAgent",
+					"value": "ONEAGENT"
+				},
+				{
+					"displayName": "Custom",
+					"value": "CUSTOM"
+				}
+			],
+			"type": "enum"
+		}
+	},
+	"maxObjects": 1,
+	"multiObject": false,
+	"properties": {
+		"instrumentServer": {
+			"default": false,
+			"description": "",
+			"displayName": "Instrument web and app server",
+			"documentation": "",
+			"maxObjects": 1,
+			"modificationPolicy": "DEFAULT",
+			"nullable": false,
+			"precondition": {
+				"expectedValue": "CUSTOM",
+				"property": "type",
+				"type": "EQUALS"
+			},
+			"type": "boolean"
+		},
+		"type": {
+			"datasource": {
+				"filterProperties": [],
+				"fullContext": false,
+				"identifier": "endpoint-type",
+				"resetValue": "NEVER",
+				"useApiSearch": false,
+				"validate": true
+			},
+			"default": "ACTIVEGATE",
+			"description": "",
+			"displayName": "Type",
+			"documentation": "",
+			"maxObjects": 1,
+			"metadata": {
+				"sortItems": "disabled"
+			},
+			"modificationPolicy": "DEFAULT",
+			"nullable": false,
+			"subType": "datasource",
+			"type": {
+				"$ref": "#/enums/WebBeaconEndpointType"
+			}
+		},
+		"url": {
+			"constraints": [
+				{
+					"maxLength": 512,
+					"type": "LENGTH"
+				}
+			],
+			"default": "",
+			"description": "For OneAgent settings, specify either path segments or an absolute URL. If you enter an absolute URL, data will be sent using CORS.\n\nFor Custom settings, specify an absolute URL.",
+			"displayName": "URL",
+			"documentation": "",
+			"maxObjects": 1,
+			"metadata": {
+				"placeholder": ""
+			},
+			"modificationPolicy": "DEFAULT",
+			"nullable": false,
+			"precondition": {
+				"precondition": {
+					"expectedValue": "ACTIVEGATE",
+					"property": "type",
+					"type": "EQUALS"
+				},
+				"type": "NOT"
+			},
+			"type": "text"
+		}
+	},
+	"schemaGroups": [
+		"group:rum-settings"
+	],
+	"schemaId": "builtin:rum.web.beacon-endpoint",
+	"types": {},
+	"version": "0.0.9"
+}

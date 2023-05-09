@@ -1,0 +1,1561 @@
+{
+	"allowedScopes": [
+		"environment"
+	],
+	"description": "Configure a list of span failure detection rules which are evaluated in order.",
+	"displayName": "Span failure detection configuration",
+	"documentation": "Dynatrace failure detection automatically detects the vast majority of error conditions in your environment. However, not all services follow the OpenTelemetry specification to heart, so there may be cases where the default span failure detection settings don't meet your particular needs. E.g. your library doesn't use the event 'exception' for exceptions, but another event such as 'fatal-error'. Or you use a custom 'internal.severity' span attribute to transport error information. In such cases, you can configure failure rules which are evaluated in order.\nAs soon as a rule matches, subsequent rules will not be evaluated.\n\nNote: This config applies to your whole tenant and to any span captured by Dynatrace.",
+	"dynatrace": "1",
+	"enums": {
+		"AttrKeyBooleanComparisonType": {
+			"description": "",
+			"displayName": "AttrKeyBooleanComparisonType",
+			"documentation": "",
+			"items": [
+				{
+					"displayName": "Equals",
+					"value": "EQUALS"
+				},
+				{
+					"displayName": "Does not equal",
+					"value": "DOES_NOT_EQUAL"
+				},
+				{
+					"displayName": "Exists",
+					"value": "EXISTS"
+				},
+				{
+					"displayName": "Does not exist",
+					"value": "DOES_NOT_EXIST"
+				}
+			],
+			"type": "enum"
+		},
+		"AttrKeyStringComparisonType": {
+			"description": "",
+			"displayName": "AttrKeyStringComparisonType",
+			"documentation": "",
+			"items": [
+				{
+					"displayName": "Equals",
+					"value": "EQUALS"
+				},
+				{
+					"displayName": "Does not equal",
+					"value": "DOES_NOT_EQUAL"
+				},
+				{
+					"displayName": "Contains",
+					"value": "CONTAINS"
+				},
+				{
+					"displayName": "Does not contain",
+					"value": "DOES_NOT_CONTAIN"
+				},
+				{
+					"displayName": "Starts with",
+					"value": "STARTS_WITH"
+				},
+				{
+					"displayName": "Does not start with",
+					"value": "DOES_NOT_START_WITH"
+				},
+				{
+					"displayName": "Ends with",
+					"value": "ENDS_WITH"
+				},
+				{
+					"displayName": "Does not end with",
+					"value": "DOES_NOT_END_WITH"
+				},
+				{
+					"displayName": "Exists",
+					"value": "EXISTS"
+				},
+				{
+					"displayName": "Does not exist",
+					"value": "DOES_NOT_EXIST"
+				}
+			],
+			"type": "enum"
+		},
+		"BooleanValue": {
+			"description": "",
+			"displayName": "BooleanValue",
+			"documentation": "",
+			"items": [
+				{
+					"displayName": "True",
+					"value": "TRUE"
+				},
+				{
+					"displayName": "False",
+					"value": "FALSE"
+				}
+			],
+			"type": "enum"
+		},
+		"ComparisonDataType": {
+			"description": "",
+			"displayName": "ComparisonDataType",
+			"documentation": "",
+			"items": [
+				{
+					"displayName": "String",
+					"value": "STRING"
+				},
+				{
+					"displayName": "Integer",
+					"value": "INTEGER"
+				},
+				{
+					"displayName": "Float",
+					"value": "FLOAT"
+				},
+				{
+					"displayName": "Boolean",
+					"value": "BOOLEAN"
+				}
+			],
+			"type": "enum"
+		},
+		"EnumSelectionsType": {
+			"description": "",
+			"displayName": "EnumSelectionsType",
+			"documentation": "",
+			"items": [
+				{
+					"displayName": "One of",
+					"value": "ONE_OF"
+				},
+				{
+					"displayName": "Not any of",
+					"value": "NOT_ANY_OF"
+				}
+			],
+			"type": "enum"
+		},
+		"NumberComparisonType": {
+			"description": "",
+			"displayName": "NumberComparisonType",
+			"documentation": "",
+			"items": [
+				{
+					"displayName": "Equals",
+					"value": "EQUALS"
+				},
+				{
+					"displayName": "Does not equal",
+					"value": "DOES_NOT_EQUAL"
+				},
+				{
+					"displayName": "Greater than",
+					"value": "GREATER_THAN"
+				},
+				{
+					"displayName": "Not greater than",
+					"value": "NOT_GREATER_THAN"
+				},
+				{
+					"displayName": "Lower than",
+					"value": "LOWER_THAN"
+				},
+				{
+					"displayName": "Not lower than",
+					"value": "NOT_LOWER_THAN"
+				},
+				{
+					"displayName": "Greater than or equal",
+					"value": "GREATER_THAN_OR_EQUAL"
+				},
+				{
+					"displayName": "Not greater than or equal",
+					"value": "NOT_GREATER_THAN_OR_EQUAL"
+				},
+				{
+					"displayName": "Lower than or equal",
+					"value": "LOWER_THAN_OR_EQUAL"
+				},
+				{
+					"displayName": "Not lower than or equal",
+					"value": "NOT_LOWER_THAN_OR_EQUAL"
+				},
+				{
+					"displayName": "Exists",
+					"value": "EXISTS"
+				},
+				{
+					"displayName": "Does not exist",
+					"value": "DOES_NOT_EXIST"
+				}
+			],
+			"type": "enum"
+		},
+		"SpanEventMatcherSource": {
+			"description": "",
+			"displayName": "SpanEventMatcherSource",
+			"documentation": "",
+			"items": [
+				{
+					"displayName": "Span event name",
+					"value": "SPAN_EVENT_NAME"
+				},
+				{
+					"displayName": "Span event attribute",
+					"value": "SPAN_EVENT_ATTRIBUTE"
+				}
+			],
+			"type": "enum"
+		},
+		"SpanKind": {
+			"description": "",
+			"displayName": "SpanKind",
+			"documentation": "",
+			"items": [
+				{
+					"displayName": "Internal",
+					"value": "INTERNAL"
+				},
+				{
+					"displayName": "Server",
+					"value": "SERVER"
+				},
+				{
+					"displayName": "Client",
+					"value": "CLIENT"
+				},
+				{
+					"displayName": "Producer",
+					"value": "PRODUCER"
+				},
+				{
+					"displayName": "Consumer",
+					"value": "CONSUMER"
+				}
+			],
+			"type": "enum"
+		},
+		"SpanMatcherSource": {
+			"description": "",
+			"displayName": "SpanMatcherSource",
+			"documentation": "",
+			"items": [
+				{
+					"displayName": "Span name",
+					"value": "SPAN_NAME"
+				},
+				{
+					"displayName": "Span status code",
+					"value": "SPAN_STATUS_CODE"
+				},
+				{
+					"displayName": "Span status message",
+					"value": "SPAN_STATUS_MESSAGE"
+				},
+				{
+					"displayName": "Span kind",
+					"value": "SPAN_KIND"
+				},
+				{
+					"displayName": "Span attribute",
+					"value": "SPAN_ATTRIBUTE"
+				},
+				{
+					"displayName": "Span event",
+					"value": "SPAN_EVENT"
+				},
+				{
+					"displayName": "Resource attribute",
+					"value": "RESOURCE_ATTRIBUTE"
+				},
+				{
+					"displayName": "Instrumentation scope name",
+					"value": "INSTRUMENTATION_SCOPE_NAME"
+				},
+				{
+					"displayName": "Instrumentation scope version",
+					"value": "INSTRUMENTATION_SCOPE_VERSION"
+				}
+			],
+			"type": "enum"
+		},
+		"SpanStatusCode": {
+			"description": "",
+			"displayName": "SpanStatusCode",
+			"documentation": "",
+			"items": [
+				{
+					"displayName": "Error",
+					"value": "ERROR"
+				},
+				{
+					"displayName": "Ok",
+					"value": "OK"
+				},
+				{
+					"displayName": "Unset",
+					"value": "UNSET"
+				}
+			],
+			"type": "enum"
+		},
+		"SpanVerdictIfRuleMatches": {
+			"description": "",
+			"displayName": "SpanVerdictIfRuleMatches",
+			"documentation": "",
+			"items": [
+				{
+					"displayName": "Failure",
+					"value": "SPAN_VERDICT_FAILURE"
+				},
+				{
+					"displayName": "Success",
+					"value": "SPAN_VERDICT_SUCCESS"
+				}
+			],
+			"type": "enum"
+		},
+		"StringComparisonType": {
+			"description": "",
+			"displayName": "StringComparisonType",
+			"documentation": "",
+			"items": [
+				{
+					"displayName": "Equals",
+					"value": "EQUALS"
+				},
+				{
+					"displayName": "Does not equal",
+					"value": "DOES_NOT_EQUAL"
+				},
+				{
+					"displayName": "Contains",
+					"value": "CONTAINS"
+				},
+				{
+					"displayName": "Does not contain",
+					"value": "DOES_NOT_CONTAIN"
+				},
+				{
+					"displayName": "Starts with",
+					"value": "STARTS_WITH"
+				},
+				{
+					"displayName": "Does not start with",
+					"value": "DOES_NOT_START_WITH"
+				},
+				{
+					"displayName": "Ends with",
+					"value": "ENDS_WITH"
+				},
+				{
+					"displayName": "Does not end with",
+					"value": "DOES_NOT_END_WITH"
+				}
+			],
+			"type": "enum"
+		}
+	},
+	"maxObjects": 1000,
+	"metadata": {
+		"addItemButton": "Add rule",
+		"itemDisplayName": "New rule"
+	},
+	"multiObject": true,
+	"ordered": true,
+	"properties": {
+		"enabled": {
+			"default": true,
+			"description": "If this is true, the rule will be evaluated.",
+			"displayName": "Enabled",
+			"documentation": "",
+			"maxObjects": 1,
+			"modificationPolicy": "DEFAULT",
+			"nullable": false,
+			"type": "boolean"
+		},
+		"rule": {
+			"description": "",
+			"displayName": "Rule",
+			"documentation": "",
+			"maxObjects": 1,
+			"modificationPolicy": "DEFAULT",
+			"nullable": false,
+			"type": {
+				"$ref": "#/types/Rule"
+			}
+		}
+	},
+	"schemaGroups": [
+		"group:service-detection"
+	],
+	"schemaId": "builtin:span-failure-detection-config",
+	"types": {
+		"Condition": {
+			"constraints": [
+				{
+					"customMessage": "At least one of the values has to be enabled",
+					"customValidatorId": "span-fd-one-of-validator",
+					"type": "CUSTOM_VALIDATOR_REF"
+				},
+				{
+					"customValidatorId": "span-attribute-key-validator",
+					"type": "CUSTOM_VALIDATOR_REF"
+				}
+			],
+			"description": "",
+			"displayName": "Condition",
+			"documentation": "",
+			"properties": {
+				"attrKeyBoolComparisonType": {
+					"default": "EQUALS",
+					"description": "Note: `Exists/Does not exist` ignores any type information i.e. the condition only checks for the existence/non-existence of the **attribute key**",
+					"displayName": "Comparison Type",
+					"documentation": "",
+					"maxObjects": 1,
+					"metadata": {
+						"sortItems": "disabled"
+					},
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"precondition": {
+						"preconditions": [
+							{
+								"expectedValues": [
+									"SPAN_ATTRIBUTE",
+									"RESOURCE_ATTRIBUTE"
+								],
+								"property": "source",
+								"type": "IN"
+							},
+							{
+								"expectedValue": "BOOLEAN",
+								"property": "dataType",
+								"type": "EQUALS"
+							}
+						],
+						"type": "AND"
+					},
+					"type": {
+						"$ref": "#/enums/AttrKeyBooleanComparisonType"
+					}
+				},
+				"attrKeyStringComparisonType": {
+					"default": "EQUALS",
+					"description": "Note: `Exists/Does not exist` ignores any type information i.e. the condition only checks for the existence/non-existence of the **attribute key**",
+					"displayName": "Comparison Type",
+					"documentation": "",
+					"maxObjects": 1,
+					"metadata": {
+						"sortItems": "disabled"
+					},
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"precondition": {
+						"preconditions": [
+							{
+								"expectedValues": [
+									"SPAN_ATTRIBUTE",
+									"RESOURCE_ATTRIBUTE"
+								],
+								"property": "source",
+								"type": "IN"
+							},
+							{
+								"expectedValue": "STRING",
+								"property": "dataType",
+								"type": "EQUALS"
+							}
+						],
+						"type": "AND"
+					},
+					"type": {
+						"$ref": "#/enums/AttrKeyStringComparisonType"
+					}
+				},
+				"boolComparisonType": {
+					"default": "ONE_OF",
+					"description": "",
+					"displayName": "Selection Type",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"precondition": {
+						"expectedValues": [
+							"SPAN_KIND",
+							"SPAN_STATUS_CODE"
+						],
+						"property": "source",
+						"type": "IN"
+					},
+					"type": {
+						"$ref": "#/enums/EnumSelectionsType"
+					}
+				},
+				"boolValue": {
+					"default": "TRUE",
+					"description": "",
+					"displayName": "Value",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"precondition": {
+						"preconditions": [
+							{
+								"expectedValue": "BOOLEAN",
+								"property": "dataType",
+								"type": "EQUALS"
+							},
+							{
+								"expectedValues": [
+									"EQUALS",
+									"DOES_NOT_EQUAL"
+								],
+								"property": "attrKeyBoolComparisonType",
+								"type": "IN"
+							}
+						],
+						"type": "AND"
+					},
+					"type": {
+						"$ref": "#/enums/BooleanValue"
+					}
+				},
+				"caseSensitive": {
+					"default": false,
+					"description": "Affects value(s)",
+					"displayName": "Case sensitive",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"precondition": {
+						"preconditions": [
+							{
+								"precondition": {
+									"property": "stringComparisonType",
+									"type": "NULL"
+								},
+								"type": "NOT"
+							},
+							{
+								"preconditions": [
+									{
+										"expectedValues": [
+											"SPAN_ATTRIBUTE",
+											"RESOURCE_ATTRIBUTE"
+										],
+										"property": "source",
+										"type": "IN"
+									},
+									{
+										"expectedValue": "STRING",
+										"property": "dataType",
+										"type": "EQUALS"
+									},
+									{
+										"precondition": {
+											"expectedValues": [
+												"EXISTS",
+												"DOES_NOT_EXIST"
+											],
+											"property": "attrKeyStringComparisonType",
+											"type": "IN"
+										},
+										"type": "NOT"
+									}
+								],
+								"type": "AND"
+							}
+						],
+						"type": "OR"
+					},
+					"type": "boolean"
+				},
+				"dataType": {
+					"default": "STRING",
+					"description": "",
+					"displayName": "Data Type",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"precondition": {
+						"expectedValues": [
+							"SPAN_ATTRIBUTE",
+							"RESOURCE_ATTRIBUTE"
+						],
+						"property": "source",
+						"type": "IN"
+					},
+					"type": {
+						"$ref": "#/enums/ComparisonDataType"
+					}
+				},
+				"eventConditions": {
+					"description": "",
+					"displayName": "Event conditions",
+					"documentation": "Specify event conditions which should be evaluated for this rule. A rule is applied if all of the specified conditions match.",
+					"items": {
+						"description": "",
+						"displayName": "Event condition",
+						"documentation": "",
+						"type": {
+							"$ref": "#/types/EventCondition"
+						}
+					},
+					"maxObjects": 10,
+					"metadata": {
+						"addItemButton": "Add event condition",
+						"itemDisplayName": "New event condition"
+					},
+					"minObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"precondition": {
+						"expectedValues": [
+							"SPAN_EVENT"
+						],
+						"property": "source",
+						"type": "IN"
+					},
+					"type": "set"
+				},
+				"floatValue": {
+					"constraints": [
+						{
+							"minimum": 0,
+							"type": "RANGE"
+						}
+					],
+					"default": 0,
+					"description": "",
+					"displayName": "Value",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"precondition": {
+						"preconditions": [
+							{
+								"precondition": {
+									"expectedValue": "SPAN_KIND",
+									"property": "source",
+									"type": "EQUALS"
+								},
+								"type": "NOT"
+							},
+							{
+								"precondition": {
+									"expectedValues": [
+										"EQUALS",
+										"DOES_NOT_EQUAL",
+										"EXISTS",
+										"DOES_NOT_EXIST"
+									],
+									"property": "numComparisonType",
+									"type": "IN"
+								},
+								"type": "NOT"
+							},
+							{
+								"expectedValue": "FLOAT",
+								"property": "dataType",
+								"type": "EQUALS"
+							}
+						],
+						"type": "AND"
+					},
+					"type": "float"
+				},
+				"floatValues": {
+					"description": "",
+					"displayName": "Values",
+					"documentation": "Any value from the list should match for the condition to be evaluated to true",
+					"items": {
+						"constraints": [
+							{
+								"minimum": 0,
+								"type": "RANGE"
+							}
+						],
+						"description": "",
+						"displayName": "Value",
+						"documentation": "",
+						"type": "float"
+					},
+					"maxObjects": 100,
+					"minObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"precondition": {
+						"preconditions": [
+							{
+								"precondition": {
+									"expectedValue": "SPAN_KIND",
+									"property": "source",
+									"type": "EQUALS"
+								},
+								"type": "NOT"
+							},
+							{
+								"expectedValues": [
+									"EQUALS",
+									"DOES_NOT_EQUAL"
+								],
+								"property": "numComparisonType",
+								"type": "IN"
+							},
+							{
+								"expectedValue": "FLOAT",
+								"property": "dataType",
+								"type": "EQUALS"
+							}
+						],
+						"type": "AND"
+					},
+					"type": "set"
+				},
+				"intValue": {
+					"constraints": [
+						{
+							"minimum": 0,
+							"type": "RANGE"
+						}
+					],
+					"default": 0,
+					"description": "",
+					"displayName": "Value",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"precondition": {
+						"preconditions": [
+							{
+								"precondition": {
+									"expectedValue": "SPAN_KIND",
+									"property": "source",
+									"type": "EQUALS"
+								},
+								"type": "NOT"
+							},
+							{
+								"precondition": {
+									"expectedValues": [
+										"EQUALS",
+										"DOES_NOT_EQUAL",
+										"EXISTS",
+										"DOES_NOT_EXIST"
+									],
+									"property": "numComparisonType",
+									"type": "IN"
+								},
+								"type": "NOT"
+							},
+							{
+								"expectedValue": "INTEGER",
+								"property": "dataType",
+								"type": "EQUALS"
+							}
+						],
+						"type": "AND"
+					},
+					"type": "integer"
+				},
+				"intValues": {
+					"description": "",
+					"displayName": "Values",
+					"documentation": "Any value from the list should match for the condition to be evaluated to true",
+					"items": {
+						"constraints": [
+							{
+								"minimum": 0,
+								"type": "RANGE"
+							}
+						],
+						"description": "",
+						"displayName": "Value",
+						"documentation": "",
+						"type": "integer"
+					},
+					"maxObjects": 100,
+					"minObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"precondition": {
+						"preconditions": [
+							{
+								"precondition": {
+									"expectedValue": "SPAN_KIND",
+									"property": "source",
+									"type": "EQUALS"
+								},
+								"type": "NOT"
+							},
+							{
+								"expectedValues": [
+									"EQUALS",
+									"DOES_NOT_EQUAL"
+								],
+								"property": "numComparisonType",
+								"type": "IN"
+							},
+							{
+								"expectedValue": "INTEGER",
+								"property": "dataType",
+								"type": "EQUALS"
+							}
+						],
+						"type": "AND"
+					},
+					"type": "set"
+				},
+				"numComparisonType": {
+					"default": "EQUALS",
+					"description": "Note: `Exists/Does not exist` ignores any type information i.e. the condition only checks for the existence/non-existence of the **attribute key**",
+					"displayName": "Comparison Type",
+					"documentation": "",
+					"maxObjects": 1,
+					"metadata": {
+						"sortItems": "disabled"
+					},
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"precondition": {
+						"expectedValues": [
+							"INTEGER",
+							"FLOAT"
+						],
+						"property": "dataType",
+						"type": "IN"
+					},
+					"type": {
+						"$ref": "#/enums/NumberComparisonType"
+					}
+				},
+				"source": {
+					"default": "SPAN_NAME",
+					"description": "",
+					"displayName": "Source",
+					"documentation": "",
+					"maxObjects": 1,
+					"metadata": {
+						"sortItems": "disabled"
+					},
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"type": {
+						"$ref": "#/enums/SpanMatcherSource"
+					}
+				},
+				"sourceKey": {
+					"constraints": [
+						{
+							"type": "NOT_EMPTY"
+						},
+						{
+							"maxLength": 500,
+							"minLength": 1,
+							"type": "LENGTH"
+						}
+					],
+					"default": "",
+					"description": "",
+					"displayName": "Key",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"precondition": {
+						"expectedValues": [
+							"SPAN_ATTRIBUTE",
+							"RESOURCE_ATTRIBUTE"
+						],
+						"property": "source",
+						"type": "IN"
+					},
+					"type": "text"
+				},
+				"spanKindValue": {
+					"description": "",
+					"displayName": "Values",
+					"documentation": "Enable one or more status kinds.",
+					"items": {
+						"description": "",
+						"displayName": "Value",
+						"documentation": "",
+						"type": {
+							"$ref": "#/enums/SpanKind"
+						}
+					},
+					"maxObjects": 100,
+					"minObjects": 0,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"precondition": {
+						"expectedValue": "SPAN_KIND",
+						"property": "source",
+						"type": "EQUALS"
+					},
+					"type": "set"
+				},
+				"spanStatusCodeValue": {
+					"description": "",
+					"displayName": "Span status code is set to",
+					"documentation": "Enable one or more status codes to be checked.",
+					"items": {
+						"description": "",
+						"displayName": "Value",
+						"documentation": "",
+						"type": {
+							"$ref": "#/enums/SpanStatusCode"
+						}
+					},
+					"maxObjects": 100,
+					"minObjects": 0,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"precondition": {
+						"expectedValue": "SPAN_STATUS_CODE",
+						"property": "source",
+						"type": "EQUALS"
+					},
+					"type": "set"
+				},
+				"strValues": {
+					"description": "",
+					"displayName": "Values",
+					"documentation": "Any value from the list should match for the condition to be evaluated to true",
+					"items": {
+						"constraints": [
+							{
+								"maxLength": 500,
+								"minLength": 1,
+								"type": "LENGTH"
+							}
+						],
+						"description": "",
+						"displayName": "Value",
+						"documentation": "",
+						"type": "text"
+					},
+					"maxObjects": 100,
+					"minObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"precondition": {
+						"preconditions": [
+							{
+								"precondition": {
+									"expectedValues": [
+										"SPAN_KIND",
+										"SPAN_ATTRIBUTE",
+										"SPAN_EVENT",
+										"RESOURCE_ATTRIBUTE",
+										"SPAN_STATUS_CODE"
+									],
+									"property": "source",
+									"type": "IN"
+								},
+								"type": "NOT"
+							},
+							{
+								"preconditions": [
+									{
+										"precondition": {
+											"expectedValues": [
+												"EXISTS",
+												"DOES_NOT_EXIST"
+											],
+											"property": "attrKeyStringComparisonType",
+											"type": "IN"
+										},
+										"type": "NOT"
+									},
+									{
+										"expectedValue": "STRING",
+										"property": "dataType",
+										"type": "EQUALS"
+									}
+								],
+								"type": "AND"
+							}
+						],
+						"type": "OR"
+					},
+					"type": "set"
+				},
+				"stringComparisonType": {
+					"default": "EQUALS",
+					"description": "",
+					"displayName": "Comparison Type",
+					"documentation": "",
+					"maxObjects": 1,
+					"metadata": {
+						"sortItems": "disabled"
+					},
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"precondition": {
+						"precondition": {
+							"expectedValues": [
+								"SPAN_ATTRIBUTE",
+								"SPAN_EVENT",
+								"RESOURCE_ATTRIBUTE",
+								"SPAN_KIND",
+								"SPAN_STATUS_CODE"
+							],
+							"property": "source",
+							"type": "IN"
+						},
+						"type": "NOT"
+					},
+					"type": {
+						"$ref": "#/enums/StringComparisonType"
+					}
+				}
+			},
+			"summaryPattern": "{source} {sourceKey} {stringComparisonType} {attrKeyStringComparisonType} {numComparisonType} {boolComparisonType} {attrKeyBoolComparisonType} {boolValue}{intValue}{intValues}{floatValue}{floatValues}{strValues}{spanKindValue}{spanStatusCodeValue}",
+			"type": "object",
+			"version": "0.0.3",
+			"versionInfo": ""
+		},
+		"EventCondition": {
+			"constraints": [
+				{
+					"customValidatorId": "span-event-attribute-key-validator",
+					"type": "CUSTOM_VALIDATOR_REF"
+				}
+			],
+			"description": "",
+			"displayName": "Event condition",
+			"documentation": "",
+			"properties": {
+				"attrKeyBoolComparisonType": {
+					"default": "EQUALS",
+					"description": "Note: `Exists/Does not exist` ignores any type information i.e. the condition only checks for the existence/non-existence of the **attribute key**",
+					"displayName": "Comparison Type",
+					"documentation": "",
+					"maxObjects": 1,
+					"metadata": {
+						"sortItems": "disabled"
+					},
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"precondition": {
+						"preconditions": [
+							{
+								"expectedValue": "SPAN_EVENT_ATTRIBUTE",
+								"property": "source",
+								"type": "EQUALS"
+							},
+							{
+								"expectedValue": "BOOLEAN",
+								"property": "dataType",
+								"type": "EQUALS"
+							}
+						],
+						"type": "AND"
+					},
+					"type": {
+						"$ref": "#/enums/AttrKeyBooleanComparisonType"
+					}
+				},
+				"attrKeyStringComparisonType": {
+					"default": "EQUALS",
+					"description": "Note: `Exists/Does not exist` ignores any type information i.e. the condition only checks for the existence/non-existence of the **attribute key**",
+					"displayName": "Comparison Type",
+					"documentation": "",
+					"maxObjects": 1,
+					"metadata": {
+						"sortItems": "disabled"
+					},
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"precondition": {
+						"preconditions": [
+							{
+								"expectedValue": "SPAN_EVENT_ATTRIBUTE",
+								"property": "source",
+								"type": "EQUALS"
+							},
+							{
+								"expectedValue": "STRING",
+								"property": "dataType",
+								"type": "EQUALS"
+							}
+						],
+						"type": "AND"
+					},
+					"type": {
+						"$ref": "#/enums/AttrKeyStringComparisonType"
+					}
+				},
+				"boolValue": {
+					"default": "TRUE",
+					"description": "",
+					"displayName": "Value",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"precondition": {
+						"preconditions": [
+							{
+								"expectedValue": "BOOLEAN",
+								"property": "dataType",
+								"type": "EQUALS"
+							},
+							{
+								"expectedValues": [
+									"EQUALS",
+									"DOES_NOT_EQUAL"
+								],
+								"property": "attrKeyBoolComparisonType",
+								"type": "IN"
+							}
+						],
+						"type": "AND"
+					},
+					"type": {
+						"$ref": "#/enums/BooleanValue"
+					}
+				},
+				"caseSensitive": {
+					"default": false,
+					"description": "Affects value(s)",
+					"displayName": "Case sensitive",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"precondition": {
+						"preconditions": [
+							{
+								"precondition": {
+									"property": "stringComparisonType",
+									"type": "NULL"
+								},
+								"type": "NOT"
+							},
+							{
+								"preconditions": [
+									{
+										"expectedValue": "SPAN_EVENT_ATTRIBUTE",
+										"property": "source",
+										"type": "EQUALS"
+									},
+									{
+										"expectedValue": "STRING",
+										"property": "dataType",
+										"type": "EQUALS"
+									},
+									{
+										"precondition": {
+											"expectedValues": [
+												"EXISTS",
+												"DOES_NOT_EXIST"
+											],
+											"property": "attrKeyStringComparisonType",
+											"type": "IN"
+										},
+										"type": "NOT"
+									}
+								],
+								"type": "AND"
+							}
+						],
+						"type": "OR"
+					},
+					"type": "boolean"
+				},
+				"dataType": {
+					"default": "STRING",
+					"description": "",
+					"displayName": "Data Type",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"precondition": {
+						"expectedValue": "SPAN_EVENT_ATTRIBUTE",
+						"property": "source",
+						"type": "EQUALS"
+					},
+					"type": {
+						"$ref": "#/enums/ComparisonDataType"
+					}
+				},
+				"floatValue": {
+					"constraints": [
+						{
+							"minimum": 0,
+							"type": "RANGE"
+						}
+					],
+					"default": 0,
+					"description": "",
+					"displayName": "Value",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"precondition": {
+						"preconditions": [
+							{
+								"expectedValue": "FLOAT",
+								"property": "dataType",
+								"type": "EQUALS"
+							},
+							{
+								"precondition": {
+									"expectedValues": [
+										"EQUALS",
+										"DOES_NOT_EQUAL",
+										"EXISTS",
+										"DOES_NOT_EXIST"
+									],
+									"property": "numComparisonType",
+									"type": "IN"
+								},
+								"type": "NOT"
+							}
+						],
+						"type": "AND"
+					},
+					"type": "float"
+				},
+				"floatValues": {
+					"description": "",
+					"displayName": "Values",
+					"documentation": "If regular comparison type i.e. `Equals` is used, then **any** of the listed values should match for the condition to be evaluated to true\n\nIf negated comparison type i.e. `Does not equal` is used, then **none** of the listed values should match for the condition to be evaluated to true",
+					"items": {
+						"constraints": [
+							{
+								"minimum": 0,
+								"type": "RANGE"
+							}
+						],
+						"description": "",
+						"displayName": "Value",
+						"documentation": "",
+						"type": "float"
+					},
+					"maxObjects": 100,
+					"minObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"precondition": {
+						"preconditions": [
+							{
+								"expectedValue": "FLOAT",
+								"property": "dataType",
+								"type": "EQUALS"
+							},
+							{
+								"expectedValues": [
+									"EQUALS",
+									"DOES_NOT_EQUAL"
+								],
+								"property": "numComparisonType",
+								"type": "IN"
+							}
+						],
+						"type": "AND"
+					},
+					"type": "set"
+				},
+				"intValue": {
+					"constraints": [
+						{
+							"minimum": 0,
+							"type": "RANGE"
+						}
+					],
+					"default": 0,
+					"description": "",
+					"displayName": "Value",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"precondition": {
+						"preconditions": [
+							{
+								"expectedValue": "INTEGER",
+								"property": "dataType",
+								"type": "EQUALS"
+							},
+							{
+								"precondition": {
+									"expectedValues": [
+										"EQUALS",
+										"DOES_NOT_EQUAL",
+										"EXISTS",
+										"DOES_NOT_EXIST"
+									],
+									"property": "numComparisonType",
+									"type": "IN"
+								},
+								"type": "NOT"
+							}
+						],
+						"type": "AND"
+					},
+					"type": "integer"
+				},
+				"intValues": {
+					"description": "",
+					"displayName": "Values",
+					"documentation": "If regular comparison type i.e. `Equals` is used, then **any** of the listed values should match for the condition to be evaluated to true\n\nIf negated comparison type i.e. `Does not equal` is used, then **none** of the listed values should match for the condition to be evaluated to true",
+					"items": {
+						"constraints": [
+							{
+								"minimum": 0,
+								"type": "RANGE"
+							}
+						],
+						"description": "",
+						"displayName": "Value",
+						"documentation": "",
+						"type": "integer"
+					},
+					"maxObjects": 100,
+					"minObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"precondition": {
+						"preconditions": [
+							{
+								"expectedValue": "INTEGER",
+								"property": "dataType",
+								"type": "EQUALS"
+							},
+							{
+								"expectedValues": [
+									"EQUALS",
+									"DOES_NOT_EQUAL"
+								],
+								"property": "numComparisonType",
+								"type": "IN"
+							}
+						],
+						"type": "AND"
+					},
+					"type": "set"
+				},
+				"numComparisonType": {
+					"default": "EQUALS",
+					"description": "Note: `Exists/Does not exist` ignores any type information i.e. the condition only checks for the existence/non-existence of the **attribute key**",
+					"displayName": "Comparison Type",
+					"documentation": "",
+					"maxObjects": 1,
+					"metadata": {
+						"sortItems": "disabled"
+					},
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"precondition": {
+						"expectedValues": [
+							"INTEGER",
+							"FLOAT"
+						],
+						"property": "dataType",
+						"type": "IN"
+					},
+					"type": {
+						"$ref": "#/enums/NumberComparisonType"
+					}
+				},
+				"source": {
+					"default": "SPAN_EVENT_NAME",
+					"description": "",
+					"displayName": "Source",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"type": {
+						"$ref": "#/enums/SpanEventMatcherSource"
+					}
+				},
+				"sourceKey": {
+					"constraints": [
+						{
+							"type": "NOT_EMPTY"
+						},
+						{
+							"maxLength": 500,
+							"minLength": 1,
+							"type": "LENGTH"
+						}
+					],
+					"default": "",
+					"description": "",
+					"displayName": "Key",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"precondition": {
+						"expectedValue": "SPAN_EVENT_ATTRIBUTE",
+						"property": "source",
+						"type": "EQUALS"
+					},
+					"type": "text"
+				},
+				"strValues": {
+					"description": "",
+					"displayName": "Values",
+					"documentation": "If regular comparison type i.e. `Equals` is used, then **any** of the listed values should match for the condition to be evaluated to true\n\nIf negated comparison type i.e. `Does not equal` is used, then **none** of the listed values should match for the condition to be evaluated to true",
+					"items": {
+						"constraints": [
+							{
+								"maxLength": 500,
+								"minLength": 1,
+								"type": "LENGTH"
+							}
+						],
+						"description": "",
+						"displayName": "Value",
+						"documentation": "",
+						"type": "text"
+					},
+					"maxObjects": 100,
+					"minObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"precondition": {
+						"preconditions": [
+							{
+								"precondition": {
+									"expectedValues": [
+										"SPAN_EVENT_ATTRIBUTE"
+									],
+									"property": "source",
+									"type": "IN"
+								},
+								"type": "NOT"
+							},
+							{
+								"preconditions": [
+									{
+										"precondition": {
+											"expectedValues": [
+												"EXISTS",
+												"DOES_NOT_EXIST"
+											],
+											"property": "attrKeyStringComparisonType",
+											"type": "IN"
+										},
+										"type": "NOT"
+									},
+									{
+										"expectedValue": "STRING",
+										"property": "dataType",
+										"type": "EQUALS"
+									}
+								],
+								"type": "AND"
+							}
+						],
+						"type": "OR"
+					},
+					"type": "set"
+				},
+				"stringComparisonType": {
+					"default": "EQUALS",
+					"description": "",
+					"displayName": "Comparison Type",
+					"documentation": "",
+					"maxObjects": 1,
+					"metadata": {
+						"sortItems": "disabled"
+					},
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"precondition": {
+						"expectedValues": [
+							"SPAN_EVENT_NAME"
+						],
+						"property": "source",
+						"type": "IN"
+					},
+					"type": {
+						"$ref": "#/enums/StringComparisonType"
+					}
+				}
+			},
+			"summaryPattern": "{source} {sourceKey} {stringComparisonType} {attrKeyStringComparisonType} {numComparisonType} {attrKeyBoolComparisonType} {boolValue}{intValue}{intValues}{floatValue}{floatValues}{strValues}",
+			"type": "object",
+			"version": "0.0.1",
+			"versionInfo": ""
+		},
+		"Rule": {
+			"description": "",
+			"displayName": "Rule",
+			"documentation": "",
+			"properties": {
+				"conditions": {
+					"description": "",
+					"displayName": "Conditions",
+					"documentation": "Specify all conditions which should be evaluated for this rule. A rule is applied if all of the listed conditions match.",
+					"items": {
+						"description": "",
+						"displayName": "Condition",
+						"documentation": "",
+						"type": {
+							"$ref": "#/types/Condition"
+						}
+					},
+					"maxObjects": 10,
+					"metadata": {
+						"addItemButton": "Add condition",
+						"itemDisplayName": "New condition"
+					},
+					"minObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"type": "set"
+				},
+				"ruleName": {
+					"constraints": [
+						{
+							"maxLength": 500,
+							"minLength": 1,
+							"type": "LENGTH"
+						}
+					],
+					"default": "",
+					"description": "",
+					"displayName": "Rule name",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"type": "text"
+				},
+				"spanVerdictIfRuleMatches": {
+					"default": "SPAN_VERDICT_FAILURE",
+					"description": "",
+					"displayName": "Rule verdict, the rule defines whether a span indicates a failure or success",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"type": {
+						"$ref": "#/enums/SpanVerdictIfRuleMatches"
+					}
+				}
+			},
+			"summaryPattern": "{ruleName}",
+			"type": "object",
+			"version": "0.0.2",
+			"versionInfo": ""
+		}
+	},
+	"version": "0.0.23"
+}

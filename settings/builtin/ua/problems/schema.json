@@ -1,0 +1,55 @@
+{
+	"allowedScopes": [
+		"ua-screen"
+	],
+	"constraints": [
+		{
+			"customMessage": "The scope must be a ME type or a valid generic type.",
+			"customValidatorId": "ua-scope-validator",
+			"type": "CUSTOM_VALIDATOR_REF"
+		}
+	],
+	"description": "Configure entitiy selectors to display problems for related entities.",
+	"displayName": "Problems card",
+	"documentation": "",
+	"dynatrace": "1",
+	"enums": {},
+	"maxObjects": 1,
+	"multiObject": false,
+	"properties": {
+		"entitySelectorTemplates": {
+			"description": "Up to 10 entity selectors, used to fetch data for related entities",
+			"displayName": "Entity selector templates",
+			"documentation": "For example for a host screen where you want to show problems of related processes this might look like this:  \n`type(PROCESS_GROUP_INSTANCE), fromRelationships.isProcessOf($(entityConditions))`\n\nPlease mind that the `$(entityConditions)` is a placeholder for the relation condition.\n\nLeave empty to gather data for current entity.",
+			"items": {
+				"constraints": [
+					{
+						"maxLength": 500,
+						"minLength": 1,
+						"type": "LENGTH"
+					},
+					{
+						"customMessage": "Invalid entity selector",
+						"customValidatorId": "entity-selector-validator",
+						"type": "CUSTOM_VALIDATOR_REF"
+					}
+				],
+				"description": "",
+				"displayName": "",
+				"documentation": "",
+				"type": "text"
+			},
+			"maxObjects": 20,
+			"minObjects": 0,
+			"modificationPolicy": "DEFAULT",
+			"nullable": false,
+			"type": "set"
+		}
+	},
+	"schemaGroups": [
+		"group:unified-analysis"
+	],
+	"schemaId": "builtin:ua.problems",
+	"types": {},
+	"version": "1.1.1"
+}

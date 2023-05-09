@@ -55,6 +55,14 @@ func (me *generator) Write(folder string) error {
 					Kind: reflection.SliceAliasKind,
 					Elem: t,
 				}
+				if me.library.Contains(replacement) {
+					replacement = &reflection.Type{
+						ID:   t.Elem.Unref().ID + "List",
+						Name: t.Elem.Unref().Name + "List",
+						Kind: reflection.SliceAliasKind,
+						Elem: t,
+					}
+				}
 				me.library.Rewire(t, replacement)
 				me.library.Define(replacement, true)
 			}
@@ -65,6 +73,14 @@ func (me *generator) Write(folder string) error {
 					Name: Plural(t.Elem.Unref().Name),
 					Kind: reflection.SetAliasKind,
 					Elem: t,
+				}
+				if me.library.Contains(replacement) {
+					replacement = &reflection.Type{
+						ID:   t.Elem.Unref().ID + "Set",
+						Name: t.Elem.Unref().Name + "Set",
+						Kind: reflection.SetAliasKind,
+						Elem: t,
+					}
 				}
 				me.library.Rewire(t, replacement)
 				me.library.Define(replacement, true)
@@ -159,9 +175,18 @@ func (me *generator) TranslateType(folder string, t *reflection.Type) ([]CodeCon
 			singular = "item"
 		}
 		if t.Kind == reflection.SetAliasKind {
-			return []CodeContributor{NewSetAlias(t, singular)}, nil
+			if me.library.Contains(&reflection.Type{ID: t.Elem.Unref().ID + "Set"}) {
+				return []CodeContributor{NewSetAlias2(t, singular)}, nil
+			} else {
+				return []CodeContributor{NewSetAlias(t, singular)}, nil
+			}
+
 		}
-		return []CodeContributor{NewSliceAlias(t, singular)}, nil
+		if me.library.Contains(&reflection.Type{ID: t.Elem.Unref().ID + "List"}) {
+			return []CodeContributor{NewSliceAlias2(t, singular)}, nil
+		} else {
+			return []CodeContributor{NewSliceAlias(t, singular)}, nil
+		}
 	default:
 		return nil, fmt.Errorf("unsupported kind %v", t.Kind)
 	}

@@ -1,0 +1,661 @@
+{
+	"allowedScopes": [
+		"APPLICATION"
+	],
+	"description": "Create variables to later use them in naming rules or properties. View [examples on variables](https://dt-url.net/mz3a0phs).",
+	"displayName": "Variables",
+	"documentation": "",
+	"dynatrace": "1",
+	"enums": {
+		"PatternSearchType": {
+			"description": "",
+			"displayName": "PatternSearchType",
+			"documentation": "",
+			"items": [
+				{
+					"displayName": "first",
+					"value": "FIRST"
+				},
+				{
+					"displayName": "last",
+					"value": "LAST"
+				}
+			],
+			"type": "enum"
+		},
+		"ProcessingStepType": {
+			"description": "",
+			"displayName": "ProcessingStepType",
+			"documentation": "",
+			"items": [
+				{
+					"displayName": "extract",
+					"value": "EXTRACT"
+				},
+				{
+					"displayName": "replace",
+					"value": "REPLACE"
+				},
+				{
+					"displayName": "replace text",
+					"value": "REPLACE_TEXT"
+				},
+				{
+					"displayName": "extract with regular expression",
+					"value": "EXTRACT_WITH_REGEX"
+				},
+				{
+					"displayName": "replace with regular expression",
+					"value": "REPLACE_WITH_REGEX"
+				},
+				{
+					"displayName": "replace IDs",
+					"value": "REPLACE_IDS"
+				},
+				{
+					"displayName": "convert to lower case",
+					"value": "CONVERT_TO_LOWER_CASE"
+				},
+				{
+					"displayName": "convert to upper case",
+					"value": "CONVERT_TO_UPPER_CASE"
+				}
+			],
+			"type": "enum"
+		},
+		"SourceType": {
+			"description": "",
+			"displayName": "Source",
+			"documentation": "",
+			"items": [
+				{
+					"displayName": "Page URL",
+					"value": "PAGE_URL"
+				},
+				{
+					"displayName": "Page URL: Anchor",
+					"value": "PAGE_URL_ANCHOR"
+				},
+				{
+					"displayName": "Page URL: Path",
+					"value": "PAGE_URL_PATH"
+				},
+				{
+					"displayName": "Source URL",
+					"value": "SOURCE_URL"
+				},
+				{
+					"displayName": "Source URL: Anchor",
+					"value": "SOURCE_URL_ANCHOR"
+				},
+				{
+					"displayName": "Source URL: Path",
+					"value": "SOURCE_URL_PATH"
+				},
+				{
+					"displayName": "XHR URL",
+					"value": "XHR_URL"
+				},
+				{
+					"displayName": "XHR URL: Anchor",
+					"value": "XHR_URL_ANCHOR"
+				},
+				{
+					"displayName": "XHR URL: Path",
+					"value": "XHR_URL_PATH"
+				},
+				{
+					"displayName": "Top XHR URL",
+					"value": "TOP_XHR_URL"
+				},
+				{
+					"displayName": "Top XHR URL: Anchor",
+					"value": "TOP_XHR_URL_ANCHOR"
+				},
+				{
+					"displayName": "Top XHR URL: Path",
+					"value": "TOP_XHR_URL_PATH"
+				},
+				{
+					"displayName": "Page title",
+					"value": "PAGE_TITLE"
+				},
+				{
+					"displayName": "Element identifier",
+					"value": "ELEMENT_IDENTIFIER"
+				},
+				{
+					"displayName": "User interaction",
+					"value": "USER_INTERACTION"
+				},
+				{
+					"displayName": "CSS selector",
+					"value": "CSS_SELECTOR"
+				},
+				{
+					"displayName": "JavaScript variable",
+					"value": "JAVASCRIPT_VARIABLE"
+				},
+				{
+					"displayName": "Meta tag",
+					"value": "META_TAG"
+				},
+				{
+					"displayName": "Cookie value",
+					"value": "COOKIE_VALUE"
+				},
+				{
+					"displayName": "Query string",
+					"value": "QUERY_STRING"
+				},
+				{
+					"displayName": "Keyboard-pressed event",
+					"value": "KEYPRESS_EVENT"
+				},
+				{
+					"displayName": "Server-side request attribute",
+					"value": "REQUEST_ATTRIBUTE"
+				},
+				{
+					"displayName": "Custom action name",
+					"value": "CUSTOM_ACTION_NAME"
+				}
+			],
+			"type": "enum"
+		}
+	},
+	"maxObjects": 50,
+	"metadata": {
+		"addItemButton": "Add variable"
+	},
+	"multiObject": true,
+	"ordered": false,
+	"properties": {
+		"name": {
+			"constraints": [
+				{
+					"type": "NOT_BLANK"
+				},
+				{
+					"maxLength": 50,
+					"type": "LENGTH"
+				},
+				{
+					"customMessage": "Variable name is a default placeholder and must not be used.",
+					"customValidatorId": "defaultNameViolation",
+					"type": "CUSTOM_VALIDATOR_REF"
+				}
+			],
+			"default": "",
+			"description": "",
+			"displayName": "Variable name",
+			"documentation": "",
+			"maxObjects": 1,
+			"modificationPolicy": "DEFAULT",
+			"nullable": false,
+			"type": "text"
+		},
+		"processingSteps": {
+			"description": "",
+			"displayName": "Processing steps",
+			"documentation": "",
+			"items": {
+				"description": "",
+				"displayName": "",
+				"documentation": "",
+				"type": {
+					"$ref": "#/types/ProcessingStep"
+				}
+			},
+			"maxObjects": 5,
+			"metadata": {
+				"addItemButton": "Add processing step"
+			},
+			"minObjects": 0,
+			"modificationPolicy": "DEFAULT",
+			"nullable": false,
+			"type": "list"
+		},
+		"source": {
+			"description": "",
+			"displayName": "Source",
+			"documentation": "",
+			"maxObjects": 1,
+			"modificationPolicy": "DEFAULT",
+			"nullable": false,
+			"type": {
+				"$ref": "#/types/Source"
+			}
+		}
+	},
+	"schemaGroups": [
+		"group:capturing"
+	],
+	"schemaId": "builtin:rum.web.variables",
+	"types": {
+		"ProcessingStep": {
+			"description": "",
+			"displayName": "ProcessingStep",
+			"documentation": "",
+			"properties": {
+				"fallbackToSelectedSource": {
+					"default": false,
+					"description": "",
+					"displayName": "Fall back to selected source",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"precondition": {
+						"precondition": {
+							"expectedValues": [
+								"CONVERT_TO_LOWER_CASE",
+								"CONVERT_TO_UPPER_CASE"
+							],
+							"property": "type",
+							"type": "IN"
+						},
+						"type": "NOT"
+					},
+					"type": "boolean"
+				},
+				"patternAfter": {
+					"constraints": [
+						{
+							"maxLength": 200,
+							"type": "LENGTH"
+						}
+					],
+					"default": "",
+					"description": "",
+					"displayName": "Trailing delimiter (extract/replace ends here)",
+					"documentation": "",
+					"maxObjects": 1,
+					"metadata": {
+						"placeholder": "e.g. \u0026otherparameter"
+					},
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"precondition": {
+						"expectedValues": [
+							"EXTRACT",
+							"REPLACE"
+						],
+						"property": "type",
+						"type": "IN"
+					},
+					"type": "text"
+				},
+				"patternAfterSearchType": {
+					"default": "LAST",
+					"description": "",
+					"displayName": "Occurrence",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"precondition": {
+						"expectedValues": [
+							"EXTRACT",
+							"REPLACE"
+						],
+						"property": "type",
+						"type": "IN"
+					},
+					"type": {
+						"$ref": "#/enums/PatternSearchType"
+					}
+				},
+				"patternBefore": {
+					"constraints": [
+						{
+							"maxLength": 200,
+							"type": "LENGTH"
+						}
+					],
+					"default": "",
+					"description": "",
+					"displayName": "Leading delimiter (extract/replace starts here)",
+					"documentation": "",
+					"maxObjects": 1,
+					"metadata": {
+						"placeholder": "e.g. userId="
+					},
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"precondition": {
+						"expectedValues": [
+							"EXTRACT",
+							"REPLACE"
+						],
+						"property": "type",
+						"type": "IN"
+					},
+					"type": "text"
+				},
+				"patternBeforeSearchType": {
+					"default": "FIRST",
+					"description": "",
+					"displayName": "Occurrence",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"precondition": {
+						"expectedValues": [
+							"EXTRACT",
+							"REPLACE"
+						],
+						"property": "type",
+						"type": "IN"
+					},
+					"type": {
+						"$ref": "#/enums/PatternSearchType"
+					}
+				},
+				"regularExpression": {
+					"constraints": [
+						{
+							"type": "NOT_BLANK"
+						},
+						{
+							"maxLength": 200,
+							"type": "LENGTH"
+						},
+						{
+							"customMessage": "Value breaks regex restriction.",
+							"customValidatorId": "dangerousRegEx-REGEX_BASED_MATCHING_RELAXED",
+							"type": "CUSTOM_VALIDATOR_REF"
+						},
+						{
+							"type": "REGEX"
+						}
+					],
+					"default": "",
+					"description": "",
+					"displayName": "Regular expression",
+					"documentation": "",
+					"maxObjects": 1,
+					"metadata": {
+						"placeholder": "Please specify a regular expression"
+					},
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"precondition": {
+						"expectedValues": [
+							"EXTRACT_WITH_REGEX",
+							"REPLACE_WITH_REGEX"
+						],
+						"property": "type",
+						"type": "IN"
+					},
+					"subType": "regex",
+					"type": "text"
+				},
+				"replacement": {
+					"constraints": [
+						{
+							"maxLength": 500,
+							"minLength": 1,
+							"type": "LENGTH"
+						}
+					],
+					"description": "",
+					"displayName": "Replace with – Optional",
+					"documentation": "",
+					"maxObjects": 1,
+					"metadata": {
+						"placeholder": "When not specified, the matched characters are discarded"
+					},
+					"modificationPolicy": "DEFAULT",
+					"nullable": true,
+					"precondition": {
+						"expectedValues": [
+							"REPLACE",
+							"REPLACE_TEXT",
+							"REPLACE_WITH_REGEX",
+							"REPLACE_IDS"
+						],
+						"property": "type",
+						"type": "IN"
+					},
+					"type": "text"
+				},
+				"searchPattern": {
+					"constraints": [
+						{
+							"type": "NOT_BLANK"
+						},
+						{
+							"maxLength": 200,
+							"type": "LENGTH"
+						}
+					],
+					"default": "",
+					"description": "",
+					"displayName": "Text to search",
+					"documentation": "",
+					"maxObjects": 1,
+					"metadata": {
+						"placeholder": "e.g. userId="
+					},
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"precondition": {
+						"expectedValues": [
+							"REPLACE_TEXT"
+						],
+						"property": "type",
+						"type": "IN"
+					},
+					"type": "text"
+				},
+				"type": {
+					"default": "EXTRACT",
+					"description": "",
+					"displayName": "Type",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"type": {
+						"$ref": "#/enums/ProcessingStepType"
+					}
+				}
+			},
+			"summaryPattern": "{type}",
+			"type": "object",
+			"version": "0",
+			"versionInfo": ""
+		},
+		"Source": {
+			"description": "",
+			"displayName": "Source",
+			"documentation": "",
+			"properties": {
+				"cookieValue": {
+					"constraints": [
+						{
+							"type": "NOT_BLANK"
+						},
+						{
+							"maxLength": 1000,
+							"type": "LENGTH"
+						}
+					],
+					"default": "",
+					"description": "Specify a cookie name to capture its value.",
+					"displayName": "Cookie value",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"precondition": {
+						"expectedValue": "COOKIE_VALUE",
+						"property": "type",
+						"type": "EQUALS"
+					},
+					"type": "text"
+				},
+				"cssSelector": {
+					"constraints": [
+						{
+							"type": "NOT_BLANK"
+						},
+						{
+							"maxLength": 1000,
+							"type": "LENGTH"
+						},
+						{
+							"customMessage": "Not supported CSS expression!",
+							"customValidatorId": "cssSelectorValidator",
+							"type": "CUSTOM_VALIDATOR_REF"
+						}
+					],
+					"default": "",
+					"description": "Specify a CSS selector. This mechanism will capture the first match's innerText/textContent value. To retrieve a specific attribute value of the element, append the '@' symbol, followed by the attribute name. i.e. '#someDomElement@someAttribute'",
+					"displayName": "CSS selector",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"precondition": {
+						"expectedValue": "CSS_SELECTOR",
+						"property": "type",
+						"type": "EQUALS"
+					},
+					"type": "text"
+				},
+				"jsVariable": {
+					"constraints": [
+						{
+							"type": "NOT_BLANK"
+						},
+						{
+							"maxLength": 1000,
+							"type": "LENGTH"
+						},
+						{
+							"customMessage": "Not supported JavaScript expression!",
+							"customValidatorId": "jsVariableValidator",
+							"type": "CUSTOM_VALIDATOR_REF"
+						}
+					],
+					"default": "",
+					"description": "Specify a JavaScript variable. This variable must be available globally and the capture expression must use dot notation for property reference. i.e. 'someVar.version'. See documentation for details.",
+					"displayName": "JavaScript variable",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"precondition": {
+						"expectedValue": "JAVASCRIPT_VARIABLE",
+						"property": "type",
+						"type": "EQUALS"
+					},
+					"type": "text"
+				},
+				"metaTag": {
+					"constraints": [
+						{
+							"type": "NOT_BLANK"
+						},
+						{
+							"maxLength": 1000,
+							"type": "LENGTH"
+						},
+						{
+							"customMessage": "Invalid meta tag name!",
+							"customValidatorId": "metaTagValidator",
+							"type": "CUSTOM_VALIDATOR_REF"
+						}
+					],
+					"default": "",
+					"description": "Specify a meta tag name to capture its 'content' value.",
+					"displayName": "Meta tag name",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"precondition": {
+						"expectedValue": "META_TAG",
+						"property": "type",
+						"type": "EQUALS"
+					},
+					"type": "text"
+				},
+				"queryString": {
+					"constraints": [
+						{
+							"type": "NOT_BLANK"
+						},
+						{
+							"maxLength": 1000,
+							"type": "LENGTH"
+						},
+						{
+							"customMessage": "Invalid query string parameter name!",
+							"customValidatorId": "queryStringValidator",
+							"type": "CUSTOM_VALIDATOR_REF"
+						}
+					],
+					"default": "",
+					"description": "Specify a query string parameter to capture its value.",
+					"displayName": "Query string",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"precondition": {
+						"expectedValue": "QUERY_STRING",
+						"property": "type",
+						"type": "EQUALS"
+					},
+					"type": "text"
+				},
+				"requestAttribute": {
+					"constraints": [
+						{
+							"type": "NOT_BLANK"
+						},
+						{
+							"maxLength": 100,
+							"type": "LENGTH"
+						}
+					],
+					"default": "",
+					"description": "Select an existing request attribute or [create a new one](/#settings/requestattributes;reqAttrNew=true).",
+					"displayName": "Request attribute name",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"precondition": {
+						"expectedValue": "REQUEST_ATTRIBUTE",
+						"property": "type",
+						"type": "EQUALS"
+					},
+					"subType": "rum_app_variables_picker",
+					"type": "text"
+				},
+				"type": {
+					"default": "PAGE_URL",
+					"description": "",
+					"displayName": "Type",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": false,
+					"type": {
+						"$ref": "#/enums/SourceType"
+					}
+				}
+			},
+			"summaryPattern": "",
+			"type": "object",
+			"version": "0",
+			"versionInfo": ""
+		}
+	},
+	"version": "0.0.3"
+}

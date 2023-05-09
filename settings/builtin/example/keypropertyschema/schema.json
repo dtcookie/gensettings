@@ -1,0 +1,56 @@
+{
+	"allowedScopes": [
+		"HOST",
+		"environment"
+	],
+	"description": "Showcase of a usage of custom defined key property.",
+	"displayName": "Schema with custom defined key property",
+	"documentation": "",
+	"dynatrace": "1",
+	"enums": {},
+	"keyProperty": "keyProperty",
+	"maxObjects": 5,
+	"multiObject": true,
+	"ordered": false,
+	"properties": {
+		"keyProperty": {
+			"constraints": [
+				{
+					"maxLength": 500,
+					"minLength": 1,
+					"type": "LENGTH"
+				}
+			],
+			"default": "",
+			"description": "A unique name used as a key.",
+			"displayName": "Name",
+			"documentation": "",
+			"maxObjects": 1,
+			"modificationPolicy": "NEVER",
+			"nullable": false,
+			"type": "text"
+		},
+		"standardProperty": {
+			"constraints": [
+				{
+					"maxLength": 500,
+					"minLength": 1,
+					"type": "LENGTH"
+				}
+			],
+			"description": "A non-key property",
+			"displayName": "Freetext",
+			"documentation": "",
+			"maxObjects": 1,
+			"modificationPolicy": "DEFAULT",
+			"nullable": true,
+			"type": "text"
+		}
+	},
+	"schemaGroups": [
+		"group:example"
+	],
+	"schemaId": "builtin:example.key-property-schema",
+	"types": {},
+	"version": "0.2.1"
+}
