@@ -100,16 +100,16 @@ func (me *QueryDefinition) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *QueryDefinition) HandlePreconditions() error {
-	if me.Aggregation == nil && (string(me.Type) == "METRIC_KEY") {
+	if (me.Aggregation == nil) && (string(me.Type) == "METRIC_KEY") {
 		return fmt.Errorf("'aggregation' must be specified if 'type' is set to '%v'", me.Type)
 	}
-	if me.Aggregation != nil && (string(me.Type) != "METRIC_KEY") {
+	if (me.Aggregation != nil) && (string(me.Type) != "METRIC_KEY") {
 		return fmt.Errorf("'aggregation' must not be specified if 'type' is set to '%v'", me.Type)
 	}
-	if me.MetricKey == nil && (string(me.Type) == "METRIC_KEY") {
+	if (me.MetricKey == nil) && (string(me.Type) == "METRIC_KEY") {
 		return fmt.Errorf("'metric_key' must be specified if 'type' is set to '%v'", me.Type)
 	}
-	if me.MetricSelector == nil && (string(me.Type) == "METRIC_SELECTOR") {
+	if (me.MetricSelector == nil) && (string(me.Type) == "METRIC_SELECTOR") {
 		return fmt.Errorf("'metric_selector' must be specified if 'type' is set to '%v'", me.Type)
 	}
 	// ---- DimensionFilter DimensionFilters -> {"preconditions":[{"expectedValue":"METRIC_KEY","property":"type","type":"EQUALS"},{"precondition":{"property":"metricKey","type":"NULL"},"type":"NOT"}],"type":"AND"}

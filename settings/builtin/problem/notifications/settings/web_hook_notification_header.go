@@ -88,10 +88,10 @@ func (me *WebHookNotificationHeader) MarshalHCL(properties hcl.Properties) error
 }
 
 func (me *WebHookNotificationHeader) HandlePreconditions() error {
-	if me.SecretValue == nil && me.Secret {
+	if (me.SecretValue == nil) && (me.Secret) {
 		me.SecretValue = opt.NewString("")
 	}
-	if me.Value == nil && !me.Secret {
+	if (me.Value == nil) && (!me.Secret) {
 		me.Value = opt.NewString("")
 	}
 	return nil

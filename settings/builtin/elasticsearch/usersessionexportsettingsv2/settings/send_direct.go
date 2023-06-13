@@ -59,10 +59,10 @@ func (me *SendDirect) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *SendDirect) HandlePreconditions() error {
-	if me.DocType == nil && me.Active {
+	if (me.DocType == nil) && (me.Active) {
 		return fmt.Errorf("'doc_type' must be specified if 'active' is set to '%v'", me.Active)
 	}
-	if me.IndexName == nil && me.Active {
+	if (me.IndexName == nil) && (me.Active) {
 		return fmt.Errorf("'index_name' must be specified if 'active' is set to '%v'", me.Active)
 	}
 	return nil

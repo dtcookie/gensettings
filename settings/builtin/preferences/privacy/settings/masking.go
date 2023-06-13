@@ -66,10 +66,10 @@ func (me *Masking) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *Masking) HandlePreconditions() error {
-	if me.IpAddressMasking == nil && me.IpAddressMaskingEnabled {
+	if (me.IpAddressMasking == nil) && (me.IpAddressMaskingEnabled) {
 		return fmt.Errorf("'ip_address_masking' must be specified if 'ip_address_masking_enabled' is set to '%v'", me.IpAddressMaskingEnabled)
 	}
-	if me.IpAddressMasking != nil && !me.IpAddressMaskingEnabled {
+	if (me.IpAddressMasking != nil) && (!me.IpAddressMaskingEnabled) {
 		return fmt.Errorf("'ip_address_masking' must not be specified if 'ip_address_masking_enabled' is set to '%v'", me.IpAddressMaskingEnabled)
 	}
 	return nil

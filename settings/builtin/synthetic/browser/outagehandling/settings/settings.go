@@ -87,13 +87,13 @@ func (me *Settings) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *Settings) HandlePreconditions() error {
-	if me.GlobalConsecutiveOutageCountThreshold == nil && me.GlobalOutages {
+	if (me.GlobalConsecutiveOutageCountThreshold == nil) && (me.GlobalOutages) {
 		me.GlobalConsecutiveOutageCountThreshold = opt.NewInt(0)
 	}
-	if me.LocalConsecutiveOutageCountThreshold == nil && me.LocalOutages {
+	if (me.LocalConsecutiveOutageCountThreshold == nil) && (me.LocalOutages) {
 		me.LocalConsecutiveOutageCountThreshold = opt.NewInt(0)
 	}
-	if me.LocalLocationOutageCountThreshold == nil && me.LocalOutages {
+	if (me.LocalLocationOutageCountThreshold == nil) && (me.LocalOutages) {
 		me.LocalLocationOutageCountThreshold = opt.NewInt(0)
 	}
 	return nil

@@ -66,10 +66,10 @@ func (me *Settings) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *Settings) HandlePreconditions() error {
-	if me.EnablePhpCliServerInstrumentation == nil && me.Enabled {
+	if (me.EnablePhpCliServerInstrumentation == nil) && (me.Enabled) {
 		me.EnablePhpCliServerInstrumentation = opt.NewBool(false)
 	}
-	if me.EnabledFastCGI == nil && me.Enabled {
+	if (me.EnabledFastCGI == nil) && (me.Enabled) {
 		me.EnabledFastCGI = opt.NewBool(false)
 	}
 	return nil

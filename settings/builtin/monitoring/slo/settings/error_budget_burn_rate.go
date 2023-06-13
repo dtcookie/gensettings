@@ -52,7 +52,7 @@ func (me *ErrorBudgetBurnRate) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *ErrorBudgetBurnRate) HandlePreconditions() error {
-	if me.FastBurnThreshold == nil && me.BurnRateVisualizationEnabled {
+	if (me.FastBurnThreshold == nil) && (me.BurnRateVisualizationEnabled) {
 		return fmt.Errorf("'fast_burn_threshold' must be specified if 'burn_rate_visualization_enabled' is set to '%v'", me.BurnRateVisualizationEnabled)
 	}
 	return nil

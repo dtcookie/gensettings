@@ -78,10 +78,10 @@ func (me *Settings) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *Settings) HandlePreconditions() error {
-	if me.Revision == nil && me.TargetVersion != nil && !slices.Contains([]string{"latest", "previous", "older"}, string(*me.TargetVersion)) && slices.Contains([]string{"AUTOMATIC", "AUTOMATIC_DURING_MW"}, string(me.UpdateMode)) {
+	if (me.Revision == nil) && (me.TargetVersion != nil && !slices.Contains([]string{"latest", "previous", "older"}, string(*me.TargetVersion)) && (slices.Contains([]string{"AUTOMATIC", "AUTOMATIC_DURING_MW"}, string(me.UpdateMode)))) {
 		return fmt.Errorf("'revision' must be specified if 'target_version' is set to '%v'", me.TargetVersion)
 	}
-	if me.TargetVersion == nil && slices.Contains([]string{"AUTOMATIC", "AUTOMATIC_DURING_MW"}, string(me.UpdateMode)) {
+	if (me.TargetVersion == nil) && (slices.Contains([]string{"AUTOMATIC", "AUTOMATIC_DURING_MW"}, string(me.UpdateMode))) {
 		return fmt.Errorf("'target_version' must be specified if 'update_mode' is set to '%v'", me.UpdateMode)
 	}
 	// ---- MaintenanceWindows MaintenanceWindows -> {"expectedValue":"AUTOMATIC_DURING_MW","property":"updateMode","type":"EQUALS"}

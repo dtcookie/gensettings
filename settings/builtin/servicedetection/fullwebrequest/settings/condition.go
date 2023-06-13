@@ -136,16 +136,16 @@ func (me *Condition) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *Condition) HandlePreconditions() error {
-	if me.IgnoreCase == nil && slices.Contains([]string{"TagEquals", "TagKeyEquals", "StringEndsWith", "NotStringEndsWith", "StringStartsWith", "NotStringStartsWith", "StringContains", "NotStringContains", "StringEquals", "NotStringEquals"}, string(me.CompareOperationType)) {
+	if (me.IgnoreCase == nil) && (slices.Contains([]string{"TagEquals", "TagKeyEquals", "StringEndsWith", "NotStringEndsWith", "StringStartsWith", "NotStringStartsWith", "StringContains", "NotStringContains", "StringEquals", "NotStringEquals"}, string(me.CompareOperationType))) {
 		me.IgnoreCase = opt.NewBool(false)
 	}
-	if me.IntValue == nil && slices.Contains([]string{"IntGreaterThan", "IntLessThan"}, string(me.CompareOperationType)) {
+	if (me.IntValue == nil) && (slices.Contains([]string{"IntGreaterThan", "IntLessThan"}, string(me.CompareOperationType))) {
 		me.IntValue = opt.NewInt(0)
 	}
-	if me.IpRangeFrom == nil && slices.Contains([]string{"IpInRange", "NotIpInRange"}, string(me.CompareOperationType)) {
+	if (me.IpRangeFrom == nil) && (slices.Contains([]string{"IpInRange", "NotIpInRange"}, string(me.CompareOperationType))) {
 		return fmt.Errorf("'ip_range_from' must be specified if 'compare_operation_type' is set to '%v'", me.CompareOperationType)
 	}
-	if me.IpRangeTo == nil && slices.Contains([]string{"IpInRange", "NotIpInRange"}, string(me.CompareOperationType)) {
+	if (me.IpRangeTo == nil) && (slices.Contains([]string{"IpInRange", "NotIpInRange"}, string(me.CompareOperationType))) {
 		return fmt.Errorf("'ip_range_to' must be specified if 'compare_operation_type' is set to '%v'", me.CompareOperationType)
 	}
 	// ---- Framework []FrameworkType -> {"expectedValues":["FrameworkEquals","NotFrameworkEquals"],"property":"compareOperationType","type":"IN"}

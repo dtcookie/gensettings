@@ -62,10 +62,10 @@ func (me *Settings) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *Settings) HandlePreconditions() error {
-	if me.ExceptionRules == nil && me.Enabled {
+	if (me.ExceptionRules == nil) && (me.Enabled) {
 		return fmt.Errorf("'exception_rules' must be specified if 'enabled' is set to '%v'", me.Enabled)
 	}
-	if me.ExceptionRules != nil && !me.Enabled {
+	if (me.ExceptionRules != nil) && (!me.Enabled) {
 		return fmt.Errorf("'exception_rules' must not be specified if 'enabled' is set to '%v'", me.Enabled)
 	}
 	return nil

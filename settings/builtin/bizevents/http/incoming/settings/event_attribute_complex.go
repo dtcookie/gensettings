@@ -60,10 +60,10 @@ func (me *EventAttributeComplex) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *EventAttributeComplex) HandlePreconditions() error {
-	if me.Path == nil && slices.Contains([]string{"request.body", "request.headers", "request.parameters", "response.body", "response.headers"}, string(me.SourceType)) {
+	if (me.Path == nil) && (slices.Contains([]string{"request.body", "request.headers", "request.parameters", "response.body", "response.headers"}, string(me.SourceType))) {
 		return fmt.Errorf("'path' must be specified if 'source_type' is set to '%v'", me.SourceType)
 	}
-	if me.Source == nil && slices.Contains([]string{"constant.string"}, string(me.SourceType)) {
+	if (me.Source == nil) && (slices.Contains([]string{"constant.string"}, string(me.SourceType))) {
 		return fmt.Errorf("'source' must be specified if 'source_type' is set to '%v'", me.SourceType)
 	}
 	return nil

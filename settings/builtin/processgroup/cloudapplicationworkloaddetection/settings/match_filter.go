@@ -52,7 +52,7 @@ func (me *MatchFilter) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *MatchFilter) HandlePreconditions() error {
-	if me.Namespace == nil && (string(me.MatchOperator) != "EXISTS") {
+	if (me.Namespace == nil) && (string(me.MatchOperator) != "EXISTS") {
 		return fmt.Errorf("'namespace' must be specified if 'match_operator' is set to '%v'", me.MatchOperator)
 	}
 	return nil

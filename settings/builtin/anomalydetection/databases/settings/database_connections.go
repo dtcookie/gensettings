@@ -59,10 +59,10 @@ func (me *DatabaseConnections) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *DatabaseConnections) HandlePreconditions() error {
-	if me.MaxFailedConnects == nil && me.Enabled {
+	if (me.MaxFailedConnects == nil) && (me.Enabled) {
 		return fmt.Errorf("'max_failed_connects' must be specified if 'enabled' is set to '%v'", me.Enabled)
 	}
-	if me.TimePeriod == nil && me.Enabled {
+	if (me.TimePeriod == nil) && (me.Enabled) {
 		return fmt.Errorf("'time_period' must be specified if 'enabled' is set to '%v'", me.Enabled)
 	}
 	return nil

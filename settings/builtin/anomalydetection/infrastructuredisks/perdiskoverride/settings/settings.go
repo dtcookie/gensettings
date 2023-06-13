@@ -96,22 +96,22 @@ func (me *Settings) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *Settings) HandlePreconditions() error {
-	if me.DiskLowInodesDetection == nil && me.OverrideLowInodesDetection {
+	if (me.DiskLowInodesDetection == nil) && (me.OverrideLowInodesDetection) {
 		return fmt.Errorf("'disk_low_inodes_detection' must be specified if 'override_low_inodes_detection' is set to '%v'", me.OverrideLowInodesDetection)
 	}
-	if me.DiskLowInodesDetection != nil && !me.OverrideLowInodesDetection {
+	if (me.DiskLowInodesDetection != nil) && (!me.OverrideLowInodesDetection) {
 		return fmt.Errorf("'disk_low_inodes_detection' must not be specified if 'override_low_inodes_detection' is set to '%v'", me.OverrideLowInodesDetection)
 	}
-	if me.DiskLowSpaceDetection == nil && me.OverrideDiskLowSpaceDetection {
+	if (me.DiskLowSpaceDetection == nil) && (me.OverrideDiskLowSpaceDetection) {
 		return fmt.Errorf("'disk_low_space_detection' must be specified if 'override_disk_low_space_detection' is set to '%v'", me.OverrideDiskLowSpaceDetection)
 	}
-	if me.DiskLowSpaceDetection != nil && !me.OverrideDiskLowSpaceDetection {
+	if (me.DiskLowSpaceDetection != nil) && (!me.OverrideDiskLowSpaceDetection) {
 		return fmt.Errorf("'disk_low_space_detection' must not be specified if 'override_disk_low_space_detection' is set to '%v'", me.OverrideDiskLowSpaceDetection)
 	}
-	if me.DiskSlowWritesAndReadsDetection == nil && me.OverrideSlowWritesAndReadsDetection {
+	if (me.DiskSlowWritesAndReadsDetection == nil) && (me.OverrideSlowWritesAndReadsDetection) {
 		return fmt.Errorf("'disk_slow_writes_and_reads_detection' must be specified if 'override_slow_writes_and_reads_detection' is set to '%v'", me.OverrideSlowWritesAndReadsDetection)
 	}
-	if me.DiskSlowWritesAndReadsDetection != nil && !me.OverrideSlowWritesAndReadsDetection {
+	if (me.DiskSlowWritesAndReadsDetection != nil) && (!me.OverrideSlowWritesAndReadsDetection) {
 		return fmt.Errorf("'disk_slow_writes_and_reads_detection' must not be specified if 'override_slow_writes_and_reads_detection' is set to '%v'", me.OverrideSlowWritesAndReadsDetection)
 	}
 	return nil

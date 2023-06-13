@@ -12,24 +12,7 @@
 	"displayName": "Monitoring",
 	"documentation": "",
 	"dynatrace": "1",
-	"enums": {
-		"OAMonitoringMode": {
-			"description": "",
-			"displayName": "OAMonitoringMode",
-			"documentation": "",
-			"items": [
-				{
-					"displayName": "Full-stack monitoring",
-					"value": "FULL_STACK"
-				},
-				{
-					"displayName": "Infrastructure monitoring",
-					"value": "INFRA_ONLY"
-				}
-			],
-			"type": "enum"
-		}
-	},
+	"enums": {},
 	"maxObjects": 1,
 	"multiObject": false,
 	"properties": {
@@ -64,7 +47,10 @@
 			"type": "boolean"
 		}
 	},
+	"schemaGroups": [
+		"group:host-monitoring"
+	],
 	"schemaId": "builtin:host.monitoring",
 	"types": {},
-	"version": "1.1"
+	"version": "1.2"
 }

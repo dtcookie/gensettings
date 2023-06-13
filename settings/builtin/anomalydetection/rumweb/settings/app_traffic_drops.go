@@ -55,10 +55,10 @@ func (me *AppTrafficDrops) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *AppTrafficDrops) HandlePreconditions() error {
-	if me.TrafficDrops == nil && me.Enabled {
+	if (me.TrafficDrops == nil) && (me.Enabled) {
 		return fmt.Errorf("'traffic_drops' must be specified if 'enabled' is set to '%v'", me.Enabled)
 	}
-	if me.TrafficDrops != nil && !me.Enabled {
+	if (me.TrafficDrops != nil) && (!me.Enabled) {
 		return fmt.Errorf("'traffic_drops' must not be specified if 'enabled' is set to '%v'", me.Enabled)
 	}
 	return nil

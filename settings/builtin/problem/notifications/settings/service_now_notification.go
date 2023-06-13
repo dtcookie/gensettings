@@ -23,17 +23,23 @@ import (
 )
 
 type ServiceNowNotification struct {
-	InstanceName  *string `json:"instanceName,omitempty"` // The ServiceNow instance identifier. It refers to the first part of your own ServiceNow URL. \n\n This field is mutually exclusive with the **url** field. You can only use one of them.
-	Message       string  `json:"message"`                // The content of the ServiceNow description. Type '{' for placeholder suggestions.. #### Available placeholders\n**{ImpactedEntity}**: A short description of the problem and impacted entity (or multiple impacted entities).\n\n**{ImpactedEntityNames}**: The entity impacted by the problem.\n\n**{NamesOfImpactedEntities}**: The names of all entities that are impacted by the problem.\n\n**{PID}**: Unique system identifier of the reported problem.\n\n**{ProblemDetailsHTML}**: All problem event details including root cause as an HTML-formatted string.\n\n**{ProblemDetailsText}**: All problem event details including root cause as a text-formatted string.\n\n**{ProblemID}**: Display number of the reported problem.\n\n**{ProblemImpact}**: Impact level of the problem. Possible values are APPLICATION, SERVICE, or INFRASTRUCTURE.\n\n**{ProblemSeverity}**: Severity level of the problem. Possible values are AVAILABILITY, ERROR, PERFORMANCE, RESOURCE_CONTENTION, or CUSTOM_ALERT.\n\n**{ProblemTitle}**: Short description of the problem.\n\n**{State}**: Problem state. Possible values are OPEN or RESOLVED.\n\n**{Tags}**: Comma separated list of tags that are defined for all impacted entities. To refer to the value of a specific tag, specify the tag's key in square brackets: **{Tags[key]}**. If the tag does not have any assigned value, the placeholder will be replaced by an empty string. The placeholder will not be replaced if the tag key does not exist. To refer to the value of a specific tag, specify the tag's key in square brackets: **{Tags[key]}**. If the tag does not have any assigned value, the placeholder will be replaced by an empty string. The placeholder will not be replaced if the tag key does not exist.
-	Password      string  `json:"password"`               // The password to the ServiceNow account.
-	SendEvents    bool    `json:"sendEvents"`             // Send events into ServiceNow ITOM.
-	SendIncidents bool    `json:"sendIncidents"`          // Send incidents into ServiceNow ITSM.
-	Url           *string `json:"url,omitempty"`          // The URL of the on-premise ServiceNow installation. \n\n This field is mutually exclusive with the **instanceName** field. You can only use one of them.
-	Username      string  `json:"username"`               // The username of the ServiceNow account. \n\n Make sure that your user account has the `web_service_admin` and `x_dynat_ruxit.Integration` roles.
+	FormatProblemDetailsAsText *bool   `json:"formatProblemDetailsAsText,omitempty"` // Use text format for problem details instead of HTML.
+	InstanceName               *string `json:"instanceName,omitempty"`               // The ServiceNow instance identifier. It refers to the first part of your own ServiceNow URL. \n\n This field is mutually exclusive with the **url** field. You can only use one of them.
+	Message                    string  `json:"message"`                              // The content of the ServiceNow description. Type '{' for placeholder suggestions.. #### Available placeholders\n**{ImpactedEntity}**: A short description of the problem and impacted entity (or multiple impacted entities).\n\n**{ImpactedEntityNames}**: The entity impacted by the problem.\n\n**{NamesOfImpactedEntities}**: The names of all entities that are impacted by the problem.\n\n**{PID}**: Unique system identifier of the reported problem.\n\n**{ProblemDetailsHTML}**: All problem event details including root cause as an HTML-formatted string.\n\n**{ProblemDetailsText}**: All problem event details including root cause as a text-formatted string.\n\n**{ProblemID}**: Display number of the reported problem.\n\n**{ProblemImpact}**: Impact level of the problem. Possible values are APPLICATION, SERVICE, or INFRASTRUCTURE.\n\n**{ProblemSeverity}**: Severity level of the problem. Possible values are AVAILABILITY, ERROR, PERFORMANCE, RESOURCE_CONTENTION, or CUSTOM_ALERT.\n\n**{ProblemTitle}**: Short description of the problem.\n\n**{State}**: Problem state. Possible values are OPEN or RESOLVED.\n\n**{Tags}**: Comma separated list of tags that are defined for all impacted entities. To refer to the value of a specific tag, specify the tag's key in square brackets: **{Tags[key]}**. If the tag does not have any assigned value, the placeholder will be replaced by an empty string. The placeholder will not be replaced if the tag key does not exist. To refer to the value of a specific tag, specify the tag's key in square brackets: **{Tags[key]}**. If the tag does not have any assigned value, the placeholder will be replaced by an empty string. The placeholder will not be replaced if the tag key does not exist.
+	Password                   string  `json:"password"`                             // The password to the ServiceNow account.
+	SendEvents                 bool    `json:"sendEvents"`                           // Send events into ServiceNow ITOM.
+	SendIncidents              bool    `json:"sendIncidents"`                        // Send incidents into ServiceNow ITSM.
+	Url                        *string `json:"url,omitempty"`                        // The URL of the on-premise ServiceNow installation. \n\n This field is mutually exclusive with the **instanceName** field. You can only use one of them.
+	Username                   string  `json:"username"`                             // The username of the ServiceNow account. \n\n Make sure that your user account has the `web_service_admin` and `x_dynat_ruxit.Integration` roles.
 }
 
 func (me *ServiceNowNotification) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
+		"format_problem_details_as_text": {
+			Type:        schema.TypeBool,
+			Description: "Use text format for problem details instead of HTML.",
+			Optional:    true, // nullable
+		},
 		"instance_name": {
 			Type:        schema.TypeString,
 			Description: "The ServiceNow instance identifier. It refers to the first part of your own ServiceNow URL. \n\n This field is mutually exclusive with the **url** field. You can only use one of them.",
@@ -75,13 +81,14 @@ func (me *ServiceNowNotification) Schema() map[string]*schema.Schema {
 
 func (me *ServiceNowNotification) MarshalHCL(properties hcl.Properties) error {
 	return properties.EncodeAll(map[string]any{
-		"instance_name":  me.InstanceName,
-		"message":        me.Message,
-		"password":       me.Password,
-		"send_events":    me.SendEvents,
-		"send_incidents": me.SendIncidents,
-		"url":            me.Url,
-		"username":       me.Username,
+		"format_problem_details_as_text": me.FormatProblemDetailsAsText,
+		"instance_name":                  me.InstanceName,
+		"message":                        me.Message,
+		"password":                       me.Password,
+		"send_events":                    me.SendEvents,
+		"send_incidents":                 me.SendIncidents,
+		"url":                            me.Url,
+		"username":                       me.Username,
 	})
 }
 
@@ -92,12 +99,13 @@ func (me *ServiceNowNotification) HandlePreconditions() error {
 
 func (me *ServiceNowNotification) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
-		"instance_name":  &me.InstanceName,
-		"message":        &me.Message,
-		"password":       &me.Password,
-		"send_events":    &me.SendEvents,
-		"send_incidents": &me.SendIncidents,
-		"url":            &me.Url,
-		"username":       &me.Username,
+		"format_problem_details_as_text": &me.FormatProblemDetailsAsText,
+		"instance_name":                  &me.InstanceName,
+		"message":                        &me.Message,
+		"password":                       &me.Password,
+		"send_events":                    &me.SendEvents,
+		"send_incidents":                 &me.SendIncidents,
+		"url":                            &me.Url,
+		"username":                       &me.Username,
 	})
 }

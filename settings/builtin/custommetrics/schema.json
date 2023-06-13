@@ -108,7 +108,7 @@
 						"type": "CUSTOM_VALIDATOR_REF"
 					},
 					{
-						"customMessage": "Field is not a valid dimension",
+						"customMessage": "Field is not a valid dimension. Only non-numeric fields with low cardinality are allowed as dimension",
 						"customValidatorId": "dimension-field-validator",
 						"type": "CUSTOM_VALIDATOR_REF"
 					}

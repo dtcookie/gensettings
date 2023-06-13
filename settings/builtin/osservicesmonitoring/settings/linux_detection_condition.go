@@ -82,10 +82,10 @@ func (me *LinuxDetectionCondition) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *LinuxDetectionCondition) HandlePreconditions() error {
-	if me.Condition == nil && slices.Contains([]string{"ServiceName"}, string(me.Property)) {
+	if (me.Condition == nil) && (slices.Contains([]string{"ServiceName"}, string(me.Property))) {
 		return fmt.Errorf("'condition' must be specified if 'property' is set to '%v'", me.Property)
 	}
-	if me.StartupCondition == nil && slices.Contains([]string{"StartupType"}, string(me.Property)) {
+	if (me.StartupCondition == nil) && (slices.Contains([]string{"StartupType"}, string(me.Property))) {
 		return fmt.Errorf("'startup_condition' must be specified if 'property' is set to '%v'", me.Property)
 	}
 	return nil

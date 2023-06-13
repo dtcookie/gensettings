@@ -45,8 +45,9 @@ func (me *DimensionFilters) UnmarshalHCL(decoder hcl.Decoder) error {
 }
 
 type DimensionFilter struct {
-	DimensionKey   string `json:"dimensionKey"`   // Dimension key
-	DimensionValue string `json:"dimensionValue"` // Dimension value
+	DimensionKey   string                   `json:"dimensionKey"`       // Dimension key
+	DimensionValue string                   `json:"dimensionValue"`     // Dimension value
+	Operator       *DimensionFilterOperator `json:"operator,omitempty"` // Possible Values: `CONTAINS_CASE_SENSITIVE`, `DOES_NOT_CONTAIN_CASE_SENSITIVE`, `DOES_NOT_EQUAL`, `DOES_NOT_START_WITH`, `EQUALS`, `STARTS_WITH`
 }
 
 func (me *DimensionFilter) Schema() map[string]*schema.Schema {
@@ -61,6 +62,11 @@ func (me *DimensionFilter) Schema() map[string]*schema.Schema {
 			Description: "Dimension value",
 			Required:    true,
 		},
+		"operator": {
+			Type:        schema.TypeString,
+			Description: "Possible Values: `CONTAINS_CASE_SENSITIVE`, `DOES_NOT_CONTAIN_CASE_SENSITIVE`, `DOES_NOT_EQUAL`, `DOES_NOT_START_WITH`, `EQUALS`, `STARTS_WITH`",
+			Optional:    true, // nullable
+		},
 	}
 }
 
@@ -68,6 +74,7 @@ func (me *DimensionFilter) MarshalHCL(properties hcl.Properties) error {
 	return properties.EncodeAll(map[string]any{
 		"dimension_key":   me.DimensionKey,
 		"dimension_value": me.DimensionValue,
+		"operator":        me.Operator,
 	})
 }
 
@@ -75,5 +82,6 @@ func (me *DimensionFilter) UnmarshalHCL(decoder hcl.Decoder) error {
 	return decoder.DecodeAll(map[string]any{
 		"dimension_key":   &me.DimensionKey,
 		"dimension_value": &me.DimensionValue,
+		"operator":        &me.Operator,
 	})
 }

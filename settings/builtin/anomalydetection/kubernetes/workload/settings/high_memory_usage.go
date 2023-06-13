@@ -55,10 +55,10 @@ func (me *HighMemoryUsage) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *HighMemoryUsage) HandlePreconditions() error {
-	if me.Configuration == nil && me.Enabled {
+	if (me.Configuration == nil) && (me.Enabled) {
 		return fmt.Errorf("'configuration' must be specified if 'enabled' is set to '%v'", me.Enabled)
 	}
-	if me.Configuration != nil && !me.Enabled {
+	if (me.Configuration != nil) && (!me.Enabled) {
 		return fmt.Errorf("'configuration' must not be specified if 'enabled' is set to '%v'", me.Enabled)
 	}
 	return nil

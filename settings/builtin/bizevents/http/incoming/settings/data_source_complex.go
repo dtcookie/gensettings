@@ -53,7 +53,7 @@ func (me *DataSourceComplex) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *DataSourceComplex) HandlePreconditions() error {
-	if me.Path == nil && slices.Contains([]string{"request.body", "request.headers", "request.parameters", "response.body", "response.headers"}, string(me.DataSource)) {
+	if (me.Path == nil) && (slices.Contains([]string{"request.body", "request.headers", "request.parameters", "response.body", "response.headers"}, string(me.DataSource))) {
 		return fmt.Errorf("'path' must be specified if 'data_source' is set to '%v'", me.DataSource)
 	}
 	return nil

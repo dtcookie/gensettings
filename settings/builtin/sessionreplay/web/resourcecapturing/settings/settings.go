@@ -24,7 +24,7 @@ import (
 
 type Settings struct {
 	ApplicationID                          *string  `json:"-" scope:"applicationId"`                          // The scope of this settings. If the settings should cover the whole environment, just don't specify any scope.
-	EnableResourceCapturing                bool     `json:"enableResourceCapturing"`                          // When turned on, all CSS resources from all sessions are captured. For details, see [Resource capture](https://dt-url.net/sr-resource-capturing).
+	EnableResourceCapturing                bool     `json:"enableResourceCapturing"`                          // When turned on, Dynatrace captures resources for up to 0.1% of user sessions recorded with Session Replay. For details, see [Resource capture](https://dt-url.net/sr-resource-capturing).
 	ResourceCaptureUrlExclusionPatternList []string `json:"resourceCaptureUrlExclusionPatternList,omitempty"` // Add exclusion rules to avoid the capture of resources from certain pages.
 }
 
@@ -38,7 +38,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		},
 		"enable_resource_capturing": {
 			Type:        schema.TypeBool,
-			Description: "When turned on, all CSS resources from all sessions are captured. For details, see [Resource capture](https://dt-url.net/sr-resource-capturing).",
+			Description: "When turned on, Dynatrace captures resources for up to 0.1% of user sessions recorded with Session Replay. For details, see [Resource capture](https://dt-url.net/sr-resource-capturing).",
 			Required:    true,
 		},
 		"resource_capture_url_exclusion_pattern_list": {

@@ -39,7 +39,7 @@
 			"type": "enum"
 		}
 	},
-	"maxObjects": 500,
+	"maxObjects": 1000,
 	"multiObject": true,
 	"ordered": false,
 	"properties": {
@@ -85,5 +85,5 @@
 	],
 	"schemaId": "builtin:span-attribute",
 	"types": {},
-	"version": "0.0.29"
+	"version": "0.0.31"
 }

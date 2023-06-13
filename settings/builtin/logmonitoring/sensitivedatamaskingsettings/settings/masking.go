@@ -58,7 +58,7 @@ func (me *Masking) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *Masking) HandlePreconditions() error {
-	if me.Replacement == nil && (string(me.Type) == "STRING") {
+	if (me.Replacement == nil) && (string(me.Type) == "STRING") {
 		me.Replacement = opt.NewString("")
 	}
 	return nil

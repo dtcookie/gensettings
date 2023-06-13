@@ -66,13 +66,13 @@ func (me *Settings) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *Settings) HandlePreconditions() error {
-	if me.AlertingMode == nil && me.Enabled {
+	if (me.AlertingMode == nil) && (me.Enabled) {
 		return fmt.Errorf("'alerting_mode' must be specified if 'enabled' is set to '%v'", me.Enabled)
 	}
-	if me.AlertingMode != nil && !me.Enabled {
+	if (me.AlertingMode != nil) && (!me.Enabled) {
 		return fmt.Errorf("'alerting_mode' must not be specified if 'enabled' is set to '%v'", me.Enabled)
 	}
-	if me.MinimumInstanceThreshold == nil && (me.AlertingMode != nil && string(*me.AlertingMode) == "ON_INSTANCE_COUNT_VIOLATION") {
+	if (me.MinimumInstanceThreshold == nil) && (me.AlertingMode != nil && (string(*me.AlertingMode) == "ON_INSTANCE_COUNT_VIOLATION")) {
 		return fmt.Errorf("'minimum_instance_threshold' must be specified if 'alerting_mode' is set to '%v'", me.AlertingMode)
 	}
 	return nil

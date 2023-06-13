@@ -75,16 +75,16 @@ func (me *Settings) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *Settings) HandlePreconditions() error {
-	if me.IngestActive == nil && me.Enabled {
+	if (me.IngestActive == nil) && (me.Enabled) {
 		me.IngestActive = opt.NewBool(false)
 	}
-	if me.StatsdActive == nil && me.Enabled {
+	if (me.StatsdActive == nil) && (me.Enabled) {
 		me.StatsdActive = opt.NewBool(false)
 	}
-	if me.PerformanceProfile == nil && me.Enabled {
+	if (me.PerformanceProfile == nil) && (me.Enabled) {
 		return fmt.Errorf("'performance_profile' must be specified if 'enabled' is set to '%v'", me.Enabled)
 	}
-	if me.PerformanceProfile != nil && !me.Enabled {
+	if (me.PerformanceProfile != nil) && (!me.Enabled) {
 		return fmt.Errorf("'performance_profile' must not be specified if 'enabled' is set to '%v'", me.Enabled)
 	}
 	return nil

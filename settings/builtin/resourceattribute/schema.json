@@ -58,7 +58,7 @@
 					"$ref": "#/types/RuleItem"
 				}
 			},
-			"maxObjects": 500,
+			"maxObjects": 1000,
 			"minObjects": 0,
 			"modificationPolicy": "DEFAULT",
 			"nullable": false,
@@ -142,5 +142,5 @@
 			"versionInfo": ""
 		}
 	},
-	"version": "1.0.24"
+	"version": "1.0.26"
 }

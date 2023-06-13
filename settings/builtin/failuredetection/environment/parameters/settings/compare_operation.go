@@ -75,16 +75,16 @@ func (me *CompareOperation) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *CompareOperation) HandlePreconditions() error {
-	if me.CaseSensitive == nil && slices.Contains([]string{"STRING_EQUALS", "NOT_STRING_EQUALS", "STARTS_WITH", "NOT_STARTS_WITH", "CONTAINS", "NOT_CONTAINS", "ENDS_WITH", "NOT_ENDS_WITH"}, string(me.CompareOperationType)) {
+	if (me.CaseSensitive == nil) && (slices.Contains([]string{"STRING_EQUALS", "NOT_STRING_EQUALS", "STARTS_WITH", "NOT_STARTS_WITH", "CONTAINS", "NOT_CONTAINS", "ENDS_WITH", "NOT_ENDS_WITH"}, string(me.CompareOperationType))) {
 		me.CaseSensitive = opt.NewBool(false)
 	}
-	if me.DoubleValue == nil && slices.Contains([]string{"DOUBLE_EQUALS", "NOT_DOUBLE_EQUALS", "DOUBLE_GREATER_THAN", "DOUBLE_GREATER_THAN_OR_EQUALS", "DOUBLE_LESS_THAN", "DOUBLE_LESS_THAN_OR_EQUALS"}, string(me.CompareOperationType)) {
+	if (me.DoubleValue == nil) && (slices.Contains([]string{"DOUBLE_EQUALS", "NOT_DOUBLE_EQUALS", "DOUBLE_GREATER_THAN", "DOUBLE_GREATER_THAN_OR_EQUALS", "DOUBLE_LESS_THAN", "DOUBLE_LESS_THAN_OR_EQUALS"}, string(me.CompareOperationType))) {
 		me.DoubleValue = opt.NewFloat64(0.0)
 	}
-	if me.IntValue == nil && slices.Contains([]string{"INTEGER_EQUALS", "NOT_INTEGER_EQUALS", "INTEGER_GREATER_THAN", "INTEGER_GREATER_THAN_OR_EQUALS", "INTEGER_LESS_THAN", "INTEGER_LESS_THAN_OR_EQUALS"}, string(me.CompareOperationType)) {
+	if (me.IntValue == nil) && (slices.Contains([]string{"INTEGER_EQUALS", "NOT_INTEGER_EQUALS", "INTEGER_GREATER_THAN", "INTEGER_GREATER_THAN_OR_EQUALS", "INTEGER_LESS_THAN", "INTEGER_LESS_THAN_OR_EQUALS"}, string(me.CompareOperationType))) {
 		me.IntValue = opt.NewInt(0)
 	}
-	if me.TextValue == nil && slices.Contains([]string{"STRING_EQUALS", "NOT_STRING_EQUALS", "STARTS_WITH", "NOT_STARTS_WITH", "CONTAINS", "NOT_CONTAINS", "ENDS_WITH", "NOT_ENDS_WITH"}, string(me.CompareOperationType)) {
+	if (me.TextValue == nil) && (slices.Contains([]string{"STRING_EQUALS", "NOT_STRING_EQUALS", "STARTS_WITH", "NOT_STARTS_WITH", "CONTAINS", "NOT_CONTAINS", "ENDS_WITH", "NOT_ENDS_WITH"}, string(me.CompareOperationType))) {
 		return fmt.Errorf("'text_value' must be specified if 'compare_operation_type' is set to '%v'", me.CompareOperationType)
 	}
 	return nil

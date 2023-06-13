@@ -515,6 +515,28 @@
 					"nullable": false,
 					"subType": "datasource",
 					"type": "text"
+				},
+				"operator": {
+					"datasource": {
+						"filterProperties": [
+							"dimensionKey"
+						],
+						"fullContext": true,
+						"identifier": "dimensionFilterOperatorDataSource",
+						"resetValue": "ALWAYS",
+						"useApiSearch": false,
+						"validate": true
+					},
+					"description": "",
+					"displayName": "Operator",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": true,
+					"subType": "datasource",
+					"type": {
+						"$ref": "#/enums/DimensionFilterOperator"
+					}
 				}
 			},
 			"summaryPattern": "{dimensionKey} {operator} {dimensionValue|meDisplayName}",
@@ -1296,5 +1318,5 @@
 			"versionInfo": ""
 		}
 	},
-	"version": "1.0.12"
+	"version": "1.0.14"
 }

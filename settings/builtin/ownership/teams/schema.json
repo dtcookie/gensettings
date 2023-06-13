@@ -164,7 +164,7 @@
 					"type": "LENGTH"
 				},
 				{
-					"customMessage": "Team identifier field can not contain special characters or blank spaces and it must start and end with a letter.",
+					"customMessage": "Team identifier field can not contain special characters or blank spaces and it must start with a letter and end with an alphanumeric character.",
 					"customValidatorId": "team-identifier-validator",
 					"type": "CUSTOM_VALIDATOR_REF"
 				}
@@ -645,7 +645,7 @@
 							"type": "LENGTH"
 						},
 						{
-							"customMessage": "Supplementary identifier field can not contain special characters or blank spaces and it must start and end with a letter.",
+							"customMessage": "Supplementary identifier field can not contain special characters or blank spaces and it must start with a letter and end with an alphanumeric character.",
 							"customValidatorId": "team-identifier-validator",
 							"type": "CUSTOM_VALIDATOR_REF"
 						}
@@ -666,5 +666,5 @@
 			"versionInfo": ""
 		}
 	},
-	"version": "1.0.4"
+	"version": "1.0.5"
 }

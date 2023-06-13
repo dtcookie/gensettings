@@ -32,7 +32,7 @@ type Settings struct {
 	DetectionConditionsWindows WindowsDetectionConditions `json:"detectionConditionsWindows,omitempty"` // Detection rules
 	Enabled                    bool                       `json:"enabled"`                              // This setting is enabled (`true`) or disabled (`false`)
 	Metadata                   MetadataItems              `json:"metadata,omitempty"`                   // Set of additional key-value properties to be attached to the triggered event.
-	Monitoring                 bool                       `json:"monitoring"`                           // Toggle the switch in order to enable or disable availability metric monitoring for this policy. Availability metrics consume custom metrics (DDUs). Refer to [documentation](https://dt-url.net/vl03xzk) for DDU consumption examples. Each monitored service consumes one custom metric.
+	Monitoring                 bool                       `json:"monitoring"`                           // Toggle the switch in order to enable or disable availability metric monitoring for this policy. Availability metrics produce custom metrics. Refer to [documentation](https://dt-url.net/vl03xzk) for consumption examples. Each monitored service consumes one custom metric.
 	Name                       string                     `json:"name"`                                 // Rule name
 	NotInstalledAlerting       *bool                      `json:"notInstalledAlerting,omitempty"`       // By default, Dynatrace does not alert if the service is not installed. Toggle the switch to enable or disable this feature
 	Scope                      *string                    `json:"-" scope:"scope"`                      // The scope of this setting (HOST, HOST_GROUP). Omit this property if you want to cover the whole environment.
@@ -84,7 +84,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		},
 		"monitoring": {
 			Type:        schema.TypeBool,
-			Description: "Toggle the switch in order to enable or disable availability metric monitoring for this policy. Availability metrics consume custom metrics (DDUs). Refer to [documentation](https://dt-url.net/vl03xzk) for DDU consumption examples. Each monitored service consumes one custom metric.",
+			Description: "Toggle the switch in order to enable or disable availability metric monitoring for this policy. Availability metrics produce custom metrics. Refer to [documentation](https://dt-url.net/vl03xzk) for consumption examples. Each monitored service consumes one custom metric.",
 			Required:    true,
 		},
 		"name": {
@@ -140,16 +140,16 @@ func (me *Settings) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *Settings) HandlePreconditions() error {
-	if me.NotInstalledAlerting == nil && me.Alerting {
+	if (me.NotInstalledAlerting == nil) && (me.Alerting) {
 		me.NotInstalledAlerting = opt.NewBool(false)
 	}
-	if me.AlertActivationDuration == nil && me.Alerting {
+	if (me.AlertActivationDuration == nil) && (me.Alerting) {
 		return fmt.Errorf("'alert_activation_duration' must be specified if 'alerting' is set to '%v'", me.Alerting)
 	}
-	if me.StatusConditionLinux == nil && (string(me.System) == "LINUX") && me.Alerting {
+	if (me.StatusConditionLinux == nil) && ((string(me.System) == "LINUX") && (me.Alerting)) {
 		return fmt.Errorf("'status_condition_linux' must be specified if 'system' is set to '%v'", me.System)
 	}
-	if me.StatusConditionWindows == nil && (string(me.System) == "WINDOWS") && me.Alerting {
+	if (me.StatusConditionWindows == nil) && ((string(me.System) == "WINDOWS") && (me.Alerting)) {
 		return fmt.Errorf("'status_condition_windows' must be specified if 'system' is set to '%v'", me.System)
 	}
 	// ---- DetectionConditionsLinux LinuxDetectionConditions -> {"expectedValues":["LINUX"],"property":"system","type":"IN"}

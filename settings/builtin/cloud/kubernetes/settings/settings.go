@@ -35,7 +35,7 @@ type Settings struct {
 	Enabled                         bool              `json:"enabled"`                               // This setting is enabled (`true`) or disabled (`false`)
 	EndpointUrl                     *string           `json:"endpointUrl,omitempty"`                 // Get the API URL for [Kubernetes](https://dt-url.net/kz23snj \"Kubernetes\") or [OpenShift](https://dt-url.net/d623xgw \"OpenShift\").
 	EventPatterns                   EventComplexTypes `json:"eventPatterns,omitempty"`               // Define Kubernetes event filters to ingest events into your environment. For more details, see the [documentation](https://dt-url.net/2201p0u).
-	EventProcessingActive           bool              `json:"eventProcessingActive"`                 // All events are monitored by default unless event filters are specified.\n\nKubernetes events are subject to Davis data units (DDU) licensing.\nSee [DDUs for events](https://dt-url.net/5n03vcu) for details.
+	EventProcessingActive           bool              `json:"eventProcessingActive"`                 // All events are monitored unless event filters are specified. All ingested events are subject to licensing by default.\n\nIf you have a DPS license see [licensing documentation](https://dt-url.net/cee34zj) for details.\n\nIf you have a non-DPS license see [DDUs for events](https://dt-url.net/5n03vcu) for details.
 	FilterEvents                    *bool             `json:"filterEvents,omitempty"`                // Include only events specified by Events Field Selectors
 	HostnameVerificationEnabled     *bool             `json:"hostnameVerificationEnabled,omitempty"` // Verify hostname in certificate against Kubernetes API URL
 	IncludeAllFdiEvents             *bool             `json:"includeAllFdiEvents,omitempty"`         // For a list of included events, see the [documentation](https://dt-url.net/l61d02no).
@@ -99,7 +99,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		},
 		"event_processing_active": {
 			Type:        schema.TypeBool,
-			Description: "All events are monitored by default unless event filters are specified.\n\nKubernetes events are subject to Davis data units (DDU) licensing.\nSee [DDUs for events](https://dt-url.net/5n03vcu) for details.",
+			Description: "All events are monitored unless event filters are specified. All ingested events are subject to licensing by default.\n\nIf you have a DPS license see [licensing documentation](https://dt-url.net/cee34zj) for details.\n\nIf you have a non-DPS license see [DDUs for events](https://dt-url.net/5n03vcu) for details.",
 			Required:    true,
 		},
 		"filter_events": {
@@ -169,28 +169,28 @@ func (me *Settings) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *Settings) HandlePreconditions() error {
-	if me.CertificateCheckEnabled == nil && !me.ClusterIdEnabled {
+	if (me.CertificateCheckEnabled == nil) && (!me.ClusterIdEnabled) {
 		me.CertificateCheckEnabled = opt.NewBool(false)
 	}
-	if me.FilterEvents == nil && me.EventProcessingActive {
+	if (me.FilterEvents == nil) && (me.EventProcessingActive) {
 		me.FilterEvents = opt.NewBool(false)
 	}
-	if me.HostnameVerificationEnabled == nil && !me.ClusterIdEnabled {
+	if (me.HostnameVerificationEnabled == nil) && (!me.ClusterIdEnabled) {
 		me.HostnameVerificationEnabled = opt.NewBool(false)
 	}
-	if me.IncludeAllFdiEvents == nil && me.FilterEvents != nil && *me.FilterEvents {
+	if (me.IncludeAllFdiEvents == nil) && (me.FilterEvents != nil && *me.FilterEvents) {
 		me.IncludeAllFdiEvents = opt.NewBool(false)
 	}
-	if me.ActiveGateGroup == nil && !me.ClusterIdEnabled {
+	if (me.ActiveGateGroup == nil) && (!me.ClusterIdEnabled) {
 		return fmt.Errorf("'active_gate_group' must be specified if 'cluster_id_enabled' is set to '%v'", me.ClusterIdEnabled)
 	}
-	if me.AuthToken == nil && !me.ClusterIdEnabled {
+	if (me.AuthToken == nil) && (!me.ClusterIdEnabled) {
 		return fmt.Errorf("'auth_token' must be specified if 'cluster_id_enabled' is set to '%v'", me.ClusterIdEnabled)
 	}
-	if me.ClusterID == nil && me.ClusterIdEnabled {
+	if (me.ClusterID == nil) && (me.ClusterIdEnabled) {
 		return fmt.Errorf("'cluster_id' must be specified if 'cluster_id_enabled' is set to '%v'", me.ClusterIdEnabled)
 	}
-	if me.EndpointUrl == nil && !me.ClusterIdEnabled {
+	if (me.EndpointUrl == nil) && (!me.ClusterIdEnabled) {
 		return fmt.Errorf("'endpoint_url' must be specified if 'cluster_id_enabled' is set to '%v'", me.ClusterIdEnabled)
 	}
 	// ---- EventPatterns EventComplexTypes -> {"expectedValue":true,"property":"filterEvents","type":"EQUALS"}

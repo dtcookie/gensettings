@@ -41,7 +41,7 @@
 				},
 				{
 					"description": "Services",
-					"displayName": "Database vendor",
+					"displayName": "Database technology",
 					"value": "SERVICE_DATABASE_VENDOR"
 				},
 				{

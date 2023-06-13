@@ -135,7 +135,7 @@ func main() {
 	}
 	schemata := map[string]*Schema{}
 	for _, schemaStub := range schemaList.Items {
-		// if schemaStub.SchemaID != "builtin:dt-javascript-runtime.edge-http-targets" {
+		// if schemaStub.SchemaID != "builtin:service-detection.external-web-request" {
 		// 	continue
 		// }
 		// if schemaStub.SchemaID != "builtin:example.kitchen-sink" {

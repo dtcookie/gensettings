@@ -59,7 +59,7 @@ func (me *Settings) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *Settings) HandlePreconditions() error {
-	if me.EnabledGoStaticMonitoring == nil && me.Enabled {
+	if (me.EnabledGoStaticMonitoring == nil) && (me.Enabled) {
 		me.EnabledGoStaticMonitoring = opt.NewBool(false)
 	}
 	return nil

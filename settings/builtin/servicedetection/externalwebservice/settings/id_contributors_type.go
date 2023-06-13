@@ -27,7 +27,7 @@ import (
 
 type IdContributorsType struct {
 	DetectAsWebRequestService bool                  `json:"detectAsWebRequestService"`  // Detect the matching requests as web request services instead of web services.\n\nThis prevents detecting of matching requests as opaque web services. An opaque web request service is created instead. If you need to further modify the resulting web request service, you need to create a separate [Opaque/external web request rule](builtin:service-detection.full-web-request).
-	PortForServiceID          *bool                 `json:"portForServiceId,omitempty"` // Let the Port contribute to the Service Id
+	PortForServiceID          *bool                 `json:"portForServiceId,omitempty"` // Let the port contribute to the Service Id
 	UrlPath                   *ServiceIdContributor `json:"urlPath,omitempty"`          // URL path
 }
 
@@ -40,7 +40,7 @@ func (me *IdContributorsType) Schema() map[string]*schema.Schema {
 		},
 		"port_for_service_id": {
 			Type:        schema.TypeBool,
-			Description: "Let the Port contribute to the Service Id",
+			Description: "Let the port contribute to the Service Id",
 			Optional:    true, // precondition
 		},
 		"url_path": {
@@ -63,13 +63,13 @@ func (me *IdContributorsType) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *IdContributorsType) HandlePreconditions() error {
-	if me.PortForServiceID == nil && !me.DetectAsWebRequestService {
+	if (me.PortForServiceID == nil) && (!me.DetectAsWebRequestService) {
 		me.PortForServiceID = opt.NewBool(false)
 	}
-	if me.UrlPath == nil && !me.DetectAsWebRequestService {
+	if (me.UrlPath == nil) && (!me.DetectAsWebRequestService) {
 		return fmt.Errorf("'url_path' must be specified if 'detect_as_web_request_service' is set to '%v'", me.DetectAsWebRequestService)
 	}
-	if me.UrlPath != nil && me.DetectAsWebRequestService {
+	if (me.UrlPath != nil) && (me.DetectAsWebRequestService) {
 		return fmt.Errorf("'url_path' must not be specified if 'detect_as_web_request_service' is set to '%v'", me.DetectAsWebRequestService)
 	}
 	return nil

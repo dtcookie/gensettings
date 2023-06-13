@@ -2,7 +2,7 @@
 	"allowedScopes": [
 		"environment"
 	],
-	"description": "Business events can be stored in different buckets. The first user-defined rule that matches will determine bucket assignment. If no rules match, the default bucket will be used.\n\nLearn more by visiting [our documentation](https://dt-url.net/4c034xt).",
+	"description": "Business events can be stored in different buckets. The first user-defined rule that matches will determine bucket assignment. If no rules match, the default bucket will be used.\n\nLearn to create custom buckets and more by visiting [our documentation](https://dt-url.net/4c034xt).",
 	"displayName": "Business event bucket assignment",
 	"documentation": "",
 	"dynatrace": "1",

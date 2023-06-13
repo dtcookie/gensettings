@@ -55,10 +55,10 @@ func (me *PublicDomainIdContributor) MarshalHCL(properties hcl.Properties) error
 }
 
 func (me *PublicDomainIdContributor) HandlePreconditions() error {
-	if me.ServiceIdContributor == nil && me.EnableIdContributor {
+	if (me.ServiceIdContributor == nil) && (me.EnableIdContributor) {
 		return fmt.Errorf("'service_id_contributor' must be specified if 'enable_id_contributor' is set to '%v'", me.EnableIdContributor)
 	}
-	if me.ServiceIdContributor != nil && !me.EnableIdContributor {
+	if (me.ServiceIdContributor != nil) && (!me.EnableIdContributor) {
 		return fmt.Errorf("'service_id_contributor' must not be specified if 'enable_id_contributor' is set to '%v'", me.EnableIdContributor)
 	}
 	return nil

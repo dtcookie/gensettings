@@ -52,10 +52,10 @@ func (me *DoNotTrack) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *DoNotTrack) HandlePreconditions() error {
-	if me.DoNotTrack == nil && me.ComplyWithDoNotTrack {
+	if (me.DoNotTrack == nil) && (me.ComplyWithDoNotTrack) {
 		return fmt.Errorf("'do_not_track' must be specified if 'comply_with_do_not_track' is set to '%v'", me.ComplyWithDoNotTrack)
 	}
-	if me.DoNotTrack != nil && !me.ComplyWithDoNotTrack {
+	if (me.DoNotTrack != nil) && (!me.ComplyWithDoNotTrack) {
 		return fmt.Errorf("'do_not_track' must not be specified if 'comply_with_do_not_track' is set to '%v'", me.ComplyWithDoNotTrack)
 	}
 	return nil

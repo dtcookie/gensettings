@@ -85,28 +85,28 @@ func (me *Schedule) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *Schedule) HandlePreconditions() error {
-	if me.DailyRecurrence == nil && (string(me.ScheduleType) == "DAILY") {
+	if (me.DailyRecurrence == nil) && (string(me.ScheduleType) == "DAILY") {
 		return fmt.Errorf("'daily_recurrence' must be specified if 'schedule_type' is set to '%v'", me.ScheduleType)
 	}
-	if me.DailyRecurrence != nil && (string(me.ScheduleType) != "DAILY") {
+	if (me.DailyRecurrence != nil) && (string(me.ScheduleType) != "DAILY") {
 		return fmt.Errorf("'daily_recurrence' must not be specified if 'schedule_type' is set to '%v'", me.ScheduleType)
 	}
-	if me.MonthlyRecurrence == nil && (string(me.ScheduleType) == "MONTHLY") {
+	if (me.MonthlyRecurrence == nil) && (string(me.ScheduleType) == "MONTHLY") {
 		return fmt.Errorf("'monthly_recurrence' must be specified if 'schedule_type' is set to '%v'", me.ScheduleType)
 	}
-	if me.MonthlyRecurrence != nil && (string(me.ScheduleType) != "MONTHLY") {
+	if (me.MonthlyRecurrence != nil) && (string(me.ScheduleType) != "MONTHLY") {
 		return fmt.Errorf("'monthly_recurrence' must not be specified if 'schedule_type' is set to '%v'", me.ScheduleType)
 	}
-	if me.OnceRecurrence == nil && (string(me.ScheduleType) == "ONCE") {
+	if (me.OnceRecurrence == nil) && (string(me.ScheduleType) == "ONCE") {
 		return fmt.Errorf("'once_recurrence' must be specified if 'schedule_type' is set to '%v'", me.ScheduleType)
 	}
-	if me.OnceRecurrence != nil && (string(me.ScheduleType) != "ONCE") {
+	if (me.OnceRecurrence != nil) && (string(me.ScheduleType) != "ONCE") {
 		return fmt.Errorf("'once_recurrence' must not be specified if 'schedule_type' is set to '%v'", me.ScheduleType)
 	}
-	if me.WeeklyRecurrence == nil && (string(me.ScheduleType) == "WEEKLY") {
+	if (me.WeeklyRecurrence == nil) && (string(me.ScheduleType) == "WEEKLY") {
 		return fmt.Errorf("'weekly_recurrence' must be specified if 'schedule_type' is set to '%v'", me.ScheduleType)
 	}
-	if me.WeeklyRecurrence != nil && (string(me.ScheduleType) != "WEEKLY") {
+	if (me.WeeklyRecurrence != nil) && (string(me.ScheduleType) != "WEEKLY") {
 		return fmt.Errorf("'weekly_recurrence' must not be specified if 'schedule_type' is set to '%v'", me.ScheduleType)
 	}
 	return nil

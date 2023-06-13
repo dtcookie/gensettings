@@ -1,0 +1,85 @@
+{
+	"allowedScopes": [
+		"HOST",
+		"HOST_GROUP",
+		"environment"
+	],
+	"constraints": [
+		{
+			"customMessage": "For monitoring OS services OneAgent with version 1.195+ is required.",
+			"customValidatorId": "os-services-sufficient-one-agent-version-validator",
+			"type": "CUSTOM_VALIDATOR_REF"
+		}
+	],
+	"description": "Dynatrace provides out-of-the-box availability monitoring of OS services for Windows.\n\nTo monitor the availability of a service, specify the `Service name` and `Display name`. To simplify management in a large-scale environment, adjust settings on the host-group level.",
+	"displayName": "Classic Windows services monitoring",
+	"documentation": "",
+	"dynatrace": "1",
+	"enums": {},
+	"maxObjects": 500,
+	"metadata": {
+		"addItemButton": "Add new service",
+		"itemDisplayName": "New service",
+		"minAgentVersion": "1.195"
+	},
+	"multiObject": true,
+	"ordered": true,
+	"properties": {
+		"displayName": {
+			"constraints": [
+				{
+					"type": "NOT_BLANK"
+				},
+				{
+					"maxLength": 500,
+					"minLength": 1,
+					"type": "LENGTH"
+				}
+			],
+			"default": "",
+			"description": "",
+			"displayName": "Display name",
+			"documentation": "",
+			"maxObjects": 1,
+			"modificationPolicy": "DEFAULT",
+			"nullable": false,
+			"type": "text"
+		},
+		"enabled": {
+			"default": true,
+			"description": "",
+			"displayName": "Enabled",
+			"documentation": "",
+			"maxObjects": 1,
+			"modificationPolicy": "DEFAULT",
+			"nullable": false,
+			"type": "boolean"
+		},
+		"serviceName": {
+			"constraints": [
+				{
+					"type": "NOT_BLANK"
+				},
+				{
+					"maxLength": 500,
+					"minLength": 1,
+					"type": "LENGTH"
+				}
+			],
+			"default": "",
+			"description": "",
+			"displayName": "Service name",
+			"documentation": "",
+			"maxObjects": 1,
+			"modificationPolicy": "DEFAULT",
+			"nullable": false,
+			"type": "text"
+		}
+	},
+	"schemaGroups": [
+		"group:monitoring"
+	],
+	"schemaId": "builtin:os.services.monitoring",
+	"types": {},
+	"version": "0.0.10"
+}

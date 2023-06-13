@@ -92,7 +92,7 @@ func (me *Predicate) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *Predicate) HandlePreconditions() error {
-	if me.CaseSensitive == nil && slices.Contains([]string{"STRING_EQUALS", "STARTS_WITH", "ENDS_WITH", "CONTAINS"}, string(me.PredicateType)) {
+	if (me.CaseSensitive == nil) && (slices.Contains([]string{"STRING_EQUALS", "STARTS_WITH", "ENDS_WITH", "CONTAINS"}, string(me.PredicateType))) {
 		me.CaseSensitive = opt.NewBool(false)
 	}
 	// ---- ManagementZones []string -> {"expectedValues":["MANAGEMENT_ZONES_CONTAINS_ALL"],"property":"predicateType","type":"IN"}

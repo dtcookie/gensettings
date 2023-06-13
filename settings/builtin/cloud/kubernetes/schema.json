@@ -230,7 +230,7 @@
 			"default": false,
 			"description": "",
 			"displayName": "Monitor events",
-			"documentation": "All events are monitored by default unless event filters are specified.\n\nKubernetes events are subject to Davis data units (DDU) licensing.\nSee [DDUs for events](https://dt-url.net/5n03vcu) for details.",
+			"documentation": "All events are monitored unless event filters are specified. All ingested events are subject to licensing by default.\n\nIf you have a DPS license see [licensing documentation](https://dt-url.net/cee34zj) for details.\n\nIf you have a non-DPS license see [DDUs for events](https://dt-url.net/5n03vcu) for details.",
 			"maxObjects": 1,
 			"metadata": {
 				"minActiveGateVersion": "1.187"
@@ -335,7 +335,7 @@
 			"default": false,
 			"description": "For annotation guidance, see the [documentation](https://dt-url.net/g42i0ppw).",
 			"displayName": "Monitor annotated Prometheus exporters",
-			"documentation": "Prometheus metrics in Kubernetes environments are subject to Davis data units (DDU) licensing.\nSee [Monitoring consumption](https://dt-url.net/k8smpm) for details.",
+			"documentation": "Prometheus metrics in kubernetes environments are subject to licensing.\n\nIf you have DPS licensing see [licensing documentation](https://dt-url.net/nd0348b) for details.\n\nIf you have non-DPS licensing see [Monitoring consumption](https://dt-url.net/k8smpm) for details.",
 			"maxObjects": 1,
 			"metadata": {
 				"minActiveGateVersion": "1.201"
@@ -348,7 +348,7 @@
 			"default": false,
 			"description": "To enable dashboards and alerts, add the [Kubernetes persistent volume claims](ui/hub/ext/com.dynatrace.extension.kubernetes-pvc) extension to your environment.",
 			"displayName": "Monitor persistent volume claims",
-			"documentation": "The persistent volume claims feature is based on custom metrics and is therefore subject to Davis data units (DDU) licensing.\nSee [DDUs for custom metrics](https://dt-url.net/k8smcc) for details.",
+			"documentation": "The persistent volume claims feature is based on custom metrics and is, therefore, subject to licensing.\n\nIf you have DPS licensing see [licensing documentation](https://dt-url.net/nd0348b) for details.\n\nIf you have non-DPS licensing see [DDUs for custom metrics](https://dt-url.net/k8smcc) for details.",
 			"maxObjects": 1,
 			"metadata": {
 				"minActiveGateVersion": "1.239"

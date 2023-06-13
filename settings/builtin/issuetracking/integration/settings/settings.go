@@ -104,10 +104,10 @@ func (me *Settings) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *Settings) HandlePreconditions() error {
-	if me.Password == nil && slices.Contains([]string{"JIRA", "JIRA_ON_PREMISE", "SERVICENOW"}, string(me.Issuetrackersystem)) {
+	if (me.Password == nil) && (slices.Contains([]string{"JIRA", "JIRA_ON_PREMISE", "SERVICENOW"}, string(me.Issuetrackersystem))) {
 		return fmt.Errorf("'password' must be specified if 'issuetrackersystem' is set to '%v'", me.Issuetrackersystem)
 	}
-	if me.Token == nil && slices.Contains([]string{"JIRA", "GITHUB", "GITLAB", "JIRA_CLOUD"}, string(me.Issuetrackersystem)) {
+	if (me.Token == nil) && (slices.Contains([]string{"JIRA", "GITHUB", "GITLAB", "JIRA_CLOUD"}, string(me.Issuetrackersystem))) {
 		return fmt.Errorf("'token' must be specified if 'issuetrackersystem' is set to '%v'", me.Issuetrackersystem)
 	}
 	return nil

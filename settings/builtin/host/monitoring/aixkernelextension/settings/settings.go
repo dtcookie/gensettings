@@ -58,7 +58,7 @@ func (me *Settings) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *Settings) HandlePreconditions() error {
-	if me.Enabled == nil && !me.UseGlobalSettings {
+	if (me.Enabled == nil) && (!me.UseGlobalSettings) {
 		me.Enabled = opt.NewBool(false)
 	}
 	return nil

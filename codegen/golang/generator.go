@@ -105,6 +105,7 @@ func (me *generator) Write(folder string) error {
 			return err
 		}
 		for _, contributor := range contributors {
+			Override(me.schemaID, contributor)
 			fileName := contributor.FileName()
 			if storedContributors, exists := files[fileName]; exists {
 				files[fileName] = append(storedContributors, contributor)
@@ -113,6 +114,7 @@ func (me *generator) Write(folder string) error {
 			}
 		}
 	}
+
 	for fileName, contributors := range files {
 		buf := new(bytes.Buffer)
 		goFile := &GoFile{

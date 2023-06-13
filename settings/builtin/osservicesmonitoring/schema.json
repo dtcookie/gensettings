@@ -4,7 +4,7 @@
 		"HOST_GROUP",
 		"environment"
 	],
-	"description": "Set up alerts for OS services in undesirable states both for Windows and Linux systemd.\n Note: Alerting feature is included in host units, however if monitoring ​ is turned on for full availability metric DDU consumption takes place. Refer to [documentation](https://dt-url.net/vl03xzk) for more details.\n\nPlease provide feedback to us about this feature on [Dynatrace Community](https://dt-url.net/nl02tbm).",
+	"description": "Set up alerts for OS services in undesirable states both for Windows and Linux systemd.\n Note: If monitoring is turned on for full availability metric, custom metric consumption takes place. Refer to [documentation](https://dt-url.net/vl03xzk) for more details.\n\nPlease provide feedback to us about this feature on [Dynatrace Community](https://dt-url.net/nl02tbm).",
 	"displayName": "OS services monitoring",
 	"documentation": "\n\nIn order to set up the alert for a certain group of OS services, you must first define a new policy. Specify which service's states you would like to be alerted about and then add detection rules in order to tell Dynatrace which exact OS services you are interested in. You may specify multiple detection rules.\n\nNote that policies are specified for each of supported operating systems individually and that some of the parameters and properties vary between them.",
 	"dynatrace": "1",
@@ -216,7 +216,7 @@
 			"default": false,
 			"description": "",
 			"displayName": "Monitor",
-			"documentation": "Toggle the switch in order to enable or disable availability metric monitoring for this policy. Availability metrics consume custom metrics (DDUs). Refer to [documentation](https://dt-url.net/vl03xzk) for DDU consumption examples. Each monitored service consumes one custom metric.",
+			"documentation": "Toggle the switch in order to enable or disable availability metric monitoring for this policy. Availability metrics produce custom metrics. Refer to [documentation](https://dt-url.net/vl03xzk) for consumption examples. Each monitored service consumes one custom metric.",
 			"maxObjects": 1,
 			"metadata": {
 				"minAgentVersion": "1.243"

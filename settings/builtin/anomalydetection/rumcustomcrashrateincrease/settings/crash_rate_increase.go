@@ -72,22 +72,22 @@ func (me *CrashRateIncrease) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *CrashRateIncrease) HandlePreconditions() error {
-	if me.CrashRateIncreaseAuto == nil && me.Enabled && (me.DetectionMode != nil && string(*me.DetectionMode) == "auto") {
+	if (me.CrashRateIncreaseAuto == nil) && (me.Enabled && (me.DetectionMode != nil && (string(*me.DetectionMode) == "auto"))) {
 		return fmt.Errorf("'crash_rate_increase_auto' must be specified if 'enabled' is set to '%v' and 'detection_mode' is set to '%v'", me.Enabled, me.DetectionMode)
 	}
-	if me.CrashRateIncreaseAuto != nil && !me.Enabled || me.DetectionMode == nil || (me.DetectionMode != nil && string(*me.DetectionMode) != "auto") {
+	if (me.CrashRateIncreaseAuto != nil) && (!me.Enabled || (me.DetectionMode == nil || (me.DetectionMode != nil && string(*me.DetectionMode) != "auto"))) {
 		return fmt.Errorf("'crash_rate_increase_auto' must not be specified if 'enabled' is set to '%v'", me.Enabled)
 	}
-	if me.CrashRateIncreaseFixed == nil && me.Enabled && (me.DetectionMode != nil && string(*me.DetectionMode) == "fixed") {
+	if (me.CrashRateIncreaseFixed == nil) && (me.Enabled && (me.DetectionMode != nil && (string(*me.DetectionMode) == "fixed"))) {
 		return fmt.Errorf("'crash_rate_increase_fixed' must be specified if 'enabled' is set to '%v' and 'detection_mode' is set to '%v'", me.Enabled, me.DetectionMode)
 	}
-	if me.CrashRateIncreaseFixed != nil && !me.Enabled || me.DetectionMode == nil || (me.DetectionMode != nil && string(*me.DetectionMode) != "fixed") {
+	if (me.CrashRateIncreaseFixed != nil) && (!me.Enabled || (me.DetectionMode == nil || (me.DetectionMode != nil && string(*me.DetectionMode) != "fixed"))) {
 		return fmt.Errorf("'crash_rate_increase_fixed' must not be specified if 'enabled' is set to '%v'", me.Enabled)
 	}
-	if me.DetectionMode == nil && me.Enabled {
+	if (me.DetectionMode == nil) && (me.Enabled) {
 		return fmt.Errorf("'detection_mode' must be specified if 'enabled' is set to '%v'", me.Enabled)
 	}
-	if me.DetectionMode != nil && !me.Enabled {
+	if (me.DetectionMode != nil) && (!me.Enabled) {
 		return fmt.Errorf("'detection_mode' must not be specified if 'enabled' is set to '%v'", me.Enabled)
 	}
 	return nil

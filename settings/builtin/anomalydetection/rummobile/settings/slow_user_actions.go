@@ -72,22 +72,22 @@ func (me *SlowUserActions) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *SlowUserActions) HandlePreconditions() error {
-	if me.DetectionMode == nil && me.Enabled {
+	if (me.DetectionMode == nil) && (me.Enabled) {
 		return fmt.Errorf("'detection_mode' must be specified if 'enabled' is set to '%v'", me.Enabled)
 	}
-	if me.DetectionMode != nil && !me.Enabled {
+	if (me.DetectionMode != nil) && (!me.Enabled) {
 		return fmt.Errorf("'detection_mode' must not be specified if 'enabled' is set to '%v'", me.Enabled)
 	}
-	if me.SlowUserActionsAuto == nil && me.Enabled && (me.DetectionMode != nil && string(*me.DetectionMode) == "auto") {
+	if (me.SlowUserActionsAuto == nil) && (me.Enabled && (me.DetectionMode != nil && (string(*me.DetectionMode) == "auto"))) {
 		return fmt.Errorf("'slow_user_actions_auto' must be specified if 'enabled' is set to '%v' and 'detection_mode' is set to '%v'", me.Enabled, me.DetectionMode)
 	}
-	if me.SlowUserActionsAuto != nil && !me.Enabled || me.DetectionMode == nil || (me.DetectionMode != nil && string(*me.DetectionMode) != "auto") {
+	if (me.SlowUserActionsAuto != nil) && (!me.Enabled || (me.DetectionMode == nil || (me.DetectionMode != nil && string(*me.DetectionMode) != "auto"))) {
 		return fmt.Errorf("'slow_user_actions_auto' must not be specified if 'enabled' is set to '%v'", me.Enabled)
 	}
-	if me.SlowUserActionsFixed == nil && me.Enabled && (me.DetectionMode != nil && string(*me.DetectionMode) == "fixed") {
+	if (me.SlowUserActionsFixed == nil) && (me.Enabled && (me.DetectionMode != nil && (string(*me.DetectionMode) == "fixed"))) {
 		return fmt.Errorf("'slow_user_actions_fixed' must be specified if 'enabled' is set to '%v' and 'detection_mode' is set to '%v'", me.Enabled, me.DetectionMode)
 	}
-	if me.SlowUserActionsFixed != nil && !me.Enabled || me.DetectionMode == nil || (me.DetectionMode != nil && string(*me.DetectionMode) != "fixed") {
+	if (me.SlowUserActionsFixed != nil) && (!me.Enabled || (me.DetectionMode == nil || (me.DetectionMode != nil && string(*me.DetectionMode) != "fixed"))) {
 		return fmt.Errorf("'slow_user_actions_fixed' must not be specified if 'enabled' is set to '%v'", me.Enabled)
 	}
 	return nil

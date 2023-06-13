@@ -1069,6 +1069,15 @@
 			"displayName": "ServiceNowNotification",
 			"documentation": "",
 			"properties": {
+				"formatProblemDetailsAsText": {
+					"description": "",
+					"displayName": "Use text format for problem details instead of HTML.",
+					"documentation": "",
+					"maxObjects": 1,
+					"modificationPolicy": "DEFAULT",
+					"nullable": true,
+					"type": "boolean"
+				},
 				"instanceName": {
 					"constraints": [
 						{
@@ -1865,5 +1874,5 @@
 			"versionInfo": ""
 		}
 	},
-	"version": "1.4.7"
+	"version": "1.4.8"
 }

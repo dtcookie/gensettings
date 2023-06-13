@@ -100,10 +100,10 @@ func (me *WebHookNotification) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *WebHookNotification) HandlePreconditions() error {
-	if me.OAuth2Credentials == nil && me.UseOAuth2 != nil && *me.UseOAuth2 {
+	if (me.OAuth2Credentials == nil) && (me.UseOAuth2 != nil && *me.UseOAuth2) {
 		return fmt.Errorf("'o_auth_2_credentials' must be specified if 'use_oauth_2' is set to '%v'", me.UseOAuth2)
 	}
-	if me.OAuth2Credentials != nil && me.UseOAuth2 != nil && !*me.UseOAuth2 {
+	if (me.OAuth2Credentials != nil) && (me.UseOAuth2 != nil && !*me.UseOAuth2) {
 		return fmt.Errorf("'o_auth_2_credentials' must not be specified if 'use_oauth_2' is set to '%v'", me.UseOAuth2)
 	}
 	return nil

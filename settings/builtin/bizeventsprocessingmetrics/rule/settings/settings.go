@@ -81,7 +81,7 @@ func (me *Settings) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *Settings) HandlePreconditions() error {
-	if me.MeasureAttribute == nil && (string(me.Measure) == "ATTRIBUTE") {
+	if (me.MeasureAttribute == nil) && (string(me.Measure) == "ATTRIBUTE") {
 		return fmt.Errorf("'measure_attribute' must be specified if 'measure' is set to '%v'", me.Measure)
 	}
 	return nil

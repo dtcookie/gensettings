@@ -176,70 +176,70 @@ func (me *Settings) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *Settings) HandlePreconditions() error {
-	if me.AnsibleTowerNotification == nil && (string(me.Type) == "ANSIBLETOWER") {
+	if (me.AnsibleTowerNotification == nil) && (string(me.Type) == "ANSIBLETOWER") {
 		return fmt.Errorf("'ansible_tower_notification' must be specified if 'type' is set to '%v'", me.Type)
 	}
-	if me.AnsibleTowerNotification != nil && (string(me.Type) != "ANSIBLETOWER") {
+	if (me.AnsibleTowerNotification != nil) && (string(me.Type) != "ANSIBLETOWER") {
 		return fmt.Errorf("'ansible_tower_notification' must not be specified if 'type' is set to '%v'", me.Type)
 	}
-	if me.EmailNotification == nil && (string(me.Type) == "EMAIL") {
+	if (me.EmailNotification == nil) && (string(me.Type) == "EMAIL") {
 		return fmt.Errorf("'email_notification' must be specified if 'type' is set to '%v'", me.Type)
 	}
-	if me.EmailNotification != nil && (string(me.Type) != "EMAIL") {
+	if (me.EmailNotification != nil) && (string(me.Type) != "EMAIL") {
 		return fmt.Errorf("'email_notification' must not be specified if 'type' is set to '%v'", me.Type)
 	}
-	if me.JiraNotification == nil && (string(me.Type) == "JIRA") {
+	if (me.JiraNotification == nil) && (string(me.Type) == "JIRA") {
 		return fmt.Errorf("'jira_notification' must be specified if 'type' is set to '%v'", me.Type)
 	}
-	if me.JiraNotification != nil && (string(me.Type) != "JIRA") {
+	if (me.JiraNotification != nil) && (string(me.Type) != "JIRA") {
 		return fmt.Errorf("'jira_notification' must not be specified if 'type' is set to '%v'", me.Type)
 	}
-	if me.OpsGenieNotification == nil && (string(me.Type) == "OPS_GENIE") {
+	if (me.OpsGenieNotification == nil) && (string(me.Type) == "OPS_GENIE") {
 		return fmt.Errorf("'ops_genie_notification' must be specified if 'type' is set to '%v'", me.Type)
 	}
-	if me.OpsGenieNotification != nil && (string(me.Type) != "OPS_GENIE") {
+	if (me.OpsGenieNotification != nil) && (string(me.Type) != "OPS_GENIE") {
 		return fmt.Errorf("'ops_genie_notification' must not be specified if 'type' is set to '%v'", me.Type)
 	}
-	if me.PagerDutyNotification == nil && (string(me.Type) == "PAGER_DUTY") {
+	if (me.PagerDutyNotification == nil) && (string(me.Type) == "PAGER_DUTY") {
 		return fmt.Errorf("'pager_duty_notification' must be specified if 'type' is set to '%v'", me.Type)
 	}
-	if me.PagerDutyNotification != nil && (string(me.Type) != "PAGER_DUTY") {
+	if (me.PagerDutyNotification != nil) && (string(me.Type) != "PAGER_DUTY") {
 		return fmt.Errorf("'pager_duty_notification' must not be specified if 'type' is set to '%v'", me.Type)
 	}
-	if me.ServiceNowNotification == nil && (string(me.Type) == "SERVICE_NOW") {
+	if (me.ServiceNowNotification == nil) && (string(me.Type) == "SERVICE_NOW") {
 		return fmt.Errorf("'service_now_notification' must be specified if 'type' is set to '%v'", me.Type)
 	}
-	if me.ServiceNowNotification != nil && (string(me.Type) != "SERVICE_NOW") {
+	if (me.ServiceNowNotification != nil) && (string(me.Type) != "SERVICE_NOW") {
 		return fmt.Errorf("'service_now_notification' must not be specified if 'type' is set to '%v'", me.Type)
 	}
-	if me.SlackNotification == nil && (string(me.Type) == "SLACK") {
+	if (me.SlackNotification == nil) && (string(me.Type) == "SLACK") {
 		return fmt.Errorf("'slack_notification' must be specified if 'type' is set to '%v'", me.Type)
 	}
-	if me.SlackNotification != nil && (string(me.Type) != "SLACK") {
+	if (me.SlackNotification != nil) && (string(me.Type) != "SLACK") {
 		return fmt.Errorf("'slack_notification' must not be specified if 'type' is set to '%v'", me.Type)
 	}
-	if me.TrelloNotification == nil && (string(me.Type) == "TRELLO") {
+	if (me.TrelloNotification == nil) && (string(me.Type) == "TRELLO") {
 		return fmt.Errorf("'trello_notification' must be specified if 'type' is set to '%v'", me.Type)
 	}
-	if me.TrelloNotification != nil && (string(me.Type) != "TRELLO") {
+	if (me.TrelloNotification != nil) && (string(me.Type) != "TRELLO") {
 		return fmt.Errorf("'trello_notification' must not be specified if 'type' is set to '%v'", me.Type)
 	}
-	if me.VictorOpsNotification == nil && (string(me.Type) == "VICTOROPS") {
+	if (me.VictorOpsNotification == nil) && (string(me.Type) == "VICTOROPS") {
 		return fmt.Errorf("'victor_ops_notification' must be specified if 'type' is set to '%v'", me.Type)
 	}
-	if me.VictorOpsNotification != nil && (string(me.Type) != "VICTOROPS") {
+	if (me.VictorOpsNotification != nil) && (string(me.Type) != "VICTOROPS") {
 		return fmt.Errorf("'victor_ops_notification' must not be specified if 'type' is set to '%v'", me.Type)
 	}
-	if me.WebHookNotification == nil && (string(me.Type) == "WEBHOOK") {
+	if (me.WebHookNotification == nil) && (string(me.Type) == "WEBHOOK") {
 		return fmt.Errorf("'web_hook_notification' must be specified if 'type' is set to '%v'", me.Type)
 	}
-	if me.WebHookNotification != nil && (string(me.Type) != "WEBHOOK") {
+	if (me.WebHookNotification != nil) && (string(me.Type) != "WEBHOOK") {
 		return fmt.Errorf("'web_hook_notification' must not be specified if 'type' is set to '%v'", me.Type)
 	}
-	if me.XMattersNotification == nil && (string(me.Type) == "XMATTERS") {
+	if (me.XMattersNotification == nil) && (string(me.Type) == "XMATTERS") {
 		return fmt.Errorf("'x_matters_notification' must be specified if 'type' is set to '%v'", me.Type)
 	}
-	if me.XMattersNotification != nil && (string(me.Type) != "XMATTERS") {
+	if (me.XMattersNotification != nil) && (string(me.Type) != "XMATTERS") {
 		return fmt.Errorf("'x_matters_notification' must not be specified if 'type' is set to '%v'", me.Type)
 	}
 	return nil

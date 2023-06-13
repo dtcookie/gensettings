@@ -106,22 +106,22 @@ func (me *ContactDetails) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *ContactDetails) HandlePreconditions() error {
-	if me.Email == nil && (string(me.IntegrationType) == "EMAIL") {
+	if (me.Email == nil) && (string(me.IntegrationType) == "EMAIL") {
 		return fmt.Errorf("'email' must be specified if 'integration_type' is set to '%v'", me.IntegrationType)
 	}
-	if me.Jira == nil && (string(me.IntegrationType) == "JIRA") {
+	if (me.Jira == nil) && (string(me.IntegrationType) == "JIRA") {
 		return fmt.Errorf("'jira' must be specified if 'integration_type' is set to '%v'", me.IntegrationType)
 	}
-	if me.Jira != nil && (string(me.IntegrationType) != "JIRA") {
+	if (me.Jira != nil) && (string(me.IntegrationType) != "JIRA") {
 		return fmt.Errorf("'jira' must not be specified if 'integration_type' is set to '%v'", me.IntegrationType)
 	}
-	if me.MsTeams == nil && (string(me.IntegrationType) == "MS_TEAMS") {
+	if (me.MsTeams == nil) && (string(me.IntegrationType) == "MS_TEAMS") {
 		return fmt.Errorf("'ms_teams' must be specified if 'integration_type' is set to '%v'", me.IntegrationType)
 	}
-	if me.SlackChannel == nil && (string(me.IntegrationType) == "SLACK") {
+	if (me.SlackChannel == nil) && (string(me.IntegrationType) == "SLACK") {
 		return fmt.Errorf("'slack_channel' must be specified if 'integration_type' is set to '%v'", me.IntegrationType)
 	}
-	if me.Url == nil && slices.Contains([]string{"SLACK", "JIRA", "MS_TEAMS"}, string(me.IntegrationType)) {
+	if (me.Url == nil) && (slices.Contains([]string{"SLACK", "JIRA", "MS_TEAMS"}, string(me.IntegrationType))) {
 		return fmt.Errorf("'url' must be specified if 'integration_type' is set to '%v'", me.IntegrationType)
 	}
 	return nil

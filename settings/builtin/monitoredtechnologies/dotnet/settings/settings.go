@@ -59,7 +59,7 @@ func (me *Settings) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *Settings) HandlePreconditions() error {
-	if me.EnabledDotNetCore == nil && me.Enabled {
+	if (me.EnabledDotNetCore == nil) && (me.Enabled) {
 		me.EnabledDotNetCore = opt.NewBool(false)
 	}
 	return nil

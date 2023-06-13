@@ -109,10 +109,10 @@ func (me *Settings) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *Settings) HandlePreconditions() error {
-	if me.ThresholdMilliseconds == nil && slices.Contains([]string{"READ_TIME_EXCEEDING", "WRITE_TIME_EXCEEDING"}, string(me.Metric)) {
+	if (me.ThresholdMilliseconds == nil) && (slices.Contains([]string{"READ_TIME_EXCEEDING", "WRITE_TIME_EXCEEDING"}, string(me.Metric))) {
 		me.ThresholdMilliseconds = opt.NewFloat64(0.0)
 	}
-	if me.ThresholdPercent == nil && slices.Contains([]string{"LOW_DISK_SPACE", "LOW_INODES"}, string(me.Metric)) {
+	if (me.ThresholdPercent == nil) && (slices.Contains([]string{"LOW_DISK_SPACE", "LOW_INODES"}, string(me.Metric))) {
 		me.ThresholdPercent = opt.NewFloat64(0.0)
 	}
 	return nil

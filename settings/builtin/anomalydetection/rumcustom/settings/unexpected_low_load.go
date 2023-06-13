@@ -51,7 +51,7 @@ func (me *UnexpectedLowLoad) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *UnexpectedLowLoad) HandlePreconditions() error {
-	if me.ThresholdPercentage == nil && me.Enabled {
+	if (me.ThresholdPercentage == nil) && (me.Enabled) {
 		me.ThresholdPercentage = opt.NewFloat64(0.0)
 	}
 	return nil

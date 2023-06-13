@@ -55,10 +55,10 @@ func (me *AppTrafficSpikes) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *AppTrafficSpikes) HandlePreconditions() error {
-	if me.TrafficSpikes == nil && me.Enabled {
+	if (me.TrafficSpikes == nil) && (me.Enabled) {
 		return fmt.Errorf("'traffic_spikes' must be specified if 'enabled' is set to '%v'", me.Enabled)
 	}
-	if me.TrafficSpikes != nil && !me.Enabled {
+	if (me.TrafficSpikes != nil) && (!me.Enabled) {
 		return fmt.Errorf("'traffic_spikes' must not be specified if 'enabled' is set to '%v'", me.Enabled)
 	}
 	return nil

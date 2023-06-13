@@ -81,10 +81,10 @@ func (me *AllowListRule) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *AllowListRule) HandlePreconditions() error {
-	if me.AttributeExpression == nil && (string(me.Target) == "ATTRIBUTE") {
+	if (me.AttributeExpression == nil) && (string(me.Target) == "ATTRIBUTE") {
 		return fmt.Errorf("'attribute_expression' must be specified if 'target' is set to '%v'", me.Target)
 	}
-	if me.CssExpression == nil && (string(me.Target) == "ELEMENT") {
+	if (me.CssExpression == nil) && (string(me.Target) == "ELEMENT") {
 		return fmt.Errorf("'css_expression' must be specified if 'target' is set to '%v'", me.Target)
 	}
 	return nil

@@ -72,16 +72,16 @@ func (me *Settings) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *Settings) HandlePreconditions() error {
-	if me.BrokenLinks == nil && me.Enabled {
+	if (me.BrokenLinks == nil) && (me.Enabled) {
 		return fmt.Errorf("'broken_links' must be specified if 'enabled' is set to '%v'", me.Enabled)
 	}
-	if me.BrokenLinks != nil && !me.Enabled {
+	if (me.BrokenLinks != nil) && (!me.Enabled) {
 		return fmt.Errorf("'broken_links' must not be specified if 'enabled' is set to '%v'", me.Enabled)
 	}
-	if me.HttpResponseCodes == nil && me.Enabled {
+	if (me.HttpResponseCodes == nil) && (me.Enabled) {
 		return fmt.Errorf("'http_response_codes' must be specified if 'enabled' is set to '%v'", me.Enabled)
 	}
-	if me.HttpResponseCodes != nil && !me.Enabled {
+	if (me.HttpResponseCodes != nil) && (!me.Enabled) {
 		return fmt.Errorf("'http_response_codes' must not be specified if 'enabled' is set to '%v'", me.Enabled)
 	}
 	return nil

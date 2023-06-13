@@ -74,7 +74,7 @@ func (me *Settings) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *Settings) HandlePreconditions() error {
-	if me.Value == nil && !slices.Contains([]string{"EXISTS", "NOT_EXISTS"}, string(me.Operator)) {
+	if (me.Value == nil) && (!slices.Contains([]string{"EXISTS", "NOT_EXISTS"}, string(me.Operator))) {
 		return fmt.Errorf("'value' must be specified if 'operator' is set to '%v'", me.Operator)
 	}
 	return nil

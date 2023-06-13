@@ -99,28 +99,28 @@ func (me *Settings) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *Settings) HandlePreconditions() error {
-	if me.DailyRecurrence == nil && (string(me.Recurrence) == "DAILY") {
+	if (me.DailyRecurrence == nil) && (string(me.Recurrence) == "DAILY") {
 		return fmt.Errorf("'daily_recurrence' must be specified if 'recurrence' is set to '%v'", me.Recurrence)
 	}
-	if me.DailyRecurrence != nil && (string(me.Recurrence) != "DAILY") {
+	if (me.DailyRecurrence != nil) && (string(me.Recurrence) != "DAILY") {
 		return fmt.Errorf("'daily_recurrence' must not be specified if 'recurrence' is set to '%v'", me.Recurrence)
 	}
-	if me.MonthlyRecurrence == nil && (string(me.Recurrence) == "MONTHLY") {
+	if (me.MonthlyRecurrence == nil) && (string(me.Recurrence) == "MONTHLY") {
 		return fmt.Errorf("'monthly_recurrence' must be specified if 'recurrence' is set to '%v'", me.Recurrence)
 	}
-	if me.MonthlyRecurrence != nil && (string(me.Recurrence) != "MONTHLY") {
+	if (me.MonthlyRecurrence != nil) && (string(me.Recurrence) != "MONTHLY") {
 		return fmt.Errorf("'monthly_recurrence' must not be specified if 'recurrence' is set to '%v'", me.Recurrence)
 	}
-	if me.OnceRecurrence == nil && (string(me.Recurrence) == "ONCE") {
+	if (me.OnceRecurrence == nil) && (string(me.Recurrence) == "ONCE") {
 		return fmt.Errorf("'once_recurrence' must be specified if 'recurrence' is set to '%v'", me.Recurrence)
 	}
-	if me.OnceRecurrence != nil && (string(me.Recurrence) != "ONCE") {
+	if (me.OnceRecurrence != nil) && (string(me.Recurrence) != "ONCE") {
 		return fmt.Errorf("'once_recurrence' must not be specified if 'recurrence' is set to '%v'", me.Recurrence)
 	}
-	if me.WeeklyRecurrence == nil && (string(me.Recurrence) == "WEEKLY") {
+	if (me.WeeklyRecurrence == nil) && (string(me.Recurrence) == "WEEKLY") {
 		return fmt.Errorf("'weekly_recurrence' must be specified if 'recurrence' is set to '%v'", me.Recurrence)
 	}
-	if me.WeeklyRecurrence != nil && (string(me.Recurrence) != "WEEKLY") {
+	if (me.WeeklyRecurrence != nil) && (string(me.Recurrence) != "WEEKLY") {
 		return fmt.Errorf("'weekly_recurrence' must not be specified if 'recurrence' is set to '%v'", me.Recurrence)
 	}
 	return nil

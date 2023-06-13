@@ -104,19 +104,19 @@ func (me *ReducedTransformation) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *ReducedTransformation) HandlePreconditions() error {
-	if me.IncludeHexNumbers == nil && (string(me.TransformationType) == "REMOVE_NUMBERS") {
+	if (me.IncludeHexNumbers == nil) && (string(me.TransformationType) == "REMOVE_NUMBERS") {
 		me.IncludeHexNumbers = opt.NewBool(false)
 	}
-	if me.MinDigitCount == nil && (string(me.TransformationType) == "REMOVE_NUMBERS") {
+	if (me.MinDigitCount == nil) && (string(me.TransformationType) == "REMOVE_NUMBERS") {
 		return fmt.Errorf("'min_digit_count' must be specified if 'transformation_type' is set to '%v'", me.TransformationType)
 	}
-	if me.Prefix == nil && slices.Contains([]string{"REPLACE_BETWEEN"}, string(me.TransformationType)) {
+	if (me.Prefix == nil) && (slices.Contains([]string{"REPLACE_BETWEEN"}, string(me.TransformationType))) {
 		return fmt.Errorf("'prefix' must be specified if 'transformation_type' is set to '%v'", me.TransformationType)
 	}
-	if me.ReplacementValue == nil && (string(me.TransformationType) == "REPLACE_BETWEEN") {
+	if (me.ReplacementValue == nil) && (string(me.TransformationType) == "REPLACE_BETWEEN") {
 		return fmt.Errorf("'replacement_value' must be specified if 'transformation_type' is set to '%v'", me.TransformationType)
 	}
-	if me.Suffix == nil && slices.Contains([]string{"BEFORE", "REPLACE_BETWEEN"}, string(me.TransformationType)) {
+	if (me.Suffix == nil) && (slices.Contains([]string{"BEFORE", "REPLACE_BETWEEN"}, string(me.TransformationType))) {
 		return fmt.Errorf("'suffix' must be specified if 'transformation_type' is set to '%v'", me.TransformationType)
 	}
 	return nil

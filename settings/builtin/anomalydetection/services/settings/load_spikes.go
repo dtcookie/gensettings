@@ -59,10 +59,10 @@ func (me *LoadSpikes) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *LoadSpikes) HandlePreconditions() error {
-	if me.LoadSpikePercent == nil && me.Enabled {
+	if (me.LoadSpikePercent == nil) && (me.Enabled) {
 		return fmt.Errorf("'load_spike_percent' must be specified if 'enabled' is set to '%v'", me.Enabled)
 	}
-	if me.MinutesAbnormalState == nil && me.Enabled {
+	if (me.MinutesAbnormalState == nil) && (me.Enabled) {
 		return fmt.Errorf("'minutes_abnormal_state' must be specified if 'enabled' is set to '%v'", me.Enabled)
 	}
 	return nil

@@ -60,13 +60,13 @@ func (me *Limit) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *Limit) HandlePreconditions() error {
-	if me.LimitValue == nil && me.LimitEnabled {
+	if (me.LimitValue == nil) && (me.LimitEnabled) {
 		me.LimitValue = opt.NewInt(0)
 	}
-	if me.LimitType == nil && me.LimitEnabled {
+	if (me.LimitType == nil) && (me.LimitEnabled) {
 		return fmt.Errorf("'limit_type' must be specified if 'limit_enabled' is set to '%v'", me.LimitEnabled)
 	}
-	if me.LimitType != nil && !me.LimitEnabled {
+	if (me.LimitType != nil) && (!me.LimitEnabled) {
 		return fmt.Errorf("'limit_type' must not be specified if 'limit_enabled' is set to '%v'", me.LimitEnabled)
 	}
 	return nil

@@ -168,7 +168,7 @@ func (me *Struct) PrecondChecks(property *Property, precondition map[string]any,
 			if deref == "*" {
 				derefNilSanity = fmt.Sprintf("me.%s != nil && ", checkProperty.Name)
 			}
-			line = fmt.Sprintf(`(%sstring(%sme.%s) %s "%s") {
+			line = fmt.Sprintf(`(%s(string(%sme.%s) %s "%s")) {
 					`, nilCheck, deref, checkProperty.Name, eqStr, precExpectedValue)
 			oppLine = fmt.Sprintf(`%s (%s string(%sme.%s) %s "%s") {
 						`, opNilCheck, derefNilSanity, deref, checkProperty.Name, neqStr, precExpectedValue)
@@ -206,8 +206,8 @@ func (me *Struct) PrecondChecks(property *Property, precondition map[string]any,
 				fullLine = line
 				fullOpLine = opLine
 			} else {
-				fullLine = strings.TrimSuffix(strings.TrimSpace(fullLine), "{") + " && " + line
-				fullOpLine = strings.TrimSuffix(strings.TrimSpace(fullOpLine), "{") + " || " + opLine
+				fullLine = strings.TrimSuffix(strings.TrimSpace(fullLine), "{") + " && (" + strings.TrimSuffix(strings.TrimSpace(line), "{") + ") {"
+				fullOpLine = strings.TrimSuffix(strings.TrimSpace(fullOpLine), "{") + " || (" + strings.TrimSuffix(strings.TrimSpace(opLine), "{") + ") {"
 			}
 		}
 		return fullLine, fullOpLine, allCheckProperties
@@ -243,16 +243,16 @@ func (me *Struct) Preconditions() string {
 		if len(line) > 0 && property.Type == "*bool" {
 			if HasConstraints(property) {
 				pat := fmt.Sprintf("'%s' must be specified if '%s' is set to '%%v'", property.HCLTag, checkProperty[0].HCLTag)
-				throwingLines = append(throwingLines, fmt.Sprintf("if me.%s == nil && %s return fmt.Errorf(\"%s\", me.%s)}", property.Name, line, pat, checkProperty[0].Name))
+				throwingLines = append(throwingLines, fmt.Sprintf("if (me.%s == nil) && (%s) { return fmt.Errorf(\"%s\", me.%s) }", property.Name, strings.TrimSuffix(strings.TrimSpace(line), "{"), pat, checkProperty[0].Name))
 			} else {
-				handledLines = append(handledLines, fmt.Sprintf("if me.%s == nil && %sme.%s = %s}", property.Name, line, property.Name, "opt.NewBool(false)"))
+				handledLines = append(handledLines, fmt.Sprintf("if (me.%s == nil) && (%s) { me.%s = %s }", property.Name, strings.TrimSuffix(strings.TrimSpace(line), "{"), property.Name, "opt.NewBool(false)"))
 			}
 		} else if len(line) > 0 && property.Type == "*int" {
 			if HasConstraints(property) {
 				pat := fmt.Sprintf("'%s' must be specified if '%s' is set to '%%v'", property.HCLTag, checkProperty[0].HCLTag)
-				throwingLines = append(throwingLines, fmt.Sprintf("if me.%s == nil && %s return fmt.Errorf(\"%s\", me.%s)}", property.Name, line, pat, checkProperty[0].Name))
+				throwingLines = append(throwingLines, fmt.Sprintf("if (me.%s == nil) && (%s) { return fmt.Errorf(\"%s\", me.%s) }", property.Name, strings.TrimSuffix(strings.TrimSpace(line), "{"), pat, checkProperty[0].Name))
 			} else {
-				handledLines = append(handledLines, fmt.Sprintf("if me.%s == nil && %sme.%s = %s}", property.Name, line, property.Name, "opt.NewInt(0)"))
+				handledLines = append(handledLines, fmt.Sprintf("if (me.%s == nil) && (%s) { me.%s = %s }", property.Name, strings.TrimSuffix(strings.TrimSpace(line), "{"), property.Name, "opt.NewInt(0)"))
 			}
 		} else if len(line) > 0 && property.Type == "*string" {
 			if HasConstraints(property) {
@@ -263,20 +263,20 @@ func (me *Struct) Preconditions() string {
 					pat = fmt.Sprintf("'%s' must be specified if '%s' is set to '%%v'", property.HCLTag, "UNKNOWN")
 				}
 				if checkProperty[0] != nil {
-					throwingLines = append(throwingLines, fmt.Sprintf("if me.%s == nil && %s return fmt.Errorf(\"%s\", me.%s)}", property.Name, line, pat, checkProperty[0].Name))
+					throwingLines = append(throwingLines, fmt.Sprintf("if (me.%s == nil) && (%s) { return fmt.Errorf(\"%s\", me.%s)}", property.Name, strings.TrimSuffix(strings.TrimSpace(line), "{"), pat, checkProperty[0].Name))
 				} else {
-					throwingLines = append(throwingLines, fmt.Sprintf("if me.%s == nil && %s return fmt.Errorf(\"%s\", me.%s)}", property.Name, line, pat, "UNKNOWN"))
+					throwingLines = append(throwingLines, fmt.Sprintf("if (me.%s == nil) && (%s) { return fmt.Errorf(\"%s\", me.%s)}", property.Name, strings.TrimSuffix(strings.TrimSpace(line), "{"), pat, "UNKNOWN"))
 				}
 
 			} else {
-				handledLines = append(handledLines, fmt.Sprintf("if me.%s == nil && %sme.%s = %s}", property.Name, line, property.Name, "opt.NewString(\"\")"))
+				handledLines = append(handledLines, fmt.Sprintf("if (me.%s == nil) && (%s) { me.%s = %s}", property.Name, strings.TrimSuffix(strings.TrimSpace(line), "{"), property.Name, "opt.NewString(\"\")"))
 			}
 		} else if len(line) > 0 && property.Type == "*float64" {
 			if HasConstraints(property) {
 				pat := fmt.Sprintf("'%s' must be specified if '%s' is set to '%%v'", property.HCLTag, checkProperty[0].HCLTag)
-				throwingLines = append(throwingLines, fmt.Sprintf("if me.%s == nil && %s return fmt.Errorf(\"%s\", me.%s)}", property.Name, line, pat, checkProperty[0].Name))
+				throwingLines = append(throwingLines, fmt.Sprintf("if (me.%s == nil) && (%s) { return fmt.Errorf(\"%s\", me.%s)}", property.Name, strings.TrimSuffix(strings.TrimSpace(line), "{"), pat, checkProperty[0].Name))
 			} else {
-				handledLines = append(handledLines, fmt.Sprintf("if me.%s == nil && %sme.%s = %s}", property.Name, line, property.Name, "opt.NewFloat64(0.0)"))
+				handledLines = append(handledLines, fmt.Sprintf("if (me.%s == nil) && (%s) { me.%s = %s}", property.Name, strings.TrimSuffix(strings.TrimSpace(line), "{"), property.Name, "opt.NewFloat64(0.0)"))
 			}
 		} else if len(line) > 0 && strings.HasPrefix(property.Type, "*") {
 			pat := ""
@@ -292,9 +292,9 @@ func (me *Struct) Preconditions() string {
 				pat = pat + fmt.Sprintf("'%s' is set to '%%v'", cp.HCLTag)
 			}
 			pat = fmt.Sprintf("'%s' must be specified if ", property.HCLTag) + pat
-			throwingLines = append(throwingLines, fmt.Sprintf("if me.%s == nil && %s return fmt.Errorf(\"%s\", %s)}", property.Name, line, pat, pnarg))
+			throwingLines = append(throwingLines, fmt.Sprintf("if (me.%s == nil) && (%s) { return fmt.Errorf(\"%s\", %s)}", property.Name, strings.TrimSuffix(strings.TrimSpace(line), "{"), pat, pnarg))
 			pat = fmt.Sprintf("'%s' must not be specified if '%s' is set to '%%v'", property.HCLTag, checkProperty[0].HCLTag)
-			throwingLines = append(throwingLines, fmt.Sprintf("if me.%s != nil && %s return fmt.Errorf(\"%s\", me.%s)}", property.Name, oppLine, pat, checkProperty[0].Name))
+			throwingLines = append(throwingLines, fmt.Sprintf("if (me.%s != nil) && (%s) { return fmt.Errorf(\"%s\", me.%s)}", property.Name, strings.TrimSuffix(strings.TrimSpace(oppLine), "{"), pat, checkProperty[0].Name))
 		} else {
 			data, _ := json.Marshal(property.Precondition)
 			unhandledLines = append(unhandledLines, "// ---- "+property.Name+" "+property.Type+" -> "+string(data))

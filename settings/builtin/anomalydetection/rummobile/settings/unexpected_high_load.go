@@ -52,7 +52,7 @@ func (me *UnexpectedHighLoad) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *UnexpectedHighLoad) HandlePreconditions() error {
-	if me.ThresholdPercentage == nil && me.Enabled {
+	if (me.ThresholdPercentage == nil) && (me.Enabled) {
 		return fmt.Errorf("'threshold_percentage' must be specified if 'enabled' is set to '%v'", me.Enabled)
 	}
 	return nil

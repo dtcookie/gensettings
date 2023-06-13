@@ -90,7 +90,7 @@ func (me *Filter) MarshalHCL(properties hcl.Properties) error {
 }
 
 func (me *Filter) HandlePreconditions() error {
-	if me.Value == nil && slices.Contains([]string{"EQUALS", "NOT_EQUAL", "LIKE", "LESS_THAN", "LESS_THAN_OR_EQUAL_TO", "GREATER_THAN", "GREATER_THAN_OR_EQUAL_TO", "NOT_LIKE", "STARTS_WITH"}, string(me.Operator)) {
+	if (me.Value == nil) && (slices.Contains([]string{"EQUALS", "NOT_EQUAL", "LIKE", "LESS_THAN", "LESS_THAN_OR_EQUAL_TO", "GREATER_THAN", "GREATER_THAN_OR_EQUAL_TO", "NOT_LIKE", "STARTS_WITH"}, string(me.Operator))) {
 		return fmt.Errorf("'value' must be specified if 'operator' is set to '%v'", me.Operator)
 	}
 	// ---- ValueIn []string -> {"expectedValue":"IN","property":"operator","type":"EQUALS"}
