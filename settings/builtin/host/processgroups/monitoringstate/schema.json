@@ -82,6 +82,15 @@
 			"type": "text"
 		}
 	},
+	"schemaConstraints": [
+		{
+			"customMessage": "Only one entry per process group possible",
+			"type": "UNIQUE",
+			"uniqueProperties": [
+				"ProcessGroup"
+			]
+		}
+	],
 	"schemaId": "builtin:host.process-groups.monitoring-state",
 	"types": {},
 	"version": "1.0.1"

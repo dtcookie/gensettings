@@ -81,6 +81,12 @@
 			"type": "text"
 		}
 	},
+	"schemaConstraints": [
+		{
+			"customValidatorId": "failure-detection-params-delete-validator",
+			"type": "CUSTOM_VALIDATOR_REF"
+		}
+	],
 	"schemaGroups": [
 		"group:service-monitoring",
 		"group:failure-detection"

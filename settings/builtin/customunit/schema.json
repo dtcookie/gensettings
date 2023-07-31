@@ -132,6 +132,32 @@
 			"type": "text"
 		}
 	},
+	"schemaConstraints": [
+		{
+			"customMessage": "Unit names have to be unique (case-insensitive).",
+			"type": "UNIQUE",
+			"uniqueProperties": [
+				"newUnitName"
+			]
+		},
+		{
+			"customMessage": "Unit symbols have to be unique.",
+			"type": "UNIQUE",
+			"uniqueProperties": [
+				"newUnitSymbol"
+			]
+		},
+		{
+			"customMessage": "Unit names have to be unique (case-insensitive).",
+			"customValidatorId": "unique-unit-name-validator",
+			"type": "CUSTOM_VALIDATOR_REF"
+		},
+		{
+			"customMessage": "Unit symbols have to be unique.",
+			"customValidatorId": "unique-unit-symbol-validator",
+			"type": "CUSTOM_VALIDATOR_REF"
+		}
+	],
 	"schemaGroups": [
 		"group:metrics"
 	],

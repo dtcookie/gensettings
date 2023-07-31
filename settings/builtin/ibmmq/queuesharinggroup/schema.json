@@ -93,6 +93,15 @@
 			"type": "set"
 		}
 	},
+	"schemaConstraints": [
+		{
+			"customMessage": "Queue sharing group name must be unique.",
+			"type": "UNIQUE",
+			"uniqueProperties": [
+				"name"
+			]
+		}
+	],
 	"schemaGroups": [
 		"group:mainframe"
 	],

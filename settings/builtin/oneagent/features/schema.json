@@ -98,6 +98,15 @@
 			"type": "text"
 		}
 	},
+	"schemaConstraints": [
+		{
+			"customMessage": "Key property must have unique value",
+			"type": "UNIQUE",
+			"uniqueProperties": [
+				"key"
+			]
+		}
+	],
 	"schemaGroups": [
 		"group:preferences"
 	],

@@ -2,6 +2,13 @@
 	"allowedScopes": [
 		"APPLICATION"
 	],
+	"constraints": [
+		{
+			"customMessage": "IP address list must have at least one entry.",
+			"customValidatorId": "RumIpAddressExclusionSchemaValidator",
+			"type": "CUSTOM_VALIDATOR_REF"
+		}
+	],
 	"description": "Enable the switch below if the IP addresses are to be included. Disable the switch if they are to be excluded.",
 	"displayName": "Exclude IP addresses from monitoring",
 	"documentation": "",
@@ -110,5 +117,5 @@
 			"versionInfo": ""
 		}
 	},
-	"version": "6"
+	"version": "6.0.2"
 }

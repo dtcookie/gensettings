@@ -214,6 +214,15 @@
 			"type": "text"
 		}
 	},
+	"schemaConstraints": [
+		{
+			"customMessage": "Metric with the specified key already exists.",
+			"type": "UNIQUE",
+			"uniqueProperties": [
+				"key"
+			]
+		}
+	],
 	"schemaGroups": [
 		"group:business-analytics",
 		"group:business-analytics.ingest-pipeline"

@@ -70,7 +70,7 @@
 			}
 		},
 		"docker": {
-			"description": "Enable this setting for plain Docker and Podman environments to get \n * Container resource metrics (Container group instance entities) and [related screens](https://www.dynatrace.com/support/help/shortlink/container-groups). \n * Docker support requires OneAgent 1.257+. \n * Podman support requires OneAgent 1.265+.",
+			"description": "Enable this setting for plain Docker and Podman environments to get \n * Container resource metrics (Container group instance entities) and [related screens](https://www.dynatrace.com/support/help/shortlink/container-groups). \n * Docker support requires OneAgent 1.257+. \n * Podman support requires OneAgent 1.267+.",
 			"displayName": "Docker and Podman",
 			"documentation": "",
 			"maxObjects": 1,

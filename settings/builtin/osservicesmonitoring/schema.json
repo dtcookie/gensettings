@@ -355,6 +355,15 @@
 			}
 		}
 	},
+	"schemaConstraints": [
+		{
+			"customMessage": "Specified name already exists. Please provide a different name.",
+			"type": "UNIQUE",
+			"uniqueProperties": [
+				"name"
+			]
+		}
+	],
 	"schemaGroups": [
 		"group:monitoring"
 	],

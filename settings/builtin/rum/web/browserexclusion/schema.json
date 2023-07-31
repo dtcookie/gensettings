@@ -2,6 +2,13 @@
 	"allowedScopes": [
 		"APPLICATION"
 	],
+	"constraints": [
+		{
+			"customMessage": "Browser list must have at least one entry.",
+			"customValidatorId": "RumBrowserExclusionSchemaValidator",
+			"type": "CUSTOM_VALIDATOR_REF"
+		}
+	],
 	"description": "If you want to exclude certain outdated browser types from your list of monitored browsers, create [browser exclusion](https://dt-url.net/0e2z0pp0) rules for the browsers that are to be excluded.\n\n**Note:** Newer browser versions that do not support user-agent strings can only be excluded when your web site runs on HTTPS. This is because Client Hints HTTP request header fields, which are used to exclude user-agent strings, can only be sent over secure connections.\n\nClient Hints require OneAgent version 1.205.",
 	"displayName": "Exclude/Include browsers from monitoring",
 	"documentation": "",
@@ -219,5 +226,5 @@
 			"versionInfo": ""
 		}
 	},
-	"version": "1"
+	"version": "1.0.1"
 }

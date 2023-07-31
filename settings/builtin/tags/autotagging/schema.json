@@ -1296,6 +1296,19 @@
 			"type": "set"
 		}
 	},
+	"schemaConstraints": [
+		{
+			"customValidatorId": "at-conditions-count-validator",
+			"type": "CUSTOM_VALIDATOR_REF"
+		},
+		{
+			"customMessage": "Tag name must be unique",
+			"type": "UNIQUE",
+			"uniqueProperties": [
+				"name"
+			]
+		}
+	],
 	"schemaGroups": [
 		"group:tags"
 	],

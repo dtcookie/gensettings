@@ -32,7 +32,7 @@ type Settings struct {
 	LAConfigLogScannerLinuxNfsEnabled         bool    `json:"LAConfigLogScannerLinuxNfsEnabled"`         // Detect logs on Network File Systems (NFS)
 	LAConfigMaxLgisPerEntityCount             int     `json:"LAConfigMaxLgisPerEntityCount"`             // Defines the maximum number of log group instances per entity after which, the new automatic ones wouldn't be added.
 	LAConfigMinBinaryDetectionLimit_Bytes     int     `json:"LAConfigMinBinaryDetectionLimit_Bytes"`     // Defines the minimum number of bytes in log file required for binary detection.
-	LAConfigMonitorOwnLogsEnabled             bool    `json:"LAConfigMonitorOwnLogsEnabled"`             // Enabling this option may affect your DDU consumption. For more details, see [documentation](https://dt-url.net/hp43ef8).
+	LAConfigMonitorOwnLogsEnabled             bool    `json:"LAConfigMonitorOwnLogsEnabled"`             // Enabling this option may affect your licensing costs. For more details, see [documentation](https://dt-url.net/4l02yi8).
 	LAConfigOpenLogFilesDetectionEnabled      bool    `json:"LAConfigOpenLogFilesDetectionEnabled"`      // Detect open log files
 	LAConfigSeverityDetectionLimit_Bytes      int     `json:"LAConfigSeverityDetectionLimit_Bytes"`      // Defines the number of characters in every log line (starting from the first character in the line) where severity is searched.
 	LAConfigSeverityDetectionLinesLimit       int     `json:"LAConfigSeverityDetectionLinesLimit"`       // Defines the number of the first lines of every log entry where severity is searched.
@@ -90,7 +90,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		},
 		"laconfig_monitor_own_logs_enabled": {
 			Type:        schema.TypeBool,
-			Description: "Enabling this option may affect your DDU consumption. For more details, see [documentation](https://dt-url.net/hp43ef8).",
+			Description: "Enabling this option may affect your licensing costs. For more details, see [documentation](https://dt-url.net/4l02yi8).",
 			Required:    true,
 		},
 		"laconfig_open_log_files_detection_enabled": {

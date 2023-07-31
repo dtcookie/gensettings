@@ -261,6 +261,15 @@
 			}
 		}
 	},
+	"schemaConstraints": [
+		{
+			"customMessage": "The name of the update window must be unique.",
+			"type": "UNIQUE",
+			"uniqueProperties": [
+				"name"
+			]
+		}
+	],
 	"schemaGroups": [
 		"group:updates"
 	],

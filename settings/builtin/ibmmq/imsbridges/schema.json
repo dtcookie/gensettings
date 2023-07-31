@@ -56,6 +56,15 @@
 			"type": "set"
 		}
 	},
+	"schemaConstraints": [
+		{
+			"customMessage": "IMS bridge name must be unique.",
+			"type": "UNIQUE",
+			"uniqueProperties": [
+				"name"
+			]
+		}
+	],
 	"schemaGroups": [
 		"group:mainframe"
 	],

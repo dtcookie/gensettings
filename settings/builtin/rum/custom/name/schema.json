@@ -89,6 +89,13 @@
 			}
 		}
 	},
+	"schemaConstraints": [
+		{
+			"customMessage": "This name is already taken",
+			"customValidatorId": "name-unique-case-insensitive",
+			"type": "MULTI_SCOPE_CUSTOM_VALIDATOR_REF"
+		}
+	],
 	"schemaGroups": [
 		"group:rum-general"
 	],

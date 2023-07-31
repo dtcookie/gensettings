@@ -176,6 +176,15 @@
 			"type": "boolean"
 		}
 	},
+	"schemaConstraints": [
+		{
+			"customMessage": "An API rule with this name already exists",
+			"type": "UNIQUE",
+			"uniqueProperties": [
+				"apiName"
+			]
+		}
+	],
 	"schemaGroups": [
 		"group:service-monitoring"
 	],

@@ -138,6 +138,15 @@
 			}
 		}
 	},
+	"schemaConstraints": [
+		{
+			"customMessage": "Resource names must be unique.",
+			"type": "UNIQUE",
+			"uniqueProperties": [
+				"resourceName"
+			]
+		}
+	],
 	"schemaGroups": [
 		"group:web-and-mobile-monitoring",
 		"group:web-and-mobile-monitoring.content-resources"
