@@ -2,7 +2,9 @@ package golang
 
 import (
 	"bytes"
+	"fmt"
 	"sort"
+	"strconv"
 	"strings"
 	"text/template"
 
@@ -40,14 +42,13 @@ func NewEnum(t *reflection.Type) *Enum {
 	}
 	for propertyName, property := range t.Properties {
 		enumDef.Instances = append(enumDef.Instances, EnumField{
-			Name:    EnumInstance(propertyName),
+			Name:    EnumInstance(enumDef.Name, propertyName),
 			Literal: property.RawName,
 		})
 	}
 	sort.Slice(enumDef.Instances, func(i, j int) bool {
 		return strings.Compare(enumDef.Instances[i].Name, enumDef.Instances[j].Name) < 0
 	})
-
 	return enumDef
 }
 
@@ -76,12 +77,20 @@ func EnumTypeName(name string) string {
 	return camel.Camel(camel.Strip(name))
 }
 
-func EnumInstance(name string) string {
+func EnumInstance(typeName string, name string) string {
 	propertyName := strings.ToUpper(name[0:1]) + name[1:]
 	propertyName = strings.ReplaceAll(propertyName, " ", "")
 	propertyName = strings.ReplaceAll(propertyName, "-", "_minus_")
 	propertyName = strings.ReplaceAll(propertyName, "+", "_plus_")
 	propertyName = strings.ReplaceAll(propertyName, ".", "_")
 	propertyName = strings.ReplaceAll(propertyName, ":", "_")
+	if i, err := strconv.Atoi(propertyName); err == nil {
+		if i < 0 {
+			propertyName = fmt.Sprintf("%s_minus_%d", PrettyProp(typeName), -i)
+		} else {
+			propertyName = fmt.Sprintf("%s%s", PrettyProp(typeName), strings.TrimSpace(propertyName))
+		}
+		return propertyName
+	}
 	return camel.Camel(propertyName)
 }
