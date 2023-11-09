@@ -127,6 +127,15 @@
 			"type": "set"
 		}
 	},
+	"schemaConstraints": [
+		{
+			"customMessage": "Queue manager name must be unique.",
+			"type": "UNIQUE",
+			"uniqueProperties": [
+				"name"
+			]
+		}
+	],
 	"schemaGroups": [
 		"group:mainframe"
 	],

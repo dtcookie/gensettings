@@ -123,6 +123,10 @@ var scopeIds = map[string]string{
 	"DISK":               "diskId",
 }
 
+var selectedSchemata = map[string]string{
+	// "builtin:bizevents.http.incoming": "1.0.1",
+}
+
 func main() {
 	if len(os.Args) == 2 && os.Args[1] == "-recheck" {
 		// Validate()
@@ -135,22 +139,22 @@ func main() {
 	}
 	schemata := map[string]*Schema{}
 	for _, schemaStub := range schemaList.Items {
-		// if schemaStub.SchemaID != "builtin:service-detection.external-web-request" {
-		// 	continue
-		// }
-		// if schemaStub.SchemaID != "builtin:example.kitchen-sink" {
-		// 	continue
-		// }
-		// if schemaStub.SchemaID != "builtin:anomaly-detection.infrastructure-vmware" {
-		// 	continue
-		// }
+		schemaVersion := "latest"
 
-		// if !strings.HasPrefix(schemaStub.SchemaID, "builtin:") {
-		// 	fmt.Println(schemaStub.SchemaID)
-		// }
+		if len(selectedSchemata) > 0 {
+			if sv, ok := selectedSchemata[schemaStub.SchemaID]; !ok {
+				continue
+			} else {
+				schemaVersion = sv
+			}
+		}
 
 		var schemaDefinition schema.Definition
-		data, err := GETX(CREDENTIALS.EnvironmentURL+"/api/v2/settings/schemas/"+url.PathEscape(schemaStub.SchemaID), &schemaDefinition)
+		urlStr := CREDENTIALS.EnvironmentURL + "/api/v2/settings/schemas/" + url.PathEscape(schemaStub.SchemaID)
+		if schemaVersion != "latest" {
+			urlStr = urlStr + "?schemaVersion=" + url.QueryEscape(schemaVersion)
+		}
+		data, err := GETX(urlStr, &schemaDefinition)
 		if err != nil {
 			panic(err)
 		}
@@ -169,7 +173,7 @@ func main() {
 		panic(err)
 	}
 
-	if err := os.MkdirAll(SettingsFolder, os.ModeDir); err != nil {
+	if err := os.MkdirAll(SettingsFolder, os.ModePerm); err != nil {
 		panic(err)
 	}
 
@@ -241,7 +245,7 @@ func main() {
 
 		curPackageFolder := path.Join(SettingsFolder, packageFolder(schemaID))
 
-		if err := os.MkdirAll(curPackageFolder, os.ModeDir); err != nil {
+		if err := os.MkdirAll(curPackageFolder, os.ModePerm); err != nil {
 			panic(err)
 		}
 

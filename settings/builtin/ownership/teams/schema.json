@@ -258,6 +258,15 @@
 			"type": "set"
 		}
 	},
+	"schemaConstraints": [
+		{
+			"customMessage": "There cannot be 2 teams with the same identifier.",
+			"type": "UNIQUE",
+			"uniqueProperties": [
+				"identifier"
+			]
+		}
+	],
 	"schemaGroups": [
 		"group:ownership"
 	],

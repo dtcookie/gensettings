@@ -200,6 +200,13 @@
 			"type": "text"
 		}
 	},
+	"schemaConstraints": [
+		{
+			"customMessage": "IP ranges must not overlap",
+			"customValidatorId": "ipRangeOverlapValidator",
+			"type": "CUSTOM_VALIDATOR_REF"
+		}
+	],
 	"schemaGroups": [
 		"group:web-and-mobile-monitoring.geographic-regions",
 		"group:web-and-mobile-monitoring"

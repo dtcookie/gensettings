@@ -18,7 +18,7 @@
 package rummobile
 
 import (
-	"github.com/dynatrace-oss/terraform-provider-dynatrace/dynatrace/opt"
+	"github.com/dtcookie/opt"
 	"github.com/dynatrace-oss/terraform-provider-dynatrace/terraform/hcl"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )

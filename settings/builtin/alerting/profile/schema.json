@@ -474,6 +474,38 @@
 			"type": "text"
 		},
 		"severityRules": {
+			"default": [
+				{
+					"delayInMinutes": 0,
+					"severityLevel": "MONITORING_UNAVAILABLE",
+					"tagFilterIncludeMode": "NONE"
+				},
+				{
+					"delayInMinutes": 0,
+					"severityLevel": "AVAILABILITY",
+					"tagFilterIncludeMode": "NONE"
+				},
+				{
+					"delayInMinutes": 0,
+					"severityLevel": "ERRORS",
+					"tagFilterIncludeMode": "NONE"
+				},
+				{
+					"delayInMinutes": 30,
+					"severityLevel": "PERFORMANCE",
+					"tagFilterIncludeMode": "NONE"
+				},
+				{
+					"delayInMinutes": 30,
+					"severityLevel": "RESOURCE_CONTENTION",
+					"tagFilterIncludeMode": "NONE"
+				},
+				{
+					"delayInMinutes": 0,
+					"severityLevel": "CUSTOM_ALERT",
+					"tagFilterIncludeMode": "NONE"
+				}
+			],
 			"description": "Define severity rules for profile. A maximum of 100 severity rules is allowed.",
 			"displayName": "Severity rules",
 			"documentation": "",
@@ -928,5 +960,5 @@
 			"versionInfo": ""
 		}
 	},
-	"version": "8.2"
+	"version": "8.3"
 }

@@ -2,7 +2,7 @@
 	"allowedScopes": [
 		"environment"
 	],
-	"description": "Configure log patterns that trigger events for alerting and Davis® analysis. [View Documentation](https://dt-url.net/no02x5g). \nNote that log event detection consumes [Davis® data units](https://dt-url.net/hk03ulj)",
+	"description": "Configure log patterns that trigger events for alerting and Davis® analysis. Note that log event detection consumes [Davis® data units](https://dt-url.net/hk03ulj)",
 	"displayName": "Log events",
 	"documentation": "",
 	"dynatrace": "1",
@@ -135,6 +135,15 @@
 			"type": "text"
 		}
 	},
+	"schemaConstraints": [
+		{
+			"customMessage": "Log event summary with the specified name already exists.",
+			"type": "UNIQUE",
+			"uniqueProperties": [
+				"summary"
+			]
+		}
+	],
 	"schemaGroups": [
 		"group:log-monitoring.analysis",
 		"group:log-monitoring"

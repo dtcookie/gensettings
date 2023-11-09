@@ -23,7 +23,7 @@ import (
 )
 
 type Settings struct {
-	NewDynatraceTokenFormatEnabled bool `json:"newDynatraceTokenFormatEnabled"` // Check out this [blog post](http://www.dynatrace.com/blog/further-increased-security-of-your-api-tokens-by-automating-token-protection/) to find out more about the new Dynatrace API token format.
+	NewDynatraceTokenFormatEnabled bool `json:"newDynatraceTokenFormatEnabled"` // Check out this [blog post](https://dt-url.net/ho02y5r) to find out more about the new Dynatrace API token format.
 	PatEnabled                     bool `json:"patEnabled"`                     // Allow users of this environment to generate personal access tokens based on user permissions. \n Note that existing personal access tokens will become unusable while this setting is disabled.
 }
 
@@ -31,7 +31,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"new_dynatrace_token_format_enabled": {
 			Type:        schema.TypeBool,
-			Description: "Check out this [blog post](http://www.dynatrace.com/blog/further-increased-security-of-your-api-tokens-by-automating-token-protection/) to find out more about the new Dynatrace API token format.",
+			Description: "Check out this [blog post](https://dt-url.net/ho02y5r) to find out more about the new Dynatrace API token format.",
 			Required:    true,
 		},
 		"pat_enabled": {

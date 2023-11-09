@@ -24,7 +24,7 @@ import (
 
 type Settings struct {
 	Enabled             bool                 `json:"enabled"`             // This setting is enabled (`true`) or disabled (`false`)
-	ProcessorDefinition *ProcessorDefinition `json:"ProcessorDefinition"` // ## Processor definition\nAdd a rule definition using our syntax. [In our documentation](https://dt-url.net/8k03xm2) you will find instructions and application [examples](https://dt-url.net/m24305t).
+	ProcessorDefinition *ProcessorDefinition `json:"ProcessorDefinition"` // ## Processor definition
 	Query               string               `json:"query"`               // Matcher
 	RuleName            string               `json:"ruleName"`            // Rule name
 	RuleTesting         *RuleTesting         `json:"RuleTesting"`         // ## Rule testing\n### 1. Paste a log / JSON sample
@@ -39,7 +39,7 @@ func (me *Settings) Schema() map[string]*schema.Schema {
 		},
 		"processor_definition": {
 			Type:        schema.TypeList,
-			Description: "## Processor definition\nAdd a rule definition using our syntax. [In our documentation](https://dt-url.net/8k03xm2) you will find instructions and application [examples](https://dt-url.net/m24305t).",
+			Description: "## Processor definition",
 			Required:    true,
 			Elem:        &schema.Resource{Schema: new(ProcessorDefinition).Schema()},
 			MinItems:    1,

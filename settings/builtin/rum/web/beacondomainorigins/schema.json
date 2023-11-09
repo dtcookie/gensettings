@@ -66,6 +66,15 @@
 			"type": "text"
 		}
 	},
+	"schemaConstraints": [
+		{
+			"type": "UNIQUE",
+			"uniqueProperties": [
+				"matcher",
+				"pattern"
+			]
+		}
+	],
 	"schemaGroups": [
 		"group:web-and-mobile-monitoring.web-applications",
 		"group:web-and-mobile-monitoring"

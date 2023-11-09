@@ -26,13 +26,3 @@ var DoNotTrackOptions = struct {
 	"anonymous",
 	"disable-rum",
 }
-
-type IpAddressMaskingOption string
-
-var IpAddressMaskingOptions = struct {
-	All    IpAddressMaskingOption
-	Public IpAddressMaskingOption
-}{
-	"all",
-	"public",
-}

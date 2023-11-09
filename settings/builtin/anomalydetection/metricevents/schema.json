@@ -432,6 +432,12 @@
 			"type": "text"
 		}
 	},
+	"schemaConstraints": [
+		{
+			"customValidatorId": "metric-event-config-count-validator",
+			"type": "CUSTOM_VALIDATOR_REF"
+		}
+	],
 	"schemaGroups": [
 		"group:anomaly-detection"
 	],

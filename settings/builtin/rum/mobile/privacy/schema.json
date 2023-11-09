@@ -22,9 +22,10 @@
 		}
 	},
 	"schemaGroups": [
-		"group:rum-general"
+		"group:rum-general",
+		"group:privacy-settings"
 	],
 	"schemaId": "builtin:rum.mobile.privacy",
 	"types": {},
-	"version": "1.1.7"
+	"version": "1.1.8"
 }

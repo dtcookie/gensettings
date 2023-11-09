@@ -212,6 +212,13 @@
 			}
 		}
 	},
+	"schemaConstraints": [
+		{
+			"customMessage": "The metric key must be unique (case insensitive)",
+			"customValidatorId": "unique-case-insensitive-metric-key-validator",
+			"type": "CUSTOM_VALIDATOR_REF"
+		}
+	],
 	"schemaGroups": [
 		"group:web-and-mobile-monitoring",
 		"group:web-and-mobile-monitoring.usql-custom-metrics"
